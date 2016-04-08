@@ -127,6 +127,10 @@ body {
   font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
 }
+.likecode {
+  font-family: 'Source Code Pro';
+  color: #696;
+}
 .outer {
   max-width: 1220px;
   margin: 0 auto;
@@ -153,10 +157,6 @@ body {
 .right,
 .alignright {
   float: right;
-}
-.likecode {
-  font-family: 'Source Code Pro';
-  color: #696;
 }
 .clear {
   clear: both;
