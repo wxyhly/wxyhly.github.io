@@ -154,6 +154,10 @@ body {
 .alignright {
   float: right;
 }
+.likecode {
+  font-family: 'Source Code Pro';
+  color: #696;
+}
 .clear {
   clear: both;
 }
