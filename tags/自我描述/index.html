@@ -107,7 +107,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂记/">杂记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自我描述/">自我描述</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/四维/">四维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图形/">图形</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂记/">杂记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自我描述/">自我描述</a></li></ul>
     </div>
   </div>
 
@@ -117,7 +117,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
+      <a href="/tags/四维/" style="font-size: 10px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
     </div>
   </div>
 
@@ -137,6 +137,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/04/08/objects4ds/">四维空间（一）：简单几何体</a>
+          </li>
         
           <li>
             <a href="/2016/04/07/premier/">Ceci n&#39;est pas le premier article !</a>
@@ -191,7 +195,23 @@
 
 
 <script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
-
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    }); 
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
