@@ -64,6 +64,64 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-geometry4ds" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/09/geometry4ds/" class="article-date">
+  <time datetime="2016-04-09T14:40:00.000Z" itemprop="datePublished">2016-04-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/09/geometry4ds/">四维空间（二）：超立体几何</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#<span class="likecode">本文讨论的是纯空间上的几何，而不是物理上的时空！推荐视频《<a href="http://list.youku.com/albumlist/show?id=2376313&amp;ascending=1&amp;page=1">维度：数学漫步</a>》对四维空间作初步了解</span></p>
+<p><div style="float:left">今天，我们将接触到更多的四维空间的几何性质、位置关系、更多有趣的四维立体几何题和某些立体几何定理的推广。</div></p>
+<p><div style="float:right"><img src="/img/crossection.gif" width="300" height="300"/><p>three.js绘制的超立方体的斜切胞（黑色是截胞）</p></div><br><a name="index"></a></p>
+<h3 id="系列目录："><a href="#系列目录：" class="headerlink" title="系列目录："></a>系列目录：</h3><ul>
+<li><a href="/2016/04/08/objects4ds/">四维空间（一）：简单几何体</a></li>
+<li><strong>四维空间（二）：超立体几何</strong></li>
+</ul>
+<h3 id="本文目录："><a href="#本文目录：" class="headerlink" title="本文目录："></a>本文目录：</h3><ul>
+<li><a href="/2016/04/09/geometry4ds/#jihe">位置关系的判定</a></li>
+<li><a href="/2016/04/09/geometry4ds/#deux">真相：用两个角度来述</a></li>
+<li><a href="/2016/04/09/geometry4ds/#ami">超立方体——最好的朋友</a></li>
+<li><a href="/2016/04/09/geometry4ds/#cross">超立方体截面</a></li>
+<li><a href="/2016/04/09/geometry4ds/#slop">斜着的面</a></li>
+<li><a href="/2016/04/09/geometry4ds/#proj">射影面积定理推广</a><br><a name="jihe"></a>
+        
+          <p class="article-more-link">
+            <a href="/2016/04/09/geometry4ds/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wxyhly.github.io/2016/04/09/geometry4ds/" data-id="cimrs9axa000118vl9x419wp1" class="article-share-link">Share</a>
+      
+        <a href="http://wxyhly.github.io/2016/04/09/geometry4ds/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/几何/">几何</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/四维/">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系列文章/">系列文章</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-objects4ds" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/04/08/objects4ds/" class="article-date">
@@ -86,16 +144,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> #<span class="likecode">本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。</span><br>#<span class="likecode">本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐视频《<a href="http://list.youku.com/albumlist/show?id=2376313&amp;ascending=1&amp;page=1">维度：数学漫步</a>》（它对我数学影响深远）<br>#<span class="likecode">本文没有使用严格的数学语言叙述，只为得到直观的认识。</span><br></span><a name="index"></a><br>四维空间太抽象，所以我们不能直接感性地接触它（直接看到或摸到），但我们可以用类比法或解析法像“盲人摸象”那样建立起对它的认识。类比法较直观，但对想象力要求高，且不严谨；解析法（计算法）严谨，但缺乏直观几何意义，滥用会把几何沦为代数，只有两者结合起来才能更好地认识四维空间。</p>
-<h3 id="目录："><a href="#目录：" class="headerlink" title="目录："></a>目录：</h3><ul>
-<li><a href="#hyper">超立方体、超长方体类比性质</a></li>
-<li><a href="#zhu">一般柱体</a></li>
-<li><a href="#czhu">圆柱柱</a></li>
-<li><a href="#lzhu">棱柱柱</a></li>
-<li><a href="#szhu">球柱</a></li>
-<li><a href="#cone">各种锥体</a></li>
+        <p> #<span class="likecode">本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。</span><br>#<span class="likecode">本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐视频《<a href="http://list.youku.com/albumlist/show?id=2376313&amp;ascending=1&amp;page=1">维度：数学漫步</a>》（它对我数学影响深远）<br>#<span class="likecode">本文没有使用严格的数学语言叙述，只为得到直观的认识。</span><br></span><br>　　四维空间太抽象，所以我们不能直接感性地接触它（直接看到或摸到），但我们可以用类比法或解析法像“盲人摸象”那样建立起对它的认识。类比法较直观，但对想象力要求高，且不严谨；解析法（计算法）严谨，但缺乏直观几何意义，滥用会把几何沦为代数，只有两者结合起来才能更好地认识四维空间。<div style="float:right"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/From_Point_to_Tesseract_%28Looped_Version%29.gif"/><p>图片来自en.wikipedia：By Vitaly Ostrosablin</p></div><br><a name="index"></a></p>
+<h3 id="系列目录："><a href="#系列目录：" class="headerlink" title="系列目录："></a>系列目录：</h3><ul>
+<li><strong>四维空间（一）：简单几何体</strong></li>
+<li><a href="/2016/04/09/geometry4ds/">四维空间（二）：超立体几何</a></li>
 </ul>
-<p>
+<h3 id="本文目录："><a href="#本文目录：" class="headerlink" title="本文目录："></a>本文目录：</h3><ul>
+<li><a href="/2016/04/08/objects4ds/#hyper">超立方体、超长方体类比性质</a></li>
+<li><a href="/2016/04/08/objects4ds/#zhu">一般柱体</a></li>
+<li><a href="/2016/04/08/objects4ds/#czhu">圆柱柱</a></li>
+<li><a href="/2016/04/08/objects4ds/#lzhu">棱柱柱</a></li>
+<li><a href="/2016/04/08/objects4ds/#szhu">球柱</a></li>
+<li><a href="/2016/04/08/objects4ds/#cone">各种锥体</a><br>
         
           <p class="article-more-link">
             <a href="/2016/04/08/objects4ds/#more">Read More</a>
@@ -104,12 +164,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wxyhly.github.io/2016/04/08/objects4ds/" data-id="cimrpgbdt0001igvl9wwb30ka" class="article-share-link">Share</a>
+      <a data-url="http://wxyhly.github.io/2016/04/08/objects4ds/" data-id="cimrs9axa000318vln4j273zj" class="article-share-link">Share</a>
       
         <a href="http://wxyhly.github.io/2016/04/08/objects4ds/#disqus_thread" class="article-comment-link">留言</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/四维/">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图形/">图形</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/四维/">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图形/">图形</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系列文章/">系列文章</a></li></ul>
 
     </footer>
   </div>
@@ -141,17 +201,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="这不是第一篇文章！"><a href="#这不是第一篇文章！" class="headerlink" title="这不是第一篇文章！"></a>这不是第一篇文章！</h2><h3 id="对标题的解释"><a href="#对标题的解释" class="headerlink" title="对标题的解释"></a>对标题的解释</h3><p>这是一个<strong> 自我描述 </strong>句，是我看了《哥德尔艾舍尔巴赫：集异璧之大成》（GEB）里面一张图模仿的。”Ceci n’est pas”是法语，意即“这不是……”；这张图出自比利时艺术家勒内·马格里特的画作《形象的叛逆》 (《La trahison des images》)，画中描绘了一只烟斗，但其下写着”Ceci n’est pas une pipe.”（这不是烟斗。）：<img src="https://upload.wikimedia.org/wikipedia/en/b/b9/MagrittePipe.jpg" alt=""><center>（图片来自en.wikipedia）</center><br>自我描述是一个很神奇的东西，他能引起悖论、甚至能解释著名的哥德尔定理……<br>后来我发现在Minecraft标题画面闪烁标语中也有类似这句话：<em>Ceci n’est pas une title screen！(这不是标题画面)</em>。看来这个作品在外国知名度挺高的。</p>
-<h3 id="但这确实是我的第一篇文章"><a href="#但这确实是我的第一篇文章" class="headerlink" title="但这确实是我的第一篇文章"></a>但这确实是我的第一篇文章</h3><h4 id="For-What"><a href="#For-What" class="headerlink" title="For What?"></a>For What?</h4><p>我会陆续写一些我一切感兴趣的内容，如高维空间 分形混沌 自动机 webgl ……<br>……<br>当然也包括生活中发现的有趣的事物或一些新奇的想法等……总之，我将尽量让博客涵盖的内容更丰富些。</p>
-<p>要写出一个成功的博客肯定离不开读者的支持。我希望大家能够一起讨论我们共同感兴趣的事。最后特别感谢<a href="http://hadron.cf/" target="_blank" rel="external">飞二爷(CFY)</a>给我提供blog技术支持。</p>
-<h3 id="What-a-coincidence-2-Anniversaries"><a href="#What-a-coincidence-2-Anniversaries" class="headerlink" title="What a coincidence! 2 Anniversaries!"></a>What a coincidence! 2 Anniversaries!</h3><ul>
-<li>明天也是我们学校（<a href="http://www.xjtu.edu.cn/" target="_blank" rel="external">XJTU</a>）校庆120周年！</li>
-<li><del>昨天又是<a href="http://hadron.cf/" target="_blank" rel="external">飞二爷</a>脑膜炎4周年庆！</del></li>
-</ul>
-<p class="likecode">&lt;!--<br>Ceci n’est pas la dernière phrase de cet article ? (这不是这篇文章最后一句话吧？)<br> Bien sûr ! Parce que je suis la dernière! (当然，因为我才是那最后一句话！)<br>--&gt;</p>
+<h3 id="但这确实是我的第一篇文章"><a href="#但这确实是我的第一篇文章" class="headerlink" title="但这确实是我的第一篇文章"></a>但这确实是我的第一篇文章</h3><h4 id="For-What"><a href="#For-What" class="headerlink" title="For What?"></a>For What?</h4>
+        
+          <p class="article-more-link">
+            <a href="/2016/04/07/premier/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wxyhly.github.io/2016/04/07/premier/" data-id="cimrpgbdz0003igvlsmkh4ywt" class="article-share-link">Share</a>
+      <a data-url="http://wxyhly.github.io/2016/04/07/premier/" data-id="cimrs9axa000418vla018td27" class="article-share-link">Share</a>
       
         <a href="http://wxyhly.github.io/2016/04/07/premier/#disqus_thread" class="article-comment-link">留言</a>
       
@@ -177,7 +236,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/四维/">四维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图形/">图形</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂记/">杂记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自我描述/">自我描述</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/几何/">几何</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/四维/">四维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图形/">图形</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂记/">杂记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系列文章/">系列文章</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自我描述/">自我描述</a></li></ul>
     </div>
   </div>
 
@@ -187,7 +246,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/四维/" style="font-size: 10px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
+      <a href="/tags/几何/" style="font-size: 10px;">几何</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/系列文章/" style="font-size: 20px;">系列文章</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
     </div>
   </div>
 
@@ -209,6 +268,10 @@
       <ul>
         
           <li>
+            <a href="/2016/04/09/geometry4ds/">四维空间（二）：超立体几何</a>
+          </li>
+        
+          <li>
             <a href="/2016/04/08/objects4ds/">四维空间（一）：简单几何体</a>
           </li>
         
@@ -225,7 +288,7 @@
 <h3 class="widget-title">链接</h3> 
    <div class="widget">
    <ul class="entry"> 
-    <li><a href="http://hadron.cf" title="hadron.cf" target="_blank">CFY(Hadron)</a></li> 
+    <li><a href="http://hadroncfy.com" title="hadroncfy" target="_blank">CFY(Hadron)</a></li> 
     <li><a href="http://zzy.blog.ustc.edu.cn" title="ZZY" target="_blank">ZZY(BG6GCZ)</a></li> 
    </ul> 
 </div></div>
