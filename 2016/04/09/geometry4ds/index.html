@@ -11,11 +11,11 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
 系列目录：
 四维空间（一）：简单几何体
 四维空间（二）：超立体几何
+四维空间（三）：N维的向量
 
 本文目录：
 位置关系的判定
-真相：用两个角度来述
-超立方体——最好的朋友">
+真相：用两个角度">
 <meta property="og:type" content="article">
 <meta property="og:title" content="四维空间（二）：超立体几何">
 <meta property="og:url" content="http://wxyhly.github.io/2016/04/09/geometry4ds/index.html">
@@ -26,11 +26,11 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
 系列目录：
 四维空间（一）：简单几何体
 四维空间（二）：超立体几何
+四维空间（三）：N维的向量
 
 本文目录：
 位置关系的判定
-真相：用两个角度来述
-超立方体——最好的朋友">
+真相：用两个角度">
 <meta property="og:image" content="http://wxyhly.github.io/img/crossection.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/geometry1.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/geometry2.gif">
@@ -39,7 +39,7 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
 <meta property="og:image" content="http://wxyhly.github.io/img/octahedral.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/geometry6.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/geometry5.gif">
-<meta property="og:updated_time" content="2016-04-09T14:50:58.896Z">
+<meta property="og:updated_time" content="2016-04-10T09:35:03.993Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="四维空间（二）：超立体几何">
 <meta name="twitter:description" content="#本文讨论的是纯空间上的几何，而不是物理上的时空！推荐视频《维度：数学漫步》对四维空间作初步了解
@@ -48,11 +48,11 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
 系列目录：
 四维空间（一）：简单几何体
 四维空间（二）：超立体几何
+四维空间（三）：N维的向量
 
 本文目录：
 位置关系的判定
-真相：用两个角度来述
-超立方体——最好的朋友">
+真相：用两个角度">
 <meta name="twitter:image" content="http://wxyhly.github.io/img/crossection.gif">
   
     <link rel="alternate" href="/atom.xml" title="Blog de WXYHLY" type="application/atom+xml">
@@ -130,6 +130,7 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
 <h3 id="系列目录："><a href="#系列目录：" class="headerlink" title="系列目录："></a>系列目录：</h3><ul>
 <li><a href="/2016/04/08/objects4ds/">四维空间（一）：简单几何体</a></li>
 <li><strong>四维空间（二）：超立体几何</strong></li>
+<li><a href="/2016/04/10/bivector4ds/">四维空间（三）：N维的向量</a></li>
 </ul>
 <h3 id="本文目录："><a href="#本文目录：" class="headerlink" title="本文目录："></a>本文目录：</h3><ul>
 <li><a href="/2016/04/09/geometry4ds/#jihe">位置关系的判定</a></li>
@@ -162,7 +163,7 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
 </ul>
 <p><a href="#index">返回目录</a></p>
 <h3 id="真相：用两个角度来述"><a href="#真相：用两个角度来述" class="headerlink" title="真相：用两个角度来述"></a>真相：用两个角度来述</h3><p>　　四维空间两平面$A、B$最一般的位置是只在一点相交。我们这样衡量它们的位置：在平面$A$上取遍所有直线$m，m与B$(或$A$)间所夹的线面角会有一个最大值$\theta_1$和最小值$\theta_2$。我们现在用$\theta_1$、$\theta_2$两个角度参数描写平面$A、B$位置关系。</p>
-<p>　　最大最小值？听起来好复杂！或许这样理解要容易些：在平面$A$上作一个单位圆，把单位圆投影到平面$B$上，这个圆变成了椭圆（投影映射是线性的，不可能把圆变成其它图形），椭圆自然有长轴短轴，这两个轴向就是两个<strong>特征方向</strong>——长轴与平面$A$的夹角就是最大值$\theta_1$，所以长半轴长度为$cos\theta_1$；短轴就对应最小值$\theta_2$，所以短半轴长度为$cos\theta_2$。这就是一种叫“单位圆法”的求解夹角的方法的思想，但单位圆法处理椭圆要用线性代数二次型等繁琐的方法。<br><img src="/img/geometry2.gif" alt=""><br>　　长轴短轴相互垂直，所以线面角取最大值时的直线$m_1$与线面角取最小值时的直线$m_2$相互垂直。但若我们在平面$B$，而不是平面$A$上取遍所有直线$m得到的两个线面角最值会不会与刚才的值不一样呢？答案是：不管你先选的是哪个面得到的这两个角都是<strong>一样</strong>的，这保证了定义的良好性。（用线性代数可证，略）<br>　　我们先看熟悉的三维空间：</p>
+<p>　　最大最小值？听起来好复杂！或许这样理解要容易些：在平面$A$上作一个单位圆，把单位圆投影到平面$B$上，这个圆变成了椭圆（投影映射是线性的，不可能把圆变成其它图形），椭圆自然有长轴短轴，这两个轴向就是两个<strong>特征方向</strong>——长轴与平面$A$的夹角就是最大值$\theta_1$，所以长半轴长度为$cos\theta_1$；短轴就对应最小值$\theta_2$，所以短半轴长度为$cos\theta_2$。这就是一种叫“单位圆法”的求解夹角的方法的思想，但单位圆法处理椭圆要用线性代数二次型等繁琐的方法。<br><img src="/img/geometry2.gif" alt=""><br>　　长轴短轴相互垂直，所以线面角取最大值时的直线$m_1$与线面角取最小值时的直线$m_2$相互垂直。但若我们在平面$B$，而不是平面$A$上取遍所有直线$m$得到的两个线面角最值会不会与刚才的值不一样呢？答案是：不管你先选的是哪个面得到的这两个角都是<strong>一样</strong>的，这保证了定义的良好性。（用线性代数可证，略）<br>　　我们先看熟悉的三维空间：</p>
 <ul>
 <li>$A、B$平行：$A$中任意一条直线与$B$的线面角都是0°，所以最大、最小值都是0°，$\theta_1=\theta_2=0$；当然还可以这样理解：这时$A$上的单位圆投影到$B$上是正投影，即大小形状都不变，所以$cos\theta_1=cos\theta_2=1$.</li>
 <li>$A、B$二面角垂直：$A$中平行于它们交线的直线与$B$的线面角取最小值0°，$A$中垂直于它们交线的直线与$B$的线面角取最大值90°，所以$\theta_1=90°，\theta_2=0$；当然还有种思路：这时$A$上的单位圆投影到$B$上是一条长为2的线段，我们认为这是长轴为1短轴为0的椭圆。所以$cos\theta_1=0，cos\theta_2=1$.</li>
@@ -197,27 +198,37 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
 <h3 id="射影面积定理的推广"><a href="#射影面积定理的推广" class="headerlink" title="射影面积定理的推广"></a>射影面积定理的推广</h3><blockquote>
 <p>射影面积定理是平面图形射影面积等于被射影图形的面积S乘以该图形所在平面与射影面所夹角的余弦。</p>
 </blockquote>
-<p>这是我们三维空间中熟知的。下面给一个大概证明思路：<br>　　我们在选一种特殊形状的被射影图形：正方形。位置也很特殊：正方形一边选到平行于两个平面的交线，另一边自然就垂直与此交线。投影后平行于交线的边长度不变，垂直与交线的一边变成了$cos\theta$倍，其中$s\theta$是两平面二面角，所以正方形面积变成了$cos\theta$倍。我们把其他不规则形状划分成无数这样小的方格，所以整体面积也满足$cos\theta$倍的关系。<br>　　四维也一样，只是选正方形面积元投影到两边在夹角最大值方向和最小值方向上（还记得吗？这两个方向刚好垂直）都要乘上角度的余弦值，导致面积变为原来的$cos\theta1cos\theta2$倍。即：</p>
+<p>这是我们三维空间中熟知的。下面给一个大概证明思路：<br>　　我们在选一种特殊形状的被射影图形：正方形。位置也很特殊：正方形一边选到平行于两个平面的交线，另一边自然就垂直与此交线。投影后平行于交线的边长度不变，垂直与交线的一边变成了$cos\theta$倍，其中$s\theta$是两平面二面角，所以正方形面积变成了$cos\theta$倍。我们把其他不规则形状划分成无数这样小的方格，所以整体面积也满足$cos\theta$倍的关系。<br>　　四维也一样，只是选正方形面积元投影到两边在夹角最大值方向和最小值方向上（还记得吗？这两个方向刚好垂直）都要乘上角度的余弦值，导致面积变为原来的$cos\theta_1cos\theta_2$倍。即：</p>
 <blockquote>
-<p>四维中射影面积定理是：平面图形射影面积等于被射影图形的面积S乘以该图形所在平面与射影面夹角$\theta1、\theta2$的余弦的乘积。</p>
+<p>四维中射影面积定理是：平面图形射影面积等于被射影图形的面积S乘以该图形所在平面与射影面夹角$\theta_1、\theta_2$的余弦的乘积。</p>
 </blockquote>
-<p>　　我们用这种神奇的方法都只能得到$cos\theta1cos\theta2$，显然还差条件。看来必须用代数才能求夹角了。下一节我们将看到向量法也不再适应四维几何，向量法需要被改造，在改造的向量法中我们还需要用到射影面积定理的推广。<br><a href="#index">返回目录</a></p>
+<p>　　我们用这种神奇的方法都只能得到$cos\theta_1cos\theta_2$，显然还差条件。看来必须用代数才能求夹角了。下一节我们将看到向量法也不再适应四维几何，向量法需要被改造，在改造的向量法中我们还需要用到射影面积定理的推广。</p>
+<p><a href="#index">返回目录</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wxyhly.github.io/2016/04/09/geometry4ds/" data-id="cimrs9axa000118vl9x419wp1" class="article-share-link">Share</a>
+      <a data-url="http://wxyhly.github.io/2016/04/09/geometry4ds/" data-id="cimt9vm1p0004k0vldjxj5oid" class="article-share-link">Share</a>
       
         <a href="http://wxyhly.github.io/2016/04/09/geometry4ds/#disqus_thread" class="article-comment-link">留言</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/几何/">几何</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/四维/">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系列文章/">系列文章</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/几何/">几何</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/四维/">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学/">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系列文章/">系列文章</a></li></ul>
 
     </footer>
   </div>
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/04/10/bivector4ds/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          四维空间（三）：N维的向量
+        
+      </div>
+    </a>
   
   
     <a href="/2016/04/08/objects4ds/" id="article-nav-older" class="article-nav-link-wrap">
@@ -247,7 +258,7 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/几何/">几何</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/四维/">四维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图形/">图形</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂记/">杂记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系列文章/">系列文章</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自我描述/">自我描述</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数/">代数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/几何/">几何</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/四维/">四维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图形/">图形</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数学/">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂记/">杂记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系列文章/">系列文章</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自我描述/">自我描述</a></li></ul>
     </div>
   </div>
 
@@ -257,7 +268,7 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/几何/" style="font-size: 10px;">几何</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/系列文章/" style="font-size: 20px;">系列文章</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
+      <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 10px;">几何</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/系列文章/" style="font-size: 20px;">系列文章</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
     </div>
   </div>
 
@@ -277,6 +288,10 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/04/10/bivector4ds/">四维空间（三）：N维的向量</a>
+          </li>
         
           <li>
             <a href="/2016/04/09/geometry4ds/">四维空间（二）：超立体几何</a>
