@@ -1,0 +1,11 @@
+.canvas3 {
+	width: 1024;
+	height: 768;
+	border: 2px solid #006;
+	-moz-border-radius: 5px;      /* Gecko browsers */
+	-webkit-border-radius: 5px;   /* Webkit browsers */
+	border-radius: 5px;            /* W3C syntax */
+}
+body {
+	background-color: #001;
+}

@@ -5,12 +5,12 @@
   
   <title>四维空间（一）：简单几何体 | Blog de WXYHLY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。#本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐视频《维度：数学漫步》（它对我数学影响深远）#本文没有使用严格的数学语言叙">
+  <meta name="description" content="#本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。#本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐视频《维度：数学漫步》（它对我数学影响深远），这篇文章对四维空间有更基础的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="四维空间（一）：简单几何体">
 <meta property="og:url" content="http://wxyhly.github.io/2016/04/08/objects4ds/index.html">
 <meta property="og:site_name" content="Blog de WXYHLY">
-<meta property="og:description" content="#本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。#本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐视频《维度：数学漫步》（它对我数学影响深远）#本文没有使用严格的数学语言叙">
+<meta property="og:description" content="#本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。#本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐视频《维度：数学漫步》（它对我数学影响深远），这篇文章对四维空间有更基础的">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d9/From_Point_to_Tesseract_%28Looped_Version%29.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/dcylinder1.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/dcylinder2.gif">
@@ -19,10 +19,10 @@
 <meta property="og:image" content="http://wxyhly.github.io/img/dcylinder5.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/dcylinder6.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/cycon.gif">
-<meta property="og:updated_time" content="2016-04-10T09:35:03.145Z">
+<meta property="og:updated_time" content="2016-04-10T09:46:33.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="四维空间（一）：简单几何体">
-<meta name="twitter:description" content="#本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。#本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐视频《维度：数学漫步》（它对我数学影响深远）#本文没有使用严格的数学语言叙">
+<meta name="twitter:description" content="#本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。#本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐视频《维度：数学漫步》（它对我数学影响深远），这篇文章对四维空间有更基础的">
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d9/From_Point_to_Tesseract_%28Looped_Version%29.gif">
   
     <link rel="alternate" href="/atom.xml" title="Blog de WXYHLY" type="application/atom+xml">
@@ -94,7 +94,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> #<span class="likecode">本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。</span><br>#<span class="likecode">本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐视频《<a href="http://list.youku.com/albumlist/show?id=2376313&amp;ascending=1&amp;page=1" target="_blank" rel="external">维度：数学漫步</a>》（它对我数学影响深远）<br>#<span class="likecode">本文没有使用严格的数学语言叙述，只为得到直观的认识。</span><br></span><br>　　四维空间太抽象，所以我们不能直接感性地接触它（直接看到或摸到），但我们可以用类比法或解析法像“盲人摸象”那样建立起对它的认识。类比法较直观，但对想象力要求高，且不严谨；解析法（计算法）严谨，但缺乏直观几何意义，滥用会把几何沦为代数，只有两者结合起来才能更好地认识四维空间。<div style="float:right"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/From_Point_to_Tesseract_%28Looped_Version%29.gif"><p>图片来自en.wikipedia：By Vitaly Ostrosablin</p></div><br><a name="index"></a></p>
+        <p> #<span class="likecode">本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。</span><br>#<span class="likecode">本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐视频《<a href="http://list.youku.com/albumlist/show?id=2376313&amp;ascending=1&amp;page=1" target="_blank" rel="external">维度：数学漫步</a>》（它对我数学影响深远），<a href="http://hadroncfy.com/2016/04/09/la-dimension-quatre-premier/" target="_blank" rel="external">这篇文章</a>对四维空间有更基础的介绍<br></span><br>　　四维空间太抽象，所以我们不能直接感性地接触它（直接看到或摸到），但我们可以用类比法或解析法像“盲人摸象”那样建立起对它的认识。类比法较直观，但对想象力要求高，且不严谨；解析法（计算法）严谨，但缺乏直观几何意义，滥用会把几何沦为代数，只有两者结合起来才能更好地认识四维空间。<div style="float:right"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/From_Point_to_Tesseract_%28Looped_Version%29.gif"><p>图片来自en.wikipedia：By Vitaly Ostrosablin</p></div><a name="index"></a></p>
 <h3 id="系列目录："><a href="#系列目录：" class="headerlink" title="系列目录："></a>系列目录：</h3><ul>
 <li><strong>四维空间（一）：简单几何体</strong></li>
 <li><a href="/2016/04/09/geometry4ds/">四维空间（二）：超立体几何</a></li>
@@ -134,7 +134,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wxyhly.github.io/2016/04/08/objects4ds/" data-id="cimt9vm1s0006k0vljf4926em" class="article-share-link">Share</a>
+      <a data-url="http://wxyhly.github.io/2016/04/08/objects4ds/" data-id="cimw4ym940004lovlj2h58h6a" class="article-share-link">Share</a>
       
         <a href="http://wxyhly.github.io/2016/04/08/objects4ds/#disqus_thread" class="article-comment-link">留言</a>
       
@@ -178,16 +178,6 @@
           <aside id="sidebar">
   
     
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数/">代数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/几何/">几何</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/四维/">四维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图形/">图形</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数学/">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂记/">杂记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系列文章/">系列文章</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自我描述/">自我描述</a></li></ul>
-    </div>
-  </div>
-
 
   
     
