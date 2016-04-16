@@ -1,9 +1,14 @@
+layout: false
+---
 <html>
 	<head>
 		<link rel="stylesheet" href="css/style.css">
 		<script src="http://www.webglchina.cn/three.js/build/three.js"></script>
-		<script src="js/Cmplx.js"></script>
-		<script src="js/Four.js"></script>
+		<script src="THREE.js"></script>
+		<script src="TrackballControls.js"></script>
+		<script src="Cmplx.js"></script>
+		<script src="Cmplx.js"></script>
+		<script src="Four.js"></script>
 		<script src="http://www.webglchina.cn/three.js/selfExamples/js/controls/TrackballControls.js"></script>
 		<meta charset="unicode">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -27,7 +32,7 @@ Init3d = function (obj){
 	obj.appendChild(this.renderer.domElement);
 	this.renderer.setClearColor(0x00001F, 1.0);
 	this.camera = new THREE.PerspectiveCamera(45,this.width/this.height,0.01,100);
-	this.camera.position.set(3,3,3);
+	this.camera.position.set(5,5,5);
 	this.camera.up.set(0,0,1);
 	this.camera.lookAt(this.scene.position);
 	this.light = new THREE.DirectionalLight(0xffffff, 1.0, 0);
@@ -49,16 +54,19 @@ function BodyOnLoad(){
 	Hopf1 = new FOUR.Hopf("1234");Hopf2 = new FOUR.Hopf("1243");
 	main3d.renderer4.render();
 	main3d.render();
+	addCircle(0xEF9020,Hopf1,0,0);
+	addCircle(0xEF9020,Hopf1,10000,10000);
 	loop();
 }
-Q = 1;
+Q = 0;count=0;
 function loop(){
-	if(Q < 157 && Q%3 == 0){
-		addCircle(0x00FF00,Hopf2, 5 * Math.cos(Q/25),5 * Math.sin(Q/25));
-		addCircle(0xFF0000,Hopf1, 5 * Math.cos(Q/25),5 * Math.sin(Q/25));
-		q = Math.tan(Math.PI*(Math.random()-0.5));
+	if(Q <= Math.PI*2+0.1){
+		addCircle(0x10FF40,Hopf1, 0.707 * Math.cos(Q),0.707 * Math.sin(Q));
+		addCircle(0xFFFF00,Hopf1, 1 * Math.cos(Q),1 * Math.sin(Q));
+		addCircle(0x0000FF,Hopf1, 1.414 * Math.cos(Q),1.414 * Math.sin(Q));
 	}
-	Q++;
+	count++;
+	Q+= Math.PI/10;
 	main3d.Control3.update();
 	main3d.Control4.update();
 	for (var M in main3d.scene4.children){
@@ -71,7 +79,7 @@ function loop(){
 			}
 		}
 	}
-	if(Q%2==0){
+	if(count%2==0){
 		main3d.renderer4.render();
 		main3d.light.position.copy(main3d.camera.position);
 		main3d.render();
@@ -82,5 +90,6 @@ function loop(){
 	</head>
 	<body onload="BodyOnLoad()">
 	<div class="canvas3" id="webgl3d"></div>
+	<a href="\" >返回首页</a>
 	</body>
 </html>
