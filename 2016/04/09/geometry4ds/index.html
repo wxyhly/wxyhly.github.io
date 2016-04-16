@@ -8,14 +8,10 @@
   <meta name="description" content="#本文讨论的是纯空间上的几何，而不是物理上的时空！推荐视频《维度：数学漫步》对四维空间作初步了解
 今天，我们将接触到更多的四维空间的几何性质、位置关系、更多有趣的四维立体几何题和某些立体几何定理的推广。
 three.js绘制的超立方体的斜切胞（黑色是截胞）
-系列目录：
-四维空间（一）：简单几何体
-四维空间（二）：超立体几何
-四维空间（三）：N维的向量
-
-本文目录：
-位置关系的判定
-真相：用两个角度">
+特色内容
+线、面、胞两两位置关系
+超立方体中的几何题
+射影面积定理推广">
 <meta property="og:type" content="article">
 <meta property="og:title" content="四维空间（二）：超立体几何">
 <meta property="og:url" content="http://wxyhly.github.io/2016/04/09/geometry4ds/index.html">
@@ -23,14 +19,10 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
 <meta property="og:description" content="#本文讨论的是纯空间上的几何，而不是物理上的时空！推荐视频《维度：数学漫步》对四维空间作初步了解
 今天，我们将接触到更多的四维空间的几何性质、位置关系、更多有趣的四维立体几何题和某些立体几何定理的推广。
 three.js绘制的超立方体的斜切胞（黑色是截胞）
-系列目录：
-四维空间（一）：简单几何体
-四维空间（二）：超立体几何
-四维空间（三）：N维的向量
-
-本文目录：
-位置关系的判定
-真相：用两个角度">
+特色内容
+线、面、胞两两位置关系
+超立方体中的几何题
+射影面积定理推广">
 <meta property="og:image" content="http://wxyhly.github.io/img/crossection.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/geometry1.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/geometry2.gif">
@@ -39,20 +31,16 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
 <meta property="og:image" content="http://wxyhly.github.io/img/octahedral.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/geometry6.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/geometry5.gif">
-<meta property="og:updated_time" content="2016-04-10T12:37:58.275Z">
+<meta property="og:updated_time" content="2016-04-16T10:45:10.508Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="四维空间（二）：超立体几何">
 <meta name="twitter:description" content="#本文讨论的是纯空间上的几何，而不是物理上的时空！推荐视频《维度：数学漫步》对四维空间作初步了解
 今天，我们将接触到更多的四维空间的几何性质、位置关系、更多有趣的四维立体几何题和某些立体几何定理的推广。
 three.js绘制的超立方体的斜切胞（黑色是截胞）
-系列目录：
-四维空间（一）：简单几何体
-四维空间（二）：超立体几何
-四维空间（三）：N维的向量
-
-本文目录：
-位置关系的判定
-真相：用两个角度">
+特色内容
+线、面、胞两两位置关系
+超立方体中的几何题
+射影面积定理推广">
 <meta name="twitter:image" content="http://wxyhly.github.io/img/crossection.gif">
   
     <link rel="alternate" href="/atom.xml" title="Blog de WXYHLY" type="application/atom+xml">
@@ -108,6 +96,10 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
   <time datetime="2016-04-09T14:40:00.000Z" itemprop="datePublished">2016-04-09</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/四维空间系列/">四维空间系列</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -126,20 +118,20 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
       
         <p>#<span class="likecode">本文讨论的是纯空间上的几何，而不是物理上的时空！推荐视频《<a href="http://list.youku.com/albumlist/show?id=2376313&amp;ascending=1&amp;page=1" target="_blank" rel="external">维度：数学漫步</a>》对四维空间作初步了解</span></p>
 <p><div style="float:left">今天，我们将接触到更多的四维空间的几何性质、位置关系、更多有趣的四维立体几何题和某些立体几何定理的推广。</div></p>
-<p><div style="float:right"><img src="/img/crossection.gif" width="300" height="300"><p>three.js绘制的超立方体的斜切胞（黑色是截胞）</p></div><br><a name="index"></a></p>
-<h3 id="系列目录："><a href="#系列目录：" class="headerlink" title="系列目录："></a>系列目录：</h3><ul>
-<li><a href="/2016/04/08/objects4ds/">四维空间（一）：简单几何体</a></li>
-<li><strong>四维空间（二）：超立体几何</strong></li>
-<li><a href="/2016/04/10/bivector4ds/">四维空间（三）：N维的向量</a></li>
+<p><div style="float:right"><img src="/img/crossection.gif" width="200" height="200"><p>three.js绘制的超立方体的斜切胞（黑色是截胞）</p></div><br><a name="index"></a></p>
+<h2 id="特色内容"><a href="#特色内容" class="headerlink" title="特色内容"></a>特色内容</h2><ul>
+<li>线、面、胞两两位置关系</li>
+<li>超立方体中的几何题</li>
+<li>射影面积定理推广</li>
 </ul>
+<a id="more"></a>
 <h3 id="本文目录："><a href="#本文目录：" class="headerlink" title="本文目录："></a>本文目录：</h3><ul>
 <li><a href="/2016/04/09/geometry4ds/#jihe">位置关系的判定</a></li>
 <li><a href="/2016/04/09/geometry4ds/#deux">真相：用两个角度描述</a></li>
 <li><a href="/2016/04/09/geometry4ds/#ami">超立方体——最好的朋友</a></li>
 <li><a href="/2016/04/09/geometry4ds/#cross">超立方体截面</a></li>
 <li><a href="/2016/04/09/geometry4ds/#slop">斜着的面</a></li>
-<li><a href="/2016/04/09/geometry4ds/#proj">射影面积定理推广</a><br><a name="jihe"></a><a id="more"></a>
-</li>
+<li><a href="/2016/04/09/geometry4ds/#proj">射影面积定理推广</a><br><a name="jihe"></a></li>
 </ul>
 <h3 id="位置关系的判定"><a href="#位置关系的判定" class="headerlink" title="位置关系的判定"></a>位置关系的判定</h3><p>　　两点确定一条直线，三点（不共线）确定一张平面，四点（不共面）确定一个三维空间（或叫超平面）。四维文明初中学的平面几何和立体几何（高中才学吧？）在前两点上和我们学的是一样的。说明只要四维空间中三维子空间的几何问题我们都能解决！下面我们就试着解决一部分简单的四维空间几何问题：<strong>判定两几何体位置关系，如果有夹角，求出它的值。</strong></p>
 <ul>
@@ -204,11 +196,12 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
 </blockquote>
 <p>　　我们用这种神奇的方法都只能得到$cos\theta_1cos\theta_2$，显然还差条件。看来必须用代数才能求夹角了。下一节我们将看到向量法也不再适应四维几何，向量法需要被改造，在改造的向量法中我们还需要用到射影面积定理的推广。</p>
 <p><a href="#index">返回目录</a></p>
+<p> <a href="/2016/04/08/objects4ds/">上一篇</a>　 <a href="/categories/四维空间系列/">查看系列目录</a>　<a href="/2016/04/16/polyhedral4ds/">下一篇</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wxyhly.github.io/2016/04/09/geometry4ds/" data-id="cimx69sv50006mwvltt31qacl" class="article-share-link">Share</a>
+      <a data-url="http://wxyhly.github.io/2016/04/09/geometry4ds/" data-id="cin31pywo00078kvla20a89vj" class="article-share-link">Share</a>
       
         <a href="http://wxyhly.github.io/2016/04/09/geometry4ds/#disqus_thread" class="article-comment-link">留言</a>
       
@@ -221,11 +214,11 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
     
 <nav id="article-nav">
   
-    <a href="/2016/04/10/bivector4ds/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/04/16/polyhedral4ds/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          四维空间（三）：N维的向量
+          四维空间（三）：谈正多胞体
         
       </div>
     </a>
@@ -252,13 +245,20 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a></li></ul>
+    </div>
+  </div>
+
 
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 10px;">几何</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/系列文章/" style="font-size: 20px;">系列文章</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
+      <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 15px;">几何</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/系列文章/" style="font-size: 20px;">系列文章</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
     </div>
   </div>
 
@@ -280,7 +280,15 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
       <ul>
         
           <li>
-            <a href="/2016/04/10/bivector4ds/">四维空间（三）：N维的向量</a>
+            <a href="/2016/04/16/bivector4ds/">四维空间（X）：N维的向量</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/16/fibration4ds/">四维空间（四）：纤维与超球</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/16/polyhedral4ds/">四维空间（三）：谈正多胞体</a>
           </li>
         
           <li>
@@ -289,10 +297,6 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
         
           <li>
             <a href="/2016/04/08/objects4ds/">四维空间（一）：简单几何体</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/07/premier/">Ceci n&#39;est pas le premier article !</a>
           </li>
         
       </ul>

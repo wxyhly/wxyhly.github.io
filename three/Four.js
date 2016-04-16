@@ -32,6 +32,8 @@ FOUR.Cell
 
 FOUR.Mesh
 {
+	FOUR.SphereSeg = FOUR.CylinderSeg = 16;
+	FOUR.SphereR = 0.1; FOUR.CylinderR = 0.05;
 	FOUR.Mesh = function (geometry, material, updateMatrix){
 		this.Geometry = geometry;
 		this.Material = material;
@@ -64,7 +66,7 @@ FOUR.Mesh
 			for (var VertexIndex in this.Geometry.Vertices){
 				var Vertex = this.Geometry.Vertices[VertexIndex];
 				Vertex.boundTHREEobj = new THREE.Mesh(
-					new THREE.SphereGeometry(0.1,16,16),
+					new THREE.SphereGeometry(FOUR.SphereR,FOUR.SphereSeg,SphereSeg),
 					new THREE.MeshLambertMaterial({color:this.Material.vertexColor})
 				);
 				Scene3.add(Vertex.boundTHREEobj);
@@ -74,7 +76,7 @@ FOUR.Mesh
 			for (var EdgeIndexs in this.Geometry.Edges){
 				var Edge = this.Geometry.Edges[EdgeIndexs];
 				Edge.boundTHREEobj = new THREE.Mesh(
-					new THREE.CylinderGeometry(0.05,0.05,1,16),
+					new THREE.CylinderGeometry(FOUR.CylinderR,FOUR.CylinderR,1,FOUR.CylinderSeg),
 					new THREE.MeshLambertMaterial({color:this.Material.edgeColor})
 				);
 				Scene3.add(Edge.boundTHREEobj);
@@ -87,6 +89,12 @@ FOUR.Euler4
 {
 	FOUR.Euler4 = function (xw,yw,zw,order){
 		this.set(xw,yw,zw,order);
+	}
+	FOUR.Euler4.prototype.copy = function (c){
+		this.set(c.xw,c.yw,c.zw,c.order);
+	}
+	FOUR.Euler4.prototype.clone = function (){
+		return new FOUR.Euler4(this.xw,this.yw,this.zw,this.order);
 	}
 	FOUR.Euler4.prototype.set = function (xw,yw,zw,order){
 		this.xw = xw;
@@ -314,6 +322,7 @@ FOUR.Camera4
 	FOUR.OrthographicCamera = function (euler4){
 		var matrix = new THREE.Matrix4();
 		this.projectMatrix = matrix.setRotationFromEuler4(euler4);
+		this.Euler4 = euler4;
 	}
 	FOUR.OrthographicCamera.prototype.applyVector4 = function (V){
 		var V3 = new THREE.Vector3();
@@ -327,6 +336,7 @@ FOUR.Camera4
 		this.projectMatrix = this.projectMatrix.setRotationFromEuler4(euler4);
 	}
 	FOUR.PerspectiveCamera = function (euler4,distance,Stereographic){
+	this.Euler4 = euler4;
 		var matrix = new THREE.Matrix4();
 		this.projectMatrix = matrix.setRotationFromEuler4(euler4);
 		this.distance = distance;
@@ -567,7 +577,7 @@ FOUR.Controls
 		this.camera4 = camera4;
 		this.step = 0.01;
 		FOUR.Controls.keyDown = false;
-		this.Euler4 = new FOUR.Euler4(0.0001,0.0001,0.0001);
+		this.Euler4 = camera4.Euler4.clone();
 		document.addEventListener('keydown', function( ev ) {
 			FOUR.Controls.keyDown = true;
 			FOUR.Controls.keyCode = ev.keyCode;

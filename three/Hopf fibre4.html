@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="content-type" content="text/html; charset=gb2312" />
+<head><script src="http://www.webglchina.cn/three.js/build/three.js"></script>
+<script src="http://www.webglchina.cn/three.js/selfExamples/js/controls/TrackballControls.js"></script>
+<script>
+
+  var renderer;
+  function initThree() {
+    width = document.getElementById('canvas-frame').clientWidth;
+    height = document.getElementById('canvas-frame').clientHeight; 
+    renderer = new THREE.WebGLRenderer({antialias: true});
+    renderer.setSize(width, height );
+    document.getElementById('canvas-frame').appendChild(renderer.domElement);
+    renderer.setClearColorHex(0xFFFFFF, 1.0);
+  }
+  var camera;
+  function initCamera() { 
+    camera = new THREE.PerspectiveCamera( 45 , width / height , 1 , 10000 );
+    camera.position.x = 5;
+    camera.position.y = 2
+    camera.position.z = 1.4
+    camera.up.x = 0;
+    camera.up.y = 0;
+    camera.up.z = 1;
+    camera.lookAt( {x:0, y:0, z:0 } );
+  }
+  var scene;
+  function initScene() {   
+    scene = new THREE.Scene();
+  }
+  function initLight() { 
+    light = new THREE.DirectionalLight(0xffffff, 1.0, 0);
+    light.position.set(4,3,6);
+    scene.add(light);
+  }
+function threeStart() {
+	initThree();
+	initCamera();
+	initScene();
+	initLight();
+	initObject();
+	renderer.clear(); 
+	renderer.render(scene, camera);loop()
+}var triGeo;
+function D(x,y,z){
+triGeo.vertices.push(new THREE.Vector3(x,y,z));
+}
+function initObject(){
+triGeo = new THREE.Geometry();
+
+
+
+
+
+
+
+D( 1, 1, 1);
+D( 1, 1,-1);
+D( 1,-1, 1);
+D( 1,-1,-1);
+D(-1, 1, 1);
+D(-1, 1,-1);
+D(-1,-1, 1);
+D(-1,-1,-1);
+q=2.0;D( 0, 0, q);
+D( 0, 0,-q);
+D( 0, q, 0);
+D( 0,-q, 0);
+D( q, 0, 0);
+D(-q, 0, 0);
+addFace(triGeo,0,1,10);addFace(triGeo,0,1,12);
+addFace(triGeo,0,2,8);addFace(triGeo,0,2,12);
+addFace(triGeo,1,3,9);addFace(triGeo,1,3,12);
+addFace(triGeo,2,3,11);addFace(triGeo,2,3,12);
+
+addFace(triGeo,4,5,10);addFace(triGeo,4,5,13);
+addFace(triGeo,4,6,8);addFace(triGeo,4,6,13);
+addFace(triGeo,5,7,9);addFace(triGeo,5,7,13);
+addFace(triGeo,6,7,11);addFace(triGeo,6,7,13);
+
+addFace(triGeo,0,4,8);addFace(triGeo,0,4,10);
+addFace(triGeo,1,5,9);addFace(triGeo,1,5,10);
+addFace(triGeo,2,6,8);addFace(triGeo,2,6,11);
+addFace(triGeo,3,7,9);addFace(triGeo,3,7,11);
+ triangle = new THREE.Mesh(triGeo, new THREE.MeshLambertMaterial({
+        color: 0x00FF00
+}));
+
+scene.add(triangle);
+}
+
+
+function addFace(obj,a,b,c){
+if(a>=0&&b>=0&&c>=0&&a<obj.vertices.length && b<obj.vertices.length && c<obj.vertices.length){
+var V=[obj.vertices[a],obj.vertices[b],obj.vertices[c]];
+var V1=[V[1].x-V[0].x,V[1].y-V[0].y,V[1].z-V[0].z]
+var V2=[V[2].x-V[0].x,V[2].y-V[0].y,V[2].z-V[0].z]
+	nx=V1[1]*V2[2]-V1[2]*V2[1]
+	ny=-V1[0]*V2[2]+V1[2]*V2[0]
+	nz=V1[0]*V2[1]-V1[1]*V2[0]
+obj.faces.push(new THREE.Face3(a,b,c,new THREE.Vector3(nx,ny,nz)));
+obj.faces.push(new THREE.Face3(a,c,b,new THREE.Vector3(-nx,-ny,-nz)));
+}
+
+}
+</script>
+<title>Torus Surface by WXY</title>
+<style type="text/css">
+div#canvas-frame{
+  width: 400px;
+  height: 400px;
+}
+</style>
+</head>
+<body style="background:#88AAEE" onload="threeStart();">
+<div style="background:#AACCEE">
+<h1>Hopf fibreration Viewer 1.0</h1>
+</div><br/>
+
+<table border="0"><tr><td style="background:#BBBBBB">
+<button disabled>　</button><button onClick="if(gl_z<Math.PI/2)gl_z+=Math.PI/20;updateRot3d()">↑</button><button disabled>　</button><br>
+<button onClick="gl_x-=Math.PI/20;updateRot3d()">←</button><button disabled>　</button><button onClick="gl_x+=Math.PI/20;updateRot3d()">→</button><br>
+<button disabled>　</button><button onClick="if(gl_z>-Math.PI/2)gl_z-=Math.PI/20;updateRot3d()">↓</button><button disabled>　</button><br>
+
+</td><td>
+
+<!------------------------------------------------->
+<!--                    3d                       -->
+<!------------------------------------------------->
+<div id="canvas-frame"></div></td></tr></table>
+
+</body>
+</html>

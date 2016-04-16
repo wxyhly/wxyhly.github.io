@@ -5,12 +5,12 @@
   
   <title>四维空间（一）：简单几何体 | Blog de WXYHLY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。#本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐视频《维度：数学漫步》（它对我数学影响深远），这篇文章对四维空间有更基础的">
+  <meta name="description" content="#本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。图片来自en.wikipedia：By Vitaly Ostrosablin#本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推">
 <meta property="og:type" content="article">
 <meta property="og:title" content="四维空间（一）：简单几何体">
 <meta property="og:url" content="http://wxyhly.github.io/2016/04/08/objects4ds/index.html">
 <meta property="og:site_name" content="Blog de WXYHLY">
-<meta property="og:description" content="#本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。#本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐视频《维度：数学漫步》（它对我数学影响深远），这篇文章对四维空间有更基础的">
+<meta property="og:description" content="#本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。图片来自en.wikipedia：By Vitaly Ostrosablin#本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d9/From_Point_to_Tesseract_%28Looped_Version%29.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/dcylinder1.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/dcylinder2.gif">
@@ -19,10 +19,10 @@
 <meta property="og:image" content="http://wxyhly.github.io/img/dcylinder5.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/dcylinder6.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/cycon.gif">
-<meta property="og:updated_time" content="2016-04-10T09:46:33.048Z">
+<meta property="og:updated_time" content="2016-04-16T10:37:12.281Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="四维空间（一）：简单几何体">
-<meta name="twitter:description" content="#本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。#本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐视频《维度：数学漫步》（它对我数学影响深远），这篇文章对四维空间有更基础的">
+<meta name="twitter:description" content="#本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。图片来自en.wikipedia：By Vitaly Ostrosablin#本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推">
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d9/From_Point_to_Tesseract_%28Looped_Version%29.gif">
   
     <link rel="alternate" href="/atom.xml" title="Blog de WXYHLY" type="application/atom+xml">
@@ -78,6 +78,10 @@
   <time datetime="2016-04-08T05:10:35.000Z" itemprop="datePublished">2016-04-08</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/四维空间系列/">四维空间系列</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -94,19 +98,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> #<span class="likecode">本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。</span><br>#<span class="likecode">本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐视频《<a href="http://list.youku.com/albumlist/show?id=2376313&amp;ascending=1&amp;page=1" target="_blank" rel="external">维度：数学漫步</a>》（它对我数学影响深远），<a href="http://hadroncfy.com/2016/04/09/la-dimension-quatre-premier/" target="_blank" rel="external">这篇文章</a>对四维空间有更基础的介绍<br></span><br>　　四维空间太抽象，所以我们不能直接感性地接触它（直接看到或摸到），但我们可以用类比法或解析法像“盲人摸象”那样建立起对它的认识。类比法较直观，但对想象力要求高，且不严谨；解析法（计算法）严谨，但缺乏直观几何意义，滥用会把几何沦为代数，只有两者结合起来才能更好地认识四维空间。<div style="float:right"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/From_Point_to_Tesseract_%28Looped_Version%29.gif"><p>图片来自en.wikipedia：By Vitaly Ostrosablin</p></div><a name="index"></a></p>
-<h3 id="系列目录："><a href="#系列目录：" class="headerlink" title="系列目录："></a>系列目录：</h3><ul>
-<li><strong>四维空间（一）：简单几何体</strong></li>
-<li><a href="/2016/04/09/geometry4ds/">四维空间（二）：超立体几何</a></li>
-<li><a href="/2016/04/10/bivector4ds/">四维空间（三）：N维的向量</a></li>
+        <p> #<span class="likecode">本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们在的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。</span><div style="float:right"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/From_Point_to_Tesseract_%28Looped_Version%29.gif"><p>图片来自en.wikipedia：By Vitaly Ostrosablin</p></div><br>#<span class="likecode">本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐视频《<a href="http://list.youku.com/albumlist/show?id=2376313&amp;ascending=1&amp;page=1" target="_blank" rel="external">维度：数学漫步</a>》（它对我数学影响深远），<a href="http://hadroncfy.com/2016/04/09/la-dimension-quatre-premier/" target="_blank" rel="external">这篇文章</a>对四维空间有更基础的介绍<br></span><br>　　四维空间太抽象，所以我们不能直接感性地接触它（直接看到或摸到），但我们可以用类比法或解析法像“盲人摸象”那样建立起对它的认识。类比法较直观，但对想象力要求高，且不严谨；解析法（计算法）严谨，但缺乏直观几何意义，滥用会把几何沦为代数，只有两者结合起来才能更好地认识四维空间。<a name="index"></a></p>
+<h2 id="特色内容"><a href="#特色内容" class="headerlink" title="特色内容"></a>特色内容</h2><ul>
+<li>各种柱体、锥体</li>
+<li>超体积、表体积的计算</li>
 </ul>
+<a id="more"></a>
 <h3 id="本文目录："><a href="#本文目录：" class="headerlink" title="本文目录："></a>本文目录：</h3><ul>
 <li><a href="/2016/04/08/objects4ds/#hyper">超立方体、超长方体类比性质</a></li>
 <li><a href="/2016/04/08/objects4ds/#zhu">一般柱体</a></li>
 <li><a href="/2016/04/08/objects4ds/#czhu">圆柱柱</a></li>
 <li><a href="/2016/04/08/objects4ds/#lzhu">棱柱柱</a></li>
 <li><a href="/2016/04/08/objects4ds/#szhu">球柱</a></li>
-<li><a href="/2016/04/08/objects4ds/#cone">各种锥体</a><br><a id="more"></a><a name="hyper"></a></li>
+<li><a href="/2016/04/08/objects4ds/#cone">各种锥体</a><br><a name="hyper"></a></li>
 </ul>
 <h3 id="超立方体、超长方体类比性质"><a href="#超立方体、超长方体类比性质" class="headerlink" title="超立方体、超长方体类比性质"></a>超立方体、超长方体类比性质</h3><p> 关于面的形状、面数、顶点数等基本参数我就不罗嗦了，我们看其它性质：</p>
 <ul>
@@ -131,10 +135,13 @@
 <p><center>圆柱柱、圆柱锥、圆锥柱和圆锥锥。你能说出它们由哪些胞围成的吗？<br>它们体积公式分别为:$$V_1=\pi r^2h_1h_2、V_2=\frac14\pi r^2h_1h_2 、V_3=\frac13\pi r^2h_1h_2、V_4={\pi\over12} r^2h_1h_2$$ .<br>圆锥锥、圆柱表面怎么展开？不知道？算表面积那就去积分吧。<br></center><br>可以想象高维空间一定还有圆柱柱锥锥、圆锥柱锥柱锥柱锥柱等……幸好我们不在那些疯狂的维度！</p>
 <h2 id="锥锥柱柱，柱柱锥锥，这个柱锥，你明白了吗？"><a href="#锥锥柱柱，柱柱锥锥，这个柱锥，你明白了吗？" class="headerlink" title="锥锥柱柱，柱柱锥锥，这个柱锥，你明白了吗？"></a>锥锥柱柱，柱柱锥锥，这个柱锥，你明白了吗？</h2><h4 id="恭喜你已经有四维文明小学生对几何图形的认识水平了！下一节我们就该学初中的几何了，去看看他们文明中的欧几里德写的著作吧！"><a href="#恭喜你已经有四维文明小学生对几何图形的认识水平了！下一节我们就该学初中的几何了，去看看他们文明中的欧几里德写的著作吧！" class="headerlink" title="恭喜你已经有四维文明小学生对几何图形的认识水平了！下一节我们就该学初中的几何了，去看看他们文明中的欧几里德写的著作吧！"></a>恭喜你已经有四维文明小学生对几何图形的认识水平了！下一节我们就该学初中的几何了，去看看他们文明中的欧几里德写的著作吧！</h4><p><a href="#index">返回目录</a></p>
 <p class="likecode">注：以前不知在哪看到一篇博文（现在搜不到了，估计是百度空间），由于有“点线面体”，所以作者主张把四维的“超体”取个新名字，叫“太”，超立方体改叫正方太，2维$\mathbf S^1$是圆，3维$\mathbf S^2$是球，4维$\mathbf S^3$“超球”叫“珍”，故超球体叫“珍太”，超球三维面叫“珍体”，这样会较好地避免歧义。我认为这是一套科学的命名法，如果存在四维文明的话，他们应该就是以这种模式叫的。但由于这些名称太诡异，我还是遵从大众的叫法。</p>
+
+<p> <a href="/categories/四维空间系列/">查看系列目录</a>　　<a href="/2016/04/09/geometry4ds/">下一篇</a></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wxyhly.github.io/2016/04/08/objects4ds/" data-id="cimx69sv50007mwvlmkxfo1sr" class="article-share-link">Share</a>
+      <a data-url="http://wxyhly.github.io/2016/04/08/objects4ds/" data-id="cin31pywr00088kvlvg3owh43" class="article-share-link">Share</a>
       
         <a href="http://wxyhly.github.io/2016/04/08/objects4ds/#disqus_thread" class="article-comment-link">留言</a>
       
@@ -178,13 +185,20 @@
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a></li></ul>
+    </div>
+  </div>
+
 
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 10px;">几何</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/系列文章/" style="font-size: 20px;">系列文章</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
+      <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 15px;">几何</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/系列文章/" style="font-size: 20px;">系列文章</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
     </div>
   </div>
 
@@ -206,7 +220,15 @@
       <ul>
         
           <li>
-            <a href="/2016/04/10/bivector4ds/">四维空间（三）：N维的向量</a>
+            <a href="/2016/04/16/bivector4ds/">四维空间（X）：N维的向量</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/16/fibration4ds/">四维空间（四）：纤维与超球</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/16/polyhedral4ds/">四维空间（三）：谈正多胞体</a>
           </li>
         
           <li>
@@ -215,10 +237,6 @@
         
           <li>
             <a href="/2016/04/08/objects4ds/">四维空间（一）：简单几何体</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/07/premier/">Ceci n&#39;est pas le premier article !</a>
           </li>
         
       </ul>
