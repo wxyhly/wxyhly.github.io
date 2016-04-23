@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/2/21/N_vector_positive_png_version.png">
 <meta property="og:image" content="http://wxyhly.github.io/\img\bivector1.gif">
 <meta property="og:image" content="http://wxyhly.github.io/\img\bivector2.gif">
-<meta property="og:updated_time" content="2016-04-23T13:42:40.336Z">
+<meta property="og:updated_time" content="2016-04-23T14:50:21.334Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="四维空间（七）：N维的向量">
 <meta name="twitter:description" content="图片来自en.wikipedia：多重向量几何意义#本系列文讨论的是纯空间上的几何，但本文将要涉及的k-向量的某些性质在四维时空中也成立（只是度规不一样）。本文对数学能力要求较高：将出现大量数学公式。k-向量在除相对论（时空）以外的物理上也有用武之地，详见CFY的文章角速度、轴矢量、2-矢量从另一个角度——物理学引入k-向量。
@@ -105,7 +105,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><div style="float:right"><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/N_vector_positive_png_version.png" width="200" height="380"><p>图片来自en.wikipedia：多重向量几何意义</p></div><br>#<span class="likecode">本系列文讨论的是纯空间上的几何，但本文将要涉及的<strong>k-向量</strong>的某些性质在四维时空中也成立（只是度规不一样）。本文对数学能力要求较高：将出现大量数学公式。<strong>k-向量</strong>在除相对论（时空）以外的物理上也有用武之地，详见CFY的文章<a href="http://hadroncfy.com/2016/04/21/axial-vectors/" target="_blank" rel="external">角速度、轴矢量、2-矢量</a>从另一个角度——物理学引入k-向量。</span><br><a name="index"></a></p>
+        <p><div style="float:right"><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/N_vector_positive_png_version.png" width="200" height="380"><p>图片来自en.wikipedia：多重向量几何意义</p></div><br>#<span class="likecode">本系列文讨论的是纯空间上的几何，但本文将要涉及的<strong>k-向量</strong>的某些性质在四维时空中也成立（只是度规不一样）。本文对数学能力要求较高：将出现大量数学公式。<strong>k-向量</strong>在除相对论（时空）以外的物理上也有用武之地，详见<span style="color:#F00"><strong>CFY的文章<a href="http://hadroncfy.com/2016/04/21/axial-vectors/" target="_blank" rel="external">角速度、轴矢量、2-矢量</a></strong>从另一个角度——物理学引入k-向量。</span></span><br><a name="index"></a></p>
 <h2 id="特色内容"><a href="#特色内容" class="headerlink" title="特色内容"></a>特色内容</h2><ul>
 <li>“2维向量”来表示平面</li>
 <li>用向量内积外积计算夹角</li>
@@ -167,7 +167,7 @@
 <p>　　这样我们有了一套新的基底表示2-向量：<br>　　自对偶三个分量：${\sqrt 2\over 2}(e_{xy}+e_{zt})、{\sqrt 2\over 2}(e_{xz}-e_{yt})、{\sqrt 2\over 2}(e_{xt}-e_{yz})$；<br>　　反自对偶三个分量：${\sqrt 2\over 2}(e_{xy}-e_{zt})、{\sqrt 2\over 2}(e_{xz}+e_{yt})、{\sqrt 2\over 2}(e_{xt}+e_{yz})$；<br>　　可以证明它们正交——两两内积为0——其实它们两两外积也为0！系数${\sqrt 2\over 2}$起归一化作用，保证它们为单位2-向量。<a name="orth"></a><br>　　自对偶、反自对偶2-向量对应右、左手等角双旋转，所以我也把这个分解叫做“等角分解”。</p>
 <h3 id="正交分解"><a href="#正交分解" class="headerlink" title="正交分解"></a>正交分解</h3><p>　　奇异2-向量$A$一定能分解成表示两个绝对垂直的平面的2-向量之和。如果这个奇异2-向量不是自对偶或反自对偶的，那么分解方式唯一：<br>  $$A=({A^+\over\lVert A^+\rVert}+{A^-\over\lVert A^-\rVert}){\lVert A^+\rVert+\lVert A^-\rVert\over 2} 　+ 　({A^+\over\lVert A^+\rVert}-{A^-\over\lVert A^-\rVert}){\lVert A^+\rVert-\lVert A^-\rVert\over 2}$$<br>　　如果这个奇异2-向量自对偶，则分解为：<br>  $A=({A^+\over 2}+I^-) + ({A^+\over 2}-I^-)$，其中$I^-$可以是任意一个范数为${\lVert A^-\rVert\over 2}$的反自对偶2-向量。<br>　　如果这个奇异2-向量反自对偶，则分解为：<br>  $A=({A^-\over 2}+I^+) + ({A^-\over 2}-I^+)$，其中$I^+$可以是任意一个范数为${\lVert A^+\rVert\over 2}$的反自对偶2-向量。</p>
 <p>　　大家可以自行验证。正交分解的意义显著：一个双旋转可以看成两个绝对垂直的简单旋转的叠加！且若一个双旋转是<strong>等角</strong>的(即在两个绝对垂直平面上旋转速度相同)，它能由任意与它等角的两个绝对垂直的简单旋转来合成。<a name="gen"></a></p>
-<h3 id="与旋转矩阵的关系：生成元"><a href="#与旋转矩阵的关系：生成元" class="headerlink" title="与旋转矩阵的关系：生成元"></a>与旋转矩阵的关系：生成元</h3><p>　　下面我们要来具体看一下2-向量具体怎么表示旋转的。（以下资料均出自英文维基百科“四维欧几里得空间中的旋转”词条）物理上一般常用矩阵或张量形式表示2-向量。先介绍2-向量的矩阵形式：把$F=a\wedge b$写成 $F=ba^T-ab^T$（这里$a、b$是列向量），则我们得到反对称矩阵：$$F=\begin{pmatrix} 0 &amp;  F_{xy} &amp;   F_{xz} &amp;   F_{xw} \\     -F_{xy} &amp; 0 &amp;  F_{yz} &amp;   F_{yw} \\    -F_{xz} &amp;   -F_{yz} &amp; 0 &amp;  F_{zw} \\ -F_{xw} &amp;   -F_{yw} &amp;  F_{zw} &amp; 0 \end{pmatrix}$$<br>　　我们知道四维空间中的旋转变换在代数上只不过是行列式为1的正交矩阵$M$，而我们的二向量$F$就是正交矩阵的生成元！先把2-向量单位化，再计算神奇的<strong>矩阵指数</strong>运算$M=e^{F\theta}$，其中$\theta$是标量：旋转角度。具体算法见wikipedia矩阵指数（Matrix exponential）中“Rotation case”一节。有了这个算法，我们用在四维空间中2-向量表示旋转就像用四元数表示三维旋转那么方便。（四元数也能表示四维空间中旋转，但我还没搞懂）有了这些知识，写一个Jenn3d那样的鼠标控制在四维空间中滚动就没问题了。</p>
+<h3 id="与旋转矩阵的关系：生成元"><a href="#与旋转矩阵的关系：生成元" class="headerlink" title="与旋转矩阵的关系：生成元"></a>与旋转矩阵的关系：生成元</h3><p>　　下面我们要来具体看一下2-向量具体怎么表示旋转的。（以下资料均出自英文维基百科“四维欧几里得空间中的旋转”词条）物理上一般常用矩阵或张量形式表示2-向量。先介绍2-向量的矩阵形式：把$F=a\wedge b$写成 $F=ba^T-ab^T$（这里$a、b$是列向量），则我们得到反对称矩阵：$$F=\begin{pmatrix} 0 &amp;  F_{xy} &amp;   F_{xz} &amp;   F_{xw} \\     -F_{xy} &amp; 0 &amp;  F_{yz} &amp;   F_{yw} \\    -F_{xz} &amp;   -F_{yz} &amp; 0 &amp;  F_{zw} \\ -F_{xw} &amp;   -F_{yw} &amp;  F_{zw} &amp; 0 \end{pmatrix}$$<br>　　我们知道四维空间中的旋转变换在代数上只不过是行列式为1的正交矩阵$M$，而我们的二向量$F$就是正交矩阵的生成元！先把2-向量单位化，再计算神奇的<strong>矩阵指数</strong>运算$M=e^{F\theta}$，其中$\theta$是标量：旋转角度。具体算法见wikipedia矩阵指数（<a href="https://en.wikipedia.org/wiki/Matrix_exponential#Rotation_case" target="_blank" rel="external">Matrix exponential</a>）中“Rotation case”一节。有了这个算法，我们用在四维空间中2-向量表示旋转就像用四元数表示三维旋转那么方便。（四元数也能表示四维空间中旋转，但我还没搞懂）有了这些知识，写一个Jenn3d那样的鼠标控制在四维空间中滚动就没问题了。</p>
 <p>更多2-向量的内容可参看<a href="https://en.wikipedia.org/wiki/Exterior_algebra" target="_blank" rel="external">维基百科：外代数</a>。</p>
 <p><a href="#index">返回目录</a></p>
 <p> <a href="/2016/04/23/plus4ds/">上一篇</a>　 <a href="/categories/四维空间系列/">查看系列目录</a></p>
@@ -175,7 +175,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wxyhly.github.io/2016/04/23/bivector4ds/" data-id="cind40jo4000164vl68k70wqb" class="article-share-link">Share</a>
+      <a data-url="http://wxyhly.github.io/2016/04/23/bivector4ds/" data-id="cind8u3gw0000bkvlr2uja2pf" class="article-share-link">Share</a>
       
         <a href="http://wxyhly.github.io/2016/04/23/bivector4ds/#disqus_thread" class="article-comment-link">留言</a>
       

@@ -15,10 +15,10 @@ function $(obj){
 	return document.getElementById(obj);
 }
 Init3d = function (obj){
-	FOUR.CylinderSeg = FOUR.SphereSeg = 8;
-	FOUR.CylinderR = 0.02;
 	this.scene = new THREE.Scene();
 	this.scene4 = new FOUR.Scene4(this.scene);
+	this.scene4.CylinderSeg = this.scene4.SphereSeg = 8;
+	this.scene4.CylinderR = 0.02;
 	var Euler = new FOUR.Euler4(0.0001,0.0001,Math.PI/4);
 	this.camera4 = new FOUR.OrthographicCamera(Euler);
 	
@@ -39,8 +39,7 @@ Init3d = function (obj){
 	this.light = new THREE.DirectionalLight(0xffffff, 1.0, 0);
 	this.light.position = this.camera.position;
 	this.scene.add(this.light);
-	this.Control3 = new THREE.TrackballControls(this.camera,this.renderer.domElement);
-	this.Control4 = new FOUR.Controls(this.camera4);
+	this.Control4 = new FOUR.Controls(this.camera,this.renderer.domElement,this.camera4);
 }
 Init3d.prototype.render = function (){
 	this.renderer.clear();
@@ -68,7 +67,6 @@ function loop(){
 	}
 	count++;
 	Q+= Math.PI/10;
-	main3d.Control3.update();
 	main3d.Control4.update();
 	for (var M in main3d.scene4.children){
 		var G = main3d.scene4.children[M].Geometry;
@@ -90,7 +88,7 @@ function loop(){
 		</script>
 	</head>
 	<body onload="BodyOnLoad()">
-	<div class="panel">使用“Q/A”、“W/S”、“E/D”在四维空间中旋转！<br/>鼠标拖动在三维空间中旋转！—— by wxyhly</div>
+	<div class="panel">操作方法与Jenn3d相同！鼠标左键拖动在三维空间中旋转！<br/>鼠标中键、右键在四维空间中旋转！—— by wxyhly</div>
 	<div class="canvas3" id="webgl3d"></div>
 	<a href="\" >返回首页</a>
 	</body>

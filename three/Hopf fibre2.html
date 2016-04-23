@@ -18,7 +18,7 @@ Init3d = function (obj){
 	FOUR.CylinderSeg = FOUR.SphereSeg = 8;
 	this.scene = new THREE.Scene();
 	this.scene4 = new FOUR.Scene4(this.scene);
-	this.camera4 = new FOUR.PerspectiveCamera(new FOUR.Euler4(0.001,0.001,0.001),1,true);
+	this.camera4 = new FOUR.PerspectiveCamera(new FOUR.Euler4(Math.PI/2,0.001,0.001),1,true);
 	this.camera4.maxVertexRadius = 5;
 	this.camera4.maxEdgeRadius = 0.2;
 	this.renderer4 = new FOUR.Renderer4(this.scene4,this.camera4);
@@ -36,8 +36,7 @@ Init3d = function (obj){
 	this.light = new THREE.DirectionalLight(0xffffff, 1.0, 0);
 	this.light.position = this.camera.position;
 	this.scene.add(this.light);
-	this.Control3 = new THREE.TrackballControls(this.camera,this.renderer.domElement);
-	this.Control4 = new FOUR.Controls(this.camera4);
+	this.Control4 = new FOUR.Controls(this.camera,this.renderer.domElement,this.camera4);
 }
 Init3d.prototype.render = function (){
 	this.renderer.clear();
@@ -63,7 +62,6 @@ function loop(){
 		addCircle(Math.floor(Math.random()*255*255*255),Hopf1, q * Math.cos(Math.random()*2*Math.PI),q * Math.sin(Math.random()*2*Math.PI));
 	}
 	Q++;
-	main3d.Control3.update();
 	main3d.Control4.update();
 	for (var M in main3d.scene4.children){
 		var G = main3d.scene4.children[M].Geometry;
@@ -78,7 +76,7 @@ function loop(){
 			}
 		}
 	}
-	if(Q%2==0){
+	if(Q%2==0 || Q <= 160 || (Q >= 160 && main3d.Control4.active3)){
 		main3d.renderer4.render();
 		main3d.light.position.copy(main3d.camera.position);
 		main3d.render();
@@ -88,7 +86,7 @@ function loop(){
 		</script>
 	</head>
 	<body onload="BodyOnLoad()">
-	<div class="panel">使用“Q/A”、“W/S”、“E/D”在四维空间中旋转！<br/>鼠标拖动在三维空间中旋转！—— by wxyhly</div>
+	<div class="panel">操作方法与Jenn3d相同！鼠标左键拖动在三维空间中旋转！<br/>鼠标中键、右键在四维空间中旋转！—— by wxyhly</div>
 	<div class="canvas3" id="webgl3d"></div>
 	<a href="\" >返回首页</a>
 	</body>

@@ -14,6 +14,22 @@ FOUR.Edge
 		this.b = b;
 		//Index
 	}
+	FOUR.Edge.reduce = function (edges) {
+		var result = [], isRepeated;
+		for (var i = 0; i < edges.length; i++) {
+			isRepeated = false;
+			for (var j = 0; j < result.length; j++) {
+				if ((edges[i].a == result[j].a && edges[i].b == result[j].b)||(edges[i].a == result[j].b && edges[i].b == result[j].a)) {   
+					isRepeated = true;
+					break;
+				}
+			}
+			if (!isRepeated) {
+				result.push(edges[i]);
+			}
+		}
+		return result;
+	}
 }
 
 FOUR.Face
@@ -32,8 +48,6 @@ FOUR.Cell
 
 FOUR.Mesh
 {
-	FOUR.SphereSeg = FOUR.CylinderSeg = 16;
-	FOUR.SphereR = 0.1; FOUR.CylinderR = 0.05;
 	FOUR.Mesh = function (geometry, material, updateMatrix){
 		this.Geometry = geometry;
 		this.Material = material;
@@ -61,12 +75,12 @@ FOUR.Mesh
 		}
 		this.visible = flag;
 	}
-	FOUR.Mesh.prototype.createInTHREEScene = function (Scene3){
+	FOUR.Mesh.prototype.createInTHREEScene = function (Scene3,Scene4){
 		if(this.Material.vertexColor != null){
 			for (var VertexIndex in this.Geometry.Vertices){
 				var Vertex = this.Geometry.Vertices[VertexIndex];
 				Vertex.boundTHREEobj = new THREE.Mesh(
-					new THREE.SphereGeometry(FOUR.SphereR,FOUR.SphereSeg,SphereSeg),
+					new THREE.SphereGeometry(Scene4.SphereR,Scene4.SphereSeg,Scene4.SphereSeg),
 					new THREE.MeshLambertMaterial({color:this.Material.vertexColor})
 				);
 				Scene3.add(Vertex.boundTHREEobj);
@@ -76,7 +90,7 @@ FOUR.Mesh
 			for (var EdgeIndexs in this.Geometry.Edges){
 				var Edge = this.Geometry.Edges[EdgeIndexs];
 				Edge.boundTHREEobj = new THREE.Mesh(
-					new THREE.CylinderGeometry(FOUR.CylinderR,FOUR.CylinderR,1,FOUR.CylinderSeg),
+					new THREE.CylinderGeometry(Scene4.CylinderR,Scene4.CylinderR,1,Scene4.CylinderSeg),
 					new THREE.MeshLambertMaterial({color:this.Material.edgeColor})
 				);
 				Scene3.add(Edge.boundTHREEobj);
@@ -89,12 +103,6 @@ FOUR.Euler4
 {
 	FOUR.Euler4 = function (xw,yw,zw,order){
 		this.set(xw,yw,zw,order);
-	}
-	FOUR.Euler4.prototype.copy = function (c){
-		this.set(c.xw,c.yw,c.zw,c.order);
-	}
-	FOUR.Euler4.prototype.clone = function (){
-		return new FOUR.Euler4(this.xw,this.yw,this.zw,this.order);
 	}
 	FOUR.Euler4.prototype.set = function (xw,yw,zw,order){
 		this.xw = xw;
@@ -124,6 +132,7 @@ FOUR.Geometry
 	FOUR.PushGeometry = function (Geometry3,V){
 		this.Vertices = [];
 		this.Edges = [];
+		this.Faces = [];
 		for(var i in Geometry3.vertices){
 			var V0 = new THREE.Vector4(Geometry3.vertices[i].x,Geometry3.vertices[i].y,Geometry3.vertices[i].z,0);
 			this.Vertices.push(V0);
@@ -133,6 +142,8 @@ FOUR.Geometry
 		for(var i in Geometry3.faces){
 			var ti = Geometry3.faces[i];
 			if(ti instanceof THREE.Face3){
+				this.Faces.push(new FOUR.Face([ti.a*2,ti.b*2,ti.c*2]));
+				this.Faces.push(new FOUR.Face([ti.a*2+1,ti.b*2+1,ti.c*2+1]));
 				this.Edges.push(new FOUR.Edge(ti.a*2,ti.b*2));
 				this.Edges.push(new FOUR.Edge(ti.a*2,ti.c*2));
 				this.Edges.push(new FOUR.Edge(ti.c*2,ti.b*2));
@@ -140,6 +151,8 @@ FOUR.Geometry
 				this.Edges.push(new FOUR.Edge(ti.a*2+1,ti.c*2+1));
 				this.Edges.push(new FOUR.Edge(ti.c*2+1,ti.b*2+1));
 			}else if (ti instanceof THREE.Face4){
+				this.Faces.push(new FOUR.Face([ti.a*2,ti.b*2,ti.c*2,ti.d*2]));
+				this.Faces.push(new FOUR.Face([ti.a*2+1,ti.b*2+1,ti.c*2+1,ti.d*2+1]));
 				this.Edges.push(new FOUR.Edge(ti.a*2,ti.b*2));
 				this.Edges.push(new FOUR.Edge(ti.b*2,ti.c*2));
 				this.Edges.push(new FOUR.Edge(ti.c*2,ti.d*2));
@@ -150,7 +163,112 @@ FOUR.Geometry
 				this.Edges.push(new FOUR.Edge(ti.a*2+1,ti.d*2+1));
 			}
 		}
+		this.Edges = FOUR.Edge.reduce(this.Edges);
+		for ( var i = Geometry3.vertices.length; i < this.Edges.length; i++ ){
+			if(this.Edges[i].a%2==0&&this.Edges[i].b%2==0)
+				this.Faces.push(new FOUR.Face([this.Edges[i].a,this.Edges[i].b,this.Edges[i].b+1,this.Edges[i].a+1]));
+		}
 	}
+	//FOUR.TorusGeometry._uneSeg = function (){
+		
+	//};
+	FOUR.TorusGeometry = function (Geometry3,P,D,seg){
+		this.Vertices = [];
+		this.Edges = [];
+		this.Faces = [];
+		var rotM = D.generateRotation(2*Math.PI/seg)
+		for (var i in Geometry3.vertices){
+			var K = new THREE.Vector3().subVectors(Geometry3.vertices[i],P);
+			var KK = new THREE.Vector4(K.x,K.y,K.z,0);
+			for (var j = 0; j < seg; j++){
+				this.Vertices[seg*i+j] = KK.clone();
+				KK.applyMatrix4(rotM);
+				if(j==seg-1)
+					this.Edges.push(new FOUR.Edge(i*seg+j,i*seg));
+				else
+					this.Edges.push(new FOUR.Edge(i*seg+j,i*seg+j+1));
+			}
+		}
+		for(var i in Geometry3.faces){
+			for (var j = 0; j < seg; j++){
+				var ti = Geometry3.faces[i];
+				if(ti instanceof THREE.Face3){
+					this.Faces.push(new FOUR.Face([ti.a*seg+j,ti.b*seg+j,ti.c*seg+j]));
+					this.Edges.push(new FOUR.Edge(ti.a*seg+j,ti.b*seg+j));
+					this.Edges.push(new FOUR.Edge(ti.a*seg+j,ti.c*seg+j));
+					this.Edges.push(new FOUR.Edge(ti.c*seg+j,ti.b*seg+j));
+				}else if (ti instanceof THREE.Face4){
+					this.Faces.push(new FOUR.Face([ti.a*seg+j,ti.b*seg+j,ti.c*seg+j,ti.d*seg+j]));
+					this.Edges.push(new FOUR.Edge(ti.a*seg+j,ti.b*seg+j));
+					this.Edges.push(new FOUR.Edge(ti.b*seg+j,ti.c*seg+j));
+					this.Edges.push(new FOUR.Edge(ti.c*seg+j,ti.d*seg+j));
+					this.Edges.push(new FOUR.Edge(ti.a*seg+j,ti.d*seg+j));
+				}
+			}
+		}
+		this.Edges = FOUR.Edge.reduce(this.Edges);
+		for ( var i = Geometry3.vertices.length*seg; i < this.Edges.length; i++ ){
+			if(this.Edges[i].a%seg==0&&this.Edges[i].b%seg==0){
+				//var farrce = [];
+				for (var j = 0; j < seg; j++){
+					if(j!=seg-1){
+						//this.Edges.push(new FOUR.Edge(i*seg+j,i*seg));
+						this.Faces.push(new FOUR.Face([this.Edges[i].a+j,this.Edges[i].b+j,this.Edges[i].b+1+j,this.Edges[i].a+1+j]));
+					}else
+						this.Faces.push(new FOUR.Face([this.Edges[i].a+j,this.Edges[i].b+j,this.Edges[i].b,this.Edges[i].a]));
+				}
+			}	
+		}
+	}
+	FOUR.SphereringGeometry = function (R,r,segu,segv,seg){
+		this.Vertices = [];
+		this.Edges = [];
+		this.Faces = [];
+		var rotM = 2*Math.PI/seg;
+		var rR = r/R;
+		var Geometry3 = new THREE.SphereGeometry(R,segu,segv);
+		for (var i in Geometry3.vertices){
+			for (var j = 0; j < seg; j++){
+				var KK = new THREE.Vector4(Geometry3.vertices[i].x,Geometry3.vertices[i].y,Geometry3.vertices[i].z,0);
+				this.Vertices[seg*i+j] = KK.multiplyScalar(1-Math.cos(rotM*j)*rR).add(new THREE.Vector4(0,0,0,Math.sin(rotM*j)*rR))
+				if(j==seg-1)
+					this.Edges.push(new FOUR.Edge(i*seg+j,i*seg));
+				else
+					this.Edges.push(new FOUR.Edge(i*seg+j,i*seg+j+1));
+			}
+		}
+		for(var i in Geometry3.faces){
+			for (var j = 0; j < seg; j++){
+				var ti = Geometry3.faces[i];
+				if(ti instanceof THREE.Face3){
+					this.Faces.push(new FOUR.Face([ti.a*seg+j,ti.b*seg+j,ti.c*seg+j]));
+					this.Edges.push(new FOUR.Edge(ti.a*seg+j,ti.b*seg+j));
+					this.Edges.push(new FOUR.Edge(ti.a*seg+j,ti.c*seg+j));
+					this.Edges.push(new FOUR.Edge(ti.c*seg+j,ti.b*seg+j));
+				}else if (ti instanceof THREE.Face4){
+					this.Faces.push(new FOUR.Face([ti.a*seg+j,ti.b*seg+j,ti.c*seg+j,ti.d*seg+j]));
+					this.Edges.push(new FOUR.Edge(ti.a*seg+j,ti.b*seg+j));
+					this.Edges.push(new FOUR.Edge(ti.b*seg+j,ti.c*seg+j));
+					this.Edges.push(new FOUR.Edge(ti.c*seg+j,ti.d*seg+j));
+					this.Edges.push(new FOUR.Edge(ti.a*seg+j,ti.d*seg+j));
+				}
+			}
+		}
+		this.Edges = FOUR.Edge.reduce(this.Edges);
+		for ( var i = Geometry3.vertices.length*seg; i < this.Edges.length; i++ ){
+			if(this.Edges[i].a%seg==0&&this.Edges[i].b%seg==0){
+				//var farrce = [];
+				for (var j = 0; j < seg; j++){
+					if(j!=seg-1){
+						//this.Edges.push(new FOUR.Edge(i*seg+j,i*seg));
+						this.Faces.push(new FOUR.Face([this.Edges[i].a+j,this.Edges[i].b+j,this.Edges[i].b+1+j,this.Edges[i].a+1+j]));
+					}else
+						this.Faces.push(new FOUR.Face([this.Edges[i].a+j,this.Edges[i].b+j,this.Edges[i].b,this.Edges[i].a]));
+				}
+			}	
+		}
+	}
+		
 	FOUR.DuoprismGeometry = function (shape1,shape2){
 		var XYV = shape1.getPoints();
 		var ZTV = shape2.getPoints();
@@ -191,7 +309,7 @@ FOUR.Geometry
 			}
 		}
 	}
-	FOUR.DuoCylinderGeometry = function (u ,v){
+	FOUR.DuocylinderGeometry = function (u ,v){
 		var s1 = new THREE.Shape();
 		var s2 = new THREE.Shape();
 		s1.moveTo(1,0);
@@ -202,7 +320,7 @@ FOUR.Geometry
 		for(var j = 1;j<v;j++){
 			s2.lineTo(Math.cos(Math.PI*2/v*j),Math.sin(Math.PI*2/v*j));
 		}
-		return new FOUR.DuoprismGeometry(s1,s2);;
+		return new FOUR.DuoprismGeometry(s1,s2);
 	}
 	FOUR.SimplexGeometry = function (p1,p2,p3,p4,p5){
 		this.Vertices = [];
@@ -318,49 +436,75 @@ FOUR.Material
 }
 
 FOUR.Camera4
-{
-	FOUR.OrthographicCamera = function (euler4){
-		var matrix = new THREE.Matrix4();
-		this.projectMatrix = matrix.setRotationFromEuler4(euler4);
-		this.Euler4 = euler4;
+{	FOUR.Camera4 = function (){
+		this.projectMatrix = new THREE.Matrix4();
+		this.up = new THREE.Vector4(1,2,3,4);
+		this.right = new THREE.Vector4(4,3,2,1);
 	}
-	FOUR.OrthographicCamera.prototype.applyVector4 = function (V){
-		var V3 = new THREE.Vector3();
-		var e = this.projectMatrix.elements;
-		V3.x = e[0] * V.w + e[1] * V.y + e[2] * V.z + e[3] * V.x;
-		V3.y = e[4] * V.w + e[5] * V.y + e[6] * V.z + e[7] * V.x;
-		V3.z = e[8] * V.w + e[9] * V.y + e[10] * V.z + e[11] * V.x;
-		return V3;
-	}
-	FOUR.OrthographicCamera.prototype.setFromEuler4 = function (euler4){
+	FOUR.Camera4.prototype.setFromEuler4 = function (euler4){
 		this.projectMatrix = this.projectMatrix.setRotationFromEuler4(euler4);
 	}
-	FOUR.PerspectiveCamera = function (euler4,distance,Stereographic){
-	this.Euler4 = euler4;
-		var matrix = new THREE.Matrix4();
-		this.projectMatrix = matrix.setRotationFromEuler4(euler4);
+	FOUR.Camera4.prototype.lookAt = function (v){
+		this.front = this.up.wedge(this.right).wedge(v);
+		FOUR.Orthog(v,this.up,this.right,this.front);
+		this.projectMatrix.elements=[
+			this.up.x,this.front.x,this.right.x,v.x,
+			this.up.y,this.front.y,this.right.y,v.y,
+			this.up.z,this.front.z,this.right.z,v.z,
+			this.up.w,this.front.w,this.right.w,v.w
+		];
+		this.projectMatrix.getInverse(this.projectMatrix);
+	}
+	FOUR.OrthographicCamera = function (obj){
+		FOUR.Camera4.call(this);
+		if(obj instanceof FOUR.Euler4)this.projectMatrix = this.projectMatrix.setRotationFromEuler4(obj);
+	}
+	FOUR.OrthographicCamera.prototype = Object.create(FOUR.Camera4.prototype);
+	FOUR.OrthographicCamera.prototype.applyVector4 = function (V){
+		var V3 = new THREE.Vector4();
+		var e = this.projectMatrix.elements;
+		//V3.x = e[0] * V.w + e[1] * V.y + e[2] * V.z + e[3] * V.x;
+		//V3.y = e[4] * V.w + e[5] * V.y + e[6] * V.z + e[7] * V.x;
+		//V3.z = e[8] * V.w + e[9] * V.y + e[10] * V.z + e[11] * V.x;
+		V3 = V.clone().applyMatrix4(this.projectMatrix)
+		return new THREE.Vector3(V3.x,V3.y,V3.z);
+	}
+	FOUR.Orthog = function (a1,a2,a3,a4){
+		var a11 = a1.dot(a1);
+		var b2 = new THREE.Vector4().subVectors(a2,a1.clone().multiplyScalar(a2.dot(a1)/a11));
+		var b22 = b2.dot(b2);
+		var b3 = new THREE.Vector4().subVectors(a3,a1.clone().multiplyScalar(a3.dot(a1)/a11)).sub(b2.clone().multiplyScalar(a3.dot(b2)/b22));
+		var b4 = new THREE.Vector4().subVectors(a4,a1.clone().multiplyScalar(a4.dot(a1)/a11)).sub(b2.clone().multiplyScalar(a4.dot(b2)/b22)).sub(b3.clone().multiplyScalar(a4.dot(b3)/b3.dot(b3)));
+		a1.normalize();
+		a2.copy(b2.normalize());
+		a3.copy(b3.normalize());
+		a4.copy(b4.normalize());
+	}
+	
+	FOUR.PerspectiveCamera = function (obj,distance,Stereographic){
+		FOUR.Camera4.call(this);
+		if(obj instanceof FOUR.Euler4)this.projectMatrix = this.projectMatrix.setRotationFromEuler4(obj);
 		this.distance = distance;
 		this.Stereographic = (Stereographic) || Stereographic;
 		this.maxVertexRadius = 4;
 		this.maxEdgeRadius = 2;
 		
 	}
+	FOUR.PerspectiveCamera.prototype = Object.create(FOUR.Camera4.prototype);
 	FOUR.PerspectiveCamera.prototype.applyVector4 = function (v){
-		var V, V3 = new THREE.Vector3();
+		var V, V3 = new THREE.Vector4();
 		var e = this.projectMatrix.elements;
 		if(this.Stereographic){
 			V = v.clone().normalize().multiplyScalar(this.distance);
 		}else V = v;
-		V3.w = e[12] * V.w + e[13] * V.y + e[14] * V.z + e[15] * V.x+this.distance;
+		V3 = V.clone().applyMatrix4(this.projectMatrix);
+		// / V3.w = e[12] * V.w + e[13] * V.y + e[14] * V.z + e[15] * V.x+this.distance;
+		V3.w += this.distance;
 		if(V3.w == 0){return new THREE.Vector4(100000,100000,100000,100000);}
-		//if( w + this.distance < 0)throw "error in FOUR.PerspectiveCamera: distance is too low.";
-		V3.x = (e[0] * V.w + e[1] * V.y + e[2] * V.z + e[3] * V.x)/V3.w;
-		V3.y = (e[4] * V.w + e[5] * V.y + e[6] * V.z + e[7] * V.x)/V3.w;
-		V3.z = (e[8] * V.w + e[9] * V.y + e[10] * V.z + e[11] * V.x)/V3.w;
-		return V3;
-	}
-	FOUR.PerspectiveCamera.prototype.setFromEuler4 = function (euler4){
-		this.projectMatrix = this.projectMatrix.setRotationFromEuler4(euler4);
+		var VV = new THREE.Vector3(V3.x,V3.y,V3.z).divideScalar(V3.w);
+		VV.w = V3.w;
+		//if( w + this.distance < 0) console.log ( "error in FOUR.PerspectiveCamera: distance is too low.");
+		return VV
 	}
 }
 
@@ -369,10 +513,12 @@ FOUR.Scene4
 	FOUR.Scene4 = function (scene3){
 		this.scene3 = scene3;
 		this.children = [];
+		this.SphereSeg = this.CylinderSeg = 16;
+		this.SphereR = 0.1; this.CylinderR = 0.05;
 	}
 	FOUR.Scene4.prototype.add = function (obj4){
 		this.children.push(obj4);
-		obj4.createInTHREEScene(this.scene3);
+		obj4.createInTHREEScene(this.scene3,this);
 	}
 	FOUR.Scene4.prototype.remove = function (obj4){
 		for(var i in obj4.Geometry.Vertices){
@@ -570,41 +716,664 @@ FOUR.Hopf
 	}
 }
 
-FOUR.Controls
-{
-	FOUR.Controls = function (camera4) {
-		camera4.Q = camera4.A = camera4.W = camera4.S = camera4.E = camera4.D = false;
-		this.camera4 = camera4;
-		this.step = 0.01;
-		FOUR.Controls.keyDown = false;
-		this.Euler4 = camera4.Euler4.clone();
-		document.addEventListener('keydown', function( ev ) {
-			FOUR.Controls.keyDown = true;
-			FOUR.Controls.keyCode = ev.keyCode;
-		});
-		document.addEventListener('keyup', function( ev ) {
-			FOUR.Controls.keyDown = false;
-		});
-	}
-	FOUR.Controls.prototype.update = function (){
-		if(FOUR.Controls.keyDown){
-			switch (FOUR.Controls.keyCode){
-				case 81: this.Euler4.xw+=this.step; break;//Q
-				case 65: this.Euler4.xw-=this.step; break;//A
-				case 87: this.Euler4.zw+=this.step; break;//W
-				case 83: this.Euler4.zw-=this.step; break;//S
-				case 69: this.Euler4.yw+=this.step; break;//E
-				case 68: this.Euler4.yw-=this.step; break;//D
-				case 82: this.Euler4.set(0.000001,0.000001,0.000001); break;//R
-				case 70: this.Euler4.set(0.000001,0.000001,Math.PI/2); break;//F
+FOUR.Controls = function ( object, domElement, object4) {
+
+	var _this = this;
+	var STATE = { NONE: -1, ROTATE: 0, ZOOM: 10,ROTATE_T:1, ROTATE_XYZ: 2, TOUCH_ROTATE: 3, TOUCH_ZOOM_PAN: 4 };
+
+	this.object = object;
+	this.domElement = ( domElement !== undefined ) ? domElement : document;
+
+	// API
+
+	this.enabled = true;
+
+	this.screen = { left: 0, top: 0, width: 0, height: 0 };
+
+	this.rotateSpeed = 1.0;
+	this.zoomSpeed = 1.2;
+	this.panSpeed = 0.3;
+
+	this.noRotate = false;
+	this.noZoom = false;
+	this.noPan = false;
+	this.noRotate_t = false;
+	this.noRotate_xyz = false;
+	
+	this.staticMoving = false;
+	this.dynamicDampingFactor = 0.2;
+
+	this.minDistance = 0;
+	this.maxDistance = Infinity;
+
+	// internals
+
+	this.target = new THREE.Vector3();
+
+	var EPS = 0.000001;
+
+	var lastPosition = new THREE.Vector3();
+
+	var _state = STATE.NONE,
+	_prevState = STATE.NONE,
+
+	_eye = new THREE.Vector3(),
+
+	_movePrev = new THREE.Vector2(),
+	_moveCurr = new THREE.Vector2(),
+	
+	_movePrevs = new THREE.Vector2(),
+	_moveCurrs = new THREE.Vector2(),
+	
+	_movePrevse = new THREE.Vector2(),
+	_moveCurrse = new THREE.Vector2(),
+
+	_lastAxis = new THREE.Vector3(),
+	_lastAxis2 = new FOUR.Bivector(),
+	_lastAngle = 0,
+	_lastAngle2 = 0,
+	_lastAngle3 = 0,
+
+	_zoomStart = new THREE.Vector2(),
+	_zoomEnd = new THREE.Vector2(),
+
+	_touchZoomDistanceStart = 0,
+	_touchZoomDistanceEnd = 0,
+
+	_panStart = new THREE.Vector2(),
+	_panEnd = new THREE.Vector2();
+
+	// for reset
+
+	this.target0 = this.target.clone();
+	this.position0 = this.object.position.clone();
+	this.up0 = this.object.up.clone();
+
+	// events
+
+	var changeEvent = { type: 'change' };
+	var startEvent = { type: 'start' };
+	var endEvent = { type: 'end' };
+	
+	this.keyCode = 0;
+	this.keyDown = false;
+
+	// methods
+
+	this.handleResize = function () {
+
+		if ( this.domElement === document ) {
+
+			this.screen.left = 0;
+			this.screen.top = 0;
+			this.screen.width = window.innerWidth;
+			this.screen.height = window.innerHeight;
+
+		} else {
+
+			var box = this.domElement.getBoundingClientRect();
+			// adjustments come from similar code in the jquery offset() function
+			var d = this.domElement.ownerDocument.documentElement;
+			this.screen.left = box.left + window.pageXOffset - d.clientLeft;
+			this.screen.top = box.top + window.pageYOffset - d.clientTop;
+			this.screen.width = box.width;
+			this.screen.height = box.height;
+
+		}
+
+	};
+
+	this.handleEvent = function ( event ) {
+
+		if ( typeof this[ event.type ] == 'function' ) {
+
+			this[ event.type ]( event );
+
+		}
+
+	};
+
+	var getMouseOnScreen = ( function () {
+
+		var vector = new THREE.Vector2();
+
+		return function ( pageX, pageY ) {
+
+			vector.set(
+				( pageX - _this.screen.left ) / _this.screen.width,
+				( pageY - _this.screen.top ) / _this.screen.height
+			);
+
+			return vector;
+
+		};
+
+	}() );
+
+	var getMouseOnCircle = ( function () {
+
+		var vector = new THREE.Vector2();
+
+		return function ( pageX, pageY ) {
+
+			vector.set(
+				( ( pageX - _this.screen.width * 0.5 - _this.screen.left ) / ( _this.screen.width * 0.5 ) ),
+				( ( _this.screen.height + 2 * ( _this.screen.top - pageY ) ) / _this.screen.width ) // screen.width intentional
+			);
+
+			return vector;
+		};
+
+	}() );
+
+	this.rotateCamera = (function() {
+
+		var axis = new THREE.Vector3(),
+			quaternion = new THREE.Quaternion(),
+			eyeDirection = new THREE.Vector3(),
+			objectUpDirection = new THREE.Vector3(),
+			objectSidewaysDirection = new THREE.Vector3(),
+			moveDirection = new THREE.Vector3(),
+			angle;
+
+		return function () {
+
+			moveDirection.set( _moveCurr.x - _movePrev.x, _moveCurr.y - _movePrev.y, 0 );
+			angle = moveDirection.length();
+
+			if ( angle ) {
+				_this.active3 = true;
+				_eye.copy( _this.object.position ).sub( _this.target );
+
+				eyeDirection.copy( _eye ).normalize();
+				objectUpDirection.copy( _this.object.up ).normalize();
+				objectSidewaysDirection.crossVectors( objectUpDirection, eyeDirection ).normalize();
+
+				objectUpDirection.setLength( _moveCurr.y - _movePrev.y );
+				objectSidewaysDirection.setLength( _moveCurr.x - _movePrev.x );
+
+				moveDirection.copy( objectUpDirection.add( objectSidewaysDirection ) );
+
+				axis.crossVectors( moveDirection, _eye ).normalize();
+
+				angle *= _this.rotateSpeed;
+				quaternion.setFromAxisAngle( axis, angle );
+
+				_eye.applyQuaternion( quaternion );
+				_this.object.up.applyQuaternion( quaternion );
+
+				_lastAxis.copy( axis );
+				_lastAngle = angle;
+
+			}
+
+			else if ( !_this.staticMoving && _lastAngle ) {
+				_this.active3 = true;
+				_lastAngle *= Math.sqrt( 1.0 - _this.dynamicDampingFactor );
+				_eye.copy( _this.object.position ).sub( _this.target );
+				quaternion.setFromAxisAngle( _lastAxis, _lastAngle );
+				_eye.applyQuaternion( quaternion );
+				_this.object.up.applyQuaternion( quaternion );
+
+			}
+
+			_movePrev.copy( _moveCurr );
+
+		};
+
+	}());
+
+
+	this.zoomCamera = function () {
+
+		var factor;
+
+		if ( _state === STATE.TOUCH_ZOOM_PAN ) {
+			_this.active3 = true;
+			factor = _touchZoomDistanceStart / _touchZoomDistanceEnd;
+			_touchZoomDistanceStart = _touchZoomDistanceEnd;
+			_eye.multiplyScalar( factor );
+
+		} else {
+
+			factor = 1.0 + ( _zoomEnd.y - _zoomStart.y ) * _this.zoomSpeed;
+
+			if ( factor !== 1.0 && factor > 0.0 ) {
+				_this.active3 = true;
+				_eye.multiplyScalar( factor );
+
+				if ( _this.staticMoving ) {
+
+					_zoomStart.copy( _zoomEnd );
+
+				} else {
+
+					_zoomStart.y += ( _zoomEnd.y - _zoomStart.y ) * this.dynamicDampingFactor;
+
+				}
+
+			}
+
+		}
+
+	};
+
+	this.panCamera = (function() {
+
+		var mouseChange = new THREE.Vector2(),
+			objectUp = new THREE.Vector3(),
+			pan = new THREE.Vector3();
+
+		return function () {
+
+			mouseChange.copy( _panEnd ).sub( _panStart );
+
+			if ( mouseChange.lengthSq() ) {
+				_this.active3 = true;
+				mouseChange.multiplyScalar( _eye.length() * _this.panSpeed );
+
+				pan.copy( _eye ).cross( _this.object.up ).setLength( mouseChange.x );
+				pan.add( objectUp.copy( _this.object.up ).setLength( mouseChange.y ) );
+
+				_this.object.position.add( pan );
+				_this.target.add( pan );
+
+				if ( _this.staticMoving ) {
+
+					_panStart.copy( _panEnd );
+
+				} else {
+
+					_panStart.add( mouseChange.subVectors( _panEnd, _panStart ).multiplyScalar( _this.dynamicDampingFactor ) );
+
+				}
+
+			}
+		};
+
+	}());
+	
+this.rotateTCamera = (function() {
+
+		var quaternion = new THREE.Quaternion(),
+			moveDirection = new THREE.Vector3(),
+			angle, v, bivector4;
+
+		return function () {
+			moveDirection.set( _moveCurrs.x - _movePrevs.x, _moveCurrs.y - _movePrevs.y, 0 );
+			angle = moveDirection.length();
+
+			if ( angle ) {
+				_this.active3 = _this.active4 = true;
+				v = new THREE.Vector3(_this.object.matrix.elements[8],_this.object.matrix.elements[9],_this.object.matrix.elements[10]);
+				moveDirection.x *= _this.rotateSpeed;
+				moveDirection.y *= _this.rotateSpeed;
+				bivector4 = new THREE.Vector4(v.x,v.y,v.z,0).wedge(new THREE.Vector4(0,0,0,1));
+				object4.projectMatrix = (bivector4.generateRotation(moveDirection.y).multiply(object4.projectMatrix));
+				
+				quaternion.setFromAxisAngle( v, moveDirection.x );
+				_eye.applyQuaternion( quaternion );
+				_this.object.up.applyQuaternion( quaternion );
+
+				_lastAxis.copy( v );
+				_lastAxis2.copy( bivector4 );
+				_lastAngle = moveDirection.x;
+				_lastAngle2 = moveDirection.y;
+
+			}
+
+			else if ( !_this.staticMoving && (_lastAngle||_lastAngle2) ) {
+				_this.active3 = _this.active4 = true;
+				_lastAngle *= Math.sqrt( 1.0 - _this.dynamicDampingFactor );
+				_lastAngle2 *= Math.sqrt( 1.0 - _this.dynamicDampingFactor );
+				quaternion.setFromAxisAngle( _lastAxis, _lastAngle );
+				_eye.applyQuaternion( quaternion );
+				_this.object.up.applyQuaternion( quaternion );
+				object4.projectMatrix = _lastAxis2.generateRotation(_lastAngle2).multiply(object4.projectMatrix);
+			}
+
+			_movePrevs.copy( _moveCurrs );
+
+		};
+
+	}());	
+	
+this.rotateXYZCamera = (function() {
+		var moveDirection = new THREE.Vector3(),
+			angle, v, v2, v3, bivector4;
+		return function () {
+			moveDirection.set( _moveCurrse.x - _movePrevse.x, _moveCurrse.y - _movePrevse.y, 0 );
+			angle = moveDirection.length();
+			if ( angle ) {
+				_this.active3 = _this.active4 = true;
+				v = new THREE.Vector3(_this.object.matrix.elements[8],_this.object.matrix.elements[9],_this.object.matrix.elements[10]);
+				angle *= _this.rotateSpeed;
+				v2 = _this.object.up.clone().normalize().multiplyScalar(moveDirection.y);
+				v3 = _this.object.up.clone().cross(v).normalize().multiplyScalar(moveDirection.x).add(v2);
+				bivector4 = new THREE.Vector4(v3.x,v3.y,v3.z,0).wedge(new THREE.Vector4(0,0,0,1));
+				object4.projectMatrix = (bivector4.generateRotation(angle).multiply(object4.projectMatrix));
+				_lastAxis2.copy( bivector4 );
+				_lastAngle3 = angle;
+			}else if ( !_this.staticMoving && (_lastAngle3) ) {
+				_this.active3 = _this.active4 = true;
+				_lastAngle3 *= Math.sqrt( 1.0 - _this.dynamicDampingFactor );
+				object4.projectMatrix = _lastAxis2.generateRotation(_lastAngle3).multiply(object4.projectMatrix);
+			}
+			_movePrevse.copy( _moveCurrse );
+		};
+
+	}());
+
+	
+	this.checkDistances = function () {
+
+		if ( !_this.noZoom || !_this.noPan ) {
+
+			if ( _eye.lengthSq() > _this.maxDistance * _this.maxDistance ) {
+				_this.object.position.addVectors( _this.target, _eye.setLength( _this.maxDistance ) );
+			}
+			if ( _eye.lengthSq() < _this.minDistance * _this.minDistance ) {
+				_this.object.position.addVectors( _this.target, _eye.setLength( _this.minDistance ) );
 			}
 		}
-		this.camera4.setFromEuler4(this.Euler4);
+	};
+
+	this.update = function () {
+		_eye.subVectors( _this.object.position, _this.target );
+		_this.active3 = _this.active4 = false;
+		if ( !_this.noRotate ) {
+			_this.rotateCamera();
+		}
+		if ( !_this.noRotate_t ) {
+			_this.rotateTCamera();
+		}
+		if ( !_this.noRotate_xyz ) {
+			_this.rotateXYZCamera();
+		}
+		if ( !_this.noZoom ) {
+			_this.zoomCamera();
+		}
+		if ( !_this.noPan ) {
+			_this.panCamera();
+		}
+		if ( Math.abs(_lastAngle) < 0.001)_lastAngle = 0;
+		if ( Math.abs(_lastAngle2) < 0.001)_lastAngle2 = 0;
+		if ( Math.abs(_lastAngle3) < 0.001)_lastAngle3 = 0;
+		_this.object.position.addVectors( _this.target, _eye );
+		_this.checkDistances();
+		_this.object.lookAt( _this.target );
+		if ( lastPosition.distanceToSquared( _this.object.position ) > EPS ) {
+			_this.dispatchEvent( changeEvent );
+			lastPosition.copy( _this.object.position );
+		}
+	};
+	
+	this.reset = function () {
+
+		_state = STATE.NONE;
+		_prevState = STATE.NONE;
+
+		_this.target.copy( _this.target0 );
+		_this.object.position.copy( _this.position0 );
+		_this.object.up.copy( _this.up0 );
+
+		_eye.subVectors( _this.object.position, _this.target );
+
+		_this.object.lookAt( _this.target );
+
+		_this.dispatchEvent( changeEvent );
+
+		lastPosition.copy( _this.object.position );
+
+	};
+
+	// listeners
+
+
+	function mousedown( event ) {
+
+		if ( _this.enabled === false ) return;
+
+		event.preventDefault();
+		event.stopPropagation();
+
+		if ( _state === STATE.NONE ) {
+
+			_state = event.button;
+
+		}
+
+		if ( _state === STATE.ROTATE && !_this.noRotate ) {
+
+			_moveCurr.copy( getMouseOnCircle( event.pageX, event.pageY ) );
+			_movePrev.copy(_moveCurr);
+
+		} else if ( _state === STATE.ZOOM && !_this.noZoom ) {
+
+			_zoomStart.copy( getMouseOnScreen( event.pageX, event.pageY ) );
+			_zoomEnd.copy(_zoomStart);
+
+		} else if ( _state === STATE.PAN && !_this.noPan ) {
+
+			_panStart.copy( getMouseOnScreen( event.pageX, event.pageY ) );
+			_panEnd.copy(_panStart);
+
+		} else if ( _state === STATE.ROTATE_T && !_this.noRotate_t ) {
+
+			_moveCurrs.copy( getMouseOnCircle( event.pageX, event.pageY ) );
+			_movePrevs.copy(_moveCurrs);
+
+		} else if ( _state === STATE.ROTATE_XYZ && !_this.noRotate_xyz ) {
+
+			_moveCurrse.copy( getMouseOnCircle( event.pageX, event.pageY ) );
+			_movePrevse.copy(_moveCurrse);
+
+		}
+
+		document.addEventListener( 'mousemove', mousemove, false );
+		document.addEventListener( 'mouseup', mouseup, false );
+
+		_this.dispatchEvent( startEvent );
+
 	}
-}
+
+	function mousemove( event ) {
+
+		if ( _this.enabled === false ) return;
+
+		event.preventDefault();
+		event.stopPropagation();
+		if ( _state === STATE.ROTATE && !_this.noRotate ) {
+
+			_movePrev.copy(_moveCurr);
+			_moveCurr.copy( getMouseOnCircle( event.pageX, event.pageY ) );
+
+		}else if ( _state === STATE.ROTATE_T && !_this.noRotate_t ) {
+
+			_movePrevs.copy(_moveCurrs);
+			_moveCurrs.copy( getMouseOnCircle( event.pageX, event.pageY ) );
+
+		}else if ( _state === STATE.ROTATE_XYZ && !_this.noRotate_xyz ) {
+
+			_movePrevse.copy(_moveCurrse);
+			_moveCurrse.copy( getMouseOnCircle( event.pageX, event.pageY ) );
+
+		} else if ( _state === STATE.ZOOM && !_this.noZoom ) {
+
+			_zoomEnd.copy( getMouseOnScreen( event.pageX, event.pageY ) );
+
+		} else if ( _state === STATE.PAN && !_this.noPan ) {
+
+			_panEnd.copy( getMouseOnScreen( event.pageX, event.pageY ) );
+
+		}
+
+	}
+
+	function mouseup( event ) {
+
+		if ( _this.enabled === false ) return;
+
+		event.preventDefault();
+		event.stopPropagation();
+
+		_state = STATE.NONE;
+
+		document.removeEventListener( 'mousemove', mousemove );
+		document.removeEventListener( 'mouseup', mouseup );
+		_this.dispatchEvent( endEvent );
+
+	}
+
+	function mousewheel( event ) {
+
+		if ( _this.enabled === false ) return;
+
+		event.preventDefault();
+		event.stopPropagation();
+
+		var delta = 0;
+
+		if ( event.wheelDelta ) { // WebKit / Opera / Explorer 9
+
+			delta = event.wheelDelta / 40;
+
+		} else if ( event.detail ) { // Firefox
+
+			delta = - event.detail / 3;
+
+		}
+
+		_zoomStart.y += delta * 0.01;
+		_this.dispatchEvent( startEvent );
+		_this.dispatchEvent( endEvent );
+
+	}
+
+	function touchstart( event ) {
+
+		if ( _this.enabled === false ) return;
+
+		switch ( event.touches.length ) {
+
+			case 1:
+				_state = STATE.TOUCH_ROTATE;
+				_moveCurr.copy( getMouseOnCircle( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY ) );
+				_movePrev.copy(_moveCurr);
+				break;
+
+			case 2:
+				_state = STATE.TOUCH_ZOOM_PAN;
+				var dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
+				var dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
+				_touchZoomDistanceEnd = _touchZoomDistanceStart = Math.sqrt( dx * dx + dy * dy );
+
+				var x = ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX ) / 2;
+				var y = ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY ) / 2;
+				_panStart.copy( getMouseOnScreen( x, y ) );
+				_panEnd.copy( _panStart );
+				break;
+
+			default:
+				_state = STATE.NONE;
+
+		}
+		_this.dispatchEvent( startEvent );
+
+
+	}
+
+	function touchmove( event ) {
+
+		if ( _this.enabled === false ) return;
+
+		event.preventDefault();
+		event.stopPropagation();
+
+		switch ( event.touches.length ) {
+
+			case 1:
+				_movePrev.copy(_moveCurr);
+				_moveCurr.copy( getMouseOnCircle(  event.touches[ 0 ].pageX, event.touches[ 0 ].pageY ) );
+				break;
+
+			case 2:
+				var dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
+				var dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
+				_touchZoomDistanceEnd = Math.sqrt( dx * dx + dy * dy );
+
+				var x = ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX ) / 2;
+				var y = ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY ) / 2;
+				_panEnd.copy( getMouseOnScreen( x, y ) );
+				break;
+
+			default:
+				_state = STATE.NONE;
+
+		}
+
+	}
+
+	function touchend( event ) {
+
+		if ( _this.enabled === false ) return;
+
+		switch ( event.touches.length ) {
+
+			case 1:
+				_movePrev.copy(_moveCurr);
+				_moveCurr.copy( getMouseOnCircle(  event.touches[ 0 ].pageX, event.touches[ 0 ].pageY ) );
+				break;
+
+			case 2:
+				_touchZoomDistanceStart = _touchZoomDistanceEnd = 0;
+
+				var x = ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX ) / 2;
+				var y = ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY ) / 2;
+				_panEnd.copy( getMouseOnScreen( x, y ) );
+				_panStart.copy( _panEnd );
+				break;
+
+		}
+
+		_state = STATE.NONE;
+		_this.dispatchEvent( endEvent );
+
+	}
+
+	this.domElement.addEventListener( 'contextmenu', function ( event ) { event.preventDefault(); }, false );
+
+	this.domElement.addEventListener( 'mousedown', mousedown, false );
+
+	this.domElement.addEventListener( 'mousewheel', mousewheel, false );
+	this.domElement.addEventListener( 'DOMMouseScroll', mousewheel, false ); // firefox
+
+	this.domElement.addEventListener( 'touchstart', touchstart, false );
+	this.domElement.addEventListener( 'touchend', touchend, false );
+	this.domElement.addEventListener( 'touchmove', touchmove, false );
+	document.addEventListener('keydown', function( ev ) {
+		_this.keyDown = true;
+		_this.keyCode = ev.keyCode;
+	});
+	document.addEventListener('keyup', function( ev ) {
+		_this.keyDown = false;
+	});
+	this.handleResize();
+
+	// force an update at start
+	this.update();
+
+};
+
+FOUR.Controls.prototype = Object.create( THREE.EventDispatcher.prototype );
+FOUR.Controls.prototype.constructor = FOUR.Controls;
+
 FOUR.Bivector
 {
 	FOUR.Bivector = function (xy,xz,xw,yz,yw,zw){
+		this.set(xy,xz,xw,yz,yw,zw);
+	}
+	FOUR.Bivector.prototype.set = function (xy,xz,xw,yz,yw,zw){
 		this.xy = (xy)?xy:0;
 		this.xz = (xz)?xz:0;
 		this.xw = (xw)?xw:0;
@@ -614,6 +1383,13 @@ FOUR.Bivector
 	}
 	FOUR.Bivector.prototype.clone = function (){
 		return new FOUR.Bivector(this.xy,this.xz,this.xw,this.yz,this.yw,this.zw);
+	}
+	FOUR.Bivector.prototype.copy = function (a){
+		this.set(a.xy,a.xz,a.xw,a.yz,a.yw,a.zw);
+	}
+	FOUR.Bivector.prototype.normalize = function (a){
+		if(this.mangtitude())return this.divideScalar(this.mangtitude());
+		else return this;
 	}
 	FOUR.Bivector.prototype.dot = function (W){
 		if(W instanceof THREE.Vector4)
@@ -640,7 +1416,7 @@ FOUR.Bivector
 		}
 	}
 	FOUR.Bivector.prototype.toMatrix = function (){
-		return new THREE.Matrix4(
+		return new THREE.Matrix4().set(
 			 0,this.xy,this.xz,this.xw,
 			-this.xy,0,this.yz,this.yw,
 			-this.xz,-this.yz,0,this.zw,
@@ -715,6 +1491,12 @@ FOUR.Bivector
 			);
 		}
 	};
+	FOUR.Bivector.prototype.generateRotation = function (s){
+		var F = this.clone().normalize().toMatrix();
+		var P = new THREE.Matrix4().multiplyMatrices(F,F);
+		var Q = new THREE.Matrix4().multiplyScalar(Math.cos(s)).add(F.multiplyScalar(Math.sin(s))).multiply(P);
+		return new THREE.Matrix4().add(P).add(Q.multiplyScalar(-1));
+	}
 	FOUR.Bivector.prototype.getAngles = function (W) {
 		if (W instanceof FOUR.Bivector){
 			var M = 1 / (this.mangtitude() * W.mangtitude())*0.9999999999999999;
@@ -737,8 +1519,21 @@ FOUR.Bivector
 	}
 }
 
-THREE.Matrix2
+THREE.Matrices
 {
+THREE.Matrix4.prototype.add = function ( v ) {
+
+var te = this.elements;
+var me = v.elements;
+
+te[0] += me[0]; te[4] += me[4]; te[8] += me[8]; te[12] += me[12];
+te[1] += me[1]; te[5] += me[5]; te[9] += me[9]; te[13] += me[13];
+te[2] += me[2]; te[6] += me[6];te[10] += me[10];te[14] += me[14];
+te[3] += me[3]; te[7] += me[7];te[11] += me[11];te[15] += me[15];
+
+return this;
+
+}
 THREE.Matrix2 = function ( n11, n12, n21, n22) {
 this.elements = new Float32Array(4);
 this.set(

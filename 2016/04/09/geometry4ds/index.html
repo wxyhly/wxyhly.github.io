@@ -5,7 +5,7 @@
   
   <title>四维空间（二）：超立体几何 | Blog de WXYHLY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#本文讨论的是纯空间上的几何，而不是物理上的时空！推荐视频《维度：数学漫步》对四维空间作初步了解
+  <meta name="description" content="#本文讨论的是纯空间上的几何！推荐视频《维度：数学漫步》对四维空间作初步了解，大家还可查看CFY的文章从超立方体说起 作为本文的补充。
 今天，我们将接触到更多的四维空间的几何性质、位置关系、更多有趣的四维立体几何题和某些立体几何定理的推广。
 three.js绘制的超立方体的斜切胞（黑色是截胞）
 特色内容
@@ -16,7 +16,7 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
 <meta property="og:title" content="四维空间（二）：超立体几何">
 <meta property="og:url" content="http://wxyhly.github.io/2016/04/09/geometry4ds/index.html">
 <meta property="og:site_name" content="Blog de WXYHLY">
-<meta property="og:description" content="#本文讨论的是纯空间上的几何，而不是物理上的时空！推荐视频《维度：数学漫步》对四维空间作初步了解
+<meta property="og:description" content="#本文讨论的是纯空间上的几何！推荐视频《维度：数学漫步》对四维空间作初步了解，大家还可查看CFY的文章从超立方体说起 作为本文的补充。
 今天，我们将接触到更多的四维空间的几何性质、位置关系、更多有趣的四维立体几何题和某些立体几何定理的推广。
 three.js绘制的超立方体的斜切胞（黑色是截胞）
 特色内容
@@ -33,10 +33,10 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
 <meta property="og:image" content="http://wxyhly.github.io/img/geometry6.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/geometry8.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/geometry5.gif">
-<meta property="og:updated_time" content="2016-04-23T13:55:16.750Z">
+<meta property="og:updated_time" content="2016-04-23T14:39:10.004Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="四维空间（二）：超立体几何">
-<meta name="twitter:description" content="#本文讨论的是纯空间上的几何，而不是物理上的时空！推荐视频《维度：数学漫步》对四维空间作初步了解
+<meta name="twitter:description" content="#本文讨论的是纯空间上的几何！推荐视频《维度：数学漫步》对四维空间作初步了解，大家还可查看CFY的文章从超立方体说起 作为本文的补充。
 今天，我们将接触到更多的四维空间的几何性质、位置关系、更多有趣的四维立体几何题和某些立体几何定理的推广。
 three.js绘制的超立方体的斜切胞（黑色是截胞）
 特色内容
@@ -118,7 +118,7 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#<span class="likecode">本文讨论的是纯空间上的几何，而不是物理上的时空！推荐视频《<a href="http://list.youku.com/albumlist/show?id=2376313&amp;ascending=1&amp;page=1" target="_blank" rel="external">维度：数学漫步</a>》对四维空间作初步了解</span></p>
+        <p>#<span class="likecode">本文讨论的是纯空间上的几何！推荐视频《<a href="http://list.youku.com/albumlist/show?id=2376313&amp;ascending=1&amp;page=1" target="_blank" rel="external">维度：数学漫步</a>》对四维空间作初步了解，大家还可查看<span style="color:#F00"><strong>CFY的文章<a href="http://hadroncfy.com/2016/04/12/la-dimension-quatre-deuxieme/" target="_blank" rel="external">从超立方体说起</a></strong> 作为本文的补充。</span></span></p>
 <p><div style="float:left">今天，我们将接触到更多的四维空间的几何性质、位置关系、更多有趣的四维立体几何题和某些立体几何定理的推广。</div></p>
 <p><div style="float:right"><img src="/img/crossection.gif" width="200" height="200"><p>three.js绘制的超立方体的斜切胞（黑色是截胞）</p></div><br><a name="index"></a></p>
 <h2 id="特色内容"><a href="#特色内容" class="headerlink" title="特色内容"></a>特色内容</h2><ul>
@@ -196,14 +196,14 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
 <blockquote>
 <p>四维中射影面积定理是：平面图形射影面积等于被射影图形的面积S乘以该图形所在平面与射影面夹角$\theta_1、\theta_2$的余弦的乘积。</p>
 </blockquote>
-<p>　　我们用这种神奇的方法都只能得到$cos\theta_1cos\theta_2$，显然还差条件。看来必须用代数才能求夹角了。下一节我们将看到向量法也不再适应四维几何，向量法需要被改造，在改造的向量法中我们还需要用到射影面积定理的推广。</p>
+<p>　　我们用这种神奇的方法都只能得到$cos\theta_1cos\theta_2$，显然还差条件。看来必须用代数才能求夹角了。<a href="/2016/04/23/bivector4ds/">后面</a>我们将看到向量法也不再适应四维几何，向量法需要被改造，在改造的向量法中我们还需要用到射影面积定理的推广。</p>
 <p><a href="#index">返回目录</a></p>
 <p> <a href="/2016/04/08/objects4ds/">上一篇</a>　 <a href="/categories/四维空间系列/">查看系列目录</a>　<a href="/2016/04/16/polyhedral4ds/">下一篇</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wxyhly.github.io/2016/04/09/geometry4ds/" data-id="cind40jod000564vllopqd1rx" class="article-share-link">Share</a>
+      <a data-url="http://wxyhly.github.io/2016/04/09/geometry4ds/" data-id="cind8u3hc0001bkvl3x49ayor" class="article-share-link">Share</a>
       
         <a href="http://wxyhly.github.io/2016/04/09/geometry4ds/#disqus_thread" class="article-comment-link">留言</a>
       
