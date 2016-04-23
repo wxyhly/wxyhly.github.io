@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/b/ba/Inside-out_torus_%28animated%2C_small%29.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/fibre4.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/fibre5.gif">
-<meta property="og:updated_time" content="2016-04-19T15:23:57.116Z">
+<meta property="og:updated_time" content="2016-04-22T14:47:12.473Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="四维空间（四）：纤维与超球">
 <meta name="twitter:description" content="#本文内容为对影片《维度：数学漫步》第7、8集:纤维丛的解释，并着重讨论Hopf纤维的几何性质图片来自en.wikipedia by Niles Johnson
@@ -181,7 +181,7 @@
 <li>$-30-30-30-30-30-30-30-30-30-30-　(1\times 10)$</li>
 </ol>
 <p>　　第一组那个环对应上图红色的十个十二面体，第四组那个环对应中间平躺的橙色十二面体环。第二组5个环与第一个环（红色）交链紧挨缠绕，第三组5个环与第四组的环（橙色）交链紧挨缠绕。<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/120-cell_rings.jpg/300px-120-cell_rings.jpg" alt=""></p>
-<p><center>正120胞体中的两个交链紧挨缠绕的圆环（来自en.wikipedia）</center><br>　　如果在Hopf纤维丛里画出这12个大圆，大圆所在平面对应的12个复数$k$的取值在球面$\mathbf S^2$上的分布恰为正二十面体12个顶点位置的分布！由此可见这12个环的地位其实是一样的。<br><a name="orth"></a></p>
+<p><center>正120胞体中的两个交链紧挨缠绕的圆环（来自en.wikipedia）</center><br>　　如果在Hopf纤维丛里画出这12个大圆，大圆所在平面对应的12个复数$k$的取值在球面$\mathbf S^2$上的分布恰为<strong>正二十面体12个顶点位置</strong>的分布！由此可见这12个环的地位其实是一样的。正120胞体的这些优美的性质正是我喜欢它的原因。<br><a name="orth"></a></p>
 <h3 id="正交性"><a href="#正交性" class="headerlink" title="正交性"></a>正交性</h3><p>　　纤维丛还有很多漂亮的几何性质。六个坐标面可以分成绝对垂直的三对:$xOy-zOt、xOz-tOy、xOt-yOz$这样我们就有三种选$z_1$$z_2$所对应平面的方式:<br>$$ z_1=x+iy; z_2=z+it \\ z_1=x+iz; z_2=y+it \\ z_1=x+it; z_2=y+iz $$<br>其实我们还能交换实部虚部：<br>$$ z_1=x+iy; z_2=t+iz \\ z_1=x+iz; z_2=t+iy \\ z_1=x+it; z_2=z+iy $$<br>前三组其实描述的是右手Hopf纤维丛，后三组是左手纤维丛：我们交换两个坐标变量的位置相当于做了空间反射变换，所以$z_1=y+ix; z_2=t+iz$与$z_1=x+iy; z_2=z+it$交换了两个变量，反射变换了两次又回到自身，它们是同为右手性的（其实Hopf纤维有中心对称性，它们表示的是同一个纤维丛）。<br>我们都选右手Hopf纤维，让我们同时画出这三个纤维丛:它们处处正交。<br><img src="/img/fibre2.gif" alt=""><br>它们在空间每一点正交：<br><img src="/img/fibre3.gif" alt=""><br><a href="/three/Hopf fibre1.html" target="_blank">点击查看3D模型(需要支持webgl的浏览器，如Chrome)</a><a name="flip"></a></p>
 <h3 id="四维轮胎、环面外翻等拓补问题"><a href="#四维轮胎、环面外翻等拓补问题" class="headerlink" title="四维轮胎、环面外翻等拓补问题"></a>四维轮胎、环面外翻等拓补问题</h3><p>为什么这些Hopf圆能组成一个像轮胎一样的圆环面？注意:你这里看到的圆环只是四维空间中的三维投影，所以我们要算出它原来的表达式：通过简单计算可以得到这个轮胎在四维空间坐标系方程是：$$\begin{cases}x^2+y^2=|z_1|^2 \\ z^2+t^2=|z_2|^2\end{cases}$$我们可以认为这是一个新的四维几何体的表面的一部分:$$\begin{cases}x^2+y^2\le |z_1|^2 \\ z^2+t^2\le |z_2|^2\end{cases}$$这个几何体是一个类似于圆柱的东西（当然，它不是圆柱柱）维基百科上把它叫做“doucylinder”，意思是“双圆柱”。我们将在下一节详细讨论它及和它相似的一类图形“直积形”（duoprism，我不知道怎么翻译），并将由此解释为什么圆环翻过来后经线和纬线居然能对调。<br><a href="#index">返回目录</a></p>
 <h4 id="环面外翻"><a href="#环面外翻" class="headerlink" title="环面外翻"></a>环面外翻</h4><p>　　我们研究四维空间却意外遇到了像锁链一样的两个圆、圆环的截面截出两个相交圆等三维空间中的几何知识。其实球极投影还展示了圆环面的另一个拓补性质:有孔的圆环是能够从里到外翻过来的。<br><img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Inside-out_torus_%28animated%2C_small%29.gif" alt=""></p>
@@ -200,7 +200,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wxyhly.github.io/2016/04/16/fibration4ds/" data-id="cin7i3mb20004bkvl4mu6w5ym" class="article-share-link">Share</a>
+      <a data-url="http://wxyhly.github.io/2016/04/16/fibration4ds/" data-id="cind40jof000764vlvr1t6u94" class="article-share-link">Share</a>
       
         <a href="http://wxyhly.github.io/2016/04/16/fibration4ds/#disqus_thread" class="article-comment-link">留言</a>
       
@@ -213,11 +213,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/04/16/bivector4ds/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/04/19/more4ds/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          四维空间（X）：N维的向量
+          四维空间（五）：更多几何体[上]
         
       </div>
     </a>
@@ -257,7 +257,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/代数/" style="font-size: 13.33px;">代数</a> <a href="/tags/几何/" style="font-size: 16.67px;">几何</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/系列文章/" style="font-size: 20px;">系列文章</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
+      <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 15px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/系列文章/" style="font-size: 20px;">系列文章</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
     </div>
   </div>
 
@@ -279,11 +279,15 @@
       <ul>
         
           <li>
-            <a href="/2016/04/19/more4ds/">四维空间（五）：更多几何体[上]</a>
+            <a href="/2016/04/23/bivector4ds/">四维空间（七）：N维的向量</a>
           </li>
         
           <li>
-            <a href="/2016/04/16/bivector4ds/">四维空间（X）：N维的向量</a>
+            <a href="/2016/04/23/plus4ds/">四维空间（六）：更多几何体[下]</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/19/more4ds/">四维空间（五）：更多几何体[上]</a>
           </li>
         
           <li>
@@ -292,10 +296,6 @@
         
           <li>
             <a href="/2016/04/16/polyhedral4ds/">四维空间（三）：谈正多胞体</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/09/geometry4ds/">四维空间（二）：超立体几何</a>
           </li>
         
       </ul>
