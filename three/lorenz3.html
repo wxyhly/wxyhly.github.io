@@ -1,0 +1,820 @@
+﻿
+<!DOCTYPE>
+<!-- saved from url=(0062)http://www.josleys.com/articles/ams_article/Lorenz3.htm#_edn11 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="Lorenz and modular flows ">
+<meta name="keywords" content=" lorenz attractor ,modular flow , rademacher&#39;s invariant ,lorenz template, dynamical systems, strange attractors ,chaos ,knot theory ,lattices ,seifert fibration ,seifert surface ,anosov systems ,lattices ,quadratic number fields ,quadratic forms">
+<title>Lorenz and modular flows: a visual introduction</title>
+
+<style type="text/css">
+<!--
+/* Begin general html redefinitions */
+body {
+	color: #000;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	background-color: #FFF;
+}
+p {
+	line-height: 1.6em;
+	font-size: 1.0em;
+	text-align: justify;
+	margin-right: 10px;
+
+}
+
+
+
+
+h3 {color: #993300;
+}
+
+a:link {
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #CCC;
+	text-decoration: none;
+}
+a:visited {
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #CCC;
+	text-decoration: none;
+}
+a:hover {
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #FF0000;
+	text-decoration: none;
+}
+a:active {
+	color: #000;
+	background-color: #FFC;
+	text-decoration: none;
+}
+
+/* End general html redefinitions */
+
+
+.headlineText {
+	font-size: 1.5em;
+	color: #993300;
+	background-color: #fff;
+	margin-top: 5px;
+	margin-bottom: 3px;
+}
+
+
+#author {
+	text-align: right;
+	margin-top: 5px;
+}
+
+#pullQuote {
+	font: bold 1.1em/1.25em "Courier New", Courier, mono;
+	color: #69c;
+	background: #FFFFFF;
+	text-align: left;
+}
+
+h3 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: 993300;
+}
+-->
+</style>
+<script language="javascript">
+var flag = 0;
+function addUrl() {
+   if ( flag == 0 ) {
+      flag = 1;
+      return(window.location.href);
+   } else {
+      return("");
+   }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+<!--
+function NewWindowsmall(URL) {
+window.open(URL, "new", "width=240,height=200");
+}
+function NewWindowmedium(URL) {
+window.open(URL, "new", "width=400,height=320");
+}
+function NewWindowlarge(URL) {
+window.open(URL, "new", "width=480,height=375");
+}
+//-->
+</script>
+<script type="text/javascript">
+function mailto(domain,user)
+{
+document.location.href = "mailto:" + user + "@" + domain;
+}
+</script>
+</head>
+<body> 
+
+<table cellspacing="0" cellpadding="0" width="920" align="center"><tbody><tr><td>
+<h1> 洛伦兹和模动力系统: 一个形象可视化的介绍</h1>
+<span style="font-size: 1.2em;"><i>	一个关于格、纽结、模板和奇怪吸引子纠缠不清的故事</i></span>
+<table width="920" align="center"><tbody><tr><td>
+<p>Etienne Ghys<br>Unité de Mathématiques Pures et Appliquées de l E.N.S. de Lyon 
+ <br> <a href="javascript:mailto('umpa.ens-lyon.fr?subject=AMS%20Feature%20Column','etienne.ghys')">
+etienne.ghys at umpa.ens-lyon.fr</a><br>
+<a href="http://www.umpa.ens-lyon.fr/~ghys/" target="new">http://www.umpa.ens-lyon.fr/~ghys/</a></p></td>
+<td>
+<p>Jos Leys<br><a href="http://www.josleys.com/">www.josleys.com</a> <br> 
+ <a href="javascript:mailto('pandora.be?subject=AMS%20Feature%20Column','jos.leys')">jos.leys at pandora.be</a></p>
+</td></tr><tr></tr></tbody></table>			
+<h3>1.简介</h3>
+
+						<p> 有时，看似不相关的对象居然是相关的......我们想在这里提出一个数学例子，展示分别来自数论和气象的两个动力系统之间的密切联系。
+<br><br>
+</p><table><tbody><tr><td><img src="http://www.josleys.com/articles/ams_article/images/gauss.JPG"></td><td valign="top">
+
+
+<p>1801年，卡尔·弗里德里希·高斯出版了他的第一个杰作《<i>算数探索</i>》。它涉及到了很多领域的基础理论。今天，这些理论有许多重要方面的应用，比如动力系统作用于格的空间：<I>模动力系统</I></P>
+<P><BR>1963年，气象学家爱德华·罗伦兹正在研究一个非常简单的大气数学模型，他得到了惊人的<I>奇怪吸引子</I>，后来通过著名的<I>蝴蝶效应</I>而广为人知：拍打的翅膀蝴蝶可能会引起大气状态的一些微小的变化就会导致飓风！</p>
+
+</td>
+<td><img src="http://www.josleys.com/articles/ams_article/images/lorenz_photo.JPG"></td>
+</tr></tbody></table>
+<br>
+<p>我们将会描述这两个数学对象中紧密的<i>拓补学</i>上的联系。
+<br><br>
+这篇文章不是一篇严格意义下的数学文章，因为它没包含任何数学证明。我们的主要目的是将涉及到的那些不可思议的数学对象形象化，我们试图在一个比较初级的水平解释更多高深的数学知识，通过图片和影片片段来解释这些知识，这才是该电子文章的主要内容。
+<br><br>
+<a name="top"></a>
+我们故事的组织结构很简单：首先，我们会描述<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#lorenz">Lorenz吸引子 (2.1)</a>和它的<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#template">模板 (2.2)</a>，然后是<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#modular">格空间 (3.1)</a>、<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#dynamics">模动力系统 (3.2)</a>和<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#orbits">动力系统中的周期轨道 (3.3)</a>，最后我们将在这两个动力系统之间建立起
+<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#connect">一个联系 (4.1 和 4.2)</a> 
+<br><br>
+
+这篇文章是一个数学家和一个几何艺术家共同合作的结果。想了解更多数学方面的知识的读者可以访问
+ <a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_edn1" name="_ednref1">[1]</a>，想欣赏更多图片的读者可以访问<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_edn2" name="_ednref2">[2]</a>
+
+<br><br>图像由 Ultrafractal
+ <a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#edn13" name="_ednref13">[13]</a>  及 Povray <a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#edn14" name="_ednref14">[14]</a>制作。绘制纽结所需的图形数据来自Knotplot<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#edn12" name="_ednref12">[12]</a>。更大版本的视频可以在<a href="http://www.josleys.com/show_gallery.php?galid=303">Jos Leys的网站</a>上看到。</p>
+
+<span style="font-size: 0.8em;">注意: 这篇文章包含了大量图片和一些QuickTime影片。装有的Quicktime插件大多数网络浏览器都支持这些影片的播放，影可以通过点击这个
+ <img align="absmiddle" src="http://www.josleys.com/articles/ams_article/images/qtlogo_s.jpg" border="0">按钮打开，或点击对应的图片链接打开。(我们很抱歉Linux的浏览器例外)<br><br>所有影片的最终解释权归 Jos Leys 和 Etienne Ghys所有。 </span>
+
+
+
+
+
+<a name="lorenz"></a>
+<h3>2.洛伦兹动力系统</h3>
+<h4>2.1 洛伦兹动力系统及其周期轨道</h4>
+<p>
+这个由E.洛伦兹发现的模型是由下面的三维空间中的微分方程组描述的
+ <a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#edn3" name="_ednref3">[3]</a>：</p>
+<img align="absmiddle" width="103" height="47" src="http://www.josleys.com/articles/ams_article/images/image001.gif">;&nbsp; <img align="absmiddle" width="132" height="47" src="http://www.josleys.com/articles/ams_article/images/image002.gif">&nbsp;;&nbsp; <img align="absmiddle" width="101" height="47" src="http://www.josleys.com/articles/ams_article/images/image003.gif">
+
+<table><tbody><tr><td width="520" valign="top">
+<p> 当洛伦兹在他当时原始的计算机上画出这组微分方程解的轨迹时，他能看到类似右侧（点击图片观看影片）图片：</p>
+<p>
+令人惊讶的事实是，这张照片是强大的。如果我们扰动方程，这种现象仍然存在：轨迹都会趋于接近于一个也就是现在被称为<I>奇怪吸引子</I>的集合。我们不打算在这里讨论与之相关的流体动力学，但<I>洛伦兹吸引子</I>已在现代动力系统成为最典范的象征之一，它是混沌理论的标志。
+(例子详见<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#edn4" name="_ednref4">[4]</a>)</p>
+</td><td>
+<a onclick="NewWindowmedium(&#39;http://www.josleys.com/articles/ams_article/images/Lorenz01_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/lorenz01.jpg" border="0"></a>
+</td></tr></tbody></table>
+
+
+
+<table><tbody><tr><td valign="top" colspan="9">
+<p> 在二十世纪八十年代，Joan Birman和Bob Williams观察到了一个简单但重要的现象：一个三维向量场中的周期轨道是一个封闭的嵌入曲线，因此定义了一个<I>纽结</i>。他们建议的对这些出现在洛伦茨方程中的拓扑结的研究可能会让我们得到这个重要的动力系统的一些理解<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_edn5" name="_ednref5">[5]</a>。
+下图展示了一些可以在洛伦兹动力系统中找到的周期性轨道解。</p>
+</td></tr>
+<tr>
+<td colspan="4"><img src="http://www.josleys.com/articles/ams_article/images/lorenz02-1.jpg"></td>
+<td colspan="4"><img src="http://www.josleys.com/articles/ams_article/images/lorenz02-2.jpg"></td>
+<td valign="bottom">
+<a onclick="NewWindowmedium(&#39;http://www.josleys.com/articles/ams_article/images/Lorenz02_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/qtlogo.jpg" border="0"></a>
+</td></tr>
+</tbody></table>
+
+<table><tbody><tr><td width="520" valign="top">
+<p>这些纽结中一些是拓补学中的平凡结，一些则是非平凡结。比如图中红色轨线就是一个三叶结。Birman和Williams的研究动机之一在于这些周期轨道似乎的确给出了吸引子的一个很好的近似。在右边的图片中(点击播放影片)，我们能够同时看到一组封闭的轨道，这表明洛伦兹吸引子是其所有周期轨道的集合的极限。在某种程度上我们可以认为吸引子是由无数各组成部分的无限条周期性轨道构成的。
+</p>
+</td><td>
+<a onclick="NewWindowmedium(&#39;http://www.josleys.com/articles/ams_article/images/Lorenz03_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/lorenz03-1.jpg" border="0"></a>
+</td></tr>
+</tbody></table>
+
+<p>Birman和Williams向我们证实了<i>洛伦兹纽结</i>是很有趣的，里面的内容既丰富又奇怪。比起陈述对于洛伦兹纽结进行数学分析的结果，还不如让我们只关注它的数值描述来得更形象。回想一下，一个纽结就是一个封闭的没有自相交的空间曲线，如果可以在不相交的情况下让一个纽结连续形变成另一个纽结，我们就说说两个纽结是<b>一样的</b>或<b>等价的</b>。
+(例子详见<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_edn6" name="_ednref6">[6]</a>，
+<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_edn7" name="_ednref7">[7]</a>，
+<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_edn8" name="_ednref8">[8]</a>)
+我们可以根据纽结的<i>交点数</i>对纽结进行一种简单的分类，交点数即对给定的纽结的所有投影中最少交点的数目。
+比如我们知道交点数在10或10以内的（素）纽结一共有250种。Birman和Williams在研究中发现，这250种纽结中只有8种才能在洛伦兹吸引子中的周期性轨道形成的纽结中找到。</p>
+<p>点击下面纽结的图片观看影片(我们通常把纽结编号，比如8.19表示这是最少交点数为8的所有纽结中的第19个，这是一种对纽结进行的传统的而非逻辑性的编号方式)。</p>
+<center><table cellspacing="0" cellpadding="0" width="920" border="0">
+   
+<tbody><tr>
+<td>
+<a onclick="NewWindowsmall(&#39;http://www.josleys.com/articles/ams_article/images/knot_0_1.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/knot_0_1.JPG" border="0"></a>
+</td>
+<td>
+<a onclick="NewWindowsmall(&#39;http://www.josleys.com/articles/ams_article/images/knot_3_1.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/knot_3_1.JPG" border="0"></a>
+</td>
+<td>
+<a onclick="NewWindowsmall(&#39;http://www.josleys.com/articles/ams_article/images/knot_5_1.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/knot_5_1.JPG" border="0"></a>
+</td>
+<td>
+<a onclick="NewWindowsmall(&#39;http://www.josleys.com/articles/ams_article/images/knot_7_1.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/knot_7_1.JPG" border="0"></a>
+</td>
+</tr>
+<tr>
+<td>
+<a onclick="NewWindowsmall(&#39;http://www.josleys.com/articles/ams_article/images/knot_8_19.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/knot_8_19.JPG" border="0"></a>
+</td>
+<td>
+<a onclick="NewWindowsmall(&#39;http://www.josleys.com/articles/ams_article/images/knot_9_1.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/knot_9_1.JPG" border="0"></a>
+</td>
+<td>
+<a onclick="NewWindowsmall(&#39;http://www.josleys.com/articles/ams_article/images/knot_10_124.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/knot_10_124.JPG" border="0"></a>
+</td>
+<td>
+<a onclick="NewWindowsmall(&#39;http://www.josleys.com/articles/ams_article/images/knot_10_132.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/knot_10_132.JPG" border="0"></a>
+</td>
+</tr>
+</tbody></table></center>
+
+<p>在交点数为16或少于16的1 701 936(素) 个纽结当中，只有21个纽结才是洛伦兹动力系统中出现的纽结(使用了计算机和<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_edn7" name="_ednref7">[17]</a>进行检验)。</p>
+
+
+<table><tbody><tr><td valign="top">
+<p>比如有12个交点数的纽结 "非交错12.725"：</p>
+
+</td><td>
+<a onclick="NewWindowlarge(&#39;http://www.josleys.com/articles/ams_article/images/knot_12_725NA.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/knot_12_725NA.JPG" border="0"></a>
+</td></tr></tbody></table>
+
+
+<table><tbody><tr><td valign="top">
+<p>然而<i>八字结</i>是一个反例，它<i>不是</i>洛伦兹纽结。</p>
+</td><td>
+<a onclick="NewWindowlarge(&#39;http://www.josleys.com/articles/ams_article/images/knot_4_1.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/knot_4_1.JPG" border="0"></a>
+</td></tr></tbody></table>
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#top">Back to top</a>
+<a name="template"></a>
+</p><h4>2.2 洛伦兹模板</h4>
+
+<table><tbody><tr><td valign="top" colspan="9">
+<p>如何证明这些事实呢？我们想到处理洛伦兹模型的方程将会更容易分析。首先如下图所示构造所谓的<i>洛伦兹模板</i>。</p>
+</td></tr>
+<tr>
+<td colspan="4"><img src="http://www.josleys.com/articles/ams_article/images/template01-1.jpg"></td>
+<td colspan="4"><img src="http://www.josleys.com/articles/ams_article/images/template01-2.jpg"></td>
+<td valign="bottom">
+<a href="http://www.josleys.com/articles/ams_article/images/Template01_s.mov" target="new" onclick="NewWindowmedium(&#39;http://www.josleys.com/articles/ams_article/images/Template01_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/qtlogo.jpg" border="0"></a>
+</td></tr>
+</tbody></table>
+
+<table><tbody><tr><td valign="top" colspan="9">
+<p>
+下面我们考虑两个纸带，如影片中所示那样在空间中展开它们。这样就在空间中产生了一个二维的物体，即<i>带有分支的曲面</i>：这就是洛伦兹模板。分支的连接处是中间的图片中看到的垂直线段。如下图所示，这个模板上有一个相当自然的动力系统。</p>
+</td></tr>
+<tr>
+<td colspan="4"><img src="http://www.josleys.com/articles/ams_article/images/template02-1.jpg"></td>
+<td colspan="4"><img src="http://www.josleys.com/articles/ams_article/images/template02-2.jpg"></td>
+<td valign="bottom">
+<a onclick="NewWindowmedium(&#39;http://www.josleys.com/articles/ams_article/images/Template02_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/qtlogo.jpg" border="0"></a>
+</td></tr>
+</tbody></table>
+
+<table><tbody><tr><td valign="top" colspan="9">
+<p> 如果我们在这条垂直的线段上定义一个[0,1]的区间,那么每条经过这条线段的轨迹和线段相交的交点坐标记为<i>x</i>当轨迹转一圈后再回到这条垂直的线段上时交点坐标会变成<i>2x mod
+ <b>Z</b></i>。当我们分析一个周期轨道时，我们可以只分析将这个[0,1]区间映射到自身的"翻倍映射"中的周期点。比如"翻倍映射"将点1/3映射至2/3，然后又会映射回1/3 = 4/3 - 1。所以点1/3是周期为2的周期点，从而我们就得到了模板上的一个周期轨道：先经过模板的一只“耳朵”，然后再经过模板的另一只“耳朵”。图中显示了模板上的一些周期轨道。
+</p>
+</td></tr>
+<tr>
+<td colspan="4"><img src="http://www.josleys.com/articles/ams_article/images/template03-1.jpg"></td>
+<td colspan="4"><img src="http://www.josleys.com/articles/ams_article/images/template03-2.jpg"></td>
+<td valign="bottom">
+<a onclick="NewWindowmedium(&#39;http://www.josleys.com/articles/ams_article/images/Template03_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/qtlogo.jpg" border="0"></a>
+</td></tr>
+</tbody></table>
+
+
+<p>
+事实上，用<i>路径序列</i>来描述这些周期轨道并不困难，即用“左”或“右”两种符号组成一串有限的序列。对任意一个这样的序列，刚好有且仅有一条周期轨道会按照路径序列上的顺序先后经过模板上的左环和右环。反之，一个周期轨道也定义了一个路径序列，最多相差在循环排列中任意选择的起点不同。通过这种方式，你就可以想象数学家们是怎样把路径序列用于洛伦兹结的拓扑学研究了。这就是Birman和Williams所做的工作。Tucker最近建立起了这个用几何方式描述的洛伦兹吸引子和原始洛伦兹方程之间更多的联系
+<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_edn9" name="_ednref9">
+[9]</a>，<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_edn10" name="_ednref10">[10]</a>。</p>
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#top">Back to top</a>
+<a name="modular"></a>
+</p><h3>3. 模动力系统</h3>
+<h4>3.1 格空间及其拓补结构</h4>
+
+<p>给定两个平面中线性无关的向量<i>&#969;<sub>1</sub>&nbsp;、 &#969;<sub>2</sub></i>， 
+考虑它们生成的在<b>R</b><sup>2</sup>中的子集 <i>L</i>：</p>
+
+<p><i>L</i>= {<i>n<sub>1</sub>&#969;<sub>1</sub> +&nbsp;n<sub>2</sub>&#969;<sub>2</sub></i>| <i>n<sub>1</sub>
+, n<sub>2</sub></i>
+<img align="absmiddle" width="13" height="13" src="http://www.josleys.com/articles/ams_article/images/image004.gif">&nbsp;
+<b>Z</b>}.
+</p>
+<p>&nbsp;</p>
+<table><tbody><tr><td>
+<img src="http://www.josleys.com/articles/ams_article/images/Reseau90.JPG">
+</td><td>
+<img src="http://www.josleys.com/articles/ams_article/images/Reseau60.JPG">
+</td><td>
+<img src="http://www.josleys.com/articles/ams_article/images/Reseau110.JPG">
+</td></tr></tbody></table>
+
+<p>形如这样的平面中的子集我们称作<i>格（子）</i>。值得注意的是，相同的格子<i>L</i>可以由很多不同的一对向量来生成。若<i>a</i>、<i>b</i>、<i>c</i>、<i>d</i> 都是整数，且满足<i>ad&#8722;bc</i>= ±1，向量<i>a&#969;<sub>1</sub>+&nbsp;b&#969;<sub>2
+</sub></i>和<i>c&#969;<sub>1</sub>+&nbsp;d&#969;<sub>2</sub></i>将生成同一个格子。</p>
+
+<p>所有格子组成的集合是一个<i>拓补空间</i>：如果两个格子可以由平面中靠得很近的两个向量生成，我们就说这两个格子之间是靠得很近的。伟大的数学家高斯在他的《<i>算数探索</i>》(1801)书中就开始研究这个空间，他深入讨论了整数二次型中的算数理论，后来很多数学家又对此研究了多年。
+</p>
+
+<p>让我们把平面<b>R</b><sup>2</sup>看成复平面<b>C</b>。对于每个格子<i>L</i>，定义两个复数</p>
+
+<p><img align="absmiddle" src="http://www.josleys.com/articles/ams_article/images/image005.gif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <img align="absmiddle" src="http://www.josleys.com/articles/ams_article/images/image006.gif">
+<span style="font-size:13&quot;.0pt">.</span></p>
+
+<p>很容易验证式中的指数（4和6）只要大于2，这些级数就是收敛的。由于格子是明显关于原点对称的，所以若把指数取成奇数将导致求和的结果为0，因此指数取四次和六次是我们必须首先考虑的。至于系数60和140只是归一化的常数，我们可以不关注它们。下面一个很重要的结论就是，复数对(&nbsp;<i>g<sub>2</sub></i>(<i>L</i>)<i>
+, g</i><sub>3</sub>(<i>L</i>)&nbsp;)可以完全描述一个格子。更准确地说，(<i>g<sub>2</sub>,
+g<sub>3</sub></i>)和一个格子相对应，当且仅当所谓的<i>判别式 </i>&#916;&nbsp;= <i>g<sub>2</sub><sup>3</sup>&#8722; 27g<sub>3</sub><sup>2</sup></i>不等于0。 证明详见<a href="http://www.josleys.com/articles/ams_article/images/Lorenz and modular flows  a visual introduction.html" name="_ednref11">[11]</a>,
+<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_edn16" name="_ednref16">[16]</a>。
+</p>
+
+<p>综上所述，所有格子构成的空间可以定义为曲线 &#916;&nbsp;= 0 在<b>C</b><sup>2</sup>中的补集。</p>
+
+<p><img width="500" height="375" src="http://www.josleys.com/articles/ams_article/images/image008.jpg" align="left" hspace="12">
+
+左图象征性地展示了复二维空间<b>C</b><sup>2</sup>。要注意的是，<b>C</b><sup>2 </sup>其实就是<b>R</b><sup>4</sup>所以这其实是一个四维空间中的图像！水平的蓝色轴代表的是 <i>g<sub>3</sub></i>=0 对应的格子；这条轴相当于是一个复平面<b>C</b>=<b>R</b><sup>2</sup>。垂直的绿色轴代表 <i>g<sub>2</sub></i>=0；这是另一个复平面<b>C</b>=<b>R</b><sup>2</sup>。黄色曲线代表&#916;=0，但这只是复数域中的一维曲线，从实数的角度来看其实是一张曲面。</p>
+
+<br><br><br><br><br><br><br>
+<br>
+<br>
+
+<p>怎样才能用一种具体的方式来观察这个四维空间中的物体？如果<i>L</i>一个格子，<i>k</i>是一个非零<i>实数</i>，我们可以研究和<i>L</i>完全相同的，仅仅相差一个缩放倍数<i>k</i>的格子<i>kL</i>。因此我们只需要研究那些基本区域面积为1的格子，换句话说就是研究生成格子的两个向量<i>&#969;<sub>1</sub></i>、<i>&#969;<sub>2</sub></i>形成的平行四边形的面积为1的格子。注意到</p>
+
+<p align="center" <i="">g<sub>2</sub>(<i>kL</i>) = <i>k<sup>&#8722;</sup><sup>4</sup>g<sub>2</sub></i>
+(<i>L</i>)&nbsp;&nbsp;&nbsp;； &nbsp;&nbsp;&nbsp;<i>g<sub>3</sub></i>(<i>kL</i>) = <i>k<sup>&#8722;
+</sup><sup>6</sup>g<sub>3</sub></i>(<i>L</i>)，</p>
+
+<p>所以对于每个格子<i>L</i>都能找到唯一的一个<i>k</i> &gt; 0 使得
+&nbsp; |<i>g<sub>2</sub></i>(<i>kL</i>)<i>|<sup>2</sup>+ |g<sub>3</sub></i>(<i>kL</i>)<i>|</i><sup>2</sup>= 1.</p>
+<table><tbody><tr><td valign="top">
+<p>这就表明，如果我们想研究除去缩放系数过后的格子，或研究基本区域面积为1的格子，我们就得研究&#916;为0的集合在单位球面 |<i>g<sub>2</sub></i>|<sup>2</sup>+ |<i>g<sub>3</sub></i>|<sup>2</sup>= 1 上的补集。这个单位球面是三维的，&#916;为0的集合与之相交会得到一个一维的交集，它是一个<i>三叶结</i>。比起复二维空间<b>C</b><sup>2</sup>，三维球面更容易可视化：如果在球面上选一个点，我们可以从那一点向它的对径点的切空间做投影：这就是<i>球极投影</i>下面的图片显示了二维时的球极投影的情景
+ (<i>黎曼球面</i>)。<br>(点击图片观看影片)</p>
+</td><td>
+<a onclick="NewWindowmedium(&#39;http://www.josleys.com/articles/ams_article/images/RiemannV5_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/riemann.jpg" border="0"></a></td></tr></tbody></table>
+
+<p>既然定义为一个三叶结在三维球面中的补集，所以当我们去掉一个点后这个空间就变成了一个三叶结在普通三维空间中的补集。我们终于可以在这个空间中看到一些有趣的东西了。</p>
+
+<br>
+<table><tbody><tr><td>
+<a onclick="NewWindowmedium(&#39;http://www.josleys.com/articles/ams_article/images/S3_01_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/S3_01.jpg" border="0"></a>
+</td><td>
+
+
+<p>这幅图(点击图片观看影片)展示了一个三维球面，确切地说是它在三维空间中的球极投影，或更确切地说这只是那个球极投影在你的二维屏幕上的投影。在影片中球面上的投影点在连续变化，所以你能够看到整个三维球面的样子。蓝色(绿色)的圆圈代表坐标轴 <i>g<sub>2</sub></i>=0 (<i>g<sub>3</sub></i>
+=0)和球面的交线。当投影点一次次经过而落在圆周上时，圆周将被投影成直线。而黄色的三叶结是&#916;为0的集合与球面的交线。</p>
+</td></tr></tbody></table>
+<br>
+<p>让我们看一看一些在基本区域面积为1的格子空间中的额外的结构来更好地了解它的拓补学。</p>
+
+<br>
+
+<table><tbody><tr><td>
+<p>给定一个格子<i>L</i>和一个角度<i>&#952;</i> &#8712; [0,&#960;]，我们可以将格子在平面中旋转<i>&#952;</i>角得到另一个格子<i>L<sub>&#952;</sub></i>。当<i>
+&#952;</i>从0变化到&#960;时就得到了一个格子空间中的圆周。
+通常来说，只要<i>&#952;&nbsp;&#8800;&nbsp;0</i>，
+格子<i>L</i>和格子<i>L<sub>&#952;</sub></i>就是不同的，但这里有两个反例。如果<i>L</i>正方形的格式，它会和它的旋转了&#960;/2后的像重合；如果<i>L</i>是一个正六边形的格子，它会和它的旋转了&#960;/3和2&#960;/3后的像重合。这些事实都表明基本区域面积为1的格子空间中充满了这些旋转产生的圆周。但这些圆周只是<i>拓补学</i>上的圆周，它们其实都是三叶结，但我们前面提到的两个特殊情况除外：它们在转过&#960;/2和&#960;/3而不是&#960;后就闭合了，所以它们比其他轨道更短，其实这两个轨道就是我们之前就遇到过的蓝色和绿色圆圈。这种将一个三维球面分解成一族三叶结和两个圆周的方法是Seifert纤维化的一个例子。见右图(点击图片观看影片)：
+</p>
+
+<br><br>
+
+
+</td><td>
+<a onclick="NewWindowlarge(&#39;http://www.josleys.com/articles/ams_article/images/Seifert_fib_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/seifert_fib.jpg" border="0"></a>
+</td></tr></tbody></table>
+
+<br>
+
+<table><tbody><tr><td>
+<a onclick="NewWindowmedium(&#39;http://www.josleys.com/articles/ams_article/images/S3_02_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/S3_02.jpg" border="0"></a>
+</td><td>
+<p>三维球面上还有一个额外的结构可以说是Seifert纤维丛的对偶。我们知道每一个格子都对应一个非零的复数&#916;，如果将一个格子乘上一个大于0的实数<i>k</i>，它对应的&#916;就相当于乘以了<i>k<sup>&#8722;12</sup></i>，所以乘上一个缩放因子不会改变&#916;的幅角。这就提醒了我们可以通过复数&#916;的幅角来分解基本区域面积为1的格子空间。所有有着给定幅角的&#916;的格子的集合在三维空间中定义了一个以三叶结为边界的曲面。左图(点击图片观看影片)显示了其中的一个<i>Seifert曲面</i>。</p>
+</td></tr></tbody></table>
+<br>
+
+<table><tbody><tr><td>
+
+<br>
+
+<p>给定一个&#916的幅角值我们就能得到一个曲面。如果把幅角的值取遍，对应的Seifert曲面就将扫过整个三维空间，并且一直保持着同一个三叶结边界。某些幅角的取值会让Seifert曲面刚好经过球极投影的极点，所以在那一刻曲面<i>感觉像是</i>无限大的。(点击图片)</p>
+
+<br>
+
+</td><td>
+
+<a onclick="NewWindowmedium(&#39;http://www.josleys.com/articles/ams_article/images/S3_03_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/S3_03.jpg" border="0"></a>
+</td></tr></tbody></table>
+
+<table><tbody><tr><td>
+<br>
+
+<a onclick="NewWindowmedium(&#39;http://www.josleys.com/articles/ams_article/images/S3_04_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/S3_04.jpg" border="0"></a>
+</td><td>
+<p>为了理解这个<i>除去一个三叶结后的纤维丛</i>让我们删掉Seifert曲面的一部分而只看三叶结周围的运动情形。下面的影片就展示了对应着四个幅角值的四个Seifert曲面的一部分绕着三叶结转动的情形。拓补学家说三维球面就是一本<i>打开的书</i>，三叶结就是书的<i>装订轴</i>，Seifert曲面就是书中的一张一张<i>页面</i>。
+<br>(点击图片观看影片)</p>
+
+</td></tr></tbody></table>
+
+
+
+<br>
+
+<p>为了显得更有趣一些，让我们看一看现在的全景：让三叶结、轴、Seifert纤维和Seifert曲面一起出现！(点击图片观看影片)
+</p>
+
+
+
+<table width="900"><tbody><tr><td align="center">
+<a onclick="NewWindowmedium(&#39;http://www.josleys.com/articles/ams_article/images/S3sequence_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/S3sequence.jpg" border="0"></a></td></tr></tbody></table>
+
+<br><br><br><br>
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#top">Back to top</a>
+<a name="dynamics"></a>
+</p><h4 align="left">3.2 模动力系统</h4>
+
+
+<p>既然我们已经很清楚地了解了基本区域面积为1的格子空间的拓部结构，我们下面就开始在这个空间中定义动力系统。定义非常简单：对每个实数<i>t</i>，考虑矩阵</p>
+
+<p align="center"><img align="absmiddle" width="189" height="63" src="http://www.josleys.com/articles/ams_article/images/image020.gif">。</p>
+
+<p>如果<i>L</i>是基本区域面积为1的格子，它在矩阵<img align="absmiddle" width="21" height="30" src="http://www.josleys.com/articles/ams_article/images/image022.gif">作用下的像<img align="absmiddle" width="50" height="30" src="http://www.josleys.com/articles/ams_article/images/image021.gif">依然是基本区域面积为1的格子。这样我们就定义了一个在基本区域面积为1的格子空间上的动力系统，叫做<i>模动力系统</i>。格子<i>L</i>的轨迹是当时间<i>t</i>为实数时<img align="absmiddle" width="50" height="30" src="http://www.josleys.com/articles/ams_article/images/image021.gif">在格子空间中描述的曲线。</p>
+
+<p>我们的目的是给出一个这个动力系统及其周期轨道的一个可视化的描述。这个动力系统是<i>Anosov动力系统</i>中的一个著名的例子，即里面存在着稳定和不稳定的方向。让我们引入另外两个动力系统来解释它：</p>
+
+<p align="center"><img align="absmiddle" width="109" height="70" src="http://www.josleys.com/articles/ams_article/images/image023.gif">&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp; 
+<img align="absmiddle" width="109" height="70" src="http://www.josleys.com/articles/ams_article/images/image024.gif">.</p>
+
+<p>注意<img align="absmiddle" width="188" height="42" src="http://www.josleys.com/articles/ams_article/images/image025.gif">，<img align="absmiddle" width="201" height="43" src="http://www.josleys.com/articles/ams_article/images/image026.gif">所以对于两个格子<i>L</i>和<img align="absmiddle" width="48" height="30" src="http://www.josleys.com/articles/ams_article/images/image027.gif">&nbsp;&nbsp;(<i>L</i>和
+<img align="absmiddle" width="48" height="30" src="http://www.josleys.com/articles/ams_article/images/image028.gif">)来说，如果我们在模动力系统中看它们的将来(过去)，即观察它们被<i>t</i>为正(为负)时<img align="absmiddle" width="23" height="32" src="http://www.josleys.com/articles/ams_article/images/image029.gif">作用的像，这两个格子的轨迹将会呈指数级的速度相互趋近。我们说<i>L</i>和<img align="absmiddle" width="48" height="30" src="http://www.josleys.com/articles/ams_article/images/image027.gif">&nbsp;( 
+<img align="absmiddle" width="48" height="30" src="http://www.josleys.com/articles/ams_article/images/image028.gif">)在相同的稳定(不稳定)曲线上。</p>
+
+<table><tbody><tr><td valign="top" colspan="9">
+<p>下图解释了这个情形。首先我们看到了一个初始点<i>L</i>与两条在稳定和不稳定流形中的弧线，即两段s在[&#8722;1
+, 1]中取某些值对应的<img align="absmiddle" width="48" height="30" src="http://www.josleys.com/articles/ams_article/images/image027.gif">
+和<img align="absmiddle" width="48" height="30" src="http://www.josleys.com/articles/ams_article/images/image028.gif">形成的区间。当模动力系统随时间向前演化推进时我们可以看到，从这些点出发的所有轨迹生成了两张曲面。绿色的曲面对应着稳定流形，可以看到稳定流形很快与中心轨道靠近，之后近得再也无法区分。红色曲面代表不稳定流形，相反它会在空间中膨胀而形成巨大的像降落伞一样的曲面。如果我们继续一直让动力系统向前推进，这个红色的曲面将变得越来越大，会将空间填充得越来越密让我们什么也看不到。最终，影片停止了，模动力系统改为向过去推进，其中也有相似的现象，只不过红色和绿色的角色交换了。这种稳定和不稳定流形的结构在相空间中产生错综复杂的网络成为了研究动力系统的中心工具：即所谓的<i>双曲理论</i>。</p>
+</td></tr>
+<tr>
+<td colspan="4"><img src="http://www.josleys.com/articles/ams_article/images/croixsequence-1s.jpg"></td>
+<td colspan="4"><img src="http://www.josleys.com/articles/ams_article/images/croixsequence-2s.jpg"></td>
+<td valign="bottom">
+<a onclick="NewWindowmedium(&#39;http://www.josleys.com/articles/ams_article/images/Croixsequence_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/qtlogo.jpg" border="0"></a>
+</td></tr>
+</tbody></table>
+
+<br><br><br><br>
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#top">Back to top</a>
+<a name="orbits"></a>
+</p><h4 align="left">3.3 周期性轨道及其与三叶结的缠绕</h4>
+
+<p>我们现在可以对模动力系统中的周期轨道进行拓补学上的描述，方法很简单。考虑一个由整数构成的行列式为1的2 × 2的矩阵<i>A </i>：</p>
+
+<p align="center"><sub><img align="absmiddle" width="97" height="62" src="http://www.josleys.com/articles/ams_article/images/image030.gif">。</sub></p>
+
+<p>很显然矩阵<i>A</i>作用在<b>R</b><sup>2</sup>中正方形的格子<b>Z</b><sup>2</sup>上是不变的。假设<i>A</i>是双曲的，即 |a + d| &gt; 2，这时<i>A</i>可以在实数范围内对角化。在这种情况下我们就能找到一个2×2的矩阵<i>P</i>使得对于某些<i>t</i></p>
+<p><sub><img align="absmiddle" width="268" height="60" src="http://www.josleys.com/articles/ams_article/images/image031.gif"></sub></p>
+(注意矩阵<i>A</i>的两个特征值的乘积为1)。所以如果我们定义格子<i>L</i>
+为<i>P</i>作用于<b>Z</b><sup>2</sup>的像，我们就能发现<i>L</i>在
+<img align="absmiddle" width="23" height="32" src="http://www.josleys.com/articles/ams_article/images/image029.gif">作用下保持不变。通过这种方式，对于每一个行列式为1的整数矩阵，我们都能找到<i>t</i>取某些值时<img align="absmiddle" width="23" height="32" src="http://www.josleys.com/articles/ams_article/images/image029.gif">的一个不动点，即模动力系统中的<i>周期轨道</i>。周期轨道对应的周期是<i>t</i>，它对应着<i>A</i>的特征值的绝对值的对数。</p>
+
+<p>因此<i>每一个双曲矩阵A 定义了模动力系统中的一个周期轨道</i>。</p>
+
+<p>下面的影片片段(点击播放)演示了一个基本区域面积为1的格子空间中的周期轨道。其中每一个点沿着<img align="absmiddle" width="23" height="32" src="http://www.josleys.com/articles/ams_article/images/image029.gif">在平面中决定的双曲线运动，这些点的运动轨迹是没有周期的，但作为平面中的一部分的格子的轨迹确实是有周期的。</p>
+
+<br>
+<table width="900"><tbody><tr><td align="center">
+<a onclick="NewWindowlarge(&#39;http://www.josleys.com/articles/ams_article/images/Reseau003_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/reseau003.jpg" border="0"></a></td></tr></tbody></table>
+
+<p>我们不难发现将<i>A</i>替换成± <i>BAB</i><sup>&#8722;1</sup>其中<i>B</i>是另一个行列式为1的<i>整数</i>矩阵，我们能得到相同的周期轨道。</p>
+
+
+
+<p><i>在模动力系统中的周期轨道和行列式为1的双曲整数矩阵的共轭类之间存在着自然地双射。</i></p>
+
+<p>这些周期轨道具有很古老的数学传统意义。我们可以在很多领域中找到它们的不同的形式：模曲面上的闭合测地线、整数不定二次型中的等价类、二次数域中的理想类、连分数等。</p>
+
+<p>每个周期轨道在基本区域面积为1的格子空间中都是一条闭合曲线，因而就在三叶结的补集中定义了一个<i>纽结</i>。我们想通过拓补学的角度来了解这些<i>模</i>纽结。让我们先来看一些例子。</p>
+<br>
+
+<table align="center"><tbody><tr>
+<td><img src="http://www.josleys.com/articles/ams_article/images/noeudsequence-1.jpg" border="0"></td>
+<td><img src="http://www.josleys.com/articles/ams_article/images/noeudsequence-2.jpg" border="0"></td>
+</tr><tr>
+<td><img src="http://www.josleys.com/articles/ams_article/images/noeudsequence-3.jpg" border="0"></td>
+<td><img src="http://www.josleys.com/articles/ams_article/images/noeudsequence-4.jpg" border="0"></td>
+</tr><tr>
+<td><img src="http://www.josleys.com/articles/ams_article/images/noeudsequence-5.jpg" border="0"></td>
+<td><img src="http://www.josleys.com/articles/ams_article/images/noeudsequence-6.jpg" border="0"></td>
+</tr></tbody></table>
+<table align="center">
+<tbody><tr><td><a onclick="NewWindowmedium(&#39;http://www.josleys.com/articles/ams_article/images/NoeudsequenceX_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/qtlogo.jpg" border="0"></a></td></tr></tbody></table>
+
+
+<p>矩阵<img align="absmiddle" width="81" height="56" src="http://www.josleys.com/articles/ams_article/images/image032.gif">所对应的纽结看上去很令人失望，它只是个很小的平凡结. . . 矩阵
+<img align="absmiddle" width="51" height="56" src="http://www.josleys.com/articles/ams_article/images/image033.gif">对应的纽结仍然是平凡的，但和三叶结的位置关系不同了。而矩阵
+<img align="absmiddle" width="51" height="56" src="http://www.josleys.com/articles/ams_article/images/image034.gif">对应的纽结就显得更有趣了，它是个三叶结。矩阵<img align="absmiddle" width="67" height="56" src="http://www.josleys.com/articles/ams_article/images/image035.gif">
+对应的纽结是一个环面纽结 T(4, 5)，而矩阵<img align="absmiddle" width="81" height="56" src="http://www.josleys.com/articles/ams_article/images/image036.gif">和
+<img align="absmiddle" width="276" height="56" src="http://www.josleys.com/articles/ams_article/images/image037.gif">对应的纽结就更复杂了！</p>
+
+
+<p>在我们继续讨论这些纽结的自然状态之前，让我们先问一个看似简单的问题：</p>
+
+<p><i>一个行列式为1的双曲整数矩阵A所对应的纽结记作 k<sub>A </sub>。能找到一种方法计算 k<sub>A</sub>和三叶结之间的缠绕数吗？</i></p>
+
+<p>我们需要很快提及三维空间中两个不相交的定向纽结间的<i>缠绕数</i>的概念
+(这也是最初由高斯用一种电磁学中很不同的方式提出来的)。
+假设两个定向的纽结<i>k<sub>1</sub></i> (蓝色)和<i>k<sub>2</sub></i> (橙色)没有相交，选取一个一般的方向投影到平面上，它们的投影当然绝对会相交。</p>
+
+<table align="center"><tbody><tr><td><img align="absmiddle" width="417" height="313" src="http://www.josleys.com/articles/ams_article/images/image038.jpg">
+</td><td>
+<img width="399" height="299" src="http://www.josleys.com/articles/ams_article/images/image040.jpg">
+</td></tr></tbody></table>
+
+<table><tbody><tr><td>
+<img width="270" height="180" src="http://www.josleys.com/articles/ams_article/images/Crossings1.JPG" align="left">
+</td><td>
+<img width="270" height="180" src="http://www.josleys.com/articles/ams_article/images/Crossings2.JPG" align="left">
+</td><td>
+<p>让我们关注蓝色的结<i>k<sub>1</sub></i>的投影从上方经过橙色的结<i>k<sub>2</sub></i>的投影的交点。如左图所示，这些交点的局部性态有两种。</p>
+</td></tr></tbody></table>
+
+
+<p>我们给左边的情况标记为+1，右边的情况标记为&#8722;，然后把像这样的所有<i>k<sub>1</sub></i>从<i>k<sub>2</sub></i>上方经过的交点的标记值相加得到的结果就叫做<i>缠绕数</i>。比如左图中蓝色的曲线从上方经过了橙色曲线一次，标记为“+1”，所以缠绕数就是“+1”。在右图中存在着两个带有不同符号标记的从上方经过的交点，所以缠绕数为0。</p>
+
+<p>重要的是，用两个纽结任意方向上的投影来计算缠绕数我们都能得到相同的结果，且两个纽结在不穿过对方的情况下连续形变都不会改变计算的结果，这就是所谓的不变量。</p>
+
+<p>现在让我们回到刚才提的那个问题上，尝试求出<i>k<sub>A</sub></i>和三叶结之间的缠绕数。让我们回忆一下，这个三叶结是&#916;的幅角取某个定值对应的Seifert曲面的边界，比如幅角取0(代表&#916;是一个正实数)。在三叶结对整个空间的补集里给定一个闭合的定向曲线
+ <img align="absmiddle" width="13" height="17" src="http://www.josleys.com/articles/ams_article/images/image042.gif">我们可以观察它在&#916;映射下的像：一条复平面中的不过原点的闭合曲线。显然，曲线<img align="absmiddle" width="13" height="17" src="http://www.josleys.com/articles/ams_article/images/image042.gif">和三叶结之间的缠绕数就是这条闭曲线关于原点的<i>指数</i>，即曲线绕原点的圈数。计算这个指数的一种方法是通过在<i>代数</i>上计算曲线和实轴的交点，若曲线从下半平面到上半平面就记为“1+”，反之记为“&#8722;1”。
+从拓补学的角度来看，这表明了Seifert曲面是双面曲面，我们可以在<i>代数</i>上计算<i>k<sub>A</sub></i>和Seifert曲面的交点。</p>
+
+<p>下图描述了上述情景。给定一个矩阵<i>A</i>，我们可以同时画出纽结<i>k<sub>A</sub></i>和Seifert曲面。当动力系统演化时，<i>k<sub>A </sub></i>上的点会一次又一次从正侧或负侧穿过Seifert曲面，记为“1+”和“&#8722;1”。我们要求的缠绕数就等于这些标记的和。在第一个例子中对应两个正向的标记，第二个例子中第一个为正，第二个为正，第三个为负。</p>
+
+<table><tbody><tr><td>
+</td><td colspan="4"><img src="http://www.josleys.com/articles/ams_article/images/noeudseifertsequence-1.jpg"></td>
+<td colspan="4"><img src="http://www.josleys.com/articles/ams_article/images/noeudseifertsequence-2.jpg"></td>
+<td valign="bottom">
+<a onclick="NewWindowmedium(&#39;http://www.josleys.com/articles/ams_article/images/Noeudseifertsequence_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/qtlogo.jpg" border="0"></a>
+</td></tr>
+</tbody></table>
+
+
+<br>
+
+<p>其实我们有一个和著名的算术函数相关的很好的公式来计算缠绕数。</p>
+
+<p>我们给出两个矩阵：</p>
+
+<p><i>U</i>=<img align="absmiddle" width="48" height="56" src="http://www.josleys.com/articles/ams_article/images/image043.gif">&nbsp;&nbsp;;&nbsp;<i>      V</i>=&nbsp; <img align="absmiddle" width="48" height="56" src="http://www.josleys.com/articles/ams_article/images/image044.gif">.</p>
+
+<p>结果表明，任何行列式为1的整数矩阵<i>A</i>都是共轭的，即能够写成一系列<i>U</i>和<i>V</i>的乘积。如</p>
+
+<p><i>A</i>= <img align="absmiddle" width="86" height="56" src="http://www.josleys.com/articles/ams_article/images/image045.gif">= <i>UVVVUUVVVUUUUV</i></p>
+
+<p><i>U</i>和<i>V</i>组成的序列定义了一个唯一的循环排列。对于每个矩阵<i>A</i>，定义<i>R</i>(<i>A</i>)是乘积中因子<i>U</i>的个数减去乘积中因子<i>V</i>的个数。这个关于矩阵<i>A</i>的不变量叫<i>A</i>的<i>Rademacher不变量</i>。下面是<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_edn1" name="_ednref1">
+[1]</a>中的结论：</p>
+
+<p><b>定理</b>: <i>k<sub>A </sub></i>和三叶结之间的缠绕数等于矩阵<i>A</i>的Rademacher不变量。</p>
+
+
+<p>我们只能在<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_edn1" name="_ednref1">
+[1]</a> 中提供一些证明和更多的信息，在下一节我们还将给出一些解释。</p>
+<br><br>
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#top">Back to top</a>
+<a name="connect"></a>
+</p><h3 align="left">4 洛伦兹和模纽结</h3>
+<h4 align="left">4.1 模模板</h4>
+<p>我们前面已经讨论了洛伦兹吸引子中的周期轨道，即<i>洛伦兹纽结</i>和模动力系统中的周期轨道<i>模纽结</i>.
+
+</p><p><b>定理</b>：洛伦兹纽结和模纽结是相同的。</p>
+
+<p>更准确地说，对每一个模纽结<i>k<sub>A</sub></i>，我们都能将它在三维空间中变形，使它和一个洛伦兹吸引子中的周期轨道相同，反之也成立。不幸的是，我们无法在这里提供证明，我们会用图片和影片把变形的过程展示出来</p>
+
+<table><tbody><tr><td width="600">
+<p>证明中的第一步包括在基本区域面积为1的格子空间构造了一个像洛伦兹模板一样的<i>模模板</i>。首先从构造由两个部分组成的一维物体开始： 第一个部分是基本区域面积为1的格子空间中的所有六边形格子的空间对应的那个圆周，即我们前面描述格子空间时描述的那两条轴中的一条，第二个组成部分是所有基本区域是有着从&#960;/3到2&#960;/3的内角的水平的菱形格子的集合。</p>
+<p>换句话说，就是由两个关于<i>x</i>轴对称的夹角在&#960;/3与2&#960;/3之间的向量生成的格子的集合 (向量围成的平行四边形面积为1)。当角度变化时就产生了一个区间[&#960;/3, 2&#960;/3]。当夹角等于&#960;/3或2&#960;/3时对应的的格子刚好是六边形的格子，所以这个区间会把六边形格子对应的那个圆周的两个点连起来。其实那个区间就是圆的直径。(点击右图观看影片)</p>
+<br>
+</td><td>
+<a onclick="NewWindowmedium(&#39;http://www.josleys.com/articles/ams_article/images/Reseau002s_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/reseau02.jpg" border="0"></a>
+</td></tr></tbody></table>
+
+
+
+<table><tbody><tr><td width="600">
+<p>右图展示了这部分的构造。我们先将三叶结做了两次旋转(一次在四维空间中旋转，另一次在三维空间中)，放在一个看起来舒服的位置上，然后画出了刚才讨论的圆周和它的直径。(点击图片)</p>
+
+<br>
+</td><td>
+<a onclick="NewWindowlarge(&#39;http://www.josleys.com/articles/ams_article/images/Deformation_01_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/deformation-01s.jpg" border="0"></a>
+</td></tr></tbody></table>
+<br>
+
+
+<p> 然后我们把这个一维物体沿着不稳定的方向扩大成一个二维的模板。要描述清楚这个过程还存在着技术上的很多细节问题，我们只需要关注影片中的模板是怎样慢慢建立起来的即可。值得注意的是我们在讨论的是拓补学，所以这个构造绝对不是唯一的，我们只是为了直观而选择了一种特别的方式。</p>
+
+<table><tbody><tr><td>
+</td><td colspan="4"><img src="http://www.josleys.com/articles/ams_article/images/deformation_01bis-2s.JPG"></td>
+<td colspan="4"><img src="http://www.josleys.com/articles/ams_article/images/deformation_01bis-3s.JPG"></td>
+<td valign="bottom">
+<a onclick="NewWindowlarge(&#39;http://www.josleys.com/articles/ams_article/images/Deformation_01bis_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/qtlogo.jpg" border="0"></a>
+</td></tr>
+</tbody></table>
+
+<br>
+
+
+<p>现在下一个目标就是把模纽结不穿过三叶结而连续形变到模板上，形变之后的纽结就会像洛伦兹纽结那样全都刚好落在模板上。我们同样不能提供证明，详见<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_edn1" name="_ednref1">[1]</a>。总的思路就是用一种很古老的方法(又是高斯想出来的)将整个基本区域面积为1的格子空间压缩至那个一维物体的一个很小的邻域中：给定一个格子<i>L</i>，一定在<i>L</i>中存在一个非零的最短的向量<i>v</i>，除非这个格子的基本区域的形状是菱形的，这个向量就是唯一的。再找一个和<i>v</i>不共线的向量<i>w</i>。向量<i>v</i>、<i>w</i>就是一组特别选择的生成<i>L</i>的基。现在我们在保持平行四边形面积为1的情况下把向量<i>w</i>的长度逐渐缩小，同时逐渐增加<i>v</i>的长度，直到它们落到模板上为止。让我们不要拘泥于着其中的细节问题，看看这些图像中的纽结是怎样形变到洛伦兹纽结的位置上去的。</p>
+<br>
+
+<center><table align="center"><tbody><tr>
+<td><img src="http://www.josleys.com/articles/ams_article/images/deformation-1.jpg" border="0"></td>
+<td><img src="http://www.josleys.com/articles/ams_article/images/deformation-2.jpg" border="0"></td>
+</tr><tr>
+<td><img src="http://www.josleys.com/articles/ams_article/images/deformation-3.jpg" border="0"></td>
+<td><img src="http://www.josleys.com/articles/ams_article/images/deformation-4.jpg" border="0"></td>
+</tr><tr>
+<td><img src="http://www.josleys.com/articles/ams_article/images/deformation-5.jpg" border="0"></td>
+<td><img src="http://www.josleys.com/articles/ams_article/images/deformation-6.jpg" border="0"></td>
+</tr></tbody></table></center>
+<table align="center">
+<tbody><tr><td><a onclick="NewWindowlarge(&#39;http://www.josleys.com/articles/ams_article/images/Deformation_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/qtlogo.jpg" border="0"></a></td></tr></tbody></table>
+
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#top">Back to top</a>
+
+<br>
+</p><h4 align="left">4.2 最后的两个讨论</h4>
+
+<p><b>最后的评论</b> 我们知道洛伦兹方程中的周期轨道可以被一串又有限的“左”和“右”组成的符号编号，它表示的是路径经过洛伦兹吸引子“左耳朵”和“右耳朵”的先后顺序。我们可以验证和一条周期轨道对应的矩阵<i>A</i>分解后的的乘积表达式中<i>U</i>和<i>V</i>出现的顺序代表着像“左”和“右”那样的同样的顺序。所以上面说到的变形就会把洛伦兹纽结和<i>k<sub>A</sub></i>对应起来。走左耳朵的路径就对应着与三叶结的缠绕数+1的那种情况，走右耳朵则对应缠绕数&#8722;1的情况。</p>
+<p>由此我们得出结论<i>k<sub>A</sub></i>和三叶结的缠绕数等于在<i>A</i>的乘积表达式中字母<i>U</i>出现的次数减去字母<i>V</i>出现的次数。这就是一种证明我们提到过的那个定理的一个方法之一：<i>A</i>和三叶结的缠绕数是Rademacher数。</p>
+
+<br>
+
+
+<p><b>最后的探讨</b> 模动力系统并不是唯一一个值得在基本区域面积为1的格子空间中讨论的动力系统。我们还可以讨论由前面我们知道代表稳定流形的矩阵<img align="absmiddle" width="21" height="30" src="http://www.josleys.com/articles/ams_article/images/image047.gif">定义的动力系统。这个动力系统通常叫<i>horocyclic动力系统</i>。
+我们需要很多的图片来展示这个动力系统的精彩方面，但我们现在只把注意力放在一个方面：它的周期性轨道上。给定实数<i>t</i>和<i>s</i>，我们考虑由两个复数 <i>exp(t)</i> 和 <i>s.exp(t) + i exp(&#8722;t)</i>生成的格子<i>L<sub>s,t </sub></i>。固定<i>t</i>不变，让<i>s</i>从0取到1，我们就在基本区域面积为1的格子空间中能得到一条周期曲线<i>c<sub>t </sub></i>，即<img width="21" align="absmiddle" height="30" src="http://www.josleys.com/articles/ams_article/images/image047.gif">的一条周期轨道。下面的影片显示了当<i>t</i>在某个区间中变化时<i>c<sub>t</sub></i>的变化。当<i>t</i>是一个很大的负数时，曲线<i>c<sub>
+t</sub></i>是一个三叶结上很小的平凡的圆圈。当<i>t</i>为很大的正数时曲线<i>c<sub>t</sub></i>将会变得越来越长，最后将把整个空间填满。</p>
+
+<table align="center"><tbody><tr>
+<td><img src="http://www.josleys.com/articles/ams_article/images/Horocycle_1.JPG" border="0"></td>
+<td><img src="http://www.josleys.com/articles/ams_article/images/Horocycle_2.JPG" border="0"></td>
+</tr><tr>
+<td><img src="http://www.josleys.com/articles/ams_article/images/Horocycle_3.JPG" border="0"></td>
+<td><img src="http://www.josleys.com/articles/ams_article/images/Horocycle_4.JPG" border="0"></td>
+</tr></tbody></table>
+<table align="center">
+<tbody><tr><td><a onclick="NewWindowlarge(&#39;http://www.josleys.com/articles/ams_article/images/Horocycle_s.mov&#39;)">
+<img src="http://www.josleys.com/articles/ams_article/images/qtlogo.jpg" border="0"></a></td></tr></tbody></table>
+
+<br>
+
+<p>我们现在知道<i>c<sub>t</sub></i>曲线簇会趋于将整个空间以均匀的方式填满，但对这个现象的填充速度的定量估计等价于数学中最迷人的问题之一——著名的<i>黎曼猜想</i>！<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_edn15" name="_ednref15">[15]</a></p>
+
+<br><br>
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#top">Back to top</a>
+</p><h3 align="left">参阅</h3>
+<hr align="left" size="1" width="33%">
+
+
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref1" name="_edn1" title="" target="_parent">[1]</a>
+GHYS, E.: <i>Knots and Dynamics</i>, to appear in the proceedings of the International Congress
+of Mathematicians, Madrid 2006.</p>
+
+
+
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref2" name="_edn2" title="" target="_parent">[2]</a>
+LEYS, J.: <i>Mathematical Imagery</i>. <a href="http://www.josleys.com/">http://www.josleys.com</a></p>
+
+
+<div id="edn3">
+
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref3" name="_edn3" target="_parent">[3]</a>
+LORENZ, E.: Deterministic Nonperiodic Flow. <i>J. Atmos. Sci.</i><b>20</b>, (1963), 130-141.</p>
+</div>
+
+<div id="edn4">
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref4" name="_edn4" target="_parent">[4]</a>
+VIANA, M.: Whats New on Lorenz Strange Attractors. <i>Math. Intell. </i><b>22</b>,(2000), 6-19.</p>
+</div>
+
+<div id="edn5">
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref5" name="_edn5" target="_parent">[5]</a>
+BIRMAN, J. &amp; WILLIAMS, R.: Knotted periodic orbits in dynamical systems.I. Lorenzs equations. 
+<i>Topology</i> <b> 22</b>(1983), no.1, 4782.</p>
+</div>
+
+<div id="edn6">
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref6" name="_edn6" target="_parent">[6]</a>
+ADAMS, C.:<i> The knot book</i>. An elementary introduction to the mathematical theory of knots. 
+Revised reprint of the 1994 original. American Mathematical Society, Providence, RI, 2004. xiv+307 pp.</p>
+</div>
+
+<div id="edn7">
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref7" name="_edn7" target="_parent">[7]</a>
+KAUFFMANN, L.:<i>On knots</i>. Annals of Mathematics Studies <b>115</b> Princeton University Press, Princeton, NJ,(1987).</p>
+</div>
+
+<div id="edn8">
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref8" name="_edn8" target="_parent">[8]</a>
+SOSSINSKY, A: <i>Knots. Mathematics with a twist.</i> Translated from the 1999 French original by Giselle
+Weiss. Harvard University Press, Cambridge, MA, 2002. xxii+127 pp.</p>
+</div>
+
+<div id="edn9">
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref9" name="_edn9" target="_parent">[9]</a>&nbsp;
+STEWART, I : <i>The Lorenz Attractor Exists.</i> Nature <b>406</b> (2000), 948-949.</p>
+</div>
+
+<div id="edn10">
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref10" name="_edn10" target="_parent">[10]</a>
+TUCKER, W.: A rigorous ODE solver and Smales 14th problem. <i> Found.Comput. Math.</i> 2 (2002), no. 1, 53117.</p>
+</div>
+
+<div id="edn11">
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref11" name="_edn11" target="_parent">[11]</a>
+SERRE, J.-P.:
+<i>A course in arithmetic.</i> Translated from the French. Graduate Texts in
+Mathematics, No. 7. Springer-Verlag New York, Heidelberg, 1973. viii+115 pp.</p>
+</div>
+
+<div id="edn12">
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref12" name="_edn12" title="" target="_parent">[12]</a>&nbsp;
+SCHAREIN, R.: <i>Knotplot</i> :<a href="http://www.pims.math.ca/knotplot/KnotPlot.html">
+http://www.pims.math.ca/knotplot/KnotPlot.html</a></p>
+</div>
+
+<div id="edn13">
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref13" name="_edn13" title="" target="_parent">[13]</a>&nbsp;
+SLIJKERMAN, F. :<i>Ultrafractal </i>&nbsp;:  <a href="http://www.ultrafractal.com/">http://www.ultrafractal.com</a></p>
+</div>
+
+<div id="edn14">
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref14" name="_edn14" title="" target="_parent">[14]</a>&nbsp;
+POVRAY: Public domain raytracing software &nbsp; <a href="http://www.povray.org/">http://www.povray.org/</a></p>
+</div>
+
+<div id="edn15">
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref15" name="_edn15" target="_parent">[15]</a>
+SARNAK, P.: <i>Asymptotic behavior of periodic orbits of the horocycle flow and Eisenstein
+series.</i> Comm. Pure Appl. Math. 34 (1981), no. 6, 719739.</p>
+</div>
+
+<div id="edn16">
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref16" name="_edn16" target="_parent">[16]</a>
+McKEAN, H. &amp; MOLL, V.: <i>Elliptic curves. Function theory, geometry, arithmetic.</i>Cambridge University Press, Cambridge, 1997.</p>
+</div>
+
+<div id="edn17">
+<p><a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm#_ednref17" name="_edn17" target="_parent">[17]</a>
+THE KNOT ATLAS.: <a href="http://katlas.math.toronto.edu/wiki/Main_Page">http://katlas.math.toronto.edu/wiki/Main_Page </a></p>
+</div>
+
+
+
+
+
+</td></tr></tbody></table>
+
+
+
+</body></html>

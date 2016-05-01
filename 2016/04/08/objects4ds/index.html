@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://wxyhly.github.io/img/dcylinder5.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/dcylinder6.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/cycon.gif">
-<meta property="og:updated_time" content="2016-04-23T15:02:26.428Z">
+<meta property="og:updated_time" content="2016-04-30T10:32:29.005Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="四维空间（一）：简单几何体">
 <meta name="twitter:description" content="#本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。图片来自en.wikipedia：By Vitaly Ostrosablin#本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐">
@@ -127,10 +127,9 @@
 <li>《<a href="http://list.youku.com/albumlist/show?id=2376313&amp;ascending=1&amp;page=1" target="_blank" rel="external">维度</a>》里的老朋友：球极投影<br>其实用球极投影的方法将四维投到三维只是对很特殊的图形作展示的方法，因为它只是把三维球面$\mathbf S^3$投到了三维空间$\mathbf R^3$，不规则的（如有孔、凹陷、交叉的）图形都无法投影到$\mathbf S^3$上，所以我们一般采用平行投影或透视投影。但我们的圆柱柱还算规则，Let’s have a look look! <img src="/img/dcylinder3.gif" alt=""><center>来自<a href="http://www.jenn3d.org/" target="_blank" rel="external">jenn3d</a>软件截图</center><br>嗯，大圆柱里套小圆柱，就像超立方体大立方套小立方一样。所有柱体的球极投影和透视投影角度合适的话都是大套小。右边换了一个侧面过极点的视角。（其实这是个十棱柱柱，真的圆柱柱是$\infty$棱柱柱）<br><a name="lzhu"></a></li>
 </ul>
 <h5 id="棱柱柱"><a href="#棱柱柱" class="headerlink" title="棱柱柱"></a>棱柱柱</h5><p>　　从球极投影我们就发现电脑计算圆柱是用棱柱近似的，所以棱柱的性质和圆柱差不多，只不过注意圆柱那张曲面不见了，取而代之的是很多很薄的长方体（比如下图红色那片）组成：$n$棱柱柱由$4$个$n$棱柱和$n$个长方体共$n+4$个胞围成，比如超立方体是四棱柱（立方体）柱，$n=4$，有8个面。<br>　　我们怎样计算任意柱体的棱数、二维面数、胞（三维面）数？除了画出来一个一个数，我们还可以从底胞推出来：点动成线，线动成面，面动成体。所以侧面胞数（3维的体）等于底胞的二维面数，都是以对应底胞二维面为底面的柱体（底胞二维面为曲面时会形成“曲胞”：弯曲的三维面）；侧面二维面数等于底胞的棱数，都是一些长方形；侧面棱数等于底胞顶点数。当然记总数时别忘了把上下两底胞算进去。<br><img src="/img/dcylinder4.gif" alt=""><br>　　看看8棱柱柱的投影图，感觉就是4个八边形对应点相连得到8个四边形，也能看成由8个四边形对应点相连得到4个八边形。我们尝试点新东西：画一个把3个八边形对应点相连得到8个三角形的东西。这是我们凭空乱画的，这个东西还存在于四维几何空间吗？答案是<strong>肯定</strong>的，当然这个东西不再是一个柱体了，它可以用<strong>直积</strong>来解释，<a href="/2016/04/19/more4ds/">后面</a>我会详细介绍。<br><a name="szhu"></a><br><a href="#index">返回目录</a></p>
-<h5 id="球柱"><a href="#球柱" class="headerlink" title="球柱"></a>球柱</h5><p>　　它的超体积自然是底胞球体体积乘以高，表面积呢？我们想到自然是底胞球体表面积乘以高。没错，但这里有个小问题：球体是无法在三维空间中展开成平面的，所以它的侧面你是展不开的，也就是说四维空间里的柱体侧面不像三维那样都能展开的！因为三维柱体底面的二维图形总能拉成一条线，但现在却不行了。当然这并不妨碍我们计算表面积，因为我们可以把球微元细分展成无数多小柱体再求和，结果还是底胞球体表面积乘以高。<br>　　以后我们还会分析讨论球柱、圆柱柱、超球摆在在四维空间的桌子上里能够如何滚动，直观体会四维空间这个神奇世界。<br><img src="/img/dcylinder5.gif" alt=""><a name="cone"></a></p>
-<p><center>球柱的横、纵截面是球和圆柱。所有柱体的横截面形状都和底胞一致。</center></p>
-<h3 id="各种锥体"><a href="#各种锥体" class="headerlink" title="各种锥体"></a>各种锥体</h3><p>　　锥体是以任意三维几何体为底面，在除底面所在三维空间的任意地方选一个点，将此点与底面所有顶点连接得到的几何体。<br><img src="/img/dcylinder6.gif" alt=""></p>
-<p><center>立方体锥由一个立方体胞+6个四棱锥胞围成</center><br>　　同样，我们怎样计算任意柱体的棱数、二维面数、胞（三维面）数？侧面胞数（3维的体）还是等于底胞的二维面数，但他们都是以对应底胞二维面为底面的锥体；侧面二维面数等于底胞的棱数，都是一些三角形；侧面棱数等于底胞顶点数。记总数时还得把底胞算进去。</p>
+<h5 id="球柱"><a href="#球柱" class="headerlink" title="球柱"></a>球柱</h5><p>　　它的超体积自然是底胞球体体积乘以高，表面积呢？我们想到自然是底胞球体表面积乘以高。没错，但这里有个小问题：球体是无法在三维空间中展开成平面的，所以它的侧面你是展不开的，也就是说四维空间里的柱体侧面不像三维那样都能展开的！因为三维柱体底面的二维图形总能拉成一条线，但现在却不行了。当然这并不妨碍我们计算表面积，因为我们可以把球微元细分展成无数多小柱体再求和，结果还是底胞球体表面积乘以高。<br>　　以后我们还会分析讨论球柱、圆柱柱、超球摆在在四维空间的桌子上里能够如何滚动，直观体会四维空间这个神奇世界。<br><img src="/img/dcylinder5.gif" alt="球柱的横、纵截面是球和圆柱。所有柱体的横截面形状都和底胞一致。"><a name="cone"></a></p>
+<h3 id="各种锥体"><a href="#各种锥体" class="headerlink" title="各种锥体"></a>各种锥体</h3><p>　　锥体是以任意三维几何体为底面，在除底面所在三维空间的任意地方选一个点，将此点与底面所有顶点连接得到的几何体。<br><img src="/img/dcylinder6.gif" alt="立方体锥由一个立方体胞+6个四棱锥胞围成"></p>
+<p>　　同样，我们怎样计算任意柱体的棱数、二维面数、胞（三维面）数？侧面胞数（3维的体）还是等于底胞的二维面数，但他们都是以对应底胞二维面为底面的锥体；侧面二维面数等于底胞的棱数，都是一些三角形；侧面棱数等于底胞顶点数。记总数时还得把底胞算进去。</p>
 <h3 id="锥体的体积和表面积"><a href="#锥体的体积和表面积" class="headerlink" title="锥体的体积和表面积"></a>锥体的体积和表面积</h3><p>　　我上小学时老师和课本是这样讲圆锥体积公式的：把等底等高的圆锥和圆柱放到装满沙子的杯里测体积，发现圆锥恰好是圆柱的$\frac13$，没有任何解释。后来讲祖暅原理和微积分才解释了这个问题。四维椎体计算公式为$V=\frac14Sh$，这是能用微积分证明的，证明略。（$n$维锥体就是$V=\frac1nSh$）<br><img src="/img/cycon.gif" alt=""></p>
 <p><center>圆柱柱、圆柱锥、圆锥柱和圆锥锥。你能说出它们由哪些胞围成的吗？<br>它们体积公式分别为:$$V_1=\pi r^2h_1h_2、V_2=\frac14\pi r^2h_1h_2 、V_3=\frac13\pi r^2h_1h_2、V_4={\pi\over12} r^2h_1h_2$$ .<br>圆锥锥、圆柱表面怎么展开？不知道？算表面积那就去积分吧。<br></center><br>可以想象高维空间一定还有圆柱柱锥锥、圆锥柱锥柱锥柱锥柱等……幸好我们不在那些疯狂的维度！</p>
 <h2 id="锥锥柱柱，柱柱锥锥，这个柱锥，你明白了吗？"><a href="#锥锥柱柱，柱柱锥锥，这个柱锥，你明白了吗？" class="headerlink" title="锥锥柱柱，柱柱锥锥，这个柱锥，你明白了吗？"></a>锥锥柱柱，柱柱锥锥，这个柱锥，你明白了吗？</h2><h4 id="恭喜你已经有四维文明小学生对几何图形的认识水平了！下一节我们就该学初中的几何了，去看看他们文明中的欧几里德写的著作吧！"><a href="#恭喜你已经有四维文明小学生对几何图形的认识水平了！下一节我们就该学初中的几何了，去看看他们文明中的欧几里德写的著作吧！" class="headerlink" title="恭喜你已经有四维文明小学生对几何图形的认识水平了！下一节我们就该学初中的几何了，去看看他们文明中的欧几里德写的著作吧！"></a>恭喜你已经有四维文明小学生对几何图形的认识水平了！下一节我们就该学初中的几何了，去看看他们文明中的欧几里德写的著作吧！</h4><p><a href="#index">返回目录</a></p>
@@ -141,7 +140,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wxyhly.github.io/2016/04/08/objects4ds/" data-id="cind8u3hc0007bkvl6lgadvuc" class="article-share-link">Share</a>
+      <a data-url="http://wxyhly.github.io/2016/04/08/objects4ds/" data-id="cino2piqs0009sovlm0uk0puc" class="article-share-link">Share</a>
       
         <a href="http://wxyhly.github.io/2016/04/08/objects4ds/#disqus_thread" class="article-comment-link">留言</a>
       
@@ -198,7 +197,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 15px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/系列文章/" style="font-size: 20px;">系列文章</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
+      <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 15px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/拓补学/" style="font-size: 10px;">拓补学</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/系列文章/" style="font-size: 20px;">系列文章</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
     </div>
   </div>
 
@@ -207,7 +206,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
     </div>
   </div>
 
@@ -218,6 +217,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/05/01/josleys4ds/">解释《维度》预告片</a>
+          </li>
         
           <li>
             <a href="/2016/04/23/bivector4ds/">四维空间（七）：N维的向量</a>
@@ -233,10 +236,6 @@
         
           <li>
             <a href="/2016/04/16/fibration4ds/">四维空间（四）：纤维与超球</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/16/polyhedral4ds/">四维空间（三）：谈正多胞体</a>
           </li>
         
       </ul>

@@ -1,0 +1,334 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-16">
+	<title>Hyperbolic Space</title>
+	<script src="Cmplx.js"></script>
+	<script src="Painter.js"></script>
+	<script>
+Cmplx.Mobius.T = function (P){
+	var k=1/Math.sqrt(1-Cmplx.abs(P));
+	return new Cmplx.Mobius(k,Cmplx.mul(k,P),Cmplx.conj(Cmplx.mul(k,P)),k);
+}
+Cmplx.Mobius.R = function (s){
+	var temp=new Complex(Math.cos(s/2),Math.sin(s/2));
+	return new Cmplx.Mobius(temp,0,0,temp);
+}
+Cmplx.Mobius.H=function HalfRot(P){
+	var P2=P.real*P.real+P.imag*P.imag;
+	var temp=new Complex(0,(1+P2)/(1-P2));
+	var temp2=Cmplx.sub(0,Cmplx.mul(P,new Complex(0,2/(1-P2))));
+	return new Cmplx.Mobius(temp,temp2,Cmplx.conj(temp2),Cmplx.sub(0,temp));
+}
+Polygon = function (M,active){
+	this.Mobius = M;
+	this.active = active;
+}
+foreachFlag = false;
+foreachPoint = null;
+function judge (obj){
+	var flag = Cmplx.sqrabs(Cmplx.sub(obj.CenterF,foreachPoint)) < min;
+	foreachFlag = foreachFlag || flag;
+}
+function next(){
+	newPolygons = [];
+	Polygons.forEach(forEachPolygon);
+	Polygons = Polygons.concat(newPolygons);
+}
+function Poincare(p){
+	return p;
+}
+function Vo(p){
+	return Cmplx.exp(Cmplx.mul(new Complex(Number($("vop").value),4/Math.PI),Cmplx.arctanh(p)));
+}
+function inv_Band(p){
+	return Cmplx.tanh(Cmplx.mul(Math.PI/4,p));
+}
+function Band(p){
+	if(BTransform == Ring)return Cmplx.mul(4/Math.PI,Cmplx.arctanh(p));
+	var sum = 0;
+	var cuts = $("cut").value.split(",");
+	for(var i = 0; i < cuts.length; i++){
+		var d = cuts[i] / 180 * Math.PI;
+		tau = new Complex(Math.cos(d),Math.sin(d));
+		sum = Cmplx.sub(sum,Cmplx.mul(Cmplx.conj(tau),Cmplx.log(Cmplx.sub(1,Cmplx.mul(tau,p)))));
+		
+	}
+	return Cmplx.div(sum,cuts.length);
+}
+function Nome(p){
+	//var n = p.applyMobius(new Cmplx.Mobius(0,1,1,new Complex(0,-1)));
+	//return Cmplx.exp(Cmplx.mul(new Complex(0,2*Math.PI),n));
+	return Cmplx.mul(Cmplx.log(p),new Complex(0,-0.5*q/Math.PI));
+}
+function Ring(p){
+	return Cmplx.exp(Cmplx.mul(new Complex(0,2*Math.PI/kPeriod),Cmplx.add(Cmplx.I,Band(p))));
+}
+function inv_Ring(p){
+	return inv_Band(Cmplx.sub(Cmplx.mul(new Complex(0,-kPeriod/2/Math.PI),Cmplx.log(p)),Cmplx.I));
+}
+Poincare = inv_Poincare = function (p){
+	return p;
+}
+function BTransform(p){
+	return p;
+}
+function Transform(p){
+	return BTransform(p.applyMobius(TransformMobius)).applyMobius(MainMobius);
+}
+function forEachPolygon(p){
+	if (p.active){
+		for(var j = 0; j < p.RP.length; j++){
+			var Mobby = Cmplx.Mobius.H(p.RP[j]);
+			var polly = new Polygon(Mobby.dot(p.Mobius),true);
+			polly.RP = [];
+			polly.Center = p.Center.applyMobius(Mobby);
+			polly.CenterF = Transform(polly.Center);
+			for(var k = 0; k < p.RP.length; k++){
+				polly.RP.push(p.RP[k].applyMobius(Mobby));
+			}
+			if(Cmplx.sqrabs(polly.CenterF)>4) continue;
+			foreachPoint = polly.CenterF;
+			foreachFlag = false;
+			Polygons.forEach(judge);
+			newPolygons.forEach(judge);
+			if(!foreachFlag) {newPolygons.push(polly);}
+		}
+		p.active = false;
+	}
+}
+function main(){
+	Canvas = new Painter($("HyperCanvas"),200);
+	Canvas.draw = function (){
+		Canvas.beginPath();
+		Canvas.graphics.strokeStyle = "#000";
+		Polygons.forEach(drawPolygon);
+		Canvas.closePath();
+		Canvas.stroke();
+	}
+	canvas1 = Canvas.domElement;
+	TransformMobius = new Cmplx.Mobius();
+	currentMoyen="Poincare";
+	Go('Poincare');
+}
+function Go(str){
+	BTransform = eval("inv_"+str);
+	if(currentMoyen!="Ring")
+		inv_TransformMobius = TransformMobius.inverse();
+	else
+		inv_TransformMobius = new Cmplx.Mobius();
+	apresGo(str);
+	till (Number($("p").value),Number($("n").value));
+}
+function canvas1_onmousedown(event){
+	if(currentMoyen=="Ring"){
+		return false;
+	}
+    canvas1.move=true;
+    canvas1.offsetx=event.clientX;
+    canvas1.offsety=event.clientY;
+}
+function canvas1_onmousemove(event){
+    if(canvas1.move){
+        event.preventDefault();
+        var dx=event.clientX-canvas1.offsetx;
+        var dy=event.clientY-canvas1.offsety;
+        canvas1.offsetx=event.clientX;
+        canvas1.offsety=event.clientY;
+        canvas1.width=canvas1.width;
+        hyperbolicmovepoints(dx/Canvas.scale,-dy/Canvas.scale);
+        Gol(currentMoyen);
+    }
+}
+function canvas1_onmouseup(event){
+    canvas1.move=false;
+}
+hyperbolicmovepoints=function(tx,ty){
+	TransformMobius = Cmplx.Mobius.T(new Complex(tx,ty)).dot(TransformMobius);
+}
+function drawPolygon(p){
+	for(var i = 0; i < Base.line.length; i++){
+		var Q = Transform(Base.line[i].applyMobius(p.Mobius));
+		Canvas.lineTo(Q, i == 0);
+	}
+}
+function till (n,p){
+	Canvas.createImageData();
+	//Painter.loadedIMG.createImageData();
+	var PointM, ImageM,x,y;
+	preparer(n,p)
+	for (var i = 0; i < Canvas.width; i++){
+		for (var j = 0; j < Canvas.height; j++){
+			PointM = new Complex((i-Canvas.width/2)/Canvas.scale,-(j-Canvas.height/2)/Canvas.scale);
+			var PP = BTransform(PointM);
+			if(!(PP instanceof Complex))PP = new Complex(PP,0);
+			ImageM = findFM(PP.applyMobius(inv_TransformMobius),n,p,500);
+			if(ImageM){
+				 x = ImageM.real*Canvas.scale+Painter.loadedIMG.width/2;
+				 y = -ImageM.imag*Canvas.scale+Painter.loadedIMG.height/2;
+				Canvas.writeData(i, j, Painter.loadedIMG.readAntiAliasingData(x,y))
+			}else{
+				Canvas.writeData(i, j, 0xFFFFFF)
+			}
+		}
+	}
+	Canvas.putImageData();
+}
+preparer = function (n,p){
+	var BOA = Math.PI/n;
+	var ABO = Math.PI/p + Math.PI/2;
+	var rate = Math.sin(BOA)/Math.sin(ABO);
+	 _radius2 = rate*rate/(1 - rate*rate);//AB
+	 _Radius = Math.sqrt(1 + _radius2);//OA
+	this.line = [];
+	Polygons = [new Polygon(new Cmplx.Mobius(1,0,0,1),true)];
+	Polygons[0].RP = [];
+	Polygons[0].g = 0;
+	Polygons[0].Center = new Complex();	
+	Polygons[0].CenterF = new Complex();	
+	for(var t = 0;t<n;t++){
+		var _t = 2*t*Math.PI/n;
+		Polygons[0].RP.push(new Complex(Math.cos(_t)*(Math.sqrt(_radius2)-_Radius),Math.sin(_t)*(Math.sqrt(_radius2)-_Radius)));
+	}
+	next();
+	next();
+	next();
+	next();
+}
+IsFM = function (PM,n,p){
+var isFM = true;
+	
+	for(var t = 0;t<n;t++){
+		var _t = 2*t*Math.PI/n;
+		if (Cmplx.sqrabs(Cmplx.sub(new Complex(-Math.cos(_t)*_Radius,-Math.sin(_t)*_Radius),PM))<=_radius2){
+			isFM = false;
+			break;
+		}
+	}
+	return isFM;
+}
+findFM = function (PM,n,p,iteration){
+//return PM;
+	var NP;
+	if(Cmplx.sqrabs(PM)>1){
+		return false;
+	}
+	while (iteration--){
+		if(IsFM(PM,n,p))return PM;
+		NP = searchCentrePolygon(PM);
+		PM = PM.applyMobius(NP.Mobius.inverse())
+	}
+}
+function searchCentrePolygon (PointM){
+	var dx;
+	var Dx,nombre=0;
+	for (var i=1;i<Polygons.length/4;i++){
+		Dx = Cmplx.sqrabs(Cmplx.sub(Polygons[i].Center,PointM))/(1-Cmplx.sqrabs(Polygons[i].Center))/(1-Cmplx.sqrabs(PointM));
+		if(i==1||Dx<dx){nombre=i;dx=Dx;}
+	}
+	return Polygons[nombre];
+}
+function Gol(str){
+	currentMoyen = str;
+	BTransform = eval(str);
+	if(currentMoyen=="Ring")
+		TransformMobius = new Cmplx.Mobius();
+	apresGo(str);
+	var Step = Number($("step").value);
+	for(var i = 0; i< Step; i++,next());
+	Canvas.clear();
+	Canvas.draw();
+}
+function apresGo(str){
+MainMobius = new Cmplx.Mobius(
+		new Complex($("a").value),
+		new Complex($("b").value),
+		new Complex($("c").value),
+		new Complex($("d").value)
+	);
+	Seg = Number($("seg").value);
+	Base = new BasePolygon(Number($("p").value),Number($("n").value));
+	if(str == 'Nome'){
+		q = Number($("per").value);
+	}else if(str == 'Ring'){
+		//Calculate Period for Band World
+		var Period = Number($("per").value);
+		var k;
+		k = new Complex().applyMobius(Cmplx.Mobius.H(Polygons[0].RP[0]));
+		k = Math.abs(Band(k).real);//even
+		if(Base.n % 2 == 1){
+			var Vertex = new Complex(Cmplx.abs(Base.line[0]),0);
+			var k2 = new Complex().applyMobius(Cmplx.Mobius.H(Vertex));
+			k += Math.abs(Band(k2).real);//odd -> even
+			if (Base.p % 2 == 1){
+				var r = Vertex.real;
+				var s = Math.PI/Base.n;
+				var A = new Complex(r*Math.cos(s),r*Math.sin(s));
+				var Edge = Cmplx.abs(Polygons[0].RP[0]);
+				k += 2*Math.abs(Band(
+					Cmplx.mul(A.applyMobius(Cmplx.Mobius.T(Edge).inverse()),Cmplx.I)
+				).real);//odd -> odd
+			}
+		}
+		kPeriod = k * Period;
+	}
+	var Minpixel = Number($("minp").value);
+	min = Minpixel*Minpixel/Canvas.scale/Canvas.scale;
+}
+BasePolygon = function (n,p){
+	var BOA = Math.PI/n;
+	var ABO = Math.PI/p + Math.PI/2;
+	var arc = Math.PI/2 - Math.PI/p - BOA;
+	var rate = Math.sin(BOA)/Math.sin(ABO);
+	var _radius = rate/Math.sqrt(1 - rate*rate);
+	var _Radius = Math.sqrt(1 + _radius*_radius);
+	this.line = [];
+	Polygons = [new Polygon(new Cmplx.Mobius(1,0,0,1),true)];
+	Polygons[0].RP = [];
+	Polygons[0].g = 0;
+	Polygons[0].Center = new Complex();	
+	for(var t = 0;t<n;t++){
+		var _t = 2*t*Math.PI/n;
+		Polygons[0].RP.push(new Complex(Math.cos(_t)*(_radius-_Radius),Math.sin(_t)*(_radius-_Radius)));
+		for(var q = _t+arc; q > _t - arc; q -= arc/Seg){
+			var M = new Complex(Math.cos(q)*_radius-Math.cos(_t)*_Radius,Math.sin(q)*_radius-Math.sin(_t)*_Radius);
+			this.line.push(M);
+		}
+	}
+}
+	</script>
+	<style>
+	 input {
+		width:30px;
+	}
+	</style>
+</head>
+<body onload="Painter.loadIMG('img/untitled.bmp',main);">
+<table>
+<tr><td>
+	<canvas id="HyperCanvas" width="800" height="800"  onmousedown="canvas1_onmousedown(event)" onmousemove="canvas1_onmousemove(event)" onmouseup="canvas1_onmouseup(event)"></canvas>
+</td><td>
+	Min-Detail <input id="minp" value='1'>px; <p>
+	Circle-Segment <input id="seg" value='4'> ; <p>
+	<input id="p" value='4'>-gon; <p>
+	<input id="n" value='5'>-edge to vertex;<p>
+	<input id="step" value='4'> depth;<p>
+	Mobius Transformation:<p>
+	<input id="a" value="1">
+	<input id="b" value="0"><br>
+	<input id="c" value="0">
+	<input id="d" value="1">;<p>
+	<button onclick="Gol('Poincare')">Poincare disk</button><p>
+	<button onclick="Gol('Nome')">nome disk</button><p>
+	<button onclick="Gol('Band')">band(narrow) world</button><p>
+	<input id="cut" value='180,0' style="width: 80px"> branch cut;<p>
+	<button onclick="Gol('Vo')">Votex world</button><p>
+	<input id="vop" value='0.7'> parametre;<p>
+	<button onclick="Gol('Ring')">ring world</button>
+	<input id="per" value='4'> period (only for ring world);<p>
+	<button onclick="Gol('Prefer')">prefered world</button><p>
+	<button onclick="Gol('Cauchy')">Oval world</button>
+	<button onclick="Go(currentMoyen)">RenderIMG</button>
+	<button onclick="TransformMobius=new Cmplx.Mobius()">ResetMoving</button>
+</td>
+</body>
+</html>

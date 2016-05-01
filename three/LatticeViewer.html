@@ -1,0 +1,505 @@
+<html>
+	<head>
+		<script src="THREE.js"></script>
+		<script src="Cmplx.js"></script>
+		<script src="Four.js"></script>
+		<script src="Lattice.js"></script>
+		<script src="TrackballControls.js"></script>
+		<script src="Painter.js"></script>
+		<meta charset="unicode">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<title>Lattice Viewer 1.3 by WXY</title>
+		<style type="text/css">
+			.canvas3 {
+				width: 1200;
+				height: 768;
+				border: 2px solid #9CF;
+				-moz-border-radius: 5px;      /* Gecko browsers */
+				-webkit-border-radius: 5px;   /* Webkit browsers */
+				border-radius: 5px;            /* W3C syntax */
+			}
+			.Info {
+				width: 280px;
+				padding: 10px;
+				border: 2px solid #9CF;
+				border-spacing: 10px;
+				-moz-border-radius: 5px;      /* Gecko browsers */
+				-webkit-border-radius: 5px;   /* Webkit browsers */
+				border-radius: 5px;            /* W3C syntax */
+				background-color: rgba(0,128,0,0.4);
+			}
+			.panelR {
+				position: absolute;
+				top: 15px;
+				left: 895px;
+				z-index:99;
+			}
+			input {
+				color: #FFD;
+				border: 2px solid #9CF;
+				-moz-border-radius: 5px;      /* Gecko browsers */
+				-webkit-border-radius: 5px;   /* Webkit browsers */
+				border-radius: 5px;            /* W3C syntax */
+				background: none transparent scroll repeat 0% 0%;
+			}
+			input.Matrix {
+				width: 40px;
+			}
+			#loading {
+				position: absolute;
+				top: 500px;
+				left: 520px;
+				font-size: 50px;
+				color: #FF0;
+			}
+			.panelL {
+				position: absolute;
+				top: 15px;
+				left: 15px;
+				z-index:100;
+			}
+			body {
+				background-color: #69F;
+				color: #FFF;
+			}
+			button.pop {
+				border: 1px #93bee2 solid;
+				height: 20px;
+				background-color: #C3CEF2;
+			}
+		</style>
+		<script>
+
+Init3d = function (obj){
+	this.scene = new THREE.Scene();
+	this.scene4 = new FOUR.Scene4(this.scene);
+	this.camera4 = new FOUR.PerspectiveCamera(new FOUR.Euler4(0.001,0.001,0.001),1,true);
+	this.camera4.maxVertexRadius = 5;
+	this.camera4.maxEdgeRadius = 20;
+	this.renderer4 = new FOUR.Renderer4(this.scene4,this.camera4);
+	this.domElement = obj;
+	this.width = obj.clientWidth;
+	this.height = obj.clientHeight;
+	this.renderer = new THREE.WebGLRenderer({antialias: true});
+	this.renderer.setSize(this.width, this.height);
+	obj.appendChild(this.renderer.domElement);
+	this.renderer.setClearColor(0x6797EF, 1.0);
+	this.camera = new THREE.PerspectiveCamera(45,this.width/this.height,0.01,100);
+	this.camera.position.set(3,3,3);
+	this.camera.up.set(0,0,1);
+	this.camera.lookAt(this.scene.position);
+	this.light = new THREE.DirectionalLight(0xffffff, 1.0, 0);
+	this.light.position = this.camera.position;
+	this.scene.add(this.light);
+	this.Control4 = new FOUR.Controls(this.camera, this.renderer.domElement, this.camera4);
+	
+}
+Init3d.prototype.render = function (){
+	this.renderer.clear();
+	this.renderer.render(this.scene, this.camera);
+}
+
+{
+	main3d = null;
+	LatticeCanvas = null;
+	Lattice = new FOUR.Lattice({elements:[1,0,0,1]});
+	LatticeMethod = "5*S3R1";
+	ActivePoint4 = new FOUR.Lattice.G2G3(1,0,0,0).getPoint(LatticeMethod);
+	MatrixGenerator = new THREE.Matrix2();  //dynamic animation
+	Animation = function (){};
+	Animation.animation = null;    //type of dynamic animation
+	Animation.delta = Math.PI/256;  //dynamic animation step
+	Animation.count = 0;
+	Animation.Inverse = false;
+	Animation.lock = true;
+}
+function main(){
+
+	main3d = new Init3d($('webgl3d'));
+	LatticeCanvas = new Painter($('lattice'));
+	HyperbolicCanvas = new Painter($('hyperbolic'));
+	
+	/* * draw lattice 2d below **/
+	
+	LatticeCanvas.Draw = function (Lattice){
+		this.graphics.clearRect(0,0,this.width,this.height);
+		this.graphics.fillStyle = 'rgba(225,225,225,0.9)';
+		this.graphics.fillRect(0,0,this.width,this.height);
+		var Ps = Lattice.getPoints(20,20); //(row,col):(5,5)
+		for (var i = 0;i < Ps.length;i++){
+			this.fillCircle(Ps[i],3,'#888800');
+		}
+	}
+	LatticeCanvas.Draw(Lattice);
+	
+	/* * draw tau 2d below **/
+	
+	HyperbolicCanvas.Draw = function (Lattice){
+		this.height = 400;
+		this.graphics.clearRect(0,0,this.width,this.height);
+		this.scale = 80;
+		var offsetD = new THREE.Vector2(0,-0.7), offsetU = new THREE.Vector2(0,0.4);
+		var Ps = Lattice.getTaus(); //(row,col):(5,5)
+		for (var i = 0;i < Ps.length;i++){
+			var Q = Ps[i].applyMobius(new Cmplx.Mobius(new Complex(0,-1),-1,new Complex(0,-1),1));
+			this.fillCircle(Ps[i],3*Ps[i].imag,'#000',offsetU);
+			this.fillCircle(Q,4*(1-Cmplx.abs(Q)),'#FF0',offsetD);
+		}
+	}
+	HyperbolicCanvas.Draw(Lattice);
+	
+	/* * draw main3d below **/
+	
+	var FLCBG = FOUR.Lattice.CreateBoundsGeometrys(LatticeMethod);
+	main3d.Sqr = new FOUR.Mesh(FLCBG[0], new FOUR.FrameMaterial(null, 0x0000FF));
+	main3d.Hex = new FOUR.Mesh(FLCBG[1], new FOUR.FrameMaterial(null, 0x00FF00));
+	main3d.Del = new FOUR.Mesh(FLCBG[2], new FOUR.FrameMaterial(null, 0xFFFF00));
+	main3d.scene4.add(main3d.Del);
+	main3d.scene4.add(main3d.Sqr);
+	main3d.scene4.add(main3d.Hex);
+	//argument false means don't auto update
+	main3d.Point = new FOUR.Mesh(new FOUR.Geometry([ActivePoint4]),new FOUR.FrameMaterial(0xFF0000,null))
+	//AA = new FOUR.Mesh(FOUR.Lattice.CreateMobiusSurface(LatticeMethod,0),new FOUR.FrameMaterial(0xFF00FF,null))
+	//BB = new FOUR.Mesh(FOUR.Lattice.CreateSeifertSurface(LatticeMethod,Math.PI),new FOUR.FrameMaterial(0xFFAA00,null))
+	main3d.scene4.add(main3d.Point);
+	//main3d.scene4.add(AA);
+	//main3d.scene4.add(BB);
+	E = new FOUR.Euler4(0.001,0.001,0.001);
+	main3d.renderer4.render();
+	main3d.knotMeshs = [];
+	//main3d.render();
+	set4View( 1,0,0,0, 0,1,0,0, 0,0,0,1, 0,0,-1,0);
+	
+	/* * done * */
+	
+	getInformation(Lattice);
+	BtnId_Click();
+	$("loading").style.display = "none";
+	
+}
+		</script>
+	</head>
+	<body onload="main();">
+		<!-- Right -->
+		<div id="loading">Loading ...</div>
+		<div class="panelR">
+			<canvas id="hyperbolic" width="300" height="350" style="background-image:url('img/back.png')"> </canvas>
+			<strong>
+			<div class="Info">
+			Basic Lattice <br> (Double Click To Change 4D Views)
+			<br><a ondblclick="set4View(0,0,0,1, 0,0,1,0, 0,1,0,0, 1,0,0,0)" onclick="BtnSet_Click({elements:[1,0,0,1]})"
+				href="javascript:void(0)"><img src="img/Sqaure0.png"></a>
+			<a ondblclick="set4View(0,0,1,0, 0,0,0,-1, 0,1,0,0, 1,0,0,0)" onclick="BtnSet_Click({elements:[Math.cos(Math.PI/8),Math.sin(Math.PI/8),-Math.sin(Math.PI/8),Math.cos(Math.PI/8)]})"
+				href="javascript:void(0)"><img src="img/Sqaure22.png"></a>
+			<a ondblclick="set4View(0,0,0,-1, 0,0,-1,0, 0,1,0,0, 1,0,0,0)" onclick="BtnSet_Click({elements:[Math.sqrt(2)/2,Math.sqrt(2)/2,Math.sqrt(2)/2,-Math.sqrt(2)/2]})"
+				href="javascript:void(0)"><img src="img/Sqaure45.png"></a>
+			<a ondblclick="set4View(0,0,-1,0, 0,0,0,1, 0,1,0,0, 1,0,0,0)" onclick="BtnSet_Click({elements:[Math.cos(Math.PI/8),-Math.sin(Math.PI/8),Math.sin(Math.PI/8),Math.cos(Math.PI/8)]})"
+				href="javascript:void(0)"><img src="img/Sqaure67.png"></a><br/>
+			 
+			<br/><a ondblclick="set4View( 1,0,0,0, 0,1,0,0, 0,0,0,1, 0,0,-1,0)" onclick="BtnSet_Click({elements:[1.0746,0,0.5*1.0746,0.8660254037844386*1.0746]})"
+				href="javascript:void(0)"><img src="img/Hexagon0.png"></a>
+			<a ondblclick="set4View( 1,0,0,0.002, 0,1,0,-0.002, 0,0,-1,0, 0.002,-0.002,0,-1)" onclick="BtnSet_Click({elements:[Math.cos(Math.PI/12)*1.0746,Math.sin(Math.PI/12)*1.0746,Math.sin(Math.PI/12)*1.0746,Math.cos(Math.PI/12)*1.0746]})"
+				href="javascript:void(0)"><img src="img/Hexagon15.png"></a>
+			<a ondblclick="set4View( 1,0,0,0, 0,1,0,0, 0,0,0,-1, 0,0,1,0)" onclick="BtnSet_Click({elements:[0,1.0746,0.8660254037844386*1.0746,0.5*1.0746]})"
+				href="javascript:void(0)"><img src="img/Hexagon30.png"></a>
+			<a ondblclick="set4View( 1,0,0,0.002, 0,1,0,-0.002, 0,0,1,0, 0.002,-0.002,0,1)" onclick="BtnSet_Click({elements:[Math.cos(Math.PI/12)*1.0746,-Math.sin(Math.PI/12)*1.0746,Math.sin(Math.PI/12)*1.0746,-Math.cos(Math.PI/12)*1.0746]})"
+				href="javascript:void(0)"><img src="img/Hexagon45.png"></a><br/>
+			</strong>
+			
+				ω<sub>1</sub> = <span id="spw1"> </span>
+				<br>ω<sub>2</sub> = <span id="spw2"> </span>
+				<br>g<sub>2</sub> = <span id="spg2"> </span>
+				<br>g<sub>3</sub> = <span id="spg3"> </span>
+				<br>Δ = <span id="spdel"> </span>
+				<br>τ = <span id="sptau"> </span>
+				<br>j(τ) = <span id="spj"> </span>
+			</div>
+		</div>
+		<!-- Left -->
+		<div class="panelL">
+			<canvas id="lattice" width="300" height="300"> </canvas>
+			<strong> <br>
+			<div class="Info">
+			ω<sub>1</sub> <input id="w1" width="80" value="1,0"/><br> <br>
+			ω<sub>2</sub> <input id="w2" width="80" value="0,1"/>
+			<button onclick="BtnSet_Click()"> Set </button>
+			<br> <br>
+			g<sub>2</sub> <input id="g2" width="80" value="189,0"/><br> <br>
+			g<sub>3</sub> <input id="g3" width="80" value="0,0"/>
+			<button onclick="BtnSetG_Click()"> Set </button>
+			<br> <br>
+			<button id="Id" class="pop" onclick="BtnId_Click()"><strong> Active </strong></button> 
+			<button onclick="BtnArea1_Click()"> Area1 </button>
+			<p>Run Flows</p>
+			<button id="M" class="pop" onclick="BtnM_Click()"> M </button>
+			<button id="R" class="pop" onclick="BtnR_Click()"> R </button>
+			<button id="Hp" class="pop" onclick="BtnHp_Click()"> H<sub>+</sub></button>
+			<button id="Hm" class="pop" onclick="BtnHm_Click()"> H<sub>-</sub> </button>
+			<button id="Inv" class="pop" onclick="BtnInv_Click()">Inv</button>
+			<br>Speed <input id="speed" style="width: 40px" value="1">
+			<p>Closed Geodesics</p>
+			<table border="0">
+				<tr>
+					<td><input id="a" class="Matrix" value="1"/></td>
+					<td><input id="b" class="Matrix" value="1"/></td>
+				</tr><tr>
+					<td><input id="c" class="Matrix" value="2"/></td>
+					<td><input id="d" class="Matrix" value="3"/></td>
+					<td><button onclick="Btn_GetCG()">Get</button>
+					<button onclick="Btn_RemoveCG()">Clear</button></td>
+				</tr>
+			</table>
+			<p>Show/Hide :
+			<button onclick="Btn_Sqr()">Sqr</button>
+			<button onclick="Btn_Hex()">Hex</button>
+			<button onclick="Btn_Del()">Del</button>
+			<button onclick="Btn_SP()"> P </button></p>
+			</strong>
+			</div>
+		</div>
+		<!-- Center -->
+		<div id="webgl3d" class="canvas3"> </div>
+	</body>
+	<script>
+function getInformation (L){
+	$("spw1").innerHTML = L.w1.format(6);
+	$("spw2").innerHTML = L.w2.format(6);
+	var g23 = L.getG2G3();
+	//var G23 = L.getG2G3().normalizeToS3();
+	$("spg2").innerHTML = g23.g2.format(6)// +"<br>"+ G23.g2.format(6);
+	$("spg3").innerHTML = g23.g3.format(6)// +"<br>"+ G23.g3.format(6);
+	$("spdel").innerHTML = g23.delta().format(6)// +"<br>"+ G23.delta().format(6);
+	try{
+		$("spj").innerHTML = g23.jInvariant().format(6);
+	}catch(e){
+		
+	}
+	var t = Cmplx.div(L.w1, L.w2);
+	if (t.imag < 0) t = Cmplx.div(1, t);
+	$("sptau").innerHTML = t.format(6);
+}
+Lattice.refresh = function (){
+	LatticeCanvas.Draw(Lattice);
+	if(Animation.count % 3 == 0 || !Animation.animation)
+		HyperbolicCanvas.Draw(Lattice);
+	ActivePoint4.copy(Lattice.getG2G3().getPoint(LatticeMethod));
+	getInformation(Lattice);
+}
+function set4View(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p){
+	main3d.Del.updateMatrix = main3d.Sqr.updateMatrix = main3d.Hex.updateMatrix = true;
+	//main3d.Control4.Euler4 = new FOUR.Euler4(xt+0.01,yt+0.01,zt+0.01);
+	main3d.camera4.projectMatrix = {elements:[a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p]}//setFromEuler4(main3d.Control4.Euler4);
+	main3d.renderer4.render();
+	main3d.render();
+}
+Animation.animationLoop = function (){
+	if(Animation.animation||!Animation.lock){
+		Animation.count++;
+		main3d.Control4.update();
+		if(Animation.animation && Animation.animation != "Id"){
+			Lattice.applyMatrix2(MatrixGenerator);
+			Lattice.refresh();
+		}
+		main3d.Del.updateMatrix = main3d.Sqr.updateMatrix = main3d.Hex.updateMatrix = FOUR.Controls.keyDown;
+		if(Animation.animation||main3d.Control4.active3){
+			main3d.renderer4.render();
+			main3d.render();
+		}
+		window.requestAnimationFrame(Animation.animationLoop);
+	}
+}
+Animation.set = function (e){
+	Animation.delta = Number($("speed").value)*Math.PI/256*((Animation.Inverse)?-1:1);
+	if(e == "Id"){
+		Animation.animationLoop();
+		return 0;
+	}
+	Animation.stop();
+	Animation.animation = e;
+	if(!e) return 0;
+	$( e ).style.backgroundColor = "#00FF00";
+	switch(e){
+		case "M":
+			MatrixGenerator = FOUR.Lattice.modularMatrix(Animation.delta);
+			break;
+		case "R":
+			MatrixGenerator = FOUR.Lattice.rotationMatrix(Animation.delta);
+			break;
+		case "Hp":
+			MatrixGenerator = FOUR.Lattice.horocyclicPMatrix(Animation.delta);
+			break;
+		case "Hm":
+			MatrixGenerator = FOUR.Lattice.horocyclicMMatrix(Animation.delta);
+			break;
+	}
+	Animation.animationLoop();
+}
+Animation.BtnColor = "#C3CEF2";
+Animation.stop = function (){
+	Animation.animation = null;
+	$("M").style.backgroundColor = Animation.BtnColor;
+	$("R").style.backgroundColor = Animation.BtnColor;
+	$("Hp").style.backgroundColor = Animation.BtnColor;
+	$("Hm").style.backgroundColor = Animation.BtnColor;
+}
+function BtnM_Click (){
+	if(!Animation.animation)
+		Animation.set("M");
+	else
+		Animation.stop();
+}
+function BtnR_Click (){
+	if(!Animation.animation)
+		Animation.set("R");
+	else
+		Animation.stop();
+}
+function BtnHp_Click (){
+	if(!Animation.animation)
+		Animation.set("Hp");
+	else
+		Animation.stop();
+}
+function BtnHm_Click (){
+	if(!Animation.animation)
+		Animation.set("Hm");
+	else
+		Animation.stop();
+}
+function BtnId_Click (){
+	Animation.lock = !Animation.lock;
+	if(!Animation.lock)
+		$("Id").style.backgroundColor = "#F00";
+	else
+		$("Id").style.backgroundColor = Animation.BtnColor;
+	Animation.set("Id");
+}
+function BtnInv_Click (){
+	Animation.Inverse = !Animation.Inverse;
+	if(Animation.Inverse)
+		$("Inv").style.backgroundColor = "#F00";
+	else
+		$("Inv").style.backgroundColor = Animation.BtnColor;
+	Animation.set(Animation.animation);
+}
+function BtnSet_Click (Matrix2){
+	Animation.stop();
+	if(Matrix2) Lattice.set(Matrix2);
+	else Lattice.set(new Complex($("w1").value),new Complex($("w2").value));
+	Lattice.refresh();
+	main3d.renderer4.render();
+	main3d.render();
+}
+function BtnSetG_Click (){
+	Animation.stop();
+	var g2g3 = new FOUR.Lattice.G2G3(new Complex($("g2").value),new Complex($("g3").value));
+	Lattice.set(g2g3.tau(),new Complex(1,0));
+	Lattice.refresh();
+	main3d.renderer4.render();
+	main3d.render();
+}
+function BtnArea1_Click (){
+	Animation.stop();
+	Lattice.toArea1();
+	Lattice.refresh();
+	main3d.renderer4.render();
+	main3d.render();
+}
+function Btn_GetCG(){
+	var _A = new Cmplx.Mobius(
+		Number($("a").value),
+		Number($("b").value),
+		Number($("c").value),
+		Number($("d").value)
+	);
+	var G = FOUR.Lattice.CreateClosedGeodesics(LatticeMethod, _A);
+	var randomC = Math.floor(Math.random()*256*256*256);
+	var M = new FOUR.Mesh(G, new FOUR.FrameMaterial(null,randomC));
+	main3d.knotMeshs.push(M);
+	main3d.scene4.add(M);
+	main3d.renderer4.render();
+	main3d.render();
+}
+function Btn_RemoveCG(){
+	for(var i = 0; i < main3d.knotMeshs.length; i++){
+		main3d.scene4.remove(main3d.knotMeshs[i]);
+	}
+	main3d.renderer4.render();
+	main3d.render();
+}
+function Btn_Sqr(){
+	main3d.Sqr.setVisible(!main3d.Sqr.visible);
+	if(main3d.Sqr.updateMatrix == false){
+		main3d.Sqr.updateMatrix = true;
+		main3d.renderer4.render();
+		main3d.Sqr.updateMatrix = false;
+	}else main3d.renderer4.render();
+	main3d.render();
+}
+function Btn_Hex(){
+	main3d.Hex.setVisible(!main3d.Hex.visible);
+	if(main3d.Hex.updateMatrix == false){
+		main3d.Hex.updateMatrix = true;
+		main3d.renderer4.render();
+		main3d.Hex.updateMatrix = false;
+	}else main3d.renderer4.render();
+	main3d.render();
+}
+function Btn_Del(){
+	main3d.Del.setVisible(!main3d.Del.visible);
+	if(main3d.Del.updateMatrix == false){
+		main3d.Del.updateMatrix = true;
+		main3d.renderer4.render();
+		main3d.Del.updateMatrix = false;
+	}else main3d.renderer4.render();
+	main3d.render();
+}
+function Btn_SP(){
+	main3d.Point.setVisible(!main3d.Point.visible);
+	main3d.renderer4.render();
+	main3d.render();
+}
+		</script>
+
+</html>
+<!-- The code for tilling -- >
+//$
+/*var $line = [];
+N=5;
+for(var i = 0;i < N;i++){
+	var s = (1.01 + i/N) * Math.PI/3;
+	$line.push(new FOUR.Lattice(new Complex(Math.cos(s),Math.sin(s)),new Complex(1,0)));
+}
+M=5;
+for(var i = 0;i < M;i++){
+	var s = (1.01 - i/M) * Math.PI/3;
+	$line.push(new FOUR.Lattice(new Complex(Math.cos(s)-1,Math.sin(s)),new Complex(1,0)));
+}
+$line.push(new FOUR.Lattice(new Complex(0,0.01),new Complex(1,0)));
+for(var i = 0;i < M;i++){
+	var s = (3.01 - i/M) * Math.PI/3;
+	if(i!=0)
+	$line.push(new FOUR.Lattice(new Complex(Math.cos(s)+1,Math.sin(s)),new Complex(1,0)));
+}
+
+var $lines = [];
+for(var i = 0;i < N+M*2;i++){
+	$lines.push($line[i].getTaus());
+}
+this.graphics.lineWidth = 0.2;
+for(var i = 1;i < $lines[0].length-100;i++){
+	this.graphics.beginPath();
+	for(var j = 0;j < N+M*2;j++){
+		this.lineTo($lines[j][i],j == 0,'#00F',offsetU);
+	}
+	this.graphics.stroke();
+}
+for(var i = 1;i < $lines[0].length-100;i++){
+	this.graphics.beginPath();
+	for(var j = 0;j < N+M*2;j++){
+		this.lineTo($lines[j][i].applyMobius(new Cmplx.Mobius(new Complex(0,-1),-1,new Complex(0,-1),1)),j == 0,'#F00',offsetD);
+	}
+	this.graphics.stroke();
+}*/
+//$
+ -->

@@ -181,6 +181,9 @@ FOUR.Lattice.G2G3
 			this.g3 = new Complex(g3r,g3i);
 		}
 	}
+	FOUR.Lattice.G2G3.prototype.clone = function (){
+		return new FOUR.Lattice.G2G3(this.g2,this.g3)
+	}
 	FOUR.Lattice.G2G3.prototype.delta = function (){
 		var g23 = Cmplx.mul(this.g2,Cmplx.mul(this.g2,this.g2));
 		var g327 = Cmplx.mul(27,Cmplx.mul(this.g3,this.g3));
@@ -226,7 +229,7 @@ FOUR.Lattice.G2G3
 		);
 		return this;
 	}
-	FOUR.Lattice.G2G3.prototype.getPoint = function (method){
+	FOUR.Lattice.G2G3.prototype.getPoint = function (method){//5*S3R1
 		if(!method) method = "";
 		var radius = method.split('R')[1].split('D')[0];
 		var strarr = method.split('*');
@@ -245,6 +248,13 @@ FOUR.Lattice.G2G3
 			}//else te = new THREE.Vector4(te.g2.real,te.g2.imag,te.g3.real,te.g3.imag);
 		}
 		return new THREE.Vector4(te.g2.real,te.g2.imag,te.g3.real*ratio,te.g3.imag*ratio);
+	}
+	FOUR.Lattice.G2G3.prototype.getPoint2 = function (){//5*S3R1
+		te = this.clone();
+		te.g2 = Cmplx.div(te.g2,60);
+		te.g3 = Cmplx.div(te.g3,140);
+		te = te.normalizeToS3(1);
+		return new THREE.Vector4(te.g2.real*60,te.g2.imag*60,te.g3.real*140,te.g3.imag*140);
 	}
 }
 FOUR.Lattice.CreateClosedGeodesics = function (method,A){
@@ -281,6 +291,17 @@ FOUR.Lattice.CreateClosedGeodesics = function (method,A){
 	if(j != 0) Es.push(new FOUR.Edge(j-1,0));
 	return new FOUR.Geometry(Ps,Es);
 }
+FOUR.Lattice.CreateMobiusSurface = function (method){
+	var Ps = [];
+	for(var i=0.4;i<1.1;i+=0.04){
+		var d30 = Math.PI/120;
+		var L = new FOUR.Lattice(new Complex(i,0),new Complex(0,1/i));
+		var G2G3 = L.getG2G3().normalizeToS3();
+		for(var j=0;j<120;j++)
+			Ps.push(G2G3.applyRotation(d30).getPoint(method));
+	}
+	return new FOUR.Geometry(Ps);
+}
 FOUR.Lattice.CreateSeifertSurface = function (method,angle){
 	//Q = FOUR.Lattice.CreateSeifertSurface(LatticeMethod,0);
 	//main3d.scene4.add(new FOUR.Mesh(Q,new FOUR.FrameMaterial(0xFF00FF,null)))
@@ -303,7 +324,7 @@ FOUR.Lattice.CreateSeifertSurface = function (method,angle){
 				Ps.push(G2G3.applyRotation(d30).getPoint(method));
 			}
 		}
-	}else if(false){
+	}else if(true){
 		var SinRatio;
 		var S32,S23,s2,s3;
 		var p2 = Math.PI*2;

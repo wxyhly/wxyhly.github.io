@@ -33,7 +33,7 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
 <meta property="og:image" content="http://wxyhly.github.io/img/geometry6.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/geometry8.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/geometry5.gif">
-<meta property="og:updated_time" content="2016-04-23T14:39:10.004Z">
+<meta property="og:updated_time" content="2016-04-30T10:33:16.326Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="四维空间（二）：超立体几何">
 <meta name="twitter:description" content="#本文讨论的是纯空间上的几何！推荐视频《维度：数学漫步》对四维空间作初步了解，大家还可查看CFY的文章从超立方体说起 作为本文的补充。
@@ -181,7 +181,7 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
 <li>胞胞关系：平行（如胞D 与胞H） </li>
 <li>胞胞关系：相交（如胞D 与胞E交于面 4-5-6-13）</li>
 </ul>
-<p><img src="/img/geometry4.gif" alt=""><center>(与上面文字颜色对应)</center><br><a href="#index">返回目录</a></p>
+<p><img src="/img/geometry4.gif" alt="与上面文字颜色对应"><br><a href="#index">返回目录</a></p>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他<a name="cross"></a></h3><p>　　你可能会说我找的都是正方形面，没意思。好，现在我们找一些有趣的超立方体的截面和“斜着的面”的位置关系。</p>
 <h4 id="超立方体截面"><a href="#超立方体截面" class="headerlink" title="超立方体截面"></a>超立方体截面</h4><p>　　验证四点确定胞：在超立方体里任选四个不共面的顶点都可以确定一个胞。就像我们做立体几何体一样，有时这四个顶点组成的四面体胞并不是完整的超立方体中的截面（注意，这里是三维的面），我们可以“补形”，将其截胞补充出来。如点1 、点15 、点9 、点13（红色标出）所确定的胞（设为胞$\Pi$）就需要“补形”。我们注意到顶点9和顶点13是一组相对的顶点（即距离最远，为2）则线段9 13过超立方体体心（暂记为点O）。所以胞$\Pi$过点O。而点1与点O所在直线也该属于胞$\Pi$，又因为点1、点O、点5共线，所以点5也属于胞$\Pi$。类似地，我们可知，点15、点O、点11也共线，则点11也属于胞$\Pi$。（补出来的点用黑色标出）把这些点连起来（注意相对点不能相连，因为连成的体对角线在超立方体内部，不是截面的边界图形）。再计算一下我们发现，除了这些相对顶点之外，其余任何两点之间的距离均为根号二。这说明胞$\Pi$与超立方体八个胞都相交，得截超立方体为一<strong>正八面体胞</strong>。<br><img src="/img/octahedral.gif" alt=""> <img src="/img/geometry7.gif" alt=""><br>　　怎么确定你的形状补完了呢？如果你的所有截胞图形的面都在超立方体表面上——八个立方体胞内——即所有棱都在超立方体的24个正方形面内，说明补形才算完。<br>　　在超立方体里任选四个不共面的顶点可确定的胞的形状很多，这里我把它们在下图左边罗列了一部分：分别是（1）对角胞（如1-8-15-5）（2）正方体胞（如4-7-8-15）（3）截角产生的正四面体（如1-11-12-15）（4）最大截面正八面体（如1-7-9-13）（5）截棱产生的三棱柱（如1-2-4-7）<br><img src="/img/geometry6.gif" alt=""> <img src="/img/geometry8.gif" alt=""><br>　　但这里值得我们一提的是在超立方体里任选四个不共面的顶点确定的胞补形后补出的顶点可能不是超立方体的顶点，比如右上图点1、点9、点4、点15所确定的胞$\Gamma$。补出的三个顶点居然是<strong>棱的中点</strong>！具体补法：因线段4-9过胞C中心点（暂记为点P）过点P作平面平行于面1-8-15-10 交胞C于一正方形（粉红色标出），其中产生了R、S两点。则点R（线段2-11中点）、S（线段12-5中点）在胞$\Gamma$内。原因：∵RS∥线1 15，∴R、P、S、1、15共面。∵1、15、P在胞$\Gamma$内，∴R、S也在胞$\Gamma$内。而补出了R、S点，剩下的T点用做平行线的方法也就不难补出了。最后我们来观察一下这个完整的截胞。这是有着三个边长为$\sqrt5/2$的菱形，一个边长为$\sqrt2$的正三角形，和三个等腰三角形构成的七面体。有七个面，说明胞$\Gamma$与七个胞都相交，而有一个胞没有相交，那就是胞E(这里单独用黄色表示)<a name="slop"></a><br><a href="#index">返回目录</a></p>
 <h4 id="斜着的面"><a href="#斜着的面" class="headerlink" title="斜着的面"></a>斜着的面</h4><ul>
@@ -203,7 +203,7 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wxyhly.github.io/2016/04/09/geometry4ds/" data-id="cind8u3hc0001bkvl3x49ayor" class="article-share-link">Share</a>
+      <a data-url="http://wxyhly.github.io/2016/04/09/geometry4ds/" data-id="cino2piqs0004sovl7qbt1o7d" class="article-share-link">Share</a>
       
         <a href="http://wxyhly.github.io/2016/04/09/geometry4ds/#disqus_thread" class="article-comment-link">留言</a>
       
@@ -260,7 +260,7 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 15px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/系列文章/" style="font-size: 20px;">系列文章</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
+      <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 15px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/拓补学/" style="font-size: 10px;">拓补学</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/系列文章/" style="font-size: 20px;">系列文章</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
     </div>
   </div>
 
@@ -269,7 +269,7 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
     </div>
   </div>
 
@@ -280,6 +280,10 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/05/01/josleys4ds/">解释《维度》预告片</a>
+          </li>
         
           <li>
             <a href="/2016/04/23/bivector4ds/">四维空间（七）：N维的向量</a>
@@ -295,10 +299,6 @@ three.js绘制的超立方体的斜切胞（黑色是截胞）
         
           <li>
             <a href="/2016/04/16/fibration4ds/">四维空间（四）：纤维与超球</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/16/polyhedral4ds/">四维空间（三）：谈正多胞体</a>
           </li>
         
       </ul>
