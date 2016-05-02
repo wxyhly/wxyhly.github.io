@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/2/21/N_vector_positive_png_version.png">
 <meta property="og:image" content="http://wxyhly.github.io/\img\bivector1.gif">
 <meta property="og:image" content="http://wxyhly.github.io/\img\bivector2.gif">
-<meta property="og:updated_time" content="2016-04-23T14:50:21.334Z">
+<meta property="og:updated_time" content="2016-05-01T12:39:17.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="四维空间（七）：N维的向量">
 <meta name="twitter:description" content="图片来自en.wikipedia：多重向量几何意义#本系列文讨论的是纯空间上的几何，但本文将要涉及的k-向量的某些性质在四维时空中也成立（只是度规不一样）。本文对数学能力要求较高：将出现大量数学公式。k-向量在除相对论（时空）以外的物理上也有用武之地，详见CFY的文章角速度、轴矢量、2-矢量从另一个角度——物理学引入k-向量。
@@ -170,12 +170,12 @@
 <h3 id="与旋转矩阵的关系：生成元"><a href="#与旋转矩阵的关系：生成元" class="headerlink" title="与旋转矩阵的关系：生成元"></a>与旋转矩阵的关系：生成元</h3><p>　　下面我们要来具体看一下2-向量具体怎么表示旋转的。（以下资料均出自英文维基百科“四维欧几里得空间中的旋转”词条）物理上一般常用矩阵或张量形式表示2-向量。先介绍2-向量的矩阵形式：把$F=a\wedge b$写成 $F=ba^T-ab^T$（这里$a、b$是列向量），则我们得到反对称矩阵：$$F=\begin{pmatrix} 0 &amp;  F_{xy} &amp;   F_{xz} &amp;   F_{xw} \\     -F_{xy} &amp; 0 &amp;  F_{yz} &amp;   F_{yw} \\    -F_{xz} &amp;   -F_{yz} &amp; 0 &amp;  F_{zw} \\ -F_{xw} &amp;   -F_{yw} &amp;  F_{zw} &amp; 0 \end{pmatrix}$$<br>　　我们知道四维空间中的旋转变换在代数上只不过是行列式为1的正交矩阵$M$，而我们的二向量$F$就是正交矩阵的生成元！先把2-向量单位化，再计算神奇的<strong>矩阵指数</strong>运算$M=e^{F\theta}$，其中$\theta$是标量：旋转角度。具体算法见wikipedia矩阵指数（<a href="https://en.wikipedia.org/wiki/Matrix_exponential#Rotation_case" target="_blank" rel="external">Matrix exponential</a>）中“Rotation case”一节。有了这个算法，我们用在四维空间中2-向量表示旋转就像用四元数表示三维旋转那么方便。（四元数也能表示四维空间中旋转，但我还没搞懂）有了这些知识，写一个Jenn3d那样的鼠标控制在四维空间中滚动就没问题了。</p>
 <p>更多2-向量的内容可参看<a href="https://en.wikipedia.org/wiki/Exterior_algebra" target="_blank" rel="external">维基百科：外代数</a>。</p>
 <p><a href="#index">返回目录</a></p>
-<p> <a href="/2016/04/23/plus4ds/">上一篇</a>　 <a href="/categories/四维空间系列/">查看系列目录</a></p>
+<p> <a href="/2016/04/23/plus4ds/">上一篇</a>　 <a href="/categories/四维空间系列/">查看系列目录</a> <a href="/2016/05/02/lavie4ds/">下一篇</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wxyhly.github.io/2016/04/23/bivector4ds/" data-id="cino2piqc0001sovlfvghafpt" class="article-share-link">Share</a>
+      <a data-url="http://wxyhly.github.io/2016/04/23/bivector4ds/" data-id="cinpnxmsg00031svl7f1542y1" class="article-share-link">Share</a>
       
         <a href="http://wxyhly.github.io/2016/04/23/bivector4ds/#disqus_thread" class="article-comment-link">留言</a>
       
@@ -222,7 +222,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a><span class="category-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -232,7 +232,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 15px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/拓补学/" style="font-size: 10px;">拓补学</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/系列文章/" style="font-size: 20px;">系列文章</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自我描述/" style="font-size: 10px;">自我描述</a>
+      <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 15px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 10px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 10px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 10px;">拓补学</a> <a href="/tags/数学/" style="font-size: 17.5px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/物理/" style="font-size: 10px;">物理</a> <a href="/tags/系列文章/" style="font-size: 20px;">系列文章</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自我描述/" style="font-size: 12.5px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
     </div>
   </div>
 
@@ -241,7 +241,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -254,6 +254,14 @@
       <ul>
         
           <li>
+            <a href="/2016/05/02/lavie4ds/">四维空间（八）：参观四维国</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/02/jsloop/">自我描述的代码(in javascript)</a>
+          </li>
+        
+          <li>
             <a href="/2016/05/01/josleys4ds/">解释《维度》预告片</a>
           </li>
         
@@ -263,14 +271,6 @@
         
           <li>
             <a href="/2016/04/23/plus4ds/">四维空间（六）：更多几何体[下]</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/19/more4ds/">四维空间（五）：更多几何体[上]</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/16/fibration4ds/">四维空间（四）：纤维与超球</a>
           </li>
         
       </ul>
