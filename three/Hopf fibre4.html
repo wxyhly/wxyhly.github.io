@@ -1,134 +1,303 @@
-<!DOCTYPE html>
 <html>
-<meta http-equiv="content-type" content="text/html; charset=gb2312" />
-<head><script src="http://www.webglchina.cn/three.js/build/three.js"></script>
-<script src="Four.js"></script>
-<script>
 
-  var renderer;
-  function initThree() {
-    width = document.getElementById('canvas-frame').clientWidth;
-    height = document.getElementById('canvas-frame').clientHeight; 
-    renderer = new THREE.WebGLRenderer({antialias: true});
-    renderer.setSize(width, height );
-    document.getElementById('canvas-frame').appendChild(renderer.domElement);
-    renderer.setClearColorHex(0xFFFFFF, 1.0);
-  }
-  var camera;
-  function initCamera() { 
-    camera = new THREE.PerspectiveCamera( 45 , width / height , 1 , 10000 );
-    camera.position.x = 5;
-    camera.position.y = 2
-    camera.position.z = 1.4
-    camera.up.x = 0;
-    camera.up.y = 0;
-    camera.up.z = 1;
-    camera.lookAt( {x:0, y:0, z:0 } );
-  }
-  var scene;
-  function initScene() {   
-    scene = new THREE.Scene();
-  }
-  function initLight() { 
-    light = new THREE.DirectionalLight(0xffffff, 1.0, 0);
-    light.position.set(4,3,6);
-    scene.add(light);
-  }
-function threeStart() {
-	initThree();
-	initCamera();
-	initScene();
-	initLight();
-	initObject();
-	renderer.clear(); 
-	renderer.render(scene, camera);loop()
-}var triGeo;
-function D(x,y,z){
-triGeo.vertices.push(new THREE.Vector3(x,y,z));
-}
-function initObject(){
-triGeo = new THREE.Geometry();
-
-
-
-
-
-
-
-D( 1, 1, 1);
-D( 1, 1,-1);
-D( 1,-1, 1);
-D( 1,-1,-1);
-D(-1, 1, 1);
-D(-1, 1,-1);
-D(-1,-1, 1);
-D(-1,-1,-1);
-q=2.0;D( 0, 0, q);
-D( 0, 0,-q);
-D( 0, q, 0);
-D( 0,-q, 0);
-D( q, 0, 0);
-D(-q, 0, 0);
-addFace(triGeo,0,1,10);addFace(triGeo,0,1,12);
-addFace(triGeo,0,2,8);addFace(triGeo,0,2,12);
-addFace(triGeo,1,3,9);addFace(triGeo,1,3,12);
-addFace(triGeo,2,3,11);addFace(triGeo,2,3,12);
-
-addFace(triGeo,4,5,10);addFace(triGeo,4,5,13);
-addFace(triGeo,4,6,8);addFace(triGeo,4,6,13);
-addFace(triGeo,5,7,9);addFace(triGeo,5,7,13);
-addFace(triGeo,6,7,11);addFace(triGeo,6,7,13);
-
-addFace(triGeo,0,4,8);addFace(triGeo,0,4,10);
-addFace(triGeo,1,5,9);addFace(triGeo,1,5,10);
-addFace(triGeo,2,6,8);addFace(triGeo,2,6,11);
-addFace(triGeo,3,7,9);addFace(triGeo,3,7,11);
- triangle = new THREE.Mesh(triGeo, new THREE.MeshLambertMaterial({
-        color: 0x00FF00
-}));
-
-scene.add(triangle);
+	<head>
+		<meta charset="UTF-8" />
+		<title>4dNav</title>
+		<style>
+body {
+	margin: 0;
 }
 
-
-function addFace(obj,a,b,c){
-if(a>=0&&b>=0&&c>=0&&a<obj.vertices.length && b<obj.vertices.length && c<obj.vertices.length){
-var V=[obj.vertices[a],obj.vertices[b],obj.vertices[c]];
-var V1=[V[1].x-V[0].x,V[1].y-V[0].y,V[1].z-V[0].z]
-var V2=[V[2].x-V[0].x,V[2].y-V[0].y,V[2].z-V[0].z]
-	nx=V1[1]*V2[2]-V1[2]*V2[1]
-	ny=-V1[0]*V2[2]+V1[2]*V2[0]
-	nz=V1[0]*V2[1]-V1[1]*V2[0]
-obj.faces.push(new THREE.Face3(a,b,c,new THREE.Vector3(nx,ny,nz)));
-obj.faces.push(new THREE.Face3(a,c,b,new THREE.Vector3(-nx,-ny,-nz)));
+canvas {
+	width: 100%;
+	height: 100%
 }
 
+.panel {
+	
 }
-</script>
-<title>Torus Surface by WXY</title>
-<style type="text/css">
-div#canvas-frame{
-  width: 400px;
-  height: 400px;
+ul,li{list-style:none;}
+
+#tab{position: absolute;
+	right: 100px;
+	top: 5px;
+	z-index:88;
+            /* W3C syntax */}
+#tab .tabList ul li{
+	float:left;
+	background:#fefefe;
+	background:-moz-linear-gradient(top, #fefefe, #ededed);	
+	background:-o-linear-gradient(left top,left bottom, from(#fefefe), to(#ededed));
+	background:-webkit-gradient(linear,left top,left bottom, from(#fefefe), to(#ededed));
+	border:1px solid #ccc;
+	padding:5px 0;
+	width:50px;
+	text-align:center;
+	margin-left:-1px;
+	position:relative;
+	cursor:pointer;
 }
-</style>
-</head>
-<body style="background:#88AAEE" onload="threeStart();">
-<div style="background:#AACCEE">
-<h1>Hopf fibreration Viewer 1.0</h1>
-</div><br/>
+#tab .tabCon{
+	position:absolute;
+	left:5px;
+	top:32px;
+	width: 200px;
+	
+}
+#tab .tabCon div{
+	padding:10px;
+	position:absolute;
+	width: 150px;
+	opacity:0;
+	filter:alpha(opacity=0);
+	background-color: rgba(255, 255, 255, 0.6);
+	margin: 5px;
+	z-index:100;
+	-moz-border-radius: 5px;      
+	-webkit-border-radius: 5px; 
+	border-radius: 5px; 
+}
+#tab .tabList li.cur{
+	border-bottom:none;
+	background-color: rgba(255, 255, 255, 0.6);
+}
+#tab .tabCon div.cur{
+	opacity:1;
+	filter:alpha(opacity=100);
+	background-color: rgba(255, 255, 255, 0.6);
+}
+		</style>
+	</head>
 
-<table border="0"><tr><td style="background:#BBBBBB">
-<button disabled>��</button><button onClick="if(gl_z<Math.PI/2)gl_z+=Math.PI/20;updateRot3d()">��</button><button disabled>��</button><br>
-<button onClick="gl_x-=Math.PI/20;updateRot3d()">��</button><button disabled>��</button><button onClick="gl_x+=Math.PI/20;updateRot3d()">��</button><br>
-<button disabled>��</button><button onClick="if(gl_z>-Math.PI/2)gl_z-=Math.PI/20;updateRot3d()">��</button><button disabled>��</button><br>
+	<body onload="stard();">
+		<script src="http://threejs.org/build/three.js"></script>
+		<script src="four.js"></script>
 
-</td><td>
+		<script>
+			function stard() {
+				main3d = new init3d();
+				main4d = new init4d(main3d);
+				initObjects();
+				window.addEventListener('resize', onWindowResize, false);
+				main4d.camera4 = new FOUR.PerspectiveCamera(0, 2, true);
+				main4d.renderer4.camera4 = main4d.camera4;
+				main4d.controls = new FOUR.Controls(main3d.camera, main3d.renderer.domElement, main4d.camera4);
+				loadtab();
+				loop();
+			}
 
-<!------------------------------------------------->
-<!--                    3d                       -->
-<!------------------------------------------------->
-<div id="canvas-frame"></div></td></tr></table>
+			function init3d() {
+				var scene = new THREE.Scene();
+				var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+				camera.position.z = 2;
+				camera.position.x = 4;
+				camera.position.y = 3;
+				var renderer = new THREE.WebGLRenderer();
+				renderer.setClearColor(0x000000, 1.0);
+				renderer.setSize(window.innerWidth - 20, window.innerHeight - 20);
+				document.body.appendChild(renderer.domElement);
+				var light = new THREE.DirectionalLight(0xffffff, 1.0, 0);
+				light.position = camera.position;
+				scene.add(light);
+				this.scene = scene;
+				this.camera = camera;
+				this.light = light;
+				this.renderer = renderer;
+			}
 
-</body>
+			function init4d(obj3d) {
+				var camera4 = new FOUR.OrthographicCamera(0, 1, true);
+				var scene4 = new FOUR.Scene4(obj3d.scene);
+				var renderer4 = new FOUR.Renderer4(scene4, camera4);
+				var controls = new FOUR.Controls(obj3d.camera, obj3d.renderer.domElement, camera4);
+				this.camera4 = camera4;
+				this.scene4 = scene4;
+				this.renderer4 = renderer4;
+				this.controls = controls;
+			}
+
+			function initObjects() {
+				var Object4 = new FOUR.Mesh(
+					new FOUR.TesseractGeometry(1, 1, 1, 1),
+					new FOUR.FrameMaterial(0xAAAAAA, 0xFFCC99)
+				);
+				main4d.scene4.add(Object4);
+				main4d.Object4 = Object4;
+			}
+
+			function loop() {
+				main4d.controls.update();
+				main3d.light.position.set(
+					main3d.camera.position.x,
+					main3d.camera.position.y,
+					main3d.camera.position.z
+				);
+				main4d.renderer4.render();
+				main3d.renderer.render(main3d.scene, main3d.camera);
+				requestAnimationFrame(loop);
+			}
+
+			function onWindowResize(event) {
+				main3d.camera.aspect = window.innerWidth / window.innerHeight;
+				main3d.camera.updateProjectionMatrix();
+				main3d.renderer.setSize(window.innerWidth, window.innerHeight);
+			}
+			loadtab = function() {
+				var oDiv = document.getElementById("tab");
+				var oLi = oDiv.getElementsByTagName("div")[0].getElementsByTagName("li");
+				var aCon = oDiv.getElementsByTagName("div")[1].getElementsByTagName("div");
+				var timer = null;
+				for (var i = 0; i < oLi.length; i++) {
+					oLi[i].index = i;
+					oLi[i].onclick = function() {
+						show(this.index);
+					}
+				}
+				function show(a) {
+					index = a;
+					var alpha = 0;
+					for (var j = 0; j < oLi.length; j++) {
+						oLi[j].className = "";
+						aCon[j].className = "";
+						aCon[j].style.opacity = 0;
+						aCon[j].style.filter = "alpha(opacity=0)";
+						aCon[j].style.display = "none";
+					}
+					aCon[index].style.display = "block";
+					oLi[index].className = "cur";
+					clearInterval(timer);
+					timer = setInterval(function() {
+						alpha += 2;
+						alpha > 100 && (alpha = 100);
+						aCon[index].style.opacity = alpha / 100;
+						aCon[index].style.filter = "alpha(opacity=" + alpha + ")";
+						alpha == 100 && clearInterval(timer);
+					},
+					5)
+				}
+			}
+		</script>
+		<div id="tab">
+			<div class="tabList">
+			<ul>
+				<li class="cur">模型</li>
+				<li>摄像机</li>
+			</ul>
+			</div><div class="tabCon">
+			<div class="cur">
+				四维几何体：
+				<select id="obj4" onchange="changeObj4($('obj4').selectedIndex)">
+					<option>单形</option>
+					<option selected>超立方体</option>
+					<option>正16胞体</option>
+					<option>正24胞体</option>
+					<option>正120胞体</option>
+					<option>正600胞体</option>
+					<option disabled>-----------</option>
+					<option>直积形</option>
+					<option>柱形</option>
+					<option>锥形</option>
+					<option>旋转体</option>
+					<option disabled>-----------</option>
+					<option>环球</option>
+				</select>
+				<select id="obj4" onchange="changeObj4($('obj4').selectedIndex)">
+					<option>单形</option>
+				</select>
+			</div>
+			<div style="display: none;">
+				4D 摄像机类型：
+					<select id="UIc4" onchange="changeC4($('UIc4').selectedIndex)">
+					<option selected>透视投影摄像机</option>
+					<option>平行投影摄像机</option>
+					<option disabled>球极投影摄像机</option>
+				</select>
+				<span id="c4p">
+					原点距离：
+					<input type="text" id="c4pr" style="width:50px" value="2" onchange="changeDistance($('c4pr').value)"/>
+				</span><br>
+				棱半径：
+					<input type="text" id="rayonE" style="width:50px" value="0.5" onchange="changerayonE($('rayonE').value)"/><br>
+				顶点半径：
+					<input type="text" id="rayonV" style="width:50px" value="1" onchange="changerayonV($('rayonV').value)"/>
+			</div>
+		</div>
+		<script>
+			function changerayonE(v) {
+				main4d.scene4.remove(main4d.Object4);
+				main4d.scene4.CylinderR = v*0.1;
+				main4d.scene4.add(main4d.Object4);
+			}
+			function changerayonV(v) {
+				main4d.scene4.remove(main4d.Object4);
+				main4d.scene4.SphereR = v*0.1;
+				main4d.scene4.add(main4d.Object4);
+			}
+			function $(obj) {
+				return document.getElementById(obj);
+			}
+			function changeDistance (d){
+				main4d.camera4.distance = Number(d);
+			}
+			function changeC4(num) {
+				$("c4p").style.display = "none";
+				switch (num) {
+					case 0:
+						main4d.camera4 = new FOUR.PerspectiveCamera(0, Number($("c4pr").value));
+						$("c4p").style.display = "block";
+						break;
+					case 1:
+						main4d.camera4 = new FOUR.OrthographicCamera();
+						break;
+					case 2:
+						main4d.camera4 = new FOUR.SteroGhraphicCamera(0, Number($("c4pr").value), true);
+						break;
+				}
+				main4d.renderer4.camera4 = main4d.camera4;
+				main4d.controls = new FOUR.Controls(main3d.camera, main3d.renderer.domElement, main4d.camera4);
+			}
+			function changeObj4(num) {
+				main4d.scene4.remove(main4d.Object4);
+				var G;
+				switch (num) {
+					case 0:
+						G = new FOUR.SimplexGeometry(
+							new THREE.Vector4(1,1,1,Math.sqrt(86)/20),
+							new THREE.Vector4(1,-1,-1,Math.sqrt(86)/20),
+							new THREE.Vector4(-1,-1,1,Math.sqrt(86)/20),
+							new THREE.Vector4(-1,1,-1,Math.sqrt(86)/20),
+							new THREE.Vector4(0,0,0,-Math.sqrt(86)/5)
+						)
+						break;
+					case 1:
+						G = new FOUR.TesseractGeometry(0.5,0.5,0.5,0.5);
+						break;
+					case 2:
+						G = new FOUR.HexadecachoronGeometry(1);
+						break;
+					case 3:
+						G = new FOUR.IcositetrachoronGeometry(1);
+						break;
+					case 4:
+						G = new FOUR.HecatonicosachoronGeometry(1);
+						break;
+					case 5:
+						G = new FOUR.HexacosichoronGeometry(1);
+						break;
+					case 7:
+						G = new FOUR.HexacosichoronGeometry(1);
+						break;
+					case 9:
+						
+				}
+				var Object4 = new FOUR.Mesh(
+					G,
+					new FOUR.FrameMaterial(0xAAAAAA, 0xFFCC99)
+				);
+				main4d.scene4.add(Object4);
+				main4d.Object4 = Object4;
+			}
+		</script>
+	</body>
+
 </html>

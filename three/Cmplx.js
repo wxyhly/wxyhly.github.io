@@ -160,8 +160,14 @@ Cmplx
 		if(Cmplx.isCmplx(z))return z.imag*z.imag+z.real*z.real;
 		return NaN;
 	}
+	Cmplx.sqrlength = function (z){
+		return Cmplx.sqrlength(z);
+	}
 	Cmplx.abs = function (z){
 		return Math.sqrt(Cmplx.sqrabs(z));
+	}
+	Cmplx.length = function (z){
+		return Cmplx.length(z);
 	}
 	Cmplx.arg = function (z){
 		if(typeof z == 'number') return (z>=0)?0:Math.PI;
@@ -358,8 +364,8 @@ Cmplx.Mobius
 	Cmplx.Mobius.prototype.inverse = function (){
 		var e = this.elements;
 		var a = e[3];
-		var b = -e[1];
-		var c = -e[2];
+		var b = Cmplx.sub(0,e[1]);
+		var c = Cmplx.sub(0,e[2]);
 		var d = e[0];
 		return new Cmplx.Mobius(a,b,c,d);
 	}
