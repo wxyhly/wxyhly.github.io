@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="client-js ve-not-available"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html dir="ltr" class="client-js ve-not-available"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <title>低趣百科，低趣的百科全书</title>
-<script src="datas.js"></script>
+<script src="http://115.159.100.67:8000/output/datas.js"></script>
 <script src="wikiparser.js"></script>
 <script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );
 function Imager(str){
@@ -10,12 +10,13 @@ function Imager(str){
 	'<img src="img/'+str+'" onload="document.getElementById(\'imgw\').innerHTML=this.width;document.getElementById(\'imgh\').innerHTML=this.height;">'
 	+'</div><hr><p>原始图片尺寸：<span id="imgw">0</span>×<span id="imgh">0</span>像素<br><p>文件来源：<br>来自低趣百科，低趣的百科全书';
 }
-function Rechercher(str,f){
+function Rechercher(str,f,isSource){
 	if(!f)
 	str = unescape(str);
+	
 	var ctxt = "很抱歉，您要找的词条<b>“"+str+"”</b>在低趣百科词条中不存在。";
 	var pre = '';
-	var Qu=ReDir[str.toLowerCase()];
+	var Qu = pDB.ReDir[str.toLowerCase()];
 	if(typeof Qu == "string" ){
 		var pre = "<p><sup>重定向自<i>"+str+"</i></sup></p>";
 		str = Qu;
@@ -29,34 +30,43 @@ function Rechercher(str,f){
 		return 0;
 	}
 	
-	if(typeof DATAs[str.toLowerCase()] == "string"){
-		ctxt = DATAs[str.toLowerCase()];
-		//wikiParser.a.
+	if(typeof pDB.DATAs[str.toLowerCase()] == "string"){
+		ctxt = pDB.DATAs[str.toLowerCase()];
+		if(isSource){
+			document.getElementById('ca-view').innerHTML='<span><a href="index.html?search='+str+'&go=Go">读</a></span>';
+			document.getElementById('ca-view').className="";
+			document.getElementById('ca-viewsource').className="selected";
+			document.getElementById('ca-viewsource').innerHTML='<span><a href="javascript:void(0)">查看源</a></span>';
+			document.getElementById('bodyContent').innerHTML='<div><h1 id="sss" class="mw-headline"><b>查看源：'+str+'</b></h1>'+
+		pre+'<textarea width="100%" rows="25">'+ctxt
+		+'</textarea></div>';
+			return 0;
+		}
 		var parser = new wikiParser.Parser();
+		parser.options.queryUrl="";
+		parser.options.queryObj="search";
+		parser.namespaces.File.options.queryUrl="index.html";
+		parser.namespaces.File.options.srcPrefix="img/";
+		parser.namespaces.File.options.outterDivClass="tright";
+		parser.namespaces.File.options.innerDivClass="thumbinner";
+		parser.namespaces.File.options.captionClass="thumbcaption";
 		ctxt = parser.parse(ctxt);
-		//ctxt = ctxt.replace(/\[\[/g,'<a onclick="this.href=\'index.html?search=\'+this.innerHTML" href="javascript:void(0)">');
-		//ctxt = ctxt.replace(/\]\]/g,'</a>');
 	}
+	
 	document.getElementById('bodyContent').innerHTML='<div><h1 id="sss" class="mw-headline"><b>'+str+'</b></h1>'+
 	pre+ctxt
 	+'</div>';
+	STR = str;
 }
 </script>
 
 <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?debug=false&lang=en&modules=ext.gadget.DRN-wizard%2CReferenceTooltips%2CWatchlistBase%2CWatchlistGreenIndicators%2Ccharinsert%2Cfeatured-articles-links%2CrefToolbar%2Cswitcher%2Cteahouse%7Cext.tmh.thumbnail.styles%7Cext.uls.nojs%7Cext.visualEditor.desktopArticleTarget.noscript%7Cext.wikimediaBadges%7Cmediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.raggett%2CsectionAnchor%7Cmediawiki.skinning.interface%7Cskins.vector.styles&only=styles&skin=vector">
 <style>
-
-</style><style>
-</style><style>
 .nonli{padding: 0 px; margin: 0 px;cursor:default}
-</style><meta name="ResourceLoaderDynamicStyles" content="">
+</style>
 <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?debug=false&lang=en&modules=site&only=styles&skin=vector">
 <style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
-<script async="" src="./Wikipedia, the free encyclopedia_files/load.php"></script>
-<meta name="generator" content="MediaWiki 1.27.0-wmf.9">
-
-<!--[if lt IE 7]><style type="text/css">body{behavior:url("/w/static/1.27.0-wmf.9/skins/Vector/csshover.min.htc")}</style><![endif]-->
-<script src="./Wikipedia, the free encyclopedia_files/load(1).php"></script></head>
+</head>
 <body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Main_Page skin-vector action-view">
 		<div id="mw-page-base" class="noprint"></div>
 		<div id="mw-head-base" class="noprint"></div>
@@ -239,7 +249,19 @@ function Rechercher(str,f){
 </tbody></table>
 </div>					
 							</div>
-		</div>
+							
+		</div>					<div id="footer" role="contentinfo" lang="zh-CN" dir="ltr">
+							<ul id="footer-info">
+											<li id="footer-info-copyright">本站的全部文字在<a rel="license" href="http://zh.wikipedia.org/zh-cn/Wikipedia%3ACC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" title="Wikipedia:CC-BY-SA-3.0协议文本">知识共享 署名-相同方式共享 3.0协议</a><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.zh" style="display:none;"></a>之条款下提供，附加条款亦可能应用（请参阅<a href="http://wikimediafoundation.org/wiki/%E4%BD%BF%E7%94%A8%E6%9D%A1%E6%AC%BE">使用条款</a>）。<br>
+basinterêtwiki®和低趣百科标志是<a href="http://wikimediafoundation.org">低趣媒体基金会</a>的注册商标；低趣™是低趣媒体基金会的商标。<br>低趣媒体基金会是在大西洋海底登记的<a href="index.html?search=R7C72&go=GO">R7C72</a>(川)(A)非<a href="index.html?search=科教&go=GO">科教</a>、低趣机构。<br></li>
+									</ul>
+									<ul id="footer-icons" class="noprint">
+											<li id="footer-copyrightico">
+							<a href="https://wikimediafoundation.org/"><img src="https://zh.wikipedia.org/static/images/wikimedia-button.png" srcset="/static/images/wikimedia-button-1.5x.png 1.5x, /static/images/wikimedia-button-2x.png 2x" width="88" height="31" alt="Wikimedia Foundation"></a>						</li>
+											<li id="footer-poweredbyico">
+							<a href="https://www.mediawiki.org/"><img src="https://zh.wikipedia.org/w/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/w/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /w/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"></a>						</li>
+									</ul>
+									</div>
 		<div id="mw-navigation">
 			<h2>Navigation menu</h2>
 
@@ -247,7 +269,7 @@ function Rechercher(str,f){
 									<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
 						<h3 id="p-personal-label">Personal tools</h3>
 						<ul>
-							<li id="pt-anonuserpage">未登录</li><li id="pt-anontalk"><a href="http://wxyhly.github.io" title="Discussion about edits from this IP address [alt-shift-n]" accesskey="n">讨论</a></li><li id="pt-anoncontribs"><a href="http://hadron67.github.io" title="A list of edits made from this IP address [alt-shift-y]" accesskey="y">贡献</a></li><li id="pt-createaccount"><a href="javascript:alert('您没有计祘尺或您的计祘尺版本过低，无法注册！')" title="You are encouraged to create an account and log in; however, it is not mandatory">注册</a></li><li id="pt-login"><a href="javascript:alert('您没有计祘尺或您的计祘尺版本过低，无法登录！')" title="You&#39;re encouraged to log in; however, it&#39;s not mandatory. [alt-shift-o]" accesskey="o">登录</a></li>						</ul>
+							<li id="pt-anonuserpage">未登录</li><li id="pt-anontalk"><a href="http://wxyhly.github.io" title="Discussion about edits from this IP address [alt-shift-n]" accesskey="n">讨论</a></li><li id="pt-anoncontribs"><a href="http://hadron67.github.io" title="A list of edits made from this IP address [alt-shift-y]" accesskey="y">贡献</a></li><li id="pt-createaccount"><a href="javascript:alert('您没有计祘尺或您的计祘尺版本过低，无法注册！')" title="You are encouraged to create an account and log in; however, it is not mandatory">注册</a></li><li id="pt-login"><a href="http://115.159.100.67:8000/login.html" title="You&#39;re encouraged to log in; however, it&#39;s not mandatory. [alt-shift-o]" accesskey="o">登录</a></li>						</ul>
 					</div>
 									<div id="left-navigation">
 										<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
@@ -264,7 +286,7 @@ function Rechercher(str,f){
 						<h3 id="p-views-label">查</h3>
 						<ul>
 															<li id="ca-view" class="selected"><span><a href="javascript:void(0)">读</a></span></li>
-															<li id="ca-viewsource"><span><a href="javascript:alert('源源源源源源源源源源源源源源源源源源源源源源源源源源源源源源源源源源')" title="This page is protected.
+															<li id="ca-viewsource"><span><a href="javascript:window.location.href='index.html?source='+STR" title="This page is protected.
 You can view its source [alt-shift-e]" accesskey="e">查看源</a></span></li>
 															<li id="ca-history" class="collapsible"><span><a href="javascript:alert('查无此史!')" title="Past revisions of this page [alt-shift-h]" accesskey="h">历史</a></span></li>
 													</ul>
@@ -367,20 +389,20 @@ function autoComplete(keymot) {
 		liHTML="";
 	}else{
 		arrl = [];
-		for ( var p in ReDir ){
+		for ( var p in pDB.ReDir ){
 			if (p.indexOf(keymot) != -1){
-				if(typeof ReDir[p] == "object")arrl.push(p);
-				else arrl.push(ReDir[p]);
+				if(typeof pDB.ReDir[p] == "object")arrl.push(p);
+				else arrl.push(pDB.ReDir[p]);
 			}
 		}
-		for ( var p in DATAs ){
+		for ( var p in pDB.DATAs ){
 			if (p.indexOf(keymot) != -1){
 				arrl.push(p);
 			}
 		}
 		arrl=unique(arrl);
 		for(var i=0;i<arrl.length;i++){
-			liHTML+="<div class=\"nonli\" onmouseover=\"selOver(this,"+count+")\" onmouseout=\"selOut(this,"+count+")\" id=\"li_"+(count++)+"\" onclick=\"document.getElementById('searchInput').value = '"
+			liHTML+="<div class=\"nonli\" onmouseover=\"selOver(this,"+count+")\" onmouseout=\"selOut(this,"+count+")\" id=\"li_"+(count++)+"\" onclick=\"document.getElementById('searchInput').focus();document.getElementById('searchInput').value = '"
 				+arrl[i].replace(/\'/g,"\\'")+"';document.getElementById('ulItems').style.display = 'none';currentSelIndex = -1;oldSelIndex = -1;\">"+arrl[i]+"</div>";
 		}
 	}
@@ -409,6 +431,7 @@ function selOut(obj,count){
 						</form>
 					</div>
 									</div>
+									
 			</div>
 			<div id="mw-panel">
 				<div id="p-logo" role="banner"><a class="mw-wiki-logo" style="background-image:url(img/logo.png)" href="index.html" title="Visit the main page"></a></div>
@@ -437,6 +460,7 @@ function selOut(obj,count){
 						<li class="interlanguage-link interwiki-simple"><a href="https://simple.wikipedia.org/wiki/" title="Simple English" lang="simple" hreflang="simple">Simple English</a></li><li class="interlanguage-link interwiki-simple"><a href="https://simple.wikipedia.org/wiki/" title="Simple English" lang="simple" hreflang="simple">English</a></li><li class="interlanguage-link interwiki-fr"><a href="https://fr.wikipedia.org/wiki/" title="French" lang="fr" hreflang="fr">Français</a></li><li class="interlanguage-link interwiki-ja"><a href="https://ja.wikipedia.org/wiki/" title="Japanese" lang="ja" hreflang="ja">日本語</a></li><li class="interlanguage-link interwiki-pt"><a href="https://pt.wikipedia.org/wiki/" title="Portuguese" lang="pt" hreflang="pt">Português</a></li><li class="interlanguage-link interwiki-ro"><a href="https://ro.wikipedia.org/wiki/" title="Romanian" lang="ro" hreflang="ro">Română</a></li><li class="interlanguage-link interwiki-ru"><a href="https://ru.wikipedia.org/wiki/" title="Russian" lang="ru" hreflang="ru">Русский</a></li><li class="interlanguage-link interwiki-zh"><a href="https://zh.wikipedia.org/wiki/" title="Chinese" lang="zh" hreflang="zh">中文</a></li>					<li id="interwiki-completelist"><a href="https://meta.wikimedia.org/wiki/List_of_Wikipedias" title="Complete list of Wikipedias">完整列表</a></li></ul>
 							</div>
 		</div>
+
 				</div>
 		</div>
 		<script> var url=location.search;
@@ -450,6 +474,18 @@ function selOut(obj,count){
 		{
 			Request[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
 		}
+		if(typeof Request["source"]!="undefined" && Request["source"]!=""){
+			var r=(Request["source"]).replace(/\+/g," ").replace(/(^\s*)|(\s*$)/g,"").replace(/%40/g,"@");
+			document.getElementById('ca-view').innerHTML='<span><a href="index.html?search='+str+'&go=Go">读</a></span>';
+			document.getElementById('ca-view').className="";
+			document.getElementById('ca-viewsource').className="selected";
+			document.getElementById('ca-viewsource').innerHTML='<span><a href="javascript:void(0)">查看源</a></span>';
+			if(decodeURI(r)=="viewjson"){
+				document.getElementById('bodyContent').innerHTML='<div><h1 id="sss" class="mw-headline"><b>查看源：datas.json</b></h1><textarea width="100%" rows="25">'+JSON.stringify(pDB).replace(/\n/g,"\\n");
+			+'</textarea></div>';
+			}else
+			Rechercher(decodeURI(r),true,true);
+		}else 
 		if(typeof Request["search"]!="undefined" && Request["search"]!=""){
 			var r=(Request["search"]).replace(/\+/g," ").replace(/(^\s*)|(\s*$)/g,"").replace(/%40/g,"@");
 			if(typeof Request["go"]!="undefined")
@@ -464,4 +500,5 @@ function selOut(obj,count){
     }
 	document.getElementById('bodyContent').style.display="block";
 	</script>
+
 </body></html>
