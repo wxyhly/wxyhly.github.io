@@ -4,17 +4,19 @@
 <title>低趣百科，低趣的百科全书</title>
 <script src="http://115.159.100.67:8000/output/datas.js"></script>
 <script src="wikiparser.js"></script>
-<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );
+<script>
+function $(a){return document.getElementById(a);}
+document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );
 function Imager(str){
-	document.getElementById('bodyContent').innerHTML='<div><h1 id="sss" class="mw-headline" lang="en"><b>文件：'+str+'</b></h1><p><sup>维基共享资源，媒体文件资料库</sup></p><br>'+
-	'<img src="img/'+str+'" onload="document.getElementById(\'imgw\').innerHTML=this.width;document.getElementById(\'imgh\').innerHTML=this.height;">'
+	$('bodyContent').innerHTML='<div><h1 id="sss" class="mw-headline" lang="en"><b>文件：'+str+'</b></h1><p><sup>维基共享资源，媒体文件资料库</sup></p><br>'+
+	'<img src="img/'+str+'" onload="$(\'imgw\').innerHTML=this.width;$(\'imgh\').innerHTML=this.height;">'
 	+'</div><hr><p>原始图片尺寸：<span id="imgw">0</span>×<span id="imgh">0</span>像素<br><p>文件来源：<br>来自低趣百科，低趣的百科全书';
 }
 function Rechercher(str,f,isSource){
 	if(!f)
 	str = unescape(str);
 	
-	var ctxt = "很抱歉，您要找的词条<b>“"+str+"”</b>在低趣百科词条中不存在。";
+	var ctxt = "很抱歉，您要找的词条<b>“"+str+"”</b>在低趣百科词条中不存在。<br>您可以：<ul><li><a href='http://115.159.100.67:8000/login.html'>登录并创建词条“<span style='color:#F00'><b>"+str+"</b></span>”</a></li><li>或联系<a href='index.html?search=低趣人&go=Go'>低趣人</a>帮您创建您所希望看到的词条；</li></ul><br>但应检查下面的搜索结果，看看是否有相同内容的页面已被创建。<hr>";
 	var pre = '';
 	var Qu = pDB.ReDir[str.toLowerCase()];
 	if(typeof Qu == "string" ){
@@ -26,20 +28,33 @@ function Rechercher(str,f,isSource){
 		for(var k=0; k<Qu.length; k++){
 			pre+="<p>"+Qu[k][0]+"：<a href='index.html?search="+escape(Qu[k][1])+"'>"+Qu[k][1]+"</a></p>";
 		}
-		document.getElementById('bodyContent').innerHTML=pre;
+		$('bodyContent').innerHTML=pre;
 		return 0;
 	}
-	
+	var trouver = false;
 	if(typeof pDB.DATAs[str.toLowerCase()] == "string"){
 		ctxt = pDB.DATAs[str.toLowerCase()];
+		str = str.toLowerCase();
+		trouver = true;
+	}else{
+		for ( var p in pDB.DATAs ){
+			if(str.toLowerCase() == p.toLowerCase()){
+				ctxt = pDB.DATAs[p];
+				str = p;
+				trouver = true;
+				break;
+			}
+		}
+	}
+	if( trouver ){
 		if(isSource){
-			document.getElementById('ca-view').innerHTML='<span><a href="index.html?search='+str+'&go=Go">读</a></span>';
-			document.getElementById('ca-view').className="";
-			document.getElementById('ca-viewsource').className="selected";
-			document.getElementById('ca-viewsource').innerHTML='<span><a href="javascript:void(0)">查看源</a></span>';
-			document.getElementById('bodyContent').innerHTML='<div><h1 id="sss" class="mw-headline"><b>查看源：'+str+'</b></h1>'+
+			$('ca-view').innerHTML='<span><a href="index.html?search='+str+'&go=Go">读</a></span>';
+			$('ca-view').className="";
+			$('ca-viewsource').className="selected";
+			$('ca-viewsource').innerHTML='<span><a href="javascript:void(0)">查看源</a></span>';
+			$('bodyContent').innerHTML='<div><h1 id="sss" class="mw-headline"><b>查看源：'+str+'</b></h1>'+
 		pre+'<textarea width="100%" rows="25">'+ctxt
-		+'</textarea></div>';
+		+'</textarea><hr>提示：请<a target="_blank" href=\'http://115.159.100.67:8000/login.html\'>登录</a>编辑词条。</div>';
 			return 0;
 		}
 		var parser = new wikiParser.Parser();
@@ -51,12 +66,46 @@ function Rechercher(str,f,isSource){
 		parser.namespaces.File.options.innerDivClass="thumbinner";
 		parser.namespaces.File.options.captionClass="thumbcaption";
 		ctxt = parser.parse(ctxt);
+		$('bodyContent').innerHTML='<div><h1 id="sss" class="mw-headline"><b>'+str+'</b></h1>'+
+		pre+ctxt
+		+'</div>';
+		STR = str;
+	}else{
+		if(str.replace(/\s/g,"")==""){
+			$('bodyContent').innerHTML='<div><h1 id="sss" class="mw-headline"><b>请输入查询内容！！</b></h1>锁尔这种低趣行为！</div>';
+			return 0;
+		}
+		arrl = [];
+		for ( var p in pDB.DATAs ){
+			if (p.toLowerCase().indexOf(str.toLowerCase()) != -1){
+				arrl.push(p);
+			}
+		}
+		for ( var p in pDB.ReDir ){
+			if (p.toLowerCase().indexOf(str.toLowerCase()) != -1){
+				if(typeof pDB.ReDir[p] == "object")arrl.push(p);
+				else arrl.push([pDB.ReDir[p],p]);
+			}
+		}
+		arrl=unique(arrl);
+		resultat = "";
+		for(var i=0;i<arrl.length;i++){
+			if(typeof arrl[i] == "string"){
+				resultat+="<p><a href='index.html?search="+arrl[i].replace(/\'/g,"\\'")+"&go=Go'>"+arrl[i]+"</a></p>";
+			}else{
+				resultat+="<p><a href='index.html?search="+arrl[i][1].replace(/\'/g,"\\'")+"&go=Go'>"+arrl[i][1]+"</a><span style='color:#A99'> - (重定向至 "+
+				arrl[i][0]+")</span></p>";
+			}
+		}
+		if(resultat==""){
+			resultat = "找不到和查询相匹配的结果。";
+		}
+		ctxt += resultat+"<br><p>共 "+arrl.length+" 条记录</p>";
+		STR = str;
+		$('bodyContent').innerHTML='<div><h1 id="sss" class="mw-headline"><b>搜索结果：'+str+'</b></h1>'+ctxt
+		+'</div>';
 	}
 	
-	document.getElementById('bodyContent').innerHTML='<div><h1 id="sss" class="mw-headline"><b>'+str+'</b></h1>'+
-	pre+ctxt
-	+'</div>';
-	STR = str;
 }
 </script>
 
@@ -78,20 +127,16 @@ function Rechercher(str,f,isSource){
 </div>
 			<h1 id="firstHeading" class="firstHeading" lang="en">首页</h1>
 									<div id="bodyContent" class="mw-body-content" style="display:none">
-									<div id="siteSub">From Wikipedia, the free encyclopedia</div>
-								<div id="contentSub"></div>
-												<div id="jump-to-nav" class="mw-jump">
-					Jump to:					<a href="https://en.wikipedia.org/wiki/Main_Page#mw-head">navigation</a>, 					<a href="https://en.wikipedia.org/wiki/Main_Page#p-search">搜索</a>
-				</div>
+									
 				
-				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><table id="mp-topbanner" style="width:100%; background:#f9f9f9; margin:1.2em 0 6px 0; border:1px solid #ddd;">
+				<div id="mw-content-text" dir="ltr" class="mw-content-ltr"><table id="mp-topbanner" style="width:100%; background:#f9f9f9; margin:1.2em 0 6px 0; border:1px solid #ddd;">
 
 <tbody><tr>
 <td style="width:61%; color:#000;">
 <table style="width:280px; border:none; background:none;">
 <tbody><tr>
 <td style="width:280px; text-align:center; white-space:nowrap; color:#000;">
-<div style="font-size:162%; border:none; margin:0; padding:.1em; color:#000;">欢迎来到<a href="https://en.wikipedia.org/wiki/Wikipedia" title="Wikipedia">低趣百科</a>，</div>
+<div style="font-size:162%; border:none; margin:0; padding:.1em; color:#000;">欢迎来到<a href="index.html?search=低趣百科&go=GO" title="bas-interêtwiki">低趣百科</a>，</div>
 <div style="top:+0.2em; font-size:95%;">一部人人可编辑的<a href="https://en.wikipedia.org/wiki/Free_content" title="Free content">低趣</a>的<a href="https://en.wikipedia.org/wiki/Encyclopedia" title="Encyclopedia">百科全书</a>。</div>
 </div>
 </td>
@@ -269,7 +314,7 @@ basinterêtwiki®和低趣百科标志是<a href="http://wikimediafoundation.org
 									<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
 						<h3 id="p-personal-label">Personal tools</h3>
 						<ul>
-							<li id="pt-anonuserpage">未登录</li><li id="pt-anontalk"><a href="http://wxyhly.github.io" title="Discussion about edits from this IP address [alt-shift-n]" accesskey="n">讨论</a></li><li id="pt-anoncontribs"><a href="http://hadron67.github.io" title="A list of edits made from this IP address [alt-shift-y]" accesskey="y">贡献</a></li><li id="pt-createaccount"><a href="javascript:alert('您没有计祘尺或您的计祘尺版本过低，无法注册！')" title="You are encouraged to create an account and log in; however, it is not mandatory">注册</a></li><li id="pt-login"><a href="http://115.159.100.67:8000/login.html" title="You&#39;re encouraged to log in; however, it&#39;s not mandatory. [alt-shift-o]" accesskey="o">登录</a></li>						</ul>
+							<li id="pt-anonuserpage">未登录</li><li id="pt-anontalk"><a target="_blank" href="http://wxyhly.github.io" title="Discussion about basinterêt with WXY - a basinterêteur" accesskey="n">讨论</a></li><li id="pt-anoncontribs"><a target="_blank" href="http://hadron67.github.io" title="merci à contribution d'hadron(cfy)" accesskey="y">贡献</a></li><li id="pt-createaccount"><a href="javascript:alert('您没有计祘尺或您的计祘尺版本过低，无法注册！')" title="You are encouraged to create an account and log in; however, you don't have slide rule">注册</a></li><li id="pt-login"><a href="http://115.159.100.67:8000/login.html" target="_blank" title="You&#39;re encouraged to log in; however, it&#39;s not mandatory. [alt-shift-o]" accesskey="o">登录</a></li>						</ul>
 					</div>
 									<div id="left-navigation">
 										<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
@@ -308,12 +353,12 @@ var currentSelIndex = -1;
 var oldSelIndex = -1;
 function selectItem(keyword, event) {
 	if (keyword == "") {
-		document.getElementById("ulItems").style.display = "none";
+		$("ulItems").style.display = "none";
 		return;
 	}
 	else {
-		var liLength = document.getElementById("ulItems").getElementsByTagName("div").length; //获取列表数量
-		if ((event.keyCode == 38 || event.keyCode == 40) && document.getElementById("ulItems").style.display != "none") {
+		var liLength = $("ulItems").getElementsByTagName("div").length; //获取列表数量
+		if ((event.keyCode == 38 || event.keyCode == 40) && $("ulItems").style.display != "none") {
 			if (liLength > 0) {
 				oldSelIndex = currentSelIndex;
 				//上移
@@ -328,11 +373,11 @@ function selectItem(keyword, event) {
 						}
 					}
 					if (currentSelIndex != -1) {
-						document.getElementById("li_" + currentSelIndex).style.backgroundColor = "#cbf3fd";
-						document.getElementById("searchInput").value = document.getElementById("li_" + currentSelIndex).innerText;
+						$("li_" + currentSelIndex).style.backgroundColor = "#cbf3fd";
+						$("searchInput").value = $("li_value_" + currentSelIndex).innerHTML;
 					}
 					if (oldSelIndex != -1) {
-						document.getElementById("li_" + oldSelIndex).style.backgroundColor = "#ffffff";
+						$("li_" + oldSelIndex).style.backgroundColor = "#ffffff";
 					}
 				}
 				//下移
@@ -347,35 +392,43 @@ function selectItem(keyword, event) {
 						}
 					}
 					if (currentSelIndex != -1) {
-						document.getElementById("li_" + currentSelIndex).style.backgroundColor = "#cbf3fd";
-						document.getElementById("searchInput").value = document.getElementById("li_" + currentSelIndex).innerText;
+						$("li_" + currentSelIndex).style.backgroundColor = "#cbf3fd";
+						$("searchInput").value = $("li_value_" + currentSelIndex).innerHTML;
 					}
 					if (oldSelIndex != -1) {
-						document.getElementById("li_" + oldSelIndex).style.backgroundColor = "#ffffff";
+						$("li_" + oldSelIndex).style.backgroundColor = "#ffffff";
 					}
 				}
 			}
 		}
 		else if (event.keyCode == 13) {
-			if (document.getElementById("ulItems").style.display != "none" && liLength > 0 && currentSelIndex != -1) {
-				document.getElementById("searchInput").value = document.getElementById("li_" + currentSelIndex).innerText;
-				document.getElementById("ulItems").style.display = "none";
+			if ($("ulItems").style.display != "none" && liLength > 0 && currentSelIndex != -1) {
+				$("searchInput").value = $("li_value_" + currentSelIndex).innerHTML;
+				$("ulItems").style.display = "none";
 				currentSelIndex = -1;
 				oldSelIndex = -1;
 			}
 		}
 		else {
-			autoComplete(keyword);
-			document.getElementById("ulItems").style.display = "";
-			currentSelIndex = -1;
-			oldSelIndex = -1;
+			if(autoComplete(keyword)){
+				$("ulItems").style.display = "";
+				currentSelIndex = -1;
+				oldSelIndex = -1;
+			}else{
+				$("ulItems").style.display = "none";
+			}
 		}
 	}            
 }
 function unique(arr) {
     var result = [], hash = {};
     for (var i = 0, elem; (elem = arr[i]) != null; i++) {
-        if (!hash[elem]) {
+		if(typeof elem == 'object'){
+			if (!hash[elem[0]]) {
+				result.push(elem);
+				hash[elem[0]] = true;
+			}
+		}else if (!hash[elem]) {
             result.push(elem);
             hash[elem] = true;
         }
@@ -384,41 +437,53 @@ function unique(arr) {
 }
 function autoComplete(keymot) {
 	var liHTML="";var count=0;
+	var ShowNumber = 15;//show max number of autoComplete items
 	keymot=keymot.toLowerCase();
-	if(keymot==""||keymot==" "||keymot=="e"||keymot=="o"||keymot=="1"||keymot=="2"||keymot=="3"||keymot=="4"||keymot=="5"||keymot=="6"||keymot=="8"||keymot=="9"||keymot=="0"){
+	if(keymot==""||keymot==" "){
 		liHTML="";
 	}else{
 		arrl = [];
-		for ( var p in pDB.ReDir ){
-			if (p.indexOf(keymot) != -1){
-				if(typeof pDB.ReDir[p] == "object")arrl.push(p);
-				else arrl.push(pDB.ReDir[p]);
-			}
-		}
 		for ( var p in pDB.DATAs ){
-			if (p.indexOf(keymot) != -1){
+			if (p.toLowerCase().indexOf(keymot) != -1){
 				arrl.push(p);
 			}
 		}
+		for ( var p in pDB.ReDir ){
+			if (p.toLowerCase().indexOf(keymot) != -1){
+				if(typeof pDB.ReDir[p] == "object")arrl.push(p);
+				else arrl.push([pDB.ReDir[p],p]);
+			}
+		}
 		arrl=unique(arrl);
-		for(var i=0;i<arrl.length;i++){
-			liHTML+="<div class=\"nonli\" onmouseover=\"selOver(this,"+count+")\" onmouseout=\"selOut(this,"+count+")\" id=\"li_"+(count++)+"\" onclick=\"document.getElementById('searchInput').focus();document.getElementById('searchInput').value = '"
-				+arrl[i].replace(/\'/g,"\\'")+"';document.getElementById('ulItems').style.display = 'none';currentSelIndex = -1;oldSelIndex = -1;\">"+arrl[i]+"</div>";
+		var regexp = new RegExp("("+keymot+")", "gi");
+		var total = Math.min(arrl.length,ShowNumber);
+		for(var i=0;i<total;i++){
+			liHTML+="<div class=\"nonli\" onmouseover=\"selOver(this,"+count+")\" onmouseout=\"selOut(this,"+count+")\" id=\"li_"+(count++)+"\" onclick=\"$('searchInput').focus();$('searchInput').value = '";
+
+			if(typeof arrl[i] == "string"){
+				arrReg = arrl[i].replace(regexp,"<b>$1</b>");
+				liHTML+=arrl[i].replace(/\'/g,"\\'")+"';$('ulItems').style.display = 'none';currentSelIndex = -1;oldSelIndex = -1;window.location.href='index.html?search="+escape(arrl[i])+"'\"><span style='display:none' id=\"li_value_"+(count-1)+"\">"+arrl[i]+"</span>"+arrReg+"</div>";
+			}else{
+				arrReg = arrl[i][1].replace(regexp,"<b>$1</b>");
+				liHTML+=arrl[i][1].replace(/\'/g,"\\'")+"';$('ulItems').style.display = 'none';currentSelIndex = -1;oldSelIndex = -1;window.location.href='index.html?search="+escape(arrl[i][1])+"'\"><span style='display:none' id=\"li_value_"+(count-1)+"\">"+arrl[i][1]+"</span>"+arrReg+"<span style='color:#66A'> - "+
+				arrl[i][0]+"</span></div>";
+			}
 		}
 	}
-	document.getElementById("ulItems").innerHTML = liHTML;
+	$("ulItems").innerHTML = liHTML;
+	return liHTML != '';
 }
 function selOver(obj,count){
 	oldSelIndex = currentSelIndex;
 	if (oldSelIndex != -1) {
-		document.getElementById("li_" + oldSelIndex).style.backgroundColor = "#ffffff";
+		$("li_" + oldSelIndex).style.backgroundColor = "#ffffff";
 	}
 	currentSelIndex = count;
 	obj.style.backgroundColor = '#cbf3fd';
 }
 function selOut(obj,count){
 	if (currentSelIndex != -1) {
-		document.getElementById("li_" + currentSelIndex).style.backgroundColor = "#cbf3fd";
+		$("li_" + currentSelIndex).style.backgroundColor = "#cbf3fd";
 	}
 	//currentSelIndex = count;
 	obj.style.backgroundColor = '#ffffff';
@@ -426,7 +491,7 @@ function selOut(obj,count){
 </script>
 						<form id="searchform">
 							<div id="simpleSearch">
-							<input onkeyup="selectItem(this.value, event)" onclick="document.getElementById('ulItems').style.display = 'none';currentSelIndex = -1;oldSelIndex = -1;" onsubmit="Rechercher(escape(document.getElementById('searchInput').value))" type="search" name="search" placeholder="搜索" title="Search Wikipedia [alt-shift-f]" accesskey="f" id="searchInput" tabindex="1" autocomplete="off"><div id="ulItems" style="display: none;list-style-type:none;background-color:#FFF; border:1px solid #cecece; border-top:none; width:200px; padding:2px; margin: 0px; margin-bottom:-20px">
+							<input onkeyup="selectItem(this.value, event)" onclick="$('ulItems').style.display = 'none';currentSelIndex = -1;oldSelIndex = -1;" type="search" name="search" placeholder="搜索" title="Search Wikipedia [alt-shift-f]" accesskey="f" id="searchInput" tabindex="1" autocomplete="off"><div id="ulItems" style="display: none;list-style-type:none;background-color:#FFF; border:1px solid #cecece; border-top:none; width:20vw; padding:2px; margin: 0px; margin-bottom:-20px">
     </div><input type="hidden" value="Special:Search" name="title"><input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchButton" class="searchButton">							</div>
 						</form>
 					</div>
@@ -463,7 +528,8 @@ function selOut(obj,count){
 
 				</div>
 		</div>
-		<script> var url=location.search;
+		<script>
+	var url=location.search;
     var ename;
     var Request = new Object();
     if(url.indexOf("?")!=-1)
@@ -476,17 +542,20 @@ function selOut(obj,count){
 		}
 		if(typeof Request["source"]!="undefined" && Request["source"]!=""){
 			var r=(Request["source"]).replace(/\+/g," ").replace(/(^\s*)|(\s*$)/g,"").replace(/%40/g,"@");
-			document.getElementById('ca-view').innerHTML='<span><a href="index.html?search='+str+'&go=Go">读</a></span>';
-			document.getElementById('ca-view').className="";
-			document.getElementById('ca-viewsource').className="selected";
-			document.getElementById('ca-viewsource').innerHTML='<span><a href="javascript:void(0)">查看源</a></span>';
+			$('ca-view').innerHTML='<span><a href="index.html?search='+r+'&go=Go">读</a></span>';
+			$('ca-view').className="";
+			$('ca-viewsource').className="selected";
+			$('ca-viewsource').innerHTML='<span><a href="javascript:void(0)">查看源</a></span>';
 			if(decodeURI(r)=="viewjson"){
-				document.getElementById('bodyContent').innerHTML='<div><h1 id="sss" class="mw-headline"><b>查看源：datas.json</b></h1><textarea width="100%" rows="25">'+JSON.stringify(pDB).replace(/\n/g,"\\n");
-			+'</textarea></div>';
+				$('bodyContent').innerHTML='<div><h1 id="sss" class="mw-headline"><b>查看源：datas.json</b></h1><textarea width="100%" rows="25">低趣地加载中。。。</textarea></div>';
+				setTimeout(function(){
+				$('bodyContent').innerHTML='<div><h1 id="sss" class="mw-headline"><b>查看源：datas.json</b></h1><textarea width="100%" rows="25">'+JSON.stringify(pDB).replace(/\n/g,"\\n");
+				+'</textarea></div>';
+				},10);
 			}else
 			Rechercher(decodeURI(r),true,true);
 		}else 
-		if(typeof Request["search"]!="undefined" && Request["search"]!=""){
+		if(typeof Request["search"]!="undefined"){
 			var r=(Request["search"]).replace(/\+/g," ").replace(/(^\s*)|(\s*$)/g,"").replace(/%40/g,"@");
 			if(typeof Request["go"]!="undefined")
 			Rechercher(decodeURI(r),true);
@@ -498,7 +567,7 @@ function selOut(obj,count){
 			Imager(r);
 		}
     }
-	document.getElementById('bodyContent').style.display="block";
+	$('bodyContent').style.display="block";
 	</script>
 
 </body></html>

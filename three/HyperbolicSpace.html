@@ -40,6 +40,11 @@ function Poincare(p){
 function Vo(p){
 	return Cmplx.exp(Cmplx.mul(new Complex(Number($("vop").value),4/Math.PI),Cmplx.arctanh(p)));
 }
+function inv_Vo(p,K){
+	K = K ? K : 0;
+	return Cmplx.tanh(Cmplx.div(Cmplx.add(Cmplx.log(p),new Complex(0,K)),new Complex(Number($("vop").value),4/Math.PI)));
+	//return Cmplx.exp(Cmplx.mul(new Complex(Number($("vop").value),4/Math.PI),Cmplx.arctanh(p)));
+}
 function inv_Band(p){
 	return Cmplx.tanh(Cmplx.mul(Math.PI/4,p));
 }
@@ -108,9 +113,13 @@ function main(){
 	canvas1 = Canvas.domElement;
 	TransformMobius = new Cmplx.Mobius();
 	currentMoyen="Poincare";
+	imgdx = imgdy = 0;
+	imgdscale = 1.2; imgdrot = 0;
+	canvas1.isscale=false;
 	Go('Poincare');
 }
 function Go(str){
+	if(!str)str = currentMoyen;
 	BTransform = eval("inv_"+str);
 	if(currentMoyen!="Ring")
 		inv_TransformMobius = TransformMobius.inverse();
@@ -126,6 +135,7 @@ function canvas1_onmousedown(event){
     canvas1.move=true;
     canvas1.offsetx=event.clientX;
     canvas1.offsety=event.clientY;
+	if(event.button==2)canvas1.isscale=true;
 }
 function canvas1_onmousemove(event){
     if(canvas1.move){
@@ -135,12 +145,24 @@ function canvas1_onmousemove(event){
         canvas1.offsetx=event.clientX;
         canvas1.offsety=event.clientY;
         canvas1.width=canvas1.width;
-        hyperbolicmovepoints(dx/Canvas.scale,-dy/Canvas.scale);
-        Gol(currentMoyen);
+		if(!isDragImg){
+			hyperbolicmovepoints(dx/Canvas.scale,-dy/Canvas.scale);
+			Gol(currentMoyen);
+		}else{
+			if(canvas1.isscale){
+				imgdscale *= 1-dy/100;
+				imgdrot += dx/100;
+				Go(currentMoyen);
+			}else{
+				imgdx -= dx;
+				imgdy -= dy;
+				Go(currentMoyen);
+			}
+		}
     }
 }
 function canvas1_onmouseup(event){
-    canvas1.move=false;
+    canvas1.move=canvas1.isscale=false;
 }
 hyperbolicmovepoints=function(tx,ty){
 	TransformMobius = Cmplx.Mobius.T(new Complex(tx,ty)).dot(TransformMobius);
@@ -155,16 +177,29 @@ function till (n,p){
 	Canvas.createImageData();
 	//Painter.loadedIMG.createImageData();
 	var PointM, ImageM,x,y;
-	preparer(n,p)
+	preparer(n,p);
+	var scaler = new Complex(imgdscale*Canvas.scale*Math.cos(imgdrot),imgdscale*Canvas.scale*Math.sin(imgdrot));
 	for (var i = 0; i < Canvas.width; i++){
 		for (var j = 0; j < Canvas.height; j++){
 			PointM = new Complex((i-Canvas.width/2)/Canvas.scale,-(j-Canvas.height/2)/Canvas.scale);
-			var PP = BTransform(PointM);
+			var PP = (isDragImg)?PointM : BTransform(PointM);
+			if(currentMoyen=="Vol"){
+				if(Cmplx.sqrabs(PP)>1){
+					PP = inv_Vo(PointM,Math.PI)
+				}else if(Cmplx.sqrabs(PP)>1){
+					PP = inv_Vo(PointM,-Math.PI)
+				}
+			}
+				
 			if(!(PP instanceof Complex))PP = new Complex(PP,0);
-			ImageM = findFM(PP.applyMobius(inv_TransformMobius),n,p,500);
+			if(isDragImg)
+				ImageM = findFM(PP,n,p,1);
+			else 
+				ImageM = findFM(PP.applyMobius(inv_TransformMobius),n,p,500);
 			if(ImageM){
-				 x = ImageM.real*Canvas.scale+Painter.loadedIMG.width/2;
-				 y = -ImageM.imag*Canvas.scale+Painter.loadedIMG.height/2;
+			ImageM = Cmplx.mul(ImageM,scaler);
+				 x = ImageM.real+Painter.loadedIMG.width/2+imgdx;
+				 y = -ImageM.imag+Painter.loadedIMG.height/2+imgdy;
 				Canvas.writeData(i, j, Painter.loadedIMG.readAntiAliasingData(x,y))
 			}else{
 				Canvas.writeData(i, j, 0xFFFFFF)
@@ -255,13 +290,13 @@ MainMobius = new Cmplx.Mobius(
 		var k;
 		k = new Complex().applyMobius(Cmplx.Mobius.H(Polygons[0].RP[0]));
 		k = Math.abs(Band(k).real);//even
-		if(Base.n % 2 == 1){
+		if(Number($("p").value) % 2){
 			var Vertex = new Complex(Cmplx.abs(Base.line[0]),0);
 			var k2 = new Complex().applyMobius(Cmplx.Mobius.H(Vertex));
 			k += Math.abs(Band(k2).real);//odd -> even
-			if (Base.p % 2 == 1){
+			if (Number($("n").value) % 2){
 				var r = Vertex.real;
-				var s = Math.PI/Base.n;
+				var s = Math.PI/Number($("p").value);
 				var A = new Complex(r*Math.cos(s),r*Math.sin(s));
 				var Edge = Cmplx.abs(Polygons[0].RP[0]);
 				k += 2*Math.abs(Band(
@@ -295,6 +330,15 @@ BasePolygon = function (n,p){
 		}
 	}
 }
+
+function setImagePreview(docObj) 
+{ 
+if(docObj.files && docObj.files[0]) 
+Painter.loadIMG(window.URL.createObjectURL(docObj.files[0]),Go); 
+else
+alert("文件选择失败");
+} 
+isDragImg = false;
 	</script>
 	<style>
 	 input {
@@ -302,33 +346,34 @@ BasePolygon = function (n,p){
 	}
 	</style>
 </head>
-<body onload="Painter.loadIMG('img/untitled.bmp',main);">
-<table>
-<tr><td>
-	<canvas id="HyperCanvas" width="800" height="800"  onmousedown="canvas1_onmousedown(event)" onmousemove="canvas1_onmousemove(event)" onmouseup="canvas1_onmouseup(event)"></canvas>
-</td><td>
-	Min-Detail <input id="minp" value='1'>px; <p>
-	Circle-Segment <input id="seg" value='4'> ; <p>
-	<input id="p" value='4'>-gon; <p>
-	<input id="n" value='5'>-edge to vertex;<p>
-	<input id="step" value='4'> depth;<p>
-	Mobius Transformation:<p>
+<body onload="Painter.loadIMG('/img/till.jpg',main);">
+
+	<div>
+	最小细节 <input id="minp" value='1'>px; 
+	圆弧分段 <input id="seg" value='4'> ; 
+	迭代深度<input id="step" value='4'>;<p>
+	<input id="p" value='4'>边形; 
+	<input id="n" value='5'>边/顶点;
+	<div style="display:none">Mobius Transformation:<p>
 	<input id="a" value="1">
 	<input id="b" value="0"><br>
 	<input id="c" value="0">
-	<input id="d" value="1">;<p>
-	<button onclick="Gol('Poincare')">Poincare disk</button><p>
-	<button onclick="Gol('Nome')">nome disk</button><p>
-	<button onclick="Gol('Band')">band(narrow) world</button><p>
-	<input id="cut" value='180,0' style="width: 80px"> branch cut;<p>
-	<button onclick="Gol('Vo')">Votex world</button><p>
-	<input id="vop" value='0.7'> parametre;<p>
-	<button onclick="Gol('Ring')">ring world</button>
-	<input id="per" value='4'> period (only for ring world);<p>
 	<button onclick="Gol('Prefer')">prefered world</button><p>
 	<button onclick="Gol('Cauchy')">Oval world</button>
-	<button onclick="Go(currentMoyen)">RenderIMG</button>
-	<button onclick="TransformMobius=new Cmplx.Mobius()">ResetMoving</button>
-</td>
+	<input id="d" value="1">;<p></div>
+	<button onclick="Gol('Poincare')">庞加莱圆盘</button>;
+	<button onclick="Gol('Nome')">nome 圆盘</button>;
+	<button onclick="Gol('Band')">带状世界</button>
+	<input id="cut" value='180,0' style="width: 80px"> 带状分支角度;<p>
+	<button onclick="Gol('Vo')">漩涡世界</button>
+	<input id="vop" value='0.7'> 漩涡参数;
+	<button onclick="Gol('Ring')">环形世界</button>
+	<input id="per" value='4'> 环形世界周期数;<p>
+	<button onclick="Go(currentMoyen)">渲染填充图案</button>
+	<input type="file" id="doc" style="width:150px;" onchange="setImagePreview(this);">
+	当前为<button onclick="isDragImg = !isDragImg;this.innerHTML=(this.innerHTML=='拖动空间模式')?'拖动贴图模式':'拖动空间模式'">拖动空间模式</button>
+	<button onclick="TransformMobius=new Cmplx.Mobius();Gol(currentMoyen)">重置鼠标拖动</button>
+</div><div style="float:rigth">
+	<canvas id="HyperCanvas" width="500" height="500"  onmousedown="canvas1_onmousedown(event)" onmousemove="canvas1_onmousemove(event)" onmouseup="canvas1_onmouseup(event)"></div>
 </body>
 </html>
