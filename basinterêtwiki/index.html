@@ -4,6 +4,13 @@
 <title>低趣百科，低趣的百科全书</title>
 <script src="http://115.159.100.67:8000/output/datas.js"></script>
 <script src="wikiparser.js"></script>
+<script type="text/javascript">
+try{
+    if (/Android|webOS|iPhone|BlackBerry/i.test(navigator.userAgent)&&(location.search=='')) {
+        window.location.href="m.html";
+    }
+}catch(e){}
+</script>
 <script>
 function $(a){return document.getElementById(a);}
 document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );
@@ -298,7 +305,7 @@ function Rechercher(str,f,isSource){
 		</div>					<div id="footer" role="contentinfo" lang="zh-CN" dir="ltr">
 							<ul id="footer-info">
 											<li id="footer-info-copyright">本站的全部文字在<a rel="license" href="http://zh.wikipedia.org/zh-cn/Wikipedia%3ACC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" title="Wikipedia:CC-BY-SA-3.0协议文本">知识共享 署名-相同方式共享 3.0协议</a><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.zh" style="display:none;"></a>之条款下提供，附加条款亦可能应用（请参阅<a href="http://wikimediafoundation.org/wiki/%E4%BD%BF%E7%94%A8%E6%9D%A1%E6%AC%BE">使用条款</a>）。<br>
-basinterêtwiki®和低趣百科标志是<a href="http://wikimediafoundation.org">低趣媒体基金会</a>的注册商标；低趣™是低趣媒体基金会的商标。<br>低趣媒体基金会是在大西洋海底登记的<a href="index.html?search=R7C72&go=GO">R7C72</a>(川)(A)非<a href="index.html?search=科教&go=GO">科教</a>、低趣机构。<br></li>
+basinterêtwiki®和低趣百科标志是<a href="http://wikimediafoundation.org">低趣媒体基金会</a>的注册商标；低趣™是低趣媒体基金会的商标。<br>低趣媒体基金会是在大西洋海底登记的<a href="index.html?search=R7C72&go=GO">R7C72</a>(川)(A)非<a href="index.html?search=科教&go=GO">科教</a>、低趣机构。|<a href="javascript:void(0);" onclick="getmobile();">手机版</a><br></li>
 									</ul>
 									<ul id="footer-icons" class="noprint">
 											<li id="footer-copyrightico">
@@ -351,6 +358,12 @@ You can view its source [alt-shift-e]" accesskey="e">查看源</a></span></li>
 <script>
 var currentSelIndex = -1;
 var oldSelIndex = -1;
+function getmobile(){
+	if(location.search=='')
+		window.location.href="m.html?index";
+	else
+		window.location.href="m.html"+location.search;
+}
 function selectItem(keyword, event) {
 	if (keyword == "") {
 		$("ulItems").style.display = "none";

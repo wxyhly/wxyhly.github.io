@@ -11,23 +11,43 @@ var div3 = document.getElementById('copydiv');
 div3.style.display="none";    
 }
 /***** by wxy   - wxy_hly ******/
-document.write("<div id='copydiv' style='padding:10px;word-wrap:break-word;width:50%;background-Color:#CFD; border:1px;position:absolute;z-index:99;display:none'><button onclick=\"closeTip()\">Close</button><b>　复制rle代码，可直接粘入Golly中:</b><p><textarea onmouseover=\"this.select();\" id='copydivinner' style='width:90%;height:80px'></textarea></div>")
+document.write("<style>.btn{padding:5px 6px 6px 6px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius:10px; background:#FFEFD0;color:#390}</style><div id='copydiv' style='padding:10px;word-wrap:break-word;width:50%;background-Color:#CFD; border:1px;position:absolute;z-index:99;display:none'><button class='btn' onclick=\"scaleplus()\">放大</button><button class='btn' onclick=\"scalemoin()\">缩小</button> | <button class='btn' style='background:#F00;color:#FFF' onclick=\"closeTip()\" class='btn'>关闭</button><b>　复制rle代码，可直接粘入Golly中:</b><p><textarea onmouseover=\"this.select();\" id='copydivinner' style='width:90%;height:80px'></textarea></div>")
 RLES=[];
+function scaleplus(){
+	var i = _RLES_i;
+	if(RLES[i]["scale"]>9)return 0;
+	RLES[i]["scale"]*=2;
+	var trle=new RLE(RLES[i]["content"]);
+	RLES[i]["canvas"].width = trle.x*RLES[i]["scale"];
+	RLES[i]["canvas"].height = trle.y*RLES[i]["scale"];
+	trle.print(new Painter(RLES[i]["canvas"],5),RLES[i]["scale"]);
+}
+function scalemoin(){
+	var i = _RLES_i;
+	if(RLES[i]["scale"]<0.4)return 0;
+	RLES[i]["scale"]/=2;
+	var trle=new RLE(RLES[i]["content"]);
+	RLES[i]["canvas"].width = trle.x*RLES[i]["scale"];
+	RLES[i]["canvas"].height = trle.y*RLES[i]["scale"];
+	trle.print(new Painter(RLES[i]["canvas"],5),RLES[i]["scale"]);
+}
 function onloadeddata(){
-	var a = document.getElementsByTagName("canvas");
-	for(var i=0; i<a.length;i++){
-		a[i].onload();
-	}
-	for(var i=0; i<RLES.length;i++){
-		var trle=new RLE(RLES[i]["content"]);
-		RLES[i]["canvas"].width = trle.x*RLES[i]["scale"];
-		RLES[i]["canvas"].height = trle.y*RLES[i]["scale"];
-		RLES[i]["canvas"].style.backgroundColor="#303030";
-		RLES[i]["canvas"].style.cursor="pointer";
-		//RLES[i]["canvas"].onmouseover=eval("function (){}")
-		eval('RLES[i]["canvas"].onclick = function(e){copy_code(RLES['+i+']["content"],e);}');
-		trle.print(new Painter(RLES[i]["canvas"],5),RLES[i]["scale"]);
-	}
+	setTimeout(function (){
+		var a = document.getElementsByTagName("canvas");
+		for(var i=0; i<a.length;i++){
+			a[i].onload();
+		}
+		
+		for(var i=0; i<RLES.length;i++){
+			var trle=new RLE(RLES[i]["content"]);
+			RLES[i]["canvas"].width = trle.x*RLES[i]["scale"];
+			RLES[i]["canvas"].height = trle.y*RLES[i]["scale"];
+			RLES[i]["canvas"].style.backgroundColor="#303030";
+			RLES[i]["canvas"].style.cursor="pointer";
+			eval('RLES[i]["canvas"].onclick = function(e){_RLES_i = '+i+';copy_code(RLES['+i+']["content"],e);}');
+			trle.print(new Painter(RLES[i]["canvas"],5),RLES[i]["scale"]);
+		}
+	} ,500);
 }
 function showRLE (_canvas,scale,content){
 RLES.push({"canvas":_canvas,"scale":scale,"content":content});
@@ -168,8 +188,8 @@ RLE.prototype.print = function (canva,scale){
 				canva.writeData(xx,yy,0xFFFFFF);
 			else if(C!="."){
 				if(scale == 1) canva.writeData(xx,yy,RLE.Colortable[C]);
-				else if(scale == 0 && xx%2 && yy%2 ) canva.writeData(Math.floor(xx/2),Math.floor(yy/2),RLE.Colortable[C]);
-				else if(scale == -1 && xx%4 && yy%4 ) canva.writeData(Math.floor(xx/4),Math.floor(yy/4),RLE.Colortable[C]);
+				else if(scale == 0.5 && xx%2 && yy%2 ) canva.writeData(Math.floor(xx/2),Math.floor(yy/2),RLE.Colortable[C]);
+				else if(scale == 0.25 && xx%4 && yy%4 ) canva.writeData(Math.floor(xx/4),Math.floor(yy/4),RLE.Colortable[C]);
 				else if(scale == 2) {
 					canva.writeData(xx*2,yy*2,RLE.Colortable[C]);
 					canva.writeData(xx*2+1,yy*2,RLE.Colortable[C]);

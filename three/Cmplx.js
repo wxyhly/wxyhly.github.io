@@ -78,7 +78,18 @@ Complex.prototype.toArray = function(){
 Complex.prototype.toVector2 = function(){
 	return Cmplx.toVector2(this);
 }
-
+Complex.prototype.length = function(){
+	return Cmplx.length(this);
+}
+Complex.prototype.sqrabs = function(){
+	return Cmplx.sqrabs(this);
+}
+Complex.prototype.sqrlength = function(){
+	return Cmplx.sqrlength(this);
+}
+Complex.prototype.abs = function(){
+	return Cmplx.abs(this);
+}
 Cmplx
 {
 	Cmplx.I = new Complex(0,1);//declare i

@@ -2,7 +2,7 @@
 
 	<head>
 		<meta charset="UTF-8" />
-		<title>4dNav</title>
+		<title>4dNav par WXY</title>
 		<style>
 body {
 	margin: 0;
@@ -22,6 +22,7 @@ ul,li{list-style:none;}
 	right: 100px;
 	top: 5px;
 	z-index:88;
+	font-weight:bold;
             /* W3C syntax */}
 #tab .tabList ul li{
 	float:left;
@@ -183,7 +184,8 @@ ul,li{list-style:none;}
 				<li class="cur">模型</li>
 				<li>摄像机</li>
 			</ul>
-			</div><div class="tabCon">
+			</div>
+			<div class="tabCon">
 			<div class="cur">
 				四维几何体：
 				<select id="obj4" onchange="changeObj4($('obj4').selectedIndex)">
@@ -201,9 +203,39 @@ ul,li{list-style:none;}
 					<option disabled>-----------</option>
 					<option>环球</option>
 				</select>
-				<select id="obj4" onchange="changeObj4($('obj4').selectedIndex)">
-					<option>单形</option>
-				</select>
+				<span id="direct" style="display: none;">
+				<p>图形1:
+				<select id="dirobj21" onchange="changeDirObj21($('dirobj21').selectedIndex)">
+					<option selected>正多边形（圆）</option>
+					<option>矩形</option>
+					<option>圆环</option>
+					<option>自定义</option>
+				</select></p>
+				<p id='dirobj21polygon'>边数：<input id='dirobj21polygonN' type='number' value='4' min='3' max='100' style='width: 50px'/><br/>半径：<input id='dirobj21polygonR' type='number' value='1' min='0' style='width: 50px'/></p>
+				<p id='dirobj21rect' style="display:none">长：<input id='dirobj21rectA' type='number' value='1' min='0' style='width: 50px'/><br/>宽：<input id='dirobj21rectB' type='number' value='1' min='0' style='width: 50px'/></p>
+				<p>图形2:
+				<select id="dirobj22" onchange="changeDirObj22($('dirobj22').selectedIndex)">
+					<option selected>正多边形（圆）</option>
+					<option>矩形</option>
+					<option>圆环</option>
+					<option>自定义</option>
+				</select></p><p id='dirobj22polygon'>边数：<input id='dirobj22polygonN' type='number' value='4' min='3' max='100' style='width: 50px'/><br/>半径：<input id='dirobj22polygonR' type='number' value='1' min='0' style='width: 50px'/></p>
+				<p id='dirobj22rect' style="display:none">长：<input id='dirobj22rectA' type='number' value='1' min='0' style='width: 50px'/><br/>宽：<input id='dirobj22rectB' type='number' value='1' min='0' style='width: 50px'/></p>
+				</span>
+				<span id="extrude4" style="display: none;"><p>
+				<select id="obj3" onchange="changeObj3($('obj3').selectedIndex)">
+					<option selected>长方体</option>
+					<option>圆环</option>
+					<option>圆锥</option>
+					<option>球</option>
+					<option>正四面体</option>
+					<option>正八面体</option>
+					<option>正十二面体</option>
+					<option>正二十面体</option>
+					<option>柱体</option>
+					<option>锥体</option>
+				</select></p>
+				</span>
 			</div>
 			<div style="display: none;">
 				4D 摄像机类型：
@@ -222,82 +254,109 @@ ul,li{list-style:none;}
 					<input type="text" id="rayonV" style="width:50px" value="1" onchange="changerayonV($('rayonV').value)"/>
 			</div>
 		</div>
-		<script>
-			function changerayonE(v) {
-				main4d.scene4.remove(main4d.Object4);
-				main4d.scene4.CylinderR = v*0.1;
-				main4d.scene4.add(main4d.Object4);
-			}
-			function changerayonV(v) {
-				main4d.scene4.remove(main4d.Object4);
-				main4d.scene4.SphereR = v*0.1;
-				main4d.scene4.add(main4d.Object4);
-			}
-			function $(obj) {
-				return document.getElementById(obj);
-			}
-			function changeDistance (d){
-				main4d.camera4.distance = Number(d);
-			}
-			function changeC4(num) {
-				$("c4p").style.display = "none";
-				switch (num) {
-					case 0:
-						main4d.camera4 = new FOUR.PerspectiveCamera(0, Number($("c4pr").value));
-						$("c4p").style.display = "block";
-						break;
-					case 1:
-						main4d.camera4 = new FOUR.OrthographicCamera();
-						break;
-					case 2:
-						main4d.camera4 = new FOUR.SteroGhraphicCamera(0, Number($("c4pr").value), true);
-						break;
-				}
-				main4d.renderer4.camera4 = main4d.camera4;
-				main4d.controls = new FOUR.Controls(main3d.camera, main3d.renderer.domElement, main4d.camera4);
-			}
-			function changeObj4(num) {
-				main4d.scene4.remove(main4d.Object4);
-				var G;
-				switch (num) {
-					case 0:
-						G = new FOUR.SimplexGeometry(
-							new THREE.Vector4(1,1,1,Math.sqrt(86)/20),
-							new THREE.Vector4(1,-1,-1,Math.sqrt(86)/20),
-							new THREE.Vector4(-1,-1,1,Math.sqrt(86)/20),
-							new THREE.Vector4(-1,1,-1,Math.sqrt(86)/20),
-							new THREE.Vector4(0,0,0,-Math.sqrt(86)/5)
-						)
-						break;
-					case 1:
-						G = new FOUR.TesseractGeometry(0.5,0.5,0.5,0.5);
-						break;
-					case 2:
-						G = new FOUR.HexadecachoronGeometry(1);
-						break;
-					case 3:
-						G = new FOUR.IcositetrachoronGeometry(1);
-						break;
-					case 4:
-						G = new FOUR.HecatonicosachoronGeometry(1);
-						break;
-					case 5:
-						G = new FOUR.HexacosichoronGeometry(1);
-						break;
-					case 7:
-						G = new FOUR.HexacosichoronGeometry(1);
-						break;
-					case 9:
-						
-				}
-				var Object4 = new FOUR.Mesh(
-					G,
-					new FOUR.FrameMaterial(0xAAAAAA, 0xFFCC99)
-				);
-				main4d.scene4.add(Object4);
-				main4d.Object4 = Object4;
-			}
-		</script>
+	</div>
+<script>
+	function changerayonE(v) {
+		main4d.scene4.remove(main4d.Object4);
+		main4d.scene4.CylinderR = v*0.1;
+		main4d.scene4.add(main4d.Object4);
+	}
+	function changerayonV(v) {
+		main4d.scene4.remove(main4d.Object4);
+		main4d.scene4.SphereR = v*0.1;
+		main4d.scene4.add(main4d.Object4);
+	}
+	function $(obj) {
+		return document.getElementById(obj);
+	}
+	function changeDistance (d){
+		main4d.camera4.distance = Number(d);
+	}
+	function changeC4(num) {
+		$("c4p").style.display = "none";
+		switch (num) {
+			case 0:
+				main4d.camera4 = new FOUR.PerspectiveCamera(0, Number($("c4pr").value));
+				$("c4p").style.display = "block";
+				break;
+			case 1:
+				main4d.camera4 = new FOUR.OrthographicCamera();
+				break;
+			case 2:
+				main4d.camera4 = new FOUR.SteroGhraphicCamera(0, Number($("c4pr").value), true);
+				break;
+		}
+		main4d.renderer4.camera4 = main4d.camera4;
+		main4d.controls = new FOUR.Controls(main3d.camera, main3d.renderer.domElement, main4d.camera4);
+	}
+	function showPannel(num){
+		switch (num) {
+			case 7:
+				$("direct").style.display = "block";
+				break;
+			case 8:
+				$("extrude4").style.display = "block";
+		}
+	}
+	function changeDirObj21(num) {
+		$("dirobj21polygon").style.display = "none";
+		switch (num) {
+			case 0:
+				$("dirobj21polygon").style.display = "block";
+				break;
+		}
+	}
+	function changeDirObj22(num) {
+		$("dirobj22polygon").style.display = "none";
+		switch (num) {
+			case 0:
+				$("dirobj22polygon").style.display = "block";
+				break;
+		}
+	}
+	function changeObj4(num) {
+		var G;
+		$("direct").style.display = "none";
+		$("extrude4").style.display = "none";
+		switch (num) {
+			case 0:
+				G = new FOUR.SimplexGeometry(
+					new THREE.Vector4(1,1,1,Math.sqrt(86)/20),
+					new THREE.Vector4(1,-1,-1,Math.sqrt(86)/20),
+					new THREE.Vector4(-1,-1,1,Math.sqrt(86)/20),
+					new THREE.Vector4(-1,1,-1,Math.sqrt(86)/20),
+					new THREE.Vector4(0,0,0,-Math.sqrt(86)/5)
+				)
+				break;
+			case 1:
+				G = new FOUR.TesseractGeometry(0.5,0.5,0.5,0.5);
+				break;
+			case 2:
+				G = new FOUR.HexadecachoronGeometry(1);
+				break;
+			case 3:
+				G = new FOUR.IcositetrachoronGeometry(1);
+				break;
+			case 4:
+				G = new FOUR.HecatonicosachoronGeometry(1);
+				break;
+			case 5:
+				G = new FOUR.HexacosichoronGeometry(1);
+				break;
+			case 7:case 8:case 9:case 10:
+				showPannel(num);
+				return 0;
+				break;
+		}
+		main4d.scene4.remove(main4d.Object4);
+		var Object4 = new FOUR.Mesh(
+			G,
+			new FOUR.FrameMaterial(0xAAAAAA, 0xFFCC99)
+		);
+		main4d.scene4.add(Object4);
+		main4d.Object4 = Object4;
+	}
+</script>
 	</body>
 
 </html>
