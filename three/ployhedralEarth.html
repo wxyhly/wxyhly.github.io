@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script src="THREE.js"></script>
+
+<title>Shader Test</title>
+<style>
+.canvas{
+	width: 1100px;
+	height: 700px;
+}
+</style>
+<script id="vs" type="x-shader/x-vertex">
+varying vec2 vUv;
+void main(){
+	vUv = uv;
+	gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}
+</script>
+<script id="fs" type="x-shader/x-fragment">
+#define f 0.3236067
+#define g 0.1236067
+uniform float t1;
+uniform float t2;
+uniform int polygon;
+uniform int steo;
+
+varying vec2 vUv;
+vec2 mul(vec2 a,vec2 b){
+	return vec2(a.x*b.x-a.y*b.y,a.x*b.y+a.y*b.x);
+}
+vec2 div(vec2 a,vec2 b){
+	float sqrb = b.x*b.x+b.y*b.y;
+	if(sqrb == 0.0) return vec2(0.0);
+	return vec2(a.x*b.x+a.y*b.y,-a.x*b.y+a.y*b.x) / sqrb;
+}
+vec2 conj(vec2 c){
+	return vec2(c.x,-c.y);
+}
+vec2 F(vec2 c,float s,float t){//球面旋转变换对应球极投影到复平面上的莫比乌斯变换
+	vec2 z = -c;
+	if(steo==1)z.x = z.x*11.0/7.0;//球极投影时画布长宽比校正为1:1
+	float q = t;
+	//return div(z*sin(t)+vec2(cos(t),0.0),-z*cos(t)+vec2(sin(t),0.0));
+	vec2 aa = vec2(sin(t)*sin(q),cos(t)*sin(q));
+	vec2 bb = vec2(sin(s)*cos(q),cos(s)*cos(q));
+	return div(mul(z,aa)+bb, -mul(z,conj(bb))+conj(aa));
+}
+vec3 invstero(vec2 p){//逆球极投影变换，输入二维投影，输出还原的三维坐标
+	float d2 = p.x*p.x + p.y*p.y;
+	float d3 = 1.0/(1.0+d2);
+	return vec3(2.0*p.x*d3,2.0*p.y*d3,(d2-1.0)*d3);
+}
+vec2 stero(vec3 p){//球极投影变换，输入三维坐标，输出二维投影
+	return vec2(p.x/(1.0-p.z),p.y/(1.0-p.z));
+}
+vec2 moc(vec3 p){ //墨卡托投影变换，输入三维坐标，输出二维投影
+	return vec2(atan(p.y,p.x)/3.1415926*0.5+0.5,asin(p.z)/3.1415926+0.5);
+}
+vec3 invmoc(vec2 p){ //墨卡托逆变换，输入二维投影，输出还原的三维坐标
+	float z = sin((p.y-0.5)*3.1415926);
+	float r = sqrt(1.0-z*z);
+	float sita = (p.x-0.5)*2.0*3.1415926;
+	return vec3(r*sin(sita),r*cos(sita),z);
+}
+vec4 cut(vec3 c){
+	vec3 points[32]; 
+	if(polygon==0){//cube
+		points[0] = vec3(1.0,0.0,0.0);
+		points[1] = vec3(-1.0,0.0,0.0);
+		points[2] = vec3(0.0,1.0,0.0);
+		points[3] = vec3(0.0,-1.0,0.0);
+		points[4] = vec3(0.0,0.0,1.0);
+		points[5] = vec3(0.0,0.0,-1.0);
+	}
+	else if(polygon==1 || polygon==2 ||polygon==4){//octahedral
+		points[0] = vec3(0.2,0.2,0.2);
+		points[1] = vec3(-0.2,0.2,0.2);
+		points[2] = vec3(0.2,0.2,-0.2);
+		points[3] = vec3(0.2,-0.2,0.2);
+		points[4] = vec3(-0.2,0.2,-0.2);
+		points[5] = vec3(0.2,-0.2,-0.2);
+		points[6] = vec3(-0.2,-0.2,0.2);
+		points[7] = vec3(-0.2,-0.2,-0.2);
+	}
+	if(polygon==2||polygon==4){//12-face
+		points[8] = vec3(0.0,f,g);
+		points[9] = vec3(0.0,-f,g);
+		points[10] = vec3(0.0,f,-g);
+		points[11] = vec3(0.0,-f,-g);
+		points[12] = vec3(f,g,0.0);
+		points[13] = vec3(-f,g,0.0);
+		points[14] = vec3(f,-g,0.0);
+		points[15] = vec3(-f,-g,0.0);
+		points[16] = vec3(g,0.0,f);
+		points[17] = vec3(-g,0.0,f);
+		points[18] = vec3(g,0.0,-f);
+		points[19] = vec3(-g,0.0,-f);
+	}
+	if(polygon==3){//20-face
+		points[0] = vec3(0.0,0.2,-f);
+		points[1] = vec3(0.0,-0.2,-f);
+		points[2] = vec3(0.2,f,0.0);
+		points[3] = vec3(-0.2,f,0.0);
+		points[4] = vec3(0.2,-f,0.0);
+		points[5] = vec3(-0.2,-f,0.0);
+		points[6] = vec3(f,0.0,0.2);
+		points[7] = vec3(-f,0.0,0.2);
+		points[8] = vec3(f,0.0,-0.2);
+		points[9] = vec3(-f,0.0,-0.2);
+		points[10] = vec3(0.0,0.2,f);
+		points[11] = vec3(0.0,-0.2,f);
+	}
+	if (polygon==4){
+		points[20] = 0.9*vec3(0.0,0.2,-f);
+		points[21] = 0.9*vec3(0.0,-0.2,-f);
+		points[22] = 0.9*vec3(0.2,f,0.0);
+		points[23] = 0.9*vec3(-0.2,f,0.0);
+		points[24] = 0.9*vec3(0.2,-f,0.0);
+		points[25] = 0.9*vec3(-0.2,-f,0.0);
+		points[26] = 0.9*vec3(f,0.0,0.2);
+		points[27] = 0.9*vec3(-f,0.0,0.2);
+		points[28] = 0.9*vec3(f,0.0,-0.2);
+		points[29] = 0.9*vec3(-f,0.0,-0.2);
+		points[30] = 0.9*vec3(0.0,0.2,f);
+		points[31] = 0.9*vec3(0.0,-0.2,f);
+	}
+	vec4 pcolor[32];
+	int j = 0;
+	float l = 100.0;
+	float m = 0.0;
+	for (int i = 0; i < 32;i++){
+		points[i] = points[i] - c;
+		m = dot(points[i],points[i]);
+		if(m<l){
+			j = i;
+			l = m;
+		}
+	}
+	if(j==0)
+	return vec4(0.5,0.5,0.1,1.0);
+	if(j==1)
+	return vec4(1.0,0.0,0.0,1.0);
+	if(j==2)
+	return vec4(0.0,1.0,0.0,1.0);
+	if(j==3)
+	return vec4(0.0,0.0,1.0,1.0);
+	if(j==4)
+	return vec4(0.0,1.0,1.0,1.0);
+	if(j==5)
+	return vec4(1.0,1.0,0.0,1.0);
+	if(j==6)
+	return vec4(1.0,1.0,1.0,1.0);
+	if(j==7)
+	return vec4(1.0,0.0,1.0,1.0);
+	if(j==8)
+	return vec4(0.3,0.3,0.3,1.0);
+	if(j==9)
+	return vec4(0.7,0.7,0.7,1.0);
+	if(j==10)
+	return vec4(0.5,0.5,0.0,1.0);
+	if(j==11)
+	return vec4(0.0,0.5,0.5,1.0);
+	if(j==12)
+	return vec4(0.5,0.0,0.5,1.0);
+	if(j==13)
+	return vec4(0.0,0.5,1.0,1.0);
+	if(j==14)
+	return vec4(0.5,1.0,0.0,1.0);
+	if(j==15)
+	return vec4(1.0,0.0,0.5,1.0);
+	if(j==16)
+	return vec4(1.0,0.5,0.0,1.0);
+	if(j==17)
+	return vec4(0.5,0.0,1.0,1.0);
+	if(j==18)
+	return vec4(0.0,1.0,0.5,1.0);
+	if(j==19)
+	return vec4(0.5,1.0,0.5,1.0);
+	return vec4(0.0,0.0,0.0,1.0);
+}
+void main(){
+	////inner-image outter-screen
+	if(steo==1)
+		gl_FragColor = cut(invstero(F((vUv)*8.0,t1,t2)));
+	else
+		gl_FragColor = cut(invstero(F(stero(invmoc((vUv+vec2(1.0,1.0))*0.5)),t1,t2)));
+}
+</script>
+<script>
+function $(obj){
+	return document.getElementById(obj);
+}
+function initThree(){
+	width = $('div').clientWidth;
+	height = $('div').clientHeight; 
+	renderer = new THREE.WebGLRenderer({antialias: false});
+	renderer.setSize(width, height );
+	$('div').appendChild(renderer.domElement);
+	renderer.setClearColor(0xFFFFFF, 1.0);
+	scene = new THREE.Scene();
+}
+function initObj(){
+	
+	var rectShape = new THREE.Shape();
+	rectShape.moveTo(-1,-1);
+	rectShape.lineTo(-1,1);
+	rectShape.lineTo(1,1);
+	rectShape.lineTo(1,-1);
+	rectShape.lineTo(-1,-1);
+	var uniforms = {
+		t1:{
+			type: 'f',
+			value: 0
+		},
+		t2:{
+			type: 'f',
+			value: 0
+		},
+		polygon:{
+			type: 'i',
+			value: 0
+		},
+		steo:{
+			type: 'i',
+			value: 0
+		}
+	};
+	Material = new THREE.ShaderMaterial(
+		{
+			vertexShader: document.getElementById('vs').textContent,
+			fragmentShader: document.getElementById('fs').textContent,
+			uniforms: uniforms
+		}
+	);
+	var rectGeom = new THREE.ShapeGeometry( rectShape );
+	var rectMesh = new THREE.Mesh(
+		rectGeom,
+		Material
+	) ;	
+	scene.add( rectMesh );
+}
+function loop(){
+	Material.uniforms.t1.value = (-X/850+0.5)*2;
+	Material.uniforms.t2.value = (Y/850-0.5)*2;
+	Material.uniforms.polygon.value = polygon;
+	Material.uniforms.steo.value = steo;
+	renderer.clear();
+	renderer.render(scene, camera);
+	//window.requestAnimationFrame(loop);
+}
+function initThree(){
+	width = $('div').clientWidth;
+	height = $('div').clientHeight; 
+	renderer = new THREE.WebGLRenderer({antialias: false});
+	renderer.setSize(width, height );
+	$('div').appendChild(renderer.domElement);
+	renderer.setClearColor(0xFFFFFF, 1.0);
+	scene = new THREE.Scene();
+}
+function initCamera() { 
+	camera = new THREE.OrthographicCamera(-1,1,-1,1,0.01,100);
+	camera.position.set(0,0,-1);
+	camera.up.x = 0;
+	camera.up.y = 1;
+	camera.up.z = 0;
+	camera.lookAt(new THREE.Vector3(0,0,0));
+}
+function initLight() { 
+	light = new THREE.DirectionalLight(0xffffff, 1.0, 0);
+	light.position = camera.position;
+	scene.add(light);
+}
+function main() {
+	X = 0;
+	Y = 0;
+	polygon = 0;
+	drag = false;
+	steo = false;
+	initThree();
+	initCamera();
+	initLight();
+	initObj();
+	renderer.clear();
+	renderer.render(scene, camera);
+	window.requestAnimationFrame(loop);
+}
+function move(){
+	if(drag){
+		X = event.clientX-Xp+X0;
+		Y = event.clientY-Yp+Y0;
+		loop();
+	}
+}
+function mdown(){
+	X0 = X;
+	Xp = event.clientX;
+	Y0 = Y;
+	Yp = event.clientY;
+	drag = true;
+}
+function mup(){
+	drag = false;
+}
+</script>
+</head>
+<body onload="main()">
+<div class="canvas" id="div" onmousedown='mdown()' onmouseup='mup()' onmousemove='move()'>
+</div>
+<label><input id="shape1" type="radio" name="shape" onchange="polygon=0;loop()" checked="true">正方体</label>
+<label><input id="shape2" type="radio" name="shape" onchange="polygon=1;loop()">正八面体</label>
+<label><input id="shape3" type="radio" name="shape" onchange="polygon=3;loop()">正十二面体</label>
+<label><input id="shape4" type="radio" name="shape" onchange="polygon=2;loop()">正二十面体</label>
+<label><input id="shape5" type="radio" name="shape" onchange="polygon=4;loop()">截角二十面体</label>
+<br><label><input id="proj1" type="radio" name="proj" onchange="steo=1;loop()">球极投影</label>
+<label><input id="proj2" type="radio" name="proj" onchange="steo=0;loop()" checked="true">墨卡托投影</label>
+<hr>
+Par WXY
+By WXY
+</body>
+</html>
