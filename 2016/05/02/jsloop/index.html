@@ -6,21 +6,23 @@
   <title>自我描述的代码(in javascript) | Blog de WXYHLY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="自我描述的代码(Quine)就是程序运行时可以打印自己的源代码。网上有很多C语言、C#版的，我准备写一个javascript版本的。
-题外话：eval函数　　javascript是解释型语言，它有一个很牛的函数eval()：它能把接受到的字符串当成javascript代码执行。我想出了这段代码：1s=&quot;eval(s)&quot;;eval(s);
-　　我们可以在任何浏览器上做这个实验：在地址栏输入jav">
+题外话：eval函数/无限递归　　javascript是解释型语言，它有一个很牛的函数eval()：它能把接受到的字符串当成javascript代码执行。我想出了这段代码：1s=&quot;eval(s)&quot;;eval(s);
+　　我们可以在任何浏览器上做这个实验：在地址栏">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自我描述的代码(in javascript)">
 <meta property="og:url" content="http://wxyhly.github.io/2016/05/02/jsloop/index.html">
 <meta property="og:site_name" content="Blog de WXYHLY">
 <meta property="og:description" content="自我描述的代码(Quine)就是程序运行时可以打印自己的源代码。网上有很多C语言、C#版的，我准备写一个javascript版本的。
-题外话：eval函数　　javascript是解释型语言，它有一个很牛的函数eval()：它能把接受到的字符串当成javascript代码执行。我想出了这段代码：1s=&quot;eval(s)&quot;;eval(s);
-　　我们可以在任何浏览器上做这个实验：在地址栏输入jav">
-<meta property="og:updated_time" content="2016-05-02T07:13:49.952Z">
+题外话：eval函数/无限递归　　javascript是解释型语言，它有一个很牛的函数eval()：它能把接受到的字符串当成javascript代码执行。我想出了这段代码：1s=&quot;eval(s)&quot;;eval(s);
+　　我们可以在任何浏览器上做这个实验：在地址栏">
+<meta property="og:image" content="http://wxyhly.github.io/img/jsloop.gif">
+<meta property="og:updated_time" content="2016-11-22T16:18:11.052Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自我描述的代码(in javascript)">
 <meta name="twitter:description" content="自我描述的代码(Quine)就是程序运行时可以打印自己的源代码。网上有很多C语言、C#版的，我准备写一个javascript版本的。
-题外话：eval函数　　javascript是解释型语言，它有一个很牛的函数eval()：它能把接受到的字符串当成javascript代码执行。我想出了这段代码：1s=&quot;eval(s)&quot;;eval(s);
-　　我们可以在任何浏览器上做这个实验：在地址栏输入jav">
+题外话：eval函数/无限递归　　javascript是解释型语言，它有一个很牛的函数eval()：它能把接受到的字符串当成javascript代码执行。我想出了这段代码：1s=&quot;eval(s)&quot;;eval(s);
+　　我们可以在任何浏览器上做这个实验：在地址栏">
+<meta name="twitter:image" content="http://wxyhly.github.io/img/jsloop.gif">
   
     <link rel="alternate" href="/atom.xml" title="Blog de WXYHLY" type="application/atom+xml">
   
@@ -92,8 +94,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>　　自我描述的代码(Quine)就是程序运行时可以打印自己的源代码。网上有很多C语言、C#版的，我准备写一个javascript版本的。</p>
-<h3 id="题外话：eval函数"><a href="#题外话：eval函数" class="headerlink" title="题外话：eval函数"></a>题外话：eval函数</h3><p>　　javascript是解释型语言，它有一个很牛的函数<code>eval()</code>：它能把接受到的字符串当成javascript代码执行。我想出了这段代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="string">"eval(s)"</span>;<span class="built_in">eval</span>(s);</span><br></pre></td></tr></table></figure></p>
-<p>　　我们可以在任何浏览器上做这个实验：在地址栏输入<code>javascript:s=&quot;eval(s)&quot;;eval(s);</code>即可。（快试试吧。。）<br><a id="more"></a><br>　　在Chrome控制台运行一会儿后得到这样的报错：<span style="color:#F00">Uncaught RangeError: Maximum call stack size exceeded</span><span style="color:#999">(…)</span><br>　　意思是<strong>递归错误，超出堆栈大小</strong>。</p>
+<h3 id="题外话：eval函数-无限递归"><a href="#题外话：eval函数-无限递归" class="headerlink" title="题外话：eval函数/无限递归"></a>题外话：eval函数/无限递归</h3><p>　　javascript是解释型语言，它有一个很牛的函数<code>eval()</code>：它能把接受到的字符串当成javascript代码执行。我想出了这段代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="string">"eval(s)"</span>;<span class="built_in">eval</span>(s);</span><br></pre></td></tr></table></figure></p>
+<p>　　我们可以在任何浏览器上做这个实验：在地址栏输入<code>javascript:s=&quot;eval(s)&quot;;eval(s);</code>即可。（快试试吧。。）<br><a id="more"></a><br>　　在Chrome控制台运行一会儿后得到这样的报错：<span style="color:#F00">Uncaught RangeError: Maximum call stack size exceeded</span><span style="color:#999">(…)</span></p>
+<h2 id="意思是递归错误，超出堆栈大小。"><a href="#意思是递归错误，超出堆栈大小。" class="headerlink" title="　　意思是递归错误，超出堆栈大小。"></a>　　意思是<strong>递归错误，超出堆栈大小</strong>。</h2><p>　　还有一个很有意思的无限递归实验：在Chrome控制台执行这些语句：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A = &#123;&#125;;</span><br><span class="line">B = &#123;&#125;;</span><br><span class="line">A.a = B;</span><br><span class="line">B.b = A;</span><br></pre></td></tr></table></figure></p>
+<p>　　然后输出A，我们得到了一个无限嵌套的东西：<br><img src="/img/jsloop.gif" alt=""><br>　　（其实不是真的无限嵌套，而是两个互指的指针）</p>
 <h3 id="正题：自我打印的程序"><a href="#正题：自我打印的程序" class="headerlink" title="正题：自我打印的程序"></a>正题：自我打印的程序</h3><p>　　我们先看网上流行的C语言版本：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>*s=<span class="string">"char*s=%c%s%c;main()&#123;printf(s,34,s,34);&#125;"</span>;main()&#123;<span class="built_in">printf</span>(s,<span class="number">34</span>,s,<span class="number">34</span>);&#125;</span><br></pre></td></tr></table></figure></p>
 <p>　　最后的printf函数输出了整个程序的源代码，printf中34是引号 “ 的Ascii码，这是为了避免引号中又出现引号无法书写。在格式化输出中巧妙用%s来代表整个字符串是整个自我描述的<strong>核心</strong>：只有这样自己指代自己才能用有限的代码输出自身。<br>　　参考网上给的C语言版本的写法我有了在javascript语言里写的思路：必须要使用某个方法来代表整个字符串。但js中好像并没有格式化输出的命令，我们必须自己想办法用一个很短的字符串来代表整个字符串。我想到了随便用一个字符（比如“@”）在字符串里起占位作用，然后我们用字符串分组查找功能Split函数把“@”替换成整个字符串输出。所以我们先写一个函数来做这件事：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">r</span>(<span class="params">s</span>)</span>&#123;</span><br><span class="line">	j = <span class="built_in">String</span>.fromCharCode(<span class="number">34</span>); <span class="comment">//j代表双引号</span></span><br><span class="line">	k = <span class="string">'@'</span>;</span><br><span class="line">	q = s.split(k);</span><br><span class="line">	<span class="keyword">return</span> q[<span class="number">0</span>]+k+q[<span class="number">1</span>]+j+s+j+q[<span class="number">2</span>] <span class="comment">//返回s中@被s替换的字符串，比如"abc@d"变成了"abcabc@dd"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>　　然后我们就要写那个字符串了，那个字符串是什么样子的我们还不知道，先看下一步，也是最后一步——输出字符串：我们用console.log 函数输出最终结果，所以最后有代码<code>console.log(r(s))</code>，意思是让替换后的字符串输出。我们的代码现在有：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">r</span>(<span class="params">s</span>)</span>&#123;</span><br><span class="line">	j = <span class="built_in">String</span>.fromCharCode(<span class="number">34</span>); </span><br><span class="line">	k = <span class="string">'@'</span>;</span><br><span class="line">	q = s.split(k);</span><br><span class="line">	<span class="keyword">return</span> q[<span class="number">0</span>]+k+q[<span class="number">1</span>]+j+s+j+q[<span class="number">2</span>]</span><br><span class="line">&#125;</span><br><span class="line">s = .....</span><br><span class="line">console.log(r(s))</span><br></pre></td></tr></table></figure></p>
@@ -109,7 +113,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wxyhly.github.io/2016/05/02/jsloop/" data-id="civbdhv3k000do8vl82ra5v5x" class="article-share-link">Share</a>
+      <a data-url="http://wxyhly.github.io/2016/05/02/jsloop/" data-id="ciwe1x5bm000kmsvle8snab0j" class="article-share-link">Share</a>
       
         <a href="http://wxyhly.github.io/2016/05/02/jsloop/#disqus_thread" class="article-comment-link">留言</a>
       
@@ -166,7 +170,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Hutton32/" style="font-size: 12.5px;">Hutton32</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 17.5px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 15px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 10px;">拓补学</a> <a href="/tags/数学/" style="font-size: 17.5px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/物理/" style="font-size: 12.5px;">物理</a> <a href="/tags/电路/" style="font-size: 12.5px;">电路</a> <a href="/tags/系列文章/" style="font-size: 17.5px;">系列文章</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 12.5px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 12.5px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+      <a href="/tags/Hutton32/" style="font-size: 12.5px;">Hutton32</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 20px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 12.5px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 15px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 10px;">拓补学</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/物理/" style="font-size: 12.5px;">物理</a> <a href="/tags/电路/" style="font-size: 12.5px;">电路</a> <a href="/tags/系列文章/" style="font-size: 17.5px;">系列文章</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 12.5px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 12.5px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
     </div>
   </div>
 
@@ -175,7 +179,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -186,6 +190,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/12/06/p-norm/">p范数空间中的旋转几何</a>
+          </li>
         
           <li>
             <a href="/2016/11/09/projearth/">墨卡托投影</a>
@@ -201,10 +209,6 @@
         
           <li>
             <a href="/2016/06/10/Hutton3202/">用Hutton32玩转数字电路（二）：逻辑器件</a>
-          </li>
-        
-          <li>
-            <a href="/2016/06/03/Hutton3201/">用Hutton32玩转数字电路（一）：逻辑门</a>
           </li>
         
       </ul>
