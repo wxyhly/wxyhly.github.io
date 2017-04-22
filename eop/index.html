@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns = "http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="panel.css">
+	<title>Eop</title>
+	<script src="js/Base64binary.js" type="text/javascript"></script>
+	<script src="js/canvas_util.js" type="text/javascript"></script>
+	<script src="js/Note_v1.0.js" type="text/javascript"></script>
+	<style>body{user-select:none}</style>
+	<script type="text/javascript">
+	
+	window.onload = function () {
+		MIDI.load([//"synth_drum"
+		"acoustic_grand_piano"
+		//"acoustic_guitar_steel",
+		//"cello",
+		//"orchestra_hit"
+		]);
+		
+		MIDI.onsuccess = function (){
+			//FtPlugin.load();
+			//view.runAt$("notearea");
+			view.runAt$("notearea");
+			MIDI.noteOn(0,62,100,0);
+		}
+	}
+	</script>
+
+	<script type="text/javascript">
+FtPlugin = function (){
+    function sineWaveAt(sampleNumber, tone) {
+		var t = sampleNumber/context.sampleRate;
+		var t_tone = t* Math.PI*2*tone;
+		var y = 0;
+		var freqSerial = [1,1/4,1/9,1/16,1/25,1/36];
+        for(var i = 1; i <= freqSerial.length; i++){
+			y += Math.sin(i * t_tone)*freqSerial[i-1];
+		}
+		y *= Math.exp(-3*t)*(1-Math.exp(-100*t));
+		return y;
+    }
+	var wavefunc = {};
+	wavefunc.generateBuffer = function (func, tone, duration){
+		var arr = [];
+		for (var i = 0; i < context.sampleRate * duration; i++) {
+			arr[i] = func(i, tone);
+		}
+		var buf = new Float32Array(arr.length);
+		for (var i = 0; i < arr.length; i++) buf[i] = arr[i];
+		var buffer = context.createBuffer(1, buf.length, context.sampleRate);
+		buffer.copyToChannel(buf, 0);
+		return buffer;
+	}
+	wavefunc.note2freq = function (note){
+		var Freq_A4 = 440;
+		return Math.pow(2,(note - MIDI.keyToNote["A4"])/12)*Freq_A4;
+	}
+	wavefunc.getBuffer = function (func,duration){
+		var A0 = 0x15; // first note
+		var C8 = 0x6C; // last note
+		//MIDI.Soundfont.acoustic_grand_piano = {};
+		for (var n = A0; n <= C8; n++) {
+			MIDI.audioBuffers[n] = wavefunc.generateBuffer(func, wavefunc.note2freq(n), duration);
+		}
+	}
+	////////////////////////////////////////////////////
+	////////////////////////////////////////////////////
+	///////////////////HEHEHEHEHE///////////////////////
+	////////////////////////////////////////////////////
+	////////////////////////////////////////////////////
+	Ft = {
+	width: 100,
+	height: 500,
+	data: [],
+	isDrag: false,
+	oldP: 0
+	};
+	Ft.createData = function(){
+		var i = Ft.width;
+		while(i--)
+		Ft.data[i] = 0;
+	}
+	Ft.getData = function(x){
+		x -= Math.floor(x);
+		var i = x * Ft.width;
+		var j = Math.floor(i);
+		if(j >= Ft.data.length - 1)
+			return Ft.data[j];
+		return Ft.data[j] + (Ft.data[j+1] - Ft.data[j]) * (i - j);
+	}
+	Ft.changeSize = function(w){
+		var p = [];
+		var i = Math.floor(w);
+		while(i--)
+		p[i] = Ft.getData(i/w);
+		Ft.data = p;
+		Ft.draw();
+	}
+	Ft.waveAt = function (sampleNumber, tone) {
+		var t = sampleNumber/context.sampleRate;
+		return Ft.getData(tone*t);
+	}
+	window.addEventListener("resize", function () {
+		Ft.width = Ft.canvas.width = Math.floor(window.innerWidth/2-20);
+		Ft.changeSize(Ft.width);
+	}, false);
+	Ft.mouse = function (state, evt) {
+		evt.preventDefault();
+		if(state == 2){
+			Ft.isDrag = false;
+			return 0;
+		}
+		if(state == 0) {
+			Ft.isDrag = true;
+			if(evt.button == 2){
+				wavefunc.getBuffer(Ft.waveAt,1);
+				return 0;
+			}
+		}
+		if(state == 1 && (!Ft.isDrag))return 0;
+		var rect = Ft.canvas.getBoundingClientRect(); 
+		var Pos = p(
+			evt.clientX - rect.left * (Ft.canvas.width / rect.width),
+			evt.clientY - rect.top * (Ft.canvas.height / rect.height)
+		);
+		Pos.x = Math.floor(Pos.x);
+		var newy = Pos.y / Ft.height - 0.5;
+		var o = Ft.data[Ft.oldP];
+		if(Pos.x - Ft.oldP == 0) Ft.data[i] = newy;
+		else{
+			if(Pos.x > Ft.oldP)
+			for(var i = Ft.oldP; i <= Pos.x; i++){
+				Ft.data[i] = o + (i - Ft.oldP)*(newy - o)/(Pos.x - Ft.oldP);
+			}
+			else
+			for(var i = Ft.oldP; i >= Pos.x; i--){
+				Ft.data[i] = o + (i - Ft.oldP)*(newy - o)/(Pos.x - Ft.oldP);
+			}
+		}
+		Ft.oldP = Pos.x;
+		Ft.draw();
+	}
+	Ft.draw = function (){
+		var i = Ft.width;
+		var ctx = Ft.canvas.getContext("2d");
+		ctx.clearRect(0, 0, Ft.width, Ft.height);
+		ctx.fillStyle = "rgba(252,249,212,0.5)";
+		ctx.fillRect(0, 0, Ft.width, Ft.height);
+		ctx.strokeStyle = "rgb(0,0,0)";
+		ctx.beginPath();
+		var h = [];
+		while(i--) {h[i] = hh(i);ctx.lineTo(i,(Ft.data[i]+0.5)*Ft.height);}
+		var DATA = fft(Ft.data);
+		i = DATA.length;
+		var H = fft(h);
+		while(i--) DATA[i] = DATA[i]//.mul(HH(i,DATA.length),false)//.mul(H[i],false);
+		DATA2 = DATA//ifft(DATA);
+		i = Ft.width;
+		ctx.stroke();
+		ctx.strokeStyle = "rgb(0,0,255)";
+		ctx.beginPath();
+		while(i--) ctx.lineTo(i,(DATA2[i].x+0.5)*Ft.height);
+		ctx.stroke();
+		ctx.strokeStyle = "rgb(0,0,255)";
+	}
+	hh = function(i){
+		var h1 = [60,-60];
+		if(i < h1.length)
+		return h1[i];
+		else return 0;
+	}
+	HH = function (i,l){
+		if(i>l/2) i = l-i;
+		return (i>40)?1:0;
+	}
+}
+FtPlugin.load = function (){
+	FtPlugin();
+	Ft.canvas = document.createElement("CANVAS");
+	Ft.fdiv = document.createElement("DIV");
+	Ft.fdiv.className = "wave";
+	Ft.fdiv.appendChild(Ft.canvas);
+	document.body.appendChild(Ft.fdiv);
+	Ft.width = Ft.canvas.width = Math.floor(window.innerWidth/2-20);
+	Ft.canvas.height = Ft.height;
+	Ft.createData();
+	Ft.changeSize(Ft.width);
+	Ft.canvas.addEventListener("mousedown", Ft.mouse.bind(undefined,0));
+	Ft.canvas.addEventListener("mousemove", Ft.mouse.bind(undefined,1));
+	Ft.canvas.addEventListener("mouseup", Ft.mouse.bind(undefined,2));
+	Ft.canvas.addEventListener("mouseout", Ft.mouse.bind(undefined,2));
+}
+	</script>
+</head>
+<body>
+	<canvas id="notearea"></canvas>
+</body>
+</html>
+
+
+
+

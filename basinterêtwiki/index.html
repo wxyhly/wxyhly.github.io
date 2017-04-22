@@ -2,9 +2,11 @@
 <html dir="ltr" class="client-js ve-not-available"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <title>低趣百科，低趣的百科全书</title>
-<script src="http://115.159.100.67:8000/output/datas.js"></script>
+<!--script src="http://115.159.100.67:8000/output/datas.js"></script-->
+<script src="shot.js"></script>
 <script src="wikiparser.js"></script>
 <script type="text/javascript">
+if(typeof pDB == "undefined") pDB = pDB2;
 try{
     if (/Android|webOS|iPhone|BlackBerry/i.test(navigator.userAgent)&&(location.search=='')) {
         window.location.href="m.html";
@@ -26,10 +28,14 @@ function Rechercher(str,f,isSource){
 	var ctxt = "很抱歉，您要找的词条<b>“"+str+"”</b>在低趣百科词条中不存在。<br>您可以：<ul><li><a href='http://115.159.100.67:8000/login.html'>登录并创建词条“<span style='color:#F00'><b>"+str+"</b></span>”</a></li><li>或联系<a href='index.html?search=低趣人&go=Go'>低趣人</a>帮您创建您所希望看到的词条；</li></ul><br>但应检查下面的搜索结果，看看是否有相同内容的页面已被创建。<hr>";
 	var pre = '';
 	var Qu = pDB.ReDir[str.toLowerCase()];
-	if(typeof Qu == "string" ){
+	if(typeof Qu == "string"){
 		var pre = "<p><sup>重定向自<i>"+str+"</i></sup></p>";
 		str = Qu;
 	} 
+	if(typeof pDB.ReDir[str] == "string"){
+		var pre = "<p><sup>重定向自<i>"+str+"</i></sup></p>";
+		str = pDB.ReDir[str];
+	}
 	if(typeof Qu == "object"){
 		var pre = "<p><h1 id='sss' class='mw-headline' lang='en'>这是一个消岐页</h1></p>"+str+"可能指的是：";
 		for(var k=0; k<Qu.length; k++){
@@ -39,9 +45,12 @@ function Rechercher(str,f,isSource){
 		return 0;
 	}
 	var trouver = false;
-	if(typeof pDB.DATAs[str.toLowerCase()] == "string"){
-		ctxt = pDB.DATAs[str.toLowerCase()];
-		str = str.toLowerCase();
+	if(typeof pDB.DATAs[str] == "string" || typeof pDB.DATAs[str.toLowerCase()] == "string"){
+		ctxt = pDB.DATAs[str];
+		if(!ctxt){
+			ctxt = pDB.DATAs[str.toLowerCase()];
+			str = str.toLowerCase();
+		}
 		trouver = true;
 	}else{
 		for ( var p in pDB.DATAs ){
@@ -132,8 +141,8 @@ function Rechercher(str,f,isSource){
 							<div id="siteNotice"><div id="centralNotice"></div><!-- CentralNotice --></div>
 						<div class="mw-indicators">
 </div>
-			<h1 id="firstHeading" class="firstHeading" lang="en">首页</h1>
 									<div id="bodyContent" class="mw-body-content" style="display:none">
+			<h1 id="firstHeading" class="firstHeading" lang="en">首页</h1>
 									
 				
 				<div id="mw-content-text" dir="ltr" class="mw-content-ltr"><table id="mp-topbanner" style="width:100%; background:#f9f9f9; margin:1.2em 0 6px 0; border:1px solid #ddd;">

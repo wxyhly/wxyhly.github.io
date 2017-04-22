@@ -323,14 +323,11 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  height: 40px;
+  height: 60px;
 }
 #header:before {
   top: 0;
-  background: -webkit-linear-gradient(rgba(0,0,0,0.2), transparent);
-  background: -moz-linear-gradient(rgba(0,0,0,0.2), transparent);
-  background: -ms-linear-gradient(rgba(0,0,0,0.2), transparent);
-  background: linear-gradient(rgba(0,0,0,0.2), transparent);
+  background: rgba(0,0,0,0.2);
 }
 #header:after {
   bottom: 0;
@@ -395,7 +392,6 @@ body {
 .main-nav-link {
   float: left;
   color: #6f6;
-  opacity: 0.8;
   text-decoration: none;
   text-shadow: 0 2px rgba(0,0,0,0.2);
   -webkit-transition: opacity 0.2s;
@@ -404,10 +400,12 @@ body {
   transition: opacity 0.2s;
   display: block;
   padding: 20px 15px;
+  background: rgba(0,0,120,0);
 }
 .nav-icon:hover,
 .main-nav-link:hover {
-  opacity: 1;
+  color: #bf5;
+  background: rgba(0,0,120,0.3);
 }
 .nav-icon {
   font-family: FontAwesome;

@@ -1,0 +1,100 @@
+button{
+	text-align: center;
+	padding: 0px;
+	opacity: 0.8;
+	font-size: 15px;
+	width: 50px;
+	height: 40px;
+}
+button.blueOn {
+	background-color: #88F;
+	color: #DAF;
+}
+button.blueOff {
+	background-color: #EEF;
+	color: #228;
+}
+button.blue {
+	background-color: #DDF;
+	color: #007;
+}
+button.green {
+	background-color: #DFD;
+	color: #070;
+}
+button.red {
+	background-color: #FDD;
+	color: #700;
+}
+button.yellow {
+	background-color: #FFB;
+	color: #660;
+}
+button.yellowOn {
+	background-color: #FF0;
+	color: #330;
+}
+button.white {
+	background-color: #FFF;
+	color: #555;
+}
+button.dis {
+	background-color: #EEE;
+	color: #335;
+}
+div.panel {
+	position: absolute;
+	left: 10%;
+	top: 8px;
+	z-index:1;
+}
+div.help {
+	position: absolute;
+	left: 25%;
+	top: 100px;
+	padding: 5px;
+	width: 50%;
+	z-index:4;
+	background-color: #FFF;
+	opacity: 0.8;
+	display: none;
+}
+div.tempo {
+	position: absolute;
+	left: 55%;
+	top: 100px;
+	padding: 5px;
+	width: 210px;
+	z-index:4;
+	background-color: #FFC;
+	opacity: 0.8;
+	display: none;
+}
+div.dialog {
+	position: absolute;
+	left: 40%;
+	top: 100px;
+	padding: 5px;
+	width: 210px;
+	z-index:5;
+	background-color: #FDD;
+	opacity: 0.8;
+	display: none;
+}
+textarea.dialog {
+	width: 200px;
+	height: 150px;
+}
+button.dialog {
+	width: 200px;
+}
+.small {
+	font-size: 7px;
+}
+.wave {
+	z-index:2;
+	position: absolute;
+	left: 100px;
+	top: 100px;
+	height: 200px;
+}
