@@ -879,6 +879,7 @@ panel = {
 		}},
 		{name:"volume", className:"green", action: "disabled"},
 		{name:LAN.save, className:"red", action: function (){
+			recorder.sort();
 			var str = xcode.en(recorder.ctxt, grid.enable?grid.gap:0)//recorder.toJSON(grid.enable);
 			panel.set(LAN.save);
 			$("output").value = str;
