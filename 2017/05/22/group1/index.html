@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Symmetric_group_4%3B_Cayley_graph_4%2C9.svg/300px-Symmetric_group_4%3B_Cayley_graph_4%2C9.svg.png">
 <meta property="og:image" content="http://wxyhly.github.io/img/group1img5.gif">
 <meta property="og:image" content="http://wxyhly.github.io/img/group1img7.gif">
-<meta property="og:updated_time" content="2018-02-22T14:11:15.991Z">
+<meta property="og:updated_time" content="2018-06-01T15:51:11.132Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="群论系列(一)：群论简介">
 <meta name="twitter:description" content="为什么五次方程没有根式解？伽罗瓦用群论做了完美的回答。群论的历史和介绍我强烈推荐这篇文章《有限单群：一段百年征程》。但我们具体需要哪些知识才能理解伽罗瓦的理论呢？一般大多数专业的工科生都没学过群论和抽象代数，我打算写一系列文章，希望从零基础开始解释这一切。我们的主线是理解伽罗瓦的理论，当然群的用处还很多，数理化都有应用，我会写一部分其他应用。
@@ -155,13 +155,13 @@
 <p>不是任何子群都是整个群的“因子”（像整数约数那样），只有左右陪集相等的子群才是，我们叫<strong>正规子群</strong>，记作$H\lhd G$。<br><a href="javascript:var spanNumber=4;$('#proof'+spanNumber).toggle();$('#preuve'+spanNumber).text($('#preuve'+spanNumber).text()=='显示'?'隐藏':'显示')" target="_blank" rel="external"><span id="preuve4">显示</span>商群的具体定义</a><br><span id="proof4" style="display:none"><br>如果集合$N$是$G$的正规子群，则：<br>我们定义集合$G/N$是$N$在$G$中的所有左陪集的集合，就是说$G/N = \lbrace aN : a\in G \rbrace$。对于每个$G/N$中$aN$和$bN$，$aN$和$bN$的乘积是 $(aN)(bN)$。这个运算是闭合的，因为 $(aN)(bN)$实际上是左陪集：<br>$(aN)(bN) = a(Nb)N = a(bN)N =(ab)NN =(ab)N$。<br>注意：N的左右陪集相等被用在了这个等式中。<br></span></p>
 <h3 id="商群的例子"><a href="#商群的例子" class="headerlink" title="商群的例子"></a>商群的例子</h3><p>整数集上的加法构成群$Z$，所有偶数的加法也能构成群，记作$2Z$，它是$Z$的子群。我们不难发现这个子群有两个陪集：{所有奇数,所有偶数}，由于偶+偶=偶，偶+奇=奇+偶=奇，奇+奇=偶，这说明陪集间的运算构成了群，且它同构于循环群$C_2$（或对称群$S_2$），即循环群$C_2=Z/2Z$。<a href="javascript:var spanNumber=6;$('#proof'+spanNumber).toggle();$('#preuve'+spanNumber).text($('#preuve'+spanNumber).text()=='显示'?'隐藏':'显示')" target="_blank" rel="external">[<span id="preuve6">显示</span>]为什么同构？</a><br><span id="proof6" style="display:none"><br>说它同构于循环群，理由：偶对应不操作（或+0操作），奇对应转半周（或+1后再取除以二的余数）；说它同构于对称群，理由：偶对应不操作(12)，奇对应交换(21)。</span><br>其实这种情况能推广到所有循环群，有$C_n=Z/nZ$。<br>我们再看看有限群上的例子：由于循环群是交换群，所以所有子群都是正规的（左右陪集相等），我们有 $C_{mn}/C_m=C_n$。<a name="a7"></a></p>
 <h2 id="交错群"><a href="#交错群" class="headerlink" title="交错群"></a>交错群</h2><p>交错群是对称群$S_n$中的子群，记作$A_n$，它是由$S_n$中所有<strong>偶置换</strong>构成的群。置换的奇偶性指的是把置换分解为多个对换（即每次只交换两个数的位置）的叠加，可以证明给定一个置换，不论什么分解方式，最后得到的对换个数的奇偶性不变。这样所有的偶置换组成了一个子群，所有的奇置换组成了这个子群的陪集，我们可以证明它是正规的，且有$S_n/A_n=C_2$。<br><img src="/img/group1img7.gif" alt=""><br>小时候有种拼图游戏（大多数是图案，而不是数字，但本质一样）的所有操作就是把这些方块换到正确的位置，但如果我们想通过操作只交换某两方块位置（比如交换14和15）是不可能的，因为每操作一次空位就会改变位置，每次操作实质是空位与相邻某方块对换。而只有偶数次移动才可能使空位回到原来的位置，即我们只能实现偶置换，而单纯交换某两方块位置则是奇置换，是不可能做到的。<a name="a8"></a></p>
-<h2 id="单群"><a href="#单群" class="headerlink" title="单群"></a>单群</h2><p>现在我们能够定义类似质数的概念了——<strong>单群</strong>——如果一个群的正规子群都是平凡的（{e}和它自身），这个群就叫单群（也叫简单群）。比如所有的质数阶循环群都是单群。有限群中哪些群是单群这个问题很有意思，详见文章《<br><a href="http://songshuhui.net/archives/57697" target="_blank" rel="external">有限单群：一段百年征程</a>》。</p>
+<h2 id="单群"><a href="#单群" class="headerlink" title="单群"></a>单群</h2><p>现在我们能够定义类似质数的概念了——<strong>单群</strong>——如果一个群的正规子群都是平凡的（{e}和它自身），这个群就叫单群（也叫简单群）。比如所有的质数阶循环群都是单群。有限群中哪些群是单群这个问题很有意思，详见文章《<a href="http://songshuhui.net/archives/57697" target="_blank" rel="external">有限单群：一段百年征程</a>》。</p>
 <p>正是交错群$A_5$是单群而直接导致五次方程没根式解。(未完待续)</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wxyhly.github.io/2017/05/22/group1/" data-id="cj30o2at300034ovlyuvby3v3" class="article-share-link">Share</a>
+      <a data-url="http://wxyhly.github.io/2017/05/22/group1/" data-id="cjih3wqro000dx8vlads56854" class="article-share-link">Share</a>
       
         <a href="http://wxyhly.github.io/2017/05/22/group1/#disqus_thread" class="article-comment-link">留言</a>
       
@@ -173,6 +173,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2018/06/16/group2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          群论系列(二)：数域的扩张
+        
+      </div>
+    </a>
   
   
     <a href="/2016/12/06/p-norm/" id="article-nav-older" class="article-nav-link-wrap">
@@ -209,7 +218,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Hutton32/" style="font-size: 12.5px;">Hutton32</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 17.5px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 12.5px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 17.5px;">四维</a> <a href="/tags/图形/" style="font-size: 15px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 10px;">拓补学</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/物理/" style="font-size: 12.5px;">物理</a> <a href="/tags/电路/" style="font-size: 12.5px;">电路</a> <a href="/tags/系列文章/" style="font-size: 17.5px;">系列文章</a> <a href="/tags/群论/" style="font-size: 10px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 12.5px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 12.5px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+      <a href="/tags/Hutton32/" style="font-size: 12px;">Hutton32</a> <a href="/tags/javascript/" style="font-size: 14px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 16px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 12px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 16px;">四维</a> <a href="/tags/图形/" style="font-size: 14px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 14px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 10px;">拓补学</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/物理/" style="font-size: 12px;">物理</a> <a href="/tags/电路/" style="font-size: 12px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18px;">系列文章</a> <a href="/tags/群论/" style="font-size: 12px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 12px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 12px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
     </div>
   </div>
 
@@ -218,7 +227,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -229,6 +238,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/06/16/group2/">群论系列(二)：数域的扩张</a>
+          </li>
         
           <li>
             <a href="/2017/05/22/group1/">群论系列(一)：群论简介</a>
@@ -244,10 +257,6 @@
         
           <li>
             <a href="/2016/11/03/polyhedrals/">趣题：五维立方体截面</a>
-          </li>
-        
-          <li>
-            <a href="/2016/06/26/escher1/">双曲空间——数学艺术</a>
           </li>
         
       </ul>
