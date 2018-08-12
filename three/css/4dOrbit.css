@@ -1,0 +1,14 @@
+#curvesList{
+	border: 1px;
+	height:4em;
+	overflow:auto;
+}
+table{vertical-align:top;border-width:1px}
+tr{vertical-align:top}
+td{vertical-align:top}
+input{
+	width: 100px
+}
+input.checkbox{
+	width: 20px
+}

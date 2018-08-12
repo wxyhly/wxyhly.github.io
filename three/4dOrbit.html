@@ -1,0 +1,262 @@
+﻿<html>
+<head>
+<script src="math4.js">
+</script>
+<title>4D星球昼夜模拟 by WXYHLY</title>
+<link type="text/css" rel="styleSheet"  href="css/4dOrbit.css" />
+<script>
+$ = function (obj){
+	return document.getElementById(obj);
+}
+ctxt$ = function (obj){
+	return $(obj).getContext("2d");
+}
+function rotPlanet(vxy,vzt){
+	this.vxy = vxy;
+	this.vzt = vzt;
+	this.getP = function(ps,t){
+		var P = bivec(1,0,0,0,0,0).generateRotation(vxy*t);
+		var Q = bivec(0,0,0,0,0,1).generateRotation(vzt*t);
+		return Q.mul(P).mul(ps);
+	}
+}
+function rotSun(v,planeU,planeV){
+	this.getLight = function(t){
+		vt = v*t;
+		return planeU.mul(Math.sin(vt),false).add(planeV.mul(Math.cos(vt),false));
+	}
+}
+function getSunshine(ps,t,planet,sun){
+	return planet.getP(ps,t).dot(sun.getLight(t));
+}
+var centerY = 150;
+var scaleY = 100;
+Sun = null;
+earth = null;
+sp = null;
+CurveData = [];
+CosMode = true;
+function getSunEarth(data){
+	var su = data.sunPu.split(",");
+	for(var i=0;i<su.length; i++){su[i] = Number(su[i]);}
+	su = vec(su).norm();
+	
+	var sv = data.sunPv.split(",");
+	for(var i=0;i<sv.length; i++){sv[i] = Number(sv[i]);}
+	sv = vec(sv).norm();
+	sv = sv.sub(su.mul(su.dot(sv),false)).norm();//Schmidt 正交化
+	sp = data.point.split(",");
+	for(var i=0;i<sp.length; i++){sp[i] = Number(sp[i]);}
+	sp = vec(sp).norm();
+	earth = new rotPlanet(data.Ivxy,data.Ivzt);
+	Sun = new rotSun(data.Ivsun,su,sv);
+}
+function sre(data){
+	getSunEarth(data);
+	var color = data.color;
+	draw(sp,Number($("t0").value),1000);
+	function draw(P,t0,t){
+		var ctxt = ctxt$("mycanvas");
+		ctxt.beginPath();
+		ctxt.strokeStyle = "#"+color;
+		ctxt.lineWidth = 2;
+		ctxt.moveTo(0,centerY);
+		var u;// = [];
+		var temp = [15];
+		var baack = 5000;
+		for(var i = -baack; i < t; i++){
+			var hh = getSunshine(P,i+t0,earth,Sun);
+			if(!CosMode){
+				hh = Math.asin(hh)/Math.PI*2;
+			}
+			var h = -hh*scaleY + centerY;
+			ctxt.lineTo(i,h);
+			u = (hh>0?hh:0);
+			temp[i+1+baack] = temp[i+baack] + u - (temp[i+baack]+90)*0.005 +0.005;
+		}
+		ctxt.stroke();
+		ctxt.beginPath();
+		ctxt.strokeStyle = "#CCC";
+		ctxt.lineWidth = 0.5;
+		ctxt.moveTo(0,centerY);
+		for(var i = -baack; i < t; i++){
+				ctxt.lineTo(i,-temp[i+baack]/30*scaleY+centerY-150);
+		}
+		ctxt.stroke();
+	}
+}
+</script>
+</head><body onload="addCurve()">
+<table border="1px"><tr><td width="130em">
+<b>自转公转设定</b><br>
+xOy平面角速度:<br>
+zOw平面角速度:<br>
+公转速度:<br>
+公转平面向量m:<br>
+公转平面向量n:
+</td><td>
+<br>
+<input value="0.2" id="Ivxy"><br>
+<input value="0.0414" id="Ivzt"><br>
+<input value="0.001" id="Ivsun"><br>
+<input value="1,0,0,0.6" id="sunPu"><br>
+<input value="0,1,0.9,0" id="sunPv">
+</td><td>
+<b>地点设定</b><br>
+直角坐标(X,Y,Z,W):<br><input value="0,1,0,0" id="point" onchange="$('Mpoint').value=p2m($('point').value)"><br>
+Hopf坐标(东西,南北,阴阳):<br><input value="90,0,0" id="Mpoint" onchange="$('point').value=m2p($('Mpoint').value)"><br>(0~360,0~90,0~360)
+</td><td width="120em">
+<b>曲线</b><br>
+颜色：#<input value="F00" id="color" style="width:50px"><br>
+列表：<button onclick="addCurve()">+</button> 
+<button onclick="CurveData = [];updateCurvesList();clearCanvas()">清空</button>
+<div id="curvesList"></div>
+</td><td>
+<b>时间</b><br>
+起始时间:<input value="0" id="t0"><br>
+<button onclick="hqa()"><<</button> 
+<button onclick="hqe()">>></button> 
+<br>
+曲线<span id="curveId">0</span>：
+<br>
+xOy平面时间:<input id="xytime" class="checkbox" disabled><br>
+zOw平面时间:<input id="zttime" class="checkbox" disabled>
+</td><td>
+<b>太阳高度</b><br>
+太阳直射点:<br>直角坐标(X Y Z T)<input value="1,0,0,0" id="Spoint" disabled><br>
+Hopf坐标(东西,南北,阴阳)<input value="0,0,0" id="SMpoint" disabled><br>
+显示模式：<label><input type="radio" name="mode" class="checkbox" value="cos" onclick="CosMode = this.checked; drawAllCurves()" checked>正弦</label><label><input type="radio" class="checkbox" name="mode" value="angle" onclick="CosMode = !this.checked; drawAllCurves()">角度</label>
+<br>
+</td></tr></table>
+<div id="main"><canvas id="mycanvas" width="1000" height="300"></canvas></div>
+<h2>说明：</h2>设定好参数后，点击<b>曲线</b>栏中的加号添加曲线，参数设定将会被自动保存；点击列表中的读按钮将把保存的参数加载出来，并可查看当前曲线上的地方时和太阳直射点；点击写按钮将把现在的参数写入对应曲线。
+（灰色曲线是可能的温度变化趋势）
+<p>　</p>
+<sub>wxyhly - 2018</sub>
+<script>
+function loadData(data){
+	$("Ivxy").value = data.Ivxy;
+	$("Ivzt").value = data.Ivzt;
+	$("Ivsun").value = data.Ivsun;
+	$("sunPu").value = data.sunPu;
+	$("sunPv").value = data.sunPv;
+	$("point").value = data.point;
+	$("color").value = data.color;
+	$('Mpoint').value=p2m($('point').value);
+	getSunEarth(data);
+	$("curveId").style.color = "#"+$("color").value;
+}
+function addCurve(index){
+	var data = {
+		Ivxy: Number($("Ivxy").value),
+		Ivzt: Number($("Ivzt").value),
+		Ivsun: Number($("Ivsun").value),
+		sunPu: $("sunPu").value,
+		sunPv: $("sunPv").value,
+		point: $("point").value,
+		color: $("color").value,
+		visible: true
+	}
+	if(typeof index == "number"){
+		CurveData[index] = data;
+		$("curveId").innerHTML = index;
+	}else{
+		CurveData.push(data);
+		$("curveId").innerHTML = CurveData.length-1;
+	}
+		$("curveId").style.color = "#"+$("color").value;
+	updateCurvesList();
+	drawAllCurves();
+}
+function drawAllCurves(){
+	clearCanvas();
+	for(var i=0; i<CurveData.length; i++){
+		if(CurveData[i].visible){
+			sre(CurveData[i]);
+		}
+	}
+}
+function updateCurvesList(){
+	var str = "";
+	var substr;
+	for(var i=0; i<CurveData.length; i++){
+	var data = CurveData[i];
+		substr = "<span style='color:#"+data.color+"'><input type='checkbox' onchange='CurveData["+i+"].visible = this.checked;drawAllCurves()' class='checkbox' checked/>"+i+" <button onclick='loadData(CurveData["+i+"]);$(\"curveId\").innerHTML = \""+i+"\"'>读</button><button onclick='addCurve("+i+")'>写</button></span><br>";
+		str += substr;
+	}
+	$('curvesList').innerHTML = str;
+}
+$("mycanvas").addEventListener("mousemove",function(e){
+	var t = e.offsetX+$("t0").value*1
+	$("Spoint").value = earth.getP(Sun.getLight(t),-t).flat()+"";
+	$("SMpoint").value = p2m($("Spoint").value);
+	
+	var spos = $("SMpoint").value.split(",");
+	var pos = p2m(sp.flat()+"").split(",");
+	$("xytime").value = Math.round((spos[0]-pos[0]+900)%360/360*24);
+	$("zttime").value = Math.round((spos[2]-pos[2]+900)%360/360*24);
+});
+function p2m(i){
+	var cte = 180/Math.PI;
+	var R = i.split(",");
+	var we = Math.atan2(R[1],R[0])*cte;
+	var mp = Math.atan2(R[3],R[2])*cte;
+	var ns = Math.atan2(vec2(R[3],R[2]).len(),vec2(R[1],R[0]).len())*cte;
+	var f = 1;
+	var str = Math.round(we*f)/f +","+ Math.round(ns*f)/f +","+ Math.round(mp*f)/f;
+	return str;
+}
+function m2p(i){
+	var cte = Math.PI/180;
+	var R = i.split(",");
+	var a = R[0]*cte;
+	var b = R[1]*cte;
+	var c = R[2]*cte;
+	var d = Math.cos(b);
+	var e = Math.sin(b);
+	var f = 1000;
+	var str = Math.round(d*Math.cos(a)*f)/f +","+ Math.round(d*Math.sin(a)*f)/f +","+ Math.round(e*Math.cos(c)*f)/f +","+ Math.round(e*Math.sin(c)*f)/f;
+	return str;
+}
+function hqe(){
+	clearCanvas();
+	$("t0").value = Number($("t0").value) + 500;
+	drawAllCurves();
+}
+function hqa(){
+	clearCanvas();
+	$("t0").value = Number($("t0").value) - 500;
+	drawAllCurves();
+}
+function clearCanvas(){
+	var ctxt = ctxt$("mycanvas");
+	ctxt.clearRect(0,0,1000,600);
+	ctxt.strokeStyle = "#000000";
+	ctxt.lineWidth = 1;
+	ctxt.beginPath();
+	ctxt.moveTo(0,centerY);
+	ctxt.lineTo(1000,centerY);
+	ctxt.moveTo(0,centerY-scaleY);
+	ctxt.lineTo(1000,centerY-scaleY);
+	ctxt.moveTo(0,centerY+scaleY);
+	ctxt.lineTo(1000,centerY+scaleY);
+	ctxt.stroke();
+	
+	ctxt.strokeStyle = "#AAAAAA";
+	ctxt.lineWidth = 0.5;
+	ctxt.beginPath();
+	ctxt.moveTo(0,centerY-scaleY/2);
+	ctxt.lineTo(1000,centerY-scaleY/2);
+	ctxt.moveTo(0,centerY+scaleY/2);
+	ctxt.lineTo(1000,centerY+scaleY/2);
+	ctxt.stroke();
+	
+	ctxt.fillStyle="#000";
+	ctxt.fillText("+90°",0,centerY-scaleY);
+	ctxt.fillText(" 0°",0,centerY);
+	ctxt.fillText(CosMode?"+30°":"+45°",0,centerY-scaleY/2);
+	ctxt.fillText("-90°",0,centerY+scaleY);
+	ctxt.fillText(CosMode?"-30°":"-45°",0,centerY+scaleY/2);
+}
+clearCanvas();
+</script></body></html>
