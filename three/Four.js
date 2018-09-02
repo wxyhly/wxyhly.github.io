@@ -412,6 +412,26 @@ FOUR.IcositetrachoronGeometry = function(radius) {
 		}
 	}
 }
+FOUR.DuopyramidGeometry = function(r1,r2,n,m){
+	this.Vertices = [];
+	this.Edges = [];
+	this.Faces = [];
+	N = 2*Math.PI/n,
+	M = 2*Math.PI/m;
+	for(var i = 0; i< n; i++){
+		this.Vertices.push(new THREE.Vector4(r1*Math.cos(i*N),r1*Math.sin(i*N),0,0));
+		this.Edges.push(new FOUR.Edge(i,(i==0?n-1:i-1)));
+	}
+	for(var i = 0; i< m; i++){
+		this.Vertices.push(new THREE.Vector4(0,0,r2*Math.cos(i*N),r2*Math.sin(i*N)));
+		this.Edges.push(new FOUR.Edge(n+i,n+(i==0?m-1:i-1)));
+	}
+	for(var i = 0; i< n; i++){
+		for(var j = 0; j< m; j++){
+			this.Edges.push(new FOUR.Edge(i,n+j));
+		}
+	}
+}
 FOUR.HexacosichoronGeometry = function(r){
 	this.Vertices = [];
 	this.Edges = [];
@@ -529,11 +549,33 @@ FOUR.PerspectiveCamera.prototype.applyVector4 = function(v) {
 	//if( w + this.distance < 0) console.log ( "error in FOUR.PerspectiveCamera: distance is too low.");
 	return VV
 }
-
+FOUR.MercatorCamera = function (obj,distance,Stereographic){
+	FOUR.Camera4.call(this);
+	if(obj instanceof FOUR.Euler4)this.projectMatrix = this.projectMatrix.setRotationFromEuler4(obj);
+	this.distance = distance;
+	this.Stereographic = (Stereographic) || Stereographic;
+	this.maxVertexRadius = 4;
+	this.maxEdgeRadius = 2;
+}
+FOUR.MercatorCamera.prototype = Object.create(FOUR.Camera4.prototype);
+FOUR.MercatorCamera.prototype.applyVector4 = function (v){
+	var V, V3 = new THREE.Vector4();
+	var e = this.projectMatrix.elements;
+	if(this.Stereographic){
+		V = v.clone().normalize().multiplyScalar(this.distance);
+	}else V = v;
+	V3 = V.clone().applyMatrix4(this.projectMatrix);
+	var WE = Math.atan2(V3.y,V3.x);
+	var MG = Math.atan2(V3.w,V3.z);
+	var NS = Math.atan2(Math.sqrt(V3.x*V3.x+V3.y*V3.y),Math.sqrt(V3.z*V3.z+V3.w*V3.w))*2;
+	var VV = new THREE.Vector3(WE,MG,NS);
+	VV.w = V3.w;
+	return VV
+}
 FOUR.Scene4 = function(scene3) {
 	this.scene3 = scene3;
 	this.children = [];
-	this.SphereSeg = this.CylinderSeg = 16;
+	this.SphereSeg = this.CylinderSeg = 4;
 	this.SphereR = 0.1;
 	this.CylinderR = 0.05;
 }

@@ -134,6 +134,17 @@ ul,li{list-style:none;}
 					main3d.camera.position.z
 				);
 				main4d.renderer4.render();
+				for (var M in main4d.scene4.children){
+					if(main4d.scene4.children[M].type == "removed")continue;
+					var G = main4d.scene4.children[M].Geometry;
+					for(var E in G.Edges){
+						if(G.Edges[E].boundTHREEobj){
+							var P = G.Edges[E].boundTHREEobj.scale.y;
+							flag = (P==1||P<3.7);
+							G.Edges[E].boundTHREEobj.visible = flag;
+						}
+					}
+				}
 				main3d.renderer.render(main3d.scene, main3d.camera);
 				requestAnimationFrame(loop);
 			}
@@ -343,10 +354,14 @@ ul,li{list-style:none;}
 			case 5:
 				G = new FOUR.HexacosichoronGeometry(1);
 				break;
-			case 7:case 8:case 9:case 10:
+			
+			case 7:case 8:
 				showPannel(num);
 				return 0;
 				break;
+			case 9:case 10:
+				G = new FOUR.DuopyramidGeometry(1,1,10,10);
+				
 		}
 		main4d.scene4.remove(main4d.Object4);
 		var Object4 = new FOUR.Mesh(

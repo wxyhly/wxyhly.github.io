@@ -4,7 +4,7 @@ reserved:
 	mId, Vec2, Vec3, Vec4, Bivec, Mat2, Mat3, Mat4, 
 	fft, ifft
 
-Matrix Mat (Mat2||Mat3||Mat4)
+Matrix Abstract Mat (Mat2||Mat3||Mat4)
 
 	Construct Matrices:
 	
@@ -26,9 +26,9 @@ Matrix Mat (Mat2||Mat3||Mat4)
 	
 	non-variable operations:
 	
-		//Mat.inv(bool flag)
-		//Mat.t(bool flag)
-		//Mat.det():Number;
+		Mat.inv(bool flag)
+		Mat.t(bool flag)
+		Mat.det():Number;
 		
 Bivector Bivec (Bivec4)
 
@@ -63,7 +63,7 @@ Bivector Bivec (Bivec4)
 		Bivec.getAngle(Bivec b):Number[]; calculate planar angle between Bivec and b
 		Bivec.getAngle(Vec4 b):Number; calculate angle between plane Bivec and vector b
 	
-Vector Vec (Vec2||Vec3||Vec4)
+Vector Abstract Vec (Vec2||Vec3||Vec4)
 
 	Construct vecters:
 	
@@ -811,4 +811,179 @@ Mat2.prototype.div = Mat3.prototype.div = Mat4.prototype.div = function(k,flag){
 		this.array[i] *= K;
 	}
 	return this;
+}
+Mat2.prototype.t = function (flag) {
+	var te = this.elements;
+	if(flag==false){
+		var M = mat4();
+		var me = M.array;
+		me[1] = te[2]; me[2] = te[1];
+		return M;
+	}
+	var tmp;
+	tmp = te[1]; te[1] = te[2]; te[2] = tmp;
+	return this;
+},
+Mat2.prototype.det = function (){
+	var te = this.array;
+	var a = te[0], b = te[1], c = te[2], d = te[3];
+	return a * d - b * c;
+}
+Mat2.prototype.inv = function (flag){
+	var me = this.array;
+	var Matrix = this;
+	var a = te[0], b = te[1], c = te[2], d = te[3];
+	det = a * d - b * c;
+	if (det === 0) {
+		var msg = "Mat2.inv() can't invert matrix, determinant is 0";
+		console.warn(msg);
+		return mId(2);
+	}
+	var detInv = 1 / det;
+	var te;
+	if(flag === false){
+		Matrix = new mat4();
+		te = Matrix.array;
+	}else{
+		te = me;
+	}
+	te[0] = d * detInv;
+	te[1] = -b * detInv;
+	te[2] = -c * detInv;
+	te[3] = a * detInv;
+	return Matrix;
+}
+Mat3.prototype.t = function (flag) {
+	var te = this.elements;
+	if(flag==false){
+		var M = mat4();
+		var me = M.array;
+		me[1] = te[3]; me[3] = te[1];
+		me[2] = te[6]; me[6] = te[2];
+		me[5] = te[7]; me[7] = te[5];
+		return M;
+	}
+	var tmp;
+	tmp = te[1]; te[1] = te[3]; te[3] = tmp;
+	tmp = te[2]; te[2] = te[6]; te[6] = tmp;
+	tmp = te[5]; te[5] = te[7]; te[7] = tmp;
+	return this;
+},
+Mat3.prototype.det = function (){
+	var te = this.array;
+	var a = te[0], b = te[1], c = te[2],
+	d = te[3], e = te[4], f = te[5],
+	g = te[6], h = te[7], i = te[8];
+	return a * e * i - a * f * h - b * d * i + b * f * g + c * d * h - c * e * g;
+}
+Mat3.prototype.inv = function (flag){
+	var me = this.array;
+	var Matrix = this;
+	n11 = me[0], n21 = me[1], n31 = me[2],
+	n12 = me[3], n22 = me[4], n32 = me[5],
+	n13 = me[6], n23 = me[7], n33 = me[8],
+	t11 = n33 * n22 - n32 * n23,
+	t12 = n32 * n13 - n33 * n12,
+	t13 = n23 * n12 - n22 * n13,
+	det = n11 * t11 + n21 * t12 + n31 * t13;
+	if (det === 0) {
+		var msg = "Mat3.inv() can't invert matrix, determinant is 0";
+		console.warn(msg);
+		return mId(3);
+	}
+	var detInv = 1 / det;
+	var te;
+	if(flag === false){
+		Matrix = new mat4();
+		te = Matrix.array;
+	}else{
+		te = me;
+	}
+	te[0] = t11 * detInv;
+	te[1] = (n31 * n23 - n33 * n21) * detInv;
+	te[2] = (n32 * n21 - n31 * n22) * detInv;
+	te[3] = t12 * detInv;
+	te[4] = (n33 * n11 - n31 * n13) * detInv;
+	te[5] = (n31 * n12 - n32 * n11) * detInv;
+	te[6] = t13 * detInv;
+	te[7] = (n21 * n13 - n23 * n11) * detInv;
+	te[8] = (n22 * n11 - n21 * n12) * detInv;
+	return Matrix;
+}
+Mat4.prototype.t = function (flag) {
+	var te = this.elements;
+	if(flag==false){
+		var M = mat4();
+		var me = M.array;
+		me[1] = te[4]; me[4] = te[1];
+		me[2] = te[8]; me[8] = te[2];
+		me[6] = te[9]; me[9] = te[6];
+		me[3] = te[12]; me[12] = te[3];
+		me[7] = te[13]; me[13] = te[7];
+		me[11] = te[14]; me[14] = te[11];
+		return M;
+	}
+	var tmp;
+	tmp = te[1]; te[1] = te[4]; te[4] = tmp;
+	tmp = te[2]; te[2] = te[8]; te[8] = tmp;
+	tmp = te[6]; te[6] = te[9]; te[9] = tmp;
+	tmp = te[3]; te[3] = te[12]; te[12] = tmp;
+	tmp = te[7]; te[7] = te[13]; te[13] = tmp;
+	tmp = te[11]; te[11] = te[14]; te[14] = tmp;
+	return this;
+},
+Mat4.prototype.det = function (){
+	var me = this.array;
+	var n11 = me[0], n21 = me[1], n31 = me[2], n41 = me[3],
+	n12 = me[4], n22 = me[5], n32 = me[6], n42 = me[7],
+	n13 = me[8], n23 = me[9], n33 = me[10], n43 = me[11],
+	n14 = me[12], n24 = me[13], n34 = me[14], n44 = me[15],
+	t11 = n23 * n34 * n42 - n24 * n33 * n42 + n24 * n32 * n43 - n22 * n34 * n43 - n23 * n32 * n44 + n22 * n33 * n44,
+	t12 = n14 * n33 * n42 - n13 * n34 * n42 - n14 * n32 * n43 + n12 * n34 * n43 + n13 * n32 * n44 - n12 * n33 * n44,
+	t13 = n13 * n24 * n42 - n14 * n23 * n42 + n14 * n22 * n43 - n12 * n24 * n43 - n13 * n22 * n44 + n12 * n23 * n44,
+	t14 = n14 * n23 * n32 - n13 * n24 * n32 - n14 * n22 * n33 + n12 * n24 * n33 + n13 * n22 * n34 - n12 * n23 * n34;
+	return (n11 * t11 + n21 * t12 + n31 * t13 + n41 * t14);
+}
+Mat4.prototype.inv = function (flag){
+	var me = this.array;
+	var Matrix = this;
+	var n11 = me[0], n21 = me[1], n31 = me[2], n41 = me[3],
+	n12 = me[4], n22 = me[5], n32 = me[6], n42 = me[7],
+	n13 = me[8], n23 = me[9], n33 = me[10], n43 = me[11],
+	n14 = me[12], n24 = me[13], n34 = me[14], n44 = me[15],
+	t11 = n23 * n34 * n42 - n24 * n33 * n42 + n24 * n32 * n43 - n22 * n34 * n43 - n23 * n32 * n44 + n22 * n33 * n44,
+	t12 = n14 * n33 * n42 - n13 * n34 * n42 - n14 * n32 * n43 + n12 * n34 * n43 + n13 * n32 * n44 - n12 * n33 * n44,
+	t13 = n13 * n24 * n42 - n14 * n23 * n42 + n14 * n22 * n43 - n12 * n24 * n43 - n13 * n22 * n44 + n12 * n23 * n44,
+	t14 = n14 * n23 * n32 - n13 * n24 * n32 - n14 * n22 * n33 + n12 * n24 * n33 + n13 * n22 * n34 - n12 * n23 * n34;
+	var det = n11 * t11 + n21 * t12 + n31 * t13 + n41 * t14;
+	if (det === 0) {
+		var msg = "Mat4.inv() can't invert matrix, determinant is 0";
+		console.warn(msg);
+		return mId(4);
+	}
+	var detInv = 1 / det;
+	var te;
+	if(flag === false){
+		Matrix = new mat4();
+		te = Matrix.array;
+	}else{
+		te = me;
+	}
+	te[0] = t11 * detInv;
+	te[1] = (n24 * n33 * n41 - n23 * n34 * n41 - n24 * n31 * n43 + n21 * n34 * n43 + n23 * n31 * n44 - n21 * n33 * n44) * detInv;
+	te[2] = (n22 * n34 * n41 - n24 * n32 * n41 + n24 * n31 * n42 - n21 * n34 * n42 - n22 * n31 * n44 + n21 * n32 * n44) * detInv;
+	te[3] = (n23 * n32 * n41 - n22 * n33 * n41 - n23 * n31 * n42 + n21 * n33 * n42 + n22 * n31 * n43 - n21 * n32 * n43) * detInv;
+	te[4] = t12 * detInv;
+	te[5] = (n13 * n34 * n41 - n14 * n33 * n41 + n14 * n31 * n43 - n11 * n34 * n43 - n13 * n31 * n44 + n11 * n33 * n44) * detInv;
+	te[6] = (n14 * n32 * n41 - n12 * n34 * n41 - n14 * n31 * n42 + n11 * n34 * n42 + n12 * n31 * n44 - n11 * n32 * n44) * detInv;
+	te[7] = (n12 * n33 * n41 - n13 * n32 * n41 + n13 * n31 * n42 - n11 * n33 * n42 - n12 * n31 * n43 + n11 * n32 * n43) * detInv;
+	te[8] = t13 * detInv;
+	te[9] = (n14 * n23 * n41 - n13 * n24 * n41 - n14 * n21 * n43 + n11 * n24 * n43 + n13 * n21 * n44 - n11 * n23 * n44) * detInv;
+	te[10] = (n12 * n24 * n41 - n14 * n22 * n41 + n14 * n21 * n42 - n11 * n24 * n42 - n12 * n21 * n44 + n11 * n22 * n44) * detInv;
+	te[11] = (n13 * n22 * n41 - n12 * n23 * n41 - n13 * n21 * n42 + n11 * n23 * n42 + n12 * n21 * n43 - n11 * n22 * n43) * detInv;
+	te[12] = t14 * detInv;
+	te[13] = (n13 * n24 * n31 - n14 * n23 * n31 + n14 * n21 * n33 - n11 * n24 * n33 - n13 * n21 * n34 + n11 * n23 * n34) * detInv;
+	te[14] = (n14 * n22 * n31 - n12 * n24 * n31 - n14 * n21 * n32 + n11 * n24 * n32 + n12 * n21 * n34 - n11 * n22 * n34) * detInv;
+	te[15] = (n12 * n23 * n31 - n13 * n22 * n31 + n13 * n21 * n32 - n11 * n23 * n32 - n12 * n21 * n33 + n11 * n22 * n33) * detInv;
+	return Matrix;
 }
