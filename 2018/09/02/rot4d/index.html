@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/rot410.jpg">
 <meta property="og:image" content="https://wxyhly.github.io/img/rot411.gif">
 <meta property="og:image" content="https://wxyhly.github.io/img/rot412.gif">
-<meta property="og:updated_time" content="2019-01-10T07:19:57.927Z">
+<meta property="og:updated_time" content="2019-03-23T12:13:16.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="四维空间（九）：弯曲图形">
 <meta name="twitter:description" content="Polytwister和四维螺旋形的截面、8,8-双锥形的球极投影
@@ -141,12 +141,12 @@
 <h5 id="截面动画"><a href="#截面动画" class="headerlink" title="截面动画"></a>截面动画</h5><p>说实话，这些截面动画我完全想象不出来：<br><img src="/img/rot405.gif" alt="正穿"><br><img src="/img/rot406.gif" alt="45°斜穿"><br><a name="rotlist"></a></p>
 <h3 id="重要旋转体列表"><a href="#重要旋转体列表" class="headerlink" title="重要旋转体列表"></a>重要旋转体列表</h3><p>下面我们来总结一下各种各样常见的四维旋转体：此表给出了它们是怎样的三维图形、绕什么平面旋转得到。<br><img src="/img/rot402.jpg" alt=""><br>我把旋转后生成四维曲胞的三维图形表面部分涂绿了，涂成红色的部分旋转后得到平直的三维胞。</p>
 <h3 id="Polytwister"><a href="#Polytwister" class="headerlink" title="Polytwister"></a>Polytwister</h3><p>我们又多了一样创造几何体的工具——凸包，其实菱形十二面体就是正方体和正八面体的凸包；双圆柱就是平圆环的凸包。双圆柱是两个正交的圆的凸包，如果圆之间是斜着的会怎样？大概会得到一种类似斜双锥一样的东西，没什么意思。但是我们知道，Hopf纤维丛上的圆周之间都夹等角，每个圆周$z_2=k z_1$都可以通过复数$k$对应到一个抽象的球面上。如果我们把正多面体框架膨胀到这个球面上，那么这些框架上的点对应的Hopf圆周之间将保持一种有原来正多面体对称性的高度对称的结构，我们再取所有这些圆的凸包将会得到一种叫Polytwister（多扭体？）的东西。我是从<a href="http://www.polytope.net/hedrondude/twisters.htm" target="_blank" rel="external">这个网站</a>了解到Polytwister的。<br>Hopf圆周之间在球极投影下是扣在一起的，所以我们取凸包的时候就得到一些被扭曲了一圈的带子，比如下面是正十二面体对应的Polytwister。<br><img src="/img/rot403.png" alt="左图截取了球极投影的一部分，右图画出了两个正交的带子(来源：www.polytope.net)"><br>剪开这些扭曲了一圈的带子我们得到Polytwister的展开图：<br><img src="/img/rot404.png" alt="Polytwister的每个曲胞展开是一种扭棱柱体(来源：www.polytope.net)"><br>值得一提的是，取凸包的时候那些中空的五边形在边缘那些骨架上被撑平了，把Polytwister放到地上相切的部分就是这些五边形。它的侧面有点类似于双圆柱，可以沿一个方向滚动，而另一些方向有棱角。它的局部很像五边形与圆的直积，但整体却扭曲了一圈！至于往前滚动的时候这个东西会不会发生扭曲方向的自转我就不知道了。<br>以上两副图都来自<a href="http://www.polytope.net/hedrondude/twisters.htm" target="_blank" rel="external">刚才提到的这个网站</a>，上面还有其他正多面体、半正多面体，甚至星形正多面体对应的Polytwister的图像！这一切都得感谢Hopf纤维化的“鬼斧神工”。Polytwister可以看作部分离散化的Hopf纤维丛，完全离散化的例子有正六百胞体，它是正二十面体对应的Polytwister进一步离散化（把十二个Hopf圆换成十边形后取凸包，得到正六百胞体的120个顶点）的结果：<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/600-cell_tet_ring.png/440px-600-cell_tet_ring.png" alt="正六百胞体上的30个四面体组成的环（球极投影），图片来自维基百科"></p>
-<h3 id="四维螺旋面"><a href="#四维螺旋面" class="headerlink" title="四维螺旋面"></a>四维螺旋面</h3><p>三维的螺旋形是点在做圆周运动，然后同时往垂直方向平移产生的轨迹。到了四维，我们不妨类比为一个圆周一边自转一边往垂直的方向平移扫过的二维曲面，那么它沿平移方向上的截面动画就是旋转的圆。注意它扫过的区域是是一个球面，里面可以放进一个实心球，随时间平移就成了球柱，也就是说这个“弹簧”可以套在球柱上面。<br>下面是各种方向上的截面动画：<br><img src="/img/rot407.gif" alt=""><br>它的平行投影自相交很严重，看起来像是螺旋面：<br><img src="/img/rot410.jpg" alt=""><br>还有没有其他可能的形状？比如正方形一边自转一边平移？（注意，这里的自转限制在了与平移方向垂直的三维空间中，而且要得到四维图形，正方形不能在它自己所在平面内转动）这种“方弹簧”可以套在圆柱柱上面！其实还有更疯狂的构造：螺旋线一边自转一边平移会得到什么？螺旋线可以绕两种不同的方向自转，这些东西我已经无法想象了，但不妨碍我们画一画它的截面动画：第一种是绕垂直于螺旋平移方向旋转，不得不说太奇怪了。<br><img src="/img/rot411.gif" alt=""><br>另一种是绕螺旋平移方向旋转，但由于螺线的特性可以认为没发生旋转，转而等价于螺旋线上下平移，最后得到一种斜着的螺旋线柱面。<br><img src="/img/rot412.gif" alt="右下角方向的截面动画最能体现这个图形是个柱面"><br>最后或许你还会问，为什么螺旋线的类比就要是2维曲面，为什么不继续是一维的四维空间曲线？确实有可能，但我目前还没找到比较像螺旋的线状东西。。。<br> <a href="/2016/05/02/lavie4ds/">上一篇</a>　 <a href="/categories/四维空间系列/">查看系列目录</a></p>
+<h3 id="四维螺旋面"><a href="#四维螺旋面" class="headerlink" title="四维螺旋面"></a>四维螺旋面</h3><p>三维的螺旋形是点在做圆周运动，然后同时往垂直方向平移产生的轨迹。到了四维，我们不妨类比为一个圆周一边自转一边往垂直的方向平移扫过的二维曲面，那么它沿平移方向上的截面动画就是旋转的圆。注意它扫过的区域是是一个球面，里面可以放进一个实心球，随时间平移就成了球柱，也就是说这个“弹簧”可以套在球柱上面。<br>下面是各种方向上的截面动画：<br><img src="/img/rot407.gif" alt=""><br>它的平行投影自相交很严重，看起来像是螺旋面：<br><img src="/img/rot410.jpg" alt=""><br>还有没有其他可能的形状？比如正方形一边自转一边平移？（注意，这里的自转限制在了与平移方向垂直的三维空间中，而且要得到四维图形，正方形不能在它自己所在平面内转动）这种“方弹簧”可以套在圆柱柱上面！其实还有更疯狂的构造：螺旋线一边自转一边平移会得到什么？螺旋线可以绕两种不同的方向自转，这些东西我已经无法想象了，但不妨碍我们画一画它的截面动画：第一种是绕垂直于螺旋平移方向旋转，不得不说太奇怪了。<br><img src="/img/rot411.gif" alt=""><br>另一种是绕螺旋平移方向旋转，但由于螺线的特性可以认为没发生旋转，转而等价于螺旋线上下平移，最后得到一种斜着的螺旋线柱面。<br><img src="/img/rot412.gif" alt="右下角方向的截面动画最能体现这个图形是个柱面"><br>最后或许你还会问，为什么螺旋线的类比就要是2维曲面，为什么不继续是一维的四维空间曲线？确实有可能，但我目前还没找到比较像螺旋的线状东西。。。<br> <a href="/2016/05/02/lavie4ds/">上一篇</a>　 <a href="/categories/四维空间系列/">查看系列目录</a>　<a href="/2019/03/23/knot4d/">下一篇</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wxyhly.github.io/2018/09/02/rot4d/" data-id="cjlkksxkm0020pgvlibnz97si" class="article-share-link">Share</a>
+      <a data-url="https://wxyhly.github.io/2018/09/02/rot4d/" data-id="cjtlfkwf5001x6kvlrezn3bj3" class="article-share-link">Share</a>
       
         <a href="https://wxyhly.github.io/2018/09/02/rot4d/#disqus_thread" class="article-comment-link">留言</a>
       
@@ -193,7 +193,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维世界系列/">四维世界系列</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a><span class="category-list-count">10</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维世界系列/">四维世界系列</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a><span class="category-list-count">11</span></li></ul>
     </div>
   </div>
 
@@ -203,7 +203,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Hutton32/" style="font-size: 11.43px;">Hutton32</a> <a href="/tags/javascript/" style="font-size: 14.29px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 17.14px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.43px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 12.86px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15.71px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 10px;">拓补学</a> <a href="/tags/数学/" style="font-size: 17.14px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 11.43px;">物理</a> <a href="/tags/电路/" style="font-size: 11.43px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.57px;">系列文章</a> <a href="/tags/群论/" style="font-size: 11.43px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.43px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.43px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+      <a href="/tags/Hutton32/" style="font-size: 11.25px;">Hutton32</a> <a href="/tags/javascript/" style="font-size: 13.75px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 17.5px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.25px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 12.5px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 11.25px;">拓补学</a> <a href="/tags/数学/" style="font-size: 16.25px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 11.25px;">物理</a> <a href="/tags/电路/" style="font-size: 11.25px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.75px;">系列文章</a> <a href="/tags/群论/" style="font-size: 11.25px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.25px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.25px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
     </div>
   </div>
 
@@ -212,7 +212,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -223,6 +223,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/03/23/knot4d/">四维空间（十）：扭结与环扣</a>
+          </li>
         
           <li>
             <a href="/2019/01/10/rail4d/">四维世界（三）：道路轨道设计</a>
@@ -238,10 +242,6 @@
         
           <li>
             <a href="/2018/08/12/orbit4d/">四维世界（一）：行星的昼夜季节</a>
-          </li>
-        
-          <li>
-            <a href="/2018/06/29/game4d/">我玩过的一些四维游戏</a>
           </li>
         
       </ul>
