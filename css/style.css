@@ -124,6 +124,7 @@ body,
 }
 body {
   background: #eee;
+  background-image: url("images/reptile.svg");
   font: 15px "Helvetica Neue", "Helvetica", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
 }
@@ -168,7 +169,6 @@ body {
   overflow: hidden;
 }
 #wrap {
-  height: 100%;
   width: 100%;
   position: absolute;
   top: 0;
@@ -178,7 +178,7 @@ body {
   -ms-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
   z-index: 1;
-  background: #eee;
+  background-image: url("images/reptile.svg");
 }
 .mobile-nav-on #wrap {
   left: 280px;
@@ -315,7 +315,7 @@ body {
 #header {
   height: 300px;
   position: relative;
-  border-bottom: 1px solid #ddd;
+  background: url("images/banner.svg");
 }
 #header:before,
 #header:after {
@@ -331,10 +331,6 @@ body {
 }
 #header:after {
   bottom: 0;
-  background: -webkit-linear-gradient(transparent, rgba(0,0,0,0.2));
-  background: -moz-linear-gradient(transparent, rgba(0,0,0,0.2));
-  background: -ms-linear-gradient(transparent, rgba(0,0,0,0.2));
-  background: linear-gradient(transparent, rgba(0,0,0,0.2));
 }
 #header-outer {
   height: 100%;
@@ -350,10 +346,6 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("images/banner.jpg") center #000;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
   z-index: -1;
 }
 #header-title {
@@ -391,7 +383,7 @@ body {
 .nav-icon,
 .main-nav-link {
   float: left;
-  color: #6f6;
+  color: #ff6;
   text-decoration: none;
   text-shadow: 0 2px rgba(0,0,0,0.2);
   -webkit-transition: opacity 0.2s;
@@ -404,8 +396,7 @@ body {
 }
 .nav-icon:hover,
 .main-nav-link:hover {
-  color: #bf5;
-  background: rgba(0,0,120,0.3);
+  color: #fd9;
 }
 .nav-icon {
   font-family: FontAwesome;
@@ -793,12 +784,18 @@ a.article-title:hover {
     margin-top: 0;
   }
 }
+#article-nav-newer {
+  color: #2f2;
+}
 @media screen and (min-width: 768px) {
   #article-nav-newer {
     float: left;
     text-align: right;
     padding-right: 20px;
   }
+}
+#article-nav-older {
+  color: #66f;
 }
 @media screen and (min-width: 768px) {
   #article-nav-older {
@@ -810,7 +807,6 @@ a.article-title:hover {
 .article-nav-caption {
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #ddd;
   line-height: 1em;
   font-weight: bold;
 }
