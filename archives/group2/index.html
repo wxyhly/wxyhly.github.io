@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>群论系列(二)：数域的扩张 | Blog de WXYHLY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="有了群的一些基础知识，下面我们就该来讨论n次方程的根的问题了。在具体讨论这个问题之前，我们还得引入一些新概念，这些概念很多已经不再局限于群，属于抽象代数的范围了。这篇文章的内容有点进阶了，但本文定位于让读者对伽罗瓦理论有一个感性的认识，所以一般性的结论和证明都尽量不讲，读者有兴趣可以参阅维基百科或抽象代数的书籍。
+数域的扩张我们先来看另一个类似群的代数结构——域简单来说，域就是定义了加减乘除四则运">
+<meta property="og:type" content="article">
+<meta property="og:title" content="群论系列(二)：数域的扩张">
+<meta property="og:url" content="https://wxyhly.github.io/archives/group2/index.html">
+<meta property="og:site_name" content="Blog de WXYHLY">
+<meta property="og:description" content="有了群的一些基础知识，下面我们就该来讨论n次方程的根的问题了。在具体讨论这个问题之前，我们还得引入一些新概念，这些概念很多已经不再局限于群，属于抽象代数的范围了。这篇文章的内容有点进阶了，但本文定位于让读者对伽罗瓦理论有一个感性的认识，所以一般性的结论和证明都尽量不讲，读者有兴趣可以参阅维基百科或抽象代数的书籍。
+数域的扩张我们先来看另一个类似群的代数结构——域简单来说，域就是定义了加减乘除四则运">
+<meta property="og:image" content="https://wxyhly.github.io/img/group2img2.gif">
+<meta property="og:image" content="https://wxyhly.github.io/img/group2img1.gif">
+<meta property="og:image" content="https://wxyhly.github.io/img/group2img3.gif">
+<meta property="og:image" content="https://wxyhly.github.io/img/group1img3.gif">
+<meta property="og:image" content="https://wxyhly.github.io/img/group1img4.gif">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/6/68/Lattice_diagram_of_Q_adjoin_a_cube_root_of_2_and_a_primitive_cube_root_of_1%2C_its_subfields%2C_and_Galois_groups_variant.png">
+<meta property="og:updated_time" content="2018-06-16T07:54:29.150Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="群论系列(二)：数域的扩张">
+<meta name="twitter:description" content="有了群的一些基础知识，下面我们就该来讨论n次方程的根的问题了。在具体讨论这个问题之前，我们还得引入一些新概念，这些概念很多已经不再局限于群，属于抽象代数的范围了。这篇文章的内容有点进阶了，但本文定位于让读者对伽罗瓦理论有一个感性的认识，所以一般性的结论和证明都尽量不讲，读者有兴趣可以参阅维基百科或抽象代数的书籍。
+数域的扩张我们先来看另一个类似群的代数结构——域简单来说，域就是定义了加减乘除四则运">
+<meta name="twitter:image" content="https://wxyhly.github.io/img/group2img2.gif">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Blog de WXYHLY</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/programs/">Programs</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wxyhly.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-group2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/archives/group2/" class="article-date">
+  <time datetime="2018-06-16T01:54:29.000Z" itemprop="datePublished">2018-06-16</time>
+</a>
+      
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      群论系列(二)：数域的扩张
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有了群的一些基础知识，下面我们就该来讨论n次方程的根的问题了。在具体讨论这个问题之前，我们还得引入一些新概念，这些概念很多已经不再局限于群，属于抽象代数的范围了。这篇文章的内容有点进阶了，但本文定位于让读者对伽罗瓦理论有一个感性的认识，所以一般性的结论和证明都尽量不讲，读者有兴趣可以参阅维基百科或抽象代数的书籍。</p>
+<h2 id="数域的扩张"><a href="#数域的扩张" class="headerlink" title="数域的扩张"></a>数域的扩张</h2><p>我们先来看另一个类似群的代数结构——<strong>域</strong><br>简单来说，域就是定义了加减乘除四则运算的集合（群则只定义了乘法）。我们不给出严格的定义，这篇文章也只涉及<strong>数域</strong>，即上面的四则运算就是我们平时用的四则运算，而不是其他定义。<br><a id="more"></a><br>除了有限域之外，最小的数域是有理数域$Q$，因为它满足对除法封闭。（最小的域是只有两个元素{0,1}组成的有限域，但四则运算不是我们平时用的定义，如$1+1=0$，这里不讨论）当我们解方程$ax+b=0;a,b\in Q$时，所有解也落在这个域中，这很好，但到了二次方程，比如$x^2-2=0$，我们知道解$\sqrt{2}$是无理数，不在有理数域$Q$里了。这里初中老师说，我们扩充数域得到包括所有从负无穷到正无穷的数的新数域$R$。但这种方法简单粗暴，一下子让实数轴“充满”了。我们不妨先只让$\sqrt{2}$和有理数参与四则运算，就能生成一个更大的域，记作$Q(\sqrt{2})$，这个域中的每个数都能写作$a+b\sqrt{2};a,b\in Q$的形式，读者可以自行验证这个形式下的四则运算的封闭性。我们把给一个域$k$添加一些元素从而得到更大的域$K$的操作叫<strong>域扩张</strong>，记作$K/k$（其实意思就是$k \subseteq K$）。扩域中的元素$a+b\sqrt{2};a,b\in Q$可以看成是原来域通过二维的线性组合得到的，我们把维数二叫做扩张的<strong>次数</strong>。</p>
+<p>域扩张$Q(\pi)/Q$的次数又是怎样的呢？由于乘法的封闭性，$\pi^n$都应该在扩域当中。$\pi$和$\sqrt{2}$不一样，$\pi$是<strong>超越数</strong>，所以$\pi^n$不可能是有理数，所以数$a_0+a_1\pi+a_2\pi^2+..$得由无穷维线性组合得到。注意看似对于域$Q(\sqrt{2})$来说也有元素$a_0+a_1\sqrt{2}+a_2\sqrt{2}^2+a_3\sqrt{2}^3..$，但一旦角标大于1，就可以通过$\sqrt{2}^2=2$来化简，因此这些线性组合不独立，虽然有无穷个向量，但最终只有两个<strong>线性独立</strong>的向量，对应向量空间的维数还是2。注意如果做除法导致分母也含有根式，我们可以进行分母有理化，但含$\pi$的超越数可不行。这种包含超越数的扩张会导致扩张的次数维无穷，我们叫<strong>无限扩张</strong>，比如$Q$到$R$也是无限扩张，而像$Q(\sqrt{2})$这种扩张叫<strong>有限扩张</strong>，我们只关心有限扩张。</p>
+<h2 id="中间扩张"><a href="#中间扩张" class="headerlink" title="中间扩张"></a>中间扩张</h2><p>回到我们关心的问题上来：我们希望五次方程的根有求根公式，这其实等价于五次方程的根能落在给定了一种结构的域扩张后得到的域中。在描述这些扩张前，我们先多看看一些简单的例子：</p>
+<p>加入$\sqrt{2}$、$\sqrt{3}$生成的域$K=Q(\sqrt{2},\sqrt{3})$,可以证明这个扩域$K$中的所有元素都能写成$a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6}$的形式。我们发现$E_1=Q(\sqrt{2})$、$E_2=Q(\sqrt{3})$和$E_3=Q(\sqrt{6})$都是这个域的子域。由于这些域都是$Q$的扩域，所以$E_1、E_2、E_3$就是在域$Q$和域$K$间的<strong>中间域</strong>。中间域在一定意义上代表了域扩张的结构。那给一个域扩张我们有什么通用的方法求中间扩张呢？<br><img src="/img/group2img2.gif" alt=""><br>答案是：用<strong>群论</strong>！！</p>
+<h2 id="域扩张的自同构群（伽罗瓦群）"><a href="#域扩张的自同构群（伽罗瓦群）" class="headerlink" title="域扩张的自同构群（伽罗瓦群）"></a>域扩张的自同构群（伽罗瓦群）</h2><p>之所以能用群论研究五次方程根的问题，是因为研究域扩张的问题能转化成研究域扩张的自同构群的问题。什么是域扩张的自同构群？简单地说就是我们规定一些<strong>自同构映射</strong>，然后它们通过复合操作组成群，而域扩张$K/k$的自同构映射$f$定义为：</p>
+<ul>
+<li>$K$到自身的双射（$K$中元素的一个置换操作，参看上一篇文章）；</li>
+<li>保持域结构不变，结构即域上面的四则运算。比如$f(a)+f(b)=f(a+b)$，$f(a)*f(b)=f(a*b)$等；</li>
+<li>额外要求（不然就和一般的域自同构群没区别了）：置换操作必须保持原域$k$不变，即对所有$a\in k$有$f(a)=a$。</li>
+</ul>
+<p>为纪念数学家伽罗瓦，我们把满足一定条件（这里条件先暂时不管）的域扩张$K/k$的自同构群叫<strong>伽罗瓦群</strong>，并记为$Gal(K/k)$。</p>
+<p>定义有点抽象，我们多看几个例子（以下例子均来自于维基百科）：最简单的例子，求$Gal(Q(\sqrt{2})/Q)$：首先得找出自同构映射$f:Q(\sqrt{2})\rightarrow Q(\sqrt{2})$。注意不是随便给每个$Q(\sqrt{2})$中的元素指定不相同的元素就行，因为按定义置换操作必须保持原域$k$不变，而且要保持原域的结构：我们有$\sqrt{2}^2=2$，就必须有$f(\sqrt{2})^2=f(\sqrt{2}^2)=f(2)=2$，所以解出$f(\sqrt{2})$可以取$\pm\sqrt{2}$，这对应了两个自同构映射，其中$f_1(\sqrt{2})=\sqrt{2}$是恒等映射，$f_2(\sqrt{2})=-\sqrt{2}$则把$a+b\sqrt{2}$映射为$a-b\sqrt{2}$。它们通过复合操作形成的群同构于$S_2$，即$Gal(Q(\sqrt{2})/Q)=S_2$。</p>
+<p>再来一个稍微复杂点的：$Q(\sqrt{2},\sqrt{3})$。有了上次的经验，我们可以快速地给出四个映射（其核心是利用$\sqrt{x}^{2}=x,x\in Q$）：</p>
+<ul>
+<li>$e$：$e(\sqrt{2})=\sqrt{2}$，$e(\sqrt{3})=\sqrt{3}$（即恒映射）</li>
+<li>$a$：$a(\sqrt{2})=-\sqrt{2}$，$a(\sqrt{3})=\sqrt{3}$</li>
+<li>$b$：$b(\sqrt{3})=-\sqrt{3}$，$b(\sqrt{2})=\sqrt{2}$</li>
+<li>$ab$：$ab(\sqrt{2})=-\sqrt{2}$，$ab(\sqrt{3})=-\sqrt{3}$</li>
+</ul>
+<p>可以证明这就是所有自同构映射了。我们看到这四个元素构成了一个群，这个群的特点是所有元素都是二阶的，且任意两个非单位元的乘积等于另一个非单位元（比如$ab*a=b$），并且是交换群。它叫<strong>克莱因四元群</strong>。</p>
+<h2 id="子群与中间扩张"><a href="#子群与中间扩张" class="headerlink" title="子群与中间扩张"></a>子群与中间扩张</h2><p>我们现在看看不同中间扩张对应的自同构群之间有什么联系，现在有两个可能的思路：</p>
+<ul>
+<li>从下往上扩张：以最小的域$Q$为基准，考虑群$Gal(Q(\sqrt{2},\sqrt{3})/Q)$、$Gal(Q(\sqrt{2})/Q)$、$Gal(Q(\sqrt{3})/Q)$、$Gal(Q/Q)$之间的关系；</li>
+<li>从上往下扩张：以最大的域$Q(\sqrt{2},\sqrt{3})$为基准，考虑群$Gal(Q(\sqrt{2},\sqrt{3})/Q(\sqrt{2},\sqrt{3}))$、$Gal(Q(\sqrt{2},\sqrt{3})/Q(\sqrt{2}))$、$Gal(Q(\sqrt{2},\sqrt{3})/Q(\sqrt{3}))$、$Gal(Q(\sqrt{2},\sqrt{3})/Q)$之间的关系。</li>
+</ul>
+<p>由于从下往上扩张即一直以最小的域$Q$为基准，导致我们研究$Gal(Q/Q)$时根本没有$\sqrt{2}$、$\sqrt{3}$什么事，无法将它们作为一个整体连起来，所以我们选择考虑从上往下扩张，即以最大的域$Q(\sqrt{2},\sqrt{3})$为基准。<br><img src="/img/group2img1.gif" alt=""><br>上图每个域$K$旁都标出了伽罗瓦群$Gal(Q(\sqrt{2},\sqrt{3})/K)$中的元素。我们看到<strong>一个域对应的伽罗瓦群是其子域对应伽罗瓦群的子群！</strong>这就是<strong>伽罗瓦理论基本定理</strong>。这很好理解：伽罗瓦群由保持原域不变的映射组成，所以原域扩大后，映射就会减少，从而形成原来群的子群。比如从$Q$到$Q(\sqrt{2},\sqrt{3})$本来能操作$\sqrt{2}$和$\sqrt{3}$，但从$Q(\sqrt{2})$到$Q(\sqrt{2},\sqrt{3})$的伽罗瓦群中就不能再操作$\sqrt{2}$了，所以仅剩{e,b}两个操作。</p>
+<h2 id="伽罗瓦扩张"><a href="#伽罗瓦扩张" class="headerlink" title="伽罗瓦扩张"></a>伽罗瓦扩张</h2><p>我们再来看扩张$Q(\sqrt[3]{2})/Q$。由于$(\sqrt[3]{2})^3=2$，所以我们要求映射$f$满足$f(\sqrt[3]{2})=2$，但这个方程还有两个根是虚根，不会出现在扩域$Q(\sqrt[3]{2})$中。这导致了满足要求的映射只有恒等映射，伽罗瓦群是平凡群{e}。感觉伽罗瓦群没有像我们期待的那样反映出扩张$Q(\sqrt[3]{2})/Q$的三次结构，这正是前面我们略过的：<strong>只有满足一定条件的域扩张的自同构群才叫伽罗瓦群</strong>：我们不应考虑那种加入随便的数来扩充的域，而应该考虑恰好把一个多项式方程（多项式系数都取有理数）的所有根都加进去，（这种恰好添加一个多项式方程所有根而得到的域叫做<strong>分裂域</strong>，因为我们可以在扩域里完全分解开因式）我们把满足以上条件的扩张叫<strong>正规扩张</strong>，也叫<strong>伽罗瓦扩张</strong>（注：还好我们只研究数域，不然正规扩张不等价于伽罗瓦扩张，还需要可分扩张的条件。）可以证明，<strong>只有伽罗瓦扩张才能让域扩张与子群一一对应</strong>。</p>
+<p>回到前面，由于$\sqrt[3]{2}$是方程$x^3=2$的根，这个方程还有两根$\sqrt[3]{2}\omega$、$\sqrt[3]{2}\omega^{2}$（其中$\omega=1/2+i\sqrt{3}/2，\omega^{3}=1$）。所以我们最好考虑把问题换成求添加这三个根的扩域$Q(\sqrt[3]{2}, \sqrt[3]{2}\omega$, $\sqrt[3]{2}\omega^{2})$对$Q$的扩张，这样的扩张才“有利可图”。<br>为书写简便，记$\sqrt[3]{2}=\theta$，下面我们写出联系$\theta$、$\omega$与$Q$的方程：</p>
+<p><center>$\theta^{3}=2$ &nbsp; &nbsp; 第一个方程的解为$\theta$、$\theta\omega$、$\theta\omega^{2}$，<br>$\omega^{3}=1$ &nbsp; &nbsp; 第二个方程的解为$1$、$\omega$、$\omega^{2}$。</center><br>我们的自同构映射就是这些根的置换……但注意，$1$是有理数，我们必须保留<strong>不能置换$1$</strong>。所以自同构映射作用在$\theta$上的结果有三种：$\theta$、$\theta\omega$或$\theta\omega^{2}$，而作用在$\omega$上的结果只能有两种：$\omega$或$\omega^{2}$。这表明Gal(Q(\sqrt[3]{2}))/Q中元素有六个，可以表示为 {e, f, f<sup>2</sup>, g, gf, gf<sup>2</sup>}. 其中：<br>$$f(\theta) = \omega\theta, \; f(\omega) = \omega, \quad g(\theta) = \theta, \; g(\omega) = \omega^2. $$注意这个群不是可交换群，因为$fg = gf^2$。<br>我们来画这个群的凯莱图：<br><img src="/img/group2img3.gif" alt=""><br>眼熟吗？它同构于我们之前研究过的对称群$S_3$：<img src="/img/group1img3.gif" alt=""><br>群$S_3$的<strong>非平凡子群</strong>和陪集我们也在上一篇文章中讨论过了，这里再放一下结果：<img src="/img/group1img4.gif" alt="黑色表示子群，灰色为对应的陪集，只有第一个非平凡子群是正规子群"><br>这些非平凡子群与中间域的对应关系为：<img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Lattice_diagram_of_Q_adjoin_a_cube_root_of_2_and_a_primitive_cube_root_of_1%2C_its_subfields%2C_and_Galois_groups_variant.png" alt="图片来自维基百科词条“伽罗瓦理论基本定理”"><br>注意平凡子群{e}对应平凡扩张，平凡子群{e, f, f<sup>2</sup>, g, gf, gf<sup>2</sup>}对应整个扩张，也不是中间扩张（我们也认为是平凡的中间扩张）。看来平凡子群刚好对应平凡扩张。<br>前面我们把恰好包含一个多项式所有根的扩张叫做<strong>正规扩张</strong>，它之所以叫“正规”难道是因为它跟<strong>正规子群</strong>对应？答案是肯定的！比如{e, f, f<sup>2</sup>}对应正规扩张$Q(\omega)/Q$，有定理：</p>
+<p> 设域扩张$k\subset K\subset E$，其中$K/k$，$E/k$都是正规扩张，则$Gal(E/K)$是$Gal(E/k)$的一个正规子群，且$$Gal(E/k)/Gal(E/K)\cong Gal(K/k)$$</p>
+<p>等等！我们现在讨论了那么多，跟最初要研究的n次方程解的根式表示有什么关系？我们先把上面那个定理的证明放一边，看看怎样用域扩张的语言描述“n次方程解有根式表示”。</p>
+<h2 id="根式塔"><a href="#根式塔" class="headerlink" title="根式塔"></a>根式塔</h2><p>首先，我们说一个数可以用有限的四则运算和不允许嵌套的平方根表示，其实等价于说一定存在一个数域$K_1=Q(\sqrt{u_1},\sqrt{u_2},..,\sqrt{u_n}), (u_1, .., u_n \in Q)$使这个数落在其中。<br>说一个数可以用有限的四则运算和平方根表示，就默认了我们也可以嵌套平方根，如：<br>$${\sqrt{\sqrt{2}+5}\over 1+\sqrt{\sqrt{\sqrt{3}-2}+\sqrt{7}}}$$ 这时怎样构造扩域呢？答案是：一层一层的构造。比如我们先得到了包含只允许一层根号的域$K_1$，然后我们在它的基础上再做一层根式扩张得到$K_2=K_1(\sqrt{u_1},\sqrt{u_2},..,\sqrt{u_n}), (u_1, .., u_n \in K_1)$。$K_2$就代表能用两层平方根表示的数。这样层层扩张$Q\subset K_1\subset K_2 …\subset K_n $来描述根式嵌套的方法叫<strong>根式塔</strong>。</p>
+<p>n次方程解有根式表示的意思是说，解可以用系数有限的四则运算和根式表示。我们假定系数域为k，则它等价于解落在域塔<br>$k\subset K_1\subset K_2 …\subset K_n$中，其中$K_{i+1} = K_i(u_i), u_i^{n}\in K_i, n\in Z$，注意我们一次只添加一个元素，如$\sqrt{2}+\sqrt{3}$认为做了两次扩张，这种看法并不影响结果，甚至我们还能要求次数n为素数（质数)，因为一个数的合数次方根可以用合数的质因数次方根的嵌套表示。<br>下面来看最大的域扩张$K_n/k$的伽罗瓦群：当然域扩张添加根$u_j$时我们得把所有$u^{n}=a, a\in K_i$的解加入使得扩张都是正规的（这并不影响我们希望的数落入其中或落入其它不希望的数）根据之前的定理，域塔的正规性对应着子群的正规性。如果一个域扩张对应的伽罗瓦群找不到对应结构的一系列正规子群，则这个域扩张肯定不是根式扩张，即这个扩张里的数无法用有限的四则运算和根式表示。</p>
+<h2 id="根式扩张的伽罗瓦群"><a href="#根式扩张的伽罗瓦群" class="headerlink" title="根式扩张的伽罗瓦群"></a>根式扩张的伽罗瓦群</h2><p>下面我们来处理一些细节，比如对应结构的一系列正规子群到底需要什么结构？我们先看一层根式扩张的伽罗瓦群：$Gal(k(u)/k),u^n\in k$.<br>根据代数基本定理，方程$u^n=a, a\in k, a\neq 0$的根一定有n个，它们分别是$$\left\lbrace  u,u\omega,…,u\omega^{n-1}\right\rbrace , \omega=exp(2\pi i/n), \omega^n=1$$这里要分两种情况：$u\in k$和$u\not\in k$。</p>
+<ul>
+<li>$u\in k$：这种情况说明能在数域$k$中开得尽方，所以$u$不能参与置换，我们只能对其余根置换。如果n是质数，我们就能证明<br>所有映射$f_a(u\omega)=u\omega^a , a &lt; n$组成了一个循环群$C_{n-1}$：因为我们容易验证$f_a f_b (u\omega)= f_b f_a (u\omega) = u\omega^{a+b} = f_{a+b} (u\omega)$. （一个值得注意的细节是：如果n是合数，则这些映射的复合可能把$u\omega^a$映射到$u\omega^n=1$，这是我们不希望的，比如对应n=4，$f_2(u\omega^2)=u\omega^4=u$，不符合映射固定$u$的要求。）<br>比如我们取$u=1$，则表示添加了所有的n次单位根$\omega,..,\omega^{n-1}$的扩张。</li>
+<li>$u\not\in k$：这种情况说明所有的根都能置换，但这里我们先假设单位根$\omega,..,\omega^{n-1}$已经被加进域k中了，我们就不做那些置换$\omega^n$但保留u不变的映射，只做$u,u\omega,..,u\omega^{n-1}$之间的映射。同样我们可以证明它们组成了循环群$C_{n}$.</li>
+</ul>
+<p>总结一下就是：现在给定一个根式塔，我们先把所有根号拆成质数次方根式的嵌套，然后添加需要用到根式的所有n次单位根，再逐层添加根式得到最后的根式塔。根据前面的分析，<strong>*根式塔的每一步域扩张（它们都是正规扩张）的伽罗瓦群都是循环群</strong>。</p>
+<p>下面该用上我们还没证明的那个关于正规子群和正规扩张的定理了：</p>
+<blockquote>
+<p>设域扩张$k\subset K\subset E$，其中$K/k$，$E/k$都是正规扩张，则$Gal(E/K)$是$Gal(E/k)$的一个正规子群，且$$Gal(E/k)/Gal(E/K)\cong Gal(K/k)$$</p>
+</blockquote>
+<p>（证明这个定理要用到群同构第一定理<a href="javascript:$('#detail').toggle();$('#details').text($('#details').text()=='+'?'-':'+')" target="_blank" rel="external">[<span id="details">+</span>]显示详情</a>）</p>
+<p><div id="detail" style="display:none; background-color:#EEE">群就是集合加一种运算，集合与集合间可以有映射。我们把能<strong>保持群结构</strong>的映射$f$叫做群同态，即保持群运算$f(a)*f(b)=f(a*b)$。容易验证，如果群A中的某些元素被映射到了群B中的单位元，则这些元素组成了群A中的子群，我们称之为映射的<strong>核</strong>。也不难验证，A的某个陪集中的所有元素将会被一起映射到B中的一个元素上。由于B也是群，这样可以反过来说明A中的陪集之间乘法运算可以良好定义，即映射的<strong>核</strong>永远是A的<strong>正规子群</strong>。而映射的像（群B中的子群）同构于群A除以核的商群。这就是<strong>群同构第一定理</strong>。<br>首先我们知道$Gal(E/K)$是$Gal(E/k)$的子群，因为前者的自同构只是后者的一部分。所以如果我们能够在两个自同构之间定义一个同态映射，则问题就解决了。如果扩张是正规的，我们才能找到这样的同态映射（大概是将大自同构群中的映射作用限制在小自同构群中），详情见相关书籍。<br></div><br>我们把这个定理用到根式塔上：$k\subset K_1\subset ..\subset K_{i}\subset E$</p>
+<p>$$Gal(E/K_1)/Gal(E/K_{2})\cong Gal(K_{2}/K_{1})\\<br>Gal(E/K_2)/Gal(E/K_{3})\cong Gal(K_{3}/K_{2})\\<br>…\\<br>Gal(E/K_{i-1})/Gal(E/K_{i})\cong Gal(K_{i}/K_{i-1})\\<br>Gal(E/K_{i})/Gal(E/E)\cong Gal(E/K_{i})$$</p>
+<p>说明了$Gal(E/K_{2})$是$Gal(E/K_1)$的正规子群、$Gal(E/K_{3})$是$Gal(E/K_2)$的正规子群、……、$Gal(E/E)=${e}是$Gal(E/K_i)$的正规子群。我们得到了一个结论：$Gal(E/K_1)$一定要有正规子群的正规子群的……的正规子群，最后得到平凡群{e}，当然这些正规子群对应的商群都必须是循环群。我们把有这种结构的群叫<strong>可解群</strong>，也就是说添加可以用四则运算加根式表示的数得到的扩张的伽罗瓦群一定是可解群，如果不是，说明我们添加的数不是可以用四则运算加根式表示的数。</p>
+<p>我们最后来看把一个五次方程的所有根都加入得到的域扩张的伽罗瓦群是怎样的：对于群元素f来说<br>$$f(x^5+a_4 x^4+..+a_0)=f(0)=0\\<br>f(x)^5+a_4 f(x)^4+..+a_0=0$$<br>对于这个方程最一般的情况为5个不同的无理根。比如添加方程$x^5-4x+2=0$所有根的域扩张的伽罗瓦群：它最多能置换所有的根，所以是群$S_5$的子群，但容易验证方程$x^5-4x+2=0$有两个共轭复根，说明我们至少可以交换这两根，即它包含阶数为二的群元，其实所有无有理根的五次方程的伽罗瓦群的元素个数一定是五的整数倍，（因为添加每个根$z$后的数域中的数都能唯一写成$a+bz+cz^2+dz^3+ez^4$的形式<a href="javascript:$('#pourquoi').toggle();$('#pourquois').text($('#pourquois').text()=='+'?'-':'+')" target="_blank" rel="external">[<span id="pourquois">+</span>]为什么？</a>，说明了存在一个五次扩张。），而同时满足以上两个条件的子群就只能是$S_5$自身了（我们将在下篇文章中分析$S_5$的结构）。</p>
+<p><div id="pourquoi" style="display:none; background-color:#EEE">首先，数域中的数都能写成$a+bz+cz^2+dz^3+ez^4$，因为根据方程，$z^5$可以被前式表示，除法的封闭性并不显而易见，但我们可以用待定系数法求到每一个形如$a+bz+cz^2+dz^3+ez^4$数的倒数也能写成这样的形式$a’+b’z+c’z^2+d’z^3+e’z^4$，根据方程$(a’+b’z+c’z^2+d’z^3+e’z^4)(a+bz+cz^2+dz^3+ez^4)=1$中对应系数相等我们能得到一个方程组，可验证一般情况下均有解。下面说明唯一性：如果不唯一，则说明根$z$也是某有理系数方程$a+bz+cz^2+dz^3+z^4=0$的解，我们将多项式$x^5-4x+2$与$a+bz+cz^2+dz^3+z^4$现在最大的复数域上完全分解因式，然后相除可以把共同的根$z$约掉得到一个分式，剩下分子分母都是不可约的无理因子，而最开始分子分母是有理系数的多项式，约掉无理因式$(x-z)$后系数一定是无理的，但两个有理多项式相除后系数一定是有理的，这就矛盾了。（注意这里并不严谨，证明详见相关书籍）</div><br>我们将证明群$S_5$不可解，即不存在前面叙述的那种正规子群列，到这里我们就成功把问题完全转化为了群论问题。因为只要能包含添加进一个根$z$的那些扩域对应的自同构群就一定能将$z$与其他四个根交换，说明这个群至少包含了$S_5$。但由于$S_5$不可解，将导致所有包含了$S_5$的更大的群都不可解。<br>我们将通过<strong>共轭类</strong>来分析$S_5$中为何没有相应的正规子群列。（未完待续）</p>
+<p></p><p class="likecode">/***<br>　　注意，本文目的只是给读者呈现伽罗瓦理论的一个大概脉络，有很多细节我也没弄明白<br>　　更多详情见《抽象代数基础教程》<br>***/</p><br><!-- 120|展纸泪科泪表泪健烤弯难单陆展递周烤选健茫瓶扰陆弯诗贿递帜状瓶徐帜健牵物 --><p></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wxyhly.github.io/archives/group2/" data-id="cjtvh5xem000f38vllfdmanm5" class="article-share-link">Share</a>
+      
+        <a href="https://wxyhly.github.io/archives/group2/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学/">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系列文章/">系列文章</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/群论/">群论</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/archives/game4d/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          我玩过的一些四维游戏
+        
+      </div>
+    </a>
+  
+  
+    <a href="/archives/group1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">群论系列(一)：群论简介</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维世界系列/">四维世界系列</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a><span class="category-list-count">11</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Hutton32/" style="font-size: 11.25px;">Hutton32</a> <a href="/tags/javascript/" style="font-size: 13.75px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 17.5px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.25px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 12.5px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 11.25px;">拓补学</a> <a href="/tags/数学/" style="font-size: 16.25px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 11.25px;">物理</a> <a href="/tags/电路/" style="font-size: 11.25px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.75px;">系列文章</a> <a href="/tags/群论/" style="font-size: 11.25px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.25px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.25px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/archives/knot4d/">四维空间（十）：扭结与环扣</a>
+          </li>
+        
+          <li>
+            <a href="/archives/rail4d/">四维世界（三）：道路轨道设计</a>
+          </li>
+        
+          <li>
+            <a href="/archives/rot4d/">四维空间（九）：弯曲图形</a>
+          </li>
+        
+          <li>
+            <a href="/archives/trans4d/">四维世界（二）：公路交通</a>
+          </li>
+        
+          <li>
+            <a href="/archives/orbit4d/">四维世界（一）：行星的昼夜季节</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap"> 
+<h3 class="widget-title">链接</h3> 
+   <div class="widget">
+   <ul class="entry"> 
+    <li><a href="http://hadroncfy.com" title="hadroncfy" target="_blank">CFY(Hadron)</a></li> 
+    <li><a href="http://zzy.blog.ustc.edu.cn" title="ZZY" target="_blank">ZZY(BG6GCZ)</a></li> 
+   </ul> 
+</div></div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 wxyhly<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/programs/" class="mobile-nav-link">Programs</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'wxyhly';
+  
+  var disqus_url = 'https://wxyhly.github.io/archives/group2/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    }); 
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

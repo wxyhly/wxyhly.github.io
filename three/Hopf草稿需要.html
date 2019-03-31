@@ -59,13 +59,15 @@ function BodyOnLoad(){
 	EigenStateOfSpin();
 	function EigenStateOfSpin(){
 		GCircle(0xFF0000,[1,0,0,0],[0,1,0,0]);
-		GCircle(0x00FF00,[1,0,0,0],[0,0,1,0]);
-		GCircle(0x0000FF,[1,0,0,0],[0,0,0,1]);
 		GCircle(0x00FFFF,[0,0,1,0],[0,0,0,1]);
-		GCircle(0xFF00FF,[0,1,0,0],[0,0,0,1]);
-		GCircle(0xFFFF00,[0,1,0,0],[0,0,1,0]);
-		GCircle(0x990000,[1,1,0,0],[0,0,1,1]);
-		GCircle(0xFF9999,[-1,1,0,0],[0,0,-1,1]);
+		var px=8,py=8;
+		var dx = Math.PI/px;
+		var dy = Math.PI/py;
+		for(var i=0;i<px;i++){
+		for(var j=0;j<py;j++){
+			GCircle(0x00FF00,[Math.cos(i*dx),Math.sin(i*dx),0,0],[0,0,Math.cos(j*dy),Math.sin(j*dy)]);
+		}
+		}
 		function GCircle(color,u,v){
 			var M = GenerateCirles(new THREE.Vector4(u[0],u[1],u[2],u[3]),new THREE.Vector4(v[0],v[1],v[2],v[3]),64);
 			main3d.scene4.add(new FOUR.Mesh(M,new FOUR.FrameMaterial(null,color)));
