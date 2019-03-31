@@ -123,8 +123,6 @@ body,
   height: 100%;
 }
 body {
-  background: #eee;
-  background-image: url("images/reptile.svg");
   font: 15px "Helvetica Neue", "Helvetica", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
 }
@@ -178,6 +176,7 @@ body {
   -ms-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
   z-index: 1;
+  background: #eee;
   background-image: url("images/reptile.svg");
 }
 .mobile-nav-on #wrap {
