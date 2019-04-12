@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<style>
+body{
+	background-color:#A00;
+	color: #FFF;
+	margin-left: 0px;
+	width: 800px;
+}
+.container{
+	overflow:auto;
+	display:inline-block;
+}
+.sidebar{
+	float: left;
+	width: 250px;
+	text-align: center;
+}
+.main{
+	float: right;
+}
+.main-header{
+	text-align: center;
+}
+.txt{
+	background-color: #FFF;
+	color:#000;
+	width: 500px;
+	height: 425px;
+	overflow-y:auto;
+	text-align: left;
+}
+img{
+	border: 1px solid #FFF;
+}
+.pannel{
+	border: 1px solid #FFF;
+	border-radius: 4px;
+	padding: 4px;
+	margin: 4px;
+	font-size: 0.85em;
+	text-align: left;
+	padding-left:0px;
+	margin-left:0px;
+}
+.time{
+	border: 1px solid #FFF;
+	border-radius: 4px;
+	padding: 4px;
+	margin: 4px;
+	font-size: 0.85em;
+}
+.time::before{
+	width: 18px;
+	height: 90px;
+	display: block;
+	content:"";
+	float: right;
+	position: relative;
+	top: 40px;
+	background: linear-gradient(green, red);
+}
+.time-header{
+	color:#FF0;
+	font-size: 1.1em;
+}
+.time-number{
+	font-size: 30px;
+}
+a{
+	color: #FFF;
+}
+img.pannel{
+	float: left;
+	width:500px;
+}
+.panneltxt{
+	float: right;
+	padding:0px;
+	margin:0px;
+	width:390px;
+}
+button{
+	width: 200px;
+}
+</style>
+</head>
+<body onload="clock()">
+
+<div class="container">
+<div class="sidebar">
+  <img width="120px" height="120px" src="img/404.svg">
+  <div class="time">
+	  <p class="time-header">Browser will be redirected on</p>
+	  <p>2012/05/12 12:32:23</p>
+	  <p>Time left<br>
+		<span class="time-number">00:00:00:<span id="counter1">60</span></span>
+	  </p>
+  </div>
+  <div class="time">
+	  <p class="time-header">Dimension reduction attack will happen on</p>
+	  <p>2012/05/12 12:32:23</p>
+	  <p>Time left<br>
+		<span class="time-number">06:23:<span id="counter2">59:60</span></span>
+	  </p>
+  </div>
+  <p><a href="https://baike.baidu.com/item/%E4%BA%8C%E5%90%91%E7%AE%94/10273538" target="_blank">About Two Directional Foil</a></p>
+  <p><a href="/">Back to Home</a></p>
+  <p><a href="mailto:1065750837@qq.com" target="_blank">Contact Us</a></p>
+</div>
+<div class="main">
+  <p class="main-header">Ooops, your request URL is not found!
+    <select>
+      <option value="zh">简体中文</option>
+      <option value="tw">繁體中文</option>
+      <option value="en">English</option>
+      <option value="fr">Français</option>
+      <option value="di">Dichuu</option>
+    </select>
+  </p>
+  <div class="txt">
+	<h2>我要访问的页面出现了什么问题？</h2>
+	<p>您所在空间的维度不匹配，物理定律不兼容，造成您设备cpu负载高，浏览器Javascript、Css、Dom、Cookie、DNS解域名析、URL解析几乎所有的模块都出现了问题，因此你无法正常访问此页面。这和一般的HTTP 404错误找不到网页有本质区别，您大可在网上找找修复此页面的方法，我敢保证，不改变您所处空间的维度，就是博主WXYHLY来了也帮不了你。
+	</p>
+	<h2>有没有恢复这个页面的方法？</h2>
+	<p>当然有可恢复的方法。只能通过升高您所处空间的维度才能恢复。但这是收费的，也不能无限期的推迟。请点击&lt;Give 24-Cell&gt;按钮，就可以免费得到一个供您升维的正一百二十胞体。请您放心，我是绝不会骗你的。但想要先从三维纸张中爬出来，需要付款点费用。
+	</p>
+	<p>是否随时都可以固定金额付款，就会升维吗，当然不是，推迟付款时间越长对你不利。最好3天之内付款费用，过了三天费用就会翻倍。
+	</p>
+	<p>还有，一个礼拜之内未付款，您将会接受二维打击，和埃舍尔的蜥蜴们、杜德尼的尼德杜还有平面国的居民们永远生活在一起。
+	</p>
+	<p>
+	对了，忘了告诉你，对半年以上没钱付款的穷人，会有活动免费帮你升至十一维并恢复所有的404页面，能否轮到你，就要看您和归零者的运气怎么样了。
+	</p>
+	<h2>付款方法</h2>
+	<p>
+	我们只会接受二向箔做成的纸币。不懂二向箔是什么，请点击查看详情&lt;About Two Directional Foil&gt;。
+	不会购买二向箔，请联系《三体》中的歌者文明。付款后，请点击&lt;Increase Dimension&gt;按钮，因为空间维度变化速度只能是光速，所需要的时间比较长，付款后情耐心等待。
+	</p>
+
+  </div>
+  <div class="container pannel">
+    <img src="img/2directionfoil.svg" height="50px"><div class="panneltxt"><span class="time-header"> &nbsp;Send 6000 piece of 2-direction foil to this star:<br> &nbsp;
+	<input value="DX3906F" width="100%"><input value="Copy" type="button"></span></div>
+  </div>
+  <p class="main-header">
+  <button onclick="window.location.href='/4dViewer/examples/polychora.html'">Give 24-Cell</button>
+  <button onclick="alert('升维失败！请先付二向箔。')">Increase Dimension</button></p>
+</div>
+</div>
+<script>
+function clock(){
+	document.getElementById("counter1").innerHTML -= 1;
+	if(document.getElementById("counter1").innerHTML<0){
+		window.location.href = "/";
+	}
+	var t = document.getElementById("counter2").innerHTML.split(":");
+	t[1]--;
+	if(t[1]<0){
+		t[1] = 59;
+		t[0]--;
+	}
+	document.getElementById("counter2").innerHTML = t[0]+":"+t[1];
+    setTimeout(clock,1000);
+}
+</script>
+</body>
+</html>
