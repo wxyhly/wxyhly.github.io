@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.2, maximum-scale=5">
+<meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5">
 <style>
 body{
 	background-color:#A00;
@@ -95,15 +95,15 @@ button{
 <div class="sidebar">
   <img width="120px" height="120px" src="/img/404.svg">
   <div class="time">
-	  <p class="time-header">Browser will be redirected on</p>
-	  <p>2012/05/12 12:32:23</p>
+	  <p class="time-header">Page will be redirected on</p>
+	  <p id="date1">2012/05/12 12:32:23</p>
 	  <p>Time left<br>
 		<span class="time-number">00:00:00:<span id="counter1">60</span></span>
 	  </p>
   </div>
   <div class="time">
 	  <p class="time-header">Dimension reduction attack will happen on</p>
-	  <p>2012/05/12 12:32:23</p>
+	  <p id="date2">2012/05/12 12:32:23</p>
 	  <p>Time left<br>
 		<span class="time-number">06:23:<span id="counter2">59:60</span></span>
 	  </p>
@@ -138,13 +138,13 @@ button{
 	</p>
 	<h2>付款方法</h2>
 	<p>
-	我们只会接受二向箔做成的纸币。不懂二向箔是什么，请点击查看详情&lt;About Two Directional Foil&gt;。
+	我们只会接受二向箔付款。不懂二向箔是什么，请点击查看详情&lt;About Two Directional Foil&gt;。
 	不会购买二向箔，请联系《三体》中的歌者文明。付款后，请点击&lt;Increase Dimension&gt;按钮，因为空间维度变化速度只能是光速，所需要的时间比较长，付款后情耐心等待。
 	</p>
 
   </div>
   <div class="container pannel">
-    <img src="/img/2directionfoil.svg" height="50px"><div class="panneltxt"><span class="time-header"> &nbsp;Send 6000 piece of 2-direction foil to this star:<br> &nbsp;
+    <img src="/img/2directionfoil.svg" height="50px"><div class="panneltxt"><span class="time-header"> &nbsp;Send 6000 pieces of 2-directional foil to this star:<br> &nbsp;
 	<input value="DX3906F" width="100%"><input value="Copy" type="button"></span></div>
   </div>
   <p class="main-header">
@@ -153,7 +153,17 @@ button{
 </div>
 </div>
 <script>
+var first = true;
 function clock(){
+	if(first){
+		var A = new Date();
+		var B = new Date();
+		A.setTime(A.getTime()+60*1000);
+		B.setTime(B.getTime()+7*24*3600*1000);
+		document.getElementById("date1").innerHTML = A.toLocaleString();
+		document.getElementById("date2").innerHTML = B.toLocaleString();
+	}
+	first = false;
 	document.getElementById("counter1").innerHTML -= 1;
 	if(document.getElementById("counter1").innerHTML<0){
 		window.location.href = "/";
