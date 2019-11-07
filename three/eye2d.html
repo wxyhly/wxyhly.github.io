@@ -1,0 +1,94 @@
+
+<html>
+	<head>
+		<style>
+.canvas2 {
+	width: 400;
+	height: 100;
+}
+		</style>
+		<script src="THREE.js"></script>
+		<meta charset="unicode">
+		<title>wxyhly - 二维视觉1</title>
+		<script>
+function $(obj){
+	return document.getElementById(obj);
+}
+Init3d = function (obj){
+	this.scene = new THREE.Scene();
+	this.domElement = obj;
+	this.width = 400;//obj.clientWidth;
+	this.height = 100;//obj.clientHeight;
+	this.renderer = new THREE.WebGLRenderer({antialias: true});
+	this.renderer.setSize(this.width, this.height);
+	obj.appendChild(this.renderer.domElement);
+	this.renderer.setClearColor(0x00001F, 1.0);
+	this.camera = new THREE.PerspectiveCamera(11,this.width/this.height,0.01,100);
+	this.camera.position.set(0.6,0.8,0);
+	//this.camera.position.set(0,0,1);
+	this.camera.up.set(0,0,1);
+	this.camera.lookAt(this.scene.position);
+	this.light = new THREE.DirectionalLight(0xffffff, 1.0, 0);
+	this.light.position.copy(this.camera.position);
+	this.scene.add(this.light);
+}
+Init3d.prototype.render = function (){
+	this.renderer.clear();
+	this.renderer.render(this.scene, this.camera);
+}
+function BodyOnLoad(){
+	main3d = new Init3d($('webgl3d'));
+	(function closeur(){
+		var Box = new THREE.CubeGeometry( 0.2, 0.2, 2 );
+		var cylinder = new THREE.CylinderGeometry(0.12, 0.12, 2, 48);
+		var prism = new THREE.CylinderGeometry(0.12, 0.12, 2, 3);
+		var material = new THREE.MeshPhongMaterial({color:0xFF0000});
+		main3d.scene.add(new THREE.Mesh(Box,new THREE.MeshPhongMaterial({color:0xFF0000})));
+		main3d.scene.add(new THREE.Mesh(Box,new THREE.MeshPhongMaterial({color:0x00FF00})));
+		main3d.scene.add(new THREE.Mesh(prism,new THREE.MeshPhongMaterial({color:0x0000FF,shading:THREE.FlatShading})));
+		main3d.scene.add(new THREE.Mesh(cylinder,new THREE.MeshPhongMaterial({color:0xFFFF00})));
+		main3d.scene.children[5].rotateX(Math.PI/2);
+		main3d.scene.children[4].rotateX(Math.PI/2);
+		main3d.scene.children[2].position.set(0,0.3,0);
+		main3d.scene.children[3].position.set(0.3,0,0);
+		main3d.scene.children[5].position.set(0.3,0.3,0);
+	})();
+	main3D = new Init3d($('webgl3d2'));
+	var Box = new THREE.CubeGeometry( 0.2, 0.2, 2 );
+	var cylinder = new THREE.CylinderGeometry(0.12, 0.12, 2, 48);
+	var prism = new THREE.CylinderGeometry(0.12, 0.12, 2, 3);
+	var material = new THREE.MeshPhongMaterial({color:0xFF0000});
+	main3D.scene.add(new THREE.Mesh(Box,new THREE.MeshPhongMaterial({color:0xFF0000})));
+	main3D.scene.add(new THREE.Mesh(Box,new THREE.MeshPhongMaterial({color:0x00FF00})));
+	main3D.scene.add(new THREE.Mesh(prism,new THREE.MeshPhongMaterial({color:0x0000FF,shading:THREE.FlatShading})));
+	main3D.scene.add(new THREE.Mesh(cylinder,new THREE.MeshPhongMaterial({color:0xFFFF00})));
+	main3D.scene.children[5].rotateX(Math.PI/2);
+	main3D.scene.children[4].rotateX(Math.PI/2);
+	main3D.scene.children[2].position.set(0,0.3,0);
+	main3D.scene.children[3].position.set(0.3,0,0);
+	main3D.scene.children[5].position.set(0.3,0.3,0);
+	loop();
+}
+Q = 0;count=0;
+function loop(){
+	main3d.light.position.copy(main3d.camera.position);
+	main3d.render();
+	main3d.camera.position.set(Math.cos(Q),Math.sin(Q),0);
+	main3d.camera.lookAt(new THREE.Vector3(0.12,0.12,0));
+	if(window.location.search=="?2"){
+		main3D.light.position.copy(main3d.camera.position);
+		main3D.render();
+		main3D.camera.position.set(Math.cos(Q-0.1),Math.sin(Q-0.1),0);
+		main3D.camera.lookAt(new THREE.Vector3(0.12,0.12,0));
+	}
+	window.requestAnimationFrame(loop);
+	Q+=0.01;
+}
+		</script>
+	</head>
+	<body onload="BodyOnLoad()">
+	<div class="panel"></div>
+	<table><tr><td><div class="canvas2" id="webgl3d"></div></td>
+	<td><div class="canvas2" id="webgl3d2"></div></td></tr></table>
+	</body>
+</html>

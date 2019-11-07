@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Minecraft4D 教程 | Blog de WXYHLY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Minecraft4D是一个真正的四维空间中的（超立方体）方块沙盒游戏。（如果把时间也算上，就是五维时空！）现在游戏只支持创造模式下的单人游戏。Minecraft4D采用Javascript与Webgl编写，所以只需点开下面的链接就可以玩了。（最好用Google Chrome浏览器，不保证其他浏览器的兼容性）
+Minecraft4D进入后等待贴图与地形都加载好后就可以看到视野了。你会发现画面分成了">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Minecraft4D 教程">
+<meta property="og:url" content="https://wxyhly.github.io/programs/mc4tutorial.html">
+<meta property="og:site_name" content="Blog de WXYHLY">
+<meta property="og:description" content="Minecraft4D是一个真正的四维空间中的（超立方体）方块沙盒游戏。（如果把时间也算上，就是五维时空！）现在游戏只支持创造模式下的单人游戏。Minecraft4D采用Javascript与Webgl编写，所以只需点开下面的链接就可以玩了。（最好用Google Chrome浏览器，不保证其他浏览器的兼容性）
+Minecraft4D进入后等待贴图与地形都加载好后就可以看到视野了。你会发现画面分成了">
+<meta property="og:updated_time" content="2019-07-04T06:32:18.847Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Minecraft4D 教程">
+<meta name="twitter:description" content="Minecraft4D是一个真正的四维空间中的（超立方体）方块沙盒游戏。（如果把时间也算上，就是五维时空！）现在游戏只支持创造模式下的单人游戏。Minecraft4D采用Javascript与Webgl编写，所以只需点开下面的链接就可以玩了。（最好用Google Chrome浏览器，不保证其他浏览器的兼容性）
+Minecraft4D进入后等待贴图与地形都加载好后就可以看到视野了。你会发现画面分成了">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Blog de WXYHLY</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/programs/">Programs</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wxyhly.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Minecraft4D 教程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Minecraft4D是一个真正的四维空间中的（超立方体）方块沙盒游戏。（如果把时间也算上，就是五维时空！）现在游戏只支持创造模式下的单人游戏。Minecraft4D采用Javascript与Webgl编写，所以只需点开下面的链接就可以玩了。（最好用Google Chrome浏览器，不保证其他浏览器的兼容性）</p>
+<h3 id="Minecraft4D"><a href="#Minecraft4D" class="headerlink" title="Minecraft4D"></a><a href="/4dViewer/minecraft4d/">Minecraft4D</a></h3><p>进入后等待贴图与地形都加载好后就可以看到视野了。你会发现画面分成了几乎一样的左右两个，它们是左右眼的成像，我不会做vr，所以就只有要求你要会做对对眼（斗鸡眼）来看到立体视野画面。如果做不到的话就只有通过按方向键旋转视野以得到立体感了。什么是立体视野呢？<a href="">这篇文章</a>里有详细介绍。角落处三个小视图分别是立体视野的截面，单独抽出来以便我们清楚观察。</p>
+<h2 id="方向操作"><a href="#方向操作" class="headerlink" title="方向操作"></a>方向操作</h2><p>下面我们来学习一下四维空间中的方向。下图标出了各个方向的名称，你可以试着按方向键来做移动，可能你会对在侧前侧后方向上移动感到很不习惯，因为我们三维的大脑还没建立起直觉上处理第四个维度的能力，一会儿就习惯了。</p>
+<p>点击画面后鼠标会被隐藏，此时移动鼠标视图将会旋转；按Esc键取消隐藏，这跟原版Minecraft是类似的。鼠标的左右移动对应的是玩家的头的左右旋转；注意与原版Minecraft不同的是，鼠标上下移动对应头的侧前侧后旋转，所以无论怎样移动鼠标玩家都永远是平视前方的。如果要抬头/低头，请滚动鼠标滚轮或按键盘<code>I</code>或<code>K</code>键。</p>
+<h2 id="世界操作"><a href="#世界操作" class="headerlink" title="世界操作"></a>世界操作</h2><p>世界有两种类型：正常与超平坦。默认世界类型为正常模式。每次进入页面都将随机分配一个世界种子。要想加载指定种子的世界请在页面网址后加上  ?种子号 的方式进入页面。注意种子号必须为正整数。可以使用/seed命令查看当前世界的种子。<br>页面网址后加  ?flat  将进入超平坦模式。此模式下不会生成任何额外的结构。<br>下面给出一些种子的链接：</p>
+<ul>
+<li>超平坦<a href="/4dViewer/minecraft4d/?flat">/?flat</a></li>
+</ul>
+<h2 id="方块操作"><a href="#方块操作" class="headerlink" title="方块操作"></a>方块操作</h2><p>与原版Minecraft一样，Miencraft4D中使用鼠标右键放置、左键破坏方块、中键选择方块。但要注意的是现在位于视野中心处的十字准星处在三维的空间里，要在空间中与要选择的方块重合才能选到正确的方块。[这里]有如何选取指定方块的示例。按<code>N</code>与<code>M</code>键可以切换手中的方块。所有的方块列表见<a href="">这里</a>。由于四维比三维空间要广大得多，所以徒手修一座建筑比同样尺寸的三维建筑要用更多的方块，工程量巨大，于是Minecraft4D内置了类似原版Minecraft的Worldedit插件的功能。使用/w命令在正常模式与Worldedit模式之间切换。要使用Worldedit的功能需要先创建选区。目前只支持超长方体的选区。使用左右键分别选择两个方块，将创建以这两个方块连线为体对角线的<br>超长方体选区。命令/sel可以查看选取的大小信息。/set &lt;方块&gt;可以用指定方块填充选取，更多命令详见<a href="">这里</a>。</p>
+<h2 id="快捷键列表"><a href="#快捷键列表" class="headerlink" title="快捷键列表"></a>快捷键列表</h2><h2 id="命令列表"><a href="#命令列表" class="headerlink" title="命令列表"></a>命令列表</h2><h2 id="方块列表"><a href="#方块列表" class="headerlink" title="方块列表"></a>方块列表</h2><table>
+<thead>
+<tr>
+<th>数字ID</th>
+<th>中文名</th>
+<th>英文ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>空气</td>
+<td>air</td>
+</tr>
+<tr>
+<td>1</td>
+<td>石头</td>
+<td>stone</td>
+</tr>
+<tr>
+<td>2</td>
+<td>草方块</td>
+<td>grass</td>
+</tr>
+<tr>
+<td>3</td>
+<td>泥土</td>
+<td>dirt</td>
+</tr>
+<tr>
+<td>4</td>
+<td>橡木</td>
+<td>oak_log</td>
+</tr>
+<tr>
+<td>5</td>
+<td>树叶</td>
+<td>leaves</td>
+</tr>
+<tr>
+<td>6</td>
+<td>砖块</td>
+<td>brick</td>
+</tr>
+<tr>
+<td>7</td>
+<td>沙子</td>
+<td>sand</td>
+</tr>
+<tr>
+<td>8</td>
+<td>水</td>
+<td>water</td>
+</tr>
+<tr>
+<td>9</td>
+<td>平滑石头</td>
+<td>smooth_stone</td>
+</tr>
+<tr>
+<td>10</td>
+<td>双层石台阶</td>
+<td>stone_slabs</td>
+</tr>
+<tr>
+<td>11</td>
+<td>石砖</td>
+<td>stone_brick</td>
+</tr>
+<tr>
+<td>12</td>
+<td>木版</td>
+<td>planks</td>
+</tr>
+<tr>
+<td>13</td>
+<td>白色混凝土</td>
+<td>white_concrete</td>
+</tr>
+<tr>
+<td>14</td>
+<td>红色混凝土</td>
+<td>red_concrete</td>
+</tr>
+<tr>
+<td>15</td>
+<td>黄色混凝土</td>
+<td>yellow_concrete</td>
+</tr>
+<tr>
+<td>16</td>
+<td>绿色混凝土</td>
+<td>green_concrete</td>
+</tr>
+<tr>
+<td>17</td>
+<td>青色混凝土</td>
+<td>cyan_concrete</td>
+</tr>
+<tr>
+<td>18</td>
+<td>蓝色混凝土</td>
+<td>blue_concrete</td>
+</tr>
+<tr>
+<td>19</td>
+<td>紫色混凝土</td>
+<td>purple_concrete</td>
+</tr>
+<tr>
+<td>20</td>
+<td>灰色混凝土</td>
+<td>gray_concrete</td>
+</tr>
+<tr>
+<td>21</td>
+<td>黑色混凝土</td>
+<td>black_concrete</td>
+</tr>
+<tr>
+<td>22</td>
+<td>仙人掌</td>
+<td>catcus</td>
+</tr>
+<tr>
+<td>23</td>
+<td>爬行者头</td>
+<td>creeper_head</td>
+</tr>
+<tr>
+<td>24</td>
+<td>末影人头</td>
+<td>enderman_head</td>
+</tr>
+<tr>
+<td>25</td>
+<td>玩家头</td>
+<td>steve_head</td>
+</tr>
+</tbody>
+</table>
+<h2 id="景观列表"><a href="#景观列表" class="headerlink" title="景观列表"></a>景观列表</h2><!--纯几何的方法可以分别从相邻两胞心往交面的面心做垂线，三个中心构成三角形，然后分别计算三边长，用余弦定理计算二胞角。计算边长时主要利用正八面体每个面是正三角形以及正24胞体的立方体中空结构（由正八面体的正方形中空结构拼成，不涉及代数法即可证）-->
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wxyhly.github.io/programs/mc4tutorial.html" data-id="ck2ojmlag0004mkvlvmumxd7j" class="article-share-link">Share</a>
+      
+        <a href="https://wxyhly.github.io/programs/mc4tutorial.html#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维世界系列/">四维世界系列</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a><span class="category-list-count">11</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2b2t/" style="font-size: 10px;">2b2t</a> <a href="/tags/Hutton32/" style="font-size: 11.25px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 13.75px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 17.5px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.25px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 12.5px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 11.25px;">拓补学</a> <a href="/tags/数学/" style="font-size: 16.25px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 11.25px;">物理</a> <a href="/tags/电路/" style="font-size: 11.25px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.75px;">系列文章</a> <a href="/tags/群论/" style="font-size: 11.25px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.25px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.25px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/archives/2b2t-terie/">【Minecraft】2B2T生存日记：一口气逃离出生点</a>
+          </li>
+        
+          <li>
+            <a href="/archives/knot4d/">四维空间（十）：扭结与环扣</a>
+          </li>
+        
+          <li>
+            <a href="/archives/rail4d/">四维世界（三）：道路轨道设计</a>
+          </li>
+        
+          <li>
+            <a href="/archives/rot4d/">四维空间（九）：弯曲图形</a>
+          </li>
+        
+          <li>
+            <a href="/archives/trans4d/">四维世界（二）：公路交通</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap"> 
+<h3 class="widget-title">链接</h3> 
+   <div class="widget">
+   <ul class="entry"> 
+    <li><a href="http://hadroncfy.com" title="hadroncfy" target="_blank">CFY(Hadron)</a></li> 
+    <li><a href="http://zzy.blog.ustc.edu.cn" title="ZZY" target="_blank">ZZY(BG6GCZ)</a></li> 
+   </ul> 
+</div></div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 wxyhly<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/programs/" class="mobile-nav-link">Programs</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'wxyhly';
+  
+  var disqus_url = 'https://wxyhly.github.io/programs/mc4tutorial.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    }); 
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
