@@ -1,0 +1,189 @@
+
+<html>
+	<head>
+		<style>
+.canvas2 {
+	width: 400;
+	height: 800;
+}
+		</style>
+		<script src="webgl.js"></script>
+		<meta charset="unicode">
+		<title>wxyhly - 3dViewer For 2der</title>
+		<script>
+function $(obj){
+	return document.getElementById(obj);
+}
+var gl$ = function (obj){
+	return document.getElementById(obj).getContext("experimental-webgl");
+}
+function BodyOnLoad(){
+	var img = new Image();
+	img.src="/img/eye2d006.gif";
+	img.onload = IMGOnLoad.bind(null,img);
+}
+var shader = {
+	main:{
+		F:`
+			precision highp float;
+			varying vec2 coord;
+			uniform sampler2D txt;
+			void main(void){
+				//gl_FragColor = vec4(0.0,1.0,0.0,1.0);
+				gl_FragColor = texture2D(txt,coord/2.0+0.5);
+			}
+		`,
+		V:`
+			precision highp float;
+			attribute vec2 V;
+			varying vec2 coord;
+			void main(void){
+				gl_Position = vec4(V,0.0,1.0);
+				coord = V;
+			}
+		`,
+		attribute:{
+			"vec2 V":{}
+		},
+		uniform:{
+			"int txt":{}
+		}
+	},
+	cross:{
+		F:`
+			precision highp float;
+			varying vec2 coord;
+			varying float coordz;
+			uniform sampler2D txt;
+			void main(void){
+				//gl_FragColor = vec4(0.0,1.0,0.0,1.0);
+				gl_FragColor = vec4(texture2D(txt,(coord*coordz)/2.0+0.5).rgb,0.01);
+			}
+		`,
+		V:`
+			precision highp float;
+			uniform mat3 cameraM, projM;
+			uniform float distY;
+			attribute vec3 V;
+			varying vec2 coord;
+			varying float coordz;
+			void main(void){
+				vec3 posc = cameraM*vec3(V.xy,1.0);
+				vec3 pos = projM*posc;
+				gl_Position = vec4(pos.x/pos.z,V.z+distY*(1.0/posc.y-0.2),pos.y/pos.z,1.0);
+				coord = V.xy/pos.z;
+				coordz = pos.z;
+			}
+		`,
+		attribute:{
+			"vec3 V":{}
+		},
+		uniform:{
+			"int txt":{},
+			"mat3 cameraM":{},
+			"mat3 projM":{},
+			"float distY":{},
+		}
+	},
+}
+var renderer;
+function IMGOnLoad(img){
+	var gl = gl$("webgl3d");
+	renderer = new Renderer(gl);
+	this.gl = gl;
+	this.size = 600;
+	this.IMG = img;
+	Webgl(gl);
+	gl.clearColor(0,0,0,1);
+	gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
+	
+	this.retinaTxt = gl.createTexture();
+	gl.activeTexture(gl.TEXTURE0);
+	gl.bindTexture(gl.TEXTURE_2D, this.retinaTxt);
+	gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,this.IMG);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+	gl.enable(gl.BLEND);
+	gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+	gl.program2 = new Webgl.ShaderProgram(gl,shader.cross);
+	gl.rectBuff = new Webgl.ArrayBuffer(gl);
+	gl.program2.attribute["vec3 V"].bind(gl.rectBuff);
+	loop();
+}
+Q = 0;count=0;
+function Renderer(gl){
+	var camera = {};
+	
+	this.gl = gl;
+	this.camera = camera;
+	this.camera.distance = -4;
+	this.camera.angle = Math.PI/3;
+	this.camera.getMat3 = function (){
+		var cc = Math.cos(camera.angle);
+		var ss = Math.sin(camera.angle);
+		return [
+			cc,-ss,0,
+			ss,cc,0,
+			0,camera.distance,1
+		];
+	}
+	this.camera.getProj3 = function (){
+		var nz = 0.1, fz = 10, ctg = 2.5;
+		return [
+			ctg,0,0,
+			0,(nz+fz)/(nz-fz),-1,
+			0,2*nz*fz/(nz-fz),0
+		];
+	}
+	this.render = function(){
+		var hd = 0.1;
+		var size = 600;
+		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+		for(var k=0;k<2;k++){
+			gl.program2.uniform["float distY"].set(k);
+			camera.angle -=hd;
+			for(var j=0;j<2;j++){
+				if(!j){
+					gl.viewport(0,0,size,size);
+				}else{
+					gl.viewport(size,0,size,size);
+				}
+				camera.angle +=hd;
+				
+				gl.program2.uniform["mat3 cameraM"].set(camera.getMat3());
+				gl.program2.uniform["mat3 projM"].set(camera.getProj3());
+				gl.program2.attribute["vec3 V"].bind(gl.rectBuff);
+				var ch = 0, h = 0.1;
+				for(var i=-1; i<=1; i+=0.02){
+					ch = 0;
+					gl.rectBuff.set([i,1,ch+h, i,1,ch-h, i,-1,ch+h, i,-1,ch-h]);
+					gl.drawStrip(gl.rectBuff);
+				}
+				for(var i=-1; i<=1; i+=0.02){
+					ch = 0;
+					gl.rectBuff.set([1,i,ch+h, 1,i,ch-h, -1,i,ch+h, -1,i,ch-h]);
+					gl.drawStrip(gl.rectBuff);
+				}
+				
+			}
+			camera.angle -=hd;
+			
+		}
+		
+	}
+}
+function loop(){
+	renderer.camera.angle += Math.PI/24;
+	renderer.render();
+	Q+=0.01;
+}
+document.addEventListener("mousedown",loop);
+		</script>
+	</head>
+	<body onload="BodyOnLoad()">
+	<div class="panel"></div>
+	<table><tr><td><canvas style="background-color:#000" id="webgl3d" width=1200 height=600></canvas></td>
+	<td><canvas id="webgl3d2"  width=400 height=400></canvas></td></tr></table>
+	wxy<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>wxy
+	</body>
+</html>
