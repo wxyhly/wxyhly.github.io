@@ -2,14 +2,15 @@
 <html>
 	<head>
 		<style>
-.canvas2 {
-	width: 400;
-	height: 800;
+.floating{
+	position: absolute;
+	left:5px;
 }
 		</style>
 		<script src="webgl.js"></script>
 		<meta charset="unicode">
 		<title>wxyhly - 3dViewer For 2der</title>
+		<script src="THREE.js"></script>
 		<script>
 function $(obj){
 	return document.getElementById(obj);
@@ -17,11 +18,123 @@ function $(obj){
 var gl$ = function (obj){
 	return document.getElementById(obj).getContext("experimental-webgl");
 }
-function BodyOnLoad(){
-	var img = new Image();
-	img.src="img/lena.png";
-	img.onload = IMGOnLoad.bind(null,img);
+var ctxt$ = function (obj){
+	return document.getElementById(obj).getContext("2d");
 }
+var renderer;
+function BodyOnLoad(){
+	Iframe = window.location.search=="?iframe";
+	var size = Iframe?256:512;
+	var ct1 = ctxt$("overlap");
+	$("overlap").width = $("overlap").height = size;
+	$("webgl3d").width = 2*size;
+	$("webgl3d").height = Iframe?200:300;
+	
+	ct1.beginPath();
+	ct1.moveTo(0,size/2);
+	ct1.lineTo(size,size/2);
+	ct1.moveTo(size/2,0);
+	ct1.lineTo(size/2,size);
+	ct1.strokeStyle="#000000";
+	ct1.stroke();
+	
+	var ct2 = ctxt$("overlap2");
+	$("overlap2").width = $("overlap2").height = size;
+	ct2.beginPath();
+	ct2.moveTo(0,size/2);
+	ct2.lineTo(size,size/2);
+	ct2.moveTo(size/2,0);
+	ct2.lineTo(size/2,size);
+	ct2.strokeStyle="#000000";
+	ct2.stroke();
+	
+	
+	var gl = gl$("webgl3d");
+	renderer = new Renderer(gl);
+	this.gl = gl;
+	this.size = 600;
+	Webgl(gl);
+	gl.clearColor(0,0,0,1);
+	gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
+	gl.retinaTxt = gl.createTexture();
+	gl.retinaTxt2 = gl.createTexture();
+	gl.retinaTxt3 = gl.createTexture();
+	init3js();
+	//img = new Image();
+	//img.src="/img/eye2d006.gif";
+	gl.enable(gl.BLEND);
+	gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+	gl.program2 = new Webgl.ShaderProgram(gl,shader.cross);
+	gl.rectBuff = new Webgl.ArrayBuffer(gl);
+	gl.program2.attribute["vec3 V"].bind(gl.rectBuff);
+	//img.onload = IMGOnLoad.bind(null,img,gl);
+	
+}
+
+function initScene(r){
+	r.setSize(Iframe?256:512,Iframe?256:512);
+	r.setClearColor(0xaaffff,1); 
+	var Box = new THREE.Mesh(new THREE.CubeGeometry( 5,5,5),new THREE.MeshPhongMaterial({
+		map: THREE.ImageUtils.loadTexture('img/huaj.jpg')
+	}));
+	var GND = new THREE.Mesh(new THREE.CubeGeometry( 200, 0.02, 200),new THREE.MeshPhongMaterial({color:0x00FF00}));
+	var Fez = new THREE.Mesh(new THREE.SphereGeometry(3,32,16),new THREE.MeshPhongMaterial({color:0x0000FF}));
+	var Torus = new THREE.Mesh(new THREE.TorusGeometry(10,3,32,32),new THREE.MeshPhongMaterial({color:0x666666, shininess: 200}));
+	Torus.position.set(0,0,-10);
+	Box.castShadow = true;
+	Torus.castShadow = true;
+	Box.position.set(0,2.5+0.1,0);
+	Fez.position.set(0,3,-16);
+	GND.receiveShadow = true;
+	Fez.receiveShadow = true;
+	Fez.castShadow = true;
+	var s = new THREE.Scene();
+	s.add(Box);
+	s.add(GND);
+	var camera = new THREE.PerspectiveCamera(40,1,0.01,100);
+	camera.position.set(6, 2, 8);
+	camera.up.set(0,1,0);
+	camera.lookAt(s.position);
+	var light = new THREE.DirectionalLight(0xffffff, 1.0, 0);
+	light.position.set(30,40,80);
+	light.lookAt(s.position);
+	var light2 = new THREE.AmbientLight(0x111111);
+	//light2.position.set(-50,40,-80);
+	//light2.lookAt(s.position);
+	r.shadowMapEnabled = true;
+	light.castShadow = true;
+	light.shadowCameraNear = 50;
+	light.shadowCameraFar = 130;
+	light.shadowCameraLeft = -40;
+	light.shadowCameraRight = 40;
+	light.shadowCameraTop = 40;
+	light.shadowCameraBottom = -40;
+	r.camera = camera;
+	r.scene = s;
+	s.add(light);
+	s.add(light2);
+	s.add(Torus);
+	s.add(Fez);
+	r.Render = function(){r.render(r.scene, r.camera)}
+}
+
+function init3js(){
+	renderer3 = new THREE.WebGLRenderer({ preserveDrawingBuffer: true });
+	initScene(renderer3);
+	$("threeBuffer").appendChild(renderer3.domElement);
+	
+	renderer32 = new THREE.WebGLRenderer({ preserveDrawingBuffer: true });
+	initScene(renderer32);
+	$("threeBuffer2").appendChild(renderer32.domElement);
+	
+	renderer33 = new THREE.WebGLRenderer({ preserveDrawingBuffer: true });
+	initScene(renderer33);
+	
+	$("table1").style.top = $("table2").style.top = Iframe?"210px":"310px";
+	
+	controler = new Controler(renderer3.camera,renderer32.camera,renderer.camera,renderer33.camera);
+}
+
 var shader = {
 	main:{
 		F:`
@@ -29,7 +142,6 @@ var shader = {
 			varying vec2 coord;
 			uniform sampler2D txt;
 			void main(void){
-				//gl_FragColor = vec4(0.0,1.0,0.0,1.0);
 				gl_FragColor = texture2D(txt,coord/2.0+0.5);
 			}
 		`,
@@ -86,41 +198,23 @@ var shader = {
 		}
 	},
 }
-var renderer;
-function IMGOnLoad(img){
-	var gl = gl$("webgl3d");
-	renderer = new Renderer(gl);
-	this.gl = gl;
-	this.size = 600;
-	this.IMG = img;
-	Webgl(gl);
-	gl.clearColor(0,0,0,1);
-	gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
-	
-	this.retinaTxt = gl.createTexture();
-	gl.activeTexture(gl.TEXTURE0);
-	gl.bindTexture(gl.TEXTURE_2D, this.retinaTxt);
-	gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,this.IMG);
+function IMGOnLoad(img,gl,TEXTURE,retinaTxt){
+	gl.activeTexture(TEXTURE);
+	gl.bindTexture(gl.TEXTURE_2D, retinaTxt);
+	gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);
 	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
 	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-	gl.enable(gl.BLEND);
-	gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-	gl.program2 = new Webgl.ShaderProgram(gl,shader.cross);
-	gl.rectBuff = new Webgl.ArrayBuffer(gl);
-	gl.program2.attribute["vec3 V"].bind(gl.rectBuff);
-	loop();
 }
 Q = 0;count=0;
 function Renderer(gl){
 	var camera = {};
-	
 	this.gl = gl;
 	this.camera = camera;
-	this.camera.distance = -4;
-	this.camera.angle = Math.PI/3;
-	this.camera.getMat3 = function (){
-		var cc = Math.cos(camera.angle);
-		var ss = Math.sin(camera.angle);
+	this.camera.distance = -3.5;
+	this.camera.angle = Math.PI/6;
+	this.camera.getMat3 = function (angle){
+		var cc = Math.cos(angle||camera.angle);
+		var ss = Math.sin(angle||camera.angle);
 		return [
 			cc,-ss,0,
 			ss,cc,0,
@@ -137,30 +231,42 @@ function Renderer(gl){
 	}
 	this.render = function(){
 		var hd = 0.1;
-		var size = 600;
+		var sizeX = Iframe?256:512, sizeY = Iframe?200:300;
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+		gl.enable(gl.BLEND);
+		var img = new Image();
+		img.src=renderer3.domElement.toDataURL();
+		img.onload = IMGOnLoad.bind(null,img,gl,gl.TEXTURE0,gl.retinaTxt);
+		
+		var img2 = new Image();
+		img2.src=renderer32.domElement.toDataURL();
+		img2.onload = IMGOnLoad.bind(null,img2,gl,gl.TEXTURE1,gl.retinaTxt2);
+		
+		var img3 = new Image();
+		img3.src=renderer33.domElement.toDataURL();
+		img3.onload = IMGOnLoad.bind(null,img3,gl,gl.TEXTURE2,gl.retinaTxt3);
+		
+		gl.program2.uniform["int txt"].set(0);
 		for(var k=0;k<2;k++){
-			gl.program2.uniform["float distY"].set(k);
+			gl.program2.uniform["float distY"].set(k*2.5);
 			camera.angle -=hd;
 			for(var j=0;j<2;j++){
 				if(!j){
-					gl.viewport(0,0,size,size);
+					gl.viewport(0,0,sizeX,sizeY);
 				}else{
-					gl.viewport(size,0,size,size);
+					gl.viewport(sizeX,0,sizeX,sizeY);
 				}
 				camera.angle +=hd;
 				
 				gl.program2.uniform["mat3 cameraM"].set(camera.getMat3());
 				gl.program2.uniform["mat3 projM"].set(camera.getProj3());
 				gl.program2.attribute["vec3 V"].bind(gl.rectBuff);
-				var ch = 0, h = 0.1;
+				var ch = 0.7*k, h = 0.1;
 				for(var i=-1; i<=1; i+=0.02){
-					ch = 0;
 					gl.rectBuff.set([i,1,ch+h, i,1,ch-h, i,-1,ch+h, i,-1,ch-h]);
 					gl.drawStrip(gl.rectBuff);
 				}
 				for(var i=-1; i<=1; i+=0.02){
-					ch = 0;
 					gl.rectBuff.set([1,i,ch+h, 1,i,ch-h, -1,i,ch+h, -1,i,ch-h]);
 					gl.drawStrip(gl.rectBuff);
 				}
@@ -169,20 +275,194 @@ function Renderer(gl){
 			camera.angle -=hd;
 			
 		}
-		
+		for(var j=0;j<2;j++){
+			ch = 0.3;
+			h = 0.1;
+			if(!j){
+				gl.viewport(0,0,sizeX,sizeY);
+			}else{
+				gl.viewport(sizeX,0,sizeX,sizeY);
+			}
+			gl.disable(gl.BLEND);
+			gl.program2.uniform["int txt"].set(j?2:0);
+			
+			gl.program2.uniform["float distY"].set(0);
+			gl.program2.uniform["mat3 cameraM"].set(camera.getMat3(Math.PI/2));
+			
+			gl.rectBuff.set([0,1,ch+h, 0,1,ch-h, 0,-1,ch+h, 0,-1,ch-h]);
+			gl.drawStrip(gl.rectBuff);
+			gl.program2.uniform["int txt"].set(j);
+			gl.program2.uniform["float distY"].set(0);
+			gl.program2.uniform["mat3 cameraM"].set(camera.getMat3(0.00001));
+			ch = 0.6;
+			gl.rectBuff.set([1,0,ch+h, 1,0,ch-h, -1,0,ch+h, -1,0,ch-h]);
+			gl.drawStrip(gl.rectBuff);
+		}
 	}
 }
+Q=0;
 function loop(){
-	renderer.camera.angle += Math.PI/24;
+	//renderer.camera.angle += Math.PI/24;
+	//renderer3.camera.position.set(Math.cos(Q-0.1),Math.sin(Q-0.1),0);
+	controler.update();
 	renderer.render();
-	Q+=0.01;
+	renderer3.Render();
+	renderer32.Render();
+	renderer33.Render();
+	//Q+=0.1;
+	window.requestAnimationFrame(loop);
 }
-document.addEventListener("mousedown",loop);
+//document.addEventListener("mousedown",loop);
+
+var Controler = function(camera,camera1,camera2,camera3){
+	this.camera = camera;
+	this.camera1 = camera1;
+	this.camera2 = camera2;
+	this.camera3 = camera3;
+	this.rotH = 1;
+	this.rotV = 0;
+	this.rotateMouseStep = 0.01;
+	this.keyPressed = {};
+	this.keyConfig = {
+		left: "A".charCodeAt(0),
+		right: "D".charCodeAt(0),
+		up: 32,    //space
+		down: 16,  //shift
+		forward: "W".charCodeAt(0),
+		back: "S".charCodeAt(0),
+		retinaLeft: "Z".charCodeAt(0),
+		retinaRight: "X".charCodeAt(0),
+		turnLeft: "J".charCodeAt(0),
+		turnRight: "L".charCodeAt(0),
+		turnUp: "I".charCodeAt(0),
+		turnDown: "K".charCodeAt(0),
+	}
+	var _this = this;
+	this.camera.rotation.set(this.rotV,this.rotH,0,"YXZ");
+	document.addEventListener('keydown', function( ev ) {
+		ev.preventDefault();
+		_this.keyPressed[ev.keyCode] = true;
+		if(_this.enableKey&&_this.keyPressed[_this.keyConfig.wireFrame]){
+			_this.renderer.wireFrameMode = !_this.renderer.wireFrameMode;
+			_this.needUpdate = true;
+		}
+		if(_this.onkeydown) _this.onkeydown(ev);
+	});
+	document.addEventListener('keyup', function( ev ) {
+		_this.keyPressed[ev.keyCode] = false;
+		if(_this.onkeyup) _this.onkeyup(ev);
+	});
+	document.addEventListener('mousemove', function( ev ) {
+		if(!!document.pointerLockElement){
+			var x = ev.movementX;
+			var y = ev.movementY;
+			_this._rotateHorizontal(x*_this.rotateMouseStep);
+		}
+	});
+	var scroll = function( ev ) {
+		ev.preventDefault();
+		ev.stopPropagation();
+		if(!!document.pointerLockElement){
+			var step = ev.wheelDelta/60/180*Math.PI;
+			if(step) _this._rotateVertical(step);
+		}
+		return false;
+	}
+	$("overlap").addEventListener('mousewheel', scroll);
+	$("overlap2").addEventListener('mousewheel', scroll);
+	window.parent.document.addEventListener('scroll', scroll);
+	document.addEventListener('mousewheel', scroll, { passive: false });
+	$("overlap").addEventListener('click', function( ev ) {
+		if(ev.button == 0){
+			document.body.requestPointerLock();
+		}
+	});
+	$("overlap2").addEventListener('click', function( ev ) {
+		if(ev.button == 0){
+			document.body.requestPointerLock();
+		}
+	});
+}
+Controler.prototype._rotateHorizontal = function(dx){
+	this.rotH -= dx;
+	this._updateCameraRotation();
+}
+Controler.prototype._rotateVertical = function(dy){
+	this.rotV += dy;
+	this._updateCameraRotation();
+}
+Controler.prototype._updateCameraRotation = function(){
+	this.camera.rotation.set(this.rotV,this.rotH,0,"YXZ");
+}
+Controler.prototype.update = function(){
+	var step = 0.3;
+	var angularStep = 0.05;
+	var e = this.camera.matrix.elements;
+	var x = new THREE.Vector3(e[0],0,e[2]).normalize();
+	var y = new THREE.Vector3(0,1,0);
+	var z = new THREE.Vector3(e[8],0,e[10]).normalize();
+	if(this.keyPressed[this.keyConfig.left]){
+		this.tryMove(x.multiplyScalar(-step));
+	}
+	if(this.keyPressed[this.keyConfig.right]){
+		this.tryMove(x.multiplyScalar(step));
+	}
+	if(this.keyPressed[this.keyConfig.forward]){
+		this.tryMove(z.multiplyScalar(-step));
+	}
+	if(this.keyPressed[this.keyConfig.back]){
+		this.tryMove(z.multiplyScalar(step));
+	}
+	if(this.keyPressed[this.keyConfig.up]){
+		this.tryMove(y.multiplyScalar(step));
+	}
+	if(this.keyPressed[this.keyConfig.down]){
+		this.tryMove(y.multiplyScalar(-step));
+	}
+	if(this.keyPressed[this.keyConfig.retinaLeft]){
+		this.camera2.angle += angularStep;
+	}
+	if(this.keyPressed[this.keyConfig.retinaRight]){
+		this.camera2.angle -= angularStep;
+	}
+	if(this.keyPressed[this.keyConfig.turnLeft]){
+		this.rotH += angularStep;
+		this._updateCameraRotation();
+	}
+	if(this.keyPressed[this.keyConfig.turnRight]){
+		this.rotH -= angularStep;
+		this._updateCameraRotation();
+	}
+	
+	if(this.keyPressed[this.keyConfig.turnUp]){
+		this.rotV += angularStep;
+		this._updateCameraRotation();
+	}
+	if(this.keyPressed[this.keyConfig.turnDown]){
+		this.rotV -= angularStep;
+		this._updateCameraRotation();
+	}
+	this.camera1.position.copy(this.camera.position).add(new THREE.Vector3(e[0],0,e[2]).normalize().multiplyScalar(-2));
+	this.camera3.position.copy(this.camera.position).add(new THREE.Vector3(e[4],e[5],e[6]).normalize().multiplyScalar(2));
+	this.camera1.rotation.copy(this.camera.rotation);
+	this.camera3.rotation.copy(this.camera.rotation);
+}
+Controler.prototype.tryMove = function(v){
+	this.camera.position.add(v);
+}
 		</script>
 	</head>
-	<body onload="BodyOnLoad()">
-	<div class="panel"></div>
-	<table><tr><td><canvas style="background-color:#000" id="webgl3d" width=1200 height=600></canvas></td>
-	<td><canvas id="webgl3d2"  width=400 height=400></canvas></td></tr></table>
+	<body onload="BodyOnLoad()" onclick="loop();$('hidee').style.display='none'">
+	<div id="hidee">点击激活Webgl<br></div>
+	<table class="floating" id="table1"><tr><td>
+	<div id="threeBuffer"></div></td><td>
+	<div id="threeBuffer2"></div></td><td>
+	<div id="threeBuffer3" style="display:none"></div></td></tr></table>
+	<table class="floating" id="table2"><tr><td>
+	<div><canvas id="overlap" width=512 height=512></div></td><td>
+	<div><canvas id="overlap2" width=512 height=512></div></td><td>
+	<div style="display:none"></div></td></tr></table>
+	<canvas style="background-color:#000" id="webgl3d" width=1024 height=300></canvas>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>wxy
 	</body>
 </html>
