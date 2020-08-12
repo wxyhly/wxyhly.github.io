@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/game17.gif">
 <meta property="og:image" content="https://wxyhly.github.io/img/game19.gif">
 <meta property="og:image" content="https://wxyhly.github.io/img/game21.gif">
-<meta property="og:updated_time" content="2019-03-31T14:12:44.601Z">
+<meta property="og:updated_time" content="2020-07-27T05:42:48.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我玩过的一些四维游戏">
 <meta name="twitter:description" content="要想进一步体验四维空间的“感觉”，在电脑上做一个交互程序是再好不过的了。我曾经梦到玩像3dMax那样的4D复杂建模软件（可惜不存在）。这里我将整理我玩过的四维程序（不一定算游戏），并给一些主观评价。
@@ -79,6 +79,8 @@
         
           <a class="main-nav-link" href="/programs/">Programs</a>
         
+          <a class="main-nav-link" href="/about/">About</a>
+        
       </nav>
       <nav id="sub-nav">
         
@@ -117,7 +119,7 @@
       
         <p>要想进一步体验四维空间的“感觉”，在电脑上做一个交互程序是再好不过的了。我曾经梦到玩像3dMax那样的4D复杂建模软件（可惜不存在）。这里我将整理我玩过的四维程序（不一定算游戏），并给一些主观评价。</p>
 <p>最近游戏圈子里比较火的《<a href="http://miegakure.com/" target="_blank" rel="external">Miegakure</a>》，现在还在开发之中，游戏宣传片号称是史上第一款数学意义上真正的4D游戏，但展现给我们的方式是比较抽象的截面法，截面都是选垂直于地面的。游戏以四面体胞为基础对象进行渲染，就像3D图形学里的三角形一样。宣传片里不仅有常规的超长方体房屋墙壁，还有3D的地面贴图、12面体胞柱体和椎体的结合体，甚至四维树。可惜作者只在youtube上放了几个Demo，不知要多久才能开发完。<br><img src="/img/game1.jpg" alt="miegakure"><br><a id="more"></a>建模方面我认为还是比较符合我的“四维世界观”的，但不足之处一是截面法比较抽象，二是我不是很确定视图操作的灵活性和自由度是不是能让我能够“自由地”感受到四维的空间感。因为这个游戏的作者还开发了另一个游戏《<a href="4dtoys.com">4D Toys</a>》（网上搜得到盗版），这个游戏的亮点是它有4D物理引擎！你可以控制超球碰撞，搭四维积木，甚至玩串在Hopf圆环上的超球珠子。当然，作者还是用的截面法。但是视图操作的灵活性我的体验极差：我不能随意选取截面方向，我能做的只能前后移动我的截面，无法给我全面的四维空间感。值得一提的是，《4D Toys》里面自带所有正多胞体“积木”，甚至还有我们<a href="/archives/more4ds/#rr">之前</a>讨论过的“圆环环”中的两种，我从这个游戏中发现其中一种圆环环被命名为“tiger”（像老虎一样凶恶的图形？），而且这似乎这个名称还是正式通用的，因为后来我在网站<a href="http://hi.gher.space/wiki/Tiger" target="_blank" rel="external">higherspace</a>上也找到了对它们的描述。<br><img src="/img/game2.jpg" alt="4d Toys"><br>还有一款向《miegakure》致敬的游戏，叫《<a href="https://rantonels.itch.io/brane" target="_blank" rel="external">tetra space</a>》，它也是截面显示。这个游戏分成很多关，每一关的任务就是到达指定的通关点，你需要像走迷宫一样找路，还有可以在三维地面上推动的超立方体方块，和激光等等。让我感到美中不足的是截面朝向只能在两个方向上切换，而且我发现只要我画出“平面图”（其实是3d的地图），那么障碍物在3d地图上一览无余，很快我就能规划出路线。有几关纯粹就是把平面地图(a*b*1*1)硬是用截面截得条线(a*1*1)，我都不用画3d地图了。所以这款游戏其实并没给我很好的四维空间感的体验，但纯粹从游玩的体验来说还是很好的。</p>
-<p><table><tr><td width="50%"><img src="/img/game3.gif" alt="tetra space"><br></td><td><img src="/img/game4.gif" alt="tetra space"><br></td></tr></table><br>最后我要说的是一个外表有些丑陋，可能初次玩完全懵逼的游戏：4dBlock（<a href="http://www.urticator.net/blocks/" target="_blank" rel="external">下载地址</a>），但是它才是我心目中真正四维生物的感受方式。它是基于透视原理，将4d图形投影到3d“视网膜”上（其实就是一个普通3d显示区域），当然，4D透视投影并不稀罕，但最NB的是它能够剔除一些部分做到呈现四维物体前后正确的遮挡关系！我曾经就想过类比3D光栅渲染技术，将四面体单元在三维栅格中栅格化，然后再记录深度缓存，做遮挡剔除。然而这个软件它只做到了对线段的检测和剔除，所以整个视图都是线框显示模式，并且一堆线看起来一团糟。其实我们作为只能看二次投影的三维生物也没有那个福分看这种栅格化的3d投影，因为在复杂场景中如果用“实心”的方式来显示的话，那我们里面就又什么都看不见了。所以线框显示是必须的。好在这个软件给了左右眼两个视图，可以用做“对对眼”（这又是一道门槛）的方式看到三维立体感，总算“稍微”捡回来一维。这个游戏里内置了四维迷宫（超晕，才开始每一幅画面我都必须线类比想想三维才知道发生了什么，每一个动作也是），但我觉得对于第一次玩的人来说，真的不是很友好：<br><img src="/img/game7.gif" alt="即使给了左右眼两个视图也是一团糟的线"><br>当然，我们不要被这些线所吓到，先尝试看一些简单的东西，通过从三维的类比，你就会慢慢体会到四维的视觉了！比如下面的公路模型：<br><img src="/img/game5.png" alt="3d/4d公路类比对比"><br>里面的4D小火车也是一个亮点，你可以控制火车运动，它有车厢，有些场景里面车厢上还开了窗户（4d车厢上的3d窗户！）。还有些更复杂的道路，通过3d类比还是很容易理解的：</p>
+<p><table><tr><td width="50%"><img src="/img/game3.gif" alt="tetra space"><br></td><td><img src="/img/game4.gif" alt="tetra space"><br></td></tr></table><a name="4dtouhh"></a><br>最后我要说的是一个外表有些丑陋，可能初次玩完全懵逼的游戏：4dBlock（<a href="http://www.urticator.net/blocks/" target="_blank" rel="external">下载地址</a>），但是它才是我心目中真正四维生物的感受方式。它是基于透视原理，将4d图形投影到3d“视网膜”上（其实就是一个普通3d显示区域），当然，4D透视投影并不稀罕，但最NB的是它能够剔除一些部分做到呈现四维物体前后正确的遮挡关系！我曾经就想过类比3D光栅渲染技术，将四面体单元在三维栅格中栅格化，然后再记录深度缓存，做遮挡剔除。然而这个软件它只做到了对线段的检测和剔除，所以整个视图都是线框显示模式，并且一堆线看起来一团糟。其实我们作为只能看二次投影的三维生物也没有那个福分看这种栅格化的3d投影，因为在复杂场景中如果用“实心”的方式来显示的话，那我们里面就又什么都看不见了。所以线框显示是必须的。好在这个软件给了左右眼两个视图，可以用做“对对眼”（这又是一道门槛）的方式看到三维立体感，总算“稍微”捡回来一维。这个游戏里内置了四维迷宫（超晕，才开始每一幅画面我都必须线类比想想三维才知道发生了什么，每一个动作也是），但我觉得对于第一次玩的人来说，真的不是很友好：<br><img src="/img/game7.gif" alt="即使给了左右眼两个视图也是一团糟的线"><br>当然，我们不要被这些线所吓到，先尝试看一些简单的东西，通过从三维的类比，你就会慢慢体会到四维的视觉了！比如下面的公路模型：<br><img src="/img/game5.png" alt="3d/4d公路类比对比"><br>里面的4D小火车也是一个亮点，你可以控制火车运动，它有车厢，有些场景里面车厢上还开了窗户（4d车厢上的3d窗户！）。还有些更复杂的道路，通过3d类比还是很容易理解的：</p>
 <p><table><tr><td width="50%"><br><img src="/img/game10.png" alt="3d城市之中的田字形铁路网"><br><img src="/img/game11.png" alt="俯视3d城市（注意楼房的透视效果）"><br><img src="/img/game12.png" alt="远距离像看平面地图一样看3d城市（太远，透视效果几乎消失）"><br></td><td><br><img src="/img/game7.png" alt="4d城市之中的立体“田”字形铁路网"><br><img src="/img/game8.png" alt="俯视4d城市（注意楼房的透视效果）"><br><img src="/img/game9.png" alt="远距离像看立体地图一样看4d城市（太远，透视效果几乎消失）"><br></td></tr></table><br>这个游戏中的铁轨还支持一种没有三维类比的特有的“自旋”轨道，我对这部分非常满意。</p>
 <p><table><tr><td width="50%"><img src="/img/game13.png" alt="一列火车即将通过“自旋”轨道"><br></td><td><img src="/img/game14.png" alt="车厢以前进方向为轴旋转（其实在四维中是以前进方向和重力方向张成的平面旋转）"><br></td></tr></table><br>注意这种自旋本质上就是3d世界游乐场过山车那种旋转轨道，但在四维世界中，这种旋转可以不涉及到重力所在的方向，也就是说车厢并没有“翻”，里面的人只是感觉换了一种“朝向”，他们一直可以舒服地坐在座位上。</p>
 <p>软件的操作方式也很灵活，平动、转动都可以，有90°和格点的对齐模式（回车键对齐），也有你想怎么斜就怎么斜的自由模式，这款游戏真正让我感到离4d世界更进了一步，但这里面没有真实物理，也没有重力。这个游戏的键位也有点奇怪：前进、后退对应键盘E/D，左右转向对应J/L，上下转向（抬头/俯看）I/K，四维多出来的“侧前”“侧后”转向（它们类似于左右转向）对应U/O，按住Alt键加这些方向键就可以沿指定方向平动，按住Shift键可以只旋转（终于是我们熟悉的3d旋转）“视网膜”呈现出来的3D投影。X\C\V用于控制火车运动……游戏还有碰撞检测，不允许你穿过物体（当然，不然4D迷宫的墙就没意义了）。似乎还可以选取并移动物体、自己编辑场景文件，我还没探究过。</p>
@@ -175,7 +177,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维世界系列/">四维世界系列</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a><span class="category-list-count">11</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维世界系列/">四维世界系列</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a><span class="category-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -185,7 +187,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2b2t/" style="font-size: 11.25px;">2b2t</a> <a href="/tags/Hutton32/" style="font-size: 11.25px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 11.25px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 13.75px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 17.5px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.25px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 12.5px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 11.25px;">拓补学</a> <a href="/tags/数学/" style="font-size: 16.25px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 11.25px;">物理</a> <a href="/tags/电路/" style="font-size: 11.25px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.75px;">系列文章</a> <a href="/tags/群论/" style="font-size: 11.25px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.25px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.25px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+      <a href="/tags/2b2t/" style="font-size: 11.11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11.11px;">4dViewer</a> <a href="/tags/Hutton32/" style="font-size: 11.11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12.22px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 14.44px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 16.67px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.11px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 12.22px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15.56px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 11.11px;">拓补学</a> <a href="/tags/数学/" style="font-size: 17.78px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 13.33px;">物理</a> <a href="/tags/电路/" style="font-size: 11.11px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.89px;">系列文章</a> <a href="/tags/群论/" style="font-size: 11.11px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.11px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.11px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
     </div>
   </div>
 
@@ -194,7 +196,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -207,23 +209,23 @@
       <ul>
         
           <li>
-            <a href="/archives/eye2d/">四维世界（四）：二维生物视觉</a>
+            <a href="/archives/gaqr/">四维空间（十一）：几何代数、四元数与空间旋转</a>
           </li>
         
           <li>
-            <a href="/archives/2b2t-group/">【Minecraft】2B2T生存日记(二)：加入组织建仓库</a>
+            <a href="/archives/electm4d/">四维世界（七）：电磁学</a>
           </li>
         
           <li>
-            <a href="/archives/2b2t-terie/">【Minecraft】2B2T生存日记：一口气逃离出生点</a>
+            <a href="/archives/mc4tutorial/">Minecraft4D 教程</a>
           </li>
         
           <li>
-            <a href="/archives/knot4d/">四维空间（十）：扭结与环扣</a>
+            <a href="/archives/newton4/">四维世界（六）：牛顿力学</a>
           </li>
         
           <li>
-            <a href="/archives/rail4d/">四维世界（三）：道路轨道设计</a>
+            <a href="/archives/eye3d/">四维世界（五）：体验四维人的视觉与方向感</a>
           </li>
         
       </ul>
@@ -261,6 +263,8 @@
   
     <a href="/programs/" class="mobile-nav-link">Programs</a>
   
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
 </nav>
     
 <script>
@@ -294,8 +298,17 @@
         }
     });
 </script>
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+<script defer>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  "HTML-CSS": { linebreaks: { automatic: true } },
+         SVG: { linebreaks: { automatic: true } }
+};
+</script>
+<script type="text/javascript" defer
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.1/es5/tex-mml-chtml.js">
 </script>
 
 

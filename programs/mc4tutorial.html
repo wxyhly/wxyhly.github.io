@@ -3,21 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Minecraft4D 教程 | Blog de WXYHLY</title>
+  <title>Minecraft4D Tutorial | Blog de WXYHLY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Minecraft4D是一个真正的四维空间中的（超立方体）方块沙盒游戏。（如果把时间也算上，就是五维时空！）现在游戏只支持创造模式下的单人游戏。Minecraft4D采用Javascript与Webgl编写，所以只需点开下面的链接就可以玩了。（最好用Google Chrome浏览器，不保证其他浏览器的兼容性）
-Minecraft4D进入后等待贴图与地形都加载好后就可以看到视野了。你会发现画面分成了">
+  <meta name="description" content="（Minecraft4D中文教程）Minecraft4D is a sandbox game in 4th spatial dimiension. There are infinity generated terrains, rivers, villages and different biomes. You can build and destroy, fly and exploit. It i">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Minecraft4D 教程">
+<meta property="og:title" content="Minecraft4D Tutorial">
 <meta property="og:url" content="https://wxyhly.github.io/programs/mc4tutorial.html">
 <meta property="og:site_name" content="Blog de WXYHLY">
-<meta property="og:description" content="Minecraft4D是一个真正的四维空间中的（超立方体）方块沙盒游戏。（如果把时间也算上，就是五维时空！）现在游戏只支持创造模式下的单人游戏。Minecraft4D采用Javascript与Webgl编写，所以只需点开下面的链接就可以玩了。（最好用Google Chrome浏览器，不保证其他浏览器的兼容性）
-Minecraft4D进入后等待贴图与地形都加载好后就可以看到视野了。你会发现画面分成了">
-<meta property="og:updated_time" content="2019-07-04T06:32:18.847Z">
+<meta property="og:description" content="（Minecraft4D中文教程）Minecraft4D is a sandbox game in 4th spatial dimiension. There are infinity generated terrains, rivers, villages and different biomes. You can build and destroy, fly and exploit. It i">
+<meta property="og:image" content="https://wxyhly.github.io/img/minecraft01.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/eye3d005.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/minecraft02.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/minecraft06.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/minecraft04.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/minecraft03.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/minecraft05.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/minecraft07.jpg">
+<meta property="og:updated_time" content="2020-07-27T05:42:49.844Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Minecraft4D 教程">
-<meta name="twitter:description" content="Minecraft4D是一个真正的四维空间中的（超立方体）方块沙盒游戏。（如果把时间也算上，就是五维时空！）现在游戏只支持创造模式下的单人游戏。Minecraft4D采用Javascript与Webgl编写，所以只需点开下面的链接就可以玩了。（最好用Google Chrome浏览器，不保证其他浏览器的兼容性）
-Minecraft4D进入后等待贴图与地形都加载好后就可以看到视野了。你会发现画面分成了">
+<meta name="twitter:title" content="Minecraft4D Tutorial">
+<meta name="twitter:description" content="（Minecraft4D中文教程）Minecraft4D is a sandbox game in 4th spatial dimiension. There are infinity generated terrains, rivers, villages and different biomes. You can build and destroy, fly and exploit. It i">
+<meta name="twitter:image" content="https://wxyhly.github.io/img/minecraft01.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -52,6 +58,8 @@ Minecraft4D进入后等待贴图与地形都加载好后就可以看到视野了
         
           <a class="main-nav-link" href="/programs/">Programs</a>
         
+          <a class="main-nav-link" href="/about/">About</a>
+        
       </nav>
       <nav id="sub-nav">
         
@@ -73,7 +81,7 @@ Minecraft4D进入后等待贴图与地形都加载好后就可以看到视野了
         
   
     <h1 class="article-title" itemprop="name">
-      Minecraft4D 教程
+      Minecraft4D Tutorial
     </h1>
   
 
@@ -81,157 +89,515 @@ Minecraft4D进入后等待贴图与地形都加载好后就可以看到视野了
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Minecraft4D是一个真正的四维空间中的（超立方体）方块沙盒游戏。（如果把时间也算上，就是五维时空！）现在游戏只支持创造模式下的单人游戏。Minecraft4D采用Javascript与Webgl编写，所以只需点开下面的链接就可以玩了。（最好用Google Chrome浏览器，不保证其他浏览器的兼容性）</p>
-<h3 id="Minecraft4D"><a href="#Minecraft4D" class="headerlink" title="Minecraft4D"></a><a href="/4dViewer/minecraft4d/">Minecraft4D</a></h3><p>进入后等待贴图与地形都加载好后就可以看到视野了。你会发现画面分成了几乎一样的左右两个，它们是左右眼的成像，我不会做vr，所以就只有要求你要会做对对眼（斗鸡眼）来看到立体视野画面。如果做不到的话就只有通过按方向键旋转视野以得到立体感了。什么是立体视野呢？<a href="">这篇文章</a>里有详细介绍。角落处三个小视图分别是立体视野的截面，单独抽出来以便我们清楚观察。</p>
-<h2 id="方向操作"><a href="#方向操作" class="headerlink" title="方向操作"></a>方向操作</h2><p>下面我们来学习一下四维空间中的方向。下图标出了各个方向的名称，你可以试着按方向键来做移动，可能你会对在侧前侧后方向上移动感到很不习惯，因为我们三维的大脑还没建立起直觉上处理第四个维度的能力，一会儿就习惯了。</p>
-<p>点击画面后鼠标会被隐藏，此时移动鼠标视图将会旋转；按Esc键取消隐藏，这跟原版Minecraft是类似的。鼠标的左右移动对应的是玩家的头的左右旋转；注意与原版Minecraft不同的是，鼠标上下移动对应头的侧前侧后旋转，所以无论怎样移动鼠标玩家都永远是平视前方的。如果要抬头/低头，请滚动鼠标滚轮或按键盘<code>I</code>或<code>K</code>键。</p>
-<h2 id="世界操作"><a href="#世界操作" class="headerlink" title="世界操作"></a>世界操作</h2><p>世界有两种类型：正常与超平坦。默认世界类型为正常模式。每次进入页面都将随机分配一个世界种子。要想加载指定种子的世界请在页面网址后加上  ?种子号 的方式进入页面。注意种子号必须为正整数。可以使用/seed命令查看当前世界的种子。<br>页面网址后加  ?flat  将进入超平坦模式。此模式下不会生成任何额外的结构。<br>下面给出一些种子的链接：</p>
+        <p>（<a href="/archives/mc4tutorial/">Minecraft4D中文教程</a>）<br>Minecraft4D is a sandbox game in 4th spatial dimiension. There are infinity generated terrains, rivers, villages and different biomes. You can build and destroy, fly and exploit. It is a simple 4D version of Minecraft. Now there is only creative mode. You can play it in your browser(Chrome recommended), and  keyboard is needed to control the character, so it cannot be played on the mobile phone.</p>
+<h3 id="Minecraft4D"><a href="#Minecraft4D" class="headerlink" title="Minecraft4D"></a><a href="/4dViewer/minecraft4d/">Minecraft4D</a></h3><p>After entering the game and waiting texture to be loaded, you can see the world in two separate cubic retinas. <a href="/programs/4dviewertutorial_en.html">This article</a> explains what 3D retina is, and it will guide you to know how to see 4D objects in 4D Viewer.</p>
+<h2 id="Camera-Controls"><a href="#Camera-Controls" class="headerlink" title="Camera Controls"></a>Camera Controls</h2><p>The picture below shows all the directions in Minecraft4D world. You can press the corresponding keys <code>W</code> <code>S</code> <code>A</code> <code>D</code> <code>Q</code> <code>E</code> to move.<br><img src="/img/minecraft01.jpg" alt=""><br>Be careful, front and back can’t be marked in th retina, because they are prpendicular to the retina. The move direction of key <code>Q</code> <code>E</code> (Blue line in the picture above) is a new direction for us: I call it sidefront and sideback, because there are “front side” and “back side” in the retina like left side and right side.<br>Because of the messy overlapping colors, it’s better to show colors on some cross sections separately.<br>（$x$ axis: Left and right; $y$ axis: Up and down; $z$ axis: New side direction; $w$ axis: Front and back）<br><img src="/img/eye3d005.jpg" alt=""><br>Similar to original Minecraft, click the canvas to lock and hide your mouse pointer, and move your mouse to look around. Press <code>Esc</code> to unlock. Note that moving mouse vertically does not correspond to look upward or downward, instead you will turn to new 4th direction. Please scroll mouse wheel or press key <code>I</code> and <code>K</code> If you want to look upward and downward.</p>
+<h2 id="World-generation"><a href="#World-generation" class="headerlink" title="World generation"></a>World generation</h2><p>There are 2 types of world: Normal(Default) and super flat. Every time you enter the world, a random seed is generated unless a seed is given by URL. The super flat mode is also indicated in URL.<br>Here are some URLs of different seeds:</p>
 <ul>
-<li>超平坦<a href="/4dViewer/minecraft4d/?flat">/?flat</a></li>
+<li>Super flat: <a href="/4dViewer/minecraft4d/?flat" target="minecraft4d_flat">?flat</a></li>
+<li>x=-510 z=-230 t=-440: Pyramid, stone shore, river and village (Use <code>/tp</code> to teleport to)<a href="/4dViewer/minecraft4d/?873556" target="minecraft4d_873556">?873556</a></li>
+<li>x=34 z=72 t=64: village near a river (Use <code>/tp</code> to teleport to)<a href="/4dViewer/minecraft4d/?962259" target="minecraft4d_962259">?962259</a></li>
+<li>x=160 z=-61 t=284: observator in a village (Use <code>/tp</code> to teleport to)<a href="/4dViewer/minecraft4d/?661280" target="minecraft4d_661280">?661280</a></li>
 </ul>
-<h2 id="方块操作"><a href="#方块操作" class="headerlink" title="方块操作"></a>方块操作</h2><p>与原版Minecraft一样，Miencraft4D中使用鼠标右键放置、左键破坏方块、中键选择方块。但要注意的是现在位于视野中心处的十字准星处在三维的空间里，要在空间中与要选择的方块重合才能选到正确的方块。[这里]有如何选取指定方块的示例。按<code>N</code>与<code>M</code>键可以切换手中的方块。所有的方块列表见<a href="">这里</a>。由于四维比三维空间要广大得多，所以徒手修一座建筑比同样尺寸的三维建筑要用更多的方块，工程量巨大，于是Minecraft4D内置了类似原版Minecraft的Worldedit插件的功能。使用/w命令在正常模式与Worldedit模式之间切换。要使用Worldedit的功能需要先创建选区。目前只支持超长方体的选区。使用左右键分别选择两个方块，将创建以这两个方块连线为体对角线的<br>超长方体选区。命令/sel可以查看选取的大小信息。/set &lt;方块&gt;可以用指定方块填充选取，更多命令详见<a href="">这里</a>。</p>
-<h2 id="快捷键列表"><a href="#快捷键列表" class="headerlink" title="快捷键列表"></a>快捷键列表</h2><h2 id="命令列表"><a href="#命令列表" class="headerlink" title="命令列表"></a>命令列表</h2><h2 id="方块列表"><a href="#方块列表" class="headerlink" title="方块列表"></a>方块列表</h2><table>
+<p>How to save your world: Press <code>/</code> to open the command, type <code>/save</code> to save the world as a file (Format: mc4a)<br>To load a world file, firstly enter a random world (regardless seeds and world types), then type <code>/open</code> to load your files.<br>Time flows in the game, if you hate the dark night, (There’s no lights in Mincraft4D yet), you can use <code>/skipnight</code> or <code>/skip</code> to pass. See more commands in <a href="#sudo">Command list</a>.</p>
+<h2 id="Interact-with-Blocks"><a href="#Interact-with-Blocks" class="headerlink" title="Interact with Blocks"></a>Interact with Blocks</h2><p>Same as original Minecraft, Right click to place, left click to destroy, and middle click to select blocks. Be aware that the center cross is in the 3D cubic screen, it must be aligned to the blocks in 3D. Use <code>M</code> and <code>N</code> to toggle blocks (sorry no GUI here). See all types of blocks in <a href="#touhh">Block list</a>.<br>The 4D space is much wider that 3D one. You need to place many blocks by hand even if you want to build a small house. Therefore, it is necessary to use some plugins like <em>World Edit</em> in the original Minecraft. In Minecraft4D, there are similar operations in “World Edit” style. Use <code>/w</code> to toggle wand mode (Use this command again to quit). In wand mode, a tetracuboid selection area will be generate according to left click position and right click position as diagonal vertices. You can also use <code>/pos1</code> and <code>/pos2</code> to specify th exact coordinates. Use command <code>/sel</code> to check information of the current selection. <code>/set &lt;Block ID&gt;</code> to fill the selection area with given Block. See <a href="#touhh">Block list here</a>, and <a href="#sudo">Command list here</a>.</p>
+<h2 id="Shorcuts-list"><a href="#Shorcuts-list" class="headerlink" title="Shorcuts list"></a>Shorcuts list</h2><h3 id="General-Settings-in-4D-Viewer"><a href="#General-Settings-in-4D-Viewer" class="headerlink" title="General Settings in 4D Viewer"></a>General Settings in 4D Viewer</h3><h4 id="Renderings"><a href="#Renderings" class="headerlink" title="Renderings"></a>Renderings</h4><table>
 <thead>
 <tr>
-<th>数字ID</th>
-<th>中文名</th>
-<th>英文ID</th>
+<th>Shortcut</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>=</code></td>
+<td>Increase 2D cross section layers</td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>Decrease 2D cross section layers</td>
+</tr>
+<tr>
+<td><code>]</code></td>
+<td>Increase opacity of voxels in 3D retina</td>
+</tr>
+<tr>
+<td><code>[</code></td>
+<td>Decrease opacity of voxels in 3D retina</td>
+</tr>
+<tr>
+<td><code>;</code></td>
+<td>Decrease the size of cross sections</td>
+</tr>
+<tr>
+<td><code>&#39;</code></td>
+<td>Increase the size of cross sections</td>
+</tr>
+<tr>
+<td><code>,</code></td>
+<td>Make background darker</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>Make background brighter</td>
+</tr>
+<tr>
+<td><code>9</code></td>
+<td>Decrease camera FOV</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>Increase camera FOV</td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td>Wireframe mode</td>
+</tr>
+<tr>
+<td><code>Alt+[</code></td>
+<td>Decrease wireframe width (Wireframe mode)</td>
+</tr>
+<tr>
+<td><code>Alt+]</code></td>
+<td>Increase wireframe width (Wireframe mode)</td>
+</tr>
+<tr>
+<td><code>Alt+,</code></td>
+<td>Decrease resolution</td>
+</tr>
+<tr>
+<td><code>Alt+.</code></td>
+<td>Increase resolution</td>
+</tr>
+<tr>
+<td><code>Alt+1</code></td>
+<td>Use default rendering preset</td>
+</tr>
+<tr>
+<td><code>Alt+2</code></td>
+<td>Use preset for 3D retina (No cross sections, more layers and low resolution)</td>
+</tr>
+<tr>
+<td><code>Alt+3</code></td>
+<td>Use preset for cross sections (No 3D retina, big cross sections)</td>
+</tr>
+<tr>
+<td>Arrow keys</td>
+<td>Rotate the 3D retina slightly</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Character-Camera-controls"><a href="#Character-Camera-controls" class="headerlink" title="Character / Camera controls"></a>Character / Camera controls</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>W</code></td>
+<td>Move ahead</td>
+</tr>
+<tr>
+<td><code>S</code></td>
+<td>Move back</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>Move to left</td>
+</tr>
+<tr>
+<td><code>D</code></td>
+<td>Move to right</td>
+</tr>
+<tr>
+<td><code>Q</code></td>
+<td>Move to sideback</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td>Move to sidefront</td>
+</tr>
+<tr>
+<td><code>Shift</code></td>
+<td>Descend</td>
+</tr>
+<tr>
+<td><code>Space</code></td>
+<td>Jump / Ascend</td>
+</tr>
+<tr>
+<td><code>I</code></td>
+<td>Look upward</td>
+</tr>
+<tr>
+<td><code>K</code></td>
+<td>Look downward</td>
+</tr>
+<tr>
+<td><code>J</code></td>
+<td>Turn left</td>
+</tr>
+<tr>
+<td><code>L</code></td>
+<td>Turn right</td>
+</tr>
+<tr>
+<td><code>U</code></td>
+<td>Turn “side left”</td>
+</tr>
+<tr>
+<td><code>O</code></td>
+<td>Turn “side right”</td>
+</tr>
+<tr>
+<td><code>Z</code></td>
+<td>Rotate 3D retina</td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td>Rotate 3D retina (reverse)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Minecraft4D-Shorcuts"><a href="#Minecraft4D-Shorcuts" class="headerlink" title="Minecraft4D Shorcuts"></a>Minecraft4D Shorcuts</h3><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>M</code></td>
+<td>Previous block</td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td>Next block</td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td>Open command</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>Pause / Continue</td>
+</tr>
+</tbody>
+</table>
+<p><a name="sudo"></a></p>
+<h2 id="Command-list"><a href="#Command-list" class="headerlink" title="Command list"></a>Command list</h2><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Format</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/tp</td>
+<td>tp &lt;x&gt; &lt;y&gt; &lt;z&gt; &lt;t&gt;</td>
+<td>Teleport player (use prefix ~ to indicate relative position)</td>
+</tr>
+<tr>
+<td>/seed</td>
+<td>seed</td>
+<td>Show the seed of the current world</td>
+</tr>
+<tr>
+<td>/fly</td>
+<td>fly</td>
+<td>Toggle fly mode</td>
+</tr>
+<tr>
+<td>/speed</td>
+<td>speed &lt;speed&gt;</td>
+<td>Set speed of player</td>
+</tr>
+<tr>
+<td>/dayspeed</td>
+<td>dayspeed &lt;speed&gt;</td>
+<td>Set day-night cycle speed</td>
+</tr>
+<tr>
+<td>/skipnight or /skip</td>
+<td>skipnight&vert; skip</td>
+<td>Skip the night (can only be used at night)</td>
+</tr>
+<tr>
+<td>/save</td>
+<td>save [clipboard&vert; clip&vert; sel&vert; selection]</td>
+<td>Save the world to local file without parameter, and use parameter to save the specified contents (e.g. <code>save clipboard</code>) into a schematic4d file</td>
+</tr>
+<tr>
+<td>/open</td>
+<td>open</td>
+<td>Open local world file</td>
+</tr>
+<tr>
+<td>/load</td>
+<td>load [-c&vert; clip&vert; clipboard]</td>
+<td>Load local schematic4d file. By default the structure will be loaded immediately relative to player. Use option <code>-clipboard</code> to load into clipboard rather than in the world</td>
+</tr>
+<tr>
+<td>/loadmacro or /macro</td>
+<td>loadmacro&vert; \macro [prev]</td>
+<td>Load local <a href="#macro">Macro</a> file, use <code>macro prev</code> to execute the last macro</td>
+</tr>
+<tr>
+<td>/regen</td>
+<td>regen &lt;me&vert;all&gt;</td>
+<td><code>regen me</code>: Regenerate the current chunk according to the seed; <code>regen all</code>: Regenerate the world completely</td>
+</tr>
+<tr>
+<td>/chunks</td>
+<td>chunks</td>
+<td>Show total loaded chunks and modified chunks (modified chunks cannot be unloaded)</td>
+</tr>
+<tr>
+<td>/wand or /w</td>
+<td>wand&vert; w</td>
+<td>Toggle WorldEdit wand mode</td>
+</tr>
+<tr>
+<td>/pos1</td>
+<td>pos1 &lt;x&gt; &lt;y&gt; &lt;z&gt; &lt;t&gt;</td>
+<td>Set first vertex of tetracuboid selection area (use prefix ~ to indicate relative position)</td>
+</tr>
+<tr>
+<td>/pos2</td>
+<td>pos2 &lt;x&gt; &lt;y&gt; &lt;z&gt; &lt;t&gt;</td>
+<td>Set second diagonal vertex of tetracuboid selection area (use prefix ~ to indicate relative position)</td>
+</tr>
+<tr>
+<td>/sel</td>
+<td>sel</td>
+<td>Check current selection infomation</td>
+</tr>
+<tr>
+<td>/set</td>
+<td>set &lt;id&gt;</td>
+<td>fill the selection with a specified block type by block id</td>
+</tr>
+<tr>
+<td>/hset</td>
+<td>hset &lt;id&gt;</td>
+<td>fill the surface of the selection with a specified block type by block id</td>
+</tr>
+<tr>
+<td>/wall</td>
+<td>wall &lt;id&gt;</td>
+<td>fill the surface of the selection except ceil and floor with a specified block type by block id</td>
+</tr>
+<tr>
+<td>/hwall</td>
+<td>hwall &lt;id&gt;</td>
+<td>fill the vertical 2D frames of the selection with a specified block type by block id</td>
+</tr>
+<tr>
+<td>/copy</td>
+<td>copy</td>
+<td>Copy the current selection into clipboard. Your relative position will be stored like in original WordEdit</td>
+</tr>
+<tr>
+<td>/paste</td>
+<td>paste</td>
+<td>Paste the clipboard to the world, the position is relative to the player</td>
+</tr>
+<tr>
+<td>/flip</td>
+<td>flip [dir]</td>
+<td>Flip the clipboard toward direction <code>dir</code> (e.g. <code>x</code>, <code>y</code>, <code>z</code> or <code>t</code>). The default direction is front</td>
+</tr>
+<tr>
+<td>/stack</td>
+<td>stack &lt;num&gt; [dir]</td>
+<td>Stack the current selection <code>num</code> times toward direction <code>dir</code>(e.g. <code>x+</code>, <code>z-</code>, <code>f</code> for front, <code>u</code> for up, <code>d</code> for down). The default direction is front</td>
+</tr>
+<tr>
+<td>/move</td>
+<td>move &lt;num&gt; [dir]</td>
+<td>Move the current selection <code>num</code> blocks toward direction <code>dir</code>(e.g. <code>x+</code>, <code>z-</code>, <code>f</code> for front, <code>u</code> for up, <code>d</code> for down). The default direction is front</td>
+</tr>
+<tr>
+<td>/shift</td>
+<td>shift &lt;num&gt; [dir]</td>
+<td>Move only the current selection (without blocks) <code>num</code> blocks toward direction <code>dir</code>(e.g. <code>x+</code>, <code>z-</code>, <code>f</code> for front, <code>u</code> for up, <code>d</code> for down). The default direction is front</td>
+</tr>
+<tr>
+<td>/expand</td>
+<td>expand &lt;num&gt; [dir] or expand &lt;num&gt; &lt;num&gt; [dir]</td>
+<td>Expand the current selection  <code>num</code> blocks toward direction <code>dir</code>(e.g. <code>x+</code>, <code>z-</code>, <code>f</code> for front, <code>u</code> for up, <code>d</code> for down). If two <code>num</code>s are given, selection will be expand toward and also opposide the player</td>
+</tr>
+<tr>
+<td>/glome</td>
+<td>glome &lt;id&gt; &lt;radius&gt; [&lt;x&gt; &lt;y&gt; &lt;z&gt; &lt;t&gt;]</td>
+<td>Generate a glome of radius <code>radius</code> with material <code>id</code>. The center is at the position of the player if coordinates are not given.</td>
+</tr>
+<tr>
+<td>/hglome</td>
+<td>hglome &lt;id&gt; &lt;radius&gt; [&lt;x&gt; &lt;y&gt; &lt;z&gt; &lt;t&gt;]</td>
+<td>Generate a hollow glome of radius <code>radius</code> with material <code>id</code>. The center is at the position of the player if coordinates are not given.</td>
+</tr>
+<tr>
+<td>/spherinder</td>
+<td>spherinder &lt;id&gt; &lt;radius&gt; &lt;length&gt; [&lt;direction&gt; [&lt;x&gt; &lt;y&gt; &lt;z&gt; &lt;t&gt;]]</td>
+<td>Generate a spherinder of radius <code>radius</code> and height <code>length</code> with material <code>id</code>. The orientation of the height is given by <code>dir</code>. The center is at the position of the player if coordinates are not given.</td>
+</tr>
+<tr>
+<td>/hspherinder</td>
+<td>hspherinder &lt;id&gt; &lt;radius&gt; &lt;length&gt; [&lt;direction&gt; [&lt;x&gt; &lt;y&gt; &lt;z&gt; &lt;t&gt;]]</td>
+<td>Generate a hollow spherinder of radius <code>radius</code> and height <code>length</code> with material <code>id</code>. The orientation of the height is given by <code>dir</code>. The center is at the position of the player if coordinates are not given.</td>
+</tr>
+<tr>
+<td>/duocylinder</td>
+<td>duocylinder &lt;id&gt; <radius1> <radius2> [&lt;direction&gt; [&lt;x&gt; &lt;y&gt; &lt;z&gt; &lt;t&gt;]]</radius2></radius1></td>
+<td>Generate a duocylinder of radii <code>radius1</code> and <code>radius2</code> with material <code>id</code>. The orientation of two perpendicular circles is given by <code>dir</code>(e.g. <code>xy</code> or <code>xz</code>). The center is at the position of the player if coordinates are not given.</td>
+</tr>
+<tr>
+<td>/tiger</td>
+<td>tiger &lt;id&gt; <radius1> <radius2> <radius3> [&lt;direction&gt; [&lt;x&gt; &lt;y&gt; &lt;z&gt; &lt;t&gt;]]</radius3></radius2></radius1></td>
+<td>Generate a tiger of radii <code>radius1</code>, <code>radius2</code> and <code>radius3</code> with material <code>id</code>. The orientation of two perpendicular circles is given by <code>dir</code>(e.g. <code>xy</code> or <code>xz</code>). The center is at the position of the player if coordinates are not given.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="macro"></a></p>
+<h2 id="Macro"><a href="#Macro" class="headerlink" title="Macro"></a>Macro</h2><p>In Minecraft4D world, the blocks increase dramatically with the increasement of the size. Building operations are often done with many commands. For convenience, a series of commands can be put together into a text macro file. Use <code>/macro</code> to load a macro and to execute those series of commands at once. <code>def &lt;Constant identifier&gt; Value</code> is supported to increase readability. A code block can be defined beginning with <code>fn &lt;code block identifier&gt;:</code> and ending with <code>endfn</code>. You can reuse the code block by command <code>&lt;code block identifier&gt;</code> anywhere. (Recursive reuses are not allowed, which will crash the game -_-)<br>In the macro, you can use almost all the commands in the <a href="#sudo">Command list</a>, but file operations are exceptions:  \save \open \load \macro.<br>Example: A small town with 26 houses.</p>
+<p><iframe src="/4dViewer/minecraft4d/macro.txt"></iframe><a name="touhh"></a><br>Result after running the macro:<br><img src="/img/minecraft02.jpg" alt=""></p>
+<h2 id="Block-list"><a href="#Block-list" class="headerlink" title="Block list"></a>Block list</h2><table>
+<thead>
+<tr>
+<th>Number ID</th>
+<th>Name ID</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>0</td>
-<td>空气</td>
 <td>air</td>
 </tr>
 <tr>
 <td>1</td>
-<td>石头</td>
 <td>stone</td>
 </tr>
 <tr>
 <td>2</td>
-<td>草方块</td>
 <td>grass</td>
 </tr>
 <tr>
 <td>3</td>
-<td>泥土</td>
 <td>dirt</td>
 </tr>
 <tr>
 <td>4</td>
-<td>橡木</td>
 <td>oak_log</td>
 </tr>
 <tr>
 <td>5</td>
-<td>树叶</td>
 <td>leaves</td>
 </tr>
 <tr>
 <td>6</td>
-<td>砖块</td>
 <td>brick</td>
 </tr>
 <tr>
 <td>7</td>
-<td>沙子</td>
 <td>sand</td>
 </tr>
 <tr>
 <td>8</td>
-<td>水</td>
 <td>water</td>
 </tr>
 <tr>
 <td>9</td>
-<td>平滑石头</td>
 <td>smooth_stone</td>
 </tr>
 <tr>
 <td>10</td>
-<td>双层石台阶</td>
 <td>stone_slabs</td>
 </tr>
 <tr>
 <td>11</td>
-<td>石砖</td>
 <td>stone_brick</td>
 </tr>
 <tr>
 <td>12</td>
-<td>木版</td>
 <td>planks</td>
 </tr>
 <tr>
 <td>13</td>
-<td>白色混凝土</td>
 <td>white_concrete</td>
 </tr>
 <tr>
 <td>14</td>
-<td>红色混凝土</td>
 <td>red_concrete</td>
 </tr>
 <tr>
 <td>15</td>
-<td>黄色混凝土</td>
 <td>yellow_concrete</td>
 </tr>
 <tr>
 <td>16</td>
-<td>绿色混凝土</td>
 <td>green_concrete</td>
 </tr>
 <tr>
 <td>17</td>
-<td>青色混凝土</td>
 <td>cyan_concrete</td>
 </tr>
 <tr>
 <td>18</td>
-<td>蓝色混凝土</td>
 <td>blue_concrete</td>
 </tr>
 <tr>
 <td>19</td>
-<td>紫色混凝土</td>
 <td>purple_concrete</td>
 </tr>
 <tr>
 <td>20</td>
-<td>灰色混凝土</td>
 <td>gray_concrete</td>
 </tr>
 <tr>
 <td>21</td>
-<td>黑色混凝土</td>
 <td>black_concrete</td>
 </tr>
 <tr>
 <td>22</td>
-<td>仙人掌</td>
 <td>catcus</td>
 </tr>
 <tr>
 <td>23</td>
-<td>爬行者头</td>
 <td>creeper_head</td>
 </tr>
 <tr>
 <td>24</td>
-<td>末影人头</td>
 <td>enderman_head</td>
 </tr>
 <tr>
 <td>25</td>
-<td>玩家头</td>
 <td>steve_head</td>
+</tr>
+<tr>
+<td>30</td>
+<td>glass</td>
 </tr>
 </tbody>
 </table>
-<h2 id="景观列表"><a href="#景观列表" class="headerlink" title="景观列表"></a>景观列表</h2><!--纯几何的方法可以分别从相邻两胞心往交面的面心做垂线，三个中心构成三角形，然后分别计算三边长，用余弦定理计算二胞角。计算边长时主要利用正八面体每个面是正三角形以及正24胞体的立方体中空结构（由正八面体的正方形中空结构拼成，不涉及代数法即可证）-->
+<h2 id="Scenary-list"><a href="#Scenary-list" class="headerlink" title="Scenary list"></a>Scenary list</h2><p>(More images need to be added)</p>
+<ul>
+<li>Forest<br><img src="/img/minecraft06.jpg" alt=""></li>
+<li>Desert<br><img src="/img/minecraft04.jpg" alt=""></li>
+<li>Desert Pyramid</li>
+<li>River<br><img src="/img/minecraft03.jpg" alt=""></li>
+<li>Village</li>
+<li>Desert Village<br><img src="/img/minecraft05.jpg" alt=""></li>
+<li>Observator</li>
+<li>Desert Well</li>
+<li>Swamp</li>
+<li>Road<br><img src="/img/minecraft07.jpg" alt=""></li>
+</ul>
 
       
     </div>
@@ -262,7 +628,7 @@ Minecraft4D进入后等待贴图与地形都加载好后就可以看到视野了
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维世界系列/">四维世界系列</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a><span class="category-list-count">11</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维世界系列/">四维世界系列</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a><span class="category-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -272,7 +638,7 @@ Minecraft4D进入后等待贴图与地形都加载好后就可以看到视野了
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2b2t/" style="font-size: 11.25px;">2b2t</a> <a href="/tags/Hutton32/" style="font-size: 11.25px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 11.25px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 13.75px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 17.5px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.25px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 12.5px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 11.25px;">拓补学</a> <a href="/tags/数学/" style="font-size: 16.25px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 11.25px;">物理</a> <a href="/tags/电路/" style="font-size: 11.25px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.75px;">系列文章</a> <a href="/tags/群论/" style="font-size: 11.25px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.25px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.25px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+      <a href="/tags/2b2t/" style="font-size: 11.11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11.11px;">4dViewer</a> <a href="/tags/Hutton32/" style="font-size: 11.11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12.22px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 14.44px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 16.67px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.11px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 12.22px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15.56px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 11.11px;">拓补学</a> <a href="/tags/数学/" style="font-size: 17.78px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 13.33px;">物理</a> <a href="/tags/电路/" style="font-size: 11.11px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.89px;">系列文章</a> <a href="/tags/群论/" style="font-size: 11.11px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.11px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.11px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
     </div>
   </div>
 
@@ -281,7 +647,7 @@ Minecraft4D进入后等待贴图与地形都加载好后就可以看到视野了
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -294,23 +660,23 @@ Minecraft4D进入后等待贴图与地形都加载好后就可以看到视野了
       <ul>
         
           <li>
-            <a href="/archives/eye2d/">四维世界（四）：二维生物视觉</a>
+            <a href="/archives/gaqr/">四维空间（十一）：几何代数、四元数与空间旋转</a>
           </li>
         
           <li>
-            <a href="/archives/2b2t-group/">【Minecraft】2B2T生存日记(二)：加入组织建仓库</a>
+            <a href="/archives/electm4d/">四维世界（七）：电磁学</a>
           </li>
         
           <li>
-            <a href="/archives/2b2t-terie/">【Minecraft】2B2T生存日记：一口气逃离出生点</a>
+            <a href="/archives/mc4tutorial/">Minecraft4D 教程</a>
           </li>
         
           <li>
-            <a href="/archives/knot4d/">四维空间（十）：扭结与环扣</a>
+            <a href="/archives/newton4/">四维世界（六）：牛顿力学</a>
           </li>
         
           <li>
-            <a href="/archives/rail4d/">四维世界（三）：道路轨道设计</a>
+            <a href="/archives/eye3d/">四维世界（五）：体验四维人的视觉与方向感</a>
           </li>
         
       </ul>
@@ -348,6 +714,8 @@ Minecraft4D进入后等待贴图与地形都加载好后就可以看到视野了
   
     <a href="/programs/" class="mobile-nav-link">Programs</a>
   
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
 </nav>
     
 <script>
@@ -381,8 +749,17 @@ Minecraft4D进入后等待贴图与地形都加载好后就可以看到视野了
         }
     });
 </script>
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+<script defer>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  "HTML-CSS": { linebreaks: { automatic: true } },
+         SVG: { linebreaks: { automatic: true } }
+};
+</script>
+<script type="text/javascript" defer
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.1/es5/tex-mml-chtml.js">
 </script>
 
 

@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/rot410.jpg">
 <meta property="og:image" content="https://wxyhly.github.io/img/rot411.gif">
 <meta property="og:image" content="https://wxyhly.github.io/img/rot412.gif">
-<meta property="og:updated_time" content="2019-03-31T14:13:18.272Z">
+<meta property="og:updated_time" content="2020-07-27T05:42:48.739Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="四维空间（九）：弯曲图形">
 <meta name="twitter:description" content="Polytwister和四维螺旋形的截面、8,8-双锥形的球极投影
@@ -80,6 +80,8 @@
           <a class="main-nav-link" href="/archives/">Archives</a>
         
           <a class="main-nav-link" href="/programs/">Programs</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
         
       </nav>
       <nav id="sub-nav">
@@ -137,7 +139,7 @@
 <h3 id="双锥体"><a href="#双锥体" class="headerlink" title="双锥体"></a>双锥体</h3><p>我们知道圆柱体的类比有球柱、圆柱柱、双圆柱，圆锥的类比有球锥、圆柱锥、圆锥锥。下面我们将看到还存在类似于双圆柱那样的双圆锥！！我将给出三种理解它的方法。</p>
 <h5 id="作为旋转体"><a href="#作为旋转体" class="headerlink" title="作为旋转体"></a>作为旋转体</h5><p>以圆锥底面为旋转平面做旋转，就会得到一个高度对称的图形——双圆锥。首先，圆锥底面圆周在旋转平面上不动，而锥体顶点旋转一周得到与圆锥底面绝对垂直的圆周，这两个圆的地位其实是一样的（可能不太直观）。注意这两个圆是中空结构，是双圆锥表面上突出的棱，双圆锥上并没有二维的实心圆面。<br><img src="/img/rot406.jpg" alt="旋转体示意图，红色圆与蓝色圆地位一样（没法画出真实的样子。。）"></p>
 <h5 id="作为双锥形"><a href="#作为双锥形" class="headerlink" title="作为双锥形"></a>作为双锥形</h5><p>真正要理解两个圆地位是相等的要先理解一种新的几何体——<strong><a href="https://en.wikipedia.org/wiki/Duopyramid" target="_blank" rel="external">双锥形</a></strong>。它的定义是：给定两个中心都在原点的绝对垂直的平面图形$A$和$B$，取它们的凸包，记作$A+B$（Schläfli符号）。什么是凸包？形象地说就是把图形外面蒙上一层保鲜膜，紧紧地裹起来。比如正方形就是两条相互垂直线段的凸包，正八面体是三条相互垂直线段的凸包，或正方形与垂直线段的凸包。两个n-棱锥倒扣起来形成的双锥就是正多边形和线段的凸包，我们注意到它的对偶多面体就是n-棱柱。<br><img src="/img/rot405.jpg" alt="对偶多面体"><br>接下来到四维，正十六胞体就是四条相互垂直线段的凸包，或两个绝对垂直的正方形的凸包，或正方体和垂直线段的凸包……更一般地，正p、q边形的凸包我们就叫p,q-双锥形（p,q-duopyramid），它的对偶多胞体是p,q-直积形(p,q-duoprism)。<br><img src="/img/rot402.png" alt="10,10-双锥形的透视投影"><br>把这些东西膨胀到超球上投影下来就是南北极各有p、q个点的两个圆周和中间南北走向的棱线。两个多边形上的点两两连接，每个胞都是由各自多边形上的边两两组合形成的四面体胞。<br><img src="/img/rot414.gif" alt="16,16-双锥形的球极投影"><br>双圆柱和双圆锥也继承了直积形与双锥形间的对偶关系。双圆柱有两个全等的侧胞，双圆锥有两个全等的圆形棱。双圆柱唯一的的二维棱平圆环对应双圆锥唯一的曲胞。</p>
-<p>我们知道三维空间中圆锥体也是可以滚动的，但不是直着滚而是绕着顶点打转。我们将在后面看到双圆锥的滚动方式非常特殊，因为$xOy$平面、$zOw$平面上的两圆同时充当了顶点的角色。由于滚动的分析很麻烦这里就不展开了。</p>
+<p>我们知道三维空间中圆锥体也是可以滚动的，但不是直着滚而是绕着顶点打转。我们将在后面看到双圆锥的滚动方式非常特殊，因为$xOy$平面、$zOw$平面上的两圆同时充当了顶点的角色。由于滚动的分析很麻烦这里就不展开了。<br><strong>（更新：基于4D刚体力学的滚动模拟器做好了，<a href="/archives/newtonf/">戳这里！</a>）</strong></p>
 <h5 id="截面动画"><a href="#截面动画" class="headerlink" title="截面动画"></a>截面动画</h5><p>说实话，这些截面动画我完全想象不出来：<br><img src="/img/rot405.gif" alt="正穿"><br><img src="/img/rot406.gif" alt="45°斜穿"><br><a name="rotlist"></a></p>
 <h3 id="重要旋转体列表"><a href="#重要旋转体列表" class="headerlink" title="重要旋转体列表"></a>重要旋转体列表</h3><p>下面我们来总结一下各种各样常见的四维旋转体：此表给出了它们是怎样的三维图形、绕什么平面旋转得到。<br><img src="/img/rot402.jpg" alt=""><br>我把旋转后生成四维曲胞的三维图形表面部分涂绿了，涂成红色的部分旋转后得到平直的三维胞。</p>
 <h3 id="Polytwister"><a href="#Polytwister" class="headerlink" title="Polytwister"></a>Polytwister</h3><p>我们又多了一样创造几何体的工具——凸包，其实菱形十二面体就是正方体和正八面体的凸包；双圆柱就是平圆环的凸包。双圆柱是两个正交的圆的凸包，如果圆之间是斜着的会怎样？大概会得到一种类似斜双锥一样的东西，没什么意思。但是我们知道，Hopf纤维丛上的圆周之间都夹等角，每个圆周$z_2=k z_1$都可以通过复数$k$对应到一个抽象的球面上。如果我们把正多面体框架膨胀到这个球面上，那么这些框架上的点对应的Hopf圆周之间将保持一种有原来正多面体对称性的高度对称的结构，我们再取所有这些圆的凸包将会得到一种叫Polytwister（多扭体？）的东西。我是从<a href="http://www.polytope.net/hedrondude/twisters.htm" target="_blank" rel="external">这个网站</a>了解到Polytwister的。<br>Hopf圆周之间在球极投影下是扣在一起的，所以我们取凸包的时候就得到一些被扭曲了一圈的带子，比如下面是正十二面体对应的Polytwister。<br><img src="/img/rot403.png" alt="左图截取了球极投影的一部分，右图画出了两个正交的带子(来源：www.polytope.net)"><br>剪开这些扭曲了一圈的带子我们得到Polytwister的展开图：<br><img src="/img/rot404.png" alt="Polytwister的每个曲胞展开是一种扭棱柱体(来源：www.polytope.net)"><br>值得一提的是，取凸包的时候那些中空的五边形在边缘那些骨架上被撑平了，把Polytwister放到地上相切的部分就是这些五边形。它的侧面有点类似于双圆柱，可以沿一个方向滚动，而另一些方向有棱角。它的局部很像五边形与圆的直积，但整体却扭曲了一圈！至于往前滚动的时候这个东西会不会发生扭曲方向的自转我就不知道了。<br>以上两副图都来自<a href="http://www.polytope.net/hedrondude/twisters.htm" target="_blank" rel="external">刚才提到的这个网站</a>，上面还有其他正多面体、半正多面体，甚至星形正多面体对应的Polytwister的图像！这一切都得感谢Hopf纤维化的“鬼斧神工”。Polytwister可以看作部分离散化的Hopf纤维丛，完全离散化的例子有正六百胞体，它是正二十面体对应的Polytwister进一步离散化（把十二个Hopf圆换成十边形后取凸包，得到正六百胞体的120个顶点）的结果：<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/600-cell_tet_ring.png/440px-600-cell_tet_ring.png" alt="正六百胞体上的30个四面体组成的环（球极投影），图片来自维基百科"></p>
@@ -193,7 +195,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维世界系列/">四维世界系列</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a><span class="category-list-count">11</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维世界系列/">四维世界系列</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a><span class="category-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -203,7 +205,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2b2t/" style="font-size: 11.25px;">2b2t</a> <a href="/tags/Hutton32/" style="font-size: 11.25px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 11.25px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 13.75px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 17.5px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.25px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 12.5px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 11.25px;">拓补学</a> <a href="/tags/数学/" style="font-size: 16.25px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 11.25px;">物理</a> <a href="/tags/电路/" style="font-size: 11.25px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.75px;">系列文章</a> <a href="/tags/群论/" style="font-size: 11.25px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.25px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.25px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+      <a href="/tags/2b2t/" style="font-size: 11.11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11.11px;">4dViewer</a> <a href="/tags/Hutton32/" style="font-size: 11.11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12.22px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 14.44px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 16.67px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.11px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 12.22px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15.56px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 11.11px;">拓补学</a> <a href="/tags/数学/" style="font-size: 17.78px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 13.33px;">物理</a> <a href="/tags/电路/" style="font-size: 11.11px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.89px;">系列文章</a> <a href="/tags/群论/" style="font-size: 11.11px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.11px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.11px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
     </div>
   </div>
 
@@ -212,7 +214,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -225,23 +227,23 @@
       <ul>
         
           <li>
-            <a href="/archives/eye2d/">四维世界（四）：二维生物视觉</a>
+            <a href="/archives/gaqr/">四维空间（十一）：几何代数、四元数与空间旋转</a>
           </li>
         
           <li>
-            <a href="/archives/2b2t-group/">【Minecraft】2B2T生存日记(二)：加入组织建仓库</a>
+            <a href="/archives/electm4d/">四维世界（七）：电磁学</a>
           </li>
         
           <li>
-            <a href="/archives/2b2t-terie/">【Minecraft】2B2T生存日记：一口气逃离出生点</a>
+            <a href="/archives/mc4tutorial/">Minecraft4D 教程</a>
           </li>
         
           <li>
-            <a href="/archives/knot4d/">四维空间（十）：扭结与环扣</a>
+            <a href="/archives/newton4/">四维世界（六）：牛顿力学</a>
           </li>
         
           <li>
-            <a href="/archives/rail4d/">四维世界（三）：道路轨道设计</a>
+            <a href="/archives/eye3d/">四维世界（五）：体验四维人的视觉与方向感</a>
           </li>
         
       </ul>
@@ -279,6 +281,8 @@
   
     <a href="/programs/" class="mobile-nav-link">Programs</a>
   
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
 </nav>
     
 <script>
@@ -312,8 +316,17 @@
         }
     });
 </script>
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+<script defer>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  "HTML-CSS": { linebreaks: { automatic: true } },
+         SVG: { linebreaks: { automatic: true } }
+};
+</script>
+<script type="text/javascript" defer
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.1/es5/tex-mml-chtml.js">
 </script>
 
 

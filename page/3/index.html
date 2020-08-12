@@ -48,6 +48,8 @@
         
           <a class="main-nav-link" href="/programs/">Programs</a>
         
+          <a class="main-nav-link" href="/about/">About</a>
+        
       </nav>
       <nav id="sub-nav">
         
@@ -61,6 +63,248 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-p-norm" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/archives/p-norm/" class="article-date">
+  <time datetime="2016-12-06T15:02:13.000Z" itemprop="datePublished">2016-12-06</time>
+</a>
+      
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/p-norm/">p范数空间中的旋转几何与物理运动</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span class="likecode">//注：本文于2020年8月大幅改动并加入了大量新内容！</span></p>
+<h2 id="不一样的距离公式"><a href="#不一样的距离公式" class="headerlink" title="不一样的距离公式"></a>不一样的距离公式</h2><p>大家知道勾股定理是直角边两边的平方和等于第三边，这是一个不用怀疑的事实，也有各种方法证明勾股定理，其中最著名的莫过“无字证明”了：<br><img src="/img/pnorm3.gif" alt=""><br>但其实这个证明是有问题的，因为勾股定理是可以不成立的！大家应该听说过非欧几里得几何吧，我前面的[一篇文章]也讲过一种“双曲几何”。非欧几里得几何本来是从否定平行公设出发推出的一系列新的几何学，但它们的实质是<strong>度量</strong>不一样，即计算距离的公式不一样。我们熟知的计算两点间距离的公式：$d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$也是从勾股定理中来的。如果现在我们“强行”把距离规定成$d=\sqrt[p]{|x_2-x_1|^p+|y_2-y_1|^p}$，即勾股定律变成两边p次方和等于斜边p次方——这种空间我们称为<strong>p-范数空间</strong>。有一个很棒的短篇科幻小说叫《<a href="https://www.douban.com/note/729459256/">勾股</a>》，讲述了一个受虫洞影响导致勾股定理中的幂从2偏离到2.013的故事，虽然广义相对论已经能证明弯曲时空勾股定理的次方数还是2，但这并不妨碍它是一篇很好的脑洞很大的小说。如果真实存在这种空间会怎样呢？下面我们就来探究奇妙的p范数空间。</p>
+        
+          <p class="article-more-link">
+            <a href="/archives/p-norm/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wxyhly.github.io/archives/p-norm/" data-id="ck5aybrmj0015ycmkmeq1l324" class="article-share-link">Share</a>
+      
+        <a href="https://wxyhly.github.io/archives/p-norm/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/几何/">几何</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动画/">动画</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学/">数学</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-projearth" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/archives/projearth/" class="article-date">
+  <time datetime="2016-11-09T13:23:12.000Z" itemprop="datePublished">2016-11-09</time>
+</a>
+      
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/projearth/">墨卡托投影</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>　　《维度数学漫步》第一集就讲的是用球极投影来绘制地图。但其实你我都知道，我们熟知的世界地图并不是用这种方法得到的，球极投影只用来绘制极地周围，世界地图用的另一种投影，它得到的地图也不是无限大的，而是矩形，这种投影就叫做<strong>墨卡托投影</strong>，它和球极投影一样，都是保角的。<br>墨卡托投影的大概做法就是先拿一个圆柱体使它的轴与地球自转轴重合，我们先把球面上的点投影到圆柱的侧面上，再把圆柱展开就得到长方形的地图了。但具体做法并不是保持z轴不变对应到圆柱上，也不是在球心放一盏灯直接投影到柱面上，为了保持保角性我们能计算出一个特殊的函数，叫<a href="https://en.wikipedia.org/wiki/Gudermannian_function">古德曼函数</a>，但北极点会投到无穷远，这样的地图是宽度有限、长度无限的，（柱面无限长）我们看到的世界地图把极地附近区域截掉了才得到有限的矩形地图。<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Cylindrical_Projection_basics2.svg/600px-Cylindrical_Projection_basics2.svg.png" alt="来源：英语维基百科"><br>　　为什么我们取的圆柱的轴要恰好与地球自转轴重合呢？我们不妨选任意的角度，那将得到你从来没有见过的世界地图！
+        
+          <p class="article-more-link">
+            <a href="/archives/projearth/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wxyhly.github.io/archives/projearth/" data-id="ck5aybrms001nycmk1q7b4dki" class="article-share-link">Share</a>
+      
+        <a href="https://wxyhly.github.io/archives/projearth/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/几何/">几何</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-polyhedrals" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/archives/polyhedrals/" class="article-date">
+  <time datetime="2016-11-03T03:48:45.000Z" itemprop="datePublished">2016-11-03</time>
+</a>
+      
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/polyhedrals/">趣题：五维立方体截面</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文分两部分，第一部分是关于五维立方体截面谜题，第二部分是对一类四维多胞体性质的探讨。我们要解决五维空间中的问题，但主要还是以四维空间中的讨论为主。</p>
+<h3 id="part-1"><a href="#part-1" class="headerlink" title="part 1"></a>part 1</h3><h5 id="先来一道只涉及四维（不涉及五维）的题热热身吧："><a href="#先来一道只涉及四维（不涉及五维）的题热热身吧：" class="headerlink" title="先来一道只涉及四维（不涉及五维）的题热热身吧："></a>先来一道只涉及四维（不涉及五维）的题热热身吧：</h5><p>我们知道，正方体可以被斜着截出正六边形截面，它与正方体所有面都相交；推广到四维，我们希望超立方体也可以被“斜着”截出一种截胞（胞指三维的“面”，下同），它与超立方体所有八个面（立方体胞）都相交，当然符合要求的“斜着”截的方法很多，我们要一种最“对称”的截法，即选垂直于体（最长）对角线的过超立方体体心的截面，这样能满足于所有面都相交的要求吗？会截出什么图形？如果截面不过超立方体体心，我们又可能得到哪些形状的截面？</p>
+        
+          <p class="article-more-link">
+            <a href="/archives/polyhedrals/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wxyhly.github.io/archives/polyhedrals/" data-id="ck5aybrmq001lycmkm9c89bcd" class="article-share-link">Share</a>
+      
+        <a href="https://wxyhly.github.io/archives/polyhedrals/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/几何/">几何</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/四维/">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图形/">图形</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-escher1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/archives/escher1/" class="article-date">
+  <time datetime="2016-06-26T05:05:51.000Z" itemprop="datePublished">2016-06-26</time>
+</a>
+      
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/escher1/">双曲空间——数学艺术</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><div style="float:right"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Hyperbolic_tiling_omnitruncated_3-7.png/220px-Hyperbolic_tiling_omnitruncated_3-7.png" alt="来自英文维基百科"><br></div></p>
+<p><div style="width:300px"><img src="/img/josleys1.jpg" alt="《维度数学漫步》第二集截图"></div><br>在前面讲解《维度数学漫步》的<a href="/categories/四维空间系列/">系列文章</a>中，我曾经提到过影片中出现的一个圆盘图案，它是《维度数学漫步》第二集《三维空间》中的那个房间里的装饰。这一集的讲述者是<strong>埃舍尔</strong>（Escher），那个圆盘图案和那些蜥蜴都是他的作品。影片着重讲述的是那些二维蜥蜴的一只从他的画里面逃出来，它该如何向它的二维同伴们解释三维空间存在的故事。而那个作为装饰的圆盘图案只是一晃而过，其实这个图案和四维空间一样精彩：它就是<strong>双曲空间</strong>中的双曲镶嵌。<br>网上能搜到很多关于埃舍尔的这些画，但里面具体的数学内容却几乎没有提及到。下面我们就主要说说双曲镶嵌的数学含义，然后我们自己怎么来画一幅这样的画——用电脑画——<a href="/archives/escher1/#demo">在线演示在这里！(附双曲镶嵌版熊猫表情！)</a>，当然你足够NB也可以像埃舍尔那样手绘！
+        
+          <p class="article-more-link">
+            <a href="/archives/escher1/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wxyhly.github.io/archives/escher1/" data-id="ck5aybrm5000bycmkrbrkzqg9" class="article-share-link">Share</a>
+      
+        <a href="https://wxyhly.github.io/archives/escher1/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/几何/">几何</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图形/">图形</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学/">数学</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Hutton3202" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/archives/Hutton3202/" class="article-date">
+  <time datetime="2016-06-10T07:03:55.000Z" itemprop="datePublished">2016-06-10</time>
+</a>
+      
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/Hutton3202/">用Hutton32玩转数字电路（二）：逻辑器件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script src="/three/Painter.js"></script></p>
+<p><script src="/three/huttonjax.js"></script><br>上篇文章介绍了怎样在Hutton32中搭建与或非门，下面我们就用它们的组合来做一些有趣的事情吧。（比如一个完全平方数计算器！）</p>
+<h2 id="异或、同或门"><a href="#异或、同或门" class="headerlink" title="异或、同或门"></a>异或、同或门</h2><p>A异或B就是不同为1，相同为0。逻辑表达式为 (A &amp; ~B) | (~A &amp; B)。但注意这里需要两个非门，而非门的体积大和延迟长，所以我们化简一下表达式得到只用一个非门实现异或：(A | B) &amp; ~(A &amp; B)；同或也类似：~(A | B) | (A &amp; B)。</p>
+<p><canvas onload="showRLE(this,8,'x = 30, y = 13, rule = Hutton32\npA.pA.3pA.2pA6.2pA2.pA.pA.3pA.2pA$.pA2.pA.pA.pA7.pA.pA2.pA2.pA.pA.pA$pA.pA.3pA.pA7.pA.pA.pA.pA.3pA.pA2$3.2IpAIL11.2IpAIL$2.IpAIpAQL10.IpAIpAQL$2.JL.JLpAL9.JL.JLpAL$2.JO.J3L9.JO.J3L$IpA2IpAJLpAL7.IpA3IJLpAL$.IL.J.I2L8.L.J2.I2L$2IpAIpA.LpAL7.IpAIpAI2LpAL$2.3IL3IpA2IpA4.2IpAIpA6IpA$5.4IJ!')"></canvas><br>有基本的逻辑门我们就能够制作各种组合逻辑、时序逻辑电路了！下面是我做的一些器件：</p>
+<h2 id="锁存器"><a href="#锁存器" class="headerlink" title="锁存器"></a>锁存器</h2><p>
+        
+          <p class="article-more-link">
+            <a href="/archives/Hutton3202/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wxyhly.github.io/archives/Hutton3202/" data-id="ck5aybrod0069ycmkw81v62wy" class="article-share-link">Share</a>
+      
+        <a href="https://wxyhly.github.io/archives/Hutton3202/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hutton32/">Hutton32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/电路/">电路</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自动机/">自动机</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-Hutton3201" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -206,300 +450,10 @@
 
 
   
-    <article id="post-lavie4ds" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/archives/lavie4ds/" class="article-date">
-  <time datetime="2016-05-02T12:45:29.000Z" itemprop="datePublished">2016-05-02</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/四维空间系列/">四维空间系列</a>
-  </div>
-
-    </div>
-  
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/lavie4ds/">四维空间（八）：参观四维国</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="注意，这篇文章中的有些内容纯属想象，里面有很多漏洞，不要当真。"><a href="#注意，这篇文章中的有些内容纯属想象，里面有很多漏洞，不要当真。" class="headerlink" title="注意，这篇文章中的有些内容纯属想象，里面有很多漏洞，不要当真。"></a>注意，这篇文章中的有些内容纯属想象，里面有很多漏洞，不要当真。</h4><h3 id="大概内容"><a href="#大概内容" class="headerlink" title="大概内容"></a>大概内容</h3><ul>
-<li>天体力学</li>
-<li>地理及交通</li>
-<li>常见建筑、物品及文字</li>
-<li>机械运动</li>
-<li>四维空间中的电磁场</li>
-</ul>
-<p>　　我们对四维几何体已经有了比较全面的了解。现在试想有一天你被邀请去参观四维国，并了解他们的文化与科学技术这会是怎样的一番体验？<br>在浩瀚的四维宇宙中，零星散布着一些星系。你要参观的那个星球就在某一个星系当中。那个星球是一个超球，它也绕着一颗恒星旋转。
-        
-          <p class="article-more-link">
-            <a href="/archives/lavie4ds/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wxyhly.github.io/archives/lavie4ds/" data-id="ck5aybrmh000zycmk2e5ksul3" class="article-share-link">Share</a>
-      
-        <a href="https://wxyhly.github.io/archives/lavie4ds/#disqus_thread" class="article-comment-link">留言</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/几何/">几何</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/四维/">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/奇特想象/">奇特想象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/物理/">物理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系列文章/">系列文章</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-jsloop" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/archives/jsloop/" class="article-date">
-  <time datetime="2016-05-02T07:06:20.000Z" itemprop="datePublished">2016-05-02</time>
-</a>
-      
-    </div>
-  
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/jsloop/">自我描述的代码(in javascript)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>　　自我描述的代码(Quine)就是程序运行时可以打印自己的源代码。网上有很多C语言、C#版的，我准备写一个javascript版本的。</p>
-<h3 id="题外话：eval函数-无限递归"><a href="#题外话：eval函数-无限递归" class="headerlink" title="题外话：eval函数/无限递归"></a>题外话：eval函数/无限递归</h3><p>　　javascript是解释型语言，它有一个很牛的函数<code>eval()</code>：它能把接受到的字符串当成javascript代码执行。我想出了这段代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="string">"eval(s)"</span>;<span class="built_in">eval</span>(s);</span><br></pre></td></tr></table></figure></p>
-<p>　　我们可以在任何浏览器上做这个实验：在地址栏输入<code>javascript:s=&quot;eval(s)&quot;;eval(s);</code>即可。（快试试吧。。）<br>
-        
-          <p class="article-more-link">
-            <a href="/archives/jsloop/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wxyhly.github.io/archives/jsloop/" data-id="ck5aybrme000tycmk5rp2vi2z" class="article-share-link">Share</a>
-      
-        <a href="https://wxyhly.github.io/archives/jsloop/#disqus_thread" class="article-comment-link">留言</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自我描述/">自我描述</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/递归/">递归</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-josleys4ds" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/archives/josleys4ds/" class="article-date">
-  <time datetime="2016-05-01T04:24:37.000Z" itemprop="datePublished">2016-05-01</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/四维空间系列/">四维空间系列</a>
-  </div>
-
-    </div>
-  
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/josleys4ds/">解释《维度》预告片</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div style="float:right"><img src="http://www.josleys.com/articles/ams_article/images/S3_01.jpg" alt=""></div>
-
-<p>　　《维度》系列的最后一集是一个预告片：Dimensions II ——它的内容不是后来出的《混沌》（chaos），而是《维度》制作者之一——数学家Étienne Ghys的最新研究成果。这些内容就更深奥了，我估计他们可能不会出这集了。我在《维度》另一个制作者Jos Leys的网站上找到了介绍预告片中出现的图形（即Étienne Ghys的最新研究成果）的文章：</p>
-<ul>
-<li><p><strong>请先看<a href="/three/lorenz3.html" target="_blank">译文</a></strong>  (或直接看<a href="http://www.josleys.com/articles/ams_article/Lorenz3.htm" target="_blank">原文</a>)</p>
-</li>
-<li><p>和<strong><a href="http://www.ams.org/happening-series/hap7-new-twist.pdf" target="_blank">另一个介绍它的PDF</a></strong></p>
-</li>
-<li><p>这里是我做的<a href="/three/LatticeViewer.html" target="_blank">格子空间4D在线查看器</a></p>
-</li>
-</ul>
-<p>（我一直很奇怪我画出的modular动力系统的轨道与判别式三叶结为什么会靠得很近，检查了很多遍代码都没找到原因）<br>　　大家感兴趣还想深入下去可以看一些关于椭圆函数、模形式的书，建议参阅潘承洞的《模形式导引》（网上有pdf，我前三章还能看懂，后面就.#\$&amp;@！%^.了）<br>
-        
-          <p class="article-more-link">
-            <a href="/archives/josleys4ds/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wxyhly.github.io/archives/josleys4ds/" data-id="ck5aybrmf000vycmk172lchqm" class="article-share-link">Share</a>
-      
-        <a href="https://wxyhly.github.io/archives/josleys4ds/#disqus_thread" class="article-comment-link">留言</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/四维/">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/拓补学/">拓补学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学/">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系列文章/">系列文章</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-bivector4ds" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/archives/bivector4ds/" class="article-date">
-  <time datetime="2016-04-23T12:20:48.000Z" itemprop="datePublished">2016-04-23</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/四维空间系列/">四维空间系列</a>
-  </div>
-
-    </div>
-  
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/bivector4ds/">四维空间（七）：N维的向量</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><div style="float:right"><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/N_vector_positive_png_version.png" width="200" height="380"/><p>图片来自en.wikipedia：多重向量几何意义</p></div><br>#<span class="likecode">本系列文讨论的是纯空间上的几何，但本文将要涉及的<strong>k-向量</strong>的某些性质在四维时空中也成立（只是度规不一样）。本文对数学能力要求较高：将出现大量数学公式。<strong>k-向量</strong>在除相对论（时空）以外的物理上也有用武之地，详见<span  style="color:#F00"><strong>CFY的文章<a href="http://hadroncfy.com/articles/2016/04/21/axial-vectors/">角速度、轴矢量、2-矢量</a></strong>从另一个角度——物理学引入k-向量。</span></span><br><a name="index"></a></p>
-<h2 id="特色内容"><a href="#特色内容" class="headerlink" title="特色内容"></a>特色内容</h2><ul>
-<li>“2维向量”来表示平面</li>
-<li>用向量内积外积计算夹角</li>
-<li>奇异的2-向量</li>
-<li>2-向量解析旋转</li>
-</ul>
-<p>　　该谈谈定量的四维空间计算问题了。它一方面可以检验我们几何直觉的正确性，不然我们的直觉只是在瞎猜而无证据；另一方面在编程计算四维图形中离不开计算。<br>
-        
-          <p class="article-more-link">
-            <a href="/archives/bivector4ds/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wxyhly.github.io/archives/bivector4ds/" data-id="ck5aybrlz0003ycmks123k8tv" class="article-share-link">Share</a>
-      
-        <a href="https://wxyhly.github.io/archives/bivector4ds/#disqus_thread" class="article-comment-link">留言</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代数/">代数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/四维/">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学/">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系列文章/">系列文章</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-plus4ds" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/archives/plus4ds/" class="article-date">
-  <time datetime="2016-04-23T12:15:09.000Z" itemprop="datePublished">2016-04-23</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/四维空间系列/">四维空间系列</a>
-  </div>
-
-    </div>
-  
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/plus4ds/">四维空间（六）：更多几何体[下]</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="特色内容"><a href="#特色内容" class="headerlink" title="特色内容"></a>特色内容</h2><ul>
-<li>旋转、放样体</li>
-<li>Julia-Mandelbrot过度动画</li>
-<li>二次曲面的所有四维类比<br><a name="index"></a><h3 id="本文目录："><a href="#本文目录：" class="headerlink" title="本文目录："></a>本文目录：</h3><ul>
-<li><a href="/archives/plus4ds/#duo">旋转体</a></li>
-<li><a href="/archives/plus4ds/#loft">放样体</a></li>
-<li>四维分形<ul>
-<li><a href="/archives/plus4ds/#mj">Mandelbrot-Julia集</a></li>
-<li><a href="/archives/plus4ds/#autre">其它</a></li>
-</ul>
-</li>
-<li><a href="/archives/plus4ds/#quadric">二次曲胞</a></li>
-<li><a href="/archives/plus4ds/#answer">思考题答案</a><br><a name="duo"></a>
-        
-          <p class="article-more-link">
-            <a href="/archives/plus4ds/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wxyhly.github.io/archives/plus4ds/" data-id="ck5aybrmm001cycmkqw5vd58h" class="article-share-link">Share</a>
-      
-        <a href="https://wxyhly.github.io/archives/plus4ds/#disqus_thread" class="article-comment-link">留言</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/几何/">几何</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分形/">分形</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/四维/">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学/">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系列文章/">系列文章</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
   </nav>
 </section>
         
@@ -509,7 +463,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维世界系列/">四维世界系列</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a><span class="category-list-count">11</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维世界系列/">四维世界系列</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a><span class="category-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -519,7 +473,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2b2t/" style="font-size: 11.25px;">2b2t</a> <a href="/tags/Hutton32/" style="font-size: 11.25px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 11.25px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 13.75px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 17.5px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.25px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 12.5px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 11.25px;">拓补学</a> <a href="/tags/数学/" style="font-size: 16.25px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 11.25px;">物理</a> <a href="/tags/电路/" style="font-size: 11.25px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.75px;">系列文章</a> <a href="/tags/群论/" style="font-size: 11.25px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.25px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.25px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+      <a href="/tags/2b2t/" style="font-size: 11.11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11.11px;">4dViewer</a> <a href="/tags/Hutton32/" style="font-size: 11.11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12.22px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 14.44px;">javascript</a> <a href="/tags/代数/" style="font-size: 10px;">代数</a> <a href="/tags/几何/" style="font-size: 16.67px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.11px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 12.22px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15.56px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 11.11px;">拓补学</a> <a href="/tags/数学/" style="font-size: 17.78px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 13.33px;">物理</a> <a href="/tags/电路/" style="font-size: 11.11px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.89px;">系列文章</a> <a href="/tags/群论/" style="font-size: 11.11px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.11px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.11px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
     </div>
   </div>
 
@@ -528,7 +482,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -541,23 +495,23 @@
       <ul>
         
           <li>
-            <a href="/archives/eye2d/">四维世界（四）：二维生物视觉</a>
+            <a href="/archives/gaqr/">四维空间（十一）：几何代数、四元数与空间旋转</a>
           </li>
         
           <li>
-            <a href="/archives/2b2t-group/">【Minecraft】2B2T生存日记(二)：加入组织建仓库</a>
+            <a href="/archives/electm4d/">四维世界（七）：电磁学</a>
           </li>
         
           <li>
-            <a href="/archives/2b2t-terie/">【Minecraft】2B2T生存日记：一口气逃离出生点</a>
+            <a href="/archives/mc4tutorial/">Minecraft4D 教程</a>
           </li>
         
           <li>
-            <a href="/archives/knot4d/">四维空间（十）：扭结与环扣</a>
+            <a href="/archives/newton4/">四维世界（六）：牛顿力学</a>
           </li>
         
           <li>
-            <a href="/archives/rail4d/">四维世界（三）：道路轨道设计</a>
+            <a href="/archives/eye3d/">四维世界（五）：体验四维人的视觉与方向感</a>
           </li>
         
       </ul>
@@ -595,6 +549,8 @@
   
     <a href="/programs/" class="mobile-nav-link">Programs</a>
   
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
 </nav>
     
 <script>
@@ -626,8 +582,17 @@
         }
     });
 </script>
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+<script defer>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  "HTML-CSS": { linebreaks: { automatic: true } },
+         SVG: { linebreaks: { automatic: true } }
+};
+</script>
+<script type="text/javascript" defer
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.1/es5/tex-mml-chtml.js">
 </script>
 
 
