@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>趣题：五维立方体截面 | Blog de WXYHLY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文分两部分，第一部分是关于五维立方体截面谜题，第二部分是对一类四维多胞体性质的探讨。我们要解决五维空间中的问题，但主要还是以四维空间中的讨论为主。
+part 1先来一道只涉及四维（不涉及五维）的题热热身吧：我们知道，正方体可以被斜着截出正六边形截面，它与正方体所有面都相交；推广到四维，我们希望超立方体也可以被“斜着”截出一种截胞（胞指三维的“面”，下同），它与超立方体所有八个面（立方体胞）都相交">
+<meta property="og:type" content="article">
+<meta property="og:title" content="趣题：五维立方体截面">
+<meta property="og:url" content="https://wxyhly.github.io/archives/polyhedrals/index.html">
+<meta property="og:site_name" content="Blog de WXYHLY">
+<meta property="og:description" content="本文分两部分，第一部分是关于五维立方体截面谜题，第二部分是对一类四维多胞体性质的探讨。我们要解决五维空间中的问题，但主要还是以四维空间中的讨论为主。
+part 1先来一道只涉及四维（不涉及五维）的题热热身吧：我们知道，正方体可以被斜着截出正六边形截面，它与正方体所有面都相交；推广到四维，我们希望超立方体也可以被“斜着”截出一种截胞（胞指三维的“面”，下同），它与超立方体所有八个面（立方体胞）都相交">
+<meta property="og:image" content="https://wxyhly.github.io/img/puzzle5d1.gif">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/e/e3/Decachoron_stereographic_%28hexagon%29.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Birectified_cube_sequence.png/823px-Birectified_cube_sequence.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Schlegel_wireframe_5-cell.png/800px-Schlegel_wireframe_5-cell.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Schlegel_half-solid_truncated_pentachoron.png/800px-Schlegel_half-solid_truncated_pentachoron.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Schlegel_half-solid_rectified_5-cell.png/800px-Schlegel_half-solid_rectified_5-cell.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Schlegel_half-solid_bitruncated_5-cell.png/800px-Schlegel_half-solid_bitruncated_5-cell.png">
+<meta property="og:updated_time" content="2020-07-27T05:42:48.732Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="趣题：五维立方体截面">
+<meta name="twitter:description" content="本文分两部分，第一部分是关于五维立方体截面谜题，第二部分是对一类四维多胞体性质的探讨。我们要解决五维空间中的问题，但主要还是以四维空间中的讨论为主。
+part 1先来一道只涉及四维（不涉及五维）的题热热身吧：我们知道，正方体可以被斜着截出正六边形截面，它与正方体所有面都相交；推广到四维，我们希望超立方体也可以被“斜着”截出一种截胞（胞指三维的“面”，下同），它与超立方体所有八个面（立方体胞）都相交">
+<meta name="twitter:image" content="https://wxyhly.github.io/img/puzzle5d1.gif">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Blog de WXYHLY</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/programs/">Programs</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wxyhly.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-polyhedrals" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/archives/polyhedrals/" class="article-date">
+  <time datetime="2016-11-03T03:48:45.000Z" itemprop="datePublished">2016-11-03</time>
+</a>
+      
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      趣题：五维立方体截面
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文分两部分，第一部分是关于五维立方体截面谜题，第二部分是对一类四维多胞体性质的探讨。我们要解决五维空间中的问题，但主要还是以四维空间中的讨论为主。</p>
+<h3 id="part-1"><a href="#part-1" class="headerlink" title="part 1"></a>part 1</h3><h5 id="先来一道只涉及四维（不涉及五维）的题热热身吧："><a href="#先来一道只涉及四维（不涉及五维）的题热热身吧：" class="headerlink" title="先来一道只涉及四维（不涉及五维）的题热热身吧："></a>先来一道只涉及四维（不涉及五维）的题热热身吧：</h5><p>我们知道，正方体可以被斜着截出正六边形截面，它与正方体所有面都相交；推广到四维，我们希望超立方体也可以被“斜着”截出一种截胞（胞指三维的“面”，下同），它与超立方体所有八个面（立方体胞）都相交，当然符合要求的“斜着”截的方法很多，我们要一种最“对称”的截法，即选垂直于体（最长）对角线的过超立方体体心的截面，这样能满足于所有面都相交的要求吗？会截出什么图形？如果截面不过超立方体体心，我们又可能得到哪些形状的截面？</p>
+<a id="more"></a>
+<p>答案是能截得正八面体！（它的棱长为$\sqrt 2$，经过所有正方形的面对角线）截面不过体心我们还能得到正四面体、截角四面体等形状。<br><img src="/img/puzzle5d1.gif" alt=""><br>看来选垂直于体对角线的过超立方体体心的截面，既满足与所有面相交的要求还满足最对称，如果我们继续，推广到五维空间，即选垂直于五维立方体的体对角线且过五维立方体体心的截面（四维超平面）截五维立方体，我们应该会得到一个四维图形X，我们认为这个四维图形X是线段（斜截正方形得）-&gt;正六边形-&gt;正八面体-&gt;X这样类比来的。你能说出X的基本特征参数并大致画出它的球极投影吗？<br>  　<br>四维图形X应该是通过截五维立方体得到的一个四维的截面图形，它与五维立方体10个面（即10个超立方体“面”，想想为什么它有10个面）相交得到，既然有对称性，那可不可能是正十胞体？很遗憾的是，正10胞体不存在，因为四维空间中正多胞体只有正五、八、十六、二十四、一百二十、六百胞体这六种，我们没听说过什么“正10胞体”。其实我们选择垂直体对角线且过体心的截面的原因就是这个截面与五维立方体的所有四维面的“地位”（比如夹角，但我们还没讨论过五维空间中的夹角）是一样的，所以我们有理由相信截得的四维图形X的十个面是全等的。每个面是什么形状的呢？感觉没有线索。</p>
+<p>当我们研究高维空间的问题没思路太抽象时一般有两种解决方法：一是用代数法（比如解决四维空间两平面夹角问题），二是想想低维空间的情形。我们先尽量不用代数法，那样显得有点无趣。所以我们转而想想四维情形：想想四维立方体的各个垂直于体对角线的不一定过体心的一系列截面（三维面），这一系列三维图形有一个特点，就是组成它们的二维面都是三角形或六边形。这些三角形或六边形正是三维情形中正方体垂直体对角线截得的一系列截面！它的道理很简单，当我们截n维空间的一图形时，它的n-1维边界是n维空间的子空间，也相应被截了，在正方体的一系列类比中，截面交n-1维子空间得到“子截面”也垂直于n-1维立方体的体对角线。总结下来关于X我们有这些信息：</p>
+<ul>
+<li>X由10个全等的胞构成；</li>
+<li>胞的形状应该是四面体、截角四面体或八面体之中的一种。<br>这里值得注意的是，过n维立方体体心的截面截到n维立方体的n-1维面（n-1维立方体）并不会过n-1维立方体体心，因为n-1维面离n维立方体的体心有边长一半的距离，所以我们排除胞的形状是八面体。<br>由于五维立方体每个四维面都有平行的对面，所以截面X的每个三维面也有平行的对面，这让我们想到了还可以像描述正120胞体一样“分层”描述这个图形X:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th style="text-align:center">胞数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>北极</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td>北半球</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td>南半球</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td>南极</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<p>注意为什么我能肯定的给出北半球、南半球是4，因为X的胞的形状只能是四面体或截角四面体，所以与北极相邻的胞必为4，截角四面体有4个胞与北极共六边形，另四个与之共三角形，显然距离不一样，所以北极点外“第一圈”的胞数还是4。<br>其实X的胞不可能是四面体。如果是四面体，北极点外“第一圈”四面体朝外的四个顶点两两间会有沟壑，填充这些沟壑至少得用6个四面体，与上面的分层描述不符，当然还有种情况是“第一圈”四面体朝外的四个顶点是共用的，这就是正五胞体，当然对称性不允许其他情况，比如只共用2个或三个顶点，所以我们排除了X的胞是四面体的所有可能。<br>所以最后一种就是答案了：截角四面体。北极点外“第一圈”截角四面体与极点共六边形，与南极共三角形；南极点外“第一圈”截角四面体与南极点共六边形，与北极共三角形。几何体X就是<strong>过截角五胞体（bitruncated 5-cell）</strong>，具体可参见<a href="https://en.wikipedia.org/wiki/Truncated_5-cell#Bitruncated_5-cell" target="_blank" rel="external">英文维基对应条目</a>，这个多胞体在jenn3d软件上也找得到。<br><img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Decachoron_stereographic_%28hexagon%29.png" alt="来自维基百科"></p>
+<h3 id="part-2"><a href="#part-2" class="headerlink" title="part 2"></a>part 2</h3><p>jenn3d软件上给出了过截角多胞体家族，那到底什么是过截角呢？过截角就是截角时截过头了，但三维空间中过截角多面体正好就是原多面体对偶多面体的截角多面体。<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Birectified_cube_sequence.png/823px-Birectified_cube_sequence.png" alt="来自维基百科"><br>比如截正方体，首先得到图中第三个（均匀）截角正方体，再得到第五个截半正方体，这是能截得的最大临界状态，超过后就是过截角了（第七个），但从八面体出发，首先得到图中第七个（均匀）截角正方体，再得到第五个截半正方体（也可以叫截半八面体，它的英语名称叫Cuboctahedron，直译“立方八面体”），然后就是过截角八面体（第三个）。<br>我们看到三维空间没必要用过截角，但四维空间中就不一样了。我们不妨看一看正五胞体截角的全过程。<br>首先我们得到截角正五胞体，截到中点时得到截半正五胞体。超过中点后会得到什么图形？<br>（以下图片均来自英文维基百科）<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Schlegel_wireframe_5-cell.png/800px-Schlegel_wireframe_5-cell.png" alt="正五胞体"><br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Schlegel_half-solid_truncated_pentachoron.png/800px-Schlegel_half-solid_truncated_pentachoron.png" alt="截角正五胞体"><br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Schlegel_half-solid_rectified_5-cell.png/800px-Schlegel_half-solid_rectified_5-cell.png" alt="截半正五胞体"><br>截半正五胞体有正八面体胞核正四面体胞，正八面体是“截半正四面体”，继续截会让正八面体变回截角正四面体，正四面体也会变成截角正四面体，所以所有胞都变成了截角正四面体，这就是过截角正五胞体。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Schlegel_half-solid_bitruncated_5-cell.png/800px-Schlegel_half-solid_bitruncated_5-cell.png" alt="过截角正五胞体"><br>不是所有过截角正多胞体都只有一种胞围成，只有正多胞体是自对偶时才有这种情况，还有一种很漂亮的过截角正多胞体是过截角正二十四胞体。（正二十四胞体自对偶）</p>
+<p>现在我们能讨论垂直于五维立方体的体对角线的面（四维面）在任意位置的截面的图形了。我们可以想象截面移动形成截面动画：先看到正五胞体从一个点开始变大，然后被截角，即截角正五胞体，继续截角得到截半正五胞体、过截角正五胞体，然后又变成截半正五胞体、截角正五胞体、最后恢复为正五胞体，变小消失。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wxyhly.github.io/archives/polyhedrals/" data-id="ckqds9bt400576kvlg501vmq3" class="article-share-link">Share</a>
+      
+        <a href="https://wxyhly.github.io/archives/polyhedrals/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/几何/">几何</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/四维/">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图形/">图形</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/archives/projearth/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          墨卡托投影
+        
+      </div>
+    </a>
+  
+  
+    <a href="/archives/escher1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">双曲空间——数学艺术</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维世界系列/">四维世界系列</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a><span class="category-list-count">13</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2b2t/" style="font-size: 11.25px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11.25px;">4dViewer</a> <a href="/tags/Hutton32/" style="font-size: 11.25px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12.5px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/代数/" style="font-size: 11.25px;">代数</a> <a href="/tags/几何/" style="font-size: 17.5px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.25px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 12.5px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 16.25px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 12.5px;">拓补学</a> <a href="/tags/数学/" style="font-size: 17.5px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 13.75px;">物理</a> <a href="/tags/电路/" style="font-size: 11.25px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.75px;">系列文章</a> <a href="/tags/群论/" style="font-size: 11.25px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.25px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.25px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/archives/unknots2/">四维空间（十二）：解开球面结</a>
+          </li>
+        
+          <li>
+            <a href="/archives/gaqr/">四维空间（十一）：几何代数、四元数与空间旋转</a>
+          </li>
+        
+          <li>
+            <a href="/archives/electm4d/">四维世界（七）：电磁学</a>
+          </li>
+        
+          <li>
+            <a href="/archives/mc4tutorial/">Minecraft4D 教程</a>
+          </li>
+        
+          <li>
+            <a href="/archives/newton4/">四维世界（六）：牛顿力学</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap"> 
+<h3 class="widget-title">链接</h3> 
+   <div class="widget">
+   <ul class="entry"> 
+    <li><a href="http://hadroncfy.com" title="hadroncfy" target="_blank">CFY(Hadron)</a></li> 
+    <li><a href="http://zzy.blog.ustc.edu.cn" title="ZZY" target="_blank">ZZY(BG6GCZ)</a></li> 
+   </ul> 
+</div></div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 wxyhly<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/programs/" class="mobile-nav-link">Programs</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'wxyhly';
+  
+  var disqus_url = 'https://wxyhly.github.io/archives/polyhedrals/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    }); 
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script defer>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  "HTML-CSS": { linebreaks: { automatic: true } },
+         SVG: { linebreaks: { automatic: true } }
+};
+</script>
+<script type="text/javascript" defer
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.1/es5/tex-mml-chtml.js">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

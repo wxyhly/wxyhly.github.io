@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>四维世界（七）：电磁学 | Blog de WXYHLY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="/**这篇文章我打算专注一下四维世界（四维空间+一维时间=五维时空）里的物理学——电磁学。这些都是假设这个世界也符合我们世界中的一些物理规律的理论推导。虽然它电磁学不像牛顿力学那么容易让人接受，但这个类比也是无瑕兹而且很自然的（你也可以认为一切都是扯淡）。我们不讨论量子力学等其他物理，因为它们在四维空间中的推广有严重问题。**/
+
+在我们的三维世界，最神奇的东西之一就是电磁场了，各种电磁感应现象都">
+<meta property="og:type" content="article">
+<meta property="og:title" content="四维世界（七）：电磁学">
+<meta property="og:url" content="https://wxyhly.github.io/archives/electm4d/index.html">
+<meta property="og:site_name" content="Blog de WXYHLY">
+<meta property="og:description" content="/**这篇文章我打算专注一下四维世界（四维空间+一维时间=五维时空）里的物理学——电磁学。这些都是假设这个世界也符合我们世界中的一些物理规律的理论推导。虽然它电磁学不像牛顿力学那么容易让人接受，但这个类比也是无瑕兹而且很自然的（你也可以认为一切都是扯淡）。我们不讨论量子力学等其他物理，因为它们在四维空间中的推广有严重问题。**/
+
+在我们的三维世界，最神奇的东西之一就是电磁场了，各种电磁感应现象都">
+<meta property="og:image" content="https://wxyhly.github.io/img/em4d001.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/em4d002.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/em4d003.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/em4d001.gif">
+<meta property="og:image" content="https://wxyhly.github.io/img/em4d002.gif">
+<meta property="og:image" content="https://wxyhly.github.io/img/em4d004.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/em4d005.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/em4d006.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/em4d007.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/em4d003.gif">
+<meta property="og:image" content="https://wxyhly.github.io/img/em4d004.gif">
+<meta property="og:image" content="https://wxyhly.github.io/img/em4d005.gif">
+<meta property="og:image" content="https://wxyhly.github.io/img/em4d008.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/em4d009.svg">
+<meta property="og:updated_time" content="2020-07-27T05:42:48.600Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="四维世界（七）：电磁学">
+<meta name="twitter:description" content="/**这篇文章我打算专注一下四维世界（四维空间+一维时间=五维时空）里的物理学——电磁学。这些都是假设这个世界也符合我们世界中的一些物理规律的理论推导。虽然它电磁学不像牛顿力学那么容易让人接受，但这个类比也是无瑕兹而且很自然的（你也可以认为一切都是扯淡）。我们不讨论量子力学等其他物理，因为它们在四维空间中的推广有严重问题。**/
+
+在我们的三维世界，最神奇的东西之一就是电磁场了，各种电磁感应现象都">
+<meta name="twitter:image" content="https://wxyhly.github.io/img/em4d001.svg">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Blog de WXYHLY</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/programs/">Programs</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wxyhly.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-electm4d" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/archives/electm4d/" class="article-date">
+  <time datetime="2020-03-28T08:20:11.000Z" itemprop="datePublished">2020-03-28</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/四维世界系列/">四维世界系列</a>
+  </div>
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      四维世界（七）：电磁学
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="likecode">/**<br>这篇文章我打算专注一下四维世界（四维空间+一维时间=五维时空）里的物理学——电磁学。这些都是假设这个世界也符合我们世界中的一些物理规律的理论推导。虽然它电磁学不像牛顿力学那么容易让人接受，但这个类比也是无瑕兹而且很自然的（你也可以认为一切都是扯淡）。我们不讨论量子力学等其他物理，因为它们在四维空间中的推广有严重问题。<br>**/</p>
+
+<p>在我们的三维世界，最神奇的东西之一就是电磁场了，各种电磁感应现象都是立体的，还要用到空间里的右手定则，能不能把这些东西类比到四维空间呢？当然可以。读者只要学过中学物理即可阅读除最后一节外的所有内容，如果知道大学物理和经典的不涉及相对论的麦克斯韦方程就可以全文阅读（我们本文也只考虑四维空间中的低速的非相对论物理过程，其实相对论也能推广到五维时空），其实不清楚也没关系，我会带着大家先过一遍（物理复习-_-）。我们先从最简单的两个相距为$r$的静电荷受的力说起吧。</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><a href="/archives/electm4d/#more">静电场</a></li>
+<li><a href="/archives/electm4d/#d1">电流</a></li>
+<li><a href="/archives/electm4d/#d2">恒定磁场</a></li>
+<li><a href="/archives/electm4d/#d3">从安培力与洛伦兹力入手</a></li>
+<li>磁偶极子与指南针<ul>
+<li><a href="/archives/electm4d/#d4">环形电流的力矩</a></li>
+<li><a href="/archives/electm4d/#d5">叉乘不只有一种推广</a></li>
+<li><a href="/archives/electm4d/#d6">地磁场与指南针</a></li>
+</ul>
+</li>
+<li>四维版麦克斯韦方程？<ul>
+<li><a href="/archives/electm4d/#d7">安培环路定理</a></li>
+<li><a href="/archives/electm4d/#d8">法拉第电磁感应定理</a></li>
+<li><a href="/archives/electm4d/#d9">高斯定理</a></li>
+<li><a href="/archives/electm4d/#d10">四维电磁波</a></li>
+</ul>
+</li>
+<li><a href="/archives/electm4d/#d11">四维波动光学</a></li>
+</ul>
+<a id="more"></a>
+<h2 id="静电场"><a href="#静电场" class="headerlink" title="静电场"></a>静电场</h2><p>静电力算是初中知识了：（不会多个公式读者少一半吧，反正也没啥读者）<br><img src="/img/em4d001.svg" alt=""><br>$$F={kQ_1Q_2\over r^2}$$<br>电荷同性相斥异性相吸，且跟万有引力定律一样，两个点电荷间的静电力随距离平方反比衰减。然而到了四维空间，平方反比将变成立方反比，这是<strong>能量守恒</strong>要求的结果。原因要从高斯定律说起，电场线其实和光线类似：假设有一根一维的光纤，一端有一个光源。如果不算能量损失，另一端就可以接收到同样强度的光信号，这是显然的。下面我们把光纤做成平面的，同样在中间放一个光源，与一维光纤不同，光源发出的光会向四面八方散开，如果不算能量损失，我们如果绕一圈把所有的光强加起来，则等于光源的光强。由于光线散开了，所以离光源越远光线就越稀疏，光强也就越小。我们考虑以光源为中心的同心圆，光线会依次穿过它们，光线的总通量是一致的，但大圆的周长大，就将光线“稀释”了，所以光强与周长成反比，而周长又与半径成正比，我们可以得出光强将按距离的反比衰减。<br><img src="/img/em4d002.svg" alt="无衰减的光缆（左）与随距离反比衰减的夹层平面（右）"><br>三维空间中我们考虑以光源为中心的同心球，同理得出光强与球表面积成反比，而表面积又与半径成平方比，所以我们可以得出光强将按距离的平方反比衰减。把光线换成电场就得到了电场的衰减规律。那么自然到了四维空间中，光源能散开的方向又多了，考虑以光源为中心的同心超球，得出光强与超球表体积成反比，得出光强将按距离的立方反比衰减。点电荷间静电力公式变成了：<br>$$F={kQ_1Q_2\over r^3}$$<br>其实引力也如此，之前<a href="/archives/lavie4ds/">谈四维行星轨道</a>的时候说过。立方反比除了影响天体力学中轨道不稳定还会带来什么？它还会使原子核外的电子轨道也不稳定。虽然量子力学并没有经典的轨道，但结论确是一样的，用更“量子”的说法就是不存在电子的定态波函数。所以我们只能<strong>假设四维世界的微观理论与我们的完全不同，就不讨论它了</strong>来自圆其说，否则整个四维世界系列的世界观就崩了。反正我的目的就是构建尽量与我们世界相似的四维世界嘛。<br>如果要我们去了四维世界，能直接感受到立方反比的效应是什么呢？可能看四维世界的太阳或四维城市的路灯会更加刺眼，但却并不是很亮……还有说声音的传播也会失真，但波过程这方面我还没仔细研究过。</p>
+<p></p><p class="likecode">/**注意我们默认牛顿三定律都成立，也就是说力的单位还是$\mathrm{kg/(m/s^2)}$，这个次数不会变成三次。那是否存在力的单位是$\mathrm{kg/(m/s^3)}$或$\mathrm{kg/(m/s)}$的世界呢？我也思考过，那些世界非常疯狂！但是跟四维无关所以以后单独讨论。**/</p><a name="d1"></a><p></p>
+<h2 id="电流"><a href="#电流" class="headerlink" title="电流"></a>电流</h2><p>其实电流这东西没啥好说，因为它似乎不太受空间维度影响。电流就是电荷的定向移动，所以它还是等于单位时间单位横截胞（注意现在面升级成胞了）上通过的电荷量。是电流密度（注意单位）的通量。<br>我们其实关心的是电流的磁效应。三维情景无限长直导线的磁场是反比衰减的同心圆磁场，我们都能猜出对应四维导线的磁场应该是同心球形成平方反比衰减的，但球面上的磁场方向如何却难以想象。要想知道是不是在瞎猜，我们先要了解磁场是什么。<br><img src="/img/em4d003.svg" alt=""><a name="d2"></a></p>
+<h2 id="恒定磁场"><a href="#恒定磁场" class="headerlink" title="恒定磁场"></a>恒定磁场</h2><p>学完了电场就该学磁场了。初中我们接触过最简单的例子就是有着南北极的棒状磁铁了，我们也可以类比到四维空间，认为棒状磁铁也有磁力线和南北极。但不幸的是，这个结论是错的。因为磁铁磁场的起源是分子环形电流，即电流产生磁场。但上一节我们只瞎猜了电流的磁场可能有球形的磁场分布。我们先来回忆一下三维情形：环形中央的磁场方向和环形电流方向之间的关系满足右手定则：<br><img src="/img/em4d001.gif" alt=""><br>我们应该把这个模型推广到四维。先不管四维里“右手”是什么意思，环形中央的磁场方向应该垂直于环形电流所在的平面，但这个方向在四维空间中不再是唯一的了（平面的法空间也是平面，没有唯一方向的法线），这样的类比让我们无法确定环形中央的磁场方向，看来此法行不通。这跟之前我们猜的通电直导线的同心球磁场也类似：二维的球面也无法给出具体的方向。<a name="d3"></a></p>
+<h2 id="从安培力与洛伦兹力入手"><a href="#从安培力与洛伦兹力入手" class="headerlink" title="从安培力与洛伦兹力入手"></a>从安培力与洛伦兹力入手</h2><p>我们再换个思路想，磁场是怎么定义的。高中物理上定义过物理量“磁感应强度”$B$，它是一个矢量，因为在磁场中的通电导线会受到一种力的作用，我们叫它“安培力”。实验表明这种力与磁场线和导线都垂直，且若导线与磁场线方向相同则安培力为零。数学上这个关系正好对应于向量之间的叉乘运算。比如x轴方向的导线在y轴磁场中受到z轴方向的力。<br><img src="/img/em4d002.gif" alt=""><br>$$\boldsymbol{F}=I\boldsymbol{l}\times \boldsymbol{B}$$<br>如果有一个二维世界，这个世界允许电磁场存在吗？如果通电导线受力要与电流方向、磁场三者都垂直，那只能至少在三维空间。但我们旋转一个平面图形不也说旋转轴垂直于那个平面吗？这也不代表只有三维空间能够旋转啊。因此我们应该放弃规定所谓“垂直”的方向，转而把旋转轴规定为旋转点，把磁场规定为标量，这样问题就解决了。<br>下面到了四维，我们假设力还是与磁场、导线垂直。x轴方向的导线在y轴磁场中受到的力沿什么方向？它可以是z轴、w轴或两个方向的组合——我们面临着刚才同样的问题。但我们知道，<strong>力的方向一定是明确的，电流的方向也是</strong>，因为它们都是从物体运动来定义的：力跟物体加速度的方向有关，电流跟电荷的运动有关，所以它们一定是矢量。相权衡之下我们只有<strong>放弃磁场的方向是单一的这一假设</strong>了。比如x轴向放置的导线受到了y方向的感应力，我们就直接认为磁场是zw方向的。再举一个例子：x轴方向的导线在yz方向磁场中受到的力为w方向。环形电流中央的磁场方向与通电直导线磁场方向无法确定也都能解释了：磁场本身就是二维的，它的方向与线圈所在平面绝对垂直。或许你已经发现，这里的磁场正是我之前提到过的二维版的向量——<a href="/archives/bivector4ds/">2-向量</a>。<br>再说详细点就是：xy平面内的环形电流中心的磁场方向是zw方向。如果你无法想象二维的向量，你可以像下图一样把磁场形象地看成zw面上的漩涡。<br><img src="/img/em4d004.svg" alt="四维空间的均匀磁场"><br>注意这里二维向量（2-向量）也是有“正负”的，它体现在漩涡的方向（四维虽然无法区分顺时针、逆时针，但漩涡也有方向），所以xy方向与yx方向是相反的（xy=-yx哦）。四维空间的“右手”法则就是给定了一种坐标排列顺序，具体的操作有点复杂，涉及到奇偶排列。这就是向量和面量的叉乘运算，所以高中的安培力公式改都不用改就能放进四维人的教材中。<br>我们再来看本质：为什么通电导线会受到安培力？高中物理告诉过我们：电荷在磁场中运动将会受到洛伦兹力，洛伦兹力才是安培力的真正来源。根据前面的经验，我们直接可以写出洛伦兹力的表达式：$$\boldsymbol{F}=q\boldsymbol{v}\times \boldsymbol{B}$$<br><!--各种磁效应的3d\4d对比图--><br>既然电荷在磁场中会受力的作用，我们下一步就可以造一台四维空间中的直流发电机了。其实它的结构和三维空间一样，只是所有东西在另一个方向上“加厚”了，磁场也向量也被“加厚”成2-向量：如把x方向直接变成xw方向。当然有没有更好的电机结构呢？比如考虑四维独有的双旋转或Hopf纤维丛，会不会有一些特别的设计呢？这我现在还真的想不出来，太抽象了。<a name="d4"></a></p>
+<h2 id="磁偶极子与指南针"><a href="#磁偶极子与指南针" class="headerlink" title="磁偶极子与指南针"></a>磁偶极子与指南针</h2><h3 id="环形电流的力矩"><a href="#环形电流的力矩" class="headerlink" title="环形电流的力矩"></a>环形电流的力矩</h3><p>下面我们来分析一下环形电流线圈在磁场中受到的偏转力矩的作用：在三维空间，一个磁矩为$\boldsymbol{m}$的磁偶极子在磁场$\boldsymbol{B}$中受到的力矩为$\boldsymbol{m}\times\boldsymbol{B}$。如果像之前那样原封不动推广到四维会怎样？首先磁矩定义是环形电流所在面的法向，这个方向在四维是二维的，磁场也是二维的，两个2-向量叉乘，最后将得到标量，它表示一个平行八胞体的体积（跟三维的混合积类似）。但力矩是有方向的，不可能是标量，所以类比失败。分析磁偶极子还是要通过环形电流入手，不能直接套公式，我们后面会提到<a href="#d5">类比失败的原因</a>。</p>
+<p>我们只分析几个特殊的位置，然后不加证明地给出计算力矩的方法。</p>
+<ul>
+<li>当磁场平行于线圈时，线圈上任何一个点都不受力</li>
+<li>当磁场绝对垂直于线圈时，线圈上每点受力需要同时垂直于线圈导线与磁场，所以只能是沿线圈半径方向，导致线圈有扩大或收缩的趋势，但不会使线圈转动。</li>
+<li>当磁场半平行半垂直于线圈时（即三维空间那种二面角90°）结论是线圈会受到合力矩，有向顺着磁场的方向转动的趋势。</li>
+</ul>
+<p>我们详细分析一下第三种情况：假设线圈平行于xy平面，磁场平行于yz平面。下图两个A点处电流平行于磁场，是不受力的。B点与C点的电流方向相反，所以一个受力为w方向，另一个为-w方向。<br><img src="/img/em4d005.svg" alt=""><br>那这个w方向上的力会让线圈怎么转呢？下面给两种方法来推导转动方向：</p>
+<ol>
+<li>我们来算算力矩：选取线圈中心为作用点，B点的力臂沿y方向，B点受力沿w方向，三维的力矩垂直于两者，推广到四维力矩也该垂直，所以是xz方向。而力矩的方向是转轴的方向，垂直于旋转平面，所以这个力矩的作用效果是让线圈在yw方向上转动。<br>细心的话你会发现<strong>一个问题</strong>：既然B点的力臂沿y方向，B点受力沿w方向，效果为让线圈在yw方向上转动，为什么我们的力矩还非得规定是与它们垂直的xz方向？直接规定成yw方向不更好吗？确实，这个滥用垂直方向倒来倒去的问题我们在说二维世界的磁场时也遇到过。<a name="bladeB"></a>三维空间由于可以用更简单的法向量表示平面，所以才会用莫名其妙的垂直于旋转平面方向作为力矩方向。这也暗示了三维空间的磁场可能定义为<strong>跟磁场向量垂直且大小相同的2-向量</strong>更加合适，不仅省去繁琐的左右手定则，也统一了不同维度下磁场的形式，比如二维磁场也不是标量，而是2-向量，这个2-向量只能平行于二维空间所在的平面，所以只有一个分量，感觉上就是标量。但为了保持跟中学物理知识的一致性，我们还是用那种正常的定义（其实是三维人偏见的定义），用$\boldsymbol{B}^*$表示这种绝对垂直版的更好的定义。</li>
+<li>直接把力在xyw空间画出来用眼睛看：<br><img src="/img/em4d006.svg" alt="注意把z轴换成w轴后磁场无法画出来了"><br>我们除了知道旋转发生在yw平面上（或说绕xz轴平面旋转），还能看到线圈有往yw面旋转的趋势。而之前分析过yw面与磁场绝对垂直，确实是一个平衡位置。<a name="d5"></a></li>
+</ol>
+<h3 id="叉乘不只有一种推广"><a href="#叉乘不只有一种推广" class="headerlink" title="叉乘不只有一种推广"></a>叉乘不只有一种推广</h3><p>总结下来，就是线圈与磁场平行、绝对垂直时不受力，半平行半垂直是受力。当然这只是几个特殊位置。但根据叠加原理，任何方向上的磁场都可以在坐标系里分解成六个分量：$ae_{xy}+be_{xz}+ce_{xw}+de_{yz}+ee_{yw}+fe_{zw}$，其中$e_{ij}$表示单位的2-向量。两个2-向量内积必须分量完全对应结果才不为0，外积必须分量完全不一样结果才不为0，现在似乎还有一种运算，那就是必须分量不完全一样结果才不为0，这种新运算感觉处于内外积之间，我暂且叫它混合积。下面我整理了一张表格：</p>
+<table>
+<thead>
+<tr>
+<th>运算</th>
+<th>$e_{ij}*e_{ij}$</th>
+<th>$e_{ij}*e_{jk}$</th>
+<th>$e_{ij}*e_{kl}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内积$\cdot$</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>外积$\wedge$</td>
+<td>0</td>
+<td>0</td>
+<td>$e_{ijkl}$</td>
+</tr>
+<tr>
+<td>混合积$\times$</td>
+<td>0</td>
+<td>$e_{ik}$</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>注意，线圈平行于xy平面，磁场平行于yz平面，力矩产生的旋转发生在yw平面。如果我们把磁场绝对垂直的方向xw（之所以取这绝对垂直是因为<a href="#bladeB">之前这里的描述</a>）与线圈平面xy做混合积，正好得到yw平面。有没有一种感觉：相同字母可以合并相消，不同字母则直接写在一起构成一个多维向量，且每一种维数对应一种乘法运算？其实它们都被一种叫做<strong>几何代数</strong>（Geometric Algebre）的东西统一了！以后有时间我会专门介绍它。<a name="d6"></a></p>
+<h3 id="地磁场与指南针"><a href="#地磁场与指南针" class="headerlink" title="地磁场与指南针"></a>地磁场与指南针</h3><p>我们现在主要关心地磁场是什么样子的，指南针该怎么工作。三维地球的磁场可以看做地球内部存在着巨大的环形电流，指南针的指向其实只是地磁场在水平面上的分量，到了南北极地磁场几乎是竖直的了。我们假设四维星球内部也存在环形电流，只不过四维星球有双旋转，我们也完全有理由相信星球内部存在着绝对垂直的两个环形电流，它们的方向与两个极道的方向差不多，但不至于完全重合，就像地球上磁极的位置与地理极点位置有偏差一样。<br>我们先假设只有xOy平面上有环形电流。此时xOy极道上的磁场最强，完全是水平方向。它的方向是垂直于极道方向的平面(zw方向)。现在我们拿着一个四维针状永磁体指南针，针内部有产生磁场的环形电流。指南针在地磁场中受到力矩的作用回发生偏转，那指针能否偏转到朝南呢？当然如果不考虑阻力，指针因能量守恒回来回振荡，考虑阻力后我们还需要分析平衡位置的稳定性：比如三维世界的指南针指向北也是平衡位置，但只要稍微晃动一下就能回到稳定的指向南的平衡位置。<br>为此我编了一个程序来计算不同初始角度位置下的指南针能否最终指向南。这里的初始角度位置是什么呢？当然是环形电流与磁场的夹角。我们已经熟知，两个平面需要两个夹角描述它们的位置关系。但环形电流与磁场都是有方向的，这暗示着夹角的范围可以比0-90°范围更大。类比直线之间的夹角取值范围是0-90°，但向量之间的夹角范围是0-180°。那两个2-向量之间的夹角范围是怎样的呢？这里推导过程省略，直接看下面的结论：下图中标出了2-向量之间夹角$\theta_1$与$\theta_2$，（取$\theta_1\geq\theta_2$）<br><img src="/img/em4d007.svg" alt=""><br>原点O代表完全重合且方向也一致，D点有一个角是180°，代表重合但方向相反。A、B两个角都是90°，都是绝对垂直，但B点有个角为-90°，是因为两个面量的方向顺序跟右手定则（正规术语：定向）相反。OA线段为方向一致的右等角平面，BD是方向相反的右等角平面，OB线段是方向一致的左等角平面，AD是方向相反的左等角平面。菱形水平轴表示半平行，竖直轴表示半垂直。中点C则是半平行半垂直。<br>这张图把所有位置关系都画出来了，也就是说每一个点都会对应一个指南针环形电流与地磁场的相对朝向位置。在磁力矩作用下，菱形内的每个点都有向其他点运动的趋势，（即得到一个向量场）。编程可计算出下面这幅图：<br><img src="/img/em4d003.gif" alt=""><br>我们发现无论初始位置如何，最终运动趋势都往左边顶点集中，虽然其他三个顶点处也是平衡点，但都不稳定，稍有晃动就会往左边顶点靠。这说明了四维空间指南针的稳定性。<br>但是往往四维星球不只有单旋转，还会有双旋转。磁场可能也由两个绝对垂直的环形电流产生。这种复合磁场有种特点：你永远无法通过找导线不受安培力的方向来确定磁场方向。这种磁场跟双旋转类似，它是两个绝对垂直的漩涡的叠加，因此不是一种单纯的平面结构！那你说如果有多种方向磁场叠加那磁场的结构不就无限复杂了吗？并不是。可以证明任意的2-向量都能分解为两个绝对垂直的平面2-向量之和（具体怎么分解见<a href="/archives/bivector4ds/#dualde">这篇文章中的正交分解小节</a>），所以叠加再多磁场的复杂程度都不会超过我们这里讨论的情况。我取xy平面上磁场强度是zw平面的两倍时，那个向量场变成了这样：<br><img src="/img/em4d004.gif" alt=""><br>明显可以看到绝对垂直的方向开始“抢流量”了，但zw平面磁场强度没xy平面上的强，所示还是抢不过，最终指南针还是会指向xy方向。如果zw磁场再强一点或跟xy一样强会怎样呢？下面我分别取了0.9倍与相等的情况：<br><img src="/img/em4d005.gif" alt="0.9倍（左）；相等（右）"><br>我们发现它们越来越势均力敌，直到最后相等时，指南针落到等角的位置便不转动了，这种情况下指南针根本就不再有指固定方向的功能了。这是怎么回事呢？其实之前我们也谈到过等角双旋转的对称性：它跟Hopf纤维丛一样，里面每个大圆轨迹的地位都是相同的。在等角双旋转的星球上任何一个点都不再有区别，南北极的概念都不存在。在这种星球上指南针的失灵就显得不足为怪了。<br>那这种指南针在一般的非等角双旋转星球上到底能给我们什么信息呢？首先，对于地球来说只有在赤道上磁场才会平行于地面，其他地方的地磁场是倾斜的，但只要把指南针水平固定，就可以抑制住垂直分量的地磁场的磁力矩。四维情况也一样，所以结论是：四维指南针真的就是指南针，可以像三维指南针一样指向南极，因为环形电流回去匹配把磁场投影到三维地面后的到的二维分量，环形电流的法线可以在三维地面中唯一确定，这就是南方，但它除了指南并不会提供其它额外信息了。对于三维世界来说，给定一个方向就足够了，但对于四维人来说还不行。还记得那个可以一边自转且保持前进方向的旋转方式吗？四维人要完全知到自己在三维地面上的朝向还差一个方向。（想一想飞机的姿态除了水平方向还有侧面的翻滚角）所以四维世界中的导航确实非常困难，可以想像这个世界中的探险家的死亡率肯定是非常高的。<a name="d7"></a></p>
+<h2 id="四维版麦克斯韦方程？"><a href="#四维版麦克斯韦方程？" class="headerlink" title="四维版麦克斯韦方程？"></a>四维版麦克斯韦方程？</h2><p>如果你完全不了解大学物理那么请忽略这个小节，或阅读相关书籍后再回来哦。</p>
+<h3 id="安培环路定理"><a href="#安培环路定理" class="headerlink" title="安培环路定理"></a>安培环路定理</h3><p>安培环路定理描述的是电流如何产生磁场。一般以路径积分的形式给出：<br>$$\oint_l\boldsymbol{B}\cdot \boldsymbol{dl}=\mu_0 (\boldsymbol{I}+\iint_D \epsilon_0\frac{\partial \boldsymbol{E}}{\partial t}\cdot \boldsymbol{dn}) $$<br>其中等式右边第二项是位移电流（变化的电场看起来像一种电流密度，因为它也产生磁场，变化电场在一个截面里的流量就叫位移电流），它的值是随便选一块只要以路径$l$为边界的二维区域$D$就行，$n$是区域$D$面积元的法线。（即$\boldsymbol{dn}=\boldsymbol{dS}^*$。这里星号是霍奇对偶，它把面积元变成了法向，也就是一种通量。）<br>二维情况呢？我们只需要两个点就能“包围”一根导线：(见下面三幅图左边)<br>注意千万不能把图中的点与叉理解为垂直纸面向外向里，因为二维世界没有这个方向，它们只是代表磁场标量场的正负号。<br>所谓的环流量单纯变成了两点处磁场值相减，以环为边界的曲面也变成了曲线：<br>$$\boldsymbol{B}(A)-\boldsymbol{B}(B)=\mu_0 (\boldsymbol{I}+\int_D \epsilon_0\frac{\partial \boldsymbol{E}}{\partial t}\cdot \boldsymbol{dn}) $$<br>这表明二维无限长导线磁场不衰减了！但无限长导线本来就是不存在的，所以二维电磁学还是算“良好”的。<br><img src="/img/em4d008.svg" alt="从二维到三维四维的广义安培环路定理"><br>推到四维，一维的环路不再能包裹住一维的导线，（参考四维绳结与锁链这篇文章）所以路径积分要升级成曲面积分。还有就是磁场也是二维的，所以感觉曲面才能跟同样是二维的磁场匹配求内积，因为积分终究算出来都是标量。曲面积分时，每个面积微元都是一个小的2-向量，它跟磁场做内积得到标量，这个标量在全曲面上累加得到了一种二维的“环流量”，且流量值正比于曲面套住的电流。<br>$$\oint_S\boldsymbol{B}\cdot \boldsymbol{dS}=\mu_0 (\boldsymbol{I}+\iiint_D \epsilon_0\frac{\partial \boldsymbol{E}}{\partial t}\cdot \boldsymbol{dn})$$<a name="d8"></a><br><!--注意这里的磁场还是沿用的三维的定义方式。如果换成绝对垂直的那种定义$\boldsymbol{B}^\*$反而还麻烦一些，但它对各维度都成立（只用变积分号的个数）：
+$$(\oint_S\boldsymbol{B}^\*\wedge \boldsymbol{dS}^\*)^\*=\mu_0 (\boldsymbol{I}+\iiint_D \epsilon_0\frac{\partial \boldsymbol{E}}{\partial t}\wedge \boldsymbol{dV}^\*)$$--></p>
+<h3 id="法拉第电磁感应定理"><a href="#法拉第电磁感应定理" class="headerlink" title="法拉第电磁感应定理"></a>法拉第电磁感应定理</h3><p>法拉第电磁感应定理描述的是磁通变化导致回路中产生感应电动势的现象：<br>$$\oint_l\boldsymbol{E}\cdot \boldsymbol{dl}=-\iint_D \frac{\partial \boldsymbol{B}}{\partial t}\cdot \boldsymbol{dn} $$<br>二维情形标量磁场也没有通量概念了，但如果按磁场垂直于二维平面来理解的话，应该直接将标量积分得到通量：<br>$$\oint_l\boldsymbol{E}\cdot \boldsymbol{dl}=-\iint_D \frac{\partial B}{\partial t}\cdot dxdy $$<br>之前我们分析过，导线是一维的，回路边界也是一维的，四维情况下穿过曲胞才有通量，曲胞的边界是闭曲面而不是回路这种闭曲线。这里看似矛盾，实则不然。<br><img src="/img/em4d009.svg" alt="三维空间中：向量垂直穿过曲面，2-向量垂直穿过曲线"><br>通量是针对于向量场来说的，通量类比到2-向量结论不一样。最直观的感受是：普通1-向量是一维的，在三维空间中它需要通过二维面，在四维空间中需要通过三维面；2-向量本身就是二维的，所以它只用在三维空间中通过曲线，在四维空间中通过二维的面。我们直接用$\boldsymbol{B}^*$来改写法拉第电磁感应定理，这样省去了算通量又要取一次法向：<br>$$\oint_l\boldsymbol{E}\cdot \boldsymbol{dl}=-\iint_D \frac{\partial \boldsymbol{B}^*}{\partial t}\cdot \boldsymbol{dS} $$<br>现在用$\boldsymbol{B}^*$定义的这个公式已经适用于四维了，甚至二维也适用。<a name="d9"></a></p>
+<h3 id="高斯定理"><a href="#高斯定理" class="headerlink" title="高斯定理"></a>高斯定理</h3><p>麦克斯韦方程中的其它两个方程就简单多了。首先磁场无散度，说明对任意闭曲面的通量积分为零。<br>$$\oint_S\boldsymbol{B}\cdot\boldsymbol{dn}=0$$<br>首先二维磁场是标量，标量没有散度，恒为零，所以不用列方程。<br>到四维按理说就是对任意闭曲胞的通量积分为零，但之前已经分析过，二维的磁场的通量是靠二维的闭曲面来测到的，所以方程该是这样的：<br>$$\oint_S\boldsymbol{B}\cdot\boldsymbol{dS}^*=0$$<br>注意上面的$dS^*$要理解为相应面积元$dS$的法（绝对垂直）面积元，这样算出来才是通量，或我们直接认为磁场$B$使用绝对垂直的新定义$\boldsymbol{B}$就不用法面积元，也能适用于所有维度的空间：<br>$$\oint_S\boldsymbol{B}^*\cdot\boldsymbol{dS}=0$$<br>但在二维空间中是无法构造出二维闭曲面的，所以二维磁场高斯定理这个方程是不用写的，跟之前说标量没散度结论一致。<br>对于电场来说就更简单了：<br>$$\epsilon_0\oint_S\boldsymbol{E}\cdot\boldsymbol{dn}=q$$<br>电场就是普通向量，所以直接把闭曲面$S$换成闭曲胞$V$即可：<br>$$\epsilon_0\oint_V\boldsymbol{E}\cdot\boldsymbol{dn}=q$$<a name="d10"></a><br><!--### 磁荷
+你可能会问，电磁场不是完全对应的吗？如果有磁荷存在它们方程应该完全对称才是。其实电磁场对称只是三维空间中特有的，并没有普遍性。至于四维空间中有没有磁荷呢？--></p>
+<h3 id="四维电磁波"><a href="#四维电磁波" class="headerlink" title="四维电磁波"></a>四维电磁波</h3><p>四维电磁场能不能相互激发形成电磁波呢？我们首先要把上面积分形式的方程写成微分形式。首先规定导数算子$$\boldsymbol{d}=\frac{\partial}{\partial x}\boldsymbol{e}_x+\frac{\partial}{\partial y}\boldsymbol{e}_y+\frac{\partial}{\partial z}\boldsymbol{e}_z+\frac{\partial}{\partial w}\boldsymbol{e}_w$$它就是高数里的那个梯度算子。如果$f$是标量场，则$\boldsymbol{d}f=\text{grad}(f)$，如果$f$是向量场，则$(\boldsymbol{d}\wedge f)^*=\boldsymbol{d}\times f=\text{curl}(f)$，$(\boldsymbol{d}\cdot f)=(\boldsymbol{d}\wedge f^*)^*=\text{div}(f)$。<br>这样我们就推广了梯度散度旋度。<br>为了能把积分号扔掉，还需要用到流形上的斯托克斯公式：<br>$$\oint_{\partial} \omega=\int_{i}\boldsymbol{d}\wedge \omega$$<br>其中左边是在一个$n+1$维区域的$n$维闭合表面上对一个n-向量积分，等于右边直接在$n+1$维区域中通过导数算子作用后积分。（为了简洁，公式里积分号下省略了点乘相应的面积、体积元）<br>怎么理解这个公式呢？$\boldsymbol{d}\wedge$跟叉乘是类似的，所以是一种广义的旋度。左边是n-向量在封闭区域边界上的“环流量”，右边则是区域内部所有n-向量旋度贡献的总和。没错，相信学过高数下册的人都看出来了，这就是三维斯托克斯公式的推广。</p>
+<ul>
+<li>下面先来写电磁场的高斯定理微分形式：<ul>
+<li>$\boldsymbol{d}\boldsymbol{B}^*=(\boldsymbol{d}\boldsymbol{B}^*)^*=0$，磁场$B$的散度为0，为无源场。</li>
+<li>$\epsilon_0(\boldsymbol{d}\boldsymbol{E}^*)^*=\rho$，电场散度为电荷密度。</li>
+</ul>
+</li>
+<li>然后是变化的电磁场相互激发：<ul>
+<li>$(\boldsymbol{d}\wedge\boldsymbol{E})^*=-\frac{\partial \boldsymbol{B}}{\partial t}$</li>
+<li>$(\boldsymbol{d}\wedge\boldsymbol{B})^*=\mu_0(\boldsymbol{j}+\epsilon_0\frac{\partial \boldsymbol{E}}{\partial t})$</li>
+</ul>
+</li>
+</ul>
+<p>假设空间里没有电流密度$\boldsymbol{j}$，也没有电荷密度$\rho$，我们把方程$(\boldsymbol{d}\wedge\boldsymbol{E})^*=-\frac{\partial \boldsymbol{B}}{\partial t}$两边同时作用$(\boldsymbol{d}\wedge)^*$把磁场消掉，得到：<br>$$(\boldsymbol{d}\wedge(\boldsymbol{d}\wedge\boldsymbol{E})^*)^*=-\mu_0\epsilon_0\frac{\partial^2 \boldsymbol{E}}{\partial t^2}$$<br>左边那一块是什么呢？我们可以直接坐标系中展开，经过冗长计算有<br>$$(\boldsymbol{d}\wedge(\boldsymbol{d}\wedge \boldsymbol{E})^*)^*= -\boldsymbol{\Delta E}+\text{grad}(\text{div}(\boldsymbol{E}))$$，简直跟三维情况一模一样。由于没有电荷$\rho$，所以右边那项为0，我们终于得到了标准的波动方程：<br>$$\boldsymbol{\Delta E}-\mu_0\epsilon_0\frac{\partial^2 \boldsymbol{E}}{\partial t^2}=0$$<br>同样方法消去电场，利用磁场散度为0可得：<br>$$\boldsymbol{\Delta B}-\mu_0\epsilon_0\frac{\partial^2 \boldsymbol{B}}{\partial t^2}=0$$<br>其中$\boldsymbol{\Delta B}$为2-向量Laplace算子，跟向量一样也是直接对2-向量每个分量作用。</p>
+<p>不难看见真空光速$c={1 \over \sqrt{\mu_0\epsilon_0}}$。既然光速不随参考系改变，是不是可以开启<a href="/archives/lavie4ds/#5dgate">五维时空狭义相对论的大门</a>了？<a name="d11"></a></p>
+<h2 id="四维波动光学"><a href="#四维波动光学" class="headerlink" title="四维波动光学"></a>四维波动光学</h2><p>我们假设有有向x轴方向传播的均匀平胞电磁波（平面波的升级版！），看看会怎样。</p>
+<ul>
+<li>假设电场只有$x$分量，此时电场旋度为零，没有磁场能够激发起这种电场。</li>
+<li>假设电场只有$y$分量，此时电场旋度漩涡方向为xy方向，如果有zw方向的磁场按正弦波变化就可能激起这种电场，且也按相同频率相位变化。</li>
+<li>假设磁场只有$xy$分量，此时磁场旋度为零，没有电场能够激发起这种电场。</li>
+<li>假设磁场只有$yz$分量，此时磁场旋度为w，如果有w方向上的电场按正弦波变化就能够激发起这种电场，且也按相同频率相位变化。</li>
+</ul>
+<p>从上面可不太严谨的描述中可看出四维空间电磁场传播方向三者还是相互垂直的。所以我们就可以来看看四维空间中的偏振光了。我们知道偏振光可以分为线偏振、椭圆偏振、圆偏振等。虽然可以有三个方向上的同频率正弦电场都参与合成，但并不会产生更立体的图形了，它们在三维的波阵胞中还是只可能合成一些线段、椭圆、圆。由于定了电场磁场也会随之确定，所以四维电磁波的偏振方式并不多。我们还可以像三维那样计算不同偏振光的反射/折射系数，也就是4D版的Fresnel公式！根据电场、磁场是否平行于分界面也还是两个Fresnel公式。具体我也不想算了，除非以后要开发4D物理光线跟踪渲染引擎再说吧。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wxyhly.github.io/archives/electm4d/" data-id="ckqds9bpu000p6kvlp7y1fzlg" class="article-share-link">Share</a>
+      
+        <a href="https://wxyhly.github.io/archives/electm4d/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/四维/">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学/">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/物理/">物理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系列文章/">系列文章</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/archives/gaqr/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          四维空间（十一）：几何代数、四元数与空间旋转
+        
+      </div>
+    </a>
+  
+  
+    <a href="/archives/mc4tutorial/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Minecraft4D 教程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维世界系列/">四维世界系列</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a><span class="category-list-count">13</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2b2t/" style="font-size: 11.25px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11.25px;">4dViewer</a> <a href="/tags/Hutton32/" style="font-size: 11.25px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12.5px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/代数/" style="font-size: 11.25px;">代数</a> <a href="/tags/几何/" style="font-size: 17.5px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.25px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 12.5px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 16.25px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 12.5px;">拓补学</a> <a href="/tags/数学/" style="font-size: 17.5px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 13.75px;">物理</a> <a href="/tags/电路/" style="font-size: 11.25px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.75px;">系列文章</a> <a href="/tags/群论/" style="font-size: 11.25px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.25px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.25px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/archives/unknots2/">四维空间（十二）：解开球面结</a>
+          </li>
+        
+          <li>
+            <a href="/archives/gaqr/">四维空间（十一）：几何代数、四元数与空间旋转</a>
+          </li>
+        
+          <li>
+            <a href="/archives/electm4d/">四维世界（七）：电磁学</a>
+          </li>
+        
+          <li>
+            <a href="/archives/mc4tutorial/">Minecraft4D 教程</a>
+          </li>
+        
+          <li>
+            <a href="/archives/newton4/">四维世界（六）：牛顿力学</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap"> 
+<h3 class="widget-title">链接</h3> 
+   <div class="widget">
+   <ul class="entry"> 
+    <li><a href="http://hadroncfy.com" title="hadroncfy" target="_blank">CFY(Hadron)</a></li> 
+    <li><a href="http://zzy.blog.ustc.edu.cn" title="ZZY" target="_blank">ZZY(BG6GCZ)</a></li> 
+   </ul> 
+</div></div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 wxyhly<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/programs/" class="mobile-nav-link">Programs</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'wxyhly';
+  
+  var disqus_url = 'https://wxyhly.github.io/archives/electm4d/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    }); 
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script defer>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  "HTML-CSS": { linebreaks: { automatic: true } },
+         SVG: { linebreaks: { automatic: true } }
+};
+</script>
+<script type="text/javascript" defer
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.1/es5/tex-mml-chtml.js">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

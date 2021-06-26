@@ -2,10 +2,6 @@
 <html>
 	<head>
 		<style>
-.canvas2 {
-	width: 400;
-	height: 100;
-}
 		</style>
 		<script src="THREE.js"></script>
 		<meta charset="unicode">
@@ -15,15 +11,16 @@ function $(obj){
 	return document.getElementById(obj);
 }
 Init3d = function (obj){
+	
 	this.scene = new THREE.Scene();
 	this.domElement = obj;
-	this.width = 400;//obj.clientWidth;
-	this.height = 100;//obj.clientHeight;
+	$('webgl3d2').style.width = $('webgl3d').style.width = this.width = Math.min(500,Math.round(document.body.clientWidth/2));
+	$('webgl3d2').style.height = $('webgl3d').style.height = this.height = 100;//obj.clientHeight;
 	this.renderer = new THREE.WebGLRenderer({antialias: true});
 	this.renderer.setSize(this.width, this.height);
 	obj.appendChild(this.renderer.domElement);
 	this.renderer.setClearColor(0x00001F, 1.0);
-	this.camera = new THREE.PerspectiveCamera(11,this.width/this.height,0.01,100);
+	this.camera = new THREE.PerspectiveCamera(11,5,0.01,100);
 	this.camera.position.set(0.6,0.8,0);
 	//this.camera.position.set(0,0,1);
 	this.camera.up.set(0,0,1);
@@ -84,6 +81,15 @@ function loop(){
 	window.requestAnimationFrame(loop);
 	Q+=0.01;
 }
+window.addEventListener('resize',function(){
+	var ww = Math.min(500,Math.round(document.body.clientWidth/2));
+	main3D.renderer.setSize(ww, 100);
+	main3d.renderer.setSize(ww, 100);
+	main3d.renderer.domElement.width = main3D.renderer.domElement.width = $('webgl3d2').style.width = $('webgl3d').style.width = this.width = ww;
+	main3d.renderer.domElement.height = main3D.renderer.domElement.height = $('webgl3d2').style.height = $('webgl3d').style.height = this.height = 100;//obj.clientHeight;
+	
+});
+
 		</script>
 	</head>
 	<body onload="BodyOnLoad()">

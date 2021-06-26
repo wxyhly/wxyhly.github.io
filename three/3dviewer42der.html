@@ -262,11 +262,11 @@ function Renderer(gl){
 				gl.program2.uniform["mat3 projM"].set(camera.getProj3());
 				gl.program2.attribute["vec3 V"].bind(gl.rectBuff);
 				var ch = 0.7*k, h = 0.1;
-				for(var i=-1; i<=1; i+=0.02){
+				for(var i=-1; i<=1; i+=0.025){
 					gl.rectBuff.set([i,1,ch+h, i,1,ch-h, i,-1,ch+h, i,-1,ch-h]);
 					gl.drawStrip(gl.rectBuff);
 				}
-				for(var i=-1; i<=1; i+=0.02){
+				for(var i=-1; i<=1; i+=0.025){
 					gl.rectBuff.set([1,i,ch+h, 1,i,ch-h, -1,i,ch+h, -1,i,ch-h]);
 					gl.drawStrip(gl.rectBuff);
 				}
@@ -453,7 +453,7 @@ Controler.prototype.tryMove = function(v){
 		</script>
 	</head>
 	<body onload="BodyOnLoad()" onclick="loop();$('hidee').style.display='none'">
-	<div id="hidee">点击激活Webgl<br></div>
+	<div id="hidee">点击激活Webgl。 Click to activate Webgl.<br></div>
 	<table class="floating" id="table1"><tr><td>
 	<div id="threeBuffer"></div></td><td>
 	<div id="threeBuffer2"></div></td><td>
