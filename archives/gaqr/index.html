@@ -14,7 +14,7 @@
 <meta property="og:image" content="https://wxyhly.github.io/\img\gaqr001.gif">
 <meta property="og:image" content="https://wxyhly.github.io/\img\gaqr002.svg">
 <meta property="og:image" content="https://wxyhly.github.io/\img\gaqr001.svg">
-<meta property="og:updated_time" content="2021-06-26T12:20:02.671Z">
+<meta property="og:updated_time" content="2021-07-05T14:11:12.475Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="四维空间（十一）：几何代数、四元数与空间旋转">
 <meta name="twitter:description" content="#警告：本文内容超级进阶，可以说大概包括四维欧几里得空间的所有基础的代数理论了，本文重代数轻几何，所以可能不太好理解这篇文章将会介绍一种新的可以“统一天下”高维几何的代数系统：几何代数（Geometric Algebra），因为在这个代数体系下包含了标量、向量、多维向量以及各种内积外积混合积，甚至囊括到了旋量（就是让电子转两圈才一样的罪魁祸首）、空间旋转、复数与四元数，矢量场中的各种导数算子，甚至">
@@ -133,7 +133,7 @@
 <li>然后我们“强行”把外积的定义也搬进来：对于相互垂直的向量$\boldsymbol u$与$\boldsymbol v$，我们规定$\boldsymbol u \boldsymbol v = -\boldsymbol v \boldsymbol u$。</li>
 <li>我们再规定这种乘法的结合律、左右分配律对任意k-向量$\boldsymbol A$、$\boldsymbol B$都成立：$(\boldsymbol A \boldsymbol B) \boldsymbol C = \boldsymbol A (\boldsymbol B \boldsymbol C) $，$(\boldsymbol A+ \boldsymbol B) \boldsymbol C = \boldsymbol A \boldsymbol C +\boldsymbol B \boldsymbol C $，$\boldsymbol A( \boldsymbol B+ \boldsymbol C) = \boldsymbol A \boldsymbol B +\boldsymbol A \boldsymbol C $。</li>
 </ul>
-<p>这个新的乘法就是<strong>几何积</strong>。为了统一，我们规定标量是0-向量。<br><a id="more"></a><br>下面我们看夹角为$\theta$的任意两个向量$\boldsymbol u$、$\boldsymbol v$做几何积$\boldsymbol u\boldsymbol v$结果会怎么样。定义里只给了平行与垂直方向上的向量的几何积的性质，所以要首先把$\boldsymbol u$在$\boldsymbol v$上正交分解了：<br>$$\boldsymbol u = \boldsymbol e_{\parallel v}||\boldsymbol u||\cos \theta + \boldsymbol e_{\perp v}||\boldsymbol u||\sin \theta$$<br>$$\boldsymbol u \boldsymbol v = \boldsymbol e_{\parallel v} \boldsymbol v ||\boldsymbol u||\cos \theta + \boldsymbol e_{\perp v} \boldsymbol v ||\boldsymbol u ||\sin \theta=||\boldsymbol u||||\boldsymbol v||\cos \theta + e_{\perp v} e_v ||\boldsymbol u||||\boldsymbol v||\sin \theta = \boldsymbol u \cdot \boldsymbol v + \boldsymbol u \wedge \boldsymbol v$$<br>什么？标量与2-向量加起来了？这有意义吗？我最先在wiki上看到几何代数就是这个反应，然后就点了右上角。后来我才慢慢了解到几何代数的强大。所以先不谈意义，我们接着看两个2-向量做几何积会怎样。<br>由于2-向量空间位置复杂，直接坐标运算。设<br>$$\begin{align} A&amp;=a_1e_{xy}+b_1e_{xz}+c_1e_{xw}+d_1e_{yz}+e_1e_{yw}+f_1e_{zw}  \\ B&amp;=a_2e_{xy}+b_2e_{xz}+c_2e_{xw}+d_2e_{yz}+e_2e_{yw}+f_2e_{zw}\end{align}$$<br>$$AB=(a_1e_{xy}+b_1e_{xz}+c_1e_{xw}+d_1e_{yz}+e_1e_{yw}+f_1e_{zw})(a_2e_{xy}+b_2e_{xz}+c_2e_{xw}+d_2e_{yz}+e_2e_{yw}+f_2e_{zw})$$<br>这个展开计算量有点大，但也不算困难。展开后的项有可能是这些情况：</p>
+<p>这个新的乘法就是<strong>几何积</strong>。为了统一，我们规定标量是0-向量。<br><a id="more"></a><br>下面我们看夹角为$\theta$的任意两个向量$\boldsymbol u$、$\boldsymbol v$做几何积$\boldsymbol u\boldsymbol v$结果会怎么样。定义里只给了平行与垂直方向上的向量的几何积的性质，所以要首先把$\boldsymbol u$在$\boldsymbol v$上正交分解了：<br>$$\boldsymbol u = \boldsymbol e_{\parallel v}||\boldsymbol u||\cos \theta + \boldsymbol e_{\perp v}||\boldsymbol u||\sin \theta$$<br>$$\boldsymbol u \boldsymbol v = \boldsymbol e_{\parallel v} \boldsymbol v ||\boldsymbol u||\cos \theta + \boldsymbol e_{\perp v} \boldsymbol v ||\boldsymbol u ||\sin \theta=||\boldsymbol u||||\boldsymbol v||\cos \theta + e_{\perp v} e_v ||\boldsymbol u||||\boldsymbol v||\sin \theta = \boldsymbol u \cdot \boldsymbol v + \boldsymbol u \wedge \boldsymbol v$$<br>什么？标量与2-向量加起来了？这有意义吗？我最先在wiki上看到几何代数就是这个反应，然后就点了窗口右上角关闭按钮。后来我才慢慢了解到几何代数的强大。所以先不谈意义，我们接着看两个2-向量做几何积会怎样。<br>由于2-向量空间位置复杂，直接坐标运算。设<br>$$\begin{align} A&amp;=a_1e_{xy}+b_1e_{xz}+c_1e_{xw}+d_1e_{yz}+e_1e_{yw}+f_1e_{zw}  \\ B&amp;=a_2e_{xy}+b_2e_{xz}+c_2e_{xw}+d_2e_{yz}+e_2e_{yw}+f_2e_{zw}\end{align}$$<br>$$AB=(a_1e_{xy}+b_1e_{xz}+c_1e_{xw}+d_1e_{yz}+e_1e_{yw}+f_1e_{zw})(a_2e_{xy}+b_2e_{xz}+c_2e_{xw}+d_2e_{yz}+e_2e_{yw}+f_2e_{zw})$$<br>这个展开计算量有点大，但也不算困难。展开后的项有可能是这些情况：</p>
 <ul>
 <li>完全相同，如$e_{xy}e_{xy}$：$e_{xy}e_{xy}=e_xe_ye_xe_y=-e_x(e_xe_y)e_y=-(e_xe_x)(e_ye_y)=-1$</li>
 <li>部分相同，如$e_{xy}e_{xz}$：$e_{xy}e_{xy}=e_xe_ye_xe_z=-e_x(e_xe_y)e_z=-e_xe_z=-e_{xz}$</li>
@@ -168,7 +168,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wxyhly.github.io/archives/gaqr/" data-id="ckqdstp050017ewvlvymbssyj" class="article-share-link">Share</a>
+      <a data-url="https://wxyhly.github.io/archives/gaqr/" data-id="cky5x28y9001ze8wmnu21dvtu" class="article-share-link">Share</a>
       
         <a href="https://wxyhly.github.io/archives/gaqr/#disqus_thread" class="article-comment-link">留言</a>
       
@@ -287,7 +287,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2021 wxyhly<br>
+      &copy; 2022 wxyhly<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
