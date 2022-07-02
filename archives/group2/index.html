@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/group1img3.gif">
 <meta property="og:image" content="https://wxyhly.github.io/img/group1img4.gif">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/6/68/Lattice_diagram_of_Q_adjoin_a_cube_root_of_2_and_a_primitive_cube_root_of_1%2C_its_subfields%2C_and_Galois_groups_variant.png">
-<meta property="og:updated_time" content="2020-07-27T05:42:48.683Z">
+<meta property="og:updated_time" content="2022-07-01T13:48:05.582Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="群论系列(二)：数域的扩张">
 <meta name="twitter:description" content="有了群的一些基础知识，下面我们就该来讨论n次方程的根的问题了。在具体讨论这个问题之前，我们还得引入一些新概念，这些概念很多已经不再局限于群，属于抽象代数的范围了。这篇文章的内容有点进阶了，但本文定位于让读者对伽罗瓦理论有一个感性的认识，所以一般性的结论和证明都尽量不讲，读者有兴趣可以参阅维基百科或抽象代数的书籍。
@@ -141,18 +141,18 @@
 <blockquote>
 <p>设域扩张$k\subset K\subset E$，其中$K/k$，$E/k$都是正规扩张，则$Gal(E/K)$是$Gal(E/k)$的一个正规子群，且$$Gal(E/k)/Gal(E/K)\cong Gal(K/k)$$</p>
 </blockquote>
-<p>（证明这个定理要用到群同构第一定理<a href="javascript:$('#detail').toggle();$('#details').text($('#details').text()=='+'?'-':'+')" target="_blank" rel="external">[<span id="details">+</span>]显示详情</a>）</p>
+<p>（证明这个定理要用到群同构第一定理<a href="javascript:$('#detail').toggle();$('#details').text($('#details').text()=='+'?'-':'+');void(0)" target="_self">[<span id="details">+</span>]显示详情</a>）</p>
 <p><div id="detail" style="display:none; background-color:#EEE">群就是集合加一种运算，集合与集合间可以有映射。我们把能<strong>保持群结构</strong>的映射$f$叫做群同态，即保持群运算$f(a)*f(b)=f(a*b)$。容易验证，如果群A中的某些元素被映射到了群B中的单位元，则这些元素组成了群A中的子群，我们称之为映射的<strong>核</strong>。也不难验证，A的某个陪集中的所有元素将会被一起映射到B中的一个元素上。由于B也是群，这样可以反过来说明A中的陪集之间乘法运算可以良好定义，即映射的<strong>核</strong>永远是A的<strong>正规子群</strong>。而映射的像（群B中的子群）同构于群A除以核的商群。这就是<strong>群同构第一定理</strong>。<br>首先我们知道$Gal(E/K)$是$Gal(E/k)$的子群，因为前者的自同构只是后者的一部分。所以如果我们能够在两个自同构之间定义一个同态映射，则问题就解决了。如果扩张是正规的，我们才能找到这样的同态映射（大概是将大自同构群中的映射作用限制在小自同构群中），详情见相关书籍。<br></div><br>我们把这个定理用到根式塔上：$k\subset K_1\subset ..\subset K_{i}\subset E$</p>
 <p>$$Gal(E/K_1)/Gal(E/K_{2})\cong Gal(K_{2}/K_{1})\\<br>Gal(E/K_2)/Gal(E/K_{3})\cong Gal(K_{3}/K_{2})\\<br>…\\<br>Gal(E/K_{i-1})/Gal(E/K_{i})\cong Gal(K_{i}/K_{i-1})\\<br>Gal(E/K_{i})/Gal(E/E)\cong Gal(E/K_{i})$$</p>
 <p>说明了$Gal(E/K_{2})$是$Gal(E/K_1)$的正规子群、$Gal(E/K_{3})$是$Gal(E/K_2)$的正规子群、……、$Gal(E/E)=${e}是$Gal(E/K_i)$的正规子群。我们得到了一个结论：$Gal(E/K_1)$一定要有正规子群的正规子群的……的正规子群，最后得到平凡群{e}，当然这些正规子群对应的商群都必须是循环群。我们把有这种结构的群叫<strong>可解群</strong>，也就是说添加可以用四则运算加根式表示的数得到的扩张的伽罗瓦群一定是可解群，如果不是，说明我们添加的数不是可以用四则运算加根式表示的数。</p>
-<p>我们最后来看把一个五次方程的所有根都加入得到的域扩张的伽罗瓦群是怎样的：对于群元素f来说<br>$$f(x^5+a_4 x^4+..+a_0)=f(0)=0\\<br>f(x)^5+a_4 f(x)^4+..+a_0=0$$<br>对于这个方程最一般的情况为5个不同的无理根。比如添加方程$x^5-4x+2=0$所有根的域扩张的伽罗瓦群：它最多能置换所有的根，所以是群$S_5$的子群，但容易验证方程$x^5-4x+2=0$有两个共轭复根，说明我们至少可以交换这两根，即它包含阶数为二的群元，其实所有无有理根的五次方程的伽罗瓦群的元素个数一定是五的整数倍，（因为添加每个根$z$后的数域中的数都能唯一写成$a+bz+cz^2+dz^3+ez^4$的形式<a href="javascript:$('#pourquoi').toggle();$('#pourquois').text($('#pourquois').text()=='+'?'-':'+')" target="_blank" rel="external">[<span id="pourquois">+</span>]为什么？</a>，说明了存在一个五次扩张。），而同时满足以上两个条件的子群就只能是$S_5$自身了（我们将在下篇文章中分析$S_5$的结构）。</p>
+<p>我们最后来看把一个五次方程的所有根都加入得到的域扩张的伽罗瓦群是怎样的：对于群元素f来说<br>$$f(x^5+a_4 x^4+..+a_0)=f(0)=0\\<br>f(x)^5+a_4 f(x)^4+..+a_0=0$$<br>对于这个方程最一般的情况为5个不同的无理根。比如添加方程$x^5-4x+2=0$所有根的域扩张的伽罗瓦群：它最多能置换所有的根，所以是群$S_5$的子群，但容易验证方程$x^5-4x+2=0$有两个共轭复根，说明我们至少可以交换这两根，即它包含阶数为二的群元，其实所有无有理根的五次方程的伽罗瓦群的元素个数一定是五的整数倍，（因为添加每个根$z$后的数域中的数都能唯一写成$a+bz+cz^2+dz^3+ez^4$的形式<a href="javascript:$('#pourquoi').toggle();$('#pourquois').text($('#pourquois').text()=='+'?'-':'+');void(0)" target="_self">[<span id="pourquois">+</span>]为什么？</a>，说明了存在一个五次扩张。），而同时满足以上两个条件的子群就只能是$S_5$自身了（我们将在下篇文章中分析$S_5$的结构）。</p>
 <p><div id="pourquoi" style="display:none; background-color:#EEE">首先，数域中的数都能写成$a+bz+cz^2+dz^3+ez^4$，因为根据方程，$z^5$可以被前式表示，除法的封闭性并不显而易见，但我们可以用待定系数法求到每一个形如$a+bz+cz^2+dz^3+ez^4$数的倒数也能写成这样的形式$a’+b’z+c’z^2+d’z^3+e’z^4$，根据方程$(a’+b’z+c’z^2+d’z^3+e’z^4)(a+bz+cz^2+dz^3+ez^4)=1$中对应系数相等我们能得到一个方程组，可验证一般情况下均有解。下面说明唯一性：如果不唯一，则说明根$z$也是某有理系数方程$a+bz+cz^2+dz^3+z^4=0$的解，我们将多项式$x^5-4x+2$与$a+bz+cz^2+dz^3+z^4$现在最大的复数域上完全分解因式，然后相除可以把共同的根$z$约掉得到一个分式，剩下分子分母都是不可约的无理因子，而最开始分子分母是有理系数的多项式，约掉无理因式$(x-z)$后系数一定是无理的，但两个有理多项式相除后系数一定是有理的，这就矛盾了。（注意这里并不严谨，证明详见相关书籍）</div><br>我们将证明群$S_5$不可解，即不存在前面叙述的那种正规子群列，到这里我们就成功把问题完全转化为了群论问题。因为只要能包含添加进一个根$z$的那些扩域对应的自同构群就一定能将$z$与其他四个根交换，说明这个群至少包含了$S_5$。但由于$S_5$不可解，将导致所有包含了$S_5$的更大的群都不可解。<br>我们将通过<strong>共轭类</strong>来分析$S_5$中为何没有相应的正规子群列。（未完待续）</p>
 <p></p><p class="likecode">/***<br>　　注意，本文目的只是给读者呈现伽罗瓦理论的一个大概脉络，有很多细节我也没弄明白<br>　　更多详情见《抽象代数基础教程》<br>***/</p><br><!-- 120|展纸泪科泪表泪健烤弯难单陆展递周烤选健茫瓶扰陆弯诗贿递帜状瓶徐帜健牵物 --><p></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wxyhly.github.io/archives/group2/" data-id="cky5x28y00016e8wmsqqraank" class="article-share-link">Share</a>
+      <a data-url="https://wxyhly.github.io/archives/group2/" data-id="cl53v2oxc0019nswm2cxec49c" class="article-share-link">Share</a>
       
         <a href="https://wxyhly.github.io/archives/group2/#disqus_thread" class="article-comment-link">留言</a>
       
@@ -166,7 +166,7 @@
 <nav id="article-nav">
   
     <a href="/archives/game4d/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">&amp;lt;newer</strong>
       <div class="article-nav-title">
         
           我玩过的一些四维游戏
@@ -176,7 +176,7 @@
   
   
     <a href="/archives/group1/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">older&amp;gt;</strong>
       <div class="article-nav-title">群论系列(一)：群论简介</div>
     </a>
   
@@ -209,7 +209,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2b2t/" style="font-size: 11.25px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11.25px;">4dViewer</a> <a href="/tags/Hutton32/" style="font-size: 11.25px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12.5px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/代数/" style="font-size: 11.25px;">代数</a> <a href="/tags/几何/" style="font-size: 17.5px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.25px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 12.5px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 16.25px;">奇特想象</a> <a href="/tags/拓补学/" style="font-size: 12.5px;">拓补学</a> <a href="/tags/数学/" style="font-size: 17.5px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 13.75px;">物理</a> <a href="/tags/电路/" style="font-size: 11.25px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.75px;">系列文章</a> <a href="/tags/群论/" style="font-size: 11.25px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.25px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.25px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+      <a href="/tags/2b2t/" style="font-size: 11.11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11.11px;">4dViewer</a> <a href="/tags/Hutton32/" style="font-size: 11.11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12.22px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 14.44px;">javascript</a> <a href="/tags/代数/" style="font-size: 11.11px;">代数</a> <a href="/tags/几何/" style="font-size: 16.67px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.11px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 13.33px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15.56px;">奇特想象</a> <a href="/tags/拓扑学/" style="font-size: 10px;">拓扑学</a> <a href="/tags/拓补学/" style="font-size: 12.22px;">拓补学</a> <a href="/tags/数学/" style="font-size: 17.78px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 13.33px;">物理</a> <a href="/tags/电路/" style="font-size: 11.11px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.89px;">系列文章</a> <a href="/tags/群论/" style="font-size: 12.22px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.11px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.11px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
     </div>
   </div>
 
@@ -218,7 +218,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -229,6 +229,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/archives/homotopy/">代数拓扑简介（上）：同伦论</a>
+          </li>
         
           <li>
             <a href="/archives/unknots2/">四维空间（十二）：解开球面结</a>
@@ -244,10 +248,6 @@
         
           <li>
             <a href="/archives/mc4tutorial/">Minecraft4D 教程</a>
-          </li>
-        
-          <li>
-            <a href="/archives/newton4/">四维世界（六）：牛顿力学</a>
           </li>
         
       </ul>
