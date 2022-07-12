@@ -59,7 +59,7 @@ Van Kampen定理与同伦基本群的计算
 <meta property="og:image" content="https://wxyhly.github.io/img/homology005.svg">
 <meta property="og:image" content="https://wxyhly.github.io/img/homology006.svg">
 <meta property="og:image" content="https://wxyhly.github.io/img/homology001.png">
-<meta property="og:updated_time" content="2022-07-03T02:30:40.489Z">
+<meta property="og:updated_time" content="2022-07-03T05:40:40.420Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代数拓扑简介（上）：同伦论">
 <meta name="twitter:description" content="注:这篇文章不需要读者有专业的拓扑学基础，可能一听到“代数”就给人一种抽象难以理解的感觉，因此本文更多希望从直觉上让大家感受一下代数拓扑中的同伦、同调是什么，具体正式定义和技术细节可以在任意一本代数拓扑的书上找到哦。
@@ -188,13 +188,13 @@ Van Kampen定理与同伦基本群的计算
 <p>可以看到，覆盖空间变得越大，基本群就变得越小，其实一个空间的所有覆盖空间跟基本群的子群是一一对应的，基本群的正规子群对应的覆盖空间还具有更好的对称性……这里就不继续展开说了。<a name="l6"></a></p>
 <h2 id="高阶同伦群简介"><a href="#高阶同伦群简介" class="headerlink" title="高阶同伦群简介"></a>高阶同伦群简介</h2><p>看过《<a href="/archives/knot4d/">四维空间（十）：扭结与环扣</a>》的读者就知道，高维空间中一维路径不一定能套得住所有的孔，因为孔的维数不尽相同，必须要相互匹配才能拴得住，比如我们就不能用一维的同伦基本群捕捉到三维空间挖掉一点前后的拓扑变化。因此除了从道路(圆周)得到的同伦基本群，还有球面，超球面的高维“道路”得到的高阶同伦群，这些高阶同伦群有时候特别复杂。我们来看看圆周的各阶同伦群：<br>首先一维同伦群就是路径的基本群，对于同伦等价类来说只有绕孔圈数的这个自由度，绕孔m圈的路径与绕孔n圈的路径复合得到的是绕孔m+n圈的路径。因此这些路径等价类间的“加法”运算跟整数的运算是一样的，我们记作$\pi_1(S^1)=\mathbb{Z}$。这里我们用$\pi_i$代表$i$维同伦群，$S^1$代表一维球面，即圆周，$\mathbb{Z}$是整数集的符号。</p>
 <p><img src="/img/homology005.svg" alt="一个顺时针绕圆周圈数为2的路径。真实路径应完全贴在圆周上，为方便观察特意将它们画开"><br>圆周的二维同伦群是什么呢？我们能否将二维球面映射到一维圆周上呢？或许我们把球面拉成面条就能放在圆周上了，但它是可缩的，是零伦。可以证明二维球面没法套在圆周的孔上，也就是说只有零伦映射这一个同伦等价类，我们记作$\pi_2(S^1)=0$。通过覆盖空间相关理论可推出更高维的超球面也没法往圈上套，因此圆周的大于1阶的同伦群都是仅包含单位元的平凡群。</p>
-<p><img src="/img/homology006.svg" alt="无论我们把球面拉多长在圆周上缠再多圈它都可以缩成一个点。"><br>下面我们研究一下二维球面的各阶同伦群：首先，球面作为一个没有孔的单连通图形，所有一维道路都可缩，因此一阶同伦群为0。二阶同伦群则是用球面自己来覆盖自己。回想一下一维的圆周可以覆盖自己n圈，可以证明（Hopf度数定理）n维球面自己覆盖自己的方式也可以用一个圈数来描述，同伦群结构也是跟整数的加法对应，记作$\pi_n(S^n)=\mathbb{Z}$。</p>
-<p>这里要注意一下高维的球形“道路”之间怎样定义加法：将球面的赤道捏成一点，我们会得到两个球面的单点并。这个过程的逆过程就是两球面道路相加得到的新球面，由于维数更多，所以二维及以上的加法运算都可以有空间交换位置，满足交换律，但这并没有让高阶同伦群变得简单。似乎我们可以同理觉得二维球面的三维同调群也是零伦的，但例外开始来了。我们想构造一个不可缩的，将三维球面映射到二维球面的映射。还记得Hopf纤维丛吗？Hopf纤维丛中，三维球面上的每个纤维是个圆周，对应二维球面上的一个点。这正是一个非平凡的将三维球面上的点映射到二维球面的方式。可以证明这个Hopf映射是不可缩的，并且它自身还可以复合，同样可以数某种“圈数”，所以球面$S^2$的三阶同伦群也是整数加法群$\pi_3(S^2)=\mathbb{Z}$。这种“例外”多不多呢？其实高阶同伦群的复杂结构并不是例外，看看下面这张表就知道高阶同伦群有多恐怖了。n维球面的所有同伦群的计算其实是拓扑学中的一个至今都非常困难的问题。<br><img src="/img/homology001.png" alt="这些高维同伦群有一些有趣的性质，如周期性、稳定性、不再是无限群等"><br>同伦群的求解是非常困难的，有没有简单点的处理方法呢？下一篇文章我们将引入一个与同伦相近的概念——同调，与同伦群不一样的是，它定义的是永远满足交换律的加法运算，计算也要相对简便。（未完待续）</p>
+<p><img src="/img/homology006.svg" alt="无论我们把球面拉多长在圆周上缠再多圈它都可以缩成一个点。"><br>下面我们研究一下二维球面的各阶同伦群：首先，球面作为一个没有孔的单连通图形，所有一维道路都可缩，因此一阶同伦群为0。二阶同伦群则是用球面自己来覆盖自己。回想一下一维的圆周可以覆盖自己n圈，可以证明（Hopf度数定理）$n$维球面自己覆盖自己的方式也可以用一个圈数来描述，同伦群结构也是跟整数的加法对应，记作$\pi_n(S^n)=\mathbb{Z}$。</p>
+<p>这里要注意一下高维的球形“道路”之间怎样定义加法：将球面的赤道捏成一点，我们会得到两个球面的单点并。这个过程的逆过程就是两球面道路相加得到的新球面，由于维数更多，所以二维及以上的加法运算都可以有空间交换位置，满足交换律，但这并没有让高阶同伦群变得简单。似乎我们可以同理觉得二维球面的三维同调群也是零伦的，但例外开始来了。我们想构造一个不可缩的，将三维球面映射到二维球面的映射。还记得Hopf纤维丛吗？Hopf纤维丛中，三维球面上的每个纤维是个圆周，对应二维球面上的一个点。这正是一个非平凡的将三维球面上的点映射到二维球面的方式。可以证明这个Hopf映射是不可缩的，并且它自身还可以复合，同样可以数某种“圈数”，所以球面$S^2$的三阶同伦群也是整数加法群$\pi_3(S^2)=\mathbb{Z}$。这种“例外”多不多呢？其实高阶同伦群的复杂结构并不是例外，看看下面这张表就知道高阶同伦群有多恐怖了。$n$维球面的所有同伦群的计算其实是拓扑学中的一个至今都非常困难的问题。<br><img src="/img/homology001.png" alt="这些高维同伦群有一些有趣的性质，如周期性、稳定性、不再是无限群等"><br>同伦群的求解是非常困难的，有没有简单点的处理方法呢？下一篇文章我们将引入一个与同伦相近的概念——同调，与同伦群不一样的是，它定义的是永远满足交换律的加法运算，计算也要相对简便。（未完待续）</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wxyhly.github.io/archives/homotopy/" data-id="cl53vmlcg001s7gwm53504vm2" class="article-share-link">Share</a>
+      <a data-url="https://wxyhly.github.io/archives/homotopy/" data-id="cl5hpmy3n001fxowmduu1xajz" class="article-share-link">Share</a>
       
         <a href="https://wxyhly.github.io/archives/homotopy/#disqus_thread" class="article-comment-link">留言</a>
       
@@ -206,6 +206,15 @@ Van Kampen定理与同伦基本群的计算
   
     
 <nav id="article-nav">
+  
+    <a href="/archives/Eop-Analogue/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;&lt; Newer</strong>
+      <div class="article-nav-title">
+        
+          自己打造的一个电脑钢琴
+        
+      </div>
+    </a>
   
   
     <a href="/archives/unknots2/" id="article-nav-older" class="article-nav-link-wrap">
@@ -242,7 +251,7 @@ Van Kampen定理与同伦基本群的计算
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2b2t/" style="font-size: 11.11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11.11px;">4dViewer</a> <a href="/tags/Hutton32/" style="font-size: 11.11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12.22px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 14.44px;">javascript</a> <a href="/tags/代数/" style="font-size: 11.11px;">代数</a> <a href="/tags/几何/" style="font-size: 16.67px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.11px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 13.33px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15.56px;">奇特想象</a> <a href="/tags/拓扑学/" style="font-size: 10px;">拓扑学</a> <a href="/tags/拓补学/" style="font-size: 12.22px;">拓补学</a> <a href="/tags/数学/" style="font-size: 17.78px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 13.33px;">物理</a> <a href="/tags/电路/" style="font-size: 11.11px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.89px;">系列文章</a> <a href="/tags/群论/" style="font-size: 12.22px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.11px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.11px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+      <a href="/tags/2b2t/" style="font-size: 11.25px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11.25px;">4dViewer</a> <a href="/tags/B站视频/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11.25px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12.5px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/代数/" style="font-size: 11.25px;">代数</a> <a href="/tags/几何/" style="font-size: 16.25px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.25px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 13.75px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15px;">奇特想象</a> <a href="/tags/拓扑学/" style="font-size: 10px;">拓扑学</a> <a href="/tags/拓补学/" style="font-size: 12.5px;">拓补学</a> <a href="/tags/数学/" style="font-size: 17.5px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 13.75px;">物理</a> <a href="/tags/电路/" style="font-size: 11.25px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.75px;">系列文章</a> <a href="/tags/群论/" style="font-size: 12.5px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.25px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.25px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a> <a href="/tags/音乐/" style="font-size: 10px;">音乐</a>
     </div>
   </div>
 
@@ -251,7 +260,7 @@ Van Kampen定理与同伦基本群的计算
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -262,6 +271,10 @@ Van Kampen定理与同伦基本群的计算
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/archives/Eop-Analogue/">自己打造的一个电脑钢琴</a>
+          </li>
         
           <li>
             <a href="/archives/homotopy/">代数拓扑简介（上）：同伦论</a>
@@ -277,10 +290,6 @@ Van Kampen定理与同伦基本群的计算
         
           <li>
             <a href="/archives/electm4d/">四维世界（七）：电磁学</a>
-          </li>
-        
-          <li>
-            <a href="/archives/mc4tutorial/">Minecraft4D 教程</a>
           </li>
         
       </ul>
