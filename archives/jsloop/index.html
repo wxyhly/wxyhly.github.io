@@ -5,23 +5,21 @@
   
   <title>自我描述的代码(in javascript) | Blog de WXYHLY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="自我描述的代码(Quine)就是程序运行时可以打印自己的源代码。网上有很多C语言、C#版的，我准备写一个javascript版本的。
-题外话：eval函数/无限递归　　javascript是解释型语言，它有一个很牛的函数eval()：它能把接受到的字符串当成javascript代码执行。我想出了这段代码：1s=&quot;eval(s)&quot;;eval(s);
-　　我们可以在任何浏览器上做这个实验：在地址栏">
+  <meta name="description" content="自我描述的代码(Quine)就是程序运行时可以打印自己的源代码。网上有很多C语言、C#版的，我准备写一个javascript版本的。 题外话：eval函数&#x2F;无限递归　　javascript是解释型语言，它有一个很牛的函数eval()：它能把接受到的字符串当成javascript代码执行。我想出了这段代码： 1s&#x3D;&quot;eval(s)&quot;;eval(s); 　　我们可以在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自我描述的代码(in javascript)">
 <meta property="og:url" content="https://wxyhly.github.io/archives/jsloop/index.html">
 <meta property="og:site_name" content="Blog de WXYHLY">
-<meta property="og:description" content="自我描述的代码(Quine)就是程序运行时可以打印自己的源代码。网上有很多C语言、C#版的，我准备写一个javascript版本的。
-题外话：eval函数/无限递归　　javascript是解释型语言，它有一个很牛的函数eval()：它能把接受到的字符串当成javascript代码执行。我想出了这段代码：1s=&quot;eval(s)&quot;;eval(s);
-　　我们可以在任何浏览器上做这个实验：在地址栏">
+<meta property="og:description" content="自我描述的代码(Quine)就是程序运行时可以打印自己的源代码。网上有很多C语言、C#版的，我准备写一个javascript版本的。 题外话：eval函数&#x2F;无限递归　　javascript是解释型语言，它有一个很牛的函数eval()：它能把接受到的字符串当成javascript代码执行。我想出了这段代码： 1s&#x3D;&quot;eval(s)&quot;;eval(s); 　　我们可以在">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wxyhly.github.io/img/jsloop.gif">
-<meta property="og:updated_time" content="2020-07-27T05:42:48.697Z">
+<meta property="article:published_time" content="2016-05-02T07:06:20.000Z">
+<meta property="article:modified_time" content="2020-07-27T05:42:48.697Z">
+<meta property="article:author" content="wxyhly">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="自我描述">
+<meta property="article:tag" content="递归">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自我描述的代码(in javascript)">
-<meta name="twitter:description" content="自我描述的代码(Quine)就是程序运行时可以打印自己的源代码。网上有很多C语言、C#版的，我准备写一个javascript版本的。
-题外话：eval函数/无限递归　　javascript是解释型语言，它有一个很牛的函数eval()：它能把接受到的字符串当成javascript代码执行。我想出了这段代码：1s=&quot;eval(s)&quot;;eval(s);
-　　我们可以在任何浏览器上做这个实验：在地址栏">
 <meta name="twitter:image" content="https://wxyhly.github.io/img/jsloop.gif">
   
   
@@ -30,10 +28,12 @@
   
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
-  <link rel="stylesheet" href="/css/style.css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
   
 
-</head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 <body>
   <div id="container">
@@ -65,7 +65,7 @@
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wxyhly.github.io"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wxyhly.github.io"></form>
       </div>
     </div>
   </div>
@@ -96,31 +96,46 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>　　自我描述的代码(Quine)就是程序运行时可以打印自己的源代码。网上有很多C语言、C#版的，我准备写一个javascript版本的。</p>
-<h3 id="题外话：eval函数-无限递归"><a href="#题外话：eval函数-无限递归" class="headerlink" title="题外话：eval函数/无限递归"></a>题外话：eval函数/无限递归</h3><p>　　javascript是解释型语言，它有一个很牛的函数<code>eval()</code>：它能把接受到的字符串当成javascript代码执行。我想出了这段代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="string">"eval(s)"</span>;<span class="built_in">eval</span>(s);</span><br></pre></td></tr></table></figure></p>
-<p>　　我们可以在任何浏览器上做这个实验：在地址栏输入<code>javascript:s=&quot;eval(s)&quot;;eval(s);</code>即可。（快试试吧。。）<br><a id="more"></a><br>　　在Chrome控制台运行一会儿后得到这样的报错：<span style="color:#F00">Uncaught RangeError: Maximum call stack size exceeded</span><span style="color:#999">(…)</span></p>
-<h2 id="意思是递归错误，超出堆栈大小。"><a href="#意思是递归错误，超出堆栈大小。" class="headerlink" title="　　意思是递归错误，超出堆栈大小。"></a>　　意思是<strong>递归错误，超出堆栈大小</strong>。</h2><p>　　还有一个很有意思的无限递归实验：在Chrome控制台执行这些语句：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A = &#123;&#125;;</span><br><span class="line">B = &#123;&#125;;</span><br><span class="line">A.a = B;</span><br><span class="line">B.b = A;</span><br></pre></td></tr></table></figure></p>
-<p>　　然后输出A，我们得到了一个无限嵌套的东西：<br><img src="/img/jsloop.gif" alt=""><br>　　（其实不是真的无限嵌套，而是两个互指的指针）</p>
-<h3 id="正题：自我打印的程序"><a href="#正题：自我打印的程序" class="headerlink" title="正题：自我打印的程序"></a>正题：自我打印的程序</h3><p>　　我们先看网上流行的C语言版本：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>*s=<span class="string">"char*s=%c%s%c;main()&#123;printf(s,34,s,34);&#125;"</span>;main()&#123;<span class="built_in">printf</span>(s,<span class="number">34</span>,s,<span class="number">34</span>);&#125;</span><br></pre></td></tr></table></figure></p>
-<p>　　最后的printf函数输出了整个程序的源代码，printf中34是引号 “ 的Ascii码，这是为了避免引号中又出现引号无法书写。在格式化输出中巧妙用%s来代表整个字符串是整个自我描述的<strong>核心</strong>：只有这样自己指代自己才能用有限的代码输出自身。<br>　　参考网上给的C语言版本的写法我有了在javascript语言里写的思路：必须要使用某个方法来代表整个字符串。但js中好像并没有格式化输出的命令，我们必须自己想办法用一个很短的字符串来代表整个字符串。我想到了随便用一个字符（比如“@”）在字符串里起占位作用，然后我们用字符串分组查找功能Split函数把“@”替换成整个字符串输出。所以我们先写一个函数来做这件事：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">r</span>(<span class="params">s</span>)</span>&#123;</span><br><span class="line">	j = <span class="built_in">String</span>.fromCharCode(<span class="number">34</span>); <span class="comment">//j代表双引号</span></span><br><span class="line">	k = <span class="string">'@'</span>;</span><br><span class="line">	q = s.split(k);</span><br><span class="line">	<span class="keyword">return</span> q[<span class="number">0</span>]+k+q[<span class="number">1</span>]+j+s+j+q[<span class="number">2</span>] <span class="comment">//返回s中@被s替换的字符串，比如"abc@d"变成了"abcabc@dd"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>　　然后我们就要写那个字符串了，那个字符串是什么样子的我们还不知道，先看下一步，也是最后一步——输出字符串：我们用console.log 函数输出最终结果，所以最后有代码<code>console.log(r(s))</code>，意思是让替换后的字符串输出。我们的代码现在有：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">r</span>(<span class="params">s</span>)</span>&#123;</span><br><span class="line">	j = <span class="built_in">String</span>.fromCharCode(<span class="number">34</span>); </span><br><span class="line">	k = <span class="string">'@'</span>;</span><br><span class="line">	q = s.split(k);</span><br><span class="line">	<span class="keyword">return</span> q[<span class="number">0</span>]+k+q[<span class="number">1</span>]+j+s+j+q[<span class="number">2</span>]</span><br><span class="line">&#125;</span><br><span class="line">s = .....</span><br><span class="line">console.log(r(s))</span><br></pre></td></tr></table></figure></p>
-<p>　　现在我们知道字符串s该等于什么了吧，它就等于上面的所有代码文本（因为我们的目的就是输出所有代码），上面打省略号的地方用“@”占位到时就能描述自身了。于是最终代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">r</span>(<span class="params">s</span>)</span>&#123;j=<span class="built_in">String</span>.fromCharCode(<span class="number">34</span>);k=<span class="string">'@'</span>;q=s.split(k);<span class="keyword">return</span> q[<span class="number">0</span>]+k+q[<span class="number">1</span>]+j+s+j+q[<span class="number">2</span>]&#125;s=<span class="string">"function r(s)&#123;j=String.fromCharCode(34);k='@';q=s.split(k);return q[0]+k+q[1]+j+s+j+q[2]&#125;s=@;console.log(r(s))"</span>;<span class="built_in">console</span>.log(r(s))</span><br></pre></td></tr></table></figure></p>
-<p>　　我们追求的是简短，所以没有必要单独搞个函数，这样优化一下我们得到：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="string">"s=@;j=String.fromCharCode(34);k='@';q=s.split(k);z=q[0]+j+s+j+q[1]+k+q[2];console.log(z)"</span>;j=<span class="built_in">String</span>.fromCharCode(<span class="number">34</span>);k=<span class="string">'@'</span>;q=s.split(k);z=q[<span class="number">0</span>]+j+s+j+q[<span class="number">1</span>]+k+q[<span class="number">2</span>];<span class="built_in">console</span>.log(z)</span><br></pre></td></tr></table></figure></p>
-<p>　　要充分发挥javascript语言的功能使代码更短，我们还能用前面提到过的<strong>eval函数</strong>。我们看到大量代码前后出现了两次——第一次是代码本身，第二次在字符串s里面。我们其实只用写一遍这些字符串内容，一份用eval函数变成代码本身，另一份给字符串s，化简后如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="string">"j=String.fromCharCode(34)"</span>;y=<span class="string">"k='@';q=s.split(k);z='x='+j+x+j+';y='+j+y+j+';eval(x);s='+j+q[0]+k+q[1]+j+q[1];console.log(z);"</span>;<span class="built_in">eval</span>(x);s=<span class="string">"s=@;eval(y)"</span>;<span class="built_in">eval</span>(y)</span><br></pre></td></tr></table></figure></p>
-<p>　　再优化一下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">j=<span class="built_in">String</span>.fromCharCode(<span class="number">34</span>);y=<span class="string">"k='@';q=s.split(k);z='j=String.fromCharCode(34);y='+j+y+j+';s='+j+q[0]+k+q[1]+j+q[1];console.log(z);"</span>;s=<span class="string">"s=@;eval(y)"</span>;<span class="built_in">eval</span>(y)</span><br></pre></td></tr></table></figure></p>
-<p>　　感觉还是不够短。javascript还有一个优势我们没利用上，那就是单双引号的嵌套使用。如果我们用得好就可以不用<code>String.fromCharCode(34)</code>这么长的代码来表示引号了。优化结果如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="string">"'"</span>;v=<span class="string">'"'</span>;y=<span class="string">"k='@';q=s.split(k);z='x='+j+x+j+';v='+x+v+x+';y='+j+y+j+';s='+j+q[0]+k+q[1]+j+q[1];console.log(z);"</span>;s=<span class="string">"s=@;eval(y);"</span>;<span class="built_in">eval</span>(y);</span><br></pre></td></tr></table></figure></p>
-<p>　　我们也不需要专门搞一个符号“@”，就用现成的单引号做标记又能省几个字：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="string">"'"</span>;v=<span class="string">'"'</span>;y=<span class="string">"q=s.split(x);z='x='+v+x+v+';v='+x+v+x+';y='+v+y+v+';s='+v+q[0]+x+q[1]+v+q[1];console.log(z);"</span>;s=<span class="string">"s=';eval(y)"</span>;<span class="built_in">eval</span>(y)</span><br></pre></td></tr></table></figure></p>
-<p>　　字符串<code>s=&#39;;eval(y)</code>中的单引号被<code>s.split(x)</code>查找到然后做替换。当然，我们还能用更现成的replace函数来替换字符串。但后来我看到了这个<a href="http://www.nyx.net/~gthompso/quine.htm" target="_blank" rel="external">网站</a>上javascript的最短代码后惊呆了：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(a+<span class="string">"a()"</span>)&#125;a()</span><br></pre></td></tr></table></figure></p>
+<h3 id="题外话：eval函数-x2F-无限递归"><a href="#题外话：eval函数-x2F-无限递归" class="headerlink" title="题外话：eval函数&#x2F;无限递归"></a>题外话：eval函数&#x2F;无限递归</h3><p>　　javascript是解释型语言，它有一个很牛的函数<code>eval()</code>：它能把接受到的字符串当成javascript代码执行。我想出了这段代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="string">&quot;eval(s)&quot;</span>;<span class="built_in">eval</span>(s);</span><br></pre></td></tr></table></figure>
+<p>　　我们可以在任何浏览器上做这个实验：在地址栏输入<code>javascript:s=&quot;eval(s)&quot;;eval(s);</code>即可。（快试试吧。。）</p>
+<span id="more"></span>
+<p>　　在Chrome控制台运行一会儿后得到这样的报错：<span style="color:#F00">Uncaught RangeError: Maximum call stack size exceeded</span><span style="color:#999">(…)</span><br>　　意思是<strong>递归错误，超出堆栈大小</strong>。</p>
+<hr>
+<p>　　还有一个很有意思的无限递归实验：在Chrome控制台执行这些语句：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A = &#123;&#125;;</span><br><span class="line">B = &#123;&#125;;</span><br><span class="line">A.<span class="property">a</span> = B;</span><br><span class="line">B.<span class="property">b</span> = A;</span><br></pre></td></tr></table></figure>
+<p>　　然后输出A，我们得到了一个无限嵌套的东西：<br><img src="/img/jsloop.gif"><br>　　（其实不是真的无限嵌套，而是两个互指的指针）</p>
+<h3 id="正题：自我打印的程序"><a href="#正题：自我打印的程序" class="headerlink" title="正题：自我打印的程序"></a>正题：自我打印的程序</h3><p>　　我们先看网上流行的C语言版本：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>*s=<span class="string">&quot;char*s=%c%s%c;main()&#123;printf(s,34,s,34);&#125;&quot;</span>;main()&#123;<span class="built_in">printf</span>(s,<span class="number">34</span>,s,<span class="number">34</span>);&#125;</span><br></pre></td></tr></table></figure>
+<p>　　最后的printf函数输出了整个程序的源代码，printf中34是引号 “ 的Ascii码，这是为了避免引号中又出现引号无法书写。在格式化输出中巧妙用%s来代表整个字符串是整个自我描述的<strong>核心</strong>：只有这样自己指代自己才能用有限的代码输出自身。<br>　　参考网上给的C语言版本的写法我有了在javascript语言里写的思路：必须要使用某个方法来代表整个字符串。但js中好像并没有格式化输出的命令，我们必须自己想办法用一个很短的字符串来代表整个字符串。我想到了随便用一个字符（比如“@”）在字符串里起占位作用，然后我们用字符串分组查找功能Split函数把“@”替换成整个字符串输出。所以我们先写一个函数来做这件事：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">r</span>(<span class="params">s</span>)&#123;</span><br><span class="line">	j = <span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(<span class="number">34</span>); <span class="comment">//j代表双引号</span></span><br><span class="line">	k = <span class="string">&#x27;@&#x27;</span>;</span><br><span class="line">	q = s.<span class="title function_">split</span>(k);</span><br><span class="line">	<span class="keyword">return</span> q[<span class="number">0</span>]+k+q[<span class="number">1</span>]+j+s+j+q[<span class="number">2</span>] <span class="comment">//返回s中@被s替换的字符串，比如&quot;abc@d&quot;变成了&quot;abcabc@dd&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　然后我们就要写那个字符串了，那个字符串是什么样子的我们还不知道，先看下一步，也是最后一步——输出字符串：我们用console.log 函数输出最终结果，所以最后有代码<code>console.log(r(s))</code>，意思是让替换后的字符串输出。我们的代码现在有：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">r</span>(<span class="params">s</span>)&#123;</span><br><span class="line">	j = <span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(<span class="number">34</span>); </span><br><span class="line">	k = <span class="string">&#x27;@&#x27;</span>;</span><br><span class="line">	q = s.<span class="title function_">split</span>(k);</span><br><span class="line">	<span class="keyword">return</span> q[<span class="number">0</span>]+k+q[<span class="number">1</span>]+j+s+j+q[<span class="number">2</span>]</span><br><span class="line">&#125;</span><br><span class="line">s = .....</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">r</span>(s))</span><br></pre></td></tr></table></figure>
+<p>　　现在我们知道字符串s该等于什么了吧，它就等于上面的所有代码文本（因为我们的目的就是输出所有代码），上面打省略号的地方用“@”占位到时就能描述自身了。于是最终代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">r</span>(<span class="params">s</span>)&#123;j=<span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(<span class="number">34</span>);k=<span class="string">&#x27;@&#x27;</span>;q=s.<span class="title function_">split</span>(k);<span class="keyword">return</span> q[<span class="number">0</span>]+k+q[<span class="number">1</span>]+j+s+j+q[<span class="number">2</span>]&#125;s=<span class="string">&quot;function r(s)&#123;j=String.fromCharCode(34);k=&#x27;@&#x27;;q=s.split(k);return q[0]+k+q[1]+j+s+j+q[2]&#125;s=@;console.log(r(s))&quot;</span>;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">r</span>(s))</span><br></pre></td></tr></table></figure>
+<p>　　我们追求的是简短，所以没有必要单独搞个函数，这样优化一下我们得到：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="string">&quot;s=@;j=String.fromCharCode(34);k=&#x27;@&#x27;;q=s.split(k);z=q[0]+j+s+j+q[1]+k+q[2];console.log(z)&quot;</span>;j=<span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(<span class="number">34</span>);k=<span class="string">&#x27;@&#x27;</span>;q=s.<span class="title function_">split</span>(k);z=q[<span class="number">0</span>]+j+s+j+q[<span class="number">1</span>]+k+q[<span class="number">2</span>];<span class="variable language_">console</span>.<span class="title function_">log</span>(z)</span><br></pre></td></tr></table></figure>
+<p>　　要充分发挥javascript语言的功能使代码更短，我们还能用前面提到过的<strong>eval函数</strong>。我们看到大量代码前后出现了两次——第一次是代码本身，第二次在字符串s里面。我们其实只用写一遍这些字符串内容，一份用eval函数变成代码本身，另一份给字符串s，化简后如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="string">&quot;j=String.fromCharCode(34)&quot;</span>;y=<span class="string">&quot;k=&#x27;@&#x27;;q=s.split(k);z=&#x27;x=&#x27;+j+x+j+&#x27;;y=&#x27;+j+y+j+&#x27;;eval(x);s=&#x27;+j+q[0]+k+q[1]+j+q[1];console.log(z);&quot;</span>;<span class="built_in">eval</span>(x);s=<span class="string">&quot;s=@;eval(y)&quot;</span>;<span class="built_in">eval</span>(y)</span><br></pre></td></tr></table></figure>
+<p>　　再优化一下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">j=<span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(<span class="number">34</span>);y=<span class="string">&quot;k=&#x27;@&#x27;;q=s.split(k);z=&#x27;j=String.fromCharCode(34);y=&#x27;+j+y+j+&#x27;;s=&#x27;+j+q[0]+k+q[1]+j+q[1];console.log(z);&quot;</span>;s=<span class="string">&quot;s=@;eval(y)&quot;</span>;<span class="built_in">eval</span>(y)</span><br></pre></td></tr></table></figure>
+<p>　　感觉还是不够短。javascript还有一个优势我们没利用上，那就是单双引号的嵌套使用。如果我们用得好就可以不用<code>String.fromCharCode(34)</code>这么长的代码来表示引号了。优化结果如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="string">&quot;&#x27;&quot;</span>;v=<span class="string">&#x27;&quot;&#x27;</span>;y=<span class="string">&quot;k=&#x27;@&#x27;;q=s.split(k);z=&#x27;x=&#x27;+j+x+j+&#x27;;v=&#x27;+x+v+x+&#x27;;y=&#x27;+j+y+j+&#x27;;s=&#x27;+j+q[0]+k+q[1]+j+q[1];console.log(z);&quot;</span>;s=<span class="string">&quot;s=@;eval(y);&quot;</span>;<span class="built_in">eval</span>(y);</span><br></pre></td></tr></table></figure>
+<p>　　我们也不需要专门搞一个符号“@”，就用现成的单引号做标记又能省几个字：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="string">&quot;&#x27;&quot;</span>;v=<span class="string">&#x27;&quot;&#x27;</span>;y=<span class="string">&quot;q=s.split(x);z=&#x27;x=&#x27;+v+x+v+&#x27;;v=&#x27;+x+v+x+&#x27;;y=&#x27;+v+y+v+&#x27;;s=&#x27;+v+q[0]+x+q[1]+v+q[1];console.log(z);&quot;</span>;s=<span class="string">&quot;s=&#x27;;eval(y)&quot;</span>;<span class="built_in">eval</span>(y)</span><br></pre></td></tr></table></figure>
+<p>　　字符串<code>s=&#39;;eval(y)</code>中的单引号被<code>s.split(x)</code>查找到然后做替换。当然，我们还能用更现成的replace函数来替换字符串。但后来我看到了这个<a target="_blank" rel="noopener" href="http://www.nyx.net/~gthompso/quine.htm">网站</a>上javascript的最短代码后惊呆了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(a+<span class="string">&quot;a()&quot;</span>)&#125;<span class="title function_">a</span>()</span><br></pre></td></tr></table></figure>
 <p>　　它的原理很简单：直接console.log输出a这个函数变量，然后javascript会自动把a转换成字符串，这个字符串直接就是函数a的源代码。当然有人说这是作弊的做法。。。其实用eval函数都有作弊之嫌。。。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wxyhly.github.io/archives/jsloop/" data-id="cl5hpmy3p001mxowm66fztw3x" class="article-share-link">Share</a>
+      <a data-url="https://wxyhly.github.io/archives/jsloop/" data-id="cl7sl1uqs00225kwmh8rt3t8u" class="article-share-link">Share</a>
       
         <a href="https://wxyhly.github.io/archives/jsloop/#disqus_thread" class="article-comment-link">留言</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自我描述/">自我描述</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/递归/">递归</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" rel="tag">自我描述</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a></li></ul>
 
     </footer>
   </div>
@@ -151,7 +166,7 @@
 
 <section id="comments">
   <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
 </section>
 </section>
@@ -162,7 +177,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/四维世界系列/">四维世界系列</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/四维空间系列/">四维空间系列</a><span class="category-list-count">13</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">13</span></li></ul>
     </div>
   </div>
 
@@ -172,7 +187,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2b2t/" style="font-size: 11.25px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11.25px;">4dViewer</a> <a href="/tags/B站视频/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11.25px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12.5px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/代数/" style="font-size: 11.25px;">代数</a> <a href="/tags/几何/" style="font-size: 16.25px;">几何</a> <a href="/tags/分形/" style="font-size: 10px;">分形</a> <a href="/tags/动画/" style="font-size: 11.25px;">动画</a> <a href="/tags/化学/" style="font-size: 10px;">化学</a> <a href="/tags/四维/" style="font-size: 20px;">四维</a> <a href="/tags/图形/" style="font-size: 13.75px;">图形</a> <a href="/tags/奇特想象/" style="font-size: 15px;">奇特想象</a> <a href="/tags/拓扑学/" style="font-size: 10px;">拓扑学</a> <a href="/tags/拓补学/" style="font-size: 12.5px;">拓补学</a> <a href="/tags/数学/" style="font-size: 17.5px;">数学</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/物理/" style="font-size: 13.75px;">物理</a> <a href="/tags/电路/" style="font-size: 11.25px;">电路</a> <a href="/tags/系列文章/" style="font-size: 18.75px;">系列文章</a> <a href="/tags/群论/" style="font-size: 12.5px;">群论</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/自动机/" style="font-size: 11.25px;">自动机</a> <a href="/tags/自我描述/" style="font-size: 11.25px;">自我描述</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a> <a href="/tags/音乐/" style="font-size: 10px;">音乐</a>
+      <a href="/tags/2b2t/" style="font-size: 11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 10px;">tesserxel</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 11px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 11px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 14px;">图形</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 15px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 10px;">拓扑学</a> <a href="/tags/%E6%8B%93%E8%A1%A5%E5%AD%A6/" style="font-size: 12px;">拓补学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 18px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 13px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 11px;">电路</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 12px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 11px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 11px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
     </div>
   </div>
 
@@ -181,7 +196,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -192,6 +207,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/archives/tesserxel-hello/">全新四维引擎Tesserxel上线</a>
+          </li>
         
           <li>
             <a href="/archives/Eop-Analogue/">自己打造的一个电脑钢琴</a>
@@ -207,10 +226,6 @@
         
           <li>
             <a href="/archives/gaqr/">四维空间（十一）：几何代数、四元数与空间旋转</a>
-          </li>
-        
-          <li>
-            <a href="/archives/electm4d/">四维世界（七）：电磁学</a>
           </li>
         
       </ul>
@@ -297,11 +312,17 @@ MathJax = {
 </script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
 
 
 <script src="/js/script.js"></script>
+
 
   </div>
 </body>

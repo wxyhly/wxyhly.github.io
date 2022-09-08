@@ -3,15 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: 代数 | Blog de WXYHLY</title>
+  <title>全新四维引擎Tesserxel上线 | Blog de WXYHLY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog de WXYHLY">
-<meta property="og:url" content="https://wxyhly.github.io/tags/%E4%BB%A3%E6%95%B0/index.html">
+  <meta name="description" content="由于4DViewer代码混乱且计算截面在CPU端性能低下，今年7月底我决定尝试使用新技术WebGPU API重新实现四维渲染引擎，因为WebGPU的计算着色器可以让截面计算也放在GPU中，彻底解决性能问题，于是新项目——Tesserxel诞生了。Tesserxel取的是单词Tesseract（四维立方体的拉丁词根“四”）和Pixel（像素）。 Tesserxel自带的示例库截图  目前Tesser">
+<meta property="og:type" content="article">
+<meta property="og:title" content="全新四维引擎Tesserxel上线">
+<meta property="og:url" content="https://wxyhly.github.io/archives/tesserxel-hello/index.html">
 <meta property="og:site_name" content="Blog de WXYHLY">
+<meta property="og:description" content="由于4DViewer代码混乱且计算截面在CPU端性能低下，今年7月底我决定尝试使用新技术WebGPU API重新实现四维渲染引擎，因为WebGPU的计算着色器可以让截面计算也放在GPU中，彻底解决性能问题，于是新项目——Tesserxel诞生了。Tesserxel取的是单词Tesseract（四维立方体的拉丁词根“四”）和Pixel（像素）。 Tesserxel自带的示例库截图  目前Tesser">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsx001.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsx001.png">
+<meta property="article:published_time" content="2022-09-08T02:43:30.000Z">
+<meta property="article:modified_time" content="2022-09-08T07:38:34.369Z">
 <meta property="article:author" content="wxyhly">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="图形">
+<meta property="article:tag" content="四维">
+<meta property="article:tag" content="tesserxel">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wxyhly.github.io/img/tsx001.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -62,69 +73,79 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
+        <section id="main"><article id="post-tesserxel-hello" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/archives/gaqr/" class="archive-article-date">
-  <time datetime="2020-04-27T04:39:11.000Z" itemprop="datePublished">4月 27</time>
+    <div class="article-meta">
+      <a href="/archives/tesserxel-hello/" class="article-date">
+  <time datetime="2022-09-08T02:43:30.000Z" itemprop="datePublished">2022-09-08</time>
 </a>
       
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/gaqr/">四维空间（十一）：几何代数、四元数与空间旋转</a>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      全新四维引擎Tesserxel上线
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/archives/bivector4ds/" class="archive-article-date">
-  <time datetime="2016-04-23T12:20:48.000Z" itemprop="datePublished">4月 23</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/bivector4ds/">四维空间（七）：N维的向量</a>
-    </h1>
-  
+        <p>由于<a target="_blank" rel="noopener" href="https://github.com/wxyhly/4dViewer">4DViewer</a>代码混乱且计算截面在CPU端性能低下，今年7月底我决定尝试使用新技术WebGPU API重新实现四维渲染引擎，因为WebGPU的计算着色器可以让截面计算也放在GPU中，彻底解决性能问题，于是新项目——<a target="_blank" rel="noopener" href="https://github.com/wxyhly/tesserxel">Tesserxel</a>诞生了。Tesserxel取的是单词Tesseract（四维立方体的拉丁词根“四”）和Pixel（像素）。</p>
+<div style="float:right; margin:20px;"><img src="/img/tsx001.jpg" width="300px"/><p style="text-align:center">Tesserxel自带的示例库截图</p></div>
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+<p>目前Tesserxel实现了以下功能： </p>
+<ol>
+<li>包含四维向量、二向量、四元数表示的旋量与图形学需要的矩阵运算的数学库。</li>
+<li>基于四面体的光栅化渲染器，该渲染器仅底层封装，需用户自己创建着色器管线、GPU缓存资源等。</li>
+<li>子模块Four能够帮用户隐藏底层渲染逻辑，类似于3D渲染中的ThreeJs库那样通过声明几何体、相机、材质、灯光来快速构建渲染四维场景。</li>
+<li>四维刚体物理引擎（目前碰撞解算正在实现中）。</li>
+<li>用户键鼠交互系统封装。</li>
+</ol>
+<p>下面就让我们进入Tesserxel构建的四维世界。这里是示例场景库链接(注意要启用WebGPU才打得开)：</p>
+<p><a href="https://wxyhly.github.io/tesserxel/examples/">https://wxyhly.github.io/tesserxel/examples/</a></p>
+<p>启用WebGPU方法： WebGPU是一个实验性的API，是WebGL的未来“接班人”，它的标准还处于W3C的草稿阶段，未正式发布。目前据说仅Windows下Chrome提供较好支持，而且想开启这项功能还有点麻烦，首先你需要下载Canary版本的Chrome浏览器（<a target="_blank" rel="noopener" href="https://www.google.com/intl/zh-CN/chrome/canary/">谷歌官网</a>，或自行找下载资源），添加–enable-unsafe-webgpu参数启动浏览器，打开chrome:&#x2F;&#x2F;flags&#x2F;，将WebGPU Developer Features打开（选Enabled）就可以启用WebGPU。<br><img src="/img/tsx001.png" alt="开启WebGPU的操作步骤"></p>
+<p>目前的Tesserxel只是一个早期版本，后续会补充Tesserxel说明手册，继续开发更多物理解算、高级材质、离线渲染，以及基于Tesserxel引擎的4D游戏等。（但愿不鸽~）</p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wxyhly.github.io/archives/tesserxel-hello/" data-id="cl7sl1ur3003f5kwm9uk5dq38" class="article-share-link">Share</a>
+      
+        <a href="https://wxyhly.github.io/archives/tesserxel-hello/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tesserxel/" rel="tag">tesserxel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%9B%E7%BB%B4/" rel="tag">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%BD%A2/" rel="tag">图形</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/archives/Eop-Analogue/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older &gt;&gt;</strong>
+      <div class="article-nav-title">自己打造的一个电脑钢琴</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 </section>
         
           <aside id="sidebar">
@@ -226,11 +247,13 @@
 <script>
   var disqus_shortname = 'wxyhly';
   
+  var disqus_url = 'https://wxyhly.github.io/archives/tesserxel-hello/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
