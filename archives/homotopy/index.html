@@ -47,7 +47,7 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/homology006.svg">
 <meta property="og:image" content="https://wxyhly.github.io/img/homology001.png">
 <meta property="article:published_time" content="2022-07-02T12:28:40.000Z">
-<meta property="article:modified_time" content="2022-07-03T05:40:40.420Z">
+<meta property="article:modified_time" content="2022-12-17T13:38:40.320Z">
 <meta property="article:author" content="wxyhly">
 <meta property="article:tag" content="群论">
 <meta property="article:tag" content="拓扑学">
@@ -175,7 +175,7 @@
 <h2 id="高阶同伦群简介"><a href="#高阶同伦群简介" class="headerlink" title="高阶同伦群简介"></a>高阶同伦群简介</h2><p>看过《<a href="/archives/knot4d/">四维空间（十）：扭结与环扣</a>》的读者就知道，高维空间中一维路径不一定能套得住所有的孔，因为孔的维数不尽相同，必须要相互匹配才能拴得住，比如我们就不能用一维的同伦基本群捕捉到三维空间挖掉一点前后的拓扑变化。因此除了从道路(圆周)得到的同伦基本群，还有球面，超球面的高维“道路”得到的高阶同伦群，这些高阶同伦群有时候特别复杂。我们来看看圆周的各阶同伦群：<br>首先一维同伦群就是路径的基本群，对于同伦等价类来说只有绕孔圈数的这个自由度，绕孔m圈的路径与绕孔n圈的路径复合得到的是绕孔m+n圈的路径。因此这些路径等价类间的“加法”运算跟整数的运算是一样的，我们记作$\pi_1(S^1)&#x3D;\mathbb{Z}$。这里我们用$\pi_i$代表$i$维同伦群，$S^1$代表一维球面，即圆周，$\mathbb{Z}$是整数集的符号。</p>
 <p><img src="/img/homology005.svg" alt="一个顺时针绕圆周圈数为2的路径。真实路径应完全贴在圆周上，为方便观察特意将它们画开"><br>圆周的二维同伦群是什么呢？我们能否将二维球面映射到一维圆周上呢？或许我们把球面拉成面条就能放在圆周上了，但它是可缩的，是零伦。可以证明二维球面没法套在圆周的孔上，也就是说只有零伦映射这一个同伦等价类，我们记作$\pi_2(S^1)&#x3D;0$。通过覆盖空间相关理论可推出更高维的超球面也没法往圈上套，因此圆周的大于1阶的同伦群都是仅包含单位元的平凡群。</p>
 <p><img src="/img/homology006.svg" alt="无论我们把球面拉多长在圆周上缠再多圈它都可以缩成一个点。"><br>下面我们研究一下二维球面的各阶同伦群：首先，球面作为一个没有孔的单连通图形，所有一维道路都可缩，因此一阶同伦群为0。二阶同伦群则是用球面自己来覆盖自己。回想一下一维的圆周可以覆盖自己n圈，可以证明（Hopf度数定理）$n$维球面自己覆盖自己的方式也可以用一个圈数来描述，同伦群结构也是跟整数的加法对应，记作$\pi_n(S^n)&#x3D;\mathbb{Z}$。</p>
-<p>这里要注意一下高维的球形“道路”之间怎样定义加法：将球面的赤道捏成一点，我们会得到两个球面的单点并。这个过程的逆过程就是两球面道路相加得到的新球面，由于维数更多，所以二维及以上的加法运算都可以有空间交换位置，满足交换律，但这并没有让高阶同伦群变得简单。似乎我们可以同理觉得二维球面的三维同调群也是零伦的，但例外开始来了。我们想构造一个不可缩的，将三维球面映射到二维球面的映射。还记得Hopf纤维丛吗？Hopf纤维丛中，三维球面上的每个纤维是个圆周，对应二维球面上的一个点。这正是一个非平凡的将三维球面上的点映射到二维球面的方式。可以证明这个Hopf映射是不可缩的，并且它自身还可以复合，同样可以数某种“圈数”，所以球面$S^2$的三阶同伦群也是整数加法群$\pi_3(S^2)&#x3D;\mathbb{Z}$。这种“例外”多不多呢？其实高阶同伦群的复杂结构并不是例外，看看下面这张表就知道高阶同伦群有多恐怖了。$n$维球面的所有同伦群的计算其实是拓扑学中的一个至今都非常困难的问题。<br><img src="/img/homology001.png" alt="这些高维同伦群有一些有趣的性质，如周期性、稳定性、不再是无限群等"><br>同伦群的求解是非常困难的，有没有简单点的处理方法呢？下一篇文章我们将引入一个与同伦相近的概念——同调，与同伦群不一样的是，它定义的是永远满足交换律的加法运算，计算也要相对简便。（未完待续）</p>
+<p>这里要注意一下高维的球形“道路”之间怎样定义加法：将球面的赤道捏成一点，我们会得到两个球面的单点并。这个过程的逆过程就是两球面道路相加得到的新球面，由于维数更多，所以二维及以上的加法运算都可以有空间交换位置，满足交换律，但这并没有让高阶同伦群变得简单。似乎我们可以同理觉得二维球面的三维同调群也是零伦的，但例外开始来了。我们想构造一个不可缩的，将三维球面映射到二维球面的映射。还记得Hopf纤维丛吗？Hopf纤维丛中，三维球面上的每个纤维是个圆周，对应二维球面上的一个点。这正是一个非平凡的将三维球面上的点映射到二维球面的方式。可以证明这个Hopf映射是不可缩的，并且它自身还可以复合，同样可以数某种“圈数”，所以球面$S^2$的三阶同伦群也是整数加法群$\pi_3(S^2)&#x3D;\mathbb{Z}$。这种“例外”多不多呢？其实高阶同伦群的复杂结构并不是例外，看看下面这张表就知道高阶同伦群有多恐怖了。$n$维球面的所有同伦群的计算其实是拓扑学中的一个至今都非常困难的问题。<br><img src="/img/homology001.png" alt="这些高维同伦群有一些有趣的性质，如周期性、稳定性、不再是无限群等"><br>同伦群的求解是非常困难的，有没有简单点的处理方法呢？下一篇文章我们将引入一个与同伦相近的概念——同调，与同伦群不一样的是，它定义的是永远满足交换律的加法运算，计算也要相对简便。（<a href="/archives/homology/">未完待续</a>）</p>
 
       
     </div>
@@ -247,7 +247,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2b2t/" style="font-size: 11.11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11.11px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11.11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12.22px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15.56px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 10px;">tesserxel</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12.22px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 16.67px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 11.11px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 14.44px;">图形</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 15.56px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 13.33px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 17.78px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 13.33px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 11.11px;">电路</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 18.89px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 12.22px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 11.11px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 11.11px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+      <a href="/tags/2b2t/" style="font-size: 11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 10px;">tesserxel</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 11px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 15px;">图形</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 16px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 14px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 18px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 13px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 11px;">电路</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 13px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 11px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 11px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
     </div>
   </div>
 
@@ -256,7 +256,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
     </div>
   </div>
 
@@ -267,6 +267,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/archives/homology/">代数拓扑简介（下）：同调论</a>
+          </li>
         
           <li>
             <a href="/archives/infpigfarm/">参观无限大养猪场</a>
@@ -282,10 +286,6 @@
         
           <li>
             <a href="/archives/homotopy/">代数拓扑简介（上）：同伦论</a>
-          </li>
-        
-          <li>
-            <a href="/archives/unknots2/">四维空间（十二）：解开球面结</a>
           </li>
         
       </ul>
