@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>四维世界（八）：地理与导航 | Blog de Hqak (WXYHLY)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&#x2F;&#x2F; 提示：本文涉及到基于Hopf极坐标的四维星球方向定位，请先阅读四维世界（一）：行星的昼夜季节这篇文章了解四维星球上最基本的方向术语。 之前在《四维世界（七）：电磁学》中提到过如何利用四维星球的地磁场进行导航，但没有具体分析怎样设计并使用指南针。这篇文章将补充这些内容，给出一份通过磁场与地砖偏向力的正确的探险家在四维星球上的的方向辨别指南。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="四维世界（八）：地理与导航">
+<meta property="og:url" content="https://wxyhly.github.io/archives/compass4d/index.html">
+<meta property="og:site_name" content="Blog de Hqak (WXYHLY)">
+<meta property="og:description" content="&#x2F;&#x2F; 提示：本文涉及到基于Hopf极坐标的四维星球方向定位，请先阅读四维世界（一）：行星的昼夜季节这篇文章了解四维星球上最基本的方向术语。 之前在《四维世界（七）：电磁学》中提到过如何利用四维星球的地磁场进行导航，但没有具体分析怎样设计并使用指南针。这篇文章将补充这些内容，给出一份通过磁场与地砖偏向力的正确的探险家在四维星球上的的方向辨别指南。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wxyhly.github.io/img/compass4d01.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/compass4d01.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/compass4d03.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/compass4d02.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/compass4d02.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/compass4d04.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/compass4d05.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/compass4d03.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/compass4d04.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/compass4d02.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/b/b6/Corioliskraftanimation.gif">
+<meta property="article:published_time" content="2023-01-08T23:56:09.000Z">
+<meta property="article:modified_time" content="2023-01-08T23:58:43.530Z">
+<meta property="article:author" content="wxyhly">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="系列文章">
+<meta property="article:tag" content="四维">
+<meta property="article:tag" content="物理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wxyhly.github.io/img/compass4d01.jpg">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Blog de Hqak (WXYHLY)</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/programs/">Programs</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wxyhly.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-compass4d" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/archives/compass4d/" class="article-date">
+  <time datetime="2023-01-08T23:56:09.000Z" itemprop="datePublished">2023-01-09</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a>
+  </div>
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      四维世界（八）：地理与导航
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span class="likecode">&#x2F;&#x2F; 提示：本文涉及到基于Hopf极坐标的四维星球方向定位，请先阅读<a href="/archives/orbit4d/">四维世界（一）：行星的昼夜季节</a>这篇文章了解四维星球上最基本的方向术语。</span></p>
+<p>之前在《<a href="/archives/electm4d/">四维世界（七）：电磁学</a>》中提到过如何利用四维星球的地磁场进行导航，但没有具体分析怎样设计并使用指南针。这篇文章将补充这些内容，给出一份通过磁场与地砖偏向力的正确的探险家在四维星球上的的方向辨别指南。<span id="more"></span></p>
+<h3 id="如何设计指南针"><a href="#如何设计指南针" class="headerlink" title="如何设计指南针"></a>如何设计指南针</h3><p>导航其实对现代四维人应该早就不是问题。他们按理说早就该掌握制造陀螺仪的技术，这种基于角动量守恒原理而保持朝向不变的器件不会在因没有南北极之分的等角双旋转星球上就失灵，陀螺仪经过类比甚至可以用在任意高维宇宙中的星球上。但制造这种精密仪器并不是一个原始文明一上来就做得到的，因此我们还是来看看利用磁铁与地磁场如何造出指南针来。为了设计出一个正常工作的指南针，至少要考虑这些问题：</p>
+<ol>
+<li>确定指南针的机械结构，应该按什么方向磁化、安装，怎样固定在三维的表盘中;</li>
+<li>由于指南针的旋转被表盘限制在平行地面的三维子空间内，所以要搞清外磁场哪些分量对指南针的偏转有贡献;</li>
+<li>地磁场在星球上各处的方向是怎样的;</li>
+<li>哪些情况指南针会失灵</li>
+</ol>
+<p>首先要确定指针与表盘的机械结构。由于指针要指向三维地面上的任意位置，这种对称性要求表盘应该是一种“球盘”，即很薄的球柱状，上面应该还有一层透明壳把表针封住。表盘上的指针如何固定呢？跟三维世界的一样，我们可以将磁针中间留个球形洞，穿在表盘中间的一维轴上。用一些工艺降低转轴摩擦后，这个指南针可以近似于能在三维空间中做有完全自由的转动。<br><img src="/img/compass4d01.jpg" alt="四维指南针的俯视图与侧视图"></p>
+<h3 id="指南针的磁化方式"><a href="#指南针的磁化方式" class="headerlink" title="指南针的磁化方式"></a>指南针的磁化方式</h3><p>接下来我们要磁化磁针，这样它才能在地磁场中受力偏转。由于在四维空间，传统磁极的概念必须被抛弃，因此，我们只能说环形电流的漩涡指向，而不能继续延续“南北极”，“磁力线”等熟悉的概念。在三维空间中，这两种表示磁场的方法是相互垂直的，具体方向可通过右手定则决定，比如下图分别是通电长直导线与环形电流线圈的磁场分布。<br><img src="/img/compass4d01.svg" alt="通电长直导线（左）与环形电流线圈（右）的磁场分布"><br>我们看到，电流元在周围的磁场漩涡方向就像电荷在流体里运动带动周围流体产生的涡漩的方向一样，环形电流的磁场漩涡内部与环形电流方向相同，外部则相反。三维空间中的指南针时如何工作的呢？地球内部的地磁场分布其实很复杂，一般采用位于地心的理想化磁偶极子（即尺寸很小的环形电流）模型来代替（下图中红色圈），而指南针的环形电流漩涡方向为垂直于针的方向，指针在外磁场作用下受到力矩偏转，最终会转到平衡位置——指针与磁感线方向一致的位置，或者说，环形电流与磁场漩涡一致的方向。当磁针在平衡位置指向南北时，电流漩涡方向平行于赤道平面，即东西方向与与竖直方向张成的平面。注意在南北极点的磁感线垂直与地面，磁场漩涡完全平行与地面，此时指南针失灵（没有水平表盘限制它将指向上下方向）。<a name="earth_mag_distribution"></a><br><img src="/img/compass4d03.svg" alt="地球赤道附近的地磁场漩涡与指南针环形电流匹配"><br>（题外话：注意图中标注的N&#x2F;S是与地理南北极相反的地磁南北极。为什么会相反呢？我们把磁铁上指向北方（地理）的磁极定义为北极，然而同性相斥异性相吸，对于地球这个大磁铁来说，能够吸引北极的磁极就应该是南极（地磁）。）</p>
+<p>怎样磁化四维指南针呢？仿照三维，我们可以构造这样的指南针：与刚才三维空间中的分析一样，磁针会偏转到其环形电流漩涡取向与外磁场漩涡一致的方向上，（我们稍后会分析有表盘与轴限制的影响）。简单起见，假设探险家位于东西方向的赤道上（别忘了四维星球的另一边还有阴阳方向的赤道哦），这里的磁场漩涡方向与赤道平面平行，探险家感受到的地磁场漩涡为东西方向与竖直方向张成的平面，磁针的侧面自然会跟东西方向对齐。对齐后，不同于三维情形磁针一定指南，磁针在地面上垂直于东西方向的平面中可随意转动，因为它与赤道平面绝对垂直，转动并不会影响磁场的对齐，也就是说，这个指南针的侧面指向东后，指针到底指哪是无所谓的，它更像是一种“指东针”！为什么好端端类比的指南针变成指东了呢？看下图就能发现：其实地球上的指南针与指东针并没有本质区别，只是制造的时候指针的形状不一样而已，只有到了四维它们的差别才显现出来！既然如此，我们直接让环形电流与指针对齐制造指东针吧。</p>
+<p><img src="/img/compass4d02.svg" alt="在地球上指南针某种程度上等价于指东针"></p>
+<p>有没有其它的磁化方法呢？根据对称性，东西方向与阴阳方向（即两个绝对垂直的环形电流的方向）之间的地位没什么不同，说不定我们可以造出一个“指阳针”，那样东西阴阳方向都确定了剩下与它们垂直的南北方向也就都能确定！如何制造指阳针呢？我们看到，指东针的环形电流所在的二维平面垂直于三维地面，那么自然另一种做法便是让环形电流完全位于地面内，下图将这两种磁化方式都画出来了，值得注意的是，这两种磁化的方向是绝对垂直的，因此不能在同一个3D视图中画出。（指东针为侧视图而指阳针为俯视图）<br><img src="/img/compass4d02.jpg" alt="四维探险家可能用的指东针（左）与指阳针（右），注意磁针颜色与磁极无关"></p>
+<p>这样设计的两款指针真的会在星球任何地方都分别指向东西与阴阳方向吗？别着急，下面先看看两种指南针在磁场中的受力以及偏转情况。指东针拥有竖直的漩涡磁场，它会在水平方向上转动去匹配地磁场的竖直分量，而不管水平分量；同样指阳针拥有平行地面的漩涡磁场，它会在水平方向上转动去匹配地磁场的水平分量，而无视竖直分量。</p>
+<p>虽然匹配理论很形象，“事实”是否如此呢？读者若不关心请<a href="#skip">跳至下一小节</a>。之前在介绍四维电磁学时通过计算模拟分析过四维磁偶极子在外磁场中偏转各平衡位置的稳定性，发现只有磁偶极子朝向与外磁场漩涡一致才是稳定平衡位置，因此漩涡匹配理论是靠谱的，然而当时没有考虑表盘对垂直转动的限制，因此还需要将磁场正交分解来进行受力分析：四维空间中力矩是一个2-向量，如$e_{xy}$表示一个单位大小的力矩，其旋转方向是从x轴正方向旋转到y轴正方向。我们将任何一个2-向量在直角坐标系下分解可以得到$e_{xy},e_{xz},e_{xw},e_{yz},e_{yw},e_{zw}$6个分量。设w轴为竖直方向，则含w方向的$e_{xw},e_{yw},e_{zw}$这些力矩会让磁针上下偏转，但由于中轴的固定作用导致磁针无法转动；剩下的三个方向$e_{xy},e_{xz},e_{yz}$都落在三维的地面空间内，正好是指南针自由转动的自由度。接下来看产生力矩的磁场。由于表盘限制，并不是所有磁场分量都对能引起磁针偏转的力矩有贡献。这里我们要对两种磁化方向的指南针分开讨论。<a href="/archives/electm4d/#d4">这里分析过</a>磁偶极子在磁场中受到的力矩的计算方法，它是一种介于内积与外积之间的叉乘运算。</p>
+<ol>
+<li>“指东针”：磁针永远限制在水平方向，环形电流漩涡方向一定在地面某方向与竖直方向张成的平面内，即磁针磁矩取向也只能是$e_{xw},e_{yw},e_{zw}$的组合，根据叉乘运算规则，它们跟水平方向的磁场分量$e_{xy},e_{xz},e_{yz}$做叉积后得到的非零分量一定含有字母w，即都是那种被中轴限制了的上下转动，所以只有垂直于地面的磁场漩涡分量能让这种指南针偏转。</li>
+<li>“指阳针”：磁化方向绝对垂直，刚好与上面相反。磁针环形电流磁偶极矩取向只能是$e_{xy},e_{xz},e_{yz}$的组合，它们跟$e_{xw},e_{yw},e_{zw}$方向的磁场做叉积后得到的都是那种被中轴限制了的上下转动，因此对于这种指南针只用关心磁场在水平地面上的分量。</li>
+</ol>
+<h3 id="地磁场的分布规律"><a href="#地磁场的分布规律" class="headerlink" title="地磁场的分布规律"></a>地磁场的分布规律</h3><p><a name="skip"></a>现在我们搞定了指南针的磁化方向与在外磁场中如何偏转，那外磁场（即地磁场）的方向该是怎样的呢？本文忽略磁极与自转的地理极的误差，假定地理南北极与地磁南北极重合，故下文中的南北极不区分地理与地磁。从刚才<a href="#earth_mag_distribution">地球的磁场分布</a>中可发现，磁场在球面上平行地面的分量分布规律都是赤道强两极弱，垂直地面的分量则赤道弱两极强。注意漩涡与通常的磁场方向（即磁力线）是垂直的，如果描述漩涡，水平竖直的变化规律就会刚好对调：<strong>磁场漩涡在球面上垂直地面的分量分布规律都是赤道强两极弱，平行地面的分量则赤道弱两极强</strong>。类比到四维，如果磁偶极子电流的方向还是东西方向，则从东西方向赤道出发往南北赤道高纬度走，垂直地面的分量逐渐减弱至零，平行地面的分量则相反，从零逐渐增强；如果磁偶极子电流的方向是阴阳方向，则整个规律相反：从东西方向赤道出发往南北赤道高纬度走，垂直地面的分量从零逐渐增强，平行地面的分量则逐渐减弱至零。下面用一个表格来总结一下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">场源方向</th>
+<th align="center">分量</th>
+<th align="center">东西赤道</th>
+<th align="center">中纬度</th>
+<th align="center">阴阳赤道</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>东西</strong></td>
+<td align="center"><strong>垂直</strong></td>
+<td align="center">最强</td>
+<td align="center">渐弱</td>
+<td align="center">零</td>
+</tr>
+<tr>
+<td align="center"><strong>东西</strong></td>
+<td align="center"><strong>水平</strong></td>
+<td align="center">零</td>
+<td align="center">渐强</td>
+<td align="center">最强</td>
+</tr>
+<tr>
+<td align="center"><strong>阴阳</strong></td>
+<td align="center"><strong>垂直</strong></td>
+<td align="center">零</td>
+<td align="center">渐强</td>
+<td align="center">最强</td>
+</tr>
+<tr>
+<td align="center"><strong>阴阳</strong></td>
+<td align="center"><strong>水平</strong></td>
+<td align="center">最强</td>
+<td align="center">渐弱</td>
+<td align="center">零</td>
+</tr>
+</tbody></table>
+<p>假设这个星球内部只存在东西方向的环形电流，我们来看看这两个指南针在星球上各纬度分别如何指向。首先我们的探险家从南极——东西赤道上出发，前往北极——阴阳赤道。在东西赤道上指东针感受到竖直方向与东西向张成的漩涡从而偏转指向东方，此时指阳针不受任何水平力矩，处于失灵状态，这其实跟地球上在南北极点处指南针失灵一样。在东西赤道的附近，阴阳方向是越来越小的圈（下图黄色，类比北极点附近的纬线圈），这里指阳针失灵也就很正常了。<br><img src="/img/compass4d04.jpg" alt="东西赤道附近的方向（俯视图）：赤道（粗红线）、东西（红）、阴阳（黄）、南北（蓝）"></p>
+<p>探险家沿任意垂直于东西赤道的方向出发往北走（赤道已是最南端），来到中纬度地区。这里地磁场是倾斜的，同时具有水平与竖直分量，此时的指东针与指阳针都能好好工作，探险家通过它们能够完全确定自己的方位朝向。最后他来到了北极——阴阳赤道。这里指东针失灵，指阳针正常工作。<br><img src="/img/compass4d05.jpg" alt="阴阳赤道附近的方向（俯视图）：赤道（粗黄线）、东西（红）、阴阳（黄）、南北（蓝）"><br>只要不是刚好在赤道上，东西方向、阴阳方向与南北方向一定垂直，这启发我们可以直接把两种指南针互相焊死一起转动，或干脆做成一个同时有两种磁化方向的球形罗盘，直接在上面把东西南北阴阳六个方向都标出来！注意现在罗盘拥有绝对垂直的两个磁场，因此它的磁矩其实是一种复合的对偶磁场。至此，我们将两个指南针合二为一，类比出来的指南针非常完美！除了在南北极赤道（之前文章中也称为“极道”），探险家拿一个三维的罗盘就可以精确对齐东西南北阴阳！然而，还是那句老话，世界上没有那么完美的事物。我们可以猜想，四维星球中央的磁偶极子可能或多或少都有一点复合磁矩——即环形电流不仅只在东西方向，阴阳方向也有较弱的环形电流。我们的指东针、指阳针或这种复合的对偶罗盘在复合的地磁场下能否按预期工作呢？提前剧透一下：很遗憾不能。</p>
+<h3 id="四维星球特色：复合地磁场"><a href="#四维星球特色：复合地磁场" class="headerlink" title="四维星球特色：复合地磁场"></a>四维星球特色：复合地磁场</h3><p>简单地磁场可以算是直接从三维类比过来的，然而如果磁场是复合的，这里磁针的平衡位置可就没那么直观了，但我们可以把复合场分解成两个绝对垂直的简单磁场的叠加，磁针受到的力也可以分解为在这两个磁场中分别受到的力。</p>
+<p>我们的探险家又来到了另一个四维星球，它的地磁偶极子阴阳方向的环形电流是东西方向的三分之一。探险家现在站在南极赤道上，东西方向环形电流在这里只产生垂直地面的磁场，阴阳方向的环形电流只产生平行于地面的磁场，因此他手里的指东针与指阳针能够同时工作！之前在简单磁场下会失灵的指阳针现在将指向哪呢？东西赤道的位置跟阴阳赤道垂直，探险家相对于阴阳环形电流的位置如下图：我们可以看到，阴阳方向的磁针居然也会指向东西方向！其实这也好理解：不难看出无论地磁环形电流是什么方向，按指东针磁化方式做的磁针都会倾向于指向环形电流的方向，而按指阳针磁化方式做的磁针则指向垂直于环形电流且垂直于南北的方向。不同于东西方向，阴阳方向的“指东针”此刻变成“指阳针”，“指阳针”却变成“指东针”，因此它们都指东！我们总结出一张表，把所有地方所有情况下的受力情况列出来：</p>
+<table>
+<thead>
+<tr>
+<th align="center">磁针类型</th>
+<th align="center">地磁方向</th>
+<th align="center">东西赤道</th>
+<th align="center">中纬度</th>
+<th align="center">阴阳赤道</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>指东</strong></td>
+<td align="center"><strong>东西</strong></td>
+<td align="center">最强</td>
+<td align="center">渐弱</td>
+<td align="center">失灵</td>
+</tr>
+<tr>
+<td align="center"><strong>指东</strong></td>
+<td align="center"><strong>阴阳</strong></td>
+<td align="center">失灵</td>
+<td align="center">渐强</td>
+<td align="center">最强</td>
+</tr>
+<tr>
+<td align="center"><strong>指阳</strong></td>
+<td align="center"><strong>东西</strong></td>
+<td align="center">失灵</td>
+<td align="center">渐强</td>
+<td align="center">最强</td>
+</tr>
+<tr>
+<td align="center"><strong>指阳</strong></td>
+<td align="center"><strong>阴阳</strong></td>
+<td align="center">最强</td>
+<td align="center">渐弱</td>
+<td align="center">失灵</td>
+</tr>
+</tbody></table>
+<p>其实不分析任何具体偏转方向通过对称性就能得出结论——磁场沿垂直于赤道的方向都是完全对称的，除了指东，你根本不可能期望任何感应地磁的仪器分辨出其它方向，因为就像在地球的南极点上一样，任何方向都是北方，在这里东方向也没有了意义。</p>
+<p>接着探险家往北走，随着北上，他手里的两个指针从最开始都指向东西方向，到后来角度慢慢分开变大，继续北上角度又都慢慢变小，当他来到北极的阴阳赤道时，两只指针已经完全重合，都指向阴阳方向了。看到复合磁场星球下指南针导航的复杂性了吧！为什么会这样呢？对于复合场，每一种指针会在两种作用力的叠加下指向到一个新的平衡位置，这个位置往往与两个磁场都不重合，是两边博弈平衡的结果。这种遵从平行四边形的矢量合成对保持角度并不友好，用计算机计算可知道，除了它们还是会垂直于南北方向，这两种指针的夹角并不垂直，且它们与东西阴阳方向均有夹角，且角度会随维度变化而连续变化，这就非常麻烦了：想象四维探险家要在不同纬度下重新校准指南针，而且他还得懂得计算这些偏差角或事先算好查表！<br><img src="/img/compass4d03.png" style="width:100%;max-width:400px" alt="横座标：纬度；纵坐标：两指针夹角（绿）、指东针相对东方的方位角（橙）、指阳针相对东方的方位角（蓝）"><br>同时看两个指南针太麻烦了。如果我们还是像单旋转星球的指南针那样，把两种磁化方向都做到一个球形罗盘上，合理控制两种磁化强度的比例，说不准就能能给探险家指向正确的方位。计算表明，小心控制磁化强度的比例确实能够修正偏差，让球形罗盘重新对齐东西阴阳方向，然而不同纬度下控制磁化强度的比例是需要变化的，因此你或许要去买一些“当地罗盘”，它们只能在同纬度区域的附近用。探险家如果要还有世界，它需要的通用指南针还得是两个指针，首先与两指针垂直的方向是南北方，且根据右手定则能确定哪个是南哪个是北。要知道东西阴阳的方向会麻烦些：首先读出两指针的夹角，通过查表得到自己的纬度（一般来说一个角度会对应两个纬度），然后再通过纬度查表确定修正自己的指南偏差。可以想象“当地罗盘”使用方便，适合在一块小区域内探险的非专业人士；通用指南针要看两个指针，还要查表校正，上手门槛高，但却是资深探险家的不二之选。</p>
+<p>如果阴阳方向环形电流相比于东西方向非常小，那么可以预测的是复合磁场罗盘应该能够勉强工作。下图是地磁偶极子阴阳方向的环形电流是东西方向的百分之一的磁针夹角变化曲线：<br><img src="/img/compass4d04.png" style="width:100%;max-width:400px" alt="横座标：纬度；纵坐标：两指针夹角（绿）、指东针相对东方的方位角（橙）、指阳针相对东方的方位角（蓝）"><br>下面我们再看一种极端的情况：自对偶磁偶极子——一种类似于等角双旋转的东西、阴阳环形电流强度相同的偶极子。跟等角双旋转一样，这种偶极子高度对称，它还可以有很多分解环形电流的方式（参考<a href="/archives/bivector4ds/#orth">《四维空间（七）：N维的向量》中的正交分解</a>）：你可以把任何一个地方当作南极，过此地顺着Hopf纤维丛的方向就是赤道，垂直于它的就是北极。这样的星球上两种磁针都会指向Hopf纤维的方向，如果电流流动与星球自传相同，则星球做等角双旋转，且磁针指向该点星球的运动方向。也就是说其实等角双旋转星球上的磁针也没有完全失灵！它还保留了一个方向给探险家做方位提示！如果星球的两个环形电流非场接近，但还差一点（99%），这样东西南北阴阳都还有意义，指南针的夹角曲线随纬度变化就是这样的：<br><img src="/img/compass4d02.png" style="width:100%;max-width:400px" alt="横座标：纬度；纵坐标：两指针夹角（绿）、指东针相对东方的方位角（橙）、指阳针相对东方的方位角（蓝）"></p>
+<h3 id="地转偏向力用于导航"><a href="#地转偏向力用于导航" class="headerlink" title="地转偏向力用于导航"></a>地转偏向力用于导航</h3><p>有没有其它的辅助探险家们判断方向的手段呢？我们知道在地球北半球，水池下水口的漩涡是逆时针的，南半球相反，这是地球自转产生的偏转力在起作用。在四维星球上情况如何呢？它能不能帮助我们找方向呢？<br>为了回答这些问题，我们先来看看三维空间中旋转参考系下物体受到的惯性力，物体将受到两种类型的惯性力：第一种是离心力，第二种则是这种偏转力(也叫科里奥利力)。我们重点关注第二种力。维基百科的科里奥利力词条里面的一个gif动画很清楚地展示了这种偏转力的实质：由于不受力的物体匀速直线运动在旋转参考系下不再是直线，因此需要引入一个虚拟的惯性力来让物体偏移直线方向。<br><img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Corioliskraftanimation.gif" alt="来自维基百科词条"><br>注意该力与物体运动方向垂直，因此不会改变速度大小。是不是觉得跟磁场中的洛伦兹力有点像？其实第一类惯性力像电场力，第二类惯性力像磁场力，在广义相对论中还有一种叫<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%87%8D%E5%8A%9B%E9%9B%BB%E7%A3%81%E6%80%A7">重力电磁性</a>的线性近似。。。</p>
+<p>回到水池的漩涡上来。跟指南针的情况类似，旋转赤道上的水流受到的科里奥利力在竖直方向，但这种偏转力十分微弱，无法与重力抗衡来产生可观测的效应，因此只有地球自转角速度在三维地面上的分量$e_{xy},e_{xz},e_{yz}$才对流体有影响。由于三维空间中的2-向量都是简单的，我们总能找到一根不参与旋转的转轴，转轴方向上的水流是不会受到偏转力的，它们会径直流进出水口，轴线周围的水则会在偏转力作用下形成像龙卷风一样的结构。探险家通过龙卷风的方向，运用三维空间中最标准的右手定则就能得到一个明确的指向。如果地磁场在各种大小方向从比例上跟自转角速度场完全一致的话，则这种水漩涡方向的“指南针”跟第二种阴阳指南针一样。然而这样就表明指阳针有的缺点它都有，包括赤道失灵、双旋转星球误差等等。注意，星球自转可以看成刚体，角速度场永远是均匀的，而地磁场是偶极子场，虽然它们水平垂直分量的变化趋势差不多，夹角偏差、失灵也会产生，但水平垂直分量的变化的方向是反的，具体偏差的计算修正方式也完全不相同。</p>
+<p>降维到三维的地球情形我们的水漩涡指阳针会变成什么呢？地球仅在做自西向东的单旋转，由于二维球面上没有阴阳方向，水漩涡指阴阳退化成了逆时针顺时针两种点状漩涡的情形，仅能用它区分我们在北半球还是南半球。</p>
+<p>研究清楚了四维星球上的导航方法，探险家编好指南针偏差校正表就准备上路去环游世界大冒险了！他一路上会见到怎样的风景呢？且听下回分解！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wxyhly.github.io/archives/compass4d/" data-id="clco1bvn10000f4wm7cd709mf" class="article-share-link">Share</a>
+      
+        <a href="https://wxyhly.github.io/archives/compass4d/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%9B%E7%BB%B4/" rel="tag">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%89%A9%E7%90%86/" rel="tag">物理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" rel="tag">系列文章</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/archives/homology/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older &gt;&gt;</strong>
+      <div class="article-nav-title">代数拓扑简介（下）：同调论</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">13</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    <div class="widget-wrap">
+   <h3 class="widget-title">链接</h3>
+   <div class="widget">
+      <ul class="entry">
+         <li><a href="https://space.bilibili.com/454422438" title="bilibili" target="_blank">WXYHLY(Hqak)的B站链接</a></li>
+         <li><a href="http://hadroncfy.com" title="hadroncfy" target="_blank">Hadroncfy's Notebook</a></li>
+      </ul>
+   </div>
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2b2t/" style="font-size: 11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 10px;">tesserxel</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 11px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 15px;">图形</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 16px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 14px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 18px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 14px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 11px;">电路</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 13px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 11px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 11px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/archives/compass4d/">四维世界（八）：地理与导航</a>
+          </li>
+        
+          <li>
+            <a href="/archives/homology/">代数拓扑简介（下）：同调论</a>
+          </li>
+        
+          <li>
+            <a href="/archives/infpigfarm/">参观无限大养猪场</a>
+          </li>
+        
+          <li>
+            <a href="/archives/tesserxel-hello/">全新四维引擎Tesserxel上线</a>
+          </li>
+        
+          <li>
+            <a href="/archives/Eop-Analogue/">自己打造的一个电脑钢琴</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 wxyhly<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/programs/" class="mobile-nav-link">Programs</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'wxyhly';
+  
+  var disqus_url = 'https://wxyhly.github.io/archives/compass4d/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    }); 
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script defer>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  "HTML-CSS": { linebreaks: { automatic: true } },
+         SVG: { linebreaks: { automatic: true } }
+};
+</script>
+<script type="text/javascript" defer
+  src="https://cdn.bootcss.com/mathjax/3.0.5/es5/tex-mml-chtml.js">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
