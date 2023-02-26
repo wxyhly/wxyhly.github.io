@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/pnorm2.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/pnorm3.png">
 <meta property="article:published_time" content="2016-12-06T15:02:13.000Z">
-<meta property="article:modified_time" content="2023-01-02T12:33:56.534Z">
+<meta property="article:modified_time" content="2023-02-22T12:36:40.363Z">
 <meta property="article:author" content="wxyhly">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="几何">
@@ -141,7 +141,7 @@
 </div>
 
 <h3 id="不同范数下的圆周率与三角函数"><a href="#不同范数下的圆周率与三角函数" class="headerlink" title="不同范数下的圆周率与三角函数"></a>不同范数下的圆周率与三角函数</h3><p>弧长与面积定义的广义三角函数到底相差多少呢？首先最明显的就是三角函数的周期不一样——这个周期对应相应圆的周长与面积。当$p&#x3D;1$时，圆（菱形）的面积是2，$p&#x3D;\infty$时，圆（正方形）的面积是4，但他们的周长都是8，可见这两种定义绝对是不等价的。其实从下图可以看到，它们只在$p&#x3D;2$时相等。（都等于3.1415926..）其中红色曲线在p&#x3D;2时还取得了极小值$\pi$！（<a target="_blank" rel="noopener" href="https://www.jstor.org/stable/2687579?origin=crossref&seq=1#page_scan_tab_contents">这里有证明</a>）<br><img src="/img/pnorm12.gif" alt="两种定义下的圆周率与p的关系，蓝色曲线为面积定义，红色为周长定义"><br>对于各种三角函数，我们不妨把横坐标缩放一下，将周期统一起来，只关注函数图像形状上的差别，看看它们的区别有多大：<br><img src="/img/pnorm13.gif"><br>上图中画出了$p&#x3D;5$时两种定义下的正弦、余弦、正切函数图像，共6条曲线，我们发现两条曲线虽然不重合，但也比较接近。</p>
-<h2 id="旋转对称性"><a href="#旋转对称性" class="headerlink" title="旋转对称性"></a>旋转对称性</h2><p>回到几何上来，我们猜想p范数下也有类似的旋转矩阵：$$\begin{pmatrix}<br>cos_p\theta &amp; sin_p\theta \\<br>-sin_p\theta &amp; cos_p\theta<br>\end{pmatrix}$$<br><img src="/img/pnorm7.gif"><br>注意我们这里要严格选定弧长定义的那种广义三角函数。但不幸的是可以验证这样的矩阵变换不能保持长度不变，更进一步我们可以验证这种变换至少不是线性的，比如线段PQ旋转到P’Q’：（转了1&#x2F;8个圆周）然而PQ的长度为$2^{1\over p}$，P’Q’的长度为$2^{p-1\over p}$，我们发现只有p&#x3D;2时它们长度才相等。但这也不能说旋转是不可能的。事实上线段旋转完后不一定是线段，比如PQ的中点会旋转到P’Q’偏下的位置。但从<strong>等距同构群</strong>（即所有能保持图形中所有点距离不变的变换）的角度看这个世界已经不能旋转了（没有旋转对称性），等距同构群只有平移、反射变换。但这不妨碍我们定义一种广义的“旋转”——逆时针绕原点转$\alpha$角：<br>$$<br>r&#x3D;\sqrt[p]{|x|^p+|y|^p} \\<br>\theta&#x3D;atan2_p(y,x)\\<br>x’&#x3D;r cos_p(\theta+\alpha) \\<br>y’&#x3D;r sin_p(\theta+\alpha)<br>$$<br>其中$atan2_p$类似于$atan2$函数：表示向量$(x,y)$与x轴正向的夹角（绝对值等于夹的那段弧长）。</p>
+<h2 id="旋转对称性"><a href="#旋转对称性" class="headerlink" title="旋转对称性"></a>旋转对称性</h2><p>回到几何上来，我们猜想p范数下也有类似的旋转矩阵：$$\begin{pmatrix}<br>cos_p\theta &amp; sin_p\theta \\<br>-sin_p\theta &amp; cos_p\theta<br>\end{pmatrix}$$<br><img src="/img/pnorm7.gif"><br>注意我们这里要严格选定弧长定义的那种广义三角函数。但不幸的是可以验证这样的矩阵变换不能保持长度不变，更进一步我们可以验证这种变换至少不是线性的，比如线段PQ旋转到P’Q’：（转了1&#x2F;8个圆周）然而PQ的长度为$2^{1\over p}$，P’Q’的长度为$2^{p-1\over p}$，我们发现只有p&#x3D;2时它们长度才相等。但这也不能说旋转是不可能的。事实上线段旋转完后不一定是线段，比如PQ的中点会旋转到P’Q’偏下的位置。但从<strong>等距同构群</strong>（即所有能保持图形中所有点距离不变的变换）的角度看这个世界已经不能旋转了（没有旋转对称性），等距同构群只有平移、反射变换。但这不妨碍我们定义一种广义的“旋转”——逆时针绕原点转$\alpha$角：<br>$$r&#x3D;\sqrt[p]{|x|^p+|y|^p}$$$$<br>\theta&#x3D;atan2_p(y,x)$$$$<br>x’&#x3D;r cos_p(\theta+\alpha) $$$$<br>y’&#x3D;r sin_p(\theta+\alpha) $$<br>其中$atan2_p$类似于$atan2$函数：表示向量$(x,y)$与x轴正向的夹角（绝对值等于夹的那段弧长）。<a name="rotanime"></a></p>
 <p>比如下面是p&#x3D;3时的旋转：<br><img src="/img/pnorm9.gif"><br>我们看到它不是线性的，且“圆”在旋转下不变，确实是最完美的图形。（我们世界的蓝色圆在这个世界中会变形，并不完美）<br>下面这个动画（取的p&#x3D;3的世界）能反映这个旋转“<strong>不好</strong>”的性质：我们先把一个图形平移一段距离，再绕原点顺时针旋转一定角度$\alpha$，再平移回原点，逆时针转回来角$\alpha$，这个图形的形状按理说不该变，但这个旋转会让图形变形。<br><img src="/img/pnorm10.gif" alt="p=2——我们的世界"> <img src="/img/pnorm11.gif" alt="p=3的世界"><br>以下是角度$\alpha$不断变化得到的一系列变形的结果：<br><img src="/img/pnorm8.gif"><br>这种变形周期为$\pi_3&#x2F;2$($\pi_3$，是p&#x3D;3世界中的圆周率)，且沿平移方向直线上的点没动。那是不是意味着这个世界中物体都不能转动，只能平移呢？因为试图转动会改变某些点间的距离，这个世界中的生物会认为旋转是一件不可思议的事。但我们忽略了一点：世界中的物体不一定是刚体。下面我们将建立最简单的弹簧质点模型来考察这个世界中的质点动力学，先剧透一下：最后我们会惊奇地发现，我们其实没有选择p-范数p值的权利！它将在某种意义下自动等于2。</p>
 <h2 id="p-范数世界中的弹簧"><a href="#p-范数世界中的弹簧" class="headerlink" title="p-范数世界中的弹簧"></a>p-范数世界中的弹簧</h2><p>我们平时所说的刚体，即完全不会发生形变的物体，严格上应该定义为具有物体上各部分点在运动中距离永远保持不变的物体。怎样维持各部分点距离不变呢？最简单的做法就是硬弹簧模型：我们把刚体分成无数个质点，两两之间都连接上一个劲度系数特别大的弹簧，且弹簧的原长刚好等于质点间的距离，这样距离上一旦有变化质点就将受到回复力的作用尝试回到平衡位置上去。但这将导致弹簧振荡，我们加入适当的阻尼项让弹簧停在平衡位置。这样就近似实现了距离不变的力学约束。下面我们来看看胡克定律：<br>$$F &#x3D; -k\Delta x$$其中$\Delta x$是弹簧的伸长量，既然涉及到长度，我们自然就要用上p-范数的距离公式来计算，这样就得到了p-范数世界中的弹簧模型。<br>首先我们将一个质点放在x轴（1,0）上，与坐标原点用弹簧（原长刚好为质点到原点的距离）相连，然后给它一个y轴方向上的速度，这个质点就会逆时针绕原点旋转起来。但由于我们的平衡位置已经限定好用p-范数计算，所以质点的旋转轨迹不是2-范数的圆，而是p-范数的圆。此时我们计算一下质点的速度大小，注意计算速度时也需要用p-范数的长度公式还计算速度向量的长度，但不幸的是这个速度向量的值在旋转中会改变：运动到对角线方向时质点的速度比过x、y轴时慢一些。<br><img src="/img/pnorm15.gif" alt="p=4的一个质点正在做p-圆周运动，然而不是匀速圆周运动"><br>当然这也还好，我们继续增加一个质点，放在y轴（0,1）上，将它分别与原点和x轴的质点连接，组成一个三角形。同样，我们给x轴上的质点一个沿y轴的初速度，这样两个质点便会一起旋转，但我们发现这次两个质点的运动速度更加不均匀。注意这个空间里我们无法再准确定义内积、垂直等概念，所以所谓“正交分解”是进行不下去的。（其实脑洞大一点还能定义一种将p个向量映射成一个数的“内积”，这样向量范数就还是向量自身的内积在开p次方，但好像除了这个就没任何意义了）<br><img src="/img/pnorm16.gif" alt="p=4的两个质点"><br>上图中的两个质点好像在相互拖拽，但那个不断变形的三角形的三边长确实是固定的！看来三边相等来判断三角形全等在一般p-范数下也不成立了。我们继续再加一个质点，这次放在x、y轴的对角线（1,1）上，加上原点四个点组成一个正方形。我们对正方形的四个顶点两两都安上弹簧，一共6个，现在我们再对一个点给一个初速度，这个正方形会转起来吗？之前我们说p不等于2的世界是不能旋转的，那会不会正方形真的只会平移呢？计算结果很奇怪：<br><img src="/img/pnorm14.gif" alt="p=2.05的一个“刚体”正方形"><br>正方形还是在尝试旋转，并且最初旋转进行得很顺利，但当角度稍微大了一点后我们看到质点开始发生抖动，说明质点间的距离已经不能均保持原长，且无法自动恢复到平衡位置。更神奇的是，抖动了一会后整个正方形突然旋转了90度又稳定了下来（数值不稳定已经发生，后续又稳定没有物理意义了），但过一会就又突然转回来，直到数值计算误差过大导致整个系统剧烈抖动。但我们能够看出这个正方形并不会乖乖地平移，它还是想旋转，而且长度约束不满足后弹簧产生的内力并不能阻止旋转运动，导致整个系统剧烈震荡崩溃。</p>
 <p>我们再来分析一个离心运动的案例：把原长为0的弹簧一头系在原点，另一头放个质点，给质点初速度会怎样。由于弹簧没有原长，所以受力的大小直接是坐标到原点的距离乘以劲度系数。我们唯一的问题是怎样将力分解到坐标上。注意给定坐标$(x,y)$后我们可以求出这个方向上的单位向量：$(x&#x2F;\sqrt[p]{x^p+y^p},y&#x2F;\sqrt[p]{x^p+y^p})$，读者可以自行验证这个向量是单位长度且与$(x,y)$平行。所以受力分解的结果为单位向量乘以长度$l&#x3D;\sqrt[p]{x^p+y^p}$再乘劲度系数$kl$，也就是说最终力的表达式为$(kx,ky)$，表达式完全跟$p$无关！而且更加“可气”的是，只要$\vec{F}&#x3D;k\vec{x}$，那么质点运动轨迹就一定是线段、椭圆或圆，注意这里的圆是2-范数下的圆，它是$\vec{F}&#x3D;k\vec{x}$决定的微分方程自然的解，也就是说无论我们怎样选择范数，最终物理系统的行为都会自动满足2-范数！这也说明了2-范数的特殊性以及为什么没有更多人去深入研究p-范数几何的原因。</p>
@@ -232,7 +232,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
     </div>
   </div>
 
@@ -243,6 +243,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/archives/minkovsky/">闵氏空间与常曲率空间的几何</a>
+          </li>
         
           <li>
             <a href="/archives/compass4d/">四维世界（八）：四维星球导航</a>
@@ -258,10 +262,6 @@
         
           <li>
             <a href="/archives/tesserxel-hello/">全新四维引擎Tesserxel上线</a>
-          </li>
-        
-          <li>
-            <a href="/archives/Eop-Analogue/">自己打造的一个电脑钢琴</a>
           </li>
         
       </ul>

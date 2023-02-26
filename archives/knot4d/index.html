@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/knot412.jpg">
 <meta property="og:image" content="https://wxyhly.github.io/img/knot419.jpg">
 <meta property="article:published_time" content="2019-03-23T11:49:13.000Z">
-<meta property="article:modified_time" content="2022-11-12T13:40:28.661Z">
+<meta property="article:modified_time" content="2023-01-14T13:26:11.640Z">
 <meta property="article:author" content="wxyhly">
 <meta property="article:tag" content="拓扑学">
 <meta property="article:tag" content="四维">
@@ -183,7 +183,7 @@
 <h5 id="两个球面相扣？"><a href="#两个球面相扣？" class="headerlink" title="两个球面相扣？"></a>两个球面相扣？</h5><p>还有一个自然的问题就是两个球面能不能相扣？如果要求球面是刚性的那么是不可以的，因为洞的维数无法匹配，但我们前面就看到了球面自身都能打结，所以两个“软”的球面肯定能相扣（要求每个球面自身没打结）。<br><img src="/img/knot408.gif" alt="两个相扣球面的管状结线条表示法"><br>同样，三维空间还存在着一个特殊的构造：三个圆圈相扣(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Borromean_rings">Borromean rings</a>)，但每两之间都是不相扣的，三个球面呢？<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/BorromeanRings.svg/266px-BorromeanRings.svg.png" alt="来源：维基百科"><br>我构造了一种方案，但遗憾的是无法证明它们确实是扣在一起的，因为计算染色方法数得出它和三个分离的球是一样的，当然这也不能说明它与三个分离的球等价，有待用其他判据检验。<br><img src="/img/knot411.gif"><a name="ho0"></a></p>
 <h5 id="平-圆环面内部的孔"><a href="#平-圆环面内部的孔" class="headerlink" title="(平)圆环面内部的孔"></a>(平)圆环面内部的孔</h5><p>四维空间有孔的东西还有圆环环和双圆环。它们作为本来就有孔的圆环的旋转体得到圆环环，我们猜测这两个图形或许有两个孔。作为加厚体，它们分别对应四维的平圆环面和三维轮胎形的圆环面。</p>
 <p>我们先分析圆环面的孔：首先，圆环本来就有孔，对应圆周加厚，这个孔来源于圆周是空心的，放到四维空间就是二维的，能塞进平面；然后我们只取圆环的表面，得到圆环面，这个操作又是一次镂空。它对应的孔其实也有两个自由度，设想你在环形管道里，你可以顺着管道走也可以往第四个维度走彻底离开管道，只要不往剩下管道壁的两个方向走就行。这个孔可以塞进一张柱面（高的方向垂直于圆环面所在三维胞）。我们看到，四维空间中图形孔的形状开始变得复杂起来。</p>
-<p>其实四维平圆环的孔还相对简单些：平圆环是两个空心圆周的直积。如果我们把两圆分别放到$xOy$、$zOw$平面上并让圆心放在原点，那么平面$xOy$、$zOw$都不会与平圆环相交。检查平圆环的方程就可以得出来：比如平圆环上的点xy坐标不可能同时为0。<br>$$<br>\begin{cases}x^2+y^2&#x3D; r_1^2 \\ z^2+t^2&#x3D; r_2^2\end{cases}<br>$$<br>如果要用几何的方式解释的话就是：平面中空心的圆周可以看作有零维的孔，它与另一个二维图形直积就是把这个图形在另一个图形上不断平移的结果，这些平移的自由度为二，自然导致了孔的维数升级到了二；根据直积交换律，对另一个图形也是，我们得到了平圆环上有两个绝对垂直的二维孔。加厚后就是双圆环，它从拓补上对应着对着超球捅了绝对垂直的两次二维刀的产物。<br><img src="/img/knot404.gif" alt="把$xOy$、$zOw$平面塞进双圆环（有厚度的平圆环）里的截面动画，可以看到绝对垂直的两平面交于一点"><br>我们真的从它的中心斜截面中看到了三维空间类似被垂直的直线捅了两刀的结构！这就是<a href="/archives/rot4d/#tigercage">上篇文章中提到的Tiger cage</a>。<br><img src="/img/knot411.jpg"></p>
+<p>其实四维平圆环的孔还相对简单些：平圆环是两个空心圆周的直积。如果我们把两圆分别放到$xOy$、$zOw$平面上并让圆心放在原点，那么平面$xOy$、$zOw$都不会与平圆环相交。检查平圆环的方程就可以得出来：比如平圆环上的点xy坐标不可能同时为0。<br>$$<br>\begin{cases}x^2+y^2&#x3D; r_1^2 \\ z^2+w^2&#x3D; r_2^2\end{cases}<br>$$<br>如果要用几何的方式解释的话就是：平面中空心的圆周可以看作有零维的孔，它与另一个二维图形直积就是把这个图形在另一个图形上不断平移的结果，这些平移的自由度为二，自然导致了孔的维数升级到了二；根据直积交换律，对另一个图形也是，我们得到了平圆环上有两个绝对垂直的二维孔。加厚后就是双圆环，它从拓补上对应着对着超球捅了绝对垂直的两次二维刀的产物。<br><img src="/img/knot404.gif" alt="把$xOy$、$zOw$平面塞进双圆环（有厚度的平圆环）里的截面动画，可以看到绝对垂直的两平面交于一点"><br>我们真的从它的中心斜截面中看到了三维空间类似被垂直的直线捅了两刀的结构！这就是<a href="/archives/rot4d/#tigercage">上篇文章中提到的Tiger cage</a>。<br><img src="/img/knot411.jpg"></p>
 <p>最后我想说更奇妙的是，平圆环可以在四维空间翻成圆环，对应的孔也可以连续变形。也就是说我们可以把圆柱形连续变形为平面？这不可能，一定有哪个地方搞错了！其实我们看看三维空间类似的情况就会豁然开朗，没有任何矛盾。<br><img src="/img/knot410.gif"><a name="ltig"></a></p>
 <h5 id="两个双圆环扣？"><a href="#两个双圆环扣？" class="headerlink" title="两个双圆环扣？"></a>两个双圆环扣？</h5><p>最后的问题是刚性的双圆环能不能自己和自己相扣呢？我只找到了两个大小不相等的双圆环扣，它的原理是双圆环的一个二维孔套在另一个平圆环面（加厚就是双圆环）上达到维度匹配，但如果两个双圆环一样大就套不进去了，很有可能两个全等的刚性双圆环不存在相扣的方案。<br><img src="/img/knot409.gif" alt="一大一小两个双圆环相扣不同角度的截面动画"><br>平圆环的三维投影是什么样子的呢？它不可避免会产生自相交（有四个分支点，两条二重交线）。<br><img src="/img/knot413.jpg" alt="平圆环的上色投影"><br>我们的两个双圆环投下来就是：<br><img src="/img/knot415.gif"><br>但通过影片中提到的曲面合法移动方式可以轻松地把大圆环变成标准的轮胎形环面，但由于小圆环套在大圆环上，做移动时要小心自相交的产生。小圆环通过变形也能变成标准环面，那么上面两个平圆环打结就等价于两个圆环面在打结。我们说过这种打结是二维孔匹配在二维面上，所以我们完全不用关心大圆环的其余部分，直接用一张平面表示大圆环的局部。我最先以为等价于如下示意图的管状结：<br><img src="/img/knot412.gif" alt="错误的管状结线条表示法"><br>但事实是管状结一点也不万能，这个结无法用管状结对应的图画出来。我们从投影中也能看到，整个小圆环是躺着穿在大圆环面上的，跟上面的图不符。可以认为把双圆环变成圆环时，它的孔从平面变成了圆柱。如果觉得抽象的话我们看一个更简单的例子：球面与环面的环扣可以认为球面与圆环面二维的洞（圆柱面）匹配了，但环面与球面的一维洞是怎么匹配的就很抽象了，因为球面跨在环面的孔上，不能归为简单的对应维度匹配的问题，且管状结也没法表示这种跨越。要理解这个环扣得换用旋转体的思维，我们将在后面讨论。在球面上开个洞变成圆环（洞开在不与其他投影相交的地方，这样就不参与打结），就等价于我们刚才讨论的平圆环扣了，所以这两种结本质是一样的。<br><img src="/img/knot416.jpg" alt="球面与环面的环扣的上色投影"></p>
 <p>四维空间洞的形状很多，其实三维空间也是，但二维曲面分类定理告诉我们所有定向闭合曲面（除去克莱因瓶这些怪物）都等价于有N个孔的图形，当然这是完全在同胚映射的角度上说的。如果我们把一个孔在物体内部弯成死结，这个孔与没打结的空肯定不等价，但这是在同痕的意义下了（同痕注重变形过程不能自相交，设想允许自相交的话结就解开了）。那有没有三维曲胞（用标准一点的术语叫三维流形）分类定理呢？这个问题太复杂了。但我们之前说过球环和环球的三维表面是等价的，所以可能用一个参数（孔个数或欧拉性示数？）就能表示。三维空间中两条垂直孔相交的曲面等价于有四个孔的图形。所以我十分怀疑开了两个平行二维孔的曲胞和交于一点的二维孔（比如绝对垂直就交于一点）曲胞不等价，很可能双圆环中的两个孔完全就没法变换成其它分离的孔。</p>
@@ -272,7 +272,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
     </div>
   </div>
 
@@ -283,6 +283,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/archives/minkovsky/">闵氏空间与常曲率空间的几何</a>
+          </li>
         
           <li>
             <a href="/archives/compass4d/">四维世界（八）：四维星球导航</a>
@@ -298,10 +302,6 @@
         
           <li>
             <a href="/archives/tesserxel-hello/">全新四维引擎Tesserxel上线</a>
-          </li>
-        
-          <li>
-            <a href="/archives/Eop-Analogue/">自己打造的一个电脑钢琴</a>
           </li>
         
       </ul>
