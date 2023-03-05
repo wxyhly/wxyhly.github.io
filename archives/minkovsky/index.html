@@ -12,12 +12,12 @@
 <meta property="og:site_name" content="Blog de Hqak (WXYHLY)">
 <meta property="og:description" content="今天我们来看看一种基于闵可夫斯基空间构造的一系列世界，并介绍一些微分几何学的相关概念。许多奇特世界与其都有一定的联系。本文更多涉及到这些空间的几何性质，后续我们再讨论这些世界里的天文学、居民生活等是什么样的。提前剧透：闵可夫斯基世界对我们来说既陌生又熟悉。 特色内容 双曲函数与双曲角 闵氏空间中的物理学 德西特与反德西特时空几何 内蕴几何与内禀曲率 黎曼曲率张量的几何意义">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/a/a8/LorentzT_paused.JPG">
+<meta property="og:image" content="https://wxyhly.github.io/img/minkovski001.jfif">
 <meta property="og:image" content="https://wxyhly.github.io/img/minkovski001.svg">
-<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Circle-trig.svg/536px-Circle-trig.svg.png">
-<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Hyperbola-trig.svg/536px-Hyperbola-trig.svg.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/minkovski011.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/minkovski012.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/minkovski002.svg">
-<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/e/e4/Lorentz_transform_of_world_line.gif">
+<meta property="og:image" content="https://wxyhly.github.io/img/minkovski001.gif">
 <meta property="og:image" content="https://wxyhly.github.io/img/minkovski002.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/minkovski001.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/minkovski005.png">
@@ -29,10 +29,12 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/minkovski009.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/minkovski010.png">
 <meta property="article:published_time" content="2023-02-26T01:28:37.000Z">
-<meta property="article:modified_time" content="2023-02-26T01:40:59.408Z">
+<meta property="article:modified_time" content="2023-03-05T11:36:11.461Z">
 <meta property="article:author" content="wxyhly">
+<meta property="article:tag" content="物理">
+<meta property="article:tag" content="几何">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/a/a8/LorentzT_paused.JPG">
+<meta name="twitter:image" content="https://wxyhly.github.io/img/minkovski001.jfif">
   
   
     <link rel="icon" href="/favicon.png">
@@ -107,7 +109,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <div style="float:right"><a name="innertop"></a><img alt="闵可夫斯基空间中的“双曲旋转”变换，图片来自维基百科" src="https://upload.wikimedia.org/wikipedia/commons/a/a8/LorentzT_paused.JPG" width="350px"/></div>
+        <div style="float:right"><a name="innertop"></a><img alt="闵可夫斯基空间中的“双曲旋转”变换，图片来自维基百科" src="/img/minkovski001.jfif" width="350px"/></div>
 
 <p>今天我们来看看一种基于闵可夫斯基空间构造的一系列世界，并介绍一些微分几何学的相关概念。许多奇特世界与其都有一定的联系。本文更多涉及到这些空间的几何性质，后续我们再讨论这些世界里的天文学、居民生活等是什么样的。提前剧透：闵可夫斯基世界对我们来说既陌生又熟悉。</p>
 <h2 id="特色内容"><a href="#特色内容" class="headerlink" title="特色内容"></a>特色内容</h2><ul>
@@ -119,10 +121,10 @@
 </ul>
 <span id="more"></span>按常规认知，在直角坐标系下两点之间的距离公式是：$$s^2=(x_2-x_1)^2+(y_2-y_1)^2$$ 我们把这样的普普通通的平面叫做**二维欧几里得空间**，记作$\mathbb{R}^2$，简称**欧氏空间**。下一步可以定义圆，它是到原点距离为定值的点的集合，因此圆满足的方程为：$x^2+y^2=R^2$
 <p>平面上除了可以构造<a href="/archives/p-norm/">之前提到的p范数世界</a>，还有没有其它可能的距离的世界呢？比如平方和为什么非得要相加呢？变成平方和相减会怎么样呢？即：<br>$s^2&#x3D;(x_2-x_1)^2-(y_2-y_1)^2$<br>使用这种距离的空间就叫做<strong>二维闵可夫斯基空间</strong>，记作$\mathbb{R}^{1,1}$，简称<strong>闵氏空间</strong>。这个空间的圆变成了双曲线：<br>$x^2-y^2&#x3D;R^2$<br>双曲线是这个空间中最对称、最完美的图形！<br>为什么会想要构造这样的空间呢？因为高等数学中有<strong>双曲函数</strong>这个东西（大家应该听说过吧），我们将看到在这个空间里，双曲函数将取代三角函数的地位！回到距离公式上来，显然这个空间中最特别的是，有些点之间的距离平方变成了负数，开方就变成了虚数。其实简单分析可以得到，落在下图中黄色区域的点到坐标原点的距离都是虚数，左右白色区域中的点到P的距离则是正常的正数，而落在灰色的边界上距离为0。这种距离度量下的世界到底是怎么样的呢？这些虚数距离与实数距离交织在一起有意义吗？在继续讨论这个世界的意义之前我们先来看看此空间的数学性质。<img src="/img/minkovski001.svg" alt="到原点距离的平方按符号划分的区域"></p>
-<h2 id="双曲函数与双曲角"><a href="#双曲函数与双曲角" class="headerlink" title="双曲函数与双曲角"></a>双曲函数与双曲角</h2><p>一般高数书会直接给出双曲正弦$\mathrm{sinh}(\alpha)$、双曲余弦$\mathrm{cosh}(\alpha)$的表达式作为定义：<br>$$\mathrm{sinh}(\alpha)&#x3D;{e^{x}-e^{-x}\over 2}$$ $$\mathrm{cosh}(\alpha)&#x3D;{e^{x}+e^{-x}\over 2}$$这些指数函数跟正弦、余弦、双曲线有什么关系呢？其实上面这种定义没有体现双曲线的本质，下面介绍关于双曲函数的几何定义。三角函数可以定义在单位圆内，类似地，双曲函数也可以定义在“单位”双曲线内(微积分可算出它们就是上面的指数表达式)。我们知道在最自然的弧度单位制下，三角函数的自变量是圆心角，其值等于它所对应的弧长，也等于它夹出来的扇形面积的一半。<br><img style="max-width: 300px" alt="三角函数与圆周，图片来自维基百科" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Circle-trig.svg/536px-Circle-trig.svg.png"/></p>
+<h2 id="双曲函数与双曲角"><a href="#双曲函数与双曲角" class="headerlink" title="双曲函数与双曲角"></a>双曲函数与双曲角</h2><p>一般高数书会直接给出双曲正弦$\mathrm{sinh}(\alpha)$、双曲余弦$\mathrm{cosh}(\alpha)$的表达式作为定义：<br>$$\mathrm{sinh}(\alpha)&#x3D;{e^{x}-e^{-x}\over 2}$$ $$\mathrm{cosh}(\alpha)&#x3D;{e^{x}+e^{-x}\over 2}$$这些指数函数跟正弦、余弦、双曲线有什么关系呢？其实上面这种定义没有体现双曲线的本质，下面介绍关于双曲函数的几何定义。三角函数可以定义在单位圆内，类似地，双曲函数也可以定义在“单位”双曲线内(微积分可算出它们就是上面的指数表达式)。我们知道在最自然的弧度单位制下，三角函数的自变量是圆心角，其值等于它所对应的弧长，也等于它夹出来的扇形面积的一半。<br><img style="max-width: 300px" alt="三角函数与圆周，图片来自维基百科" src="/img/minkovski011.png"/></p>
 <p>通过微积分计算可知，双曲线下一个夹角所对应的弧长和扇形面积之比并不是一个常数，但如果换成闵氏空间的长度度量方式来计算双曲弧长，则这种“弧长”就刚好等于面积的一半了！这表明单位双曲线在正常欧几里得距离度量下不是一个很对称的图形，后面我们都将在新的距离度量空间（闵氏度量）中研究这个双曲线，在min闵氏空间中它才是“圆”！</p>
 <h4 id="距离公式与度量"><a href="#距离公式与度量" class="headerlink" title="距离公式与度量"></a>距离公式与度量</h4><p>对于任意曲线的长度，必须先按距离公式计算无限小线段长度$\mathrm{d}s&#x3D;\sqrt{\mathrm{d}x^2-\mathrm{d}y^2}$再积分得到。（可以按线长很小时$x_1-x_2&#x3D;\mathrm{d}x$来理解），这种微分形式的距离公式称为<strong>度规</strong>或<strong>度量</strong>，它远比两点之间距离公式适用范围要广。我们后面都将用术语度量，而不再说距离公式。这样正常的勾股定理对应的度量就要记作$\mathrm{d}s^2&#x3D;\mathrm{d}x^2+\mathrm{d}y^2$，闵氏度量则是$\mathrm{d}s^2&#x3D;\mathrm{d}x^2-\mathrm{d}y^2$。</p>
-<h4 id="双曲角"><a href="#双曲角" class="headerlink" title="双曲角"></a>双曲角</h4><p>我们自然就想到用这种弧长作为双曲函数的自变量。下图中标注的双曲角为$\alpha&#x2F;2$，其中的$\alpha$其实就是黄色“双曲扇形”的面积。双曲函数的自变量最自然的理解就是一种角度，只不过是闵氏空间中全新定义的双曲角！角度的正弦、余弦值定义跟三角函数还是一样的，就是纵坐标、横坐标的值。<br><img style="max-width: 300px" alt="双曲函数与双曲线，图片来自维基百科" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Hyperbola-trig.svg/536px-Hyperbola-trig.svg.png"/></p>
+<h4 id="双曲角"><a href="#双曲角" class="headerlink" title="双曲角"></a>双曲角</h4><p>我们自然就想到用这种弧长作为双曲函数的自变量。下图中标注的双曲角为$\alpha&#x2F;2$，其中的$\alpha$其实就是黄色“双曲扇形”的面积。双曲函数的自变量最自然的理解就是一种角度，只不过是闵氏空间中全新定义的双曲角！角度的正弦、余弦值定义跟三角函数还是一样的，就是纵坐标、横坐标的值。<br><img style="max-width: 300px" alt="双曲函数与双曲线，图片来自维基百科" src="/img/minkovski012.png"/></p>
 <h3 id="闵可夫斯基世界中的“双曲旋转”"><a href="#闵可夫斯基世界中的“双曲旋转”" class="headerlink" title="闵可夫斯基世界中的“双曲旋转”"></a>闵可夫斯基世界中的“双曲旋转”</h3><p>双曲线在这个世界上应该是最完美最对称的图形，因此它应该有某种“旋转”对称性，这种旋转必须要保持图形各部分点之间的闵氏距离不变，称之为“双曲旋转”或“伪旋转”。跟圆角类似，我们通过双曲角来度量双曲旋转的角度大小。再次提醒：计算双曲角的弧长必须使用闵氏距离，我们要尝试抛弃掉欧几里得距离观才能更好适应这个世界。<a href="#skip_rot_formula">下面将涉及旋转的公式推导，不想看的伙伴们可点这里直接跳过</a>。<div id="rotdiv" style="background-color: #EEF;"></p>
 <p>怎样定义保持双曲线不变的旋转呢？给定一个双曲角，我们不妨看看横坐标上的$(1,0)$会旋转到哪，即求给定长度的一段弧的端点的坐标。根据双曲函数的定义，新坐标应该为$(\mathrm{cosh}(\alpha),\mathrm{sinh}(\alpha))$。怎么计算任意的点$(x,y)$旋转双曲角$\alpha$后的坐标呢？按欧几里得空间中的经验，涉及旋转还是极坐标方便，因此我们也来定义一个双曲角的极坐标：用点到原点的闵氏距离$r$与跟$x$轴正半轴的双曲角$\alpha$表示。给定极坐标下的$(r,\alpha)$，通过双曲函数就能转换到直角坐标，即$(r \mathrm{cosh}(\alpha),r \mathrm{sinh}(\alpha))$；反过来给定直角坐标算极坐标呢？首先距离$r&#x3D;\sqrt{x^2-y^2}$，角度的计算与三角函数类似，由三角形相似对应边成比例不难发现，双曲角$\alpha$的双曲正切值为$y&#x2F;x$，即$y&#x2F;x&#x3D;\mathrm{sinh}(\alpha)&#x2F;\mathrm{cosh}(\alpha)&#x3D;\mathrm{tanh}(\alpha)$，把$\mathrm{tanh}$的反函数记作$\mathrm{artanh}$，则$\alpha&#x3D;\mathrm{artanh}(y&#x2F;x)$，解方程可得到反双曲正切函数的具体表达式$\mathrm{artanh}(x)&#x3D;{1\over 2}\mathrm{ln}({1+x\over 1-x})$。<br>好了，现在终于能计算点$(x,y)$绕原点旋转双曲角$\beta$后的坐标了：先转换到极坐标，把角度加$\alpha$，再转换回直角坐标，搞定！</p>
 <ol>
@@ -137,7 +139,7 @@
 <h2 id="我们都生活在闵可夫斯基世界"><a href="#我们都生活在闵可夫斯基世界" class="headerlink" title="我们都生活在闵可夫斯基世界"></a>我们都生活在闵可夫斯基世界</h2><p>然而，闵氏世界这个看似一点都不美妙的地方还确实是一个真实的物理世界系统，其实我们人人都在这里面，它就是我们的时空！不考虑时空弯曲的话，四维闵可夫斯基世界$\mathbb{R}^{3,1}$正好就是相对论所研究的世界。我们刚才讨论的二维闵氏空间则对应二维时空模型，下面我们来揭秘它与时空的联系。</p>
 <h5 id="二维时空"><a href="#二维时空" class="headerlink" title="二维时空"></a>二维时空</h5><p>简单起见，先从低维开始。在平面上定义$x$轴为空间方向，$y$轴为时间方向，我们可以通过一条曲线来表示一个一维世界中的某个粒子随时间的时空轨迹，叫做粒子的<strong>世界线</strong>。习惯上将某时刻例子放在坐标原点，若粒子静止，则世界线就是与$y$轴重合的直线，如果相对与参考坐标有速度$v$，则世界线变成斜线$y&#x3D;x&#x2F;v$。选取光速为1的自然单位制，则光子的世界线就是$y&#x3D;\pm x$，即那些0方向的直线，这看似有点牵强，我们马上将介绍相对论：相对论认为光速在任何参考系下都是不变的，爱因斯坦因此推导出了相对论。双曲旋转不会改变方向的性质，那么无论如何旋转，0方向还是0方向，这正是相对论中光速不变的几何诠释！毕竟这个博客的定位不是物理科普，网上早已有非常详尽的科普了，具体的细节这里就不展开了，B站上结合闵氏几何讲得最清楚的应该是这个视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17P4y1V7BX/">《狭义相对论，但可视化》</a>（强烈推荐！！）。下面用几何的语言再翻译相对论的表述：</p>
 <ol>
-<li>相对论的不同速度的变换叫<strong>洛伦兹变换</strong>，也就是我们刚才说的<strong>双曲旋转</strong>：<br>翻译：直接看下面这张动图感受一下：以运动的物体为参考系，当物体加减速时就需要旋转时间轴使得这个参考系下的y轴始终与世界线相切。注意动画中叠加了沿曲线的平移和双曲旋转。<br><img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Lorentz_transform_of_world_line.gif" alt="沿着快速加速的观察者的世界线来看的时空，来源：维基百科"></li>
+<li>相对论的不同速度的变换叫<strong>洛伦兹变换</strong>，也就是我们刚才说的<strong>双曲旋转</strong>：<br>翻译：直接看下面这张动图感受一下：以运动的物体为参考系，当物体加减速时就需要旋转时间轴使得这个参考系下的y轴始终与世界线相切。注意动画中叠加了沿曲线的平移和双曲旋转。<br><img src="/img/minkovski001.gif" alt="沿着快速加速的观察者的世界线来看的时空，来源：维基百科"></li>
 <li>任何物体的速度不能超过光速：<br>翻译：静止的物体的世界线是平行与时间轴$y$轴的直线，方向为虚方向，选择其它速度的参考系其实就是在旋转时空的坐标，根据旋转的几何性质，虚方向永远为虚方向，曲线斜率绝对值永远大于1，即速度永远小于光速，又由于旋转没有周期，匀双曲角速度旋转坐标系可一直进行，因此物体在它自己看来，可以永远匀加速但还是无法达到光速。</li>
 <li>时空中的距离可分为类空、类时、类光三类：<br>翻译：两点之间的距离分为的实数、虚数、0三类是有明确物理意义的。实数距离代表两点是空间间隔，总能找到一个参考系把它们变换到空间轴x轴上，我们将这种方向叫<strong>类空</strong>的；虚数距离说明两点是时间间隔，总能找到一个参考系它们变换到时间轴y轴上，这种方向叫<strong>类时</strong>的；0距离说明两点之间是“<strong>类光</strong>”间隔，因为在任何参考系下通过斜率计算速度都是光速。通常的有质量物质的世界线永远都是类时的，无质量粒子（如光子）的世界线永远都是类光的，不存在类空世界线的粒子，它们若存在将会违反时空的因果结构。</li>
 <li>粒子的一段世界线的长度为该粒子经历的固有时，即自己感受到的时间流逝。<br>翻译：当粒子静止时，世界线与y轴重合，所以两点间世界线长度跟两点时间差相同，叫固有时。双曲旋转前后不改变图形长度，因此固有时（长度）不变，坐标时（y坐标值）改变。</li>
@@ -269,6 +271,8 @@ $$x^2+y^2-z^2=1$$这个方程是一张单叶双曲面，与双叶双曲面的区
         <a href="https://wxyhly.github.io/archives/minkovsky/#disqus_thread" class="article-comment-link">留言</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%87%A0%E4%BD%95/" rel="tag">几何</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%89%A9%E7%90%86/" rel="tag">物理</a></li></ul>
+
     </footer>
   </div>
   
@@ -320,7 +324,7 @@ $$x^2+y^2-z^2=1$$这个方程是一张单叶双曲面，与双叶双曲面的区
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2b2t/" style="font-size: 11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 10px;">tesserxel</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 11px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 15px;">图形</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 16px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 14px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 18px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 14px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 11px;">电路</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 13px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 11px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 11px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+      <a href="/tags/2b2t/" style="font-size: 11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 10px;">tesserxel</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 11px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 15px;">图形</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 16px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 14px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 18px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 15px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 11px;">电路</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 13px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 11px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 11px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
     </div>
   </div>
 
