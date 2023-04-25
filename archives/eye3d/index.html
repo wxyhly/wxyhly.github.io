@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/eye3d015.jpg">
 <meta property="og:image" content="https://wxyhly.github.io/img/eye3d016.jpg">
 <meta property="article:published_time" content="2020-02-27T03:05:42.000Z">
-<meta property="article:modified_time" content="2020-11-15T09:14:21.388Z">
+<meta property="article:modified_time" content="2023-04-23T16:22:37.741Z">
 <meta property="article:author" content="wxyhly">
 <meta property="article:tag" content="系列文章">
 <meta property="article:tag" content="4dViewer">
@@ -146,7 +146,7 @@
 <h3 id="我对超立方体做了什么？"><a href="#我对超立方体做了什么？" class="headerlink" title="我对超立方体做了什么？"></a>我对超立方体做了什么？</h3><ul>
 <li>当你用左键拖动时，模型在三维空间中旋转：你仅仅是转着角度看三维的体素，视野中的3D画面组成是没变的；但由于三维的体素旋转后可能不再在截面上，所以截面上的二维画面会不断变化；这种旋转类比到二维也是直接旋转照片本身：<br><img src="/img/eye3d001.gif" alt="旋转正常立方体照片，我们说这种旋转只发生在二维空间中"></li>
 <li>当你用右键拖动时，模型在四维空间中旋转：你的实际四维空间的摄像机位置朝向会改变，此时组成三维画面的体素会变，具体体现在本来中间的小球体会变形成在侧边的大而扁的椭球形；但此时你会发现一些截面上的画面变化更像是换着视角在看一个普通的3D物体。这种旋转类比到二维也是一样——正方体旋转时本来中间的小圆会往侧面大而扁的椭圆移动，另一边侧面的椭圆会变小往中间靠：<br><img src="/img/eye3d002.gif" alt="在立方体里左右环视，我们说这种旋转发生在三维空间中"></li>
-<li>可能你或许注意到中键也能拖动旋转立方体，如果你已经搞清楚了上面两种旋转，中键对你来说不是问题（提示：它是两种旋转的混合）。左中右键的功能设计参照了球极投影软件Jenn3D。<!--2d 3d 4d rotate con--></li>
+<li>可能你或许注意到中键也能拖动旋转立方体，如果你已经搞清楚了上面两种旋转，中键对你来说不是问题（提示：它是两种旋转的混合）。左中右键的功能设计参照了球极投影软件Jenn3D。<a name="depth4d"></a><!--2d 3d 4d rotate con--></li>
 </ul>
 <h3 id="体验四维空间深度"><a href="#体验四维空间深度" class="headerlink" title="体验四维空间深度"></a>体验四维空间深度</h3><p>现在我们能够直接体会到3D体素画面的立体空间感，但还是无法对四维建立起直观感受。我们来看一看到底怎样才能得到完全的“四维空间感”：（如果你不会裸眼看3D的话，这个四维空间感可能是无法体验了，除非以后开发VR版的查看器）<br>你坐在二维的显示器前，图像上每个点都有二维的坐标$x$、$y$，加上左右眼的立体视觉与透明化像素处理，你能大概知道每个点的$z$坐标。$x$、$y$、$z$三个坐标即3D体素显示器上的像素坐标，也就是说但从看3D照片这一点来说我们已经做到了。但要想更直观了解四维，我们还需要拥有四维人的左右眼超立体视觉：即感知每个体素的第四维深度$w$。四维人的左右眼超立体视觉又是什么呢？其实原理也一样：通过左右两个摄像头（或四维人的眼睛）拍两个3D照片，四维人的大脑就能产生第四个方向上的深度感。<br>很遗憾我们大脑最多能通过想象分析脑补一维（为了看到3D照片我们已经用掉了），再补一维是怎么都塞不进去了。怎么办呢？一种解决方式就是让立体深度感的那一维交替使用：之前我们把它分配给了3D照片的$z$方向，我们也可以分配给第四维的$w$深度，只要不一起冲突就好。但立体视野本来就是3D图像，我试过直接显示四维空间拍摄的左右两张3D照片作为左右画面大脑是无法处理里面的信息的，所以最好的办法就是让第四维的$w$深度在单独抽出的截面上显示，所以你之前看到的不同部分的立体深度表达的含义是不一样的，现在我们以一个超立方体框架为例来说明：<br><img src="/img/eye3d005.jpg" alt="各部分立体视觉对应的坐标系（注意这不是三视图，三个方向上的截面上完全可以截到不同的东西）"></p>
 <p>请问小立方体是否在大立方体里面？<br>稍微了解四维的人都知道，小立方体只是四维投影到三维的透视现象造成的，其实它们一样大，但小立方体离我们更远，所以看起来小。但它投影在三维照片上的确在大立方体里面。这里的立体视觉也给我们提供了大小立方体嵌套的感觉：<br><img src="/img/eye3d004.jpg" alt="超立方体棱框架，没有渲染显示胞与面"><br>我们再来看三个截面。由于截面截棱得到点，所以三个截面能分别截到大立方体四个点、小立方体四个点。而左右两个截面视差被设置为第四维的$w$深度，所以我们看到了小立方体确实在大立方体的后面。虽然只能知道截面处的第四维$w$深度，但我们可以通过平动、转动等方法让所有像素都被截面扫一遍。我承认这种方法并不直观，但是目前最折中的结果了。<a name="hh4"></a></p>
@@ -257,7 +257,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">13</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Tesserxel%E7%B3%BB%E5%88%97/">Tesserxel系列</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">13</span></li></ul>
     </div>
   </div>
 
@@ -277,7 +277,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2b2t/" style="font-size: 11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 10px;">tesserxel</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 11px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 15px;">图形</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 16px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 14px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 18px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 15px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 11px;">电路</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 13px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 11px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 11px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+      <a href="/tags/2b2t/" style="font-size: 11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 11px;">tesserxel</a> <a href="/tags/webgpu/" style="font-size: 10px;">webgpu</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 11px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 16px;">图形</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 16px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 14px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 18px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 15px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 11px;">电路</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 13px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 11px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 11px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
     </div>
   </div>
 
@@ -286,7 +286,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
     </div>
   </div>
 
@@ -297,6 +297,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/archives/tesserxel-intro/">玩Tesserxel（一）：视图控制介绍</a>
+          </li>
         
           <li>
             <a href="/archives/minkovsky/">闵氏空间与常曲率空间的几何</a>
@@ -312,10 +316,6 @@
         
           <li>
             <a href="/archives/infpigfarm/">参观无限大养猪场</a>
-          </li>
-        
-          <li>
-            <a href="/archives/tesserxel-hello/">全新四维引擎Tesserxel上线</a>
           </li>
         
       </ul>
