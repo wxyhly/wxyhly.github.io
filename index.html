@@ -92,7 +92,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/img/tsx005.jpg" alt="Tesserxel示例库四维场景截图"><br>谷歌Chrome浏览器终于在113版本(说是2023.4.26发布，但目前我的Chrome检测到最新版还是112)正式开始支持WebGPU了！这就意味着我的Tesserxel四维引擎项目可以直接在最新版的Chrome浏览器上直接运行了。我将开启一个Tesserxel玩耍教程系列，解释Tesserxel示例的场景。<br>玩Tesserxel首先得知道基本的四维空间概念，然后请阅读《<a href="/archives/eye2d/">四维世界（四）：二维生物视觉</a>》《<a href="/archives/eye3d/">四维世界（五）：体验四维人的视觉与方向感</a>》这两篇介绍四维生物视觉的文章，明白立体照片，截面与四维深度等概念。文章中的交互四维场景除了用的是上一代WebGl写的引擎，本质与Tesserxel的交互方式区别不大，只是快捷键略有调整，所以如果之前有玩过一些四维场景，上手Tesserxel是零难度的。注意，要想直观领略抽象的四维空间，除了要一块稍微好点的显卡，还需要尽可能多调动感官交互，因此Tesserxel没有考虑适配手机操作。由于很多操作与原来老引擎相同，这里就不再赘述摄像机移动旋转与简单的方向辨识了，这篇文章重点介绍三维照片渲染设置相关的操作，并罗列出常见相机控制方法。
+        <p><img src="/img/tsx005.jpg" alt="Tesserxel示例库四维场景截图"><br>谷歌Chrome浏览器终于在113版本(至少我在windows下现在已经能自动更新到该版本了，但我发现113版有时会有物体过一会就消失不渲染的bug，后面的版本会有修复)正式开始支持WebGPU了！这就意味着我的Tesserxel四维引擎项目可以直接在最新版的Chrome浏览器上直接运行了。我将开启一个Tesserxel玩耍教程系列，解释Tesserxel示例的场景。<br>玩Tesserxel首先得知道基本的四维空间概念，然后请阅读《<a href="/archives/eye2d/">四维世界（四）：二维生物视觉</a>》《<a href="/archives/eye3d/">四维世界（五）：体验四维人的视觉与方向感</a>》这两篇介绍四维生物视觉的文章，明白立体照片，截面与四维深度等概念。文章中的交互四维场景除了用的是上一代WebGl写的引擎，本质与Tesserxel的交互方式区别不大，只是快捷键略有调整，所以如果之前有玩过一些四维场景，上手Tesserxel是零难度的。注意，要想直观领略抽象的四维空间，除了要一块稍微好点的显卡，还需要尽可能多调动感官交互，因此Tesserxel没有考虑适配手机操作。由于很多操作与原来老引擎相同，这里就不再赘述摄像机移动旋转与简单的方向辨识了，这篇文章重点介绍三维照片渲染设置相关的操作，并罗列出常见相机控制方法。
         
           <p class="article-more-link">
             <a href="/archives/tesserxel-intro/#more">Read More</a>
@@ -363,9 +363,9 @@
 <li>四维刚体物理引擎。</li>
 <li>用户键鼠交互系统封装。</li>
 </ol>
-<p>下面就让我们进入Tesserxel构建的四维世界。这里是示例场景库链接(注意要启用WebGPU才打得开)：</p>
+<p>下面就让我们进入Tesserxel构建的四维世界。这里是示例场景库链接<del>(注意要启用WebGPU才打得开)</del>：</p>
 <p><a href="https://wxyhly.github.io/tesserxel/docs/">https://wxyhly.github.io/tesserxel/docs/</a></p>
-<p>启用WebGPU方法： WebGPU是一个实验性的API，是WebGL的未来“接班人”，它的标准还处于W3C的草稿阶段，未正式发布。目前据说仅Windows下Chrome提供较好支持，而且想开启这项功能还有点麻烦，首先你需要下载Canary版本的Chrome浏览器（<a target="_blank" rel="noopener" href="https://www.google.com/intl/zh-CN/chrome/canary/">谷歌官网</a>，或自行找下载资源），添加–enable-unsafe-webgpu参数启动浏览器，打开chrome:&#x2F;&#x2F;flags&#x2F;，将WebGPU Developer Features打开（选Enabled）就可以启用WebGPU。<br><img src="/img/tsx001.png" alt="开启WebGPU的操作步骤"></p>
+<h2 id="注意：以下内容已经过时，现在可以直接更新至谷歌浏览器最新版（版本号113及以上）即可打开。"><a href="#注意：以下内容已经过时，现在可以直接更新至谷歌浏览器最新版（版本号113及以上）即可打开。" class="headerlink" title="注意：以下内容已经过时，现在可以直接更新至谷歌浏览器最新版（版本号113及以上）即可打开。"></a>注意：以下内容已经过时，现在可以直接更新至谷歌浏览器最新版（版本号113及以上）即可打开。</h2><p>启用WebGPU方法： WebGPU是一个实验性的API，是WebGL的未来“接班人”，它的标准还处于W3C的草稿阶段，未正式发布。目前据说仅Windows下Chrome提供较好支持，而且想开启这项功能还有点麻烦，首先你需要下载Canary版本的Chrome浏览器（<a target="_blank" rel="noopener" href="https://www.google.com/intl/zh-CN/chrome/canary/">谷歌官网</a>，或自行找下载资源），添加–enable-unsafe-webgpu参数启动浏览器，打开chrome:&#x2F;&#x2F;flags&#x2F;，将WebGPU Developer Features打开（选Enabled）就可以启用WebGPU。<br><img src="/img/tsx001.png" alt="开启WebGPU的操作步骤"></p>
 <p>目前的Tesserxel只是一个早期版本，后续会补充Tesserxel说明手册，继续开发更多物理解算、高级材质、离线渲染，以及基于Tesserxel引擎的4D游戏等。（但愿不鸽~）</p>
 
       
