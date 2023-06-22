@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>玩Tesserxel（二）：场景交互介绍 | Blog de Hqak (WXYHLY)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第一次看玩Tesserxel系列的话请先阅读上一篇文章了解Tesserxel四维场景的基本操作方法哦。这篇文章我们将挑几个场景来介绍，本文将依次介绍复杂旋转体、直积形以及四维高速公路场景。超球、球环、环球等基本几何体之前已经介绍很多了，理解了本文更复杂的场景后，那些简单几何体就留给读者去自由探索吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="玩Tesserxel（二）：场景交互介绍">
+<meta property="og:url" content="https://wxyhly.github.io/archives/tesserxel-scene/index.html">
+<meta property="og:site_name" content="Blog de Hqak (WXYHLY)">
+<meta property="og:description" content="第一次看玩Tesserxel系列的话请先阅读上一篇文章了解Tesserxel四维场景的基本操作方法哦。这篇文章我们将挑几个场景来介绍，本文将依次介绍复杂旋转体、直积形以及四维高速公路场景。超球、球环、环球等基本几何体之前已经介绍很多了，理解了本文更复杂的场景后，那些简单几何体就留给读者去自由探索吧。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc006.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc009.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc008.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc001.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc010.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc011.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc002.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc003.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc004.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc012.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc005.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc013.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc001.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc002.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc003.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/eye3d002.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc004.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc005.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc006.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/tsxsc007.jpg">
+<meta property="article:published_time" content="2023-06-22T03:42:14.000Z">
+<meta property="article:modified_time" content="2023-06-22T03:54:01.999Z">
+<meta property="article:author" content="wxyhly">
+<meta property="article:tag" content="图形">
+<meta property="article:tag" content="四维">
+<meta property="article:tag" content="tesserxel">
+<meta property="article:tag" content="webgpu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wxyhly.github.io/img/tsxsc006.jpg">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Blog de Hqak (WXYHLY)</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/programs/">Programs</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wxyhly.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-tesserxel-scene" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/archives/tesserxel-scene/" class="article-date">
+  <time datetime="2023-06-22T03:42:14.000Z" itemprop="datePublished">2023-06-22</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tesserxel%E7%B3%BB%E5%88%97/">Tesserxel系列</a>
+  </div>
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      玩Tesserxel（二）：场景交互介绍
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>第一次看玩Tesserxel系列的话请先阅读<a href="/archives/tesserxel-intro/">上一篇文章了解Tesserxel四维场景的基本操作方法</a>哦。这篇文章我们将挑几个场景来介绍，本文将依次介绍复杂旋转体、直积形以及四维高速公路场景。超球、球环、环球等基本几何体之前已经介绍很多了，理解了本文更复杂的场景后，那些简单几何体就留给读者去自由探索吧。<br><img src="/img/tsxsc006.jpg" alt="四维高速公路场景中的车道划分展示俯视图"><span id="more"></span></p>
+<h2 id="几何体-gt-猴头旋转体"><a href="#几何体-gt-猴头旋转体" class="headerlink" title="几何体&gt;猴头旋转体"></a><a href="/tesserxel/docs/#shapes::suzanne3d" target="_blank" title="点击打开场景">几何体&gt;猴头旋转体</a></h2><p>点击标题链接打开猴头旋转体场景。都说三维图形在四维空间中可以绕面旋转得到旋转体。那么我自然就想拿一个任意的三维图形试试。Blender三维软件里自带的猴头Suzanne模型就很不错。<img src="/img/tsxsc009.jpg">我把模型导出成obj格式，导入进Tesserxel引擎中在加些旋转、贴图渲染的代码，最终就得到了这个场景。你可以根据自己的喜好按Alt+数字键在不同视图配置之间切换、按Alt+Z开关裸眼3D，详情请见上篇文章《<a href="/archives/tesserxel-intro/#settings">玩Tesserxel（一）：视图控制介绍</a>》。可能玩这个场景从截面视图里看到那只不断扭曲变形的猴子头会觉得有些怪异，一个好端端的旋转体为什么会看上去这么扭曲呢？其实这都是截面可视化方法惹的祸。其实四维人看不到这些，你也可以按Alt+3关闭截面显示。但是下面我们还是来分析一下：<br><img src="/img/tsxsc008.jpg" alt="相连的变形的猴头Suzanne"><br>我们先来看三维的旋转体。下面的这种人侧脸旋转出的酒杯，其实无论从什么角度看都挺美观的，我们并没有看到什么扭曲了的人脸。<br><img src="/img/tsxsc001.png" alt="人脸酒杯"><br>四维生物看猴头也一样：正对着这个图形从三维照片望去，它就是个旋转体，只不过猴头已经被体素重叠得啥也看不出来了。<br><img src="/img/tsxsc010.jpg" alt="正面看猴头旋转体"><br>如何自己操作相机找到正面视角呢？首先这个场景的控制方式为<strong>轨迹球模式</strong>，默认视图下（下图a）鼠标左键拖动旋转后发现这个物体没有完全映入立方体“眼帘”，因此需要滚动鼠标滚轮缩小（下图b）。现在你用鼠标左键拖动会发现这是个一边肥一边瘦的环形。这其实是因为在第四维方向上相机没摆正,两边距离不同近大远小造成的。怎么摆正呢？首先我们要把圆环在三维视图里正着摆好，我这里让环形平行于水平截面（下图c），然后用鼠标右键拖动，把它旋转到正对相机就可以了（下图d），我们可以左键拖动验证它确实变成粗细均匀的环了（下图e）。<br><img src="/img/tsxsc011.jpg" alt="旋转到正视图的步骤"><br>如果用截面去截这个酒杯，则确实会看到一些很丑的两个鼻子都融合在了一起的变形人脸：<br><img src="/img/tsxsc002.png" alt="人脸酒杯的一个截面：截面上像两个人脸的鼻子融合在了一起"><br>这根猴头的形变确实一致，但注意我们观察四维物体的截面视图并不是把四维场景做截面，而是把四维场景的三维照片拍下来，截的是立体照片中的二维截面。这其实就暗示了“照片的截面”跟“截面的照片”是一样的（注：这里照片其实是指透视投影成像，且实际上也有区别：照片的截面图像会受高维的一些光学现象影响，而截面的照片则完全是在渲染一个普通的三维模型）。<br>我们直接从截面的方向看过去，看到这个截面截到了人的鼻尖。试想如果把这个视图的照片的那些截线上的像素给二维人看，那么它们根据像素的明暗自然也就感受到看到的图形是两个鼻子相连的人了。<br><img src="/img/tsxsc003.png" alt="从截面的方向看过去，其实就是视图（二维照片）中的一条线"></p>
+<p>这里我想再次表达一个四维观点：<strong>四维空间是一个整体，虽然截面法在可视化里算最方便的一种，但它并不是四维“土著”看到四维物体的方式，这些截面图形的理解难度也并不容易。截面视图最好是作为3D照片的一个补充，它仅仅提示我们3D半透明照片里的那些模糊的颜色重叠的中间部分颜色的具体分布情况</strong>。</p>
+<p>其实我的四维引擎的绘制原理也是基于“照片的截面”的几何形状跟“截面的照片”是一样的，而材质贴图光照这些也要在算截面时把四维的坐标信息算好，最终跟每个像素上色时Tesserxel才能够知道这其实不是“截面的照片”，而是“照片的截面”。以后我将专门写一篇文章（又在给自己挖坑了，之前的坑都没填。。）讲述目前我知道的可视化四维图形的方法与相应的图形学算法。</p>
+<h2 id="几何体-gt-直积形系列场景"><a href="#几何体-gt-直积形系列场景" class="headerlink" title="几何体&gt;直积形系列场景"></a>几何体&gt;直积形系列场景</h2><p>我在<a href="/archives/more4ds/">《四维空间（五）：更多几何体[上]》</a>中就提过一种叫“直积形”的一大类几何体，它可直观理解为底面是二维，高也是二维的广义柱体。比如我们已经看过下面图形的直积：</p>
+<ul>
+<li>矩形$\times$矩形$&#x3D;$超长方体</li>
+<li>矩形$\times$圆形$&#x3D;$圆柱柱</li>
+<li>圆形$\times$圆形$&#x3D;$双圆柱</li>
+<li>正$n$边形$\times$矩形$&#x3D;$正$n$棱柱柱</li>
+<li>正$n$边形$\times$正$m$边形$&#x3D;$$m,n$-直积形（$m,n$-duoprism）</li>
+</ul>
+<p>这些图形都太几何化了，一点都没有真实世界的“烟火味”。既然任意图形都能进行直积操作，所以有<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/376188950/answer/1051338302">知乎网友提出问题</a>：</p>
+<blockquote>
+<p>R×R＝R²这个行为将一维空间拓展到二维空间。那么请问，你自己×你自己表示着什么（纯脑洞，求启发）？</p>
+</blockquote>
+<p>人体作为三维图形，我自己$\times$我自己得到的应该是个6维图形，这个图形是什么样子的确实太难想象了，但我可以用两个不规则的二维图形的直积得到四维图形，通过Tesserxel进行可视化来让大家对这类图形建立起直观感受。<br>这里我在blender里做了三个二维图形，从左到右我分别命名为文字、鸡、<ruby>人<rt>cxk</rt></ruby>。下面就来看看这三个图形之间通过直积运算会碰撞出什么样的火花。<img src="/img/tsxsc004.png"><br>这里我制作了四种组合，点击链接即可打开：</p>
+<ul>
+<li><a href="/tesserxel/docs/#shapes::directproduct1">文字 x 文字</a></li>
+<li><a href="/tesserxel/docs/#shapes::directproduct2">人 x 鸡</a></li>
+<li><a href="/tesserxel/docs/#shapes::directproduct3">人 x 人</a></li>
+<li><a href="/tesserxel/docs/#shapes::directproduct4">文字 x 鸡</a></li>
+</ul>
+<p>跟看猴头旋转体一样，截面视图里的图形变幻莫测，形状诡异，但这并不是四维人真正直观看到的东西。在3D照片视图里旋转这些东西我们能从不同角度同时看到这两个二维图形，而且它们会重复出现很多次，这是因为直积形就是把一个图形在绝对垂直的另一个图形的范围内不断平移，把能平移占满的空间都填满，所以会有很多“副本”出现。注意第一个“文字 x 文字”场景，图形“Text”是一个有着四个连通区域的整体不连通图形。这个图形自身直积后将有16个不连通的部分，感觉就是关于直积的乘法分配率：<br>$(T+e+x+t)\times(T+e+x+t) &#x3D; T\times T+T\times e+T\times x+T\times t+e\times T+e\times T…$<br>太长了我就不全写了。</p>
+<p><img src="/img/tsxsc012.jpg" alt="Text x Text 的16个连通部分"><br>如果觉得直积的乘法分配律不好理解，我们可以看看三维柱体的构造：图形A为一大一小两个实心圆，图形B为两条线段，它们直积完也会得到有着四个连通部分的图形。<br><img src="/img/tsxsc005.png" alt="图形A与图形B均有两个连通部分，它们的直积就有4个连通部分"></p>
+<p>终于到了大家喜闻乐见的 人 x 鸡 图形了。这个图形在xy面上的投影是人，在zw平面的投影是鸡，我将以此例演示如何操作视图分别看到人的视角与鸡的视角。<del>（开庭时大家都记得把自己的电脑带上！）</del><br>首先这个场景的控制方式为<strong>轨迹球模式</strong>，默认视图下（下图a）图形占满了整个3D照片屏幕范围，我们滚动鼠标滚轮拉远摄像机让我们能看到整个图形（下图b），现在我们看到这个图形是斜着放的，我们先鼠标右键上下拖动图形，让图形至少在竖直方向上摆正。鼠标向上拖动将看到白色的鸡轮廓，向下拖动将看到红色的人的轮廓。我们先对齐白色的公鸡（下图c）。接下来如果你会裸眼3D，可以明显发现三维照片的左右摆放有点斜，只需鼠标左键拖动模型绕竖直方向轴摆正（下图d）。<br><img src="/img/tsxsc013.jpg" alt="从初始视角操作至“鸡”视角"><br>如果第二步向下拖动将看到红色的人的轮廓，对齐后继续类似操作将对齐到人的视图，步骤同上。<br>至于怎样从正对人的视角出发操作到正对鸡的视角，就给大家留作习题吧……</p>
+<p>最后我再说说直积形的上色原理。直积形的表面跟双圆柱类似，可以分成两个部分，一部分是图形A的边缘与图形B直积得到的表面，另一部分是图形B的边缘与图形A直积得到的表面，我分别把这两部分上色成红色与白色。值得一提的是，如果把刚才的文字描述写成公式你会发现表示物体边缘的边缘算子$\partial$跟导数的乘法法则莱布尼兹律完全一样！<br>$$\partial(A\times B)&#x3D;\partial A \times B + A \times \partial B$$</p>
+<h2 id="四维场景-gt-城市高速场景"><a href="#四维场景-gt-城市高速场景" class="headerlink" title="四维场景&gt;城市高速场景"></a><a href="/tesserxel/docs/#city_highway" target="_blank" title="点击打开场景">四维场景&gt;城市高速场景</a></h2><p>点击标题链接进入城市高速场景，我们将以该场景举例，希望能够让您理解如何操作上期文章中提到的<a href="/archives/tesserxel-intro/#ctrl"><strong>控制：保持竖直模式</strong></a>下的操作方法。该场景中有一条双向4x3x2&#x3D;24车道的空间曲线环形闭合高速路，两边以隔离带隔开，关于四维公路的详细构造解释可以参考<a href="/archives/trans4d/">《四维世界（二）：公路交通》</a>与<a href="/archives/rail4d/">《四维世界（三）：道路轨道设计》</a>。</p>
+<h3 id="场景介绍"><a href="#场景介绍" class="headerlink" title="场景介绍"></a>场景介绍</h3><p>四维世界的地面是三维的，人们可以在三维地面上修建城市与空间曲线道路。这个场景包含一条单边4x3车道的双向道路，道路是三次样条空间曲线。道路周围随机分布着超长方体建筑楼宇，且建筑的朝向也是随机分布的，稍后我们将<a href="#buildings">在这里看到</a>它们像三维空间中随机漂浮着的一堆立方体。</p>
+<p>道路为双向车道，中间用绿色隔离带隔开。</p>
+<h3 id="相机控制教程"><a href="#相机控制教程" class="headerlink" title="相机控制教程"></a>相机控制教程</h3><p>由于这个示例场景中并没有建模汽车，也没加入相应的物理引擎计算，要想跟着公路跑就要学会手动控制相机。刚打开这个场景等待加载后看到的是下面默认三维照片视图加三个截面视图的配置。<br><img src="/img/tsxsc001.jpg" alt="打开场景后的默认视图"><br>根据自己的个人习惯，我列出了下面几个模式下跟着公路跑的操作方法。提示：如果你在里面方向搞乱了，或不知道跑到哪里去了，可以刷新页面重新加载重置。</p>
+<h4 id="只看水平截面视图"><a href="#只看水平截面视图" class="headerlink" title="只看水平截面视图"></a>只看水平截面视图</h4><p>这应该是最简单的模式了。首先按Alt+6切换至下图所示的水平截面视图模式。如果按键没反应则需要用鼠标点一下画面获得焦点后才能继续操作。<a name="buildings"></a></p>
+<p><img src="/img/tsxsc002.jpg" alt="Alt+6切换至水平截面视图，那些乱七八糟的方块其实是道路周围随机生成的超长方体建筑楼宇"><br>移动鼠标观察四周，你应该可以看到视野中有绿色的条状东西。这是什么东西呢？这些其实是护栏。这是三维道路护栏的类比：下面画出了三维道路护栏的三视图与四维道路护栏的四视图。只要相机画面的高度合适，过视野中心的水平截面就能够截到这些护栏，从而在截面视图中看到一条带子。如果你不小心滚了鼠标滚轮导致俯仰角不再水平，或按了空格键或Shift键改变了相机高度，你可能看不到绿色的带子。下图从左至右列举了一些可能性（上下两张图分别是正截面与水平截面）。你可以切换至同时观察几个截面(Alt+4)来调整。下图中正截面中标记了中央水平截面的位置，这条线也落在水平截面中，因此正截面中这条线与哪部分相交你就能在水平截面里看到同样的部分。提示：按Alt+C调出十字准星，可以帮助你定位画面中央的位置。</p>
+<p><img src="/img/tsxsc003.jpg" alt="从左到右依次此为四种不同的角度：1.平视且高度在护栏之下，2.平视且高度平齐护栏，3.仰视，基座与护栏各截了一部分，4.俯视，基座与护栏各截了一部分。每种角度都分上下两个截面展示：上方为正截面，下方为水平截面"></p>
+<p>如果你还搞不懂这些截面是什么，包括我在正视图中标出的水平截线为什么又在水平截面中，建议从头从《<a href="/archives/eye2d/">四维世界（四）：二维生物视觉</a>》开始。这里再把原来旧文(出自<a href="/archives/eye3d/">这里</a>)中的图放一下：<br><img src="/img/eye3d002.png" alt="刚才标的红线这里对应红色与蓝色截面的交线"></p>
+<p>当你对齐后，就可以在水平截面中使用鼠标控制朝向，用键盘W&#x2F;S前进后退，这样就跟在普通的无重力三维空间中自由飞行是一样的，角度合适的话我们可以在截面中看到完整的道路，这样我们就可以把自己当成一架飞机，直接顺着隔离带一侧飞就可以了。想直接左右平移则使用A&#x2F;D，但要注意的是，水平截面里面可没有真正的上下方向（否则就不叫“水平”截面了），你看到的水平截面的上下方向是第四维多出来的一种类似于左右的侧面方向：侧前与侧后，因此需要用键盘Q&#x2F;E在这个方向上移动。如果你不想用鼠标控制朝向，纯键盘操作也是可以的。J&#x2F;L为左右转向，U&#x2F;O为侧前&#x2F;侧后（即截面中的上下）转向。而I&#x2F;K为真正的上下俯仰角调整。如果你不小心改变了俯仰角，会发现绿色隔离带会有部分消失，那么你需要重新按照前面的步骤调整回来。</p>
+<h4 id="只看三维视图"><a href="#只看三维视图" class="headerlink" title="只看三维视图"></a>只看三维视图</h4><p>刚才只看水平截面虽然操作方式最直观，但它丢失了一些四维感官：我们根本无法看到脚下的道路，只不过是看到照片的一个截面而已，这个截面甚至连路面都截不到。可想而知如果四维人也只看这些信息的话，它甚至不知道地面上有没有坑。下面我们按Alt+3，切换到只显示三维照片视图。当然，全部显示四维人能看见的东西是有代价的，对于我们二维的屏幕来说，上面重叠的像素太多，显得很模糊，所以我再次强烈建议大家学习裸眼3D，特别是长时间保持裸眼3D看屏幕的技巧（掌握好了长时间观看也并不会对眼睛有任何损伤）。</p>
+<p>只看三维照片来控制的基本原理<a href="/archives/eye3d/#hh5">这里旧文</a>中也提到了，这里我分享一下关于这个场景的特定思路：最重要的是需要做到让画面中央（按 Alt+C打开十字准星）保持在道路中央，你可能需要按住Alt旋转照片（转完一定记得按Alt+R复原，否则方向会乱，<a href="/archives/tesserxel-intro/#rotdiff">原理请看这里</a>）或按键盘Z&#x2F;X旋转视图来确定侧前后左右都居中了。由于车道是方形的，侧前后侧的二维分割线在三维照片中不是很清晰，因此通过旋转视图可以更清楚知道你是在哪个车道。但由于车道又是不连续的虚线，所以对车道的辨认的确是个不小的挑战，后续我会打算写一个模拟“真实”的四维赛车游戏哦。</p>
+<h3 id="清楚看道路的方法"><a href="#清楚看道路的方法" class="headerlink" title="清楚看道路的方法"></a>清楚看道路的方法</h3><p>既然场景介绍里写过这是一条三维空间曲线高速，怎样看清楚道路全貌，把这条空间曲线展示在眼前呢？</p>
+<h4 id="俯视图"><a href="#俯视图" class="headerlink" title="俯视图"></a>俯视图</h4><p>最直接的想法肯定是看“地图”，即站在高处俯视整个场景。但注意四维星球上的地图都是三维的，所以我们看到的也是个体素地图。按空格键升高，再滚动鼠标滚轮看向地面。或你可以先滚动鼠标滚轮看向地面再按空格升高相机，这样你才知道在什么高度俯视最好。提示：只看三维照片视图可能看不出来俯仰角，可以滚动鼠标滚轮时在下方的两个截面（分别是正、侧截面）中来参考俯仰角。</p>
+<p>调整好相机高度与俯仰角后可以看到这样的体素：<br><img src="/img/tsxsc004.jpg" alt="上：相机高度不太高时俯视公路看到的道路分隔；下：相机高度达到可以看到整条环形闭合曲线公路"><br>注意此时不用去看三个截面，我们按Alt+3关闭截面（提示：按Alt+1&#x2F;2可以恢复截面显示）。然后按住Alt建拖动鼠标，我们来好好观察这个立体照片。如果你会裸眼3D你将轻松看到里面的内部结构的立体位置，如果不会，那么多拖动旋转几下应该也能看到道路的排列结构。如果你现在没有跟着自己操作，只是看文章中的静态插图的话，肯定会觉得这些都是什么鬼玩意一团糟看不清。没事，我专门为你准备了除雾后的俯视场景的截图：<br><img src="/img/tsxsc005.jpg" alt="除雾后的俯视场景的截图，裸眼3D可以看到公路确实是空间曲线"></p>
+<p>为什么在线示例场景里不除雾呢？因为这里的雾其实是三维的地面颜色“笼罩了”整个三维体素照片，如果它都透明了，那么要想看到地面就又难了，所以体素照片中哪些像素要透明化对我们用二维视网膜的三维人来说确实是个很难取舍的问题（此时能直接看到素有体素的四维人在旁边偷着乐）</p>
+<p>最后再来一张能清楚看到车道划分的俯视图：互相垂直方向的虚线是交错的，可以看到单边一共$3\times 4&#x3D;12$个车道。<br><img src="/img/tsxsc006.jpg" alt="车道划分展示俯视图"></p>
+<h4 id="旁观角度"><a href="#旁观角度" class="headerlink" title="旁观角度"></a>旁观角度</h4><p>想象一下，如果有二维生物面对一个二维迷宫，你怎么给它展示一幅迷宫地图帮它通关呢？其实对它来说是无解的。就算我们把地图画出来，它们也永远无法俯视地图只能侧面看地图，因此地图要做成透明的，二维人才能看到地图内部。所以与其说我们刚才看到了城市高速场景的俯视图，还不如说我们其实还是在一种“侧面”来看的，因为四维人才能真正从“正面”看到三维体素照片，它将直接从它的立体视网膜读出那条空间曲线的样子，而我们看到的还是空间曲线在某个方向上的二维投影，有一种永远都“不识庐山真面目，只缘身在此山中”的感觉。<br>既然如此，我们不妨从让四维人看到的也是投影的角度来看这条路。这其实就是之前提到的按Alt+6的水平截面视图中能够通过截到绿色隔离带或下方水泥基础来看到道路弯曲方向，但注意四维人的三维视觉中能够同时看到隔离带和下方的水泥基础，在四维人的3D视野中只在地平面处很薄的一片，这跟我们看远处的道路一样。只看得到隔离带或周围的护栏绿化之类的，注意三维世界中看地平线附近的道路时地平线和道路都是一维的，道路将占满整个地平线(其实类似二维生物看二维空间中曲线的感觉)，而四维世界中四维人看地平面附近的道路就还是能够看到道路在地平面上弯曲！(这其实类似我们看三维空间曲线的感觉)，这在水平截面视图上就能体会，因为平视时水平截面刚好截到地平面。<br><img src="/img/tsxsc007.jpg" alt="四维人远眺地平面附近的道路"></p>
+<!-- ## 四维场景>四维星球导航
+
+这个场景是对四维星球自转\公转产生的昼夜变换以及地磁场与指南针辨别方向的模拟。具体技术细节请参考这两篇文章： -->
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wxyhly.github.io/archives/tesserxel-scene/" data-id="clj6lkh450000pkwm1m58f1v0" class="article-share-link">Share</a>
+      
+        <a href="https://wxyhly.github.io/archives/tesserxel-scene/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tesserxel/" rel="tag">tesserxel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webgpu/" rel="tag">webgpu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%9B%E7%BB%B4/" rel="tag">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%BD%A2/" rel="tag">图形</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/archives/tesserxel-intro/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older &gt;&gt;</strong>
+      <div class="article-nav-title">玩Tesserxel（一）：视图控制介绍</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Tesserxel%E7%B3%BB%E5%88%97/">Tesserxel系列</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">13</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    <div class="widget-wrap">
+   <h3 class="widget-title">链接</h3>
+   <div class="widget">
+      <ul class="entry">
+         <li><a href="https://space.bilibili.com/454422438" title="bilibili" target="_blank">WXYHLY(Hqak)的B站链接</a></li>
+         <li><a href="http://hadroncfy.com" title="hadroncfy" target="_blank">Hadroncfy's Notebook</a></li>
+      </ul>
+   </div>
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2b2t/" style="font-size: 10.91px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 10.91px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 10.91px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 11.82px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15.45px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 11.82px;">tesserxel</a> <a href="/tags/webgpu/" style="font-size: 10.91px;">webgpu</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 11.82px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17.27px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 10.91px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 16.36px;">图形</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 15.45px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 13.64px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 18.18px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 14.55px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 10.91px;">电路</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19.09px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 12.73px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 10.91px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 10.91px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/archives/tesserxel-scene/">玩Tesserxel（二）：场景交互介绍</a>
+          </li>
+        
+          <li>
+            <a href="/archives/tesserxel-intro/">玩Tesserxel（一）：视图控制介绍</a>
+          </li>
+        
+          <li>
+            <a href="/archives/minkovsky/">闵氏空间与常曲率空间的几何</a>
+          </li>
+        
+          <li>
+            <a href="/archives/compass4d/">四维世界（八）：四维星球导航</a>
+          </li>
+        
+          <li>
+            <a href="/archives/homology/">代数拓扑简介（下）：同调论</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 wxyhly<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/programs/" class="mobile-nav-link">Programs</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'wxyhly';
+  
+  var disqus_url = 'https://wxyhly.github.io/archives/tesserxel-scene/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    }); 
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script defer>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  "HTML-CSS": { linebreaks: { automatic: true } },
+         SVG: { linebreaks: { automatic: true } }
+};
+</script>
+<script type="text/javascript" defer
+  src="https://cdn.bootcss.com/mathjax/3.0.5/es5/tex-mml-chtml.js">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

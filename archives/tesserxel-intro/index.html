@@ -5,12 +5,12 @@
   
   <title>玩Tesserxel（一）：视图控制介绍 | Blog de Hqak (WXYHLY)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="谷歌Chrome浏览器终于在113版本(至少我在windows下现在已经能自动更新到该版本了，但我发现113版有时会有物体过一会就消失不渲染的bug，后面的版本会有修复)正式开始支持WebGPU了！这就意味着我的Tesserxel四维引擎项目可以直接在最新版的Chrome浏览器上直接运行了。我将开启一个Tesserxel玩耍教程系列，解释Tesserxel示例的场景。玩Tesserxel首先得知道">
+  <meta name="description" content="谷歌Chrome浏览器终于在113版本(至少我在windows下现在已经能自动更新到该版本了，但我发现113版有时会有物体过一会就消失不渲染的bug，后面的版本会有修复，这段时间忍不了可以去下载Canary版)正式开始支持WebGPU了！这就意味着我的Tesserxel四维引擎项目可以直接在最新版的Chrome浏览器上直接运行了。我将开启一个Tesserxel玩耍教程系列，解释Tesserxel示">
 <meta property="og:type" content="article">
 <meta property="og:title" content="玩Tesserxel（一）：视图控制介绍">
 <meta property="og:url" content="https://wxyhly.github.io/archives/tesserxel-intro/index.html">
 <meta property="og:site_name" content="Blog de Hqak (WXYHLY)">
-<meta property="og:description" content="谷歌Chrome浏览器终于在113版本(至少我在windows下现在已经能自动更新到该版本了，但我发现113版有时会有物体过一会就消失不渲染的bug，后面的版本会有修复)正式开始支持WebGPU了！这就意味着我的Tesserxel四维引擎项目可以直接在最新版的Chrome浏览器上直接运行了。我将开启一个Tesserxel玩耍教程系列，解释Tesserxel示例的场景。玩Tesserxel首先得知道">
+<meta property="og:description" content="谷歌Chrome浏览器终于在113版本(至少我在windows下现在已经能自动更新到该版本了，但我发现113版有时会有物体过一会就消失不渲染的bug，后面的版本会有修复，这段时间忍不了可以去下载Canary版)正式开始支持WebGPU了！这就意味着我的Tesserxel四维引擎项目可以直接在最新版的Chrome浏览器上直接运行了。我将开启一个Tesserxel玩耍教程系列，解释Tesserxel示">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wxyhly.github.io/img/tsx005.jpg">
 <meta property="og:image" content="https://wxyhly.github.io/img/tsx002.png">
@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/eye3d005.jpg">
 <meta property="og:image" content="https://wxyhly.github.io/img/tsx004.jpg">
 <meta property="article:published_time" content="2023-04-25T16:09:31.000Z">
-<meta property="article:modified_time" content="2023-05-09T12:51:28.614Z">
+<meta property="article:modified_time" content="2023-06-22T01:26:59.702Z">
 <meta property="article:author" content="wxyhly">
 <meta property="article:tag" content="图形">
 <meta property="article:tag" content="四维">
@@ -105,7 +105,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/img/tsx005.jpg" alt="Tesserxel示例库四维场景截图"><br>谷歌Chrome浏览器终于在113版本(至少我在windows下现在已经能自动更新到该版本了，但我发现113版有时会有物体过一会就消失不渲染的bug，后面的版本会有修复)正式开始支持WebGPU了！这就意味着我的Tesserxel四维引擎项目可以直接在最新版的Chrome浏览器上直接运行了。我将开启一个Tesserxel玩耍教程系列，解释Tesserxel示例的场景。<br>玩Tesserxel首先得知道基本的四维空间概念，然后请阅读《<a href="/archives/eye2d/">四维世界（四）：二维生物视觉</a>》《<a href="/archives/eye3d/">四维世界（五）：体验四维人的视觉与方向感</a>》这两篇介绍四维生物视觉的文章，明白立体照片，截面与四维深度等概念。文章中的交互四维场景除了用的是上一代WebGl写的引擎，本质与Tesserxel的交互方式区别不大，只是快捷键略有调整，所以如果之前有玩过一些四维场景，上手Tesserxel是零难度的。注意，要想直观领略抽象的四维空间，除了要一块稍微好点的显卡，还需要尽可能多调动感官交互，因此Tesserxel没有考虑适配手机操作。由于很多操作与原来老引擎相同，这里就不再赘述摄像机移动旋转与简单的方向辨识了，这篇文章重点介绍三维照片渲染设置相关的操作，并罗列出常见相机控制方法。<span id="more"></span><br>我直接先画一张快捷键图供大家查阅，具体含义将在本文后面逐步讲解，注意不同场景中不是快捷键图中所有功能都可用哦，要视相机的控制方法而定。<br><img src="/img/tsx002.png"><br><a href="/tesserxel/docs/#">点击链接进入示例库</a>，如果你看到这几行字那么你应该去下载最新版的谷歌浏览器（正式版113还没出就只能下载Canary版，详见<a href="/archives/tesserxel-hello/">这里</a>）。<br><img src="/img/tsx003.png"><br>下面我们点击侧栏来看第一个”超立方体”四维场景: 8个胞心处均画了球形的超立方体。该场景<a href="/archives/eye3d/#hh3">早已介绍过</a>: 滚动鼠标滚轮推拉能够从超立方体里面钻出来看到外表面，调整好角度的话最多可以同时看到四个面哦！再次提醒：这个场景的相机控制只需要鼠标左中右键，不需要键盘。</p>
+        <p><img src="/img/tsx005.jpg" alt="Tesserxel示例库四维场景截图"><br>谷歌Chrome浏览器终于在113版本(至少我在windows下现在已经能自动更新到该版本了，但我发现113版有时会有物体过一会就消失不渲染的bug，后面的版本会有修复，这段时间忍不了可以去<a target="_blank" rel="noopener" href="https://www.google.com/intl/zh-CN/chrome/canary/">下载Canary版</a>)正式开始支持WebGPU了！这就意味着我的Tesserxel四维引擎项目可以直接在最新版的Chrome浏览器上直接运行了。我将开启一个Tesserxel玩耍教程系列，解释Tesserxel示例的场景。<br>玩Tesserxel首先得知道基本的四维空间概念，然后请阅读《<a href="/archives/eye2d/">四维世界（四）：二维生物视觉</a>》《<a href="/archives/eye3d/">四维世界（五）：体验四维人的视觉与方向感</a>》这两篇介绍四维生物视觉的文章，明白立体照片，截面与四维深度等概念。文章中的交互四维场景除了用的是上一代WebGl写的引擎，本质与Tesserxel的交互方式区别不大，只是快捷键略有调整，所以如果之前有玩过一些四维场景，上手Tesserxel是零难度的。注意，要想直观领略抽象的四维空间，除了要一块稍微好点的显卡，还需要尽可能多调动感官交互，因此Tesserxel没有考虑适配手机操作。由于很多操作与原来老引擎相同，这里就不再赘述摄像机移动旋转与简单的方向辨识了，这篇文章重点介绍三维照片渲染设置相关的操作，并罗列出常见相机控制方法。<span id="more"></span><br>我直接先画一张快捷键图供大家查阅，具体含义将在本文后面逐步讲解，注意不同场景中不是快捷键图中所有功能都可用哦，要视相机的控制方法而定。<br><img src="/img/tsx002.png"><br><a href="/tesserxel/docs/#">点击链接进入示例库</a>，如果你看到这几行字那么你应该去下载最新版的谷歌浏览器或下载Canary版谷歌浏览器，详见<a href="/archives/tesserxel-hello/">这里</a>）。<br><img src="/img/tsx003.png"><br>下面我们点击侧栏来看第一个”超立方体”四维场景: 8个胞心处均画了球形的超立方体。该场景<a href="/archives/eye3d/#hh3">早已介绍过</a>: 滚动鼠标滚轮推拉能够从超立方体里面钻出来看到外表面，调整好角度的话最多可以同时看到四个面哦！再次提醒：这个场景的相机控制只需要鼠标左中右键，不需要键盘。<a name="ctrl"></a></p>
 <p>注意：第一次进入由于要下载Tesserxel库和编译着色器，可能会有约一两秒的白屏。</p>
 <p>侧栏最前面的示例都是一些几何体，如果你不对四维几何有深入研究的兴趣，可以直接从更丰富的四维场景示例开始看。如果你对这些场景还是觉得无法理解，没关系，我将在<a href="/404.html">下一篇文章</a>中逐个场景解析它们是什么。注意不同场景的相机控制方式不一样，一般有这三种：</p>
 <ol>
@@ -115,7 +115,7 @@
 </ol>
 <p>以上的三组键盘对应的平移旋转方向已在本文第一张键盘图中用红色字体写出，具体方向坐标可以参考下图：<br><img src="/img/tsx003.jpg" alt="三维照片为xyz方向，w方向为垂直三维屏幕的方向。旋转$R_{ab}$方向为从$a$正半轴绕原点旋转至$b$正半轴"></p>
 <p>如果你看不懂这些方向，特别是这么多旋转方向的话，自己操作试试就明白了！总的来说快捷键盘图上ABC每个3x2的区域中都对应着有三个自由度的操作（A组为水平方向的平移，B组为三维旋转，C组为四维转向），如果还是不明白，那就送你一句话：Don’t try to understand it. Feel it.</p>
-<p>其它场景中设计到特殊操作的会在侧栏底栏的说明里写出，这里举一些例子：</p>
+<p>其它场景中涉及到特殊操作的会在侧栏底栏的说明里写出，这里举一些例子：</p>
 <ul>
 <li>物理场景中很多场景支持使用鼠标左键发射超球通过轰击的方式与物体进行交互。</li>
 <li>两个火车场景可以使用键盘T&#x2F;G等操作火车运行与转向。</li>
@@ -133,6 +133,7 @@
 <li>Alt+7: 显示三维照片和一系列平行于XY平面的截面</li>
 <li>Alt+8: 显示三维照片和一系列平行于XZ平面的截面</li>
 </ul>
+<p>( 我发现一个神奇的bug，打开Photoshop会导致按住Alt键时浏览器无法捕获同时按下的数字键！)</p>
 <h4 id="三维照片朝向控制"><a href="#三维照片朝向控制" class="headerlink" title="三维照片朝向控制"></a>三维照片朝向控制</h4><p>按住Alt键拖动鼠标可以旋转三维照片。(<strong>Alt+方向键也可以旋转三维照片哦</strong>，这个快捷键上没标)按住Alt键滚动鼠标滚轮还可以放大缩小。但注意，三维照片本质上相当于四维人的显示器，把显示器旋转后会颠倒对四维世界中方向的辨识，因此我们需要按Alt+R将三维照片旋转复原（将显示器重新摆正）。如果确实想旋转视图，可以旋转四维场景中的相机，比如按键盘Z&#x2F;X（或自由飞行模式下的RTYFGH键盘），这些同样能够改变三维照片的角度而不是旋转三维显示器本身。<a name="rotdiff"></a></p>
 <p>旋转照片和旋转摄影机有什么不同？参考下图的2D类比：它将影响你后面控制摄像机的方向，比如你将三维照片绕y轴（竖直方向轴）旋转90度后，本来按键盘A&#x2F;D控制相机左右移动现在看起来却是侧前侧后移动。建议一般如果想临时从其它角度观察就旋转显示器并及时复原，要操作四维空间中相机位置时3D显示器的旋转角度不要超过45度，免得搞不清真实的控制方向。<br><img src="/img/tsx004.jpg" alt="低维类比：旋转场景中摄影机（左）与直接旋转显示器（右）的区别：游戏里操作玩家的上下左右方向变得不一样了"></p>
 <p>三维照片透视视场角：Alt+G与Alt+T，我们可以通过这组快捷键选择使用正交投影还是透视投影来观察三维照片，并调整透视视场角。</p>
@@ -163,6 +164,15 @@
     
 <nav id="article-nav">
   
+    <a href="/archives/tesserxel-scene/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;&lt; Newer</strong>
+      <div class="article-nav-title">
+        
+          玩Tesserxel（二）：场景交互介绍
+        
+      </div>
+    </a>
+  
   
     <a href="/archives/minkovsky/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older &gt;&gt;</strong>
@@ -188,7 +198,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Tesserxel%E7%B3%BB%E5%88%97/">Tesserxel系列</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">13</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Tesserxel%E7%B3%BB%E5%88%97/">Tesserxel系列</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">13</span></li></ul>
     </div>
   </div>
 
@@ -208,7 +218,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2b2t/" style="font-size: 11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 11px;">tesserxel</a> <a href="/tags/webgpu/" style="font-size: 10px;">webgpu</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 11px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 16px;">图形</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 16px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 14px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 18px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 15px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 11px;">电路</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 13px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 11px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 11px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+      <a href="/tags/2b2t/" style="font-size: 10.91px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 10.91px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 10.91px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 11.82px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15.45px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 11.82px;">tesserxel</a> <a href="/tags/webgpu/" style="font-size: 10.91px;">webgpu</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 11.82px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17.27px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 10.91px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 16.36px;">图形</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 15.45px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 13.64px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 18.18px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 14.55px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 10.91px;">电路</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19.09px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 12.73px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 10.91px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 10.91px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
     </div>
   </div>
 
@@ -217,7 +227,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
     </div>
   </div>
 
@@ -228,6 +238,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/archives/tesserxel-scene/">玩Tesserxel（二）：场景交互介绍</a>
+          </li>
         
           <li>
             <a href="/archives/tesserxel-intro/">玩Tesserxel（一）：视图控制介绍</a>
@@ -243,10 +257,6 @@
         
           <li>
             <a href="/archives/homology/">代数拓扑简介（下）：同调论</a>
-          </li>
-        
-          <li>
-            <a href="/archives/infpigfarm/">参观无限大养猪场</a>
           </li>
         
       </ul>
