@@ -256,7 +256,7 @@ Ceci n'est pas la dernière phrase de cet article ? (这不是这篇文章最后
   })();
 </script>
 
-<!-- <style>
+<style>
 mjx-container {
   display: inline-grid;
   overflow-x: auto;
@@ -274,7 +274,7 @@ mjx-container::-webkit-scrollbar {
 mjx-assistive-mml{
   width: 0% !important;
 }
-</style> -->
+</style>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
@@ -292,30 +292,30 @@ mjx-assistive-mml{
     });
 </script>
 <script defer>
-// const setJax = function(){
-//   setTimeout(function(){
-//     document.querySelectorAll("mjx-container").forEach(function(e){
-//       const overflow = e.scrollWidth > (e.clientWidth ? e.clientWidth + 3 : (document.querySelector(".article-entry").clientWidth - 120));
-//       e.style.overflowX = overflow ? "scroll" : "hidden";
-//       e.onclick = function(){
-//         const overflow = e.scrollWidth > (e.clientWidth ? e.clientWidth + 3 : (document.querySelector(".article-entry").clientWidth - 120));
-//         e.style.overflowX = overflow ? "scroll" : "hidden";
-//       };
-//     })
-//   },1000);  
-// }
-// window.addEventListener("resize", setJax);
+const setJax = function(){
+  setTimeout(function(){
+    document.querySelectorAll("mjx-container").forEach(function(e){
+      const overflow = e.scrollWidth > (e.clientWidth ? e.clientWidth + 3 : (document.querySelector(".article-entry").clientWidth - 120));
+      e.style.overflowX = overflow ? "scroll" : "hidden";
+      e.onclick = function(){
+        const overflow = e.scrollWidth > (e.clientWidth ? e.clientWidth + 3 : (document.querySelector(".article-entry").clientWidth - 120));
+        e.style.overflowX = overflow ? "scroll" : "hidden";
+      };
+    })
+  },1000);  
+}
+window.addEventListener("resize", setJax);
 MathJax = {
   tex: {
     inlineMath: [['$', '$']]
   },
   "HTML-CSS": { linebreaks: { automatic: true } },
-  SVG: { linebreaks: { automatic: true } }
-  // startup: {
-  //   pageReady: function(){
-  //     return MathJax.startup.defaultPageReady().then(setJax);
-  //   }
-  // }
+  SVG: { linebreaks: { automatic: true } },
+  startup: {
+    pageReady: function(){
+      return MathJax.startup.defaultPageReady().then(setJax);
+    }
+  }
 };
 </script>
 <script type="text/javascript" defer
