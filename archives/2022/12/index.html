@@ -262,8 +262,8 @@ mjx-assistive-mml{
     });
 </script>
 <script defer>
-const setJax = ()=>{
-  setTimeout(_=>{
+const setJax = function(){
+  setTimeout(function(){
     document.querySelectorAll("mjx-container").forEach(function(e){
       const overflow = e.scrollWidth > (e.clientWidth ? e.clientWidth + 3 : (document.querySelector(".article-entry").clientWidth - 120));
       e.style.overflowX = overflow ? "scroll" : "hidden";
@@ -282,7 +282,7 @@ MathJax = {
   "HTML-CSS": { linebreaks: { automatic: true } },
   SVG: { linebreaks: { automatic: true } },
   startup: {
-    pageReady: () => {
+    pageReady: function(){
       return MathJax.startup.defaultPageReady().then(setJax);
     }
   }
