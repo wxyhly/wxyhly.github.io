@@ -208,12 +208,12 @@
 </script>
 
 <style>
-/* mjx-container {
+mjx-container {
   display: inline-grid;
   overflow-x: auto;
   overflow-y: hidden;
   max-width: 102%;
-} */
+}
 mjx-container::-webkit-scrollbar-thumb {
   background-color: gray;
   border-radius: 2px;
@@ -222,9 +222,9 @@ mjx-container::-webkit-scrollbar {
   background-color: lightgray;
   height: 6px;
 }
-/* mjx-assistive-mml{
+mjx-assistive-mml{
   width: 0% !important;
-} */
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/x-mathjax-config">
@@ -245,10 +245,10 @@ mjx-container::-webkit-scrollbar {
 <script defer>
 const setJax = ()=>{
   setTimeout(_=>{
-    document.querySelectorAll("mjx-container").forEach(e=>{
+    document.querySelectorAll("mjx-container").forEach(function(e){
       const overflow = e.scrollWidth > (e.clientWidth ? e.clientWidth + 3 : (document.querySelector(".article-entry").clientWidth - 120));
       e.style.overflowX = overflow ? "scroll" : "hidden";
-      e.onclick = _=>{
+      e.onclick = function(){
         const overflow = e.scrollWidth > (e.clientWidth ? e.clientWidth + 3 : (document.querySelector(".article-entry").clientWidth - 120));
         e.style.overflowX = overflow ? "scroll" : "hidden";
       };
@@ -262,11 +262,11 @@ MathJax = {
   },
   "HTML-CSS": { linebreaks: { automatic: true } },
   SVG: { linebreaks: { automatic: true } },
-  // startup: {
-  //   pageReady: () => {
-  //     return MathJax.startup.defaultPageReady().then(setJax);
-  //   }
-  // }
+  startup: {
+    pageReady: () => {
+      return MathJax.startup.defaultPageReady().then(setJax);
+    }
+  }
 };
 </script>
 <script type="text/javascript" defer
