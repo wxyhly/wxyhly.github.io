@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="164.52167mm"
+   height="112.8359mm"
+   viewBox="0 0 164.52167 112.8359"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="aircraft005.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:snap-global="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="1.0490621"
+     inkscape:cx="298.83837"
+     inkscape:cy="198.74897"
+     inkscape:window-width="1440"
+     inkscape:window-height="838"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="Arrow1Sstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Sstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2) translate(6,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1707" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Send"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1710" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Mend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) rotate(180) translate(10,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1704" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1695" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="图层 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-8.9849818,-3.2553277)">
+    <g
+       id="g1529"
+       transform="translate(-62.547936,-105.92796)">
+      <circle
+         style="fill:none;stroke:#000000;stroke-width:0.257704;stroke-linecap:round"
+         id="path850"
+         cx="104.5607"
+         cy="149.43045"
+         r="12.181829" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 94.720814,142.32472 -22.767086,-1.70449 -0.243496,0.7305 22.158338,2.43498"
+         id="path885" />
+      <use
+         x="0"
+         y="0"
+         xlink:href="#path885"
+         id="use967"
+         transform="matrix(-1,0,0,1,209.22583,0)"
+         width="100%"
+         height="100%"
+         style="fill:none" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 103.852,137.333 0.36524,-21.06259 0.7305,-0.12175 0.36525,20.94085"
+         id="path1002" />
+    </g>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g1529"
+       id="use1531"
+       transform="translate(7.8184923)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use1531"
+       id="use1533"
+       transform="translate(8.8273293)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use1533"
+       id="use1535"
+       transform="translate(81.715852,-6.8096567)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use1535"
+       id="use1537"
+       transform="translate(-1.5439845e-7,9.3317533)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use1537"
+       id="use1539"
+       transform="translate(-1.5439845e-7,11.601633)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use1539"
+       id="use1541"
+       transform="translate(-51.198512,39.34467)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use1541"
+       id="use1543"
+       transform="rotate(-14.661734,89.073419,95.355478)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use1543"
+       id="use1545"
+       transform="rotate(29.343075,89.871342,96.934996)"
+       width="100%"
+       height="100%" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.26499995;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:1.26499995,1.26499995;marker-end:url(#Arrow1Send);marker-start:url(#Arrow1Sstart);stroke-dashoffset:0"
+       d="M 43.285462,19.901149 H 57.156981"
+       id="path1693" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path1693"
+       id="use2067"
+       transform="rotate(90,73.172279,62.020122)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use2067"
+       id="use2069"
+       transform="translate(46.910952)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use2067"
+       id="use2071"
+       transform="translate(-0.50441884,50.946303)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use2071"
+       id="use2073"
+       transform="translate(-51.450721)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path1693"
+       id="use2075"
+       transform="translate(39.849088,47.66758)"
+       width="100%"
+       height="100%" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.29167px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="33.449295"
+       y="62.524544"
+       id="text3333"><tspan
+         sodipodi:role="line"
+         id="tspan3331"
+         style="font-size:5.29167px;stroke-width:0.264583"
+         x="33.449295"
+         y="62.524544">偏航运动(yaw)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.29167px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="73.550591"
+       y="113.97527"
+       id="text4385"><tspan
+         sodipodi:role="line"
+         id="tspan4383"
+         style="font-size:5.29167px;stroke-width:0.264583"
+         x="73.550591"
+         y="113.97527">横滚运动(roll)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.29167px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="125.00131"
+       y="77.152695"
+       id="text4811"><tspan
+         sodipodi:role="line"
+         id="tspan4809"
+         style="font-size:5.29167px;stroke-width:0.264583"
+         x="125.00131"
+         y="77.152695">俯仰运动(pitch)</tspan></text>
+  </g>
+</svg>
