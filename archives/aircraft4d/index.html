@@ -54,7 +54,7 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/aircraft020.jpg">
 <meta property="og:image" content="https://wxyhly.github.io/img/aircraft021.jpg">
 <meta property="article:published_time" content="2023-11-26T16:06:15.000Z">
-<meta property="article:modified_time" content="2023-11-27T13:24:59.806Z">
+<meta property="article:modified_time" content="2023-12-02T09:49:22.700Z">
 <meta property="article:author" content="wxyhly">
 <meta property="article:tag" content="四维">
 <meta property="article:tag" content="物理">
@@ -162,7 +162,7 @@
 <span id="more"></span>
 
 <h2 id="四维风扇"><a href="#四维风扇" class="headerlink" title="四维风扇"></a>四维风扇</h2><p>先来个热身话题：设计一个能正常吹风的四维风扇，按惯例我们先分析三维，来看看三维风扇的主视图和侧视图。<img style="width:100%;max-width:500px" src="/img/aircraft001.jpg" alt="三维风扇正视图（左）与侧视图（右），在侧视图中的左边着色偏白，右边则偏黑"/><br>注意主视图压缩掉的维度可通过明暗颜色标记“海拔高度”的方法来展示压缩掉的维度，其目的是在给后面用这种方法标记四维风扇做热身。风扇出风的关键是叶片是倾斜的，与旋转运动方向有一个夹角，这样叶片旋转时就会把空气推走，即出风。<br><img src="/img/aircraft001.svg" alt="四维风扇出风原理：蓝色是气流吹出方向，同时风扇会受到一个红色的反作用力">四维风扇要如何通过旋转来出风呢？上面的出风原理示意图其实还可以理解为二维世界中的一维线段状的“叶片”通过一系列复杂操作升维得到的。（经过柱化，再通过复制叶片再弯曲后将平动出风的结构变成转动出风）这启发我们最简单的四维风扇就是把三维图形柱化升维得到，这样的四维螺旋桨的扫掠区域从圆柱形变成了圆柱柱形。虽然圆柱柱本身的两条高地位是相同的，但由于四维风扇的倾斜导致没有这个对称性。一个在xy平面内旋转的风扇它到底往z方向还是w方向出风完全取决于扇叶的倾斜方式，同时叶片在这两个方向上的厚度也不一样：底胞扇叶本身可以很薄，但扇叶柱化方向的长度不宜过短，否则会降低叶片与空气接触的表体积。现在我们可以画出四维风扇的两个包含旋转平面的正投影视图：（三维物体投影是二维，四维物体投影就是三维，后面我们要画各种四维物体的各种三维视图哦）<img style="width:100%;max-width:500px" src="/img/aircraft002.jpg" alt="四维风扇出风正视图（左）与柱化方向正视图（右），每个视图压缩掉的方向使用明暗颜色来补偿区分"/><br>对于四维风扇出风正视图（左）能看出这个东西是个柱体，但它投影掉了风扇的倾斜出风方向，叶片倾斜可以从从明暗颜色上看出来；对于柱化方向正视图（右），它将柱化方向投影掉了，“底胞”是一个平直的三维风扇图形，第四个压缩掉的高度是相同的，所以可以看到明暗着色一样。可能大家还会注意到一个小细节，从四维风扇出风正视图（左）中可以看出风扇叶片不是标准的柱体，貌似中间有点凹陷，这是为了让气流更好地汇聚到中间推动叶片而设计的，由于目前我还没有写出四维流体模拟，因此无法给出形状上的精确优化方案。</p>
-<h3 id="双旋转电扇？"><a href="#双旋转电扇？" class="headerlink" title="双旋转电扇？"></a>双旋转电扇？</h3><p>可能你会觉得这柱化的扇叶太简单粗暴了，有没有其它更科学的电扇设计方案呢？很可惜旋转是个妥妥的二维效应，我实在是想不出做出类似球柱形状的电扇，最多把柱化的扇叶的棱角打磨成圆弧，也能做到看起来像个球柱，但它的原理还是圆柱柱那套，而且打磨后将损失掉部分高线速度区域的接触表体积，对出风是不利的。<br>你可能会说四维空间还有双旋转呢，能不能做成对称性更漂亮的风扇呢？如果让超球做双旋转，在它表面粘上倾斜的叶片，可想而知由于双旋转的对称性，这个东西四面八方都出风，这根本就不再是电风扇而变成真空泵了，或者反着转变成都往里灌气的增压泵。有点难以想象？它对应到三维是这种东西：<img style="width:100%;max-width:500px" src="/img/aircraft003.jpg" alt="把它夹在两块板子之间快速旋转就能变成真空泵/加压泵"/><br>如果忽略掉进枫通道，这个东西其实是二维的，我们甚至可以用同心圆截线动画给一维生物来描述它：想象一个以真空泵&#x2F;加压泵旋转中心为圆心的圆，从半径为零慢慢增大。当半径很小时，什么都截不到，半径增加到内圈大小时，整个圆上会被内圈充满，半径更大后，内圈截不到了而是截到叶片，即在截圆周上出现许多点，并且随着截圆半径增大截点顺着圆周旋转，当截圆半径大于扇叶最远端到圆心距离时，所有东西都消失。一维生物只用理解一维圆周上发生的事，这对它们很容易：把圆轴剪开展开成线段就行了。<img src="/img/aircraft006.svg" alt="给一维生物展示二维图形用的截圆动画"></p>
+<h3 id="双旋转电扇？"><a href="#双旋转电扇？" class="headerlink" title="双旋转电扇？"></a>双旋转电扇？</h3><p>可能你会觉得这柱化的扇叶太简单粗暴了，有没有其它更科学的电扇设计方案呢？很可惜旋转是个妥妥的二维效应，我实在是想不出做出类似球柱形状的电扇，最多把柱化的扇叶的棱角打磨成圆弧，也能做到看起来像个球柱，但它的原理还是圆柱柱那套，而且打磨后将损失掉部分高线速度区域的接触表体积，对出风是不利的。<br>你可能会说四维空间还有双旋转呢，能不能做成对称性更漂亮的风扇呢？如果让超球做双旋转，在它表面粘上倾斜的叶片，可想而知由于双旋转的对称性，这个东西四面八方都出风，这根本就不再是电风扇而变成真空泵了，或者反着转变成都往里灌气的增压泵。有点难以想象？它对应到三维是这种东西：<img style="width:100%;max-width:500px" src="/img/aircraft003.jpg" alt="把它夹在两块板子之间快速旋转就能变成真空泵/加压泵"/><br>如果忽略掉进枫通道，这个东西其实是二维的，我们甚至可以用同心圆截线动画给一维生物来描述它：想象一个以真空泵&#x2F;加压泵旋转中心为圆心的圆，从半径为零慢慢增大。当半径很小时，什么都截不到，半径增加到内圈大小时，整个圆上会被内圈充满，半径更大后，内圈截不到了而是截到叶片，即在截圆周上出现许多点，并且随着截圆半径增大截点顺着圆周旋转，当截圆半径大于扇叶最远端到圆心距离时，所有东西都消失。一维生物只用理解一维圆周上发生的事，这对它们很容易：把圆周剪开展开成线段就行了。<img src="/img/aircraft006.svg" alt="给一维生物展示二维图形用的截圆动画"></p>
 <p>同理四维的Hopf风扇则是截到内圈后，它将充满整个三维球面，但由于不像二维断开了就不连通，这个三维球面可以是出于节省材料或方便进出风等原因而做成镂空的。随着截超球继续变大，内圈消失截到叶片，如果叶片做成倾斜的圆柱体，则会出现很多法线顺着双旋转轨迹（即Hopf纤维）的圆片，随着半径继续增大，这些圆片在双旋转轨迹方向上前进，当截超球半径大于扇叶最远端到圆心距离时，所有东西都消失。</p>
 <p>Hopf真空泵&#x2F;加压泵这东西虽然理论上确实能用，但实用性不强。我相信四维人不会真的用这种玩意，肯定还是密闭容器加一个管子直接抽真空来得方便。如果有五维世界的话倒是可以把这种Hopf风扇柱化，并在第五维倾斜，可以得到扫略区域为以超球为底的柱体，并向高的方向出风的真正的风扇。</p>
 <h2 id="四维无人机设计"><a href="#四维无人机设计" class="headerlink" title="四维无人机设计"></a>四维无人机设计</h2><p>螺旋桨跟风扇的原理是一样的，根据牛顿第三定律，吹出的气流会反过来给扇叶一个推力，目前我们世界中主流的无人机都采用的是四轴飞行器的设计，靠四个螺旋桨旋转产生升力飞行。如果把四轴飞行器推广到四维，该怎样设计、控制、操纵它呢？按照惯例，我们首先看看三维世界中的四轴飞行器是怎样工作的。</p>
@@ -204,7 +204,7 @@
 <p>最后再来看看飞机滑行时如何通过控制轮子来转弯。如果前轮有转向系统的话直接像三轮车前轮那样转弯就可以了，如果没有转向系统还可以通过后轮不平衡刹车的方式来实现转弯：想往哪个机翼的方向转弯就只需要对哪个轮子单独刹车就可以了。但如果我们想往任意方向转弯，就必须要有不止一个轮子刹车，而是控制各轮胎刹车的比例，通过向量合成的方法得到最终想要的转弯方向，这里就不再展开介绍了。</p>
 <h4 id="尾翼设计"><a href="#尾翼设计" class="headerlink" title="尾翼设计"></a>尾翼设计</h4><p>三维飞机的尾翼分水平安定面与垂直安定面两部分。水平安定面其实跟飞机的机翼类似，只是比较小，且水平安定面尾端连接有升降舵，它可以与机翼一起调节飞机的俯仰角并保持平衡。垂直安定面则装有方向舵，并且能起到稳定飞机偏航的作用。<div style="display: flex; flex-wrap:wrap; justify-content: center"><div><br><img src="/img/aircraft002.gif" alt="水平安定面上的升降舵，动画演示来自维基百科"></div><div><br><img src="/img/aircraft001.gif" alt="垂直安定面上的方向舵，动画演示来自维基百科"></div></div></p>
 <p>四维飞机的尾翼也可以分为水平安定面（胞）和垂直安定面（胞）。水平安定面装有升降舵，且跟机翼类似也可做成按120度分布的三片，分布的角度有两个选择：一是跟机翼对齐，二是跟机翼相差60度角错开（见下图），我并不清楚这两种方案的优劣（求空气动力学大佬指点），只是单纯觉得错开好看一些。垂直安定面则跟三维情况有很大不同：若模仿三维，直接在飞机顶部安装尾翼，它的形状在飞机垂直方向与前后方向有延伸，其它两个方向很薄，变成二维面而不是三维胞了，虽然可以想象要控制飞机的两个自由度的转向，只需让尾部的方向舵通过像球形人偶关节那种两自由度铰链转动即可，但它的气动表体积少得可怜，类比到三维情形可以想象一根铁丝在风洞中运动，虽然可以跟流体有一定夹角可以吹动铁丝获得推拉力，但妄图用它来调节推动整个飞机控制姿态简直是天方夜谭，因此<strong>下图的方案是不能采纳使用</strong>的。<br><img src="/img/aircraft005.png" alt="直接类比三维方案的水平安定面（绿色）与垂直安定面（红色），仅展示俯视图与前视图"><br>垂直安定面必须要升维，最常见的升维方法就是柱化与旋转体了。由于它在飞机顶部，已经落在对称旋转面上了，无法再通过旋转获得第四维的厚度了，于是只能柱化升维。朝哪个方向柱化呢？我们必须弄清楚垂直安定面需要实现的功能才能回答这个问题。我们先看看三维情况，从前后视图（投影压缩掉前后方向）可以看出它们能抑制三个方向的旋转：偏航旋转时会扫到垂直安定面（可粗略认为只要该面向自己法线方向运动，会就受到较大阻力，从而抑制旋转，这里可能表述得很不专业，见谅。。），俯仰角变化会扫到水平安定面，横滚角变化则两个面都会扫到。<br><img src="/img/aircraft005.svg" alt="尾翼两个安定面能够抑制的运动"><br>同理我们希望四维的尾翼也能抑制所有的旋转自由度。我们把四维旋转分成两部分，一部分是类似偏航与俯仰会旋转机头机尾朝向的，另一部分是类似横滚保持机头机尾不动（类似以它为轴）转动的。旋转角不大时，旋转机头机尾朝向的在后视图中看来是一种平移，分别对应两个方向的偏航与俯仰角变化; 保持机头机尾不动的转动在后视图里看起来则是绕中心做三个自由度的三维转动，分别对应两个自由度的横滚与自转角变化。<br><img src="/img/aircraft019.jpg" alt="垂直安定面的设计方案迭代（后视图简图，且标出了没被抑制的运动）"><br>如上图最左边所示，水平安定面只能抑制上下移动（即俯仰角变化）和两个自由度的横滚，自转与两个自由度的偏航均无法抑制，如果垂直安定面只在一个方向柱化加长（见上图中间），则还有该方向的偏航无法抑制。我们可以像水平安定面那样也做三个方向柱化的垂直安定面（上图右边），这样就可以安定住任何旋转自由度了。注意垂直安定面不再需要像三维飞机那样位于飞机正顶部了。<br><img style="width:100%;max-width:500px" src="/img/aircraft006.png" alt="四维飞机的水平安定面与垂直安定面"/><br>垂直安定面还有各重要功能就是控制偏航角。由现在有三个垂直安定面，所以可以做成三个一维自由度的正常铰链，通过控制三个铰链来合成出最终想要偏航的方向。铰链具体如何工作呢？俯视图比较好观察铰链的运动，例如下图中有一个垂直安定面的方向舵发生了偏转，飞机飞行过程中将向该安定面偏转方向偏航转向：<br><img style="width:100%;max-width:500px" src="/img/aircraft020.jpg" alt="垂直安定面的方向舵的可活动方向（橙色）、此时方向舵偏转方向（红色）与此时飞机的偏航方向（青色），仅画出俯视图与俯视图的一个二维正投影"/><br>控制的方向舵有三个，但偏航角才两个自由度，多的自由度是不是就没用了呢？其实这个多余的自由度让我们不仅能控制偏航，还能同时独立地控制自转，比如下面的配置就不会让飞机偏航转向但会带来飞机自转，这也侧面说明了四维飞机需要且仅需要三个垂直安定面了。<img style="width:100%;max-width:500px" src="/img/aircraft021.jpg" alt="自转时方向舵的偏转"/></p>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>至此四维飞机的所有主体部件设计方案就介绍完毕了。我们虽然展示了四维飞机的俯视图与前视图，但却没展示过从侧面看四维飞机的视图的样子，就把这个给读者留作习题吧，答案可以在Tesserxel的四维客机场景中寻找，<a href="/tesserxel/examples/#aircraft">链接点这里</a>。顺便一提，Tesserxel的四维客机场景可以操纵四维飞机滑行、起飞降落（提供了好几个不同难度对方向的跑道供你练习降落哦），跟四维无人机一样，下一篇文章将介绍具体的操作教程，同时也将公布四维飞机的四视图与六视图。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>至此四维飞机的所有主体部件设计方案就介绍完毕了。我们虽然展示了四维飞机的俯视图与前视图，但却没展示过从侧面看四维飞机的视图的样子，就把这个给读者留作习题吧，答案可以在Tesserxel的四维客机场景中寻找，<a href="/tesserxel/examples/#aircraft">链接点这里</a>。顺便一提，Tesserxel的四维客机场景可以操纵四维飞机滑行、起飞降落（提供了好几个不同难度对方向的跑道供你练习降落哦），跟四维无人机一样，下一篇文章将介绍具体的操作教程，同时也将公布四维飞机的四视图与六视图。</p>
 
       
     </div>
@@ -221,6 +221,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/archives/tesserxel-flightsim/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;&lt; Newer</strong>
+      <div class="article-nav-title">
+        
+          玩Tesserxel（三）：火车、飞行模拟器教程
+        
+      </div>
+    </a>
   
   
     <a href="/archives/hyperworld/" id="article-nav-older" class="article-nav-link-wrap">
@@ -247,7 +256,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Tesserxel%E7%B3%BB%E5%88%97/">Tesserxel系列</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A5%87%E7%89%B9%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">奇特世界系列</a><span class="category-list-count">4</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Tesserxel%E7%B3%BB%E5%88%97/">Tesserxel系列</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A5%87%E7%89%B9%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">奇特世界系列</a><span class="category-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -267,7 +276,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2b2t/" style="font-size: 11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 13px;">tesserxel</a> <a href="/tags/webgpu/" style="font-size: 11px;">webgpu</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 11px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%8F%8C%E6%9B%B2%E7%A9%BA%E9%97%B4/" style="font-size: 12px;">双曲空间</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 16px;">图形</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 15px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 14px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 18px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 10px;">模拟</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 16px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 11px;">电路</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 13px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 11px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 11px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+      <a href="/tags/2b2t/" style="font-size: 11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 14px;">tesserxel</a> <a href="/tags/webgpu/" style="font-size: 12px;">webgpu</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 11px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%8F%8C%E6%9B%B2%E7%A9%BA%E9%97%B4/" style="font-size: 12px;">双曲空间</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 16px;">图形</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 15px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 14px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 18px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 11px;">模拟</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 16px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 11px;">电路</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 13px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 11px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 11px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
     </div>
   </div>
 
@@ -276,7 +285,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
     </div>
   </div>
 
@@ -287,6 +296,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/archives/tesserxel-flightsim/">玩Tesserxel（三）：火车、飞行模拟器教程</a>
+          </li>
         
           <li>
             <a href="/archives/aircraft4d/">四维世界（九）：飞行器设计</a>
@@ -302,10 +315,6 @@
         
           <li>
             <a href="/archives/tesserxel-intro/">玩Tesserxel（一）：视图控制介绍</a>
-          </li>
-        
-          <li>
-            <a href="/archives/minkovsky/">闵氏空间与常曲率空间的几何</a>
           </li>
         
       </ul>
