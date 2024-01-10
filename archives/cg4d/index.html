@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>四维计算机图形学：渲染篇 | Blog de Hqak (WXYHLY)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="之前的文章中几乎都覆盖了目前常见的可视化四维方法：截面法、球极投影、等高面或颜色标注第四维、3D照片等，其中3D照片又分线框与体素云等展示法。这些方法想必多数读者也能理解，但如何利用计算机程序去展示它们却是一个不小的挑战。这里先介绍一些最基本的计算机图形学原理，然后深入讲解各种绘制复杂四维物体的方法。读者可以根据自己的知识水平选读。或许我后面可以开一个系列专题，专门讲解怎样一步步自己搭建一个四维图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="四维计算机图形学：渲染篇">
+<meta property="og:url" content="https://wxyhly.github.io/archives/cg4d/index.html">
+<meta property="og:site_name" content="Blog de Hqak (WXYHLY)">
+<meta property="og:description" content="之前的文章中几乎都覆盖了目前常见的可视化四维方法：截面法、球极投影、等高面或颜色标注第四维、3D照片等，其中3D照片又分线框与体素云等展示法。这些方法想必多数读者也能理解，但如何利用计算机程序去展示它们却是一个不小的挑战。这里先介绍一些最基本的计算机图形学原理，然后深入讲解各种绘制复杂四维物体的方法。读者可以根据自己的知识水平选读。或许我后面可以开一个系列专题，专门讲解怎样一步步自己搭建一个四维图">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d001.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d001.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d002.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d001.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d002.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d002.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d005.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d004.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d003.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d005.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d004.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d006.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d003.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d006.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d004.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d007.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d006.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d005.png">
+<meta property="article:published_time" content="2024-01-10T08:45:01.000Z">
+<meta property="article:modified_time" content="2024-01-10T08:57:15.879Z">
+<meta property="article:author" content="wxyhly">
+<meta property="article:tag" content="四维">
+<meta property="article:tag" content="图形学">
+<meta property="article:tag" content="渲染">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wxyhly.github.io/img/render4d001.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Blog de Hqak (WXYHLY)</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/programs/">Programs</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wxyhly.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-cg4d" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/archives/cg4d/" class="article-date">
+  <time datetime="2024-01-10T08:45:01.000Z" itemprop="datePublished">2024-01-10</time>
+</a>
+      
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      四维计算机图形学：渲染篇
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前的文章中几乎都覆盖了目前常见的可视化四维方法：截面法、球极投影、等高面或颜色标注第四维、3D照片等，其中3D照片又分线框与体素云等展示法。这些方法想必多数读者也能理解，但如何利用计算机程序去展示它们却是一个不小的挑战。这里先介绍一些最基本的计算机图形学原理，然后深入讲解各种绘制复杂四维物体的方法。读者可以根据自己的知识水平选读。或许我后面可以开一个系列专题，专门讲解怎样一步步自己搭建一个四维图形引擎。</p>
+<h2 id="特色内容"><a href="#特色内容" class="headerlink" title="特色内容"></a>特色内容</h2><ul>
+<li>三维计算机图形学基础</li>
+<li>体素&#x2F;截面四维图形渲染<ul>
+<li>Shadertoy在线四维路径追踪演示</li>
+<li>四面体法&#x2F;胞腔复形法</li>
+<li>体素云渲染方法</li>
+</ul>
+</li>
+<li>线框渲染遮挡剔除算法<span id="more"></span></li>
+</ul>
+<h2 id="计算机图形学基础"><a href="#计算机图形学基础" class="headerlink" title="计算机图形学基础"></a>计算机图形学基础</h2><p>这里先非常粗略地介绍一下三维计算机图形学的基础知识，如果你已经非常熟悉这块内容请直接<a href="/archives/cg4d/#4dbegin">移步下一小节</a>。想要深入了解网上的教程资源非常之多，我比较推荐这个在线课程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1X7411F744/">《GAMES101-现代计算机图形学入门-闫令琪》</a>。</p>
+<p>计算机如何显示图形呢？显示器本质上就是一堆排列整齐的彩灯在发不同比例强度的光，图形的本质其实就是一个二维像素阵列中储存着这些发光的强度比例的数字。为了快速计算这些动辄上十万、百万数量的像素，人们发明了显卡（GPU），不同于CPU一次执行一条单个的指令，GPU是每次接受一条指令，便同时对所有像素进行相同的运算，这样不同像素同时并行运算就比CPU一次处理一个像素快了成千上万倍。</p>
+<h3 id="1-光栅化技术"><a href="#1-光栅化技术" class="headerlink" title="1.光栅化技术"></a>1.光栅化技术</h3><p>GPU如何计算显示三维图形呢？现在主流的做法是只绘制点、线、三角形这三种基本图形，其硬件有专门为绘制这几个图形进行优化设计，从而可以运行得非常快。下面就绘制三角形说说大致流程：<br><img src="/img/render4d001.png" alt="主流GPU光栅化渲染管线"></p>
+<ol>
+<li>首先将组成几何体的三角形的顶点数据发送至GPU</li>
+<li>在GPU中对所有顶点数据并行计算坐标变换，得到在画面中的透视投影的最终坐标，这段顶点坐标变换程序叫做“<strong>顶点着色器</strong>(Vertex Shader)”</li>
+<li>通过硬件层面优化过的“<strong>光栅化器</strong>(Rasterizer)”快速判断图像中哪些像素属于三角形的内部，并且计算其相对于三角形的重心坐标，这部分程序是写死在硬件里的，一般不可编程。</li>
+<li>对上一步确定在三角形内部的所有像素进行最终上色，这段程序叫做“<strong>片元着色器</strong>(Fragment Shader)”。注意这些像素点可以<strong>根据重心坐标信息来加以区分</strong>从而染上不同的颜色，比如通过映射到各种纹理贴图实现很多材质上的细节效果。</li>
+</ol>
+<p>光栅化其实还有一些细节问题是不简单的，比如光栅化器阶段的视锥体裁剪与片元着色器阶段的遮挡剔除。</p>
+<h5 id="视锥体裁剪"><a href="#视锥体裁剪" class="headerlink" title="视锥体裁剪"></a>视锥体裁剪</h5><p>我们之前说顶点着色器的输出是投影过后的在画面上的点的坐标其实是不准确的，因为直接绘制有严重的问题。试想有台相机位于原点，在$z&#x3D;1$处放一块投影画布，根据三角形相似或解直线方程得到远处的点$p(x,y,z)$在画布上的像的位置其实是$b(x&#x2F;z,y&#x2F;z,1)$。<img src="/img/render4d001.svg" alt="透视除法原理">这个$1&#x2F;z$的因子导致了“近大远小”这一最重要的透视现象，因此这个除以$z$的操作叫做“透视除法”，然而透视除法会带来一个很严重的问题，就是相机背后的点会跑到相机前面来，比如点$p(x,y,z)$与点$p(-x,-y,-z)$它们都会映射到屏幕上$(x&#x2F;z,y&#x2F;z)$同一点，然而实际上仅有位于相机前方的一个点才能被看到，因此我们要引入<strong>视锥体裁剪</strong>，并且要在透视除法之前完成。视锥体是一种表示场景中相机的视野范围的虚拟的四棱锥，位于视锥体范围外的物体是不会被绘制的。传统的GPU将投影变换与视锥体裁剪的工作放到了一起，使用一种叫“<strong>齐次坐标</strong>(Homogeneous Coordinates)”的数学工具。</p>
+<p>既然不能提前去除以这个因子$z$，人们就规定，顶点着色器需要输出一种“齐次坐标”，这种坐标把所有平行的向量视为相同的向量，即点$(x,y,z)$与点$(kx,ky,kz)$与点$(x&#x2F;z,y&#x2F;z,1)$都对应到画布上$(x&#x2F;z,y&#x2F;z)$这一个点，但显卡最终只绘制齐次坐标的第三个分量大于0的那些点，这样就避免了绘制相机背面物体。齐次坐标不仅将非线性的透视变换变成线性的，还顺便轻松处理了视锥体裁剪。要注意的是，视锥体裁剪并不能仅仅在顶点着色器这一阶段完成，它将在光栅化阶段对每个像素进行判断，不然你没办法正确渲染那种一半位于相机前、一半位于相机后的线段或三角形。</p>
+<h5 id="遮挡剔除"><a href="#遮挡剔除" class="headerlink" title="遮挡剔除"></a>遮挡剔除</h5><p>除了剔除相机后面的物体，还需剔除被前方物体遮挡的物体。最简单的想法（叫做画家算法）是，将物体按到相机距离排序，从远到近来渲染，后上色的自动就覆盖先上色的，但事先进行排序比较繁琐，且还可能会遇到物体间两两互相遮挡的问题，因此这种事先固定一个绘制顺序的方法是不可取的。<img src="/img/render4d002.svg" alt="画家算法无法处理的两两互相遮挡情况">在成熟三维渲染流程中，遮挡剔除用的是z深度缓存技术，即在每次绘制图元时，除了执行片元着色器对像素上色，还会渲染一张仅包含z轴深度信息的灰度图，叫做“深度缓存(Depth Buffer)”。在绘制下一个图元的某个像素时，将比较它与深度缓存中的深度值，若深度缓存中的深度更近，说明这个像素还在之前绘制的像素之后，则直接放弃该点的上色。之前的齐次坐标里刚好还没进行透视除法，保留了$z$轴深度信息，是不是我们就可以直接拿来用于深度缓存了呢？不是的。电脑储存数字的精度是有限的，物体可以离相机很近也可以很远，近处的细节往往比远处更重要，需要更多精度，因此与其存储深度值$z$还不如存储其倒数$1&#x2F;z$来得实惠。<br><img src="/img/render4d001.jpg" alt="深度缓冲区的例子，图片来源于英文维基百科"></p>
+<p>现在既要遮挡剔除又要用齐次坐标做视锥体裁剪，人们规定顶点着色器输出的最终向量是一个四维齐次坐标，前两个坐标分量用于屏幕位置， 第三个坐标分量用于深度检测，第四个坐标用于透视除法。比如空间中的点$(x,y,z)$将变成$(x,y,1,z)$，做透视除法后变成$(x&#x2F;z,y&#x2F;z,1&#x2F;z,1)$，不仅实现了相机背后剔除、正确的近大远小变换，还实现了非均匀精度的深度缓存。其实所有三角形内部需要插值的数据（比如贴图坐标等）都要在透视除法之前完成，否则会导致像下面左边的贴图那样产生透视畸变。<img src="/img/render4d002.png" alt="左侧：直接按屏幕坐标线性插值的贴图坐标，右侧：透视除法参与插值的贴图坐标">总结起来就是，你以为顶点着色器的输出只是屏幕上的二维点的坐标，实际上它却是一个四维的齐次坐标，这很有必要！</p>
+<h3 id="2-光线跟踪技术"><a href="#2-光线跟踪技术" class="headerlink" title="2.光线跟踪技术"></a>2.光线跟踪技术</h3><p>光栅化方法的优点是快速且技术成熟，但由于绘制三角形的方式跟真实的光学成像过程并不相同，在实现复杂阴影、折反射等光学现象时将非常吃力（在视锥体裁剪与遮挡剔除这里你应该能体会到一些了）。于是另一种方法——光线跟踪诞生了。相机之所以能够拍摄到物体是因为镜头后面的感光器件接受到了光线。最直接（Naïve）的做法就是让场景中的光源均匀采样随机发射光子，模拟光线的反弹，若打到一个相机中的某个像素所在的“感光区域”则记录下该光子对颜色亮度的累加贡献。然而这个算法是非常低效的，因为相机的感光面积一般很小，很多光子最终都不会反射到镜头中，一个简单的场景可能都需要上亿个光子才能勉强得到一张能看的照片。</p>
+<p>解决问题的方法很简单。由于光路可逆，我们可以从相机均匀采样随机发射光线跟物体反弹，只要打到光源就能倒着求出该光线所贡献的亮度，这就是最简单的路径追踪渲染方法，它能渲染出照片级质量的图像！当然它需要发射的光线也非常多，特别是光源体积很小时，击中光源的概率也非常小。这种模拟光线随机反弹的还有个副作用就是图像会产生很多噪点，要想降低噪点只能增加每个像素的采样光线数。<br><img src="/img/render4d002.jpg" alt="每个像素点的光线采样数增加，其画质增加。图片来源于英文维基百科"><br>其实不要求照片级的真实性的话，我们完全可以在打到第一个漫反射的物体表面时就停下来，直接根据该物体的漫反射颜色计算该像素的颜色（如Lambert、Phong等光照模型），而不一定要不断随机反射追踪到照亮它的光源，这样就避免了噪点和需要采样很多光线，计算快很多，当然缺乏光线多次反弹物体看起来也假得多。<br><img alt="仅进行镜面反射的光锥不会产生噪点，但没有那种多次漫反射的真实质感，图中甚至没计算阴影" src="/img/render4d005.jpg" style="width:100%;max-width:350px"></p>
+<p>具体怎样用GPU进行光线跟踪呢？我们可以将整个图片覆盖两个三角形，伪装成光栅化渲染交给GPU，在为每个像素上色的片元着色器代码中计算光线向量与物体求交、计算颜色等操作。但GPU仅仅只能快速一次批量执行相同的指令，光线与物体相交与否会让不同的像素需要执行的后续命令大不相同，将大大降低光线跟踪在GPU上的并行计算效率，所以光线跟踪比光栅化要慢很多。为了解决这个问题人们又专门设计了能快速处理与三角形批量求交的硬件光追（如Nvdia的RTX系列）。<br><a name="4dbegin"></a></p>
+<h2 id="四维场景表示方法"><a href="#四维场景表示方法" class="headerlink" title="四维场景表示方法"></a>四维场景表示方法</h2><p>这就是三维计算机图形学基础知识了，下面我们终于可以正式介绍四维计算机图形学了。跟三维不同的是，在研究四维图形的渲染算法之前我们先得确定可视化四维图形的方法。下面我将先介绍一下使用最广泛的截面法与我最热衷的体素法。</p>
+<h3 id="1-体素-x2F-截面渲染"><a href="#1-体素-x2F-截面渲染" class="headerlink" title="1.体素&#x2F;截面渲染"></a>1.体素&#x2F;截面渲染</h3><p>比起三维，四维场景的渲染的最大区别就是图片本身变成了一个三维的阵列，除了维数以外没有什么本质的区别，为了能在GPU上运行，我们还需要将三维阵列分层，交给GPU处理渲染得到每一层的普通二维图像，也就是截面渲染，光栅化与光线跟踪两种技术都可以完成这个任务。</p>
+<h4 id="1-1光线跟踪"><a href="#1-1光线跟踪" class="headerlink" title="1.1光线跟踪"></a>1.1光线跟踪</h4><p>四维光线跟踪几乎与三维一模一样，建议大家先去熟悉一下三维光线跟踪的简单片元着色器是怎么写的，推荐<a target="_blank" rel="noopener" href="https://www.shadertoy.com/">Shadertoy</a>这个可以在线编辑、浏览各路大神写的着色器的网站。</p>
+<p>一般常用的着色器语言（GLSL&#x2F;WSL&#x2F;HLSL）是支持四维向量vec4这个类型的，虽然它只是为表示三维齐次坐标或红绿蓝透明度四分量颜色设计的，但这刚好方便了我们表示四维坐标。光线跟踪中最重要的事就是计算光线跟物体的交点。如果只考虑与平面、球面求交，我们只需要把正常光追代码里的三维向量vec3改成四维向量vec4，第四个维度填成0，就能把场景直接升级成与超平面、超球求交！</p>
+<p>下面是我在shadertoy上随便找到的一个路径追踪的小场景：<iframe style="display:block;margin: auto;" width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/WllGWn?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe><br>如何将这个3D场景变4D呢？首先我把其中的vec3全换成vec4，然后由于做路径追踪会遇到超球面上的均匀随机采样，需要简重新修改一下采样公式。<a href="javascript:$('#codevec34').toggle()">点击这里展开分别生成方向均匀分布的单位三维、四维向量的伪代码</a>。<div id="codevec34" style="display:none"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function generateRandVec3()&#123;</span><br><span class="line">  let a = Math.random() * 2.0 * Math.PI;</span><br><span class="line">  let c = Math.random() * 2.0 - 1.0;</span><br><span class="line">  let b = Math.sqrt(1.0 - c * c);</span><br><span class="line">  return new Vec3(b * Math.cos(a), b * Math.sin(a), c);</span><br><span class="line">&#125;</span><br><span class="line">function generateRandVec4()&#123;</span><br><span class="line">  let a = Math.random() * 2.0 * Math.PI;</span><br><span class="line">  let b = Math.random() * 2.0 * Math.PI;</span><br><span class="line">  let c = Math.random();</span><br><span class="line">  let sc = Math.sqrt(c);</span><br><span class="line">  let cc = Math.sqrt(1.0 - c);</span><br><span class="line">  return new Vec4(sc * Math.cos(a), sc * Math.sin(a), cc * Math.cos(b), cc * Math.sin(b));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>我把球面均匀采样公式换成了超球采样公式，再额外添加了第四个维度上的墙体和两个超球，接着更改设置了<strong>鼠标左右拖动旋转相机，上下拖动则平移第四维的截面位置</strong>，这个4D场景Demo就被<ruby>改造完成<rp>(</rp><rt>四向簿打击</rt><rp>)</rp> </ruby>了！</p>
+<iframe style="display:block;margin: auto;" width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/Mf23Rd?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe>
+
+<p>由于四维空间更广阔，点光源将立方反比衰减，光线反射也更混乱，所以相同采样率下噪点更多，需要点击三角形播放按钮后等待更长时间才能看到清晰的画质。你应该能看到上面的三维跟四维场景初始角度看起来是完全相同的（除了光线有点点差异），在四维场景中上下拖动可发现这些球大小会变化，可能消失也可能出现新的球，这些都是四维空间中的超球。还有个细节能说明光线在四维空间中传播：拖动截面到合适角度你可以通过左边的那个镜面球中的反射成像发现还没有被画面截面截到的另一个超球。</p>
+<p>可能你觉得从三维到四维改动的东西还是不少，但其实如果不用随机反射采样而是使用那种遇到漫反射就停下来的光照模型就真的只需要把vec3改vec4就可以了。最后再提一句，由于RTX之类的光追加速显卡是专门为三维空间中三角形求交设计的，它不能对四面体求交提供加速，由于我没有真正接触过光追管线，也不排除能将四维数据“伪装”成三维数据来处理的可能（猜测可行性很小）。</p>
+<h4 id="1-2光栅化方法"><a href="#1-2光栅化方法" class="headerlink" title="1.2光栅化方法"></a>1.2光栅化方法</h4><p>下面来说说更常见的光栅化渲染方法。GPU能处理的基本图元——点、线、三角形，它们都是数学上的单纯形（Simplex），我们自然就想到四维场景需要光栅化四面体。但由于GPU没有针对体素化四面体进行优化的硬件，只能自己写通用的并行计算程序来实现了，我测试了我自己使用计算着色器（一种不用于渲染图形而是可以处理任意数据的GPU程序）写的四面体光栅化器效率并不太高(参考tesserxel中的<a href="/tesserxel/examples/#voxeltest::rasterizer">这个示例</a>)。除非你专门研发设计一款四面体光栅化专用芯片，为了尽可能利用现成的硬件性能优势，一般都采用分层渲染的方式，即计算并渲染3D图像的截面，而不是一次渲染一个四面体。所以我们将重点介绍切片光栅化方法。</p>
+<p>不考虑复杂的光学现象，单从求图形截面与求图形投影的这两步来说，它们是可交换顺序的，即4D场景被相机拍成的3D图像的二维截面跟4D场景的3D截面再拍成二维图像的几何数据是一样的。现在，如何快速计算四维物体的截面就成了四维计算机图形学中的头号问题。计算截面的方法五花八门，我将介绍我所知道的所有方法。</p>
+<h5 id="四面体法"><a href="#四面体法" class="headerlink" title="四面体法"></a>四面体法</h5><p>用平面去截四面体可能会得到三角形亦或四边形。我们可以通过将四面体四个顶点分别代入平面方程的一边，通过符号判断它们是否位于同侧，若4个点都在一侧则无交集，若两侧分别有1、3个点，则截到三角形，若两侧各有两个点，则截到四边形。<br><img src="/img/render4d004.png" alt="来自GL4D论文中的插图"><br>具体怎样编程实现呢？GPU没有能处理四面体截面的相关功能，所以最简单粗暴的方法就是每次渲染前，让CPU先提前计算好四维场景的截面，得到一个三维场景，然后再发送给GPU用传统3D渲染的各种技术去渲染就好了。然而它的缺点是，场景复杂后CPU计算截面的负担会特别重。我们希望在GPU上并行计算四面体截面，这样效率会显著提高。由于GPU的工作流程（渲染管线）都是为常见3D渲染设计的，并没有设计求截面的功能，我们需要通过各种技巧来实现这一功能。下面我将根据求截面使用的着色器的种类介绍三种方法。</p>
+<ol>
+<li>顶点着色器计算截面<br>这是<a target="_blank" rel="noopener" href="https://www.youtube.com/c/CodeParade">Youtuber CodeParade</a>在游戏<a target="_blank" rel="noopener" href="https://store.steampowered.com/app/2147950/4D_Golf/">4D Golf</a>中使用的算法。每个四面体为四个顶点，求截面可能得到空集、三角形或四边形，则GPU最后可能要绘制0~2个三角形，即最多会输出四个顶点。我们可以把每个四面体所有四个顶点数据打包起来复制成四份，在加上从0至3的编号作为顶点输入，这样就能让GPU在顶点着色器里运行四次计算截面的四个顶点的最终坐标了。注意由于需要判断顶点编号以及顶点是否位于平面的同侧异侧来决定最终的截面，着色器里面将会充斥着许多影响并行计算效率的条件分支语句。CodeParade采用存储一张预计算的纹理贴图，通过查表的方法来规避它们，详见<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=dbq9uX_MycY">这个Youtube视频</a>。</li>
+<li>几何着色器计算截面<br><a target="_blank" rel="noopener" href="https://www.cse.cuhk.edu.hk/~cwfu/papers/GL4D/paper/GL4D.pdf">这篇论文</a>开发了一个叫gl4d的四维图形渲染库，采用的是另一种做法：大多数GPU渲染管线中，在顶点着色器至光栅化器之前其实还可以插入一个可选的几何着色器(Geometry Shader)。这个几何着色器可以接受顶点着色器的输入，并输出程序员可自行控制的任意数量的基本图元，感觉这个着色器就像是专门为计算截面设置的！由于几何着色器是在顶点着色器之后，它接受的是由顶点着色器变换后的图元的所有顶点，因此我们需要将四个顶点坐标组合成一种图元。而已知的基本图元里面只有点、线、三角形，它们顶点数都没到4个。幸好，几何着色器的设计者早就料到了人们可能会有这些特殊需求，提供了只能作为几何着色器输入的一类特殊图元（Adjacency Primitives），如使用图元gl_lines_adjacency可以恰好将四个顶点打包扔给几何着色器计算，且几何着色器阶段还可以按顶点顺序做背面剔除。相比于CodeParade的方法，该方法不用把每个四面体的数据复制四次，但缺点是某些手机上的GPU可能没有几何着色器，或虽然有但执行效率不高。</li>
+<li>计算着色器计算截面<br>由于存在设备不支持几何着色器，所以网页端的传统GPU编程接口WebGl与最新接口WebGPU干脆都没有添加几何着色器的功能，但WebGPU提供了一种新的“计算着色器(Compute Shader)”。计算着色器是为了完成除图像绘制外的通用并行计算任务而生的，比如用于大数据机器学习之类的场景。我们可以将四面体顶点数据发送给计算着色器，计算截面后得到截面的顶点数据，再将这些数据传入至传统渲染管线中的顶点着色器，从而完成后续的渲染工作。Tesserxel默认就采用的是计算着色器来处理四维物体截面。计算着色器并行地处理每一个四面体，得到0至2个三角形。我采用了一个大的数组来存放这些三角形。由于无法知道不同并行计算单元的执行顺序（不知道谁快谁慢），各个并行程序单元往大数组里写三角形时可能会存在“数据竞争(Data Race)”——即可能两个并行的四面体截面程序同时往数组的一个格子里写三角形数据，后写入的数据将覆盖掉先写入的。WebGPU提供了一种叫“原子”的操作来规避数据竞争：我们用一种“原子整数”类型的变量来存储数组下一个空闲位置的角标。第一个执行到需要读写这种原子类型的变量时，就将“锁定”它，直到它读完数据值并将变量更新为下一个空闲位置的角标（其实就是单纯角标值加一）后再“解锁”，而其它程序若执行到了需要读写被上锁的原子类型的变量，它们将在这里停下，等待变量被解锁后再执行。由于读变量和再将变量值递增一的这两步运算时间特别短，所以其它程序不会为等待解锁而浪费太多时间，并行度还是很高的。</li>
+</ol>
+<h5 id="胞腔复形法"><a href="#胞腔复形法" class="headerlink" title="胞腔复形法"></a>胞腔复形法</h5><p>胞腔复形(CW-Complex)是四面体法的全新升 级版。试想我们要用四面体法绘制体素立方体，则先要四面体化立方体，得到最少5个四面体。<img src="/img/render4d003.png" alt="GL4D论文中剖分立方体的插图：存在5个与6个四面体的剖分方案">如果我们要剖分像正十二面体这样复杂的图形，四面体会多达近三十个，但正十二面体的截面最多不超过十边形，这就说明比起全用四面体，直接处理多面体、多边形将会减少很多不必要的图元。胞腔复形是多面体的推广，它提供了不采用四面体来描述四维物体的方法。胞腔复形记录了点、线、面、胞四种数据，其中顶点数据为坐标向量数组，边数据则为它的两个端点在顶点数组中的索引值，面数据中的每个面则记录组成它的所有边在边数组中的索引值，胞数据则为围成它的面在面数组中的索引值，这样层层构造出的东西就叫胞腔复形，它可以推广到任意高维。<br><img src="/img/render4d005.svg" alt="胞腔复形的数据结构，红色为顶点，绿色为边，蓝色为面，橙色为胞"><br>以上面的这个立方体胞为例，它的数据结构是这样的：（数组索引以角标形式写出来，跟上图中对应）</p>
+<p><span style="color:red">顶点</span>：{(1,1,1)<sub style="color:red">0</sub>,(1,1,-1)<sub style="color:red">1</sub>,(1,-1,1)<sub style="color:red">2</sub>,(1,-1,-1)<sub style="color:red">3</sub>,(-1,1,1)<sub style="color:red">4</sub>,(-1,1,-1)<sub style="color:red">5</sub>,(-1,-1,1)<sub style="color:red">6</sub>,(-1,-1,-1)<sub style="color:red">7</sub>}<br><span style="color:green">边</span>：{(<span style="color:red">0</span>,<span style="color:red">1</span>)<sub style="color:green">0</sub>,(<span style="color:red">1</span>,<span style="color:red">3</span>)<sub style="color:green">1</sub>,(<span style="color:red">2</span>,<span style="color:red">3</span>)<sub style="color:green">2</sub>,(<span style="color:red">0</span>,<span style="color:red">2</span>)<sub style="color:green">3</sub>, (<span style="color:red">4</span>,<span style="color:red">5</span>)<sub style="color:green">4</sub>,(<span style="color:red">5</span>,<span style="color:red">7</span>)<sub style="color:green">5</sub>,(<span style="color:red">6</span>,<span style="color:red">7</span>)<sub style="color:green">6</sub>,(<span style="color:red">4</span>,<span style="color:red">6</span>)<sub style="color:green">7</sub>, (<span style="color:red">0</span>,<span style="color:red">4</span>)<sub style="color:green">8</sub>,(<span style="color:red">1</span>,<span style="color:red">5</span>)<sub style="color:green">9</sub>,(<span style="color:red">2</span>,<span style="color:red">6</span>)<sub style="color:green">10</sub>,(<span style="color:red">3</span>,<span style="color:red">7</span>)<sub style="color:green">11</sub>}<br><span style="color:blue">面</span>：{(<span style="color:green">0</span>,<span style="color:green">4</span>,<span style="color:green">8</span>,<span style="color:green">9</span>)<sub style="color:blue">0</sub>,(<span style="color:green">1</span>,<span style="color:green">5</span>,<span style="color:green">9</span>,<span style="color:green">11</span>)<sub style="color:blue">1</sub>,(<span style="color:green">2</span>,<span style="color:green">6</span>,<span style="color:green">10</span>,<span style="color:green">11</span>)<sub style="color:blue">2</sub>,(<span style="color:green">3</span>,<span style="color:green">7</span>,<span style="color:green">8</span>,<span style="color:green">10</span>)<sub style="color:blue">3</sub>,(<span style="color:green">0</span>,<span style="color:green">1</span>,<span style="color:green">2</span>,<span style="color:green">3</span>)<sub style="color:blue">4</sub>,(<span style="color:green">4</span>,<span style="color:green">5</span>,<span style="color:green">6</span>,<span style="color:green">7</span>)<sub style="color:blue">5</sub>}<br><span style="color:orange">胞</span>：{(<span style="color:blue">0</span>,<span style="color:blue">1</span>,<span style="color:blue">2</span>,<span style="color:blue">3</span>,<span style="color:blue">4</span>,<span style="color:blue">5</span>)<sub style="color:orange">0</sub>}</p>
+<p>虽然胞腔复形的数据结构很直观，但有这么复杂层次的东西如何求它的截面呢？只要这个图形是凸的，其实也可以用分层的算法来完成这个任务：</p>
+<ol>
+<li>首先计算所有顶点是否分别在超平面的两侧；</li>
+<li>对于每条边，检查它的端点是否跨过平面，若是，计算交点坐标；</li>
+<li>对于每一个面，检查它的边在上一步中有没有产生交点，若有将这些交点构造出截面图形的边。（注：若不要求图形是凸的，则交点可能不止两个，这样会得到不止两个端点的“非法”的边，算法就没法继续了）</li>
+<li>对于每个胞，检查它的面在上一步中有没有产生交线，若有将这些交线构造出截面图形的面。</li>
+</ol>
+<p>以下图立方体中蓝色截面为例，我们额外记录这样的一个结构，注意若一个胞的所有边界都没被截到，那么这个胞将被忽略，图中标成了灰色：</p>
+<p><span style="color:red">顶点</span>：{+<sub style="color:red">0</sub>,-<sub style="color:red">1</sub>,-<sub style="color:red">2</sub>,-<sub style="color:red">3</sub>,+<sub style="color:red">4</sub>,+<sub style="color:red">5</sub>,+<sub style="color:red">6</sub>,-<sub style="color:red">7</sub>}<br><span style="color:green">边（新顶点）</span>：{(<span style="color:red">+0</span>,<span style="color:red">-1</span>)<sub style="color:green">0</sub>,(<span style="color:lightgray">-1,-3</span>)<sub style="color:lightgray">1</sub>,(<span style="color:lightgray">-2,-3</span>)<sub style="color:lightgray">2</sub>,(<span style="color:red">+0</span>,<span style="color:red">-2</span>)<sub style="color:green">3</sub>, (<span style="color:lightgray">+4,+5</span>)<sub style="color:lightgray">4</sub>,(<span style="color:red">+5</span>,<span style="color:red">-7</span>)<sub style="color:green">5</sub>,(<span style="color:red">+6</span>,<span style="color:red">-7</span>)<sub style="color:green">6</sub>,(<span style="color:lightgray">+4,+6</span>)<sub style="color:lightgray">7</sub>, (<span style="color:lightgray">+0,+4</span>)<sub style="color:lightgray">8</sub>,(<span style="color:red">-1</span>,<span style="color:red">+5</span>)<sub style="color:green">9</sub>,(<span style="color:red">-2</span>,<span style="color:red">+6</span>)<sub style="color:green">10</sub>,(<span style="color:lightgray">-3,-7</span>)<sub style="color:lightgray">11</sub>}<br><span style="color:blue">面（新边）</span>：{(<span style="color:green">0</span>,<span style="color:lightgray">4</span>,<span style="color:lightgray">8</span>,<span style="color:green">9</span>)<sub style="color:blue">0</sub>,(<span style="color:lightgray">1</span>,<span style="color:green">5</span>,<span style="color:green">9</span>,<span style="color:lightgray">11</span>)<sub style="color:blue">1</sub>,(<span style="color:lightgray">2</span>,<span style="color:green">6</span>,<span style="color:green">10</span>,<span style="color:lightgray">11</span>)<sub style="color:blue">2</sub>,(<span style="color:green">3</span>,<span style="color:lightgray">7</span>,<span style="color:lightgray">8</span>,<span style="color:green">10</span>)<sub style="color:blue">3</sub>,(<span style="color:green">0</span>,<span style="color:lightgray">1</span>,<span style="color:lightgray">2</span>,<span style="color:green">3</span>)<sub style="color:blue">4</sub>,(<span style="color:lightgray">4</span>,<span style="color:green">5</span>,<span style="color:green">6</span>,<span style="color:lightgray">7</span>)<sub style="color:blue">5</sub>}<br><span style="color:orange">胞（新面）</span>：{(<span style="color:blue">0</span>,<span style="color:blue">1</span>,<span style="color:blue">2</span>,<span style="color:blue">3</span>,<span style="color:blue">4</span>,<span style="color:blue">5</span>)<sub style="color:orange">0</sub>}</p>
+<p>最后要想渲染这样构造出的新的截面胞腔复形，对于非三角面还是得三角化，但取截面后三角化比起一来就四面体化产生的图元数量要少得多。如何三角化呢？由于我们假设了图形是凸的，完全可以直接选定一个顶点跟所有非相邻顶点连线即可。<br><img src="/img/render4d004.svg" alt="胞腔复形的截面计算"><br>虽然胞腔复形的总计算量比四面体小得多，但目前来看它只适合在CPU上运行，因为这个算法必须有顺序地从点、线再到面地串起来执行，且同一能并行计算的层级中每个面、胞的边界数一般也不同，就算并行也很难发挥出并行的效率。我很久前写的4dViewer（除Minecraft4d外）就采用的CPU计算胞腔复形截面来渲染的四维场景，在物体面数不多的情况下其实速度还可以，甚至渲染超球这些都无压力。</p>
+<p>胞腔复形还有一个缺点就是难以表示贴图坐标（4dViewer中除Minecraft4d外的四维物体表面都是纯色，没有贴图。。）不像每个四面体直接在四个顶点上储存贴图坐标，然后通过线性插值得到内部每一点的坐标，胞腔复形的数据结构只直接包含围成胞的面的信息，并没有显式包含的顶点信息，且若一个胞的四面体剖分（或它的截面的三角剖分）方式不同，中间点插值得到的贴图坐标也会不同，因此现在我写的Tesserxel引擎不直接采用胞腔复形来表示要渲染的四维物体，只是把它作为四维建模的工具，即胞腔复形模型在渲染前必须转换为四面体，我打算在下篇讲四维图形建模的文章中再展开介绍。</p>
+<h5 id="输出截面顶点坐标"><a href="#输出截面顶点坐标" class="headerlink" title="输出截面顶点坐标"></a>输出截面顶点坐标</h5><p>截面求出来后下一步就是做渲染。无论是以上哪种方法都会遇到之前的两个问题——视锥体裁剪与遮挡剔除。按三维空间的类比，渲染四维几何体需要一个五维的齐次向量，它前三个分量是体素画布上的位置，第四个是用于处理前后遮挡关系的深度缓存，最后一个则用于透视除法。目前世界上所有的GPU都是为3D渲染设计的，没有提供五阶矩阵与五维向量vec5，光栅化器的硬件层面也没有相应的处理逻辑。幸好我们只是一次绘制一个四维物体的截面，于是可以这样做：</p>
+<ol>
+<li>首先对四面体的顶点进行坐标变换得到五维齐次坐标，由于没有提供vec5这一数据类型，我们可以用一个浮点数变量和一个vec4变量来分别储存。</li>
+<li>在齐次坐标下计算截面数据(计算方法可以简单地从普通坐标系下推导过去得到)，求出交点的齐次坐标。</li>
+<li>假设截面垂直于体素图片的某个坐标轴。由于交点一定位于截面内，我们可以直接忽略掉现在已经无用的垂直于截面的坐标，将齐次向量维数降低成四维，作为最终顶点着色器的输出发送给GPU当成普通的三维图形处理视锥体裁剪与遮挡剔除。</li>
+</ol>
+<p>对于在CPU端计算的胞腔复形来说，还有个方法能降低CPU的计算量：按理说我们需要将模型的顶点坐标变换到相机坐标再计算截面，这些操作都在CPU中进行是很慢的，其实可以优化成在CPU中先将截面方程变换到到模型坐标中直接计算截面，然后发送到GPU中再将所有顶点变换到相机坐标。</p>
+<h5 id="光栅化方法流程总结"><a href="#光栅化方法流程总结" class="headerlink" title="光栅化方法流程总结"></a>光栅化方法流程总结</h5><p>我用了一个框图来总结一下这几个方法的流程：<br><img src="/img/render4d006.svg" alt="四种光栅化截面渲染的流程"><br>总算把四维物体截面的光栅化渲染方法写完了，然而这些单张的截面还并不是体素照片。如何渲染体素呢？我们可以使用GPU提供的透明度混合（Alpha Blending）技术将这些单层照片弄成半透明的一层层叠起来实现，当层数够多时看起来就是体素云了。为了叠加起来得到好看的体素云，可以从以下三方面入手：</p>
+<ol>
+<li>给场景中不同的物体赋予不同的不透明度，如地面、天空可以透明些，物体可以不透明些，这可以大大增加需要关注的小物体在体素云中的辨识度，比如下图中的“甜甜圈”几乎是不透明的了；</li>
+<li>根据将体素投影到二维屏幕的方向动态改变体素切片划分的方向；</li>
+<li>可通过光在均匀介质中传播的指数衰减规律在片元着色器中逐像素调整不透明度，即透过每一层截面的光线比例，因为正对截面时，光线经过两层截面之间的距离短，衰减应该小、更透明，而视线与截面角度大时，经过两层截面之间的距离长，衰减应该大、更不透明。<br><img src="/img/render4d003.jpg" alt="体素云渲染：从左至右截面层数增加"><br>下面来看看一些完全不一样的东西——非体素&#x2F;截面渲染。</li>
+</ol>
+<h3 id="2-球极投影法"><a href="#2-球极投影法" class="headerlink" title="2.球极投影法"></a>2.球极投影法</h3><p>可视化四维图形不一定非得要计算“真实”的光线颜色信息，比如大家熟知的球极投影。球极投影本质上是把超球面——即一种弯曲的三维空间上的图形投影到三维空间，本质上就是三维空间之前的映射，严格来说不涉及四维，因此它几乎不可能用来展示复杂的“真实”四维场景，一般只用于展示四维凸几何体。</p>
+<h4 id="基于光栅化三角形的方法"><a href="#基于光栅化三角形的方法" class="headerlink" title="基于光栅化三角形的方法"></a>基于光栅化三角形的方法</h4><p>稍微会点解析几何就能很容易推出球极投影变换的公式，最简单的方法就是把超球面上的四维顶点坐标投影到三维即可，没什么特殊的地方，比如球极投影软件Jenn3D。需要注意的有两点：</p>
+<ol>
+<li>由于原始模型都得在超球面上的坐标，要想做出有一定厚度的边、顶点等图形就需要开发者对球面几何很熟悉。</li>
+<li>由于越接近北极形变越剧烈，因此建议可以动态增加北极附近多边形的网格剖分，否则就会出现下面的情况。<img src="/img/render4d006.jpg" alt="Jenn3D截图：边过极点时模型精度下降"></li>
+</ol>
+<h4 id="基于光线跟踪的方法"><a href="#基于光线跟踪的方法" class="headerlink" title="基于光线跟踪的方法"></a>基于光线跟踪的方法</h4><p>三角形方法得到的球极投影会因为网格精度问题变得不光滑，而高精度的光线追踪可以避免这个问题，具体原理可参考<a target="_blank" rel="noopener" href="https://syntopia.github.io/Polytopia/polytopes.html">这个交互式网页</a>和这个shadertoys上的例子（鼠标左右拖动可以选择不同的正多胞体）：</p>
+<iframe style="display:block;margin: auto;" width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/XdfGW4?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe>
+
+<h3 id="3-线框渲染"><a href="#3-线框渲染" class="headerlink" title="3.线框渲染"></a>3.线框渲染</h3><p>由于我们人类天生就没有能同时看到三维内部所有体素的三维视网膜的眼睛，体素渲染将带来很多颜色的重叠。线框渲染可大大降低重叠的像素，让人的理解难度降低（当然这只是某方面的降低，有得必有失），所以在四维计算机图形学领域，线框渲染反而比那些带体素颜色的渲染运用得更多，比如<a target="_blank" rel="noopener" href="http://www.urticator.net/blocks/">4DBlock</a>、<a target="_blank" rel="noopener" href="https://github.com/dearsip">dearsip</a>与<a target="_blank" rel="noopener" href="https://space.bilibili.com/613069855">yugu233</a>均采用该方法可视化四维物体。<br><img src="/img/render4d004.jpg" alt="yugu233（左）与dearsip（右）的四维图形线框显示器"><br>单纯渲染线框没什么好说的：首先对顶点进行坐标变换至三维相机的感光超平面上，得到类似的体素图片中的坐标，然后再将三维坐标投影到二维后，再连接各端点画出线段。但这样的算法有两个大问题——还是那两个问题——视锥体裁剪与遮挡剔除。</p>
+<h4 id="视锥体裁剪-1"><a href="#视锥体裁剪-1" class="headerlink" title="视锥体裁剪"></a>视锥体裁剪</h4><p>由于要绘制的线段完全可能一端在相机前，一端在相机后，直接做透视投影中的透视除法将导致结果混乱。又由于不再采用光栅化方法绘制，这就要求我们要手动计算要绘制的线段与视锥体的交点，只保留相交部分。其实不只是前后，现在连上下左右侧前后也必须手动裁剪。</p>
+<h4 id="更棘手的问题——遮挡剔除"><a href="#更棘手的问题——遮挡剔除" class="headerlink" title="更棘手的问题——遮挡剔除"></a>更棘手的问题——遮挡剔除</h4><p><img src="/img/render4d007.png" alt="在没有深度缓冲的情况下必须手动计算蓝色线段被前方物体遮挡一分为二的端点坐标"><br>由于现在是直接在最终的二维屏幕上绘制线条，不再分层渲染，我们也没法得到深度缓存来进行遮挡剔除。于是我们必须像光线跟踪那样来解析地计算线段和每个面的遮挡关系变化处的坐标。如何做到呢？将相机看作一盏灯，每个面（胞）后面的阴影区域即为它遮挡的区域，我们的任务就是算出线段与该区域的交集并剔除掉它们。这些区域都是由超平面围成的，求解交点并不复杂，难的是判断遮挡关系，这里介绍Block4d中的算法。</p>
+<p>对于一个$n$维凸多胞体的每个$n-1$维胞，首先通过法线判断从相机看过去是正面还是反面，然后对于凸多胞体的每条$n-2$维棱，看它是不是位于视线转角处，即看两侧的胞是否一个判断为正面另一个判断为反面。然后我们把相机与转角棱所在的超平面记录下来，再连同记录所有那些正面朝着相机的胞的超平面，我们就得到了一个无限大的锥形的遮挡区域，只要有线段位于该区域内就会被裁剪。<img src="/img/render4d006.png" alt="红色面为视线转角处的n-2维棱与相机所在超平面，蓝色为完全位于正面的棱，它们共同组成了锥形剔除区域">具体裁剪的思路很简单：遮挡区域是超平面围出来的，只有那些在所有超平面内侧的点才是内部点，换句话说，对于给定点，只要我们检测到它在某个超平面外，则它一定不会被裁剪。具体算法如下:<br>首先前面准备好了一个储存围成锥形裁剪区域的超平面数组$P$，并且法线方向已经调整至统一指向外，然后设第一个端点A的位置为0，第二个端点B的位置为1，我们准备两个临时变量$a$与$b$用于储存线段上的裁剪位置，它们之间的区域视为遮挡区域：<br><strong>左端点A(0)——a—–遮挡区域—–b——(1)右端点B</strong><br>初始化$a&#x3D;0$和$b&#x3D;1$，此时代表线段被完全遮挡：<br><strong>左端点A(0&#x3D;a)———遮挡区域——–(b&#x3D;1)右端点B</strong><br>下面我们将进入循环，对每个超平面检查线段的两个端点，逐步找到安全（即不会被遮挡剔除）的区间，慢慢压缩被裁剪的范围：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">对每个锥形裁剪区域的超平面数组P的超平面p执行循环:</span><br><span class="line">  计算端点A、B在平面p的哪侧；</span><br><span class="line">  若端点A、B均在平面p外：</span><br><span class="line">    直接确定整条线段未被遮挡，算法结束；</span><br><span class="line">  若端点A在平面外、端点B在平面p内：</span><br><span class="line">    计算线段与平面交点的位置x；</span><br><span class="line">    若x&gt;a则将a的至更新为x；（扩大确定不会被遮挡剔除的安全区间）</span><br><span class="line">  若端点B在平面外、端点A在平面p内：</span><br><span class="line">    计算线段与平面交点的位置x；</span><br><span class="line">    若x&lt;b则将b的至更新为x；（扩大确定不会被遮挡剔除的安全区间）</span><br></pre></td></tr></table></figure>
+<p>注意上面代码看似循环中有三种情况，其实隐含第四种：若两个端点完全位于超平面内，则此时没有任何有效信息，这种情况什么都不用做，只需继续循环，所以没有写出。</p>
+<p>看似我们已经全美解决问题，但其实还有个情况，那就是当相机进入到多胞体内部时，如果想要实现下图那样的剔除，上面的算法就不再适用（此时超平面数组P为空集），此时剔除的部分刚好反过来变成了外部，算法也相应做出调整：<a name="1clip2-figure"></a><br><img alt="相机位于多胞体内部要剔除外部部分，如蓝色线条" src="/img/render4d005.png" style="width:100%;max-width:400px"></p>
+<p>还是准备两个临时变量$a$与$b$用于储存线段上的裁剪位置，但现在中间的区域变成了没被遮挡的安全区域：<br><strong>左端点A(0)—–遮挡区域—–a——–b—–遮挡区域—–(1)右端点B</strong><br>还是初始化$a&#x3D;0$和$b&#x3D;1$，但此时却代表线段完全没有被遮挡：<br><strong>左端点A(0&#x3D;a)——————(b&#x3D;1)右端点B</strong><br>下面我们将进入循环，对每个超平面检查线段的两个端点，逐步找到要剔除的区间，慢慢压缩安全的范围：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">对每个锥形裁剪区域的超平面数组P的超平面p执行循环:</span><br><span class="line">  计算端点A、B在平面p的哪侧；</span><br><span class="line">  若端点A、B均在平面p外：</span><br><span class="line">    直接确定整条线完全被遮挡，算法结束；</span><br><span class="line">  若端点A在平面外、端点B在平面p内：</span><br><span class="line">    计算线段与平面交点的位置x；</span><br><span class="line">    若x&lt;b则将b的至更新为x；（扩大剔除区间）</span><br><span class="line">  若端点B在平面外、端点A在平面p内：</span><br><span class="line">    计算线段与平面交点的位置x；</span><br><span class="line">    若x&gt;a则将a的至更新为x；（扩大剔除区间）</span><br></pre></td></tr></table></figure>
+
+<p>对于场景中有多个物体的场景，我们需要在上次剔除剩下的线段之上继续进行剔除，注意相机在外部时$0 &lt; a &lt; b &lt; 1$的情况对应线段剔除了中间部分被一分为二(参考<a href="/archives/cg4d/#1clip2-figure">遮挡剔除这一节的第一章图片中的蓝色线段</a>)，它将视为两条线段参与下一轮被其余胞遮挡剔除。最后还有个小细节：那就是为了绘制多胞体表面的棱时不要被浮点数误差误剔除，多胞体的待剔除面可以向内部缩进去一个很小的值。</p>
+<p>以上就是线段与一个凸多胞体的剔除流程了。然而线框渲染的复杂剔除逻辑导致它能够在CPU上很好实现却难以移植到GPU中，目前我还没发现有并行化的算法，不过还是可以上一些分层的数据结构(如包围盒等)做些有限的优化。值得一提的是，dearsip还实现了三维胞对二维面的遮挡剔除，他的场景里多数都是跟坐标轴对齐的超立方体，在这个条件限制下二维面的遮挡剔除还是比较容易的，但如果要对任意形状的二维面做剔除其实是一件很复杂的事。我还没研究他的源码，不知道他是怎样实现的，等我搞懂后再补充吧。如果读者还知道其它的四维可视化方法并对其绘制原理感兴趣的，欢迎探讨。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wxyhly.github.io/archives/cg4d/" data-id="clr7jc73e0000e8wmfjbmcwo3" class="article-share-link">Share</a>
+      
+        <a href="https://wxyhly.github.io/archives/cg4d/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%9B%E7%BB%B4/" rel="tag">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag">图形学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%B2%E6%9F%93/" rel="tag">渲染</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/archives/tesserxel-flightsim/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older &gt;&gt;</strong>
+      <div class="article-nav-title">玩Tesserxel（三）：火车、飞行模拟器教程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Tesserxel%E7%B3%BB%E5%88%97/">Tesserxel系列</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A5%87%E7%89%B9%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">奇特世界系列</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    <div class="widget-wrap">
+   <h3 class="widget-title">链接</h3>
+   <div class="widget">
+      <ul class="entry">
+         <li><a href="https://space.bilibili.com/454422438" title="bilibili" target="_blank">WXYHLY(Hqak)的B站链接</a></li>
+         <li><a href="http://hadroncfy.com" title="hadroncfy" target="_blank">Hadroncfy's Notebook</a></li>
+      </ul>
+   </div>
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2b2t/" style="font-size: 11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 14px;">tesserxel</a> <a href="/tags/webgpu/" style="font-size: 12px;">webgpu</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 11px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%8F%8C%E6%9B%B2%E7%A9%BA%E9%97%B4/" style="font-size: 12px;">双曲空间</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 16px;">图形</a> <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 10px;">图形学</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 15px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 14px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 18px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 11px;">模拟</a> <a href="/tags/%E6%B8%B2%E6%9F%93/" style="font-size: 10px;">渲染</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 16px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 11px;">电路</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 13px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 11px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 11px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/archives/cg4d/">四维计算机图形学：渲染篇</a>
+          </li>
+        
+          <li>
+            <a href="/archives/tesserxel-flightsim/">玩Tesserxel（三）：火车、飞行模拟器教程</a>
+          </li>
+        
+          <li>
+            <a href="/archives/aircraft4d/">四维世界（九）：飞行器设计</a>
+          </li>
+        
+          <li>
+            <a href="/archives/hyperworld/">神奇的双曲世界</a>
+          </li>
+        
+          <li>
+            <a href="/archives/tesserxel-scene/">玩Tesserxel（二）：场景交互介绍</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 wxyhly<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/programs/" class="mobile-nav-link">Programs</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'wxyhly';
+  
+  var disqus_url = 'https://wxyhly.github.io/archives/cg4d/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<style>
+mjx-container {
+  display: inline-grid;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 102%;
+}
+mjx-container::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 2px;
+}
+mjx-container::-webkit-scrollbar {
+  background-color: lightgray;
+  height: 6px;
+}
+mjx-assistive-mml{
+  width: 0% !important;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    }); 
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script defer>
+const setJax = function(){
+  setTimeout(function(){
+    document.querySelectorAll("mjx-container").forEach(function(e){
+      const overflow = e.scrollWidth > (e.clientWidth ? e.clientWidth + 3 : (document.querySelector(".article-entry").clientWidth - 120));
+      e.style.overflowX = overflow ? "scroll" : "hidden";
+      e.onclick = function(){
+        const overflow = e.scrollWidth > (e.clientWidth ? e.clientWidth + 3 : (document.querySelector(".article-entry").clientWidth - 120));
+        e.style.overflowX = overflow ? "scroll" : "hidden";
+      };
+    })
+  },1000);  
+}
+window.addEventListener("resize", setJax);
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  "HTML-CSS": { linebreaks: { automatic: true } },
+  SVG: { linebreaks: { automatic: true } },
+  startup: {
+    pageReady: function(){
+      return MathJax.startup.defaultPageReady().then(setJax);
+    }
+  }
+};
+</script>
+<script type="text/javascript" defer
+  src="https://cdn.bootcss.com/mathjax/3.0.5/es5/tex-mml-chtml.js">
+</script>
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
