@@ -12,6 +12,7 @@
 <meta property="og:site_name" content="Blog de Hqak (WXYHLY)">
 <meta property="og:description" content="之前的文章中几乎都覆盖了目前常见的可视化四维方法：截面法、球极投影、等高面或颜色标注第四维、3D照片等，其中3D照片又分线框与体素云等展示法。这些方法想必多数读者也能理解，但如何利用计算机程序去展示它们却是一个不小的挑战。这里先介绍一些最基本的计算机图形学原理，然后深入讲解各种绘制复杂四维物体的方法。读者可以根据自己的知识水平选读。或许我后面可以开一个系列专题，专门讲解怎样一步步自己搭建一个四维图">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d008.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/render4d001.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/render4d001.svg">
 <meta property="og:image" content="https://wxyhly.github.io/img/render4d002.svg">
@@ -19,6 +20,8 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/render4d002.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/render4d002.jpg">
 <meta property="og:image" content="https://wxyhly.github.io/img/render4d005.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d007.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d008.jpg">
 <meta property="og:image" content="https://wxyhly.github.io/img/render4d004.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/render4d003.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/render4d005.svg">
@@ -26,18 +29,19 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/render4d006.svg">
 <meta property="og:image" content="https://wxyhly.github.io/img/render4d003.jpg">
 <meta property="og:image" content="https://wxyhly.github.io/img/render4d006.jpg">
+<meta property="og:image" content="https://wxyhly.github.io/img/render4d009.jpg">
 <meta property="og:image" content="https://wxyhly.github.io/img/render4d004.jpg">
 <meta property="og:image" content="https://wxyhly.github.io/img/render4d007.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/render4d006.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/render4d005.png">
 <meta property="article:published_time" content="2024-01-10T08:45:01.000Z">
-<meta property="article:modified_time" content="2024-01-10T08:57:15.879Z">
+<meta property="article:modified_time" content="2024-01-11T03:00:03.622Z">
 <meta property="article:author" content="wxyhly">
 <meta property="article:tag" content="四维">
 <meta property="article:tag" content="图形学">
 <meta property="article:tag" content="渲染">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wxyhly.github.io/img/render4d001.png">
+<meta name="twitter:image" content="https://wxyhly.github.io/img/render4d008.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -112,7 +116,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>之前的文章中几乎都覆盖了目前常见的可视化四维方法：截面法、球极投影、等高面或颜色标注第四维、3D照片等，其中3D照片又分线框与体素云等展示法。这些方法想必多数读者也能理解，但如何利用计算机程序去展示它们却是一个不小的挑战。这里先介绍一些最基本的计算机图形学原理，然后深入讲解各种绘制复杂四维物体的方法。读者可以根据自己的知识水平选读。或许我后面可以开一个系列专题，专门讲解怎样一步步自己搭建一个四维图形引擎。</p>
+        <p>之前的文章中几乎都覆盖了目前常见的可视化四维方法：截面法、球极投影、等高面或颜色标注第四维、3D照片等，其中3D照片又分线框与体素云等展示法。这些方法想必多数读者也能理解，但如何利用计算机程序去展示它们却是一个不小的挑战。这里先介绍一些最基本的计算机图形学原理，然后深入讲解各种绘制复杂四维物体的方法。读者可以根据自己的知识水平选读。或许我后面可以开一个系列专题，专门讲解怎样一步步自己搭建一个四维图形引擎。<div style="float:right"><img src="/img/render4d008.png" style="width:100%;max-width:480px" alt="立体照片中的线框渲染与截面渲染(左右画面为裸眼3D)"/></div></p>
 <h2 id="特色内容"><a href="#特色内容" class="headerlink" title="特色内容"></a>特色内容</h2><ul>
 <li>三维计算机图形学基础</li>
 <li>体素&#x2F;截面四维图形渲染<ul>
@@ -134,23 +138,22 @@
 </ol>
 <p>光栅化其实还有一些细节问题是不简单的，比如光栅化器阶段的视锥体裁剪与片元着色器阶段的遮挡剔除。</p>
 <h5 id="视锥体裁剪"><a href="#视锥体裁剪" class="headerlink" title="视锥体裁剪"></a>视锥体裁剪</h5><p>我们之前说顶点着色器的输出是投影过后的在画面上的点的坐标其实是不准确的，因为直接绘制有严重的问题。试想有台相机位于原点，在$z&#x3D;1$处放一块投影画布，根据三角形相似或解直线方程得到远处的点$p(x,y,z)$在画布上的像的位置其实是$b(x&#x2F;z,y&#x2F;z,1)$。<img src="/img/render4d001.svg" alt="透视除法原理">这个$1&#x2F;z$的因子导致了“近大远小”这一最重要的透视现象，因此这个除以$z$的操作叫做“透视除法”，然而透视除法会带来一个很严重的问题，就是相机背后的点会跑到相机前面来，比如点$p(x,y,z)$与点$p(-x,-y,-z)$它们都会映射到屏幕上$(x&#x2F;z,y&#x2F;z)$同一点，然而实际上仅有位于相机前方的一个点才能被看到，因此我们要引入<strong>视锥体裁剪</strong>，并且要在透视除法之前完成。视锥体是一种表示场景中相机的视野范围的虚拟的四棱锥，位于视锥体范围外的物体是不会被绘制的。传统的GPU将投影变换与视锥体裁剪的工作放到了一起，使用一种叫“<strong>齐次坐标</strong>(Homogeneous Coordinates)”的数学工具。</p>
-<p>既然不能提前去除以这个因子$z$，人们就规定，顶点着色器需要输出一种“齐次坐标”，这种坐标把所有平行的向量视为相同的向量，即点$(x,y,z)$与点$(kx,ky,kz)$与点$(x&#x2F;z,y&#x2F;z,1)$都对应到画布上$(x&#x2F;z,y&#x2F;z)$这一个点，但显卡最终只绘制齐次坐标的第三个分量大于0的那些点，这样就避免了绘制相机背面物体。齐次坐标不仅将非线性的透视变换变成线性的，还顺便轻松处理了视锥体裁剪。要注意的是，视锥体裁剪并不能仅仅在顶点着色器这一阶段完成，它将在光栅化阶段对每个像素进行判断，不然你没办法正确渲染那种一半位于相机前、一半位于相机后的线段或三角形。</p>
+<p>既然不能提前去除以这个因子$z$，人们就规定，顶点着色器需要输出一种“齐次坐标”，这种坐标把所有平行的向量视为相同的向量，即点$(x,y,z)$与点$(kx,ky,kz)$与点$(x&#x2F;z,y&#x2F;z,1)$都对应到画布上$(x&#x2F;z,y&#x2F;z)$这一个点，但显卡最终只绘制齐次坐标的第三个分量大于0的那些点，这样就避免了绘制相机背面的物体。齐次坐标不仅将非线性的透视变换变成线性的，还顺便轻松处理了视锥体裁剪。要注意的是，视锥体裁剪并不能仅仅在顶点着色器这一阶段完成，它将在光栅化阶段对每个像素进行判断，不然你没办法正确渲染那种一半位于相机前、一半位于相机后的线段或三角形。</p>
 <h5 id="遮挡剔除"><a href="#遮挡剔除" class="headerlink" title="遮挡剔除"></a>遮挡剔除</h5><p>除了剔除相机后面的物体，还需剔除被前方物体遮挡的物体。最简单的想法（叫做画家算法）是，将物体按到相机距离排序，从远到近来渲染，后上色的自动就覆盖先上色的，但事先进行排序比较繁琐，且还可能会遇到物体间两两互相遮挡的问题，因此这种事先固定一个绘制顺序的方法是不可取的。<img src="/img/render4d002.svg" alt="画家算法无法处理的两两互相遮挡情况">在成熟三维渲染流程中，遮挡剔除用的是z深度缓存技术，即在每次绘制图元时，除了执行片元着色器对像素上色，还会渲染一张仅包含z轴深度信息的灰度图，叫做“深度缓存(Depth Buffer)”。在绘制下一个图元的某个像素时，将比较它与深度缓存中的深度值，若深度缓存中的深度更近，说明这个像素还在之前绘制的像素之后，则直接放弃该点的上色。之前的齐次坐标里刚好还没进行透视除法，保留了$z$轴深度信息，是不是我们就可以直接拿来用于深度缓存了呢？不是的。电脑储存数字的精度是有限的，物体可以离相机很近也可以很远，近处的细节往往比远处更重要，需要更多精度，因此与其存储深度值$z$还不如存储其倒数$1&#x2F;z$来得实惠。<br><img src="/img/render4d001.jpg" alt="深度缓冲区的例子，图片来源于英文维基百科"></p>
 <p>现在既要遮挡剔除又要用齐次坐标做视锥体裁剪，人们规定顶点着色器输出的最终向量是一个四维齐次坐标，前两个坐标分量用于屏幕位置， 第三个坐标分量用于深度检测，第四个坐标用于透视除法。比如空间中的点$(x,y,z)$将变成$(x,y,1,z)$，做透视除法后变成$(x&#x2F;z,y&#x2F;z,1&#x2F;z,1)$，不仅实现了相机背后剔除、正确的近大远小变换，还实现了非均匀精度的深度缓存。其实所有三角形内部需要插值的数据（比如贴图坐标等）都要在透视除法之前完成，否则会导致像下面左边的贴图那样产生透视畸变。<img src="/img/render4d002.png" alt="左侧：直接按屏幕坐标线性插值的贴图坐标，右侧：透视除法参与插值的贴图坐标">总结起来就是，你以为顶点着色器的输出只是屏幕上的二维点的坐标，实际上它却是一个四维的齐次坐标，这很有必要！</p>
 <h3 id="2-光线跟踪技术"><a href="#2-光线跟踪技术" class="headerlink" title="2.光线跟踪技术"></a>2.光线跟踪技术</h3><p>光栅化方法的优点是快速且技术成熟，但由于绘制三角形的方式跟真实的光学成像过程并不相同，在实现复杂阴影、折反射等光学现象时将非常吃力（在视锥体裁剪与遮挡剔除这里你应该能体会到一些了）。于是另一种方法——光线跟踪诞生了。相机之所以能够拍摄到物体是因为镜头后面的感光器件接受到了光线。最直接（Naïve）的做法就是让场景中的光源均匀采样随机发射光子，模拟光线的反弹，若打到一个相机中的某个像素所在的“感光区域”则记录下该光子对颜色亮度的累加贡献。然而这个算法是非常低效的，因为相机的感光面积一般很小，很多光子最终都不会反射到镜头中，一个简单的场景可能都需要上亿个光子才能勉强得到一张能看的照片。</p>
-<p>解决问题的方法很简单。由于光路可逆，我们可以从相机均匀采样随机发射光线跟物体反弹，只要打到光源就能倒着求出该光线所贡献的亮度，这就是最简单的路径追踪渲染方法，它能渲染出照片级质量的图像！当然它需要发射的光线也非常多，特别是光源体积很小时，击中光源的概率也非常小。这种模拟光线随机反弹的还有个副作用就是图像会产生很多噪点，要想降低噪点只能增加每个像素的采样光线数。<br><img src="/img/render4d002.jpg" alt="每个像素点的光线采样数增加，其画质增加。图片来源于英文维基百科"><br>其实不要求照片级的真实性的话，我们完全可以在打到第一个漫反射的物体表面时就停下来，直接根据该物体的漫反射颜色计算该像素的颜色（如Lambert、Phong等光照模型），而不一定要不断随机反射追踪到照亮它的光源，这样就避免了噪点和需要采样很多光线，计算快很多，当然缺乏光线多次反弹物体看起来也假得多。<br><img alt="仅进行镜面反射的光锥不会产生噪点，但没有那种多次漫反射的真实质感，图中甚至没计算阴影" src="/img/render4d005.jpg" style="width:100%;max-width:350px"></p>
+<p>解决问题的方法很简单。由于光路可逆，我们可以从相机均匀采样随机发射光线跟物体反弹，只要打到光源就能倒着求出该光线所贡献的亮度，这就是最简单的路径追踪渲染方法，它能渲染出照片级质量的图像！当然它需要发射的光线也非常多，特别是光源体积很小时，击中光源的概率也非常小。这种模拟光线随机反弹的还有个副作用就是图像会产生很多噪点，要想降低噪点只能增加每个像素的采样光线数。<br><img src="/img/render4d002.jpg" alt="每个像素点的光线采样数增加，其画质增加。图片来源于英文维基百科"><br>其实不要求照片级的真实性的话，我们完全可以在打到第一个漫反射的物体表面时就停下来，直接根据该物体的漫反射颜色计算该像素的颜色（如Lambert、Phong等光照模型），而不一定要不断随机反射追踪到照亮它的光源，这样就避免了噪点和需要采样很多光线，计算快很多，当然缺乏光线多次反弹物体看起来也假得多。<br><img alt="仅进行镜面反射的光追不会产生噪点，但没有那种多次漫反射的真实质感，图中甚至没计算阴影" src="/img/render4d005.jpg" style="width:100%;max-width:350px"></p>
 <p>具体怎样用GPU进行光线跟踪呢？我们可以将整个图片覆盖两个三角形，伪装成光栅化渲染交给GPU，在为每个像素上色的片元着色器代码中计算光线向量与物体求交、计算颜色等操作。但GPU仅仅只能快速一次批量执行相同的指令，光线与物体相交与否会让不同的像素需要执行的后续命令大不相同，将大大降低光线跟踪在GPU上的并行计算效率，所以光线跟踪比光栅化要慢很多。为了解决这个问题人们又专门设计了能快速处理与三角形批量求交的硬件光追（如Nvdia的RTX系列）。<br><a name="4dbegin"></a></p>
-<h2 id="四维场景表示方法"><a href="#四维场景表示方法" class="headerlink" title="四维场景表示方法"></a>四维场景表示方法</h2><p>这就是三维计算机图形学基础知识了，下面我们终于可以正式介绍四维计算机图形学了。跟三维不同的是，在研究四维图形的渲染算法之前我们先得确定可视化四维图形的方法。下面我将先介绍一下使用最广泛的截面法与我最热衷的体素法。</p>
+<h2 id="四维场景渲染方法"><a href="#四维场景渲染方法" class="headerlink" title="四维场景渲染方法"></a>四维场景渲染方法</h2><p>这就是三维计算机图形学基础知识了，下面我们终于可以正式介绍四维计算机图形学了。跟三维不同的是，在研究四维图形的渲染算法之前我们先得确定可视化四维图形的方法。下面我将先介绍一下使用最广泛的截面法与我最热衷的体素法。</p>
 <h3 id="1-体素-x2F-截面渲染"><a href="#1-体素-x2F-截面渲染" class="headerlink" title="1.体素&#x2F;截面渲染"></a>1.体素&#x2F;截面渲染</h3><p>比起三维，四维场景的渲染的最大区别就是图片本身变成了一个三维的阵列，除了维数以外没有什么本质的区别，为了能在GPU上运行，我们还需要将三维阵列分层，交给GPU处理渲染得到每一层的普通二维图像，也就是截面渲染，光栅化与光线跟踪两种技术都可以完成这个任务。</p>
 <h4 id="1-1光线跟踪"><a href="#1-1光线跟踪" class="headerlink" title="1.1光线跟踪"></a>1.1光线跟踪</h4><p>四维光线跟踪几乎与三维一模一样，建议大家先去熟悉一下三维光线跟踪的简单片元着色器是怎么写的，推荐<a target="_blank" rel="noopener" href="https://www.shadertoy.com/">Shadertoy</a>这个可以在线编辑、浏览各路大神写的着色器的网站。</p>
 <p>一般常用的着色器语言（GLSL&#x2F;WSL&#x2F;HLSL）是支持四维向量vec4这个类型的，虽然它只是为表示三维齐次坐标或红绿蓝透明度四分量颜色设计的，但这刚好方便了我们表示四维坐标。光线跟踪中最重要的事就是计算光线跟物体的交点。如果只考虑与平面、球面求交，我们只需要把正常光追代码里的三维向量vec3改成四维向量vec4，第四个维度填成0，就能把场景直接升级成与超平面、超球求交！</p>
-<p>下面是我在shadertoy上随便找到的一个路径追踪的小场景：<iframe style="display:block;margin: auto;" width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/WllGWn?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe><br>如何将这个3D场景变4D呢？首先我把其中的vec3全换成vec4，然后由于做路径追踪会遇到超球面上的均匀随机采样，需要简重新修改一下采样公式。<a href="javascript:$('#codevec34').toggle()">点击这里展开分别生成方向均匀分布的单位三维、四维向量的伪代码</a>。<div id="codevec34" style="display:none"></p>
+<p>下面是我在shadertoy上随便找到的一个路径追踪的实时渲染小场景：由于在手机浏览器上普遍加载会很卡，请慎重点击下方图片激活：<img class="nofancybox" style="cursor: pointer" src="/img/render4d007.jpg" onclick="let IF= document.getElementById('if1');IF.style.display='block'; const tmpUrl = IF.src; IF.src = 'about:blank'; setTimeout(()=>{IF.src = tmpUrl;}, 300); $(this).hide(); " /><iframe id="if1" style="display:none;margin: auto;" width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/WllGWn?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe><br>如何将这个3D场景变4D呢？首先我把其中的vec3全换成vec4，然后由于做路径追踪会遇到超球面上的均匀随机采样，需要简重新修改一下采样公式。<a href="javascript:$('#codevec34').toggle()">点击这里展开分别生成方向均匀分布的单位三维、四维向量的伪代码</a>。<div id="codevec34" style="display:none"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function generateRandVec3()&#123;</span><br><span class="line">  let a = Math.random() * 2.0 * Math.PI;</span><br><span class="line">  let c = Math.random() * 2.0 - 1.0;</span><br><span class="line">  let b = Math.sqrt(1.0 - c * c);</span><br><span class="line">  return new Vec3(b * Math.cos(a), b * Math.sin(a), c);</span><br><span class="line">&#125;</span><br><span class="line">function generateRandVec4()&#123;</span><br><span class="line">  let a = Math.random() * 2.0 * Math.PI;</span><br><span class="line">  let b = Math.random() * 2.0 * Math.PI;</span><br><span class="line">  let c = Math.random();</span><br><span class="line">  let sc = Math.sqrt(c);</span><br><span class="line">  let cc = Math.sqrt(1.0 - c);</span><br><span class="line">  return new Vec4(sc * Math.cos(a), sc * Math.sin(a), cc * Math.cos(b), cc * Math.sin(b));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </div>
 
-<p>我把球面均匀采样公式换成了超球采样公式，再额外添加了第四个维度上的墙体和两个超球，接着更改设置了<strong>鼠标左右拖动旋转相机，上下拖动则平移第四维的截面位置</strong>，这个4D场景Demo就被<ruby>改造完成<rp>(</rp><rt>四向簿打击</rt><rp>)</rp> </ruby>了！</p>
-<iframe style="display:block;margin: auto;" width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/Mf23Rd?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe>
-
+<p>我把球面均匀采样公式换成了超球采样公式，再额外添加了第四个维度上的墙体和两个超球，接着更改设置了<strong>鼠标左右拖动旋转相机，上下拖动则平移第四维的截面位置</strong>，这个4D场景Demo就被<ruby>改造完成<rp>(</rp><rt>四向簿打击</rt><rp>)</rp> </ruby>了！提示：点击下图激活场景。</p>
+<p><img class="nofancybox" style="cursor: pointer" src="/img/render4d008.jpg" onclick="let IF= document.getElementById('if2');IF.style.display='block'; const tmpUrl = IF.src; IF.src = 'about:blank'; setTimeout(()=>{IF.src = tmpUrl;}, 300); $(this).hide(); " /><iframe style="display:none;margin: auto;" id="if2" width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/Mf23Rd?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe></p>
 <p>由于四维空间更广阔，点光源将立方反比衰减，光线反射也更混乱，所以相同采样率下噪点更多，需要点击三角形播放按钮后等待更长时间才能看到清晰的画质。你应该能看到上面的三维跟四维场景初始角度看起来是完全相同的（除了光线有点点差异），在四维场景中上下拖动可发现这些球大小会变化，可能消失也可能出现新的球，这些都是四维空间中的超球。还有个细节能说明光线在四维空间中传播：拖动截面到合适角度你可以通过左边的那个镜面球中的反射成像发现还没有被画面截面截到的另一个超球。</p>
 <p>可能你觉得从三维到四维改动的东西还是不少，但其实如果不用随机反射采样而是使用那种遇到漫反射就停下来的光照模型就真的只需要把vec3改vec4就可以了。最后再提一句，由于RTX之类的光追加速显卡是专门为三维空间中三角形求交设计的，它不能对四面体求交提供加速，由于我没有真正接触过光追管线，也不排除能将四维数据“伪装”成三维数据来处理的可能（猜测可行性很小）。</p>
 <h4 id="1-2光栅化方法"><a href="#1-2光栅化方法" class="headerlink" title="1.2光栅化方法"></a>1.2光栅化方法</h4><p>下面来说说更常见的光栅化渲染方法。GPU能处理的基本图元——点、线、三角形，它们都是数学上的单纯形（Simplex），我们自然就想到四维场景需要光栅化四面体。但由于GPU没有针对体素化四面体进行优化的硬件，只能自己写通用的并行计算程序来实现了，我测试了我自己使用计算着色器（一种不用于渲染图形而是可以处理任意数据的GPU程序）写的四面体光栅化器效率并不太高(参考tesserxel中的<a href="/tesserxel/examples/#voxeltest::rasterizer">这个示例</a>)。除非你专门研发设计一款四面体光栅化专用芯片，为了尽可能利用现成的硬件性能优势，一般都采用分层渲染的方式，即计算并渲染3D图像的截面，而不是一次渲染一个四面体。所以我们将重点介绍切片光栅化方法。</p>
@@ -181,21 +184,25 @@
 <li>假设截面垂直于体素图片的某个坐标轴。由于交点一定位于截面内，我们可以直接忽略掉现在已经无用的垂直于截面的坐标，将齐次向量维数降低成四维，作为最终顶点着色器的输出发送给GPU当成普通的三维图形处理视锥体裁剪与遮挡剔除。</li>
 </ol>
 <p>对于在CPU端计算的胞腔复形来说，还有个方法能降低CPU的计算量：按理说我们需要将模型的顶点坐标变换到相机坐标再计算截面，这些操作都在CPU中进行是很慢的，其实可以优化成在CPU中先将截面方程变换到到模型坐标中直接计算截面，然后发送到GPU中再将所有顶点变换到相机坐标。</p>
-<h5 id="光栅化方法流程总结"><a href="#光栅化方法流程总结" class="headerlink" title="光栅化方法流程总结"></a>光栅化方法流程总结</h5><p>我用了一个框图来总结一下这几个方法的流程：<br><img src="/img/render4d006.svg" alt="四种光栅化截面渲染的流程"><br>总算把四维物体截面的光栅化渲染方法写完了，然而这些单张的截面还并不是体素照片。如何渲染体素呢？我们可以使用GPU提供的透明度混合（Alpha Blending）技术将这些单层照片弄成半透明的一层层叠起来实现，当层数够多时看起来就是体素云了。为了叠加起来得到好看的体素云，可以从以下三方面入手：</p>
+<h5 id="光栅化方法流程总结"><a href="#光栅化方法流程总结" class="headerlink" title="光栅化方法流程总结"></a>光栅化方法流程总结</h5><p>我用了一个框图来总结一下这几个方法的流程：<br><img src="/img/render4d006.svg" alt="四种光栅化截面渲染的流程"><br>总算把四维物体截面的光栅化渲染方法写完了，然而这些单张的截面还并不是体素照片。如何渲染体素呢？首先我们通过帧缓存(Frame Buffer)技术将单张截面画面渲染到一个纹理当中保存，再我们可以使用GPU提供的透明度混合（Alpha Blending）技术将这些单层照片贴图贴到半透明层上一层层叠起来实现，当层数够多时看起来就是体素云了。这里一般都是渲染一层就马上投影到二维画布上去做透明度混合，这样绘制下一层就可以重复使用刚才的帧缓存纹理，以节约显存。为了叠加起来得到好看的体素云，可以从以下三方面入手：</p>
 <ol>
 <li>给场景中不同的物体赋予不同的不透明度，如地面、天空可以透明些，物体可以不透明些，这可以大大增加需要关注的小物体在体素云中的辨识度，比如下图中的“甜甜圈”几乎是不透明的了；</li>
-<li>根据将体素投影到二维屏幕的方向动态改变体素切片划分的方向；</li>
-<li>可通过光在均匀介质中传播的指数衰减规律在片元着色器中逐像素调整不透明度，即透过每一层截面的光线比例，因为正对截面时，光线经过两层截面之间的距离短，衰减应该小、更透明，而视线与截面角度大时，经过两层截面之间的距离长，衰减应该大、更不透明。<br><img src="/img/render4d003.jpg" alt="体素云渲染：从左至右截面层数增加"><br>下面来看看一些完全不一样的东西——非体素&#x2F;截面渲染。</li>
+<li>根据将体素投影到二维屏幕的方向动态改变体素切片划分的方向，一般按坐标轴分层即可，如果按任意方向分层，计算层的截面形状位置引入的开销不太值得；</li>
+<li>可通过光在均匀介质中传播的指数衰减规律在片元着色器中逐像素调整不透明度，即透过每一层截面的光线比例，因为正对截面时，光线经过两层截面之间的距离短，衰减应该小、更透明，而视线与截面角度大时，经过两层截面之间的距离长，衰减应该大、更不透明。<br><img src="/img/render4d003.jpg" alt="体素云渲染：从左至右截面层数增加"></li>
 </ol>
+<h5 id="补充：裸眼3D渲染技术"><a href="#补充：裸眼3D渲染技术" class="headerlink" title="补充：裸眼3D渲染技术"></a>补充：裸眼3D渲染技术</h5><p>不管是4DBlock还是我的Tesserxel都支持裸眼3D，即显示一左一右两个有点偏差的画面让图片有立体深度感。之前在<a href="/archives/eye3d/">《四维世界（五）：体验四维人的视觉与方向感》</a>已经详细介绍过，三维立体照片的深度感方向就是立体照片的纵深，而截面画面需要的深度感方向却是第四维的离相机远近的真正的前后方向。这两种裸眼3D的实现方式不太一样。</p>
+<ol>
+<li>三维立体照片的深度感：要获得三维立体照片的深度感，我们就需要左右两个相机在水平距离上各有一定的偏移。由于体素照片是给定的，所以渲染每个截面投影到画布时，只用绘制两次不同角度的待贴图的层叠片，额外绘制增加的开销可以说非常小。（但其实Alpha混合的开销不小，这个躲不掉。。）</li>
+<li>单截面视图的深度感：由于这是第四维的前后深度，需要在四维场景中架设两个距离相近的相机来实现。是不是这意味着需要在两个位置把所有物体都渲染两遍呢？其实，虽然相机位置偏移，但这个偏移还是位于同一个超平面截面中（否则左右眼看到的东西就完全不一样了，无法产生立体感），所以截到的几何数据是一样的，因此可以在最后输出顶点的时候给不同的偏移即可。即<strong>先做截面再做在截面中的偏移与先做截面中的偏移在再做截面</strong>是等价的。但这就要求在四维截面的渲染管线中截面计算与最终的输出顶点的着色器是两个步骤，否则这两步分不开，比如Codeparade的只有一次顶点着色器就干完了所有的事情，这里就没有优化的余地了。还要注意的一点是，若在计算截面阶段做了背面剔除的也不适合这个优化，因为相机视角偏差后，某些面可能正对一只眼而背对另一只眼。</li>
+</ol>
+<p>体素&#x2F;截面渲染就讲到这里了，下面来看看一些完全不一样的东西——非体素&#x2F;截面渲染。</p>
 <h3 id="2-球极投影法"><a href="#2-球极投影法" class="headerlink" title="2.球极投影法"></a>2.球极投影法</h3><p>可视化四维图形不一定非得要计算“真实”的光线颜色信息，比如大家熟知的球极投影。球极投影本质上是把超球面——即一种弯曲的三维空间上的图形投影到三维空间，本质上就是三维空间之前的映射，严格来说不涉及四维，因此它几乎不可能用来展示复杂的“真实”四维场景，一般只用于展示四维凸几何体。</p>
 <h4 id="基于光栅化三角形的方法"><a href="#基于光栅化三角形的方法" class="headerlink" title="基于光栅化三角形的方法"></a>基于光栅化三角形的方法</h4><p>稍微会点解析几何就能很容易推出球极投影变换的公式，最简单的方法就是把超球面上的四维顶点坐标投影到三维即可，没什么特殊的地方，比如球极投影软件Jenn3D。需要注意的有两点：</p>
 <ol>
 <li>由于原始模型都得在超球面上的坐标，要想做出有一定厚度的边、顶点等图形就需要开发者对球面几何很熟悉。</li>
 <li>由于越接近北极形变越剧烈，因此建议可以动态增加北极附近多边形的网格剖分，否则就会出现下面的情况。<img src="/img/render4d006.jpg" alt="Jenn3D截图：边过极点时模型精度下降"></li>
 </ol>
-<h4 id="基于光线跟踪的方法"><a href="#基于光线跟踪的方法" class="headerlink" title="基于光线跟踪的方法"></a>基于光线跟踪的方法</h4><p>三角形方法得到的球极投影会因为网格精度问题变得不光滑，而高精度的光线追踪可以避免这个问题，具体原理可参考<a target="_blank" rel="noopener" href="https://syntopia.github.io/Polytopia/polytopes.html">这个交互式网页</a>和这个shadertoys上的例子（鼠标左右拖动可以选择不同的正多胞体）：</p>
-<iframe style="display:block;margin: auto;" width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/XdfGW4?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe>
-
+<h4 id="基于光线跟踪的方法"><a href="#基于光线跟踪的方法" class="headerlink" title="基于光线跟踪的方法"></a>基于光线跟踪的方法</h4><p>三角形方法得到的球极投影会因为网格精度问题变得不光滑，而高精度的光线追踪可以避免这个问题，具体原理可参考<a target="_blank" rel="noopener" href="https://syntopia.github.io/Polytopia/polytopes.html">这个交互式网页</a>和这个shadertoys上的例子（点击下方图片激活渲染，鼠标左右拖动可以选择不同的正多胞体）：<br><img class="nofancybox" style="cursor: pointer" src="/img/render4d009.jpg" onclick="let IF= document.getElementById('if3');IF.style.display='block'; const tmpUrl = IF.src; IF.src = 'about:blank'; setTimeout(()=>{IF.src = tmpUrl;}, 300); $(this).hide(); " /><iframe style="display:none;margin: auto;" id="if3" width="640" height="360"  width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/XdfGW4?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe></p>
 <h3 id="3-线框渲染"><a href="#3-线框渲染" class="headerlink" title="3.线框渲染"></a>3.线框渲染</h3><p>由于我们人类天生就没有能同时看到三维内部所有体素的三维视网膜的眼睛，体素渲染将带来很多颜色的重叠。线框渲染可大大降低重叠的像素，让人的理解难度降低（当然这只是某方面的降低，有得必有失），所以在四维计算机图形学领域，线框渲染反而比那些带体素颜色的渲染运用得更多，比如<a target="_blank" rel="noopener" href="http://www.urticator.net/blocks/">4DBlock</a>、<a target="_blank" rel="noopener" href="https://github.com/dearsip">dearsip</a>与<a target="_blank" rel="noopener" href="https://space.bilibili.com/613069855">yugu233</a>均采用该方法可视化四维物体。<br><img src="/img/render4d004.jpg" alt="yugu233（左）与dearsip（右）的四维图形线框显示器"><br>单纯渲染线框没什么好说的：首先对顶点进行坐标变换至三维相机的感光超平面上，得到类似的体素图片中的坐标，然后再将三维坐标投影到二维后，再连接各端点画出线段。但这样的算法有两个大问题——还是那两个问题——视锥体裁剪与遮挡剔除。</p>
 <h4 id="视锥体裁剪-1"><a href="#视锥体裁剪-1" class="headerlink" title="视锥体裁剪"></a>视锥体裁剪</h4><p>由于要绘制的线段完全可能一端在相机前，一端在相机后，直接做透视投影中的透视除法将导致结果混乱。又由于不再采用光栅化方法绘制，这就要求我们要手动计算要绘制的线段与视锥体的交点，只保留相交部分。其实不只是前后，现在连上下左右侧前后也必须手动裁剪。</p>
 <h4 id="更棘手的问题——遮挡剔除"><a href="#更棘手的问题——遮挡剔除" class="headerlink" title="更棘手的问题——遮挡剔除"></a>更棘手的问题——遮挡剔除</h4><p><img src="/img/render4d007.png" alt="在没有深度缓冲的情况下必须手动计算蓝色线段被前方物体遮挡一分为二的端点坐标"><br>由于现在是直接在最终的二维屏幕上绘制线条，不再分层渲染，我们也没法得到深度缓存来进行遮挡剔除。于是我们必须像光线跟踪那样来解析地计算线段和每个面的遮挡关系变化处的坐标。如何做到呢？将相机看作一盏灯，每个面（胞）后面的阴影区域即为它遮挡的区域，我们的任务就是算出线段与该区域的交集并剔除掉它们。这些区域都是由超平面围成的，求解交点并不复杂，难的是判断遮挡关系，这里介绍Block4d中的算法。</p>
