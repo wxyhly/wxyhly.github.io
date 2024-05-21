@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>四维计算机图形学：旋转篇 | Blog de Hqak (WXYHLY)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这次来看看如何实现最基础的坐标变换——旋转，它是渲染建模动画等一切技术的基石。这篇文章相当于一篇关于旋转的算法综述，虽然不需要读者熟悉计算机图形学，但会对数学水平要求稍微高一些，本文主要是罗列陈述算法，因此内容略显枯燥，若读者仅想学习使用这些工具构建四维交互场景，请关注后续的Tesserxel4D场景开发教程。     特色内容 三维四元数旋转相关算法 “几何代数”与“四元数”版四维旋量算法对比">
+<meta property="og:type" content="article">
+<meta property="og:title" content="四维计算机图形学：旋转篇">
+<meta property="og:url" content="https://wxyhly.github.io/archives/so4/index.html">
+<meta property="og:site_name" content="Blog de Hqak (WXYHLY)">
+<meta property="og:description" content="这次来看看如何实现最基础的坐标变换——旋转，它是渲染建模动画等一切技术的基石。这篇文章相当于一篇关于旋转的算法综述，虽然不需要读者熟悉计算机图形学，但会对数学水平要求稍微高一些，本文主要是罗列陈述算法，因此内容略显枯燥，若读者仅想学习使用这些工具构建四维交互场景，请关注后续的Tesserxel4D场景开发教程。     特色内容 三维四元数旋转相关算法 “几何代数”与“四元数”版四维旋量算法对比">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wxyhly.github.io/img/so4001.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/so4001.gif">
+<meta property="og:image" content="https://wxyhly.github.io/img/so4002.gif">
+<meta property="article:published_time" content="2024-05-21T13:05:36.000Z">
+<meta property="article:modified_time" content="2024-05-21T13:52:01.674Z">
+<meta property="article:author" content="wxyhly">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="四维">
+<meta property="article:tag" content="几何">
+<meta property="article:tag" content="图形学">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wxyhly.github.io/img/so4001.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Blog de Hqak (WXYHLY)</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/programs/">Programs</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wxyhly.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-so4" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/archives/so4/" class="article-date">
+  <time datetime="2024-05-21T13:05:36.000Z" itemprop="datePublished">2024-05-21</time>
+</a>
+      
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      四维计算机图形学：旋转篇
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这次来看看如何实现最基础的坐标变换——旋转，它是渲染建模动画等一切技术的基石。这篇文章相当于一篇关于旋转的算法综述，虽然不需要读者熟悉计算机图形学，但会对数学水平要求稍微高一些，本文主要是罗列陈述算法，因此内容略显枯燥，若读者仅想学习使用这些工具构建四维交互场景，请关注后续的Tesserxel4D场景开发教程。</p>
+<div style="float:right">
+<img src="/img/so4001.png" style="max-width:200px;" alt="一般使用旋量表示N维空间中的旋转。特别地，3维与4维的旋量代数可以用四元数表示"/>
+</div>
+
+<h2 id="特色内容"><a href="#特色内容" class="headerlink" title="特色内容"></a>特色内容</h2><ul>
+<li>三维四元数旋转相关算法</li>
+<li>“几何代数”与“四元数”版四维旋量算法对比</li>
+<li>各种“lookAt”旋转生成算法</li>
+<li>四维相机的常见交互控制方式</li>
+</ul>
+<h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><span id="more"></span>我本来打算先讲二维旋转、三维旋转的表示方法再讲到四维，逐渐引入旋转平面、2-向量、几何代数、旋量的，但由于低维旋转方面网上资料很多，且前面我也已经写过关于旋转平面、2-向量、几何代数、旋量的内容了，因此就不想啰嗦了（其实是懒~~），于是我整理了一下需要读者先了解的前置知识，大致知道这些内容后就可再继续阅读：
+<ol>
+<li><a href="/archives/bivector4ds/">《四维空间（七）：N维的向量》</a> 中开头至奇异2-向量小节。</li>
+<li><a href="/archives/gaqr/">《四维空间（十一）：几何代数、四元数与空间旋转》</a> 中开头至四元数与四维空间旋转小节。</li>
+</ol>
+<h2 id="三维旋转的处理"><a href="#三维旋转的处理" class="headerlink" title="三维旋转的处理"></a>三维旋转的处理</h2><p>首先空间中的点与向量都以三个浮点数来储存定义为三维向量类（<code>class Vec3</code>），我采用四元数表示三维旋转，因此需要定义个四元数类（<code>class Quaternion</code>），最后，矩阵（<code>class Mat3</code>、<code>class Mat4</code>）作为最经典的图形学工具也是必不可少的。</p>
+<p>建议在计算机上采用四元数储存旋转，首先欧拉角有万向锁问题，其次矩阵有16个元素，远多于三维旋转的3个自由度，一是浪费内存，二是不便于纠正浮点数误差累积。若想利用显卡对矩阵乘法的并行优化，可在发送给显卡时再转换为矩阵。</p>
+<h3 id="基础数学类的运算"><a href="#基础数学类的运算" class="headerlink" title="基础数学类的运算"></a>基础数学类的运算</h3><p>我们会定义上面类的成员变量和一些常用方法，下面以三维向量Vec3类为例，它的伪代码大概是这个样子：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vec3</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 成员变量：</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">x</span>: <span class="built_in">number</span>; <span class="attr">y</span>: <span class="built_in">number</span>; <span class="attr">z</span>: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数：</span></span><br><span class="line"></span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span>, z: <span class="built_in">number</span></span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">x</span> = x; <span class="variable language_">this</span>.<span class="property">y</span> = y; <span class="variable language_">this</span>.<span class="property">z</span> = z;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 常用方法：</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 反向</span></span><br><span class="line">    <span class="title function_">neg</span>():<span class="title class_">Vec3</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Vec3</span>(-<span class="variable language_">this</span>.<span class="property">x</span>, -<span class="variable language_">this</span>.<span class="property">y</span>, -<span class="variable language_">this</span>.<span class="property">z</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 加法</span></span><br><span class="line">    <span class="title function_">add</span>(<span class="attr">v3</span>:<span class="title class_">Vec3</span>):<span class="title class_">Vec3</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Vec3</span>(<span class="variable language_">this</span>.<span class="property">x</span> + v3.<span class="property">x</span>, <span class="variable language_">this</span>.<span class="property">y</span> + v3.<span class="property">y</span>, <span class="variable language_">this</span>.<span class="property">z</span> + v3.<span class="property">z</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// 内积</span></span><br><span class="line">    <span class="title function_">dot</span>(<span class="attr">v3</span>:<span class="title class_">Vec3</span>):<span class="built_in">number</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">x</span> * v3.<span class="property">x</span> + <span class="variable language_">this</span>.<span class="property">y</span> * v3.<span class="property">y</span> + <span class="variable language_">this</span>.<span class="property">z</span> * v3.<span class="property">z</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你无法理解上述代码，提前学习typescript&#x2F;javascript、java、C#或C++中某一个语言中关于类(class)的相关概念即可，它们并不复杂。本文采用类似typescript的伪代码来描述算法，即函数参数名冒号后面代表参数类型，函数返回值类型则在参数括号后以冒号标注。</p>
+<p>四元数类的定义为：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Quaternion</span>&#123;</span><br><span class="line">    <span class="comment">// r代表实数分量，i/j/k分别代表三个虚数前的系数</span></span><br><span class="line">    <span class="attr">r</span>: <span class="built_in">number</span>; <span class="attr">i</span>:<span class="built_in">number</span>; <span class="attr">j</span>: <span class="built_in">number</span>; <span class="attr">k</span>: <span class="built_in">number</span>;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="旋转坐标与四元数转矩阵"><a href="#旋转坐标与四元数转矩阵" class="headerlink" title="旋转坐标与四元数转矩阵"></a>旋转坐标与四元数转矩阵</h3><p>给定一个旋转$R$和一个向量$p$，如何计算旋转后的新向量$R(p)$是最基本的需求，我们将这个函数命名为<code>apply</code>。如果旋转用的是矩阵表示，则使用矩阵乘法完成计算：（矩阵与向量的乘法公式是明确的，本文假设读者有能力写出写出该函数的实现细节，故省略之，下同）</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">apply</span>(<span class="params">R:Mat3, p:Vec3</span>):<span class="title class_">Vec3</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> R.<span class="title function_">mul</span>(p); <span class="comment">// mul函数是矩阵与向量的乘法。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>如果旋转用的是四元数表示，则我们采用<a href="/archives/gaqr/#quanternion_as_rotor3">这里的旋转坐标算法</a>计算：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">apply</span>(<span class="params">R:Quaternion, p:Vec3</span>):<span class="title class_">Vec3</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> p0 = <span class="keyword">new</span> <span class="title class_">Quaternion</span>(<span class="number">0</span>, p.<span class="property">x</span>, p.<span class="property">y</span>, p.<span class="property">z</span>); <span class="comment">// 向量转四元数，注意实部为0。</span></span><br><span class="line">    <span class="keyword">let</span> p1 = R.<span class="title function_">mul</span>(p0).<span class="title function_">mul</span>(R.<span class="title function_">conj</span>()); <span class="comment">// mul、conj函数分别是四元数乘法与共轭。</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Vec3</span>(p1.<span class="property">i</span>, pi.<span class="property">j</span>, p1.<span class="property">k</span>); <span class="comment">// 四元数转回向量。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但一般显卡中处理旋转还是用矩阵比较多，如何将四元数表示的旋转转为矩阵表示呢？下面提供两种方法：</p>
+<ol>
+<li>硬推公式法：我们将上面算法中的四元数乘法按坐标展开，整理出线性变换的公式，将它写成矩阵即可，建议使用Mathematica等工具推导公式，推导结果可见我的tesserxel库中<a target="_blank" rel="noopener" href="https://github.com/wxyhly/tesserxel/blob/main/src/math/algebra/quaternion.ts#L170">Quaternion类的toMat3函数</a>。</li>
+<li>变换基向量法：如果嫌公式推导麻烦，可直接将矩阵按列分块，会发现它是由所有坐标基向量旋转后得到的新向量拼成的。因此我们无需理会四元数如何旋转空间中的点，就能构造出矩阵（注意这些都是是列向量）：</li>
+</ol>
+<p>$$M&#x3D;\begin{pmatrix}R(e_x)&amp;R(e_y)&amp;R(e_z)\end{pmatrix}$$</p>
+<p>翻译成伪代码则是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">quaternion2mat3</span>(<span class="params">R:Quaternion</span>):<span class="title class_">Mat3</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> ex = <span class="title function_">apply</span>(R, <span class="keyword">new</span> <span class="title class_">Vec3</span>(<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">    <span class="keyword">let</span> ey = <span class="title function_">apply</span>(R, <span class="keyword">new</span> <span class="title class_">Vec3</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">    <span class="keyword">let</span> ez = <span class="title function_">apply</span>(R, <span class="keyword">new</span> <span class="title class_">Vec3</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Mat3</span>(</span><br><span class="line">        ex.<span class="property">x</span>, ey.<span class="property">x</span>, ez.<span class="property">x</span>, </span><br><span class="line">        ex.<span class="property">y</span>, ey.<span class="property">y</span>, ez.<span class="property">y</span>, </span><br><span class="line">        ex.<span class="property">z</span>, ey.<span class="property">z</span>, ez.<span class="property">z</span>, </span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意虽然第二种方法看似写出的代码优雅，但效率不如第一种快：基向量中要么是1要么是0，很多乘法与加法都是不必要的，将式子化简后效率更高，但其实就变成第一种方法了。</p>
+<p>相反，把矩阵转换为四元数不太容易，我们将在<a href="/archives/so4/#mat32q">后面</a>解决这个问题。现在有了初步处理旋转的能力，下面先来看怎样生成旋转。</p>
+<h3 id="旋转的复合与逆"><a href="#旋转的复合与逆" class="headerlink" title="旋转的复合与逆"></a>旋转的复合与逆</h3><p>采用欧拉角或其它多步骤复合表示旋转：则使用该算法生成多次旋转的四元数，注意四元数$p$、$q$先后作用到点$x$上为$q(pxp^*)q^*&#x3D;(qp)x(qp)^*$，相当于四元数$qp$单次作用，因此四元数跟矩阵一样表示复合旋转是直接按从右到左的顺序乘起来。求旋转的逆就更简单了，单位四元数乘以自己的共轭就是1，因此四元数共轭就是逆。</p>
+<h3 id="轴与角度生成旋转"><a href="#轴与角度生成旋转" class="headerlink" title="轴与角度生成旋转"></a>轴与角度生成旋转</h3><ol>
+<li>直接给出旋转的轴与角度：其算法已在<a href="/archives/gaqr/#quanternion_as_rotor3">刚才的链接</a>中与旋转坐标算法一起给出了，这里放一下伪代码：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 给定单位向量axis表示的旋转轴，与旋转角度angle，生成四元数表示的旋转</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">axisAngle2quaternion</span>(<span class="params">axis: Vec3, angle: number</span>): <span class="title class_">Quaternion</span>&#123;</span><br><span class="line">    angle *= <span class="number">0.5</span>; <span class="comment">// 将角度减半，并计算其正余弦值s与c</span></span><br><span class="line">    <span class="keyword">let</span> s = <span class="title class_">Math</span>.<span class="title function_">sin</span>(angle);</span><br><span class="line">    <span class="keyword">let</span> c = <span class="title class_">Math</span>.<span class="title function_">cos</span>(angle);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Quaternion</span>(c, s * axis.<span class="property">x</span>, s * axis.<span class="property">y</span>, s * axis.<span class="property">z</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>直接给出旋转生成元2-向量：由于三维的2-向量可以霍奇对偶到普通的1-向量，因此其实这相当于给出了平行于旋转轴的向量，且向量的长度为旋转角度，相当于把旋转的轴与角度两个参数合二为一了，类似于角速度矢量这种东西，这种把大小方向合二为一的表示法又是比第一种更方便。它的算法其实是一样的，只是增加一些步骤：首先计算向量的长度的一半得到半角$\theta &#x3D; ||l||&#x2F;2$，然后将向量单位化后就跟第一种方法一样了。我们可进行化简：由于单位化即除以角度$2\theta$，最后四元数的虚部是单位向量乘以半角的正弦值$\sin(\theta)$，把这两步合并即向量乘以$\sin(\theta)&#x2F;(2\theta)$。显然这个系数在角度接近零时分子分母都接近0，但极限为1&#x2F;2，这并不是个数值稳定的方法，可以在角度小于$\epsilon$时将表达式用前两项泰勒展开$(1&#x2F;2)(1-\theta^2&#x2F;3!)$来避免。这相当于生成元到旋转的指数映射，因此该函数命名为<code>exp</code>。下面给出伪代码：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">exp</span>(<span class="params">v: Vec3</span>): <span class="title class_">Quaternion</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> theta = v.<span class="title function_">length</span>() * <span class="number">0.5</span>; <span class="comment">// length函数求向量模长，得到半角</span></span><br><span class="line">    <span class="keyword">let</span> epsilon = <span class="number">0.005</span>;</span><br><span class="line">    <span class="comment">// 若角度的绝对值大于epsilon，则直接计算系数s，否则用泰勒展开</span></span><br><span class="line">    <span class="keyword">let</span> <span class="attr">s</span>:number;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title class_">Math</span>.<span class="title function_">abs</span>(theta) &gt; epsilon) &#123;</span><br><span class="line">        s = <span class="title class_">Math</span>.<span class="title function_">sin</span>(theta) / theta * <span class="number">0.5</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        s = <span class="number">0.5</span> - theta * theta / <span class="number">12</span>;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Quaternion</span>(<span class="title class_">Math</span>.<span class="title function_">cos</span>(theta), s * v.<span class="property">x</span>, s * v.<span class="property">y</span>, s * v.<span class="property">z</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="lookAt生成旋转"><a href="#lookAt生成旋转" class="headerlink" title="lookAt生成旋转"></a>lookAt生成旋转</h3><p>仅给出物体的初始朝向与最终朝向，找到符合要求的旋转：比如在一个射击游戏里，大炮需要始终自动对焦到移动的敌机，设大炮的局部坐标系中炮管的方向为$x$轴，则要求一个旋转变换，它能把$x$轴旋转到从炮到敌机连线的方向$v$。几乎所有游戏引擎中都有现成的函数供程序员使用，一般叫“lookAt”函数，下面我们来看如何实现它。<br>给定两个单位向量$u$与$v$，我们希望构造旋转$R$，使得$R(u)&#x3D;v$。由于两个向量确定一个平面，最简便的方式就是在$u$-$v$平面中进行旋转，或绕轴$u\times v$旋转，旋转的角度则可以通过计算向量的夹角得到，此时已知转轴和夹角，使用前面的算法就能生成旋转了：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">lookAt</span>(<span class="params">u:Vec3, v:Vec3</span>):<span class="title class_">Quaternion</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> axis = u.<span class="title function_">cross</span>(v); <span class="comment">// 通过向量叉乘函数cross计算旋转轴</span></span><br><span class="line">    <span class="keyword">let</span> e_axis = axis.<span class="title function_">normalize</span>(); <span class="comment">// normalize函数将转轴缩放为单位向量</span></span><br><span class="line">    <span class="keyword">let</span> angle = <span class="title class_">Math</span>.<span class="title function_">acos</span>(u.<span class="title function_">dot</span>(v)); <span class="comment">// 内积dot函数求夹角余弦，反余弦函数Math.acos求角度</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">axisAngle2quaternion</span>(e_axis, angle); <span class="comment">// 已知转轴和夹角，使用前面的算法生成旋转</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实上面的代码漏掉了一个特殊情况：若$u$与$v$方向相同或相反，叉乘得到的轴为$0$，这些特殊情况的处理留作习题。<br>注意，满足$R(u)&#x3D;v$的旋转$R$是不唯一的：$R$上再任意复合一个以$v$为轴的旋转也符合要求。上面算法求得的旋转在某种意义下是“距离”最近的旋转，但有时候会像下图那样出现不好的“倾斜”感，比如摄像机运镜时可能就希望画面不要左右倾斜，我们将在下一个旋转生成需求中解决这个问题。<img src="/img/so4001.gif" alt="将蓝色方向对齐的“最短”旋转路径会让绿色水平轴不再水平"></p>
+<p>给出物体的初始朝向与最终朝向，与物体的上方，找到保持物体不侧倾的旋转。方法有两种，一是将旋转拆成水平与垂直的两步可以避免物体侧倾，二是可以先用<code>lookAt</code>函数旋转到位后，再叠加一个以目标为轴的旋转纠正倾斜。这两种方法其实都相当于欧拉角，只是旋转的次序存在差异，具体代码实现留作习题。<img src="/img/so4002.gif" alt="避免绿轴“侧倾”的旋转生成方法之一"><br><a name="mat32q"></a></p>
+<h3 id="旋转矩阵转四元数"><a href="#旋转矩阵转四元数" class="headerlink" title="旋转矩阵转四元数"></a>旋转矩阵转四元数</h3><p>前面说过矩阵不一定是精确的旋转矩阵，因此很可能问题没有解，但有了“lookAt”函数，我们就可以通过类似“Schmidt正交化”的方式来逐步逼近得到四元数：旋转矩阵按列分块后能够告诉我们原来的各坐标轴旋转到的新位置，因此可先使用<code>lookAt</code>函数生成对齐x轴前后位置的旋转<code>r1</code>，此时y轴与z轴还没对齐，然后再来一次lookAt对齐y轴，剩下的z轴就自动对齐了，将两次lookAt得到的四元数乘起来就得到了最终的转换结果。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">mat32quaternion</span>(<span class="params">m:mat3</span>): <span class="title class_">Quaternion</span>&#123;</span><br><span class="line">    <span class="comment">// 第一次旋转：对齐x轴</span></span><br><span class="line">    <span class="keyword">let</span> r1 = <span class="title function_">lookAt</span>(<span class="keyword">new</span> <span class="title class_">Vec3</span>(<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>), m.<span class="title function_">x_</span>()); <span class="comment">// x_函数返回矩阵m的第一个列向量</span></span><br><span class="line">    <span class="comment">// 第二次旋转：对齐y轴</span></span><br><span class="line">    <span class="keyword">let</span> newY = <span class="title function_">apply</span>(r1, <span class="keyword">new</span> <span class="title class_">Vec3</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>)); <span class="comment">// 注意y轴已经被r1旋转到了newY</span></span><br><span class="line">    <span class="keyword">let</span> r2 = <span class="title function_">lookAt</span>(newY, m.<span class="title function_">y_</span>()); <span class="comment">// y_函数返回矩阵m的第二个列向量</span></span><br><span class="line">    <span class="keyword">return</span> r2.<span class="title function_">mul</span>(r1); <span class="comment">// 将两步旋转复合</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="已知旋转找转轴与角度"><a href="#已知旋转找转轴与角度" class="headerlink" title="已知旋转找转轴与角度"></a>已知旋转找转轴与角度</h3><p>有些时候会遇到旋转的生成的逆问题：给定旋转找出它的生成元，由于生成元生成旋转是指数映射<code>exp</code>，因此这个函数叫它对数映射<code>log</code>。求逆映射并不难，很容易通过四元数实部值求出半角的余弦，下面是伪代码：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">log</span>(<span class="attr">R</span>: quaternion): <span class="title class_">Vec3</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> theta = <span class="title class_">Math</span>.<span class="title function_">acos</span>(R.<span class="property">r</span>); <span class="comment">// 通过四元数实部求半角</span></span><br><span class="line">    <span class="keyword">let</span> s = <span class="number">2</span> * theta / <span class="title class_">Math</span>.<span class="title function_">sin</span>(theta); <span class="comment">// 恢复旋转轴，再乘上角度值</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Vec3</span>(R.<span class="property">i</span> * s, R.<span class="property">j</span> * s, R.<span class="property">k</span> * s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="旋转的插值"><a href="#旋转的插值" class="headerlink" title="旋转的插值"></a>旋转的插值</h3><p>在动画制作中常会遇到已知物体始末初始状态，需补出中间帧以实现动画效果。若已知$0$时刻的旋转对应四元数$R_a$，$1$时刻对应四元数$R_b$，求时刻$t$的旋转对应的四元数$R_t$。旋转是由单位四元数表示的，相当于在超球面$S^3$上插值，算法可参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538653027">这里</a>，代码见<a target="_blank" rel="noopener" href="https://github.com/wxyhly/tesserxel/blob/main/src/math/algebra/quaternion.ts#L134">这里的slerp函数</a>。</p>
+<h3 id="数值稳定性"><a href="#数值稳定性" class="headerlink" title="数值稳定性"></a>数值稳定性</h3><p>在对场景的计算中，随着三维物体的不断旋转，四元数一直在做连乘，这是数值不稳定的，因为只要有点误差，四元数的模长不为1，就会导致一段时间后要么衰减至零或发散至无穷。解决该问题的方法很简单，隔一段时间（如刷新每一帧时）强行把四元数除以它的长度单位化即可。</p>
+<h2 id="四维旋转的处理"><a href="#四维旋转的处理" class="headerlink" title="四维旋转的处理"></a>四维旋转的处理</h2><p>计算机表示四维空间中的点、向量跟三维向量是大同小异的，比如有四维向量类（<code>class Vec4</code>），和矩阵（<code>class Mat4</code>），甚至你可以定义仿射矩阵（<code>class Mat5</code>）。四维旋转同样不建议用矩阵表示，它采用旋量（Rotor）表示旋转，且旋量还分四元数与几何代数两种版本。无论用哪个版本，都会用到表示平面的2-向量（<code>class Bivec</code>），我们先来看它的定义。</p>
+<h3 id="2-向量类"><a href="#2-向量类" class="headerlink" title="2-向量类"></a>2-向量类</h3><p>四维空间的2-向量则用六个浮点数来储存，定义为2-向量类（class Bivec4）。由于我不打算开发通用的高维图形库，因此不会出现Bivec5、Bivec6……又由于霍奇对偶，三维中的Bivec3其实就是Vec3、因此也就只有Bivec4才有用，于是我把Bivec4简写为Bivec不会有歧义。它的伪代码定义如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Bivec&#123;</span><br><span class="line">    xy: number; xz:number; xw: number;</span><br><span class="line">    yz: number; yw:number; zw: number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实它很像一个6维的向量，比如可以定义加法(add)、减法(sub)、取反(neg)、数乘(mul)、内积(dot)、单位化(normalize)等方法。同时，我们添加一些2-向量独有的方法，比如霍奇对偶(dual)、混合积（也叫交换积）(cross)，并给四维向量类添加楔积运算(wedge)得以生成2-向量等。</p>
+<h3 id="四维旋量"><a href="#四维旋量" class="headerlink" title="四维旋量"></a>四维旋量</h3><p>四维旋量分两种表示法：一是四元数版的旋量（<code>class Rotorq</code>），二是几何代数版的旋量（<code>class Rotorg</code>），其中几何代数版最原始且易懂，而四元数版处理旋转算法更多更方便。由于几乎没人会直接输入旋量的个分量来描述旋转，它们仅为程序内部的中间数据，所以搭建渲染引擎时一般仅选其一，比如<a target="_blank" rel="noopener" href="https://marctenbosch.com/ndphysics/">Marc ten Bosch的四维引擎</a>就仅支持几何代数版本的旋量，而<a target="_blank" rel="noopener" href="https://github.com/wxyhly/tesserxel/">我的tesserxel引擎</a>就只支持四元数版本的旋量而不支持几何代数版的，下面我把这两种版本旋量各自的相关旋转算法分为两节进行罗列，请<strong>按需展开阅读</strong>：</p>
+<br/>
+
+<h3 id="旋量类（几何代数版）"><a href="#旋量类（几何代数版）" class="headerlink" title="+旋量类（几何代数版）"></a><a href="javascript:void(0);" onclick="$('#ga').toggle();$('#ga_').text($('#ga_').text()==='+'?'-':'+')"><span id="ga_">+</span>旋量类（几何代数版）</a></h3><div style="background-color: #FFF3F3; display:none" id="ga">
+
+<p>由<a href="/archives/gaqr/#def_spinor">这里的介绍</a>可知，旋量是几何代数中偶数阶向量组成的子代数，因此对于四维空间，它由标量<code>r</code>(0-向量)、2-向量<code>b</code>与伪标量<code>i</code>(4-向量)三部分组成，于是可以这样定义旋量类：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Rotorg&#123;</span><br><span class="line">    r: number; b: Bivec, i: number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>除此之外，我们定义旋量之间的加减法、数乘、单位化、共轭与几何积等。注意可以利用2-向量定义好的函数简化某些工作，比如2-向量乘以伪标量等于2-向量取霍奇对偶后乘以标量等等。</p>
+<h4 id="旋转坐标算法"><a href="#旋转坐标算法" class="headerlink" title="旋转坐标算法"></a>旋转坐标算法</h4><p>给定旋量$R$，它作用在坐标$p$上后$R(p)$的坐标为$RpR^\dagger$，即</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">apply</span>(<span class="params">R:Rotorg, p:Vec4</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> R.<span class="title function_">mul</span>(p).<span class="title function_">mul</span>(R.<span class="title function_">conj</span>()); <span class="comment">// 如何定义这里的mul函数？</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可惜这样写会导致一个问题：由偶数阶k-向量组成的旋量乘上向量会产生1-向量或3-向量，这并不在旋量（class Rotorg）的定义中，因此我们无法写出mul函数的实现。有两个解决思路：一是写一个几何代数类(class GA)，它包含从0至4阶所有向量，二是直接将公式按坐标展开，把化简结果放在apply函数中。我推荐第二种方法，因为第一种方法包含所有阶数向量分量在大多数时候用不上，会浪费计算步骤与内存空间，第二种则没有这些问题且化简公式后性能最优。</p>
+<h4 id="旋转的复合与逆-1"><a href="#旋转的复合与逆-1" class="headerlink" title="旋转的复合与逆"></a>旋转的复合与逆</h4><p>与四元数一样，四维旋量的复合就是按从右到做的顺序做几何积，求逆对应几何代数里的共轭：几何代数里的共轭是将所有k-向量的顺序反着写，比如$(e_xe_y)^\dagger&#x3D;e_ye_x&#x3D;-e_xe_y$，$(e_xe_ye_ze_w)^\dagger&#x3D;e_we_ze_ye_x&#x3D;e_xe_ye_ze_w$，对应到四维旋量其实就是将2-向量部分取反，标量和伪标量部分均不变。</p>
+<h4 id="旋转平面算法"><a href="#旋转平面算法" class="headerlink" title="旋转平面算法"></a>旋转平面算法</h4><p>四维比三维多一种情况，即旋转可以通过作用张成2-向量的两个基向量上来作用到2-向量（平面）上对其旋转，即定义$R(a\wedge b) &#x3D; R(a)\wedge R(b)$，最朴素的方法是写出2-向量的六个坐标基底$e_ie_j$，计算旋转$R$作用后的新2-向量基底$R(e_i)\wedge R(e_j)$，将2-向量视为六维线性空间，这样就得到了一个6x6的旋转2-向量的矩阵。其实几何代数还有个更好的方法，设$a$与$b$垂直，注意到$$R(a)\wedge R(b)&#x3D;R(a)R(b)&#x3D;(RaR^\dagger) (RbR^\dagger) &#x3D; Ra(R^\dagger R)bR^\dagger&#x3D;R a b R^\dagger$$<br>因此可以直接两边做几何积。又由于所有2-向量都能分解为正交的坐标基向量楔积之和，所以这个算法对任意2-向量均成立：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">apply</span>(<span class="params">r:Rotorg, b:Bivec</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> r.<span class="title function_">mul</span>(b).<span class="title function_">mul</span>(r.<span class="title function_">conj</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="平面与角度生成旋转"><a href="#平面与角度生成旋转" class="headerlink" title="平面与角度生成旋转"></a>平面与角度生成旋转</h4><p>跟三维的旋转生成需求类似但有些不同：</p>
+<ol>
+<li>给定旋转平面$B$与角度$\alpha$生成旋转：注意旋转平面只能用2-向量表示，它可能是对应简单旋转的简单2-向量，也可能是对应双旋转的复合（奇异）2-向量。我们先考虑简单旋转，因为<a href="/archives/gaqr/#formula_spinor_rotate">这里的算法</a>必须假设2-向量$B$是简单且单位化的，才能得到旋转公式：$R&#x3D;\cos(\alpha&#x2F;2)+B\sin(\alpha&#x2F;2)$，这跟三维旋转的四元数公式可以说几乎一样。下面是伪代码：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 给定简单单位2-向量plane表示的旋转平面，与旋转角度angle，生成旋量表示的旋转</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">planeAngle2rotorg</span>(<span class="params">plane: Bivec, angle: number</span>): <span class="title class_">Quaternion</span>&#123;</span><br><span class="line">    angle *= <span class="number">0.5</span>; <span class="comment">// 将角度减半，并计算其正余弦值s与c</span></span><br><span class="line">    <span class="keyword">let</span> s = <span class="title class_">Math</span>.<span class="title function_">sin</span>(angle);</span><br><span class="line">    <span class="keyword">let</span> c = <span class="title class_">Math</span>.<span class="title function_">cos</span>(angle);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Rotorg</span>(</span><br><span class="line">        c,            <span class="comment">// 标量部分</span></span><br><span class="line">        plane.<span class="title function_">mul</span>(s), <span class="comment">// 2-向量部分，mul函数为2-向量的数乘</span></span><br><span class="line">        <span class="number">0</span>             <span class="comment">// 无伪标量分量</span></span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+注意简单旋转是不含伪标量分量的，因此上面最后构造<code>Rotorg</code>时最后参数是0，但简单旋转的复合可能得到双旋转，此时伪标量分量不再为0。</li>
+<li>直接给出旋转生成元2-向量：此时我们不再要求2-向量是简单的、单位化的，然而对于一般的2-向量，指数映射公式并不好化简，要么按定义$$R&#x3D;\exp(B\theta&#x2F;2)&#x3D;I+B\theta&#x2F;2+{B^2(\theta&#x2F;2)^2\over2!}+{B^3(\theta&#x2F;2)^3\over3!}+..$$计算，但这是个无穷级数，只能算前$n$项将其截断；要么将它分解为简单2-向量计算，<a href="/archives/bivector4ds/#orth">这里给出了一个分解算法</a>，但相当麻烦，后面我们将看到，用四元数表示的旋量版本不会存在这些问题，故tesserxel选用四元数表示四维旋量。<a name="lookat"></a></li>
+</ol>
+<h4 id="lookAt生成旋转-1"><a href="#lookAt生成旋转-1" class="headerlink" title="lookAt生成旋转"></a>lookAt生成旋转</h4><ol>
+<li><p>仅给出物体的初始朝向与最终朝向，找到符合要求的旋转，即四维版本的<code>lookAt</code>函数：只要把叉乘换成它的推广楔积即可。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">lookAt</span>(<span class="params">u:Vec4, v:Vec4</span>):<span class="title class_">Rotorg</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> plane = u.<span class="title function_">wedge</span>(v); <span class="comment">// 通过向量楔积函数wedge计算旋转平面2-向量</span></span><br><span class="line">    <span class="keyword">let</span> e_plane = plane.<span class="title function_">normalize</span>(); <span class="comment">// normalize函数将其缩放为单位2-向量</span></span><br><span class="line">    <span class="keyword">let</span> angle = <span class="title class_">Math</span>.<span class="title function_">acos</span>(u.<span class="title function_">dot</span>(v)); <span class="comment">// 内积dot函数求夹角余弦，反余弦函数Math.acos求角度</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">planeAngle2rotorg</span>(e_plane, angle); <span class="comment">// 已知旋转平面和夹角，使用前面的算法生成旋转</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与三维情况类似，若u与v方向相同或相反，楔积得到的平面也为0，这些特殊情况的处理同样留作习题。</p>
+</li>
+<li><p>通过lookAt函数旋转四维相机同样会有水平倾斜的问题，此时亦可采用两种方法解决：一是先做水平旋转，再做垂直旋转，二是先用lookAt函数旋转到位后再去对齐其它轴。到了四维，由于轴数增多，第二种方法其实比较困难，故推荐第一种：设竖直方向为$y$轴，则水平胞为三维子空间$xzw$。第一次旋转我们只在子空间$xzw$中通过lookAt函数对齐初始向量与目标向量在其中的投影，第二次旋转则再次用lookAt仅在竖直平面中旋转。</p>
+</li>
+</ol>
+<h4 id="旋转矩阵转旋量"><a href="#旋转矩阵转旋量" class="headerlink" title="旋转矩阵转旋量"></a>旋转矩阵转旋量</h4><p>与三维情形类似，可先使用<code>lookAt</code>函数生成对齐x轴前后位置的旋转<code>r1</code>，此时y、z、w轴还没对齐，然后来一次<code>lookAt</code>对齐y轴，剩下的z轴、w轴还没对齐，最后再来一次<code>lookAt</code>对齐z轴此时w轴就自动对齐了，将三次<code>lookAt</code>得到的旋量按几何积乘起来就得到了最终的转换结果。</p>
+<h4 id="已知旋转找平面与角度"><a href="#已知旋转找平面与角度" class="headerlink" title="已知旋转找平面与角度"></a>已知旋转找平面与角度</h4><p>与三维情况类似，通过求指数映射的逆可解得旋转平面与角度：<br>$$B&#x3D;\log(R)&#x3D;(R-I)-(R-I)^2&#x2F;2+(R-I)^3&#x2F;3-..$$<br>注意得到的2-向量若是简单的，则它的模长就是旋转角度，若它是复合（奇异）的，则需要通过<a href="/archives/bivector4ds/#orth">此算法</a>分解后才知道具体的双旋转的两个旋转平面与角度。若不想用泰勒级数展开，后面的四元数版旋量给了一个<a href='javascript:void(0);' onclick='if($("#qt_").text()=="+"){$("#qt").show();$("#qt_").text("-");}window.location.href="#rotorq_log";'>更好的算法</a>。</p>
+<h4 id="旋转的插值-1"><a href="#旋转的插值-1" class="headerlink" title="旋转的插值"></a>旋转的插值</h4><p>对旋量进行插值并不方便，因为它的拓扑空间不再是一个高维球面。我们可以通过取对数操作先求得生成元，生成元做完线性插值缩放后重新再做指数映射：设$0$时刻的旋转对应四元数$R_a$，$1$时刻对应四元数$R_b$，则时刻$t$的旋转对应的四元数$R_t&#x3D;\exp(t\log(R_bR_a^{-1}))R_a$。说明一下，该方法是通用的，它对三维空间旋转也适用。</p>
+<h3 id="数值稳定性-1"><a href="#数值稳定性-1" class="headerlink" title="数值稳定性"></a>数值稳定性</h3><p>在对场景的计算中，随着四维物体的不断旋转，旋量一直在做连乘，也会产生数值不稳定问题。然而将几何代数版的旋量做单位化并没有简单的算法。<a target="_blank" rel="noopener" href="https://marctenbosch.com/ndphysics/">Marc ten bosch的这篇论文中</a>提到，他将旋量进行“因式分解”后在再对每部分单位化，具体算法仅给出了一个参考文献书籍，但我没找到免费的全文阅读，可能类似于四元数版旋量。</div><br><br></p>
+<h3 id="旋量类（四元数版）"><a href="#旋量类（四元数版）" class="headerlink" title="+旋量类（四元数版）"></a><a href="javascript:void(0);" onclick="$('#qt').toggle();$('#qt_').text($('#qt_').text()==='+'?'-':'+')"><span id="qt_">+</span>旋量类（四元数版）</a></h3><div style="background-color: #F3FFF3; display:none" id="qt">
+
+<p>首先明确一下什么是四元数版的旋量。旋量的定义其实只有几何代数那一种，之所以有所谓“几何代数版”、“四元数版”可以理解为选择的表示方法不一样，就像不同的坐标系那样。几何代数版旋量直接在直角坐标系中展开所有分量，而四元数版的旋量则是将旋量因式分解为左、右等角旋转两部分，其中每个部分都类似于一个三维空间中的旋转，所以用两个四元数表示。但注意不管是哪种表示法，旋量的特殊“二对一”的性质始终是不变的，举个例子：$xy$平面旋转90度，有以下两种拆分方式：</p>
+<ol>
+<li>“$xy$旋转45度与$zw$旋转45度右等角双旋转”复合“$xy$旋转45度与$zw$旋转-45度左等角双旋转”</li>
+<li>“$xy$旋转-135度与$zw$旋转-135度右等角双旋转”复合“$xy$旋转-135度与$zw$旋转135度左等角双旋转”</li>
+</ol>
+<p>再举个极端的例子，$xy$与$zw$平面均旋转180度，它是唯一没有手性的双旋转——中心反演变换，把它视为左手&#x2F;右手等角双旋转就对应着两种旋量表示：</p>
+<ol>
+<li>“$xy$旋转180度与$zw$旋转180度右等角双旋转”复合“$xy$旋转0度与$zw$旋转-0度左等角双旋转”</li>
+<li>“$xy$旋转0度与$zw$旋转0度右等角双旋转”复合“$xy$旋转180度与$zw$旋转-180度左等角双旋转”</li>
+</ol>
+<p>定义四元数版旋量类的伪代码很简单，它包含左&#x2F;右两个四元数：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Rotorq</span>&#123;</span><br><span class="line">    <span class="attr">l</span>: <span class="title class_">Quaternion</span>; <span class="attr">r</span>: <span class="title class_">Quaternion</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们无需为<code>Rotorq</code>定义加法与数乘运算，不像几何代数既表示2-向量又表示旋转，这里的四元数版旋量无法表示线性的2-向量，加法与数乘是无意义的，后面我们仅定义乘法与逆。</p>
+<h4 id="旋转坐标算法-1"><a href="#旋转坐标算法-1" class="headerlink" title="旋转坐标算法"></a>旋转坐标算法</h4><p>三维空间中，需把空间向量$v&#x3D;(x,y,z)$映射到四元数纯虚数$V&#x3D;ix+jy+kz$，四维空间则直接是坐标一一对应，将空间向量$v&#x3D;(x,y,z,w)$直接映射到四元数$V&#x3D;x+iy+jz+kw$。给定旋量$R$，由于左等角对应右乘，右等角对应左乘，因此记它的右等角旋转的四元数为$R_l$，左等角旋转的四元数为$R_r$，它作用在坐标$p$上后$R(p)$的坐标计算公式为$R_lpR_r$，即</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">apply</span>(<span class="params">R:Rotorq, p:Vec4</span>)&#123;</span><br><span class="line">  <span class="keyword">let</span> P = <span class="keyword">new</span> <span class="title class_">Quaternion</span>(p); <span class="comment">// 将向量p转四元数P</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Vec4</span>(R.<span class="property">l</span>.<span class="title function_">mul</span>(P).<span class="title function_">mul</span>(R.<span class="property">r</span>)); <span class="comment">// 将计算后的四元数转回向量</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="旋转平面算法-1"><a href="#旋转平面算法-1" class="headerlink" title="旋转平面算法"></a>旋转平面算法</h4><p>使用四元数表示的旋量作用于2-向量（平面）上也有更直接的算法，而无需使用2-向量的6维线性空间中的6阶矩阵。我们将2-向量$B$分解为自对偶与反自对偶部分：$B&#x3D;B_a+B_b&#x3D;(B+B^*)&#x2F;2+(B-B^*)&#x2F;2$，它们可按照以下方式同构于三维向量，比如自对偶部分：<br>$(x_a,y_a,z_a)$对应$B_a &#x3D; x_a (e_{xy}+e_{zw}) + y_a (e_{xz}-e_{yw}) + z_a (e_{xw}+e_{yz})$<br>反自对偶部分：<br>$(x_b,y_b,z_b)$对应$B_b &#x3D; x_b (e_{xy}-e_{zw}) + y_b (e_{xz}+e_{yw}) + z_b (e_{xw}-e_{yz})$</p>
+<p>左&#x2F;右等角旋转则同构于三维向量的普通三维旋转，因此我们可以使用左右四元数来旋转这两部分向量，最后再将2-向量恢复到普通的直角坐标系表示。注意虽然这些左右等角旋转空间跟三维空间局部同构，但四元数上的同构映射不一定是恒等映射，共轭也是同构映射，代入具体算例可以发现右乘的左等角旋转需要取共轭。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">apply</span>(<span class="params">r: Rotorq, b: Bivec</span>): <span class="title class_">Bivec</span> &#123;</span><br><span class="line">    <span class="comment">// 计算2-向量的自对偶与反自对偶部分</span></span><br><span class="line">    <span class="keyword">let</span> A = <span class="keyword">new</span> <span class="title class_">Vec3</span>(<span class="variable language_">this</span>.<span class="property">xy</span> + <span class="variable language_">this</span>.<span class="property">zw</span>, <span class="variable language_">this</span>.<span class="property">xz</span> - <span class="variable language_">this</span>.<span class="property">yw</span>, <span class="variable language_">this</span>.<span class="property">xw</span> + <span class="variable language_">this</span>.<span class="property">yz</span>);</span><br><span class="line">    <span class="keyword">let</span> B = <span class="keyword">new</span> <span class="title class_">Vec3</span>(<span class="variable language_">this</span>.<span class="property">xy</span> - <span class="variable language_">this</span>.<span class="property">zw</span>, <span class="variable language_">this</span>.<span class="property">xz</span> + <span class="variable language_">this</span>.<span class="property">yw</span>, <span class="variable language_">this</span>.<span class="property">xw</span> - <span class="variable language_">this</span>.<span class="property">yz</span>);</span><br><span class="line">    <span class="comment">// 右等角旋转旋转对偶分量</span></span><br><span class="line">    A = <span class="title function_">apply</span>(r.<span class="property">l</span>, A);</span><br><span class="line">    <span class="comment">// 左等角旋转旋转反对偶分量，注意该同构差一个共轭映射</span></span><br><span class="line">    B = <span class="title function_">apply</span>(r.<span class="property">r</span>.<span class="title function_">conj</span>(), B);</span><br><span class="line">    <span class="comment">// 从对偶分解表示法中恢复至普通直角坐标表示旋转后的2-向量</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Bivec</span>(</span><br><span class="line">        A.<span class="property">x</span> + B.<span class="property">x</span>, A.<span class="property">y</span> + B.<span class="property">y</span>, A.<span class="property">z</span> + B.<span class="property">z</span>, A.<span class="property">z</span> - B.<span class="property">z</span>, B.<span class="property">y</span> - A.<span class="property">y</span>, A.<span class="property">x</span> - B.<span class="property">x</span></span><br><span class="line">    ).<span class="title function_">mul</span>(<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="旋转的复合与逆-2"><a href="#旋转的复合与逆-2" class="headerlink" title="旋转的复合与逆"></a>旋转的复合与逆</h4><p>由于四元数版的旋量有两部分，复合时两部分要分别做复合，且要注意旋转顺序，比如旋转R1再旋转R2：$$R_{2l}(R_{1l}pR_{1r})R_{2r}&#x3D;(R_{2l}R_{1l})p(R_{1r}R_{2r})$$即新的$R_l&#x3D;R_{2l}R_{1l}$，$R_r&#x3D;R_{1r}R_{2r}$。于是我们定义旋量的乘法：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 旋转R1再旋转R2定义为r2乘r1:</span></span><br><span class="line"><span class="title function_">mul</span>(<span class="params">r2:Rotorq, r1:Rotorq</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Rotorq</span>(r2.<span class="property">l</span>.<span class="title function_">mul</span>(r1.<span class="property">l</span>), r1.<span class="property">r</span>.<span class="title function_">mul</span>(r2.<span class="property">r</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>旋量的逆则是将左右四元数分别取逆，即共轭：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 求旋量r的逆</span></span><br><span class="line"><span class="title function_">inverse</span>(<span class="params">r:Rotorq</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Rotorq</span>(r.<span class="property">l</span>.<span class="title function_">conj</span>(), r.<span class="property">r</span>.<span class="title function_">conj</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="平面与角度生成旋转-1"><a href="#平面与角度生成旋转-1" class="headerlink" title="平面与角度生成旋转"></a>平面与角度生成旋转</h4><p>由于左右等角旋转完全不互相干扰，我们可将生成元2-向量分解为自对偶向量与反自对偶向量，由于左右等角旋转的结构类似三维旋转，因此可套用三维空间的旋转生成四元数的公式：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">exp</span>(<span class="attr">p</span>:<span class="title class_">Bivec</span>): <span class="title class_">Rotorq</span> &#123;</span><br><span class="line">    <span class="comment">// A 为 p的自对偶部分，B 为反自对偶部分</span></span><br><span class="line">    <span class="keyword">let</span> A = <span class="keyword">new</span> <span class="title class_">Vec3</span>(p.<span class="property">xy</span> + p.<span class="property">zw</span>, p.<span class="property">xz</span> - p.<span class="property">yw</span>, p.<span class="property">xw</span> + p.<span class="property">yz</span>).<span class="title function_">mul</span>(<span class="number">0.5</span>);</span><br><span class="line">    <span class="keyword">let</span> B = <span class="keyword">new</span> <span class="title class_">Vec3</span>(p.<span class="property">xy</span> - p.<span class="property">zw</span>, p.<span class="property">xz</span> + p.<span class="property">yw</span>, p.<span class="property">xw</span> - p.<span class="property">yz</span>).<span class="title function_">mul</span>(<span class="number">0.5</span>);</span><br><span class="line">    <span class="comment">// a与b为自对偶/反自对偶2-向量的模长</span></span><br><span class="line">    <span class="keyword">let</span> a = A.<span class="title function_">norm</span>(); <span class="keyword">let</span> b = B.<span class="title function_">norm</span>();</span><br><span class="line">    <span class="comment">// 按三维2-向量生成四元数的公式分别计算左右等角两部分四元数</span></span><br><span class="line">    <span class="comment">// 注意由于算对偶分解时已经将向量长度除以2，因此这里的四元数旋转角度不再需除以2</span></span><br><span class="line">    <span class="keyword">let</span> sa = <span class="title class_">Math</span>.<span class="title function_">sin</span>(a) / a;</span><br><span class="line">    <span class="keyword">let</span> sb = <span class="title class_">Math</span>.<span class="title function_">sin</span>(b) / b;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Rotorq</span>(</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Quaternion</span>(<span class="title class_">Math</span>.<span class="title function_">cos</span>(aa), sa * A.<span class="property">x</span>, sa * A.<span class="property">y</span>, sa * A.<span class="property">z</span>),</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Quaternion</span>(<span class="title class_">Math</span>.<span class="title function_">cos</span>(bb), sb * B.<span class="property">x</span>, sb * B.<span class="property">y</span>, sb * B.<span class="property">z</span>)</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="lookAt生成旋转-2"><a href="#lookAt生成旋转-2" class="headerlink" title="lookAt生成旋转"></a>lookAt生成旋转</h4><p>用于给定始末向量的lookAt生成旋转的算法其实并不依赖具体使用的是哪种旋量的表示法，请参考<a href='javascript:void(0);' onclick='if($("#qa_").text()=="+"){$("#ga").show();$("#ga_").text("-");}window.location.href="#lookat";'>几何代数版旋量小节中的lookAt算法</a><br>其实四维空间除了通过旋转让向量对齐向量，还会有向量对齐平面、平面对齐平面两种新需求。</p>
+<ol>
+<li><p>向量对齐平面：给定向量$v$与简单的单位化的2-向量表示的平面$B$，求将$v$旋转至平面$B$中的距离最近的旋转。我们可通过几何积的技巧找到向量$v$在平面$B$上的投影，然后使用普通向量至向量的lookAt函数将$v$旋转至投影即符合要求：向量与2-向量可以规定一种部分的内积，定义为它们的几何积的1-向量部分，容易验证若它们都是单位化的，则向量与2-向量内积后得到的新向量为该向量在平面上的投影顺着平面的涡漩方向旋转90度的新向量，我们可以将新向量再与平面做一次内积，此时得到与投影反向的向量，再求内积即得投影。于是定义投影函数与lookAt函数如下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">project</span>(<span class="params">v:Vec4,b:Bivec</span>):<span class="title class_">Vec4</span>&#123;</span><br><span class="line">    <span class="comment">// dot函数为向量与2-向量的内积，neg函数将向量取反</span></span><br><span class="line">    <span class="keyword">return</span> v.<span class="title function_">dot</span>(b).<span class="title function_">dot</span>(b).<span class="title function_">neg</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">lookAt</span>(<span class="params">v:Vec4,b:Bivec</span>):<span class="title class_">Rotorq</span>&#123;</span><br><span class="line">    <span class="comment">// 求得投影并将其单位化</span></span><br><span class="line">    <span class="keyword">let</span> pv = <span class="title function_">project</span>(v,b).<span class="title function_">normalize</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">lookAt</span>(v, pv);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注：以上算法对两种版本旋量均可用。</p>
+</li>
+<li><p>平面对齐平面：给定两个简单的单位化的2-向量表示的平面$A$与$B$，求将$A$旋转至与$B$重合的距离最近的旋转。虽然也可以在平面上选取两个向量投影到另一张平面上，用多次向量至向量lookAt方法处理，但平面上方向很多，选取方向就是个麻烦问题，更别说还要处理各种垂直、反向等特殊情况。我找到了一个仅适用于四元数版本旋量的精妙算法：因此我们可以将2-向量做对偶分解，这个旋转的左等角旋转会将两个2-向量的自对偶部分对齐，而有等角旋转则将反自对偶部分对齐。由于自对偶&#x2F;反自对偶2-向量同构于三维空间，我们可以使用三维空间的向量至向量的lookAt函数来实现对齐，代码如下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">lookAt</span>(<span class="params">A: Bivec, B: Bivec</span>): <span class="title class_">Rotorq</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="title class_">Aa</span> = <span class="keyword">new</span> <span class="title class_">Vec3</span>(A.<span class="property">xy</span> + A.<span class="property">zw</span>, A.<span class="property">xz</span> - A.<span class="property">yw</span>, A.<span class="property">xw</span> + A.<span class="property">yz</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="title class_">Ab</span> = <span class="keyword">new</span> <span class="title class_">Vec3</span>(A.<span class="property">xy</span> - A.<span class="property">zw</span>, A.<span class="property">xz</span> + A.<span class="property">yw</span>, A.<span class="property">xw</span> - A.<span class="property">yz</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="title class_">Ba</span> = <span class="keyword">new</span> <span class="title class_">Vec3</span>(B.<span class="property">xy</span> + B.<span class="property">zw</span>, B.<span class="property">xz</span> - B.<span class="property">yw</span>, B.<span class="property">xw</span> + B.<span class="property">yz</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="title class_">Bb</span> = <span class="keyword">new</span> <span class="title class_">Vec3</span>(B.<span class="property">xy</span> - B.<span class="property">zw</span>, B.<span class="property">xz</span> + B.<span class="property">yw</span>, B.<span class="property">xw</span> - B.<span class="property">yz</span>);</span><br><span class="line">    <span class="comment">// 注意这里lookAt是前面定义过的三维向量至向量的，此处为重载而非递归调用自身</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Rotorq</span>(<span class="title function_">lookAt</span>(<span class="title class_">Aa</span>, <span class="title class_">Ba</span>), <span class="title function_">lookAt</span>(<span class="title class_">Bb</span>, <span class="title class_">Ab</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意虽然这些左右等角旋转空间跟三维空间局部同构，但四元数上的同构映射不一定是恒等映射，共轭也是同构映射，因此可能会相差一个共轭，代入具体算例可以发现右乘的左等角分量需要取共轭（即旋转的逆），因此最后返回的第二个参数为<code>lookAt(Bb, Ab)</code>而不是<code>lookAt(Ab, Bb)</code>。</p>
+</li>
+</ol>
+<h4 id="旋转矩阵转旋量-1"><a href="#旋转矩阵转旋量-1" class="headerlink" title="旋转矩阵转旋量"></a>旋转矩阵转旋量</h4><p>多次使用lookAt函数实现，方法完全与几何代数版旋量一样，请参考<a href='javascript:void(0);' onclick='if($("#ga_").text()=="+"){$("#ga").show();$("#ga_").text("-");}window.location.href="#lookat";'>这里</a>。<a name="rotorq_log"></a></p>
+<h4 id="已知旋转找平面与角度-1"><a href="#已知旋转找平面与角度-1" class="headerlink" title="已知旋转找平面与角度"></a>已知旋转找平面与角度</h4><p>除了使用对数映射的泰勒展开，四元数的版本还有更方便的做法：由于旋量由两个四元数表示的等角旋转组成，我们可以使用这里的三维旋转找生成元的方法得到相应的自对偶与反自对偶2-向量，最后再合成恢复出整个2-向量：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">log</span>(<span class="params">r: Rotorq</span>): <span class="title class_">Bivec</span> &#123;</span><br><span class="line">    <span class="comment">// 计算log(r.l)，由于这里只是一半的旋转，故恢复角度无需乘2</span></span><br><span class="line">    <span class="comment">// 因此这里无法直接调用前面三维空间中对四元数的对数函数</span></span><br><span class="line">    <span class="keyword">let</span> ls = <span class="title class_">Math</span>.<span class="title function_">acos</span>(r.<span class="property">l</span>.<span class="property">x</span>);</span><br><span class="line">    <span class="keyword">let</span> a = <span class="keyword">new</span> <span class="title class_">Vec3</span>(r.<span class="property">l</span>.<span class="property">y</span>, r.<span class="property">l</span>.<span class="property">z</span>, r.<span class="property">l</span>.<span class="property">w</span>).<span class="title function_">mul</span>(ls / <span class="title class_">Math</span>.<span class="title function_">sin</span>(ls));</span><br><span class="line">    <span class="comment">// 计算log(r.r)，方法同上</span></span><br><span class="line">    <span class="keyword">let</span> rs = <span class="title class_">Math</span>.<span class="title function_">acos</span>(r.<span class="property">r</span>.<span class="property">x</span>);</span><br><span class="line">    <span class="keyword">let</span> b = <span class="keyword">new</span> <span class="title class_">Vec3</span>(r.<span class="property">r</span>.<span class="property">y</span>, r.<span class="property">r</span>.<span class="property">z</span>, r.<span class="property">r</span>.<span class="property">w</span>).<span class="title function_">mul</span>(rs / <span class="title class_">Math</span>.<span class="title function_">sin</span>(rs));</span><br><span class="line">    <span class="comment">// 将左右两半的生成元合并，转换至普通直角坐标表示</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Bivec</span>(</span><br><span class="line">        a.<span class="property">x</span> + b.<span class="property">x</span>, a.<span class="property">y</span> + b.<span class="property">y</span>, a.<span class="property">z</span> + b.<span class="property">z</span>, a.<span class="property">z</span> - b.<span class="property">z</span>, b.<span class="property">y</span> - a.<span class="property">y</span>, a.<span class="property">x</span> - b.<span class="property">x</span></span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+<br/>
+
+<h2 id="随机方向-x2F-旋转的生成"><a href="#随机方向-x2F-旋转的生成" class="headerlink" title="随机方向&#x2F;旋转的生成"></a>随机方向&#x2F;旋转的生成</h2><h3 id="随机单位向量的生成"><a href="#随机单位向量的生成" class="headerlink" title="随机单位向量的生成"></a>随机单位向量的生成</h3><p>随机单位向量的生成问题其实等价于在球面上生成均匀分布的点。这个问题在数学上已经研究得十分透彻了：首先直接均匀生成一段区间上的随机数，再根据坐标映射的“伸缩”系数通过一个非线性函数映射到球坐标上的经纬度值。下面直接列出伪代码：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">randVec3</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">2.0</span> * <span class="title class_">Math</span>.<span class="property">PI</span>;</span><br><span class="line">    <span class="keyword">let</span> c = <span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">2.0</span> - <span class="number">1.0</span>;</span><br><span class="line">    <span class="keyword">let</span> b = <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(<span class="number">1.0</span> - c * c);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Vec3</span>(b * <span class="title class_">Math</span>.<span class="title function_">cos</span>(a), b * <span class="title class_">Math</span>.<span class="title function_">sin</span>(a), c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">randVec4</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">2.0</span> * <span class="title class_">Math</span>.<span class="property">PI</span>;</span><br><span class="line">    <span class="keyword">let</span> b = <span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">2.0</span> * <span class="title class_">Math</span>.<span class="property">PI</span>;</span><br><span class="line">    <span class="keyword">let</span> c = <span class="title class_">Math</span>.<span class="title function_">random</span>();</span><br><span class="line">    <span class="keyword">let</span> sc = <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(c);</span><br><span class="line">    <span class="keyword">let</span> cc = <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(<span class="number">1.0</span> - c);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Vec4</span>(sc * <span class="title class_">Math</span>.<span class="title function_">cos</span>(a), sc * <span class="title class_">Math</span>.<span class="title function_">sin</span>(a), cc * <span class="title class_">Math</span>.<span class="title function_">cos</span>(b), cc * <span class="title class_">Math</span>.<span class="title function_">sin</span>(b));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>顺便提一句，这两个函数在<a href="/archives/cg4d/">上一篇文章</a>提到的路径追踪算法生成照片级渲染中大有用处。</p>
+<h3 id="随机旋转的生成"><a href="#随机旋转的生成" class="headerlink" title="随机旋转的生成"></a>随机旋转的生成</h3><p>由于三维旋转可以由同构于超球面的单位四元数表示，因此可以使用前面生成四维随机单位向量的算法生成四元数。若采用四元数版本的旋量，则四维旋转由左、右两个四元数表示，随机生成两个超球上的两个点即可；若采用几何代数版本的旋量，我目前还不知道有很方便的生成算法。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">randQuaternion</span>(<span class="params"></span>):<span class="title class_">Quaternion</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Quaternion</span>(<span class="title function_">randVec4</span>());</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">randRotorq</span>(<span class="params"></span>):<span class="title class_">Rotorq</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Rotorq</span>(<span class="title function_">randQuaternion</span>(), <span class="title function_">randQuaternion</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="四维相机的常见控制方式"><a href="#四维相机的常见控制方式" class="headerlink" title="四维相机的常见控制方式"></a>四维相机的常见控制方式</h2><h3 id="轨道球（TrackBall）控制模式"><a href="#轨道球（TrackBall）控制模式" class="headerlink" title="轨道球（TrackBall）控制模式"></a>轨道球（TrackBall）控制模式</h3><p>该模式类似一般3D软件中的视图旋转，对应到四维则类似Jenn3D的操作方式。该控制器存储一个旋转中心点和距离，再加一个相机朝向的旋量，该模式中相机始终面对中心点，设相机坐标系下前方为w轴，则可按以下方式更新它的位置：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TrackBallController</span>&#123;</span><br><span class="line">    <span class="comment">// 旋转中心坐标</span></span><br><span class="line">    <span class="attr">center</span>: <span class="title class_">Vec4</span>;</span><br><span class="line">    <span class="comment">// 相机距中心的距离</span></span><br><span class="line">    <span class="attr">distance</span>: <span class="built_in">number</span>;</span><br><span class="line">    <span class="comment">// 相机朝向</span></span><br><span class="line">    <span class="attr">rotor</span>: <span class="title class_">Rotorq</span>;</span><br><span class="line">    <span class="title function_">update</span>(<span class="params">camera: Object4D</span>)&#123;</span><br><span class="line">        <span class="comment">// 更新相机旋转</span></span><br><span class="line">        camera.<span class="property">rotation</span> = <span class="variable language_">this</span>.<span class="property">rotor</span>;</span><br><span class="line">        <span class="comment">// 初始位置设为相机前方给定长度的向量，通过相机朝向求出相机相对中心的位置，最后叠加上中心</span></span><br><span class="line">        camera.<span class="property">position</span> = center.<span class="title function_">add</span>(<span class="title function_">apply</span>(<span class="variable language_">this</span>.<span class="property">rotor</span>,<span class="keyword">new</span> <span class="title class_">Vec4</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,distance)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用户使用键鼠交互更新距离与旋量，比如鼠标左键在屏幕上上下左右拖拽时在每帧的移动量被转换成一个在相机坐标系下仅有yw和xw分量的2-向量$B$，它生成的旋转$V’&#x3D;\exp(B)$首先变换至世界坐标$V$，即$V&#x3D;RV’R^{-1}$，然后再叠加到目前相机的朝向$R$上得到总旋转$VR &#x3D; RV’R^{-1}R&#x3D;RV’&#x3D;R\exp(B)$，这可以总结为若后面叠加的旋转是在旋转物体的局部坐标系中表示的就用右乘，若都是同样的全局坐标系则使用通常的左乘。伪代码如下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TrackBallController</span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="title function_">onLeftButtonDrag</span>(<span class="params">dx:<span class="built_in">number</span>, dy:<span class="built_in">number</span></span>)&#123;</span><br><span class="line">        <span class="comment">// 根据鼠标移动距离生成2-向量 dx*exw + dy * eyw</span></span><br><span class="line">        <span class="keyword">let</span> localBivec = <span class="keyword">new</span> <span class="title class_">Bivec</span>(<span class="number">0</span>, <span class="number">0</span>, dx, <span class="number">0</span>, dy, <span class="number">0</span>);</span><br><span class="line">        <span class="comment">// 生成旋转R</span></span><br><span class="line">        <span class="keyword">let</span> localRotation = <span class="title function_">exp</span>(localBivec);</span><br><span class="line">        <span class="comment">// 将其转换至世界坐标系，叠加旋转后更新新的相机朝向，注意叠加的旋转在局部坐标，乘法顺序颠倒</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">rotor</span> = localRotation.<span class="title function_">mul</span>(<span class="variable language_">this</span>.<span class="property">rotor</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="自由飞行（FreeFly）控制模式"><a href="#自由飞行（FreeFly）控制模式" class="headerlink" title="自由飞行（FreeFly）控制模式"></a>自由飞行（FreeFly）控制模式</h3><p>该模式一般模拟无重力下的第一人称游走，它不用单独储存信息，直接读取相机的位置与朝向来根据用户的键鼠输入更新即可，需注意用户的旋转平移都应在相机的局部坐标系中定义再转换至世界坐标，这里不再给出伪代码。</p>
+<h3 id="保持竖直（KeepUp）模式"><a href="#保持竖直（KeepUp）模式" class="headerlink" title="保持竖直（KeepUp）模式"></a>保持竖直（KeepUp）模式</h3><p>该模式一般模拟在重力环境下的第一人称游走，要求相机的侧前后方与左右方张成的平面始终保持在水平胞中不倾斜。有两种方法，第一种是使用类似欧拉角的技术，用两个旋量分别储存水平旋转与垂直旋转，第二种则是在每次旋转后纠偏。实际使用中我发现第二种方法稳定性差一些，因此tesserxel引擎中采用第一种方式。该旋转的自由度仅为4，它由水平胞内的三维自由旋转加一个垂直方向的俯仰角构成，因此我们用一个旋量与一个俯仰角来储存旋转，我采用的是鼠标拖拽控制水平胞内的旋转，使用滚轮控制俯仰角。最后每帧按下面方式更新相机朝向:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">KeepUpController</span>&#123;</span><br><span class="line">    <span class="comment">// 水平方向的朝向由一个旋量表示</span></span><br><span class="line">    <span class="attr">rotorH</span>: <span class="title class_">Rotorq</span>;</span><br><span class="line">    <span class="comment">// 垂直方向的俯仰角由一个标量数字表示</span></span><br><span class="line">    <span class="attr">rotorV</span>: <span class="built_in">number</span>;</span><br><span class="line">    <span class="title function_">update</span>(<span class="params">camera: Object4D</span>)&#123;</span><br><span class="line">        <span class="comment">// 计算仅考虑水平胞旋转的相机局部坐标系中产生俯仰角的垂直旋转，它由yw平面上的2-向量生成</span></span><br><span class="line">        <span class="keyword">let</span> verticalRotation = <span class="title function_">planeAngle2rotorq</span>(<span class="keyword">new</span> <span class="title class_">Bivec</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>), <span class="variable language_">this</span>.<span class="property">rotorV</span>);</span><br><span class="line">        <span class="comment">// 本来该按水平旋转再垂直旋转的顺序合成最终旋转，但叠加的旋转在局部坐标，乘法顺序颠倒</span></span><br><span class="line">        camera.<span class="property">rotation</span> = rotorH.<span class="title function_">mul</span>(<span class="variable language_">this</span>.<span class="property">verticalRotation</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>控制相机移动可以有两种模式，一是飞行模式，即在旋转时除了使用上述方法保持水平胞不倾斜外，其余的体验跟自由飞行模式相当，即若相机有俯仰角时，前进后退会让相机高度随之改变，二是地面漫游模式，这种模式下相机的前进后退不会考虑俯仰角，始终在地平面内运动（比如Minecraft在地面行走的玩家），并额外增加直接控制竖直升降相机的键盘交互。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wxyhly.github.io/archives/so4/" data-id="clwgerpx20000f4wm5sd12hj1" class="article-share-link">Share</a>
+      
+        <a href="https://wxyhly.github.io/archives/so4/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%87%A0%E4%BD%95/" rel="tag">几何</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%9B%E7%BB%B4/" rel="tag">四维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag">图形学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/archives/cg4d/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older &gt;&gt;</strong>
+      <div class="article-nav-title">四维计算机图形学：渲染篇</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Tesserxel%E7%B3%BB%E5%88%97/">Tesserxel系列</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A5%87%E7%89%B9%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">奇特世界系列</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    <div class="widget-wrap">
+   <h3 class="widget-title">链接</h3>
+   <div class="widget">
+      <ul class="entry">
+         <li><a href="https://space.bilibili.com/454422438" title="bilibili" target="_blank">WXYHLY(Hqak)的B站链接</a></li>
+         <li><a href="http://hadroncfy.com" title="hadroncfy" target="_blank">Hadroncfy's Notebook</a></li>
+      </ul>
+   </div>
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2b2t/" style="font-size: 11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 14px;">tesserxel</a> <a href="/tags/webgpu/" style="font-size: 12px;">webgpu</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 11px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%8F%8C%E6%9B%B2%E7%A9%BA%E9%97%B4/" style="font-size: 12px;">双曲空间</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 16px;">图形</a> <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 11px;">图形学</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 15px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 14px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 18px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 11px;">模拟</a> <a href="/tags/%E6%B8%B2%E6%9F%93/" style="font-size: 10px;">渲染</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 16px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 11px;">电路</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 13px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 11px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 11px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/archives/so4/">四维计算机图形学：旋转篇</a>
+          </li>
+        
+          <li>
+            <a href="/archives/cg4d/">四维计算机图形学：渲染篇</a>
+          </li>
+        
+          <li>
+            <a href="/archives/tesserxel-flightsim/">玩Tesserxel（三）：火车、飞行模拟器教程</a>
+          </li>
+        
+          <li>
+            <a href="/archives/aircraft4d/">四维世界（九）：飞行器设计</a>
+          </li>
+        
+          <li>
+            <a href="/archives/hyperworld/">神奇的双曲世界</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 wxyhly<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/programs/" class="mobile-nav-link">Programs</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'wxyhly';
+  
+  var disqus_url = 'https://wxyhly.github.io/archives/so4/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<style>
+mjx-container {
+  display: inline-grid;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 102%;
+}
+mjx-container::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 2px;
+}
+mjx-container::-webkit-scrollbar {
+  background-color: lightgray;
+  height: 6px;
+}
+mjx-assistive-mml{
+  width: 0% !important;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    }); 
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script defer>
+const setJax = function(){
+  setTimeout(function(){
+    document.querySelectorAll("mjx-container").forEach(function(e){
+      const overflow = e.scrollWidth > (e.clientWidth ? e.clientWidth + 3 : (document.querySelector(".article-entry").clientWidth - 120));
+      e.style.overflowX = overflow ? "scroll" : "hidden";
+      e.onclick = function(){
+        const overflow = e.scrollWidth > (e.clientWidth ? e.clientWidth + 3 : (document.querySelector(".article-entry").clientWidth - 120));
+        e.style.overflowX = overflow ? "scroll" : "hidden";
+      };
+    })
+  },1000);  
+}
+window.addEventListener("resize", setJax);
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  "HTML-CSS": { linebreaks: { automatic: true } },
+  SVG: { linebreaks: { automatic: true } },
+  startup: {
+    pageReady: function(){
+      return MathJax.startup.defaultPageReady().then(setJax);
+    }
+  }
+};
+</script>
+<script type="text/javascript" defer
+  src="https://cdn.bootcss.com/mathjax/3.0.5/es5/tex-mml-chtml.js">
+</script>
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

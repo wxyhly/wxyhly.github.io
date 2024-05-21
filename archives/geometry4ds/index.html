@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/geometry8.gif">
 <meta property="og:image" content="https://wxyhly.github.io/img/geometry5.gif">
 <meta property="article:published_time" content="2016-04-09T14:40:00.000Z">
-<meta property="article:modified_time" content="2022-09-08T07:51:07.376Z">
+<meta property="article:modified_time" content="2024-05-21T08:59:13.434Z">
 <meta property="article:author" content="wxyhly">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="系列文章">
@@ -147,7 +147,7 @@
 <li>胞与胞：平行、重合、相交：交集是一个二维平面</li>
 </ul>
 </li>
-<li><h4 id="面与面"><a href="#面与面" class="headerlink" title="面与面"></a>面与面</h4><p>　　先说已知的情况：共面、平行、相交于一条线（共胞，有二面角的定义）但两平面还可以只相交于一点：比如坐标面$xOy$与坐标面$zOw$公共解只有原点！无法想象两无限大平面<strong>只在一点相交</strong>！<br><img src="/img/geometry1.gif"><br>　　由向量内积可知，坐标面$xOy$与坐标面$zOw$上分别任给两条直线都垂直，所以我们说坐标面$xOy$与坐标面$zOw$垂直，但记住它们只在原点相交！这和一般两个平面形成二面角相垂直是截然不同的。垂直角度就是90°，所以这暗示着<strong>两个平面的夹角用一个角度描述是不够的！</strong>感觉这里有两个自由度！不管怎么说，我们先把两平面上任两条直线都垂直这种两平面的关系叫<strong>绝对垂直</strong>，以与共胞的二面角垂直区分。<br>　　越来越难了，不是吗？到这一步如果不用线性代数理解用硬想的方法求角度就感觉智商不够用了。当我们高中做立体几何束手无策的时候，向量法来拯救我们了，所以下一节我要介绍四维空间中的<strong>向量法</strong>。注意向量的起点无法确定，我们只能表示方向，所以后文都是在所有几何体过原点的基础上讨论的。在学会系统用向量法之前我们还是得硬着头皮先想想四维空间中的两张平面。我曾经想了很久都没结果，后来终于查到了<a target="_blank" rel="noopener" href="http://www.cnki.com.cn/Article/CJFDTotal-FXKY198501013.htm">有关论文</a>：<a name="deux"></a></p>
+<li><h4 id="面与面"><a href="#面与面" class="headerlink" title="面与面"></a>面与面</h4><p>　　先说已知的情况：共面、平行、相交于一条线（共胞，有二面角的定义）但两平面还可以只相交于一点：比如坐标面$xy$与坐标面$zw$公共解只有原点！无法想象两无限大平面<strong>只在一点相交</strong>！<br><img src="/img/geometry1.gif"><br>　　由向量内积可知，坐标面$xy$与坐标面$zw$上分别任给两条直线都垂直，所以我们说坐标面$xy$与坐标面$zw$垂直，但记住它们只在原点相交！这和一般两个平面形成二面角相垂直是截然不同的。垂直角度就是90°，所以这暗示着<strong>两个平面的夹角用一个角度描述是不够的！</strong>感觉这里有两个自由度！不管怎么说，我们先把两平面上任两条直线都垂直这种两平面的关系叫<strong>绝对垂直</strong>，以与共胞的二面角垂直区分。<br>　　越来越难了，不是吗？到这一步如果不用线性代数理解用硬想的方法求角度就感觉智商不够用了。当我们高中做立体几何束手无策的时候，向量法来拯救我们了，所以下一节我要介绍四维空间中的<strong>向量法</strong>。注意向量的起点无法确定，我们只能表示方向，所以后文都是在所有几何体过原点的基础上讨论的。在学会系统用向量法之前我们还是得硬着头皮先想想四维空间中的两张平面。我曾经想了很久都没结果，后来终于查到了<a target="_blank" rel="noopener" href="http://www.cnki.com.cn/Article/CJFDTotal-FXKY198501013.htm">有关论文</a>：<a name="deux"></a></p>
 </li>
 </ul>
 <p><a href="#index">返回目录</a></p>
@@ -160,7 +160,7 @@
 </ul>
 <p> 下面就是四维空间的情况了：</p>
 <ul>
-<li>$A、B$绝对垂直：由于任意两直线都垂直，平面$A$上任意一点投影在平面$B$上都落在它们垂足所在的点（如平面$xOy$在平面$zOw$上的投影为原点），所以$\theta_1&#x3D;\theta_2&#x3D;90°$。</li>
+<li>$A、B$绝对垂直：由于任意两直线都垂直，平面$A$上任意一点投影在平面$B$上都落在它们垂足所在的点（如平面$xy$在平面$zw$上的投影为原点），所以$\theta_1&#x3D;\theta_2&#x3D;90°$。</li>
 <li>$A、B$处于一般位置：$90°&gt;\theta_1\ge\theta_2&gt;0$。</li>
 <li>现在有了<strong>绝对平行</strong>、<strong>半平行</strong>、<strong>半平行半垂直</strong>、<strong>绝对垂直</strong>，我们肯定会想到<strong>半垂直</strong>：$\theta_1&#x3D;90°&gt;\theta_2&gt;0$，这种情况我们<a href="#semivertical">后面马上</a>就会看到。<a name="ami"></a></li>
 </ul>
@@ -265,7 +265,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2b2t/" style="font-size: 11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 14px;">tesserxel</a> <a href="/tags/webgpu/" style="font-size: 12px;">webgpu</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 11px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%8F%8C%E6%9B%B2%E7%A9%BA%E9%97%B4/" style="font-size: 12px;">双曲空间</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 16px;">图形</a> <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 10px;">图形学</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 15px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 14px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 18px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 11px;">模拟</a> <a href="/tags/%E6%B8%B2%E6%9F%93/" style="font-size: 10px;">渲染</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 16px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 11px;">电路</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 13px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 11px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 11px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+      <a href="/tags/2b2t/" style="font-size: 11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 14px;">tesserxel</a> <a href="/tags/webgpu/" style="font-size: 12px;">webgpu</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 11px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%8F%8C%E6%9B%B2%E7%A9%BA%E9%97%B4/" style="font-size: 12px;">双曲空间</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 16px;">图形</a> <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 11px;">图形学</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 15px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 14px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 18px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 11px;">模拟</a> <a href="/tags/%E6%B8%B2%E6%9F%93/" style="font-size: 10px;">渲染</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 16px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 11px;">电路</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 13px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 11px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 11px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
     </div>
   </div>
 
@@ -274,7 +274,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
     </div>
   </div>
 
@@ -285,6 +285,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/archives/so4/">四维计算机图形学：旋转篇</a>
+          </li>
         
           <li>
             <a href="/archives/cg4d/">四维计算机图形学：渲染篇</a>
@@ -300,10 +304,6 @@
         
           <li>
             <a href="/archives/hyperworld/">神奇的双曲世界</a>
-          </li>
-        
-          <li>
-            <a href="/archives/tesserxel-scene/">玩Tesserxel（二）：场景交互介绍</a>
           </li>
         
       </ul>
