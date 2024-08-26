@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="49.522652mm"
+   height="41.469643mm"
+   viewBox="0 0 49.522652 41.469643"
+   version="1.1"
+   id="svg79694"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="ord002.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview79696"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     fit-margin-top="1"
+     fit-margin-left="1"
+     fit-margin-right="1"
+     fit-margin-bottom="1"
+     inkscape:zoom="2.5537756"
+     inkscape:cx="75.378588"
+     inkscape:cy="89.475362"
+     inkscape:window-width="1440"
+     inkscape:window-height="838"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs79691">
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path82341" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="图层 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-32.568899,-9.717879)">
+    <g
+       id="g107672"
+       transform="matrix(1.4622372,0,0,1.4622372,-15.516796,-5.4833696)">
+      <text
+         xml:space="preserve"
+         style="font-size:3.52777px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+         x="54.876705"
+         y="13.790689"
+         id="text80769"><tspan
+           sodipodi:role="line"
+           id="tspan80767"
+           style="stroke-width:0.264583"
+           x="54.876705"
+           y="13.790689">自然数</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.52777px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+         x="51.825245"
+         y="25.115311"
+         id="text81279"><tspan
+           sodipodi:role="line"
+           id="tspan81277"
+           style="stroke-width:0.264583"
+           x="51.825245"
+           y="25.115311">递归序数</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.52777px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+         x="48.44379"
+         y="37.074982"
+         id="text81781"><tspan
+           sodipodi:role="line"
+           id="tspan81779"
+           style="stroke-width:0.264583"
+           x="48.44379"
+           y="37.074982">非递归序数</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
+         d="M 58.203734,21.726737 V 14.949589"
+         id="path82248" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
+         d="M 58.336621,33.088423 V 26.244835"
+         id="path82250" />
+      <text
+         xml:space="preserve"
+         style="font-size:2.11667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+         x="33.803272"
+         y="19.276241"
+         id="text83662"><tspan
+           sodipodi:role="line"
+           id="tspan83660"
+           style="font-size:2.11667px;stroke-width:0.264583"
+           x="33.803272"
+           y="19.276241">快增长层级函数f  (FGH)</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:2.11667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+         x="35.899139"
+         y="30.555725"
+         id="text83918"><tspan
+           sodipodi:role="line"
+           id="tspan83916"
+           style="font-size:2.11667px;stroke-width:0.264583"
+           x="35.899139"
+           y="30.555725">序数坍缩函数Ψ (OCF)</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:4.72525px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.354394"
+         x="35.430046"
+         y="36.720478"
+         id="text91962"><tspan
+           sodipodi:role="line"
+           id="tspan91960"
+           style="stroke-width:0.354394"
+           x="35.430046"
+           y="36.720478">Ω<tspan
+   style="font-size:3.07141px;baseline-shift:sub;stroke-width:0.354394"
+   id="tspan93072">ω+1</tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.44899px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;baseline-shift:baseline;stroke-width:0.0760454"
+         x="35.308128"
+         y="25.087166"
+         id="text93400"><tspan
+           sodipodi:role="line"
+           id="tspan93398"
+           style="baseline-shift:baseline;stroke-width:0.0760454"
+           x="35.308128"
+           y="25.087166">Ψ(Ω<tspan
+   style="baseline-shift:baseline;stroke-width:0.0760454"
+   id="tspan93396"><tspan
+   style="font-size:2.24184px;baseline-shift:sub;stroke-width:0.0760454"
+   id="tspan99484">ω+1</tspan>)</tspan></tspan></text>
+      <g
+         id="g104476"
+         transform="translate(-1.0583333,-1.5875)">
+        <text
+           xml:space="preserve"
+           style="font-size:3.97629px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;baseline-shift:baseline;stroke-width:0.0876717"
+           x="34.495209"
+           y="15.345843"
+           id="text99858"><tspan
+             sodipodi:role="line"
+             id="tspan99856"
+             style="baseline-shift:baseline;stroke-width:0.0876717"
+             x="34.495209"
+             y="15.345843">f       (64)</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:1.95256px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;baseline-shift:baseline;stroke-width:0.0430513"
+           x="35.668419"
+           y="15.972666"
+           id="text104468"><tspan
+             sodipodi:role="line"
+             id="tspan104466"
+             style="baseline-shift:baseline;stroke-width:0.0430513"
+             x="35.668419"
+             y="15.972666">Ψ(Ω<tspan
+   style="baseline-shift:baseline;stroke-width:0.0430513"
+   id="tspan104464"><tspan
+   style="font-size:1.26916px;baseline-shift:sub;stroke-width:0.0430513"
+   id="tspan104462">ω+1</tspan>)</tspan></tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

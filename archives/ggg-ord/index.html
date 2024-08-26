@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>大数数学简介 | Blog de Hqak (WXYHLY)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="去年CFY突然对“大数数学”与“序数”产生兴趣，还安利了个“序数增量”游戏Ordinal Markup给我，然后我就不幸成功入坑了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数数学简介">
+<meta property="og:url" content="https://wxyhly.github.io/archives/ggg-ord/index.html">
+<meta property="og:site_name" content="Blog de Hqak (WXYHLY)">
+<meta property="og:description" content="去年CFY突然对“大数数学”与“序数”产生兴趣，还安利了个“序数增量”游戏Ordinal Markup给我，然后我就不幸成功入坑了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wxyhly.github.io/img/ord001.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/ord001.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/ord002.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/ord003.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/ord006.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/ord005.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/ord002.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/ord007.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/ord004.png">
+<meta property="article:published_time" content="2024-08-25T15:49:15.000Z">
+<meta property="article:modified_time" content="2024-08-25T15:51:04.107Z">
+<meta property="article:author" content="wxyhly">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="游戏">
+<meta property="article:tag" content="大数数学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wxyhly.github.io/img/ord001.svg">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Blog de Hqak (WXYHLY)</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/programs/">Programs</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wxyhly.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ggg-ord" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/archives/ggg-ord/" class="article-date">
+  <time datetime="2024-08-25T15:49:15.000Z" itemprop="datePublished">2024-08-25</time>
+</a>
+      
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      大数数学简介
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/ord001.svg" alt="快增长层级函数可以通过不断套娃把序数转换为超级大的大数"><br>去年<a target="_blank" rel="noopener" href="https://hadroncfy.com/">CFY</a>突然对“大数数学”与“序数”产生兴趣，还安利了个“序数增量”游戏<a target="_blank" rel="noopener" href="https://patcailmemer.github.io/Ordinal-Markup/">Ordinal Markup</a>给我，然后我就不幸成功入坑了。<img src="/img/ord001.png" alt="极限序数$\omega^\omega$之前的所有序数"><span id="more"></span></p>
+<p>很久前我就听说过序数，但我总觉的这些超越无穷的东西很虚，当时也没兴趣深入了解它，后来我才发现这个东西比想象中更有意思。</p>
+<p>注：由于网络上有很多大数数学教程，这篇文章只起个抛砖引玉的作用，不会详细解释具体细节。</p>
+<h2 id="大数数学是什么"><a href="#大数数学是什么" class="headerlink" title="大数数学是什么"></a>大数数学是什么</h2><p>“大数数学”研究如何描述巨大的数字。如果你觉得这很简单那就太天真了，这群人研究的大数大得远超你的任何想象：这些数的位数的位数后面的零都多得在即使把整个宇宙都塞满的本子上都写不完，其实甚至它位数的位数的位数…的位数的位数要想小到我们通常能接触到的数字，把前半句中那个省略号展开写出来整个宇宙的纸张都还是写不下！</p>
+<p>系统描述这些数字一般采用迭代法，比如第一级运算<strong>加法</strong>其实是第零级运算<strong>后继</strong>（后继就是往后数一个数，相当于加一）的迭代，第二级运算<strong>乘法</strong>是第一级运算<strong>加法</strong>的迭代、第三级运算<strong>幂</strong>又是<strong>乘法</strong>的迭代……可以统一记作：$a\uparrow^n b$表示a与b之间进行第$n$级运算。不要以为就到此为止了，我们还可以继续套娃：设函数$f(n)&#x3D;3\uparrow^n 3$，不断嵌套64层运算级数，得到一个大的离谱的怪物$f(f(f(f….f(f(3))…)))$，叫做<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/20057020">葛立恒数</a>，它来自一个数学问题答案的上界值，然而到这里才是大数数学的入门。其他有意思的大数还有Tree(3)、燃烧数、Loader数、忙碌海狸（Busy beaver）等，<a target="_blank" rel="noopener" href="https://daily.zhihu.com/story/9217392">这篇文章都有介绍</a>。</p>
+<p>如果想继续了解大数数学，可以参考<a href="#reference">文后给的链接</a>。</p>
+<h2 id="序数登场"><a href="#序数登场" class="headerlink" title="序数登场"></a>序数登场</h2><p>下面来说说大数数学的主角——序数。序数是介于有限的自然数与绝对无穷大之间的东西，是自然数的扩展。序数并不是什么民科概念，它是在公认的数学基础公理体系–ZFC集合论中严格定义出来的。在集合论中每个自然数都是一个集合，它恰好由比它小的所有数字组成，而零则是空集：<br>$$0&#x3D;\left\{\right\}&#x3D;\phi$$$$1&#x3D;\left\{0\right\}$$$$2&#x3D;\left\{0,1\right\}$$$$3&#x3D;\left\{0,1,2\right\}$$$$…$$观察不难发现$x+1&#x3D;x\cup\left\{x\right\}$，比如$5&#x3D;\left\{0,1,2,3,4\right\}$，$6&#x3D;5\cup\left\{5\right\}&#x3D;\left\{0,1,2,3,4,5\right\}$<br>全体自然数的集合$\left\{0,1,2,3,….\right\}$当然不再是自然数，但如果强行也把它当成一个数处理，我们就能够超越无穷，继续往上数数，这就是“序数”。记$\omega&#x3D;\left\{0,1,2,3,….\right\}$则$$\omega+1&#x3D;\omega\cup\left\{\omega\right\}$$这样下来就有$$\omega+2$$$$\omega+3$$$$…$$而包含上述所有序数的数就叫$\omega+\omega$，也记作$\omega2$。这样不断扩展会到$\omega3$、$\omega4$、直到极限$\omega^2$，然后继续到$\omega^2+1$、$\omega^2+\omega$、$\omega^2 2$、$\omega^3$等等。我们看到一个序数要么是后继序数：由一个序数加一得到，要么是极限序数：由囊括前面无数个序数得到。虽然有极限序数这个东西，但跟自然数一样，永远不存在最大的序数：只需对这个序数加一就是了。</p>
+<div style="background-color:#EEF">
+
+<p>选读：这样一直罗列下去可以到$\omega^\omega$、$\omega^{\omega^\omega}$或许你会认为再后面就是$\omega\uparrow^4 \omega$、$\omega\uparrow^\omega \omega$、$\omega\uparrow^{\omega\uparrow^\omega \omega} \omega$等等，但由于涉及无穷，序数之间的很多运算法则与自然数不同，比如加法、乘法不再有交换律（$2\omega$表示$\omega$个2相加，极限还是$\omega$；两个$\omega$相加才能得到更大的$\omega 2$）没法推广到乘方之后的第四级运算了，后面只能不断引入指数塔迭代的许多不动点、不动点的不动点的不动点……来继续进行，详情见后面链接序数教程中的veblen $\varphi$ 函数。</div></p>
+<p>序数有什么用呢？利用它们可以描述一些增长率大得惊人的函数进而表示一些大数，即各种快慢的“增长层级函数”，详见后面的链接。序数也是衡量大数函数增长率的一把标尺。可以说要<strong>掌握大数数学，序数是最基础最重要的工具</strong>了。比如那个“葛立恒数”，用快增长层级（FGH）函数表示仅为$f_{\omega+1}(64)$，这么大的数字对应的序数为何才这么小？简单来说，这些迭代函数的套娃次数可以用一些方法与序数对应。比如加法是由后继不断迭代（即一次“套娃”）来的，因此它增长率对应的序数为1，乘法则为2，第n级运算则为n。但如果函数的自变量是运算级数n本身，如$f(n)&#x3D;3\uparrow^n 3$，它的增长率自然大于之前所有自然数套娃次数的函数增长速度，此时大于一切自然数的序数$\omega$便来救场了。当我们构造葛立恒数时，我们又对这个运算级数n进行了一次套娃，因此对应序数$\omega+1$，可想而知，继续不断套娃可以得到更大的后继序数，然后如果再把套娃次数作为函数自变量则得到极限序数，然后就又可以继续没完没了套娃下去，大数函数增长率跟序数一样永远没有尽头……准确对这些增长率的定义与分析可见<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/655052497?utm_id=0">这篇文章</a>。</p>
+<p>个人认为，正是因为序数可以作为衡量大数函数增长率的标尺，序数这一抽象的数学概念才拥有了实际“接地气”的用途，而不仅仅是集合论中定义出来的超越无穷的无用玩物。大数数学本身又有什么用呢？除了大家能想到的数学家搞研究当消遣外我还打听到了这样的故事：</p>
+<blockquote>
+<p>我大一和高中学了很多数理逻辑和集合论，一直以为这是科幻里最难写的、最用不怎么到的数学，结果这也能用上，没想到竟然还很火，因为那些人论战，喜欢比战斗力大小，比大小怎么比… 比到最后只能上序数论、基数论……不得不说大数数学的这个用途真让人意想不到。<a name="reference"></a></p>
+</blockquote>
+<h2 id="大数理论相关资料汇总"><a href="#大数理论相关资料汇总" class="headerlink" title="大数理论相关资料汇总"></a>大数理论相关资料汇总</h2><p>如果想继续深入了解大序数，可以参考下面的链接：</p>
+<h3 id="科普类"><a href="#科普类" class="headerlink" title="科普类"></a>科普类</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://www.matrix67.com/blog/archives/3857">Matrix67大佬博文</a>中详细介绍了超级幂等运算，并提到$100\uparrow^{100} 100$已经随随便便远远…….远远大于宇宙中粒子随意排列组合出的数量了。</li>
+<li><a target="_blank" rel="noopener" href="https://googology.fandom.com/zh/wiki/%E5%A4%A7%E6%95%B8%E5%88%97%E8%A1%A8">大数维基百科上的大数列表</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13G411X7xm/">b站的从1到无穷大之间的大数列举视频</a>（全长9小时54分钟）</li>
+<li>Codeparade（就是游戏4D高尔夫的作者！）的<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Mzgw6zMtipQ">“找到最大的数字”视频</a><!-- - [知乎专栏《大数的世界》](https://www.zhihu.com/column/c_1561069709323083776)通过生动的故事将大数、大序数、大基数等概念形象化。 --></li>
+<li>仿<a target="_blank" rel="noopener" href="https://book.douban.com/subject/1291204/">《GEB》</a>的乌龟与阿基里斯的对话写的关于介绍序数的小故事（可惜我最先看的中文版找不到了，<a target="_blank" rel="noopener" href="http://www.madore.org/~david/misc/VIRUS/ordinals/ordinals.html">原文是法语</a>）</li>
+</ul>
+<h3 id="教程类"><a href="#教程类" class="headerlink" title="教程类"></a>教程类</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ZhiqiuCao/Googology">曹知秋的《大数理论》（动态更新中）</a> ：迄今为止关于大数最全面系统的大数数学中文讲义，没有之一。（前面github链接打不开的话这里还有个<a target="_blank" rel="noopener" href="https://pan.baidu.com/link/zhihu/79h1zTuNhYi0VFh1gDM0l2k2NxUE5WNQUPlE==">网盘链接（240807版）</a>）</li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/core-exe/">知乎上core.exe的序数教程</a>，很详细，从第n级运算、快速增长层级讲到序数、Veblen函数、OCF、反射等概念。</li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/zhou-zheng-60-81/">知乎上Suzuka梅天狸的序数教程</a>，讲了Prss、BMS、反射、稳定、Y-序列等概念。</li>
+</ul>
+<h3 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://naruyoko.github.io/googology/">Naruyoko的大数相关计算工具</a>：包括BMS与0-Y序列的转换器、各种Y序列的山脉图、基本列在线计算器等等，他还实现了很多我完全没听说的大数记号的在线计算。</li>
+<li><a target="_blank" rel="noopener" href="https://rgetar.github.io/">序数浏览器</a>，强烈推荐，可以任意展开极限序数的基本列，还可以选择你喜欢的序数表示方式。<br><img src="/img/ord002.png" alt="序数浏览器展开序数的基本列"><br><img src="/img/ord003.png" alt="序数浏览器设置将所有东西都用“0”、“[c]”（相当于$\Omega$）、“+”与BOCF$\psi$函数表示"></li>
+<li>我自己写的<a href="/ordmap/">序数地图</a>，类似序数浏览器，但用的是一种更形象的方法来展现序数：直接像在线地图那样缩放就能找到所有序数（目前最大序数可到EBO，支持BOCF&#x2F;MOCF与Veblen表示，后续可能计划支持递归不可达序数I等），不用去点任何什么展开按钮。<br><img src="/img/ord006.png" alt="起点附近的序数地图"><img src="/img/ord005.png" alt="序数地图中的序元Veblen函数与BOCF函数"></li>
+</ul>
+<h2 id="非递归序数"><a href="#非递归序数" class="headerlink" title="非递归序数"></a>非递归序数</h2><p>序数是一个开了挂般的存在。如果你认为只要不断取后继与取极限就能得到所有序数，你就错了。非递归序数定义为不能通过小于它本身次数的套娃得到的数，这样我们无法自下而上构造出非递归序数。在序数坍缩函数中会遇到非递归序数$\Omega$，用它可以生成更小的递归序数，这很类似通过快增长层级函数与无限的序数生成有限大数。下图展示了大数、递归序数、非递归序数三个层次的关系：<img src="/img/ord002.svg" alt="大数、递归序数、非递归序数三个层次的关系">你可能会疑惑非递归序数是否仅仅是产生递归序数的工具而无实际意义，然而事实上确实存在一些增长速率大于了一切递归函数的函数，其对应的序数就是非递归的。假设有一台理论上拥有无限大内存、整数计算不会溢出的计算机，定义函数f(n)的值为“用n个字符写成的某语言程序能在该计算机上输出的最大数字”，该函数的增长率就非常恐怖，是非递归的，这个函数也是不可计算函数的最著名的一个例子。<a target="_blank" rel="noopener" href="https://github.com/ZhiqiuCao/Googology">曹知秋的《大数理论》</a>最大输出程序一节中给出了javascript语言对应的最大输出函数的部分值，并附有解析。然而由于人类和计算机都完成不了超越递归的任务，这些非递归函数不可能有算法实现，于是我们通常的堆大数、大序数都仅限于递归序数，在这种意义下非递归序数确实只是个生产递归序数的工具。</p>
+<h3 id="基数与序数"><a href="#基数与序数" class="headerlink" title="基数与序数"></a>基数与序数</h3><p>要指出的是，还有一个概念叫<strong>基数</strong>（Cardinal），跟<strong>序数</strong>（Ordinal）很像，都描述的是超越无穷的东西，但它们的差距很大。基数没有任何层次结构，它单纯通过集合间能否建立起双射来衡量无穷集合内元素的多少。序数与基数可以当时转换：忽略掉序数的序结构单纯看集合的个数就能把序数变成基数，而给一个基数，我们认为元素个数等于该基数的最小的序数就是该基数转换得到的序数。前面介绍的那些序数虽然非常大，哪怕到了BHO、EBO甚至上Y-序列，得到的序数仍然都是可数的，也就是跟自然数一样多，它们的基数都是一样大的，记作$\aleph_0$。（注：非递归序数也可能可数，但不可数则一定不是递归序数了）有了$\aleph_0$，下一个比它大的基数就是$\aleph_1$、$\aleph_2$……$\aleph_\omega$……，由于基数也能当成序数，所以自然也有$\aleph_\omega&#x3D;\aleph_{\aleph_0}$，那么接着就有$\aleph_{\aleph_{\aleph_{…}} }$……。著名的连续统假设就是在说，不存在介于实数的个数（$2^{\aleph_0}$）与自然数的个数（$\aleph_0$）之间的基数，即假设$\aleph_1 &#x3D; 2^{\aleph_0}$。连续统假设独立于ZFC集合论，即你可以选择认为它是正确或错误的，分别建立出的理论都不会包含矛盾。</p>
+<p>在玩了很久序数游戏，有看了很多这些集合论的东西后，我突然想知道序数理论的基础–ZFC集合论到底是什么呢？顺便说一句，后期构造大序数的方法反射序数、稳定序数等概念等是要在集合论里定义的。除了堆各种大序数，我们还可以继续堆大基数。为了了解这些东西就必须要入数理逻辑和形式系统这个坑，我们将在下一篇文章来填这个坑。</p>
+<h2 id="序数学习顺序建议"><a href="#序数学习顺序建议" class="headerlink" title="序数学习顺序建议"></a>序数学习顺序建议</h2><ol>
+<li>首先从序数的加法、乘法、指数运算开始，理解$\varepsilon_0$，</li>
+<li>理解不动点迭代模式，理解$\varepsilon_1$、$\varepsilon_\omega$、$\varepsilon_{\varepsilon_{\varepsilon_{…}}}$、二元至多元veblen函数。</li>
+<li>开始学习序数坍缩函数OCF（注意有MOCF与BOCF两种不同的版本，初学选一种即可），理解递归序数BHO。</li>
+<li>学习包含第二个非递归序数$\Omega_2$的OCF、直至$\Omega_{\Omega_{\Omega_{…}}}$，理解递归序数EBO。</li>
+<li>学习I&#x2F;M&#x2F;K&#x2F;反射序数，学习稳定序数，Y-序列等等。<br>由于我现在就还在学习反射序数的阶段，无能为力再给出后续的序数学习规划，请参考上面知乎大佬们的文章。那么多纷繁的序数记号实在让人抓狂，我个人建议至少知道并理解序数坍缩函数（OCF）这个东西，毕竟是那个序数游戏里都会出现这个东西。有好几个半天我都在纸上堆OCF序数……如果你还嫌OCF太简单，堆出来的序数不够大，那就去挑战反射序数、稳定序数、Y序列这些东西吧。这里顺便提下Y序列（<a href="/ordmap/?0Y">0-Y序列序数地图链接</a>），它是一个强大得离谱的序数记号家族有0-Y、1-Y、$\omega$-Y序列等不同版本，前面从veblen、ocf、反射、稳定记号一路不断加强得到越来越大的序数，在Y序列家族面前（哪怕在增长速度最温和的0-Y面前）直接被秒得连渣都不剩，恐怖至极。。。<br><img src="/img/ord007.png" alt="序数地图尝试绘制0-Y序列"></li>
+</ol>
+<p>p.s. 本来CFY写了一些介绍序数的文章草稿，并计划做一个“序数实验室”，我想着要不在上面放个链接给他占个坑，但他设想的序数实验室要实现veblen, ocf, 反射，稳定，Y-序列这些几乎所有主流的表示方法，感觉挺困难的，不知最后会不会烂尾。。</p>
+<h3 id="Ordinal-Markup与增量游戏"><a href="#Ordinal-Markup与增量游戏" class="headerlink" title="Ordinal Markup与增量游戏"></a>Ordinal Markup与增量游戏</h3><p>最后说说Ordinal Markup这个游戏。游戏一开始就是点击一次按钮让序数加一，后面买连点器等各种升级，序数越跑越快，还要完成很多指定的挑战获得成就等等，具体就不剧透了。游戏非常耗费时间，游戏后期有时候需要策略加长时间挂机才能到下一关，目前我跟CFY都卡在了奇点函数这个层级，都拿到了60个成就后就几个月都没进展了。（好像我最早是23年10月开始玩的）<br><img src="/img/ord004.png" alt="游戏Ordinal Markup，上图中的序数已超过BHO"><br>如果嫌游戏太难，可以玩更简单的游戏版本<a target="_blank" rel="noopener" href="https://patcailmemer.github.io/om-fse-minus/"> Ordinal Markup FSE(Factor Shift Edition)</a>，这个版本几天之内就能通关，如果你对增量游戏感兴趣，还可以尝试：</p>
+<ol>
+<li>该作者的另一个游戏<a target="_blank" rel="noopener" href="https://patcailmemer.github.io/Time-Layers/">Time Layers</a>，我玩到星系那里就卡住了；</li>
+<li>最初给作者灵感的<a target="_blank" rel="noopener" href="https://gzgreg.github.io/DerivativeClicker/">Derivative Clicker</a>。</li>
+<li>画面比较精致的<a target="_blank" rel="noopener" href="https://orteil.dashnet.org/cookieclicker/">做饼干的游戏</a>。（我是在《大数理论》中看到的推荐）</li>
+</ol>
+<p>好了，关于序数&#x2F;大数理论就介绍到这里了，下一篇文章我们将看看大数数学乃至数学的根基：ZFC集合论。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wxyhly.github.io/archives/ggg-ord/" data-id="cm09qvpxk000ntswmapk91qj2" class="article-share-link">Share</a>
+      
+        <a href="https://wxyhly.github.io/archives/ggg-ord/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E6%95%B0%E6%95%B0%E5%AD%A6/" rel="tag">大数数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/archives/rotrigid/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older &gt;&gt;</strong>
+      <div class="article-nav-title">四维世界（十）：旋转动力学</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Tesserxel%E7%B3%BB%E5%88%97/">Tesserxel系列</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A5%87%E7%89%B9%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">奇特世界系列</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    <div class="widget-wrap">
+   <h3 class="widget-title">链接</h3>
+   <div class="widget">
+      <ul class="entry">
+         <li><a href="https://space.bilibili.com/454422438" title="bilibili" target="_blank">WXYHLY(Hqak)的B站链接</a></li>
+         <li><a href="http://hadroncfy.com" title="hadroncfy" target="_blank">Hadroncfy's Notebook</a></li>
+      </ul>
+   </div>
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2b2t/" style="font-size: 11px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 11px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 11px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 12px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 14px;">tesserxel</a> <a href="/tags/webgpu/" style="font-size: 12px;">webgpu</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 18px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 11px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%8F%8C%E6%9B%B2%E7%A9%BA%E9%97%B4/" style="font-size: 12px;">双曲空间</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 16px;">图形</a> <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 11px;">图形学</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">大数数学</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 15px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 14px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 19px;">数学</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 11px;">模拟</a> <a href="/tags/%E6%B8%B2%E6%9F%93/" style="font-size: 10px;">渲染</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 11px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 17px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 11px;">电路</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 19px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 13px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 11px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 11px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/archives/ggg-ord/">大数数学简介</a>
+          </li>
+        
+          <li>
+            <a href="/archives/rotrigid/">四维世界（十）：旋转动力学</a>
+          </li>
+        
+          <li>
+            <a href="/archives/so4/">四维计算机图形学：旋转篇</a>
+          </li>
+        
+          <li>
+            <a href="/archives/cg4d/">四维计算机图形学：渲染篇</a>
+          </li>
+        
+          <li>
+            <a href="/archives/tesserxel-flightsim/">玩Tesserxel（三）：火车、飞行模拟器教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 wxyhly<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/programs/" class="mobile-nav-link">Programs</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'wxyhly';
+  
+  var disqus_url = 'https://wxyhly.github.io/archives/ggg-ord/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<style>
+mjx-container {
+  display: inline-grid;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 102%;
+}
+mjx-container::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 2px;
+}
+mjx-container::-webkit-scrollbar {
+  background-color: lightgray;
+  height: 6px;
+}
+mjx-assistive-mml{
+  width: 0% !important;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    }); 
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script defer>
+const setJax = function(){
+  setTimeout(function(){
+    document.querySelectorAll("mjx-container").forEach(function(e){
+      const overflow = e.scrollWidth > (e.clientWidth ? e.clientWidth + 3 : (document.querySelector(".article-entry").clientWidth - 120));
+      e.style.overflowX = overflow ? "scroll" : "hidden";
+      e.onclick = function(){
+        const overflow = e.scrollWidth > (e.clientWidth ? e.clientWidth + 3 : (document.querySelector(".article-entry").clientWidth - 120));
+        e.style.overflowX = overflow ? "scroll" : "hidden";
+      };
+    })
+  },1000);  
+}
+window.addEventListener("resize", setJax);
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  "HTML-CSS": { linebreaks: { automatic: true } },
+  SVG: { linebreaks: { automatic: true } },
+  startup: {
+    pageReady: function(){
+      return MathJax.startup.defaultPageReady().then(setJax);
+    }
+  }
+};
+</script>
+<script type="text/javascript" defer
+  src="https://cdn.bootcss.com/mathjax/3.0.5/es5/tex-mml-chtml.js">
+</script>
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
