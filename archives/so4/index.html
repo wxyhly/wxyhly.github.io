@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/so4001.gif">
 <meta property="og:image" content="https://wxyhly.github.io/img/so4002.gif">
 <meta property="article:published_time" content="2024-05-21T13:05:36.000Z">
-<meta property="article:modified_time" content="2024-06-12T01:13:17.426Z">
+<meta property="article:modified_time" content="2024-08-27T13:32:17.647Z">
 <meta property="article:author" content="wxyhly">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="四维">
@@ -157,7 +157,7 @@
 <h3 id="2-向量类"><a href="#2-向量类" class="headerlink" title="2-向量类"></a>2-向量类</h3><p>四维空间的2-向量则用六个浮点数来储存，定义为2-向量类（class Bivec4）。由于我不打算开发通用的高维图形库，因此不会出现Bivec5、Bivec6……又由于霍奇对偶，三维中的Bivec3其实就是Vec3、因此也就只有Bivec4才有用，于是我把Bivec4简写为Bivec不会有歧义。它的伪代码定义如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Bivec&#123;</span><br><span class="line">    xy: number; xz:number; xw: number;</span><br><span class="line">    yz: number; yw:number; zw: number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其实它很像一个6维的向量，比如可以定义加法(add)、减法(sub)、取反(neg)、数乘(mul)、内积(dot)、单位化(normalize)等方法。同时，我们添加一些2-向量独有的方法，比如霍奇对偶(dual)、混合积（也叫交换积）(cross)，并给四维向量类添加楔积运算(wedge)得以生成2-向量等。</p>
-<h3 id="四维旋量"><a href="#四维旋量" class="headerlink" title="四维旋量"></a>四维旋量</h3><p>四维旋量分两种表示法：一是四元数版的旋量（<code>class Rotorq</code>），二是几何代数版的旋量（<code>class Rotorg</code>），其中几何代数版最原始且易懂，而四元数版处理旋转算法更多更方便。由于几乎没人会直接输入旋量的个分量来描述旋转，它们仅为程序内部的中间数据，所以搭建渲染引擎时一般仅选其一，比如<a target="_blank" rel="noopener" href="https://marctenbosch.com/ndphysics/">Marc ten Bosch的四维引擎</a>就仅支持几何代数版本的旋量，而<a target="_blank" rel="noopener" href="https://github.com/wxyhly/tesserxel/">我的tesserxel引擎</a>就只支持四元数版本的旋量而不支持几何代数版的，下面我把这两种版本旋量各自的相关旋转算法分为两节进行罗列，请<strong>按需展开阅读</strong>：</p>
+<h3 id="四维旋量"><a href="#四维旋量" class="headerlink" title="四维旋量"></a>四维旋量</h3><p>四维旋量分两种表示法：一是四元数版的旋量（<code>class Rotorq</code>），二是几何代数版的旋量（<code>class Rotorg</code>），其中几何代数版最原始且易懂，而四元数版处理旋转算法更多更方便。由于几乎没人会直接输入旋量的各分量来描述旋转，它们仅为程序内部的中间数据，所以搭建渲染引擎时一般仅选其一，比如<a target="_blank" rel="noopener" href="https://marctenbosch.com/ndphysics/">Marc ten Bosch的四维引擎</a>就仅支持几何代数版本的旋量，而<a target="_blank" rel="noopener" href="https://github.com/wxyhly/tesserxel/">我的tesserxel引擎</a>就只支持四元数版本的旋量而不支持几何代数版的，下面我把这两种版本旋量各自的相关旋转算法分为两节进行罗列，请<strong>按需展开阅读</strong>：</p>
 <br/>
 
 <h3 id="旋量类（几何代数版）"><a href="#旋量类（几何代数版）" class="headerlink" title="+旋量类（几何代数版）"></a><a href="javascript:void(0);" onclick="$('#ga').toggle();$('#ga_').text($('#ga_').text()==='+'?'-':'+')"><span id="ga_">+</span>旋量类（几何代数版）</a></h3><div style="background-color: #FFF3F3; display:none" id="ga">
