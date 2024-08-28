@@ -12,8 +12,9 @@
 <meta property="og:site_name" content="Blog de Hqak (WXYHLY)">
 <meta property="og:description" content="去年CFY突然对“大数数学”与“序数”产生兴趣，还安利了个“序数增量”游戏Ordinal Markup给我，然后我就不幸成功入坑了。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://wxyhly.github.io/img/ord001.svg">
+<meta property="og:image" content="https://wxyhly.github.io/img/ord008.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/ord001.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/ord008.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/ord002.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/ord003.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/ord006.png">
@@ -22,14 +23,14 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/ord007.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/ord004.png">
 <meta property="article:published_time" content="2024-08-25T15:49:15.000Z">
-<meta property="article:modified_time" content="2024-08-27T13:23:10.300Z">
+<meta property="article:modified_time" content="2024-08-28T01:34:14.544Z">
 <meta property="article:author" content="wxyhly">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="游戏">
 <meta property="article:tag" content="大数数学">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wxyhly.github.io/img/ord001.svg">
+<meta name="twitter:image" content="https://wxyhly.github.io/img/ord008.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -104,7 +105,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/img/ord001.svg" alt="快增长层级函数可以通过不断套娃把序数转换为超级大的大数"><br>去年<a target="_blank" rel="noopener" href="https://hadroncfy.com/">CFY</a>突然对“大数数学”与“序数”产生兴趣，还安利了个“序数增量”游戏<a target="_blank" rel="noopener" href="https://patcailmemer.github.io/Ordinal-Markup/">Ordinal Markup</a>给我，然后我就不幸成功入坑了。<img src="/img/ord001.png" alt="极限序数$\omega^\omega$之前的所有序数"><span id="more"></span></p>
+        <img style="max-width:300px" src="/img/ord008.png" alt="快增长层级函数可以通过不断套娃把序数转换为超级大的大数"/>
+
+<p>去年<a target="_blank" rel="noopener" href="https://hadroncfy.com/">CFY</a>突然对“大数数学”与“序数”产生兴趣，还安利了个“序数增量”游戏<a target="_blank" rel="noopener" href="https://patcailmemer.github.io/Ordinal-Markup/">Ordinal Markup</a>给我，然后我就不幸成功入坑了。<img src="/img/ord001.png" alt="极限序数$\omega^\omega$之前的所有序数"><span id="more"></span></p>
 <p>很久前我就听说过序数，但我总觉得这些超越无穷的东西很虚，当时也没兴趣深入了解它，后来我才发现这个东西比想象中更有意思。</p>
 <p>注：由于网络上有很多大数数学教程，这篇文章只起个抛砖引玉的作用，不会详细解释具体细节。</p>
 <h2 id="大数数学是什么"><a href="#大数数学是什么" class="headerlink" title="大数数学是什么"></a>大数数学是什么</h2><p>“大数数学”研究如何描述巨大的数字。如果你觉得这很简单那就太天真了，这群人研究的大数大得远超你的任何想象：这些数的位数的位数后面的零都多得在即使把整个宇宙都塞满的本子上都写不完，其实甚至它位数的位数的位数…的位数的位数要想小到我们通常能接触到的数字，把前半句中那个省略号展开写出来整个宇宙的纸张都还是写不下！</p>
@@ -115,6 +118,7 @@
 
 <p>选读：这样一直罗列下去可以到$\omega^\omega$、$\omega^{\omega^\omega}$或许你会认为再后面就是$\omega\uparrow^4 \omega$、$\omega\uparrow^\omega \omega$、$\omega\uparrow^{\omega\uparrow^\omega \omega} \omega$等等，但由于涉及无穷，序数之间的很多运算法则与自然数不同，比如加法、乘法不再有交换律（$2\omega$表示$\omega$个2相加，极限还是$\omega$；两个$\omega$相加才能得到更大的$\omega 2$）没法推广到乘方之后的第四级运算了，后面只能不断引入指数塔迭代的许多不动点、不动点的不动点的不动点……来继续进行，详情见后面链接序数教程中的veblen $\varphi$ 函数。</div></p>
 <p>序数有什么用呢？利用它们可以描述一些增长率大得惊人的函数进而表示一些大数，即各种快慢的“增长层级函数”，详见后面的链接。序数也是衡量大数函数增长率的一把标尺。可以说要<strong>掌握大数数学，序数是最基础最重要的工具</strong>了。比如那个“葛立恒数”，用快增长层级（FGH）函数表示仅为$f_{\omega+1}(64)$，这么大的数字对应的序数为何才这么小？简单来说，这些迭代函数的套娃次数可以用一些方法与序数对应。比如加法是由后继不断迭代（即一次“套娃”）来的，因此它增长率对应的序数为1，乘法则为2，第n级运算则为n。但如果函数的自变量是运算级数n本身，如$f(n)&#x3D;3\uparrow^n 3$，它的增长率自然大于之前所有自然数套娃次数的函数增长速度，此时大于一切自然数的序数$\omega$便来救场了。当我们构造葛立恒数时，我们又对这个运算级数n进行了一次套娃，因此对应序数$\omega+1$，可想而知，继续不断套娃可以得到更大的后继序数，然后如果再把套娃次数作为函数自变量则得到极限序数，然后就又可以继续没完没了套娃下去，大数函数增长率跟序数一样永远没有尽头……准确对这些增长率的定义与分析可见<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/655052497?utm_id=0">这篇文章</a>。</p>
+<p>本文开头的那张“封面图”就是展示的快增长序列函数是如何套娃的：<img style="max-width:300px" src="/img/ord008.png" alt="快增长层级函数可以通过不断套娃把序数转换为超级大的大数"/></p>
 <p>个人认为，正是因为序数可以作为衡量大数函数增长率的标尺，序数这一抽象的数学概念才拥有了实际“接地气”的用途，而不仅仅是集合论中定义出来的超越无穷的无用玩物。大数数学本身又有什么用呢？除了大家能想到的数学家搞研究当消遣外我还打听到了这样的故事：</p>
 <blockquote>
 <p>我大一和高中学了很多数理逻辑和集合论，一直以为这是科幻里最难写的、最用不怎么到的数学，结果这也能用上，没想到竟然还很火，因为那些人论战，喜欢比战斗力大小，比大小怎么比… 比到最后只能上序数论、基数论……</p>
