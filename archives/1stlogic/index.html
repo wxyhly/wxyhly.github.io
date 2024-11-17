@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>公理化集合论简介 | Blog de Hqak (WXYHLY)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&#x2F;&#x2F; 注：本文仅为作者最近学习了解集合论的大致总结，若想深入了解强烈建议找本数理逻辑的教材系统学习，维基百科也不错。 大家知道，数学有别于其它学科最重要就是严谨，比如上篇文章介绍了超越无穷的序数与基数，稍不小心就容易出错误。随着数学理论与证明过程越来越复杂，数学家急需一种能机械化规范证明的系统，使得可方便机器对其验证。在计算机发明之前就有人提出了它——形式系统。本文将从简单的形">
+<meta property="og:type" content="article">
+<meta property="og:title" content="公理化集合论简介">
+<meta property="og:url" content="https://wxyhly.github.io/archives/1stlogic/index.html">
+<meta property="og:site_name" content="Blog de Hqak (WXYHLY)">
+<meta property="og:description" content="&#x2F;&#x2F; 注：本文仅为作者最近学习了解集合论的大致总结，若想深入了解强烈建议找本数理逻辑的教材系统学习，维基百科也不错。 大家知道，数学有别于其它学科最重要就是严谨，比如上篇文章介绍了超越无穷的序数与基数，稍不小心就容易出错误。随着数学理论与证明过程越来越复杂，数学家急需一种能机械化规范证明的系统，使得可方便机器对其验证。在计算机发明之前就有人提出了它——形式系统。本文将从简单的形">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wxyhly.github.io/img/1stlogic001.png">
+<meta property="og:image" content="https://wxyhly.github.io/img/1stlogic002.png">
+<meta property="article:published_time" content="2024-11-17T09:55:32.000Z">
+<meta property="article:modified_time" content="2024-11-17T09:57:46.391Z">
+<meta property="article:author" content="wxyhly">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="游戏">
+<meta property="article:tag" content="数理逻辑">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wxyhly.github.io/img/1stlogic001.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Blog de Hqak (WXYHLY)</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/programs/">Programs</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wxyhly.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-1stlogic" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/archives/1stlogic/" class="article-date">
+  <time datetime="2024-11-17T09:55:32.000Z" itemprop="datePublished">2024-11-17</time>
+</a>
+      
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      公理化集合论简介
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span class="likecode">&#x2F;&#x2F; 注：本文仅为作者最近学习了解集合论的大致总结，若想深入了解强烈建议找本数理逻辑的教材系统学习，维基百科也不错。</span></p>
+<p>大家知道，数学有别于其它学科最重要就是严谨，比如<a href="/archives/ggg-ord/">上篇文章</a>介绍了超越无穷的序数与基数，稍不小心就容易出错误。随着数学理论与证明过程越来越复杂，数学家急需一种能机械化规范证明的系统，使得可方便机器对其验证。在计算机发明之前就有人提出了它——<strong>形式系统</strong>。本文将从简单的形式系统开始，介绍命题逻辑、一阶逻辑，皮亚诺算数系统直到<strong>ZFC集合论</strong>这一主流数学中出镜最多的形式系统。</p>
+<p>抱着边做边学的目的，我还慢慢搓出了一个能在网页上运行的形式系统模拟器“<a href="/deductrium/">Deductrium</a>”，后来又把它改造成了游戏。<img src="/img/1stlogic001.png" alt="Deductrium中证明“a → a”"><span id="more"></span></p>
+<h2 id="引子：pq形式系统"><a href="#引子：pq形式系统" class="headerlink" title="引子：pq形式系统"></a>引子：pq形式系统</h2><p>简单来说，形式系统是一个字符串收集游戏。首先你手上有一些初始的字符串，系统会提供一些机械的规则，将这些规则作用在你手上的串上，你将得到新的串，下次便可以用这些新串运用规则再生出串。<a target="_blank" rel="noopener" href="https://book.douban.com/subject/1291204/">《GEB》</a>这本书中提到了一个最简单的“pq”形式系统:</p>
+<ol>
+<li>本系统所有合法的字符串只允许这三个字符出现：“s”、“p”、“q”；</li>
+<li>你手上有这些初始字符串：“pq”、若X代表只包含“s”的字符串，则“XpqX”是初始字符串，比如“spqs”、“sssspqssss”；</li>
+<li>规则：设X、Y、Z都是串，如果你手上有“XpYqZ”，则你能得到“XpYsqZs”。</li>
+</ol>
+<p>举个例子：首先有初始串（X是“s”）“spqs”，运用规则（X是“s”、Y是“”、Z是“s”）得到“spsqss”，继续运用规则（X是“s”、Y是“s”、Z是“ss”）得到“spssqsss”。</p>
+<p>下面你能说出哪些串是能够在有限步骤中得到、哪些又是永远得不到的呢？</p>
+<ul>
+<li>sspq</li>
+<li>spspq</li>
+<li>sspsqsss</li>
+<li>sspssqssss</li>
+</ul>
+<p>或许你已经看出来了，“XpYqZ”正好代表$X+Y&#x3D;Z$，其中的数字则是由“s”的个数表示的。注意形式系统本身是没意义的，给它赋予含义后才能讨论这些字符串的意义。形式系统本身只有符号与规则，任何附加在上面的含义都不属于形式系统，是一种我们外在赋予的东西。</p>
+<h2 id="命题逻辑形式系统"><a href="#命题逻辑形式系统" class="headerlink" title="命题逻辑形式系统"></a>命题逻辑形式系统</h2><p>虽然形式系统本身没有意义，但我们肯定希望它能干有意义的事情，比如用于数学证明。下面我们构造不包含否定的命题逻辑的推演形式系统：</p>
+<ul>
+<li>本系统所有合法的字符串为：<ol>
+<li>设$n$是自然数，则命题符号$A_n$都是合法的字符串；</li>
+<li>若X、Y是合法的字符串，则“(X → Y)”也是合法的字符串。</li>
+</ol>
+</li>
+<li>设X、Y、Z是任意合法的字符串，本系统初始字符串有这些：<ol>
+<li>“(X → (Y → X))”都是初始字符串；</li>
+<li>“((X → (Y → Z)) → ((X → Y) → (X → Z)))”都是初始字符串。</li>
+</ol>
+</li>
+<li>规则：<br>若你手上同时有串“(X → Y)”与“X”，则能得到串“Y”。</li>
+</ul>
+<p>目前为止，那些箭头、字母没有任何实际含义。下面我们外在地赋予系统确切的逻辑的意义，则以上可翻译为：</p>
+<ul>
+<li>术语翻译：合法字符串对应命题、你手上的串对应定理、初始字符串对应公理。</li>
+<li>符号翻译：<ol>
+<li>命题符号$A_n$代表具体的真命题或假命题，其内容我们暂不关心。</li>
+<li>“(X → Y)”表示命题“命题X能够推出命题Y”，即“→”代表逻辑蕴含。</li>
+</ol>
+</li>
+<li>公理模式：对任意命题X、Y、Z，有<ol>
+<li>命题“(X → (Y → X))”是公理 (a1)</li>
+<li>命题“((X → (Y → Z)) → ((X → Y) → (X → Z)))”是公理 (a2)</li>
+</ol>
+</li>
+<li>推理规则(mp)：<br>若命题“(X → Y)”与命题“X”都是定理，则命题“Y”也是定理。</li>
+</ul>
+<p>我们来看一个形式化证明的例子，证明对任意的命题“A”，“(A → A)”都是定理：</p>
+<ol>
+<li>“(A → (A → A))”  (a1公理)</li>
+<li>“(A → ((A → A) → A))”  (a1公理)</li>
+<li>“((A → ((A → A) → A)) → ((A → (A → A)) → (A → A)))”  (a2公理)</li>
+<li>“((A → (A → A)) → (A → A))” (mp规则作用于3与2)</li>
+<li>“(A → A)” (mp规则作用于4与1)</li>
+</ol>
+<p>很明显这里面每个步骤都可以机械地检验（比如计算机验证），可以说完美满足严谨的数学家们的愿望了。</p>
+<p>下面给读者留一道思考题：</p>
+<blockquote>
+<p>证明对任意的命题“A”、“B”、“C”，若“(A → B)”与“(B → C)”是定理，则“(A → C)”也是定理。</p>
+</blockquote>
+<p>提示：从这个(a3)公理出发似乎是个不错的选择：“((A → (B → C)) → ((A → B) → (A → C)))”。</p>
+<p>a1至a3公理其实规定了“如何引入逻辑蕴含符号”“如何使用逻辑蕴含符号”“如何消去逻辑蕴含符号”这三件事，使得我们可以表达并处理“能推出什么”的逻辑，但目前暂时还不能表达“不能推出什么”。为了让系统能处理否定命题，我们引入否定符号“¬”，并向形式系统添加以下内容：</p>
+<ul>
+<li>若X是命题，则“¬X”也是命题。</li>
+<li>添加公理模式：若X、Y是任意命题，则“((¬X → ¬Y) → (Y → X))”是公理 (a3)</li>
+</ul>
+<p>加入否定词的形式系统就是完整的命题逻辑系统了。可以证明：设A、B是任意的命题，则在这个系统中下面的命题都是定理：</p>
+<ul>
+<li>(¬¬A → A) （双重否定消去）</li>
+<li>(A → ¬¬A) （双重否定介入）</li>
+<li>(A → (¬A → B)) （矛盾爆炸原理）</li>
+<li>((¬A → B) → ((¬A → ¬B) → A)) （反证法原理）</li>
+</ul>
+<p>证明方式就是写出推导步骤，独立想出这些推导有点难度，如果读者不想再做这样烧脑的推理习题，则可以直接参见<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91#%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8E%A8%E7%90%86%E6%80%A7%E8%B3%AA">维基百科上面有答案</a>。</p>
+<p>或许你注意到这个系统连最基本的“与”、“或”逻辑连词都没有，但其实“A或B”可以通过“(¬A → B)”表达、“A与B”则可通过“¬(A → ¬B)”表达。我们也可以引入新的公理来把“与”、“或”符号加入系统，<a href="javascript:$('#ifff').toggle()">点击展开&#x2F;收起如何引入新符号与新公理</a>。</p>
+<div style="background-color:#EEF;display:none" id="ifff">
+
+<h3 id="选读：引入新符号与新公理"><a href="#选读：引入新符号与新公理" class="headerlink" title="选读：引入新符号与新公理"></a>选读：引入新符号与新公理</h3><p>你可能觉得这个形式系统太麻烦了，连“与”、“或”这些概念都要展开写，又比如常见的“A当且仅当B”可以通过“A → B 且 B → A”表达，展开成了一大堆“¬((A → B) → ¬(B → A))”。其实我们可以专门引入一些符号定义公理，从而把简写符号引入系统中来：</p>
+<ul>
+<li>定义二元命题连词符号“$\land$”、“$\lor$”、“↔”，分别表示“与”、“或”、“当且仅当”。由这些符号连接两个命题可以构成新命题，如(A ↔ B)、(A $\lor$ (A $\land$ B))。</li>
+<li>引入当且仅当的介入与消去两个公理：<ol>
+<li>(diff1) (¬((A → B) → ¬(B → A)) → (A ↔ B))</li>
+<li>(diff2) ((A ↔ B) → ¬((A → B) → ¬(B → A)))</li>
+</ol>
+</li>
+<li>现在我们就能够使用当且仅当符号来继续定义其它符号的简写了：<ol>
+<li>(dor) (A $\lor$ B) ↔ (¬A → B)</li>
+<li>(dand) (A $\land$ B) ↔ ¬(A → ¬B)<br>可以证明把这些公理加入命题逻辑中可以实现任意展开或收起全部或部分出现的与、或、当且仅当的定义。</div></li>
+</ol>
+</li>
+</ul>
+<p>或者你可能觉得两个符号“→”、“¬”都多了，走向另一种极端主义：其实用与非逻辑（NAND）就能表示所有命题逻辑，比如这个<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%B0%A2%E8%B4%B9%E5%B0%94%E7%AB%96%E7%BA%BF">谢费尔竖线形式系统</a>，但它也有代价，那就是推理规则太多了。</p>
+<p>只看语言叙述很难理解这些形式系统，计算机本来就最擅长做这些机械判定的事情，因此我强烈建议可以尝试着在Deductrium的形式系统中去体验一下。如果你觉得从头开始玩Deductrium太难了，根本玩不到当且仅当与逻辑符号那里，我留了一个<a href="/deductrium/?creative">Deductrium创造模式</a>，可以直接使用所有公理、符号定义以及元定理等。</p>
+<p>命题逻辑的形式系统定义方式很多，更常见的是直接包含“与”、“或”、“非”的系统。我们介绍的形式系统叫做<strong>希尔伯特式</strong>的，特点是很多公理，但只有一条推理规则(mp)。这条推理规则结合公理能得到很重要的<strong>演绎元定理</strong>，它告诉了我们为何这一条规则就够用了：</p>
+<blockquote>
+<p>如果假设已知A是定理的条件下能在形式系统中推出B是定理，则该系统能够无假设条件下推出(A → B)是定理。</p>
+</blockquote>
+<p>证明见维基百科。它的逆定理更简单，直接就是mp规则：</p>
+<blockquote>
+<p>如果该系统能够无假设条件下推出(A → B)是定理，则假设已知A是定理的条件下能在形式系统中推出B是定理</p>
+</blockquote>
+<p>演绎元定理与mp规则告诉了我们符号“→”的外在行为确实与逻辑蕴含相同。</p>
+<p>那些同时包含“与”、“或”的系统往往推理规则更多，但它们在某种程度上是等价的，即从相同的假设出发，能推出来的东西都一样，虽然中间步骤可能差异很大。</p>
+<h3 id="可靠性与完备性、内外定理"><a href="#可靠性与完备性、内外定理" class="headerlink" title="可靠性与完备性、内外定理"></a>可靠性与完备性、内外定理</h3><p>不知读者会不会怀疑，刚才有三个公理模式和一个推理规则的形式系统真的就能胜任命题逻辑推理吗？这个问题其实可分成两方面：一是（可靠性）它推出的命题都是真命题吗？二是（完备性）对于所有真命题，是否都能够从这个形式系统中推出来呢？对于命题逻辑来说这两个答案都是肯定的。可靠性证明仅需列出所有公理与推理步骤涉及的命题的真值表，检验其正确性即可；而完备性的证明就有点复杂了，游戏Deductrium中后期会解锁一个“自动证明”的元定理能力，只要是系统穷举所有原子命题都成立的真值表命题都成立，就有方法在系统内写出推理步骤。</p>
+<p>注意形式系统内外命题之间的关系其实很微妙，比如我们证明了：</p>
+<blockquote>
+<p>在命题逻辑形式系统中，对任何命题A，“(A → A)”都是定理。</p>
+</blockquote>
+<p>被证明了的命题就叫做定理，上面这句话本身也是定理，准确说它是关于（命题逻辑形式系统里的）定理的定理。注意这两个“定理”是两个层级，并不相同：</p>
+<ol>
+<li>形式系统推出来的东西，我们只是称呼它们“定理”，或叫系统的“内定理”，它们只是某个形式系统中的概念，跟平时数学定理虽然有点像，但不是一个东西。验证内定理的方式就是给出系统中的推理步骤。</li>
+<li>我们证明的那条定理，是关于形式系统的理论中的定理，为方便区分，也叫“元定理”或“外定理”。外定理才是真正的数学定理，它跟平时算数中的加法交换律、高等数学里面的泰勒展开定理一样，都是在我们学过的数学体系下推导而来的。</li>
+</ol>
+<h3 id="终级问题：先有鸡还是先有蛋？"><a href="#终级问题：先有鸡还是先有蛋？" class="headerlink" title="终级问题：先有鸡还是先有蛋？"></a>终级问题：先有鸡还是先有蛋？</h3><p>有些人会困惑，为了机械化验证数学定理的证明无误，我们又需要将整个数学体系定义为一个更复杂的元形式系统来描述、判定，而为了验证更大的元形式系统的正确性，又需要构建元元系统、机械化验证元元定理……（ps.对套娃感兴趣的话可参考这个<a target="_blank" rel="noopener" href="https://www.physixfan.com/zaowushendegushi/">阿拉丁神灯造物神的故事</a>）具体来说，形式系统可以用集合论的语言准确定义，但后面将看到，集合论又是由形式系统定义出来的！我们跌入了先有鸡还是先有蛋的困境之中。</p>
+<p>为了避免无限套娃，我们不再使用形式系统等机械方式验证数学定理的证明的正确性，阅读元定理的证明只能凭我们的数学阅历进行。即我们<strong>不能一直刨根问底，必须在某一层级停止选择直接相信它们</strong>。这就好比当我们学习外语（形式系统）时需要一门母语（我们的数学阅历）来进行教学，而源头母语的习得能力是与生俱来的本能，不再依赖任何语言了。</p>
+<p>但是，我们的目的不就是为了形式化整个数学理论吗？数学理论当然也应该包含形式系统和数理逻辑自身。目前人们是这样做的：定义一个形式系统，这个系统强大到几乎可以表达任意数学理论中的命题，然后我们手动证明该系统是可靠的，只要我们相信该系统是可靠的证明过程无误（这部分确实没法机械检验），我们就敢愉快地使用该系统去检验任何数学证明了，甚至包括该系统可靠性的证明过程。下面引用<a target="_blank" rel="noopener" href="https://book.douban.com/subject/1291204/">《GEB》</a>中的一段话：</p>
+<blockquote>
+<p>一个人永远也不能给出一个最终的、绝对的证明，去阐明在某个系统中的一个证明是正确的。当然，一个人可以给出一个关于证明的证明，或者关于一个证明的证明的证明——但是，最外层的系统有效性总还是一个未经证明的假设，是凭我们的信仰来接收的。</p>
+</blockquote>
+<p>这也很像计算机中的编译器的自举——C++语言的编译器是由C++编写的！这里面看似也是鸡与蛋的困境，实则不然：首先人工编写一段将汇编语言翻译成机器码的程序，这段程序只能用机器码写，而且机器码能否正确运行取决于我们是否相信CPU芯片中的电子按物理规律运动。该程序写好后我们就能用汇编语言来写更高级的C语言编译器了，然后再用C语言写更高级的C++编译器，等有了C++编译器，我们就可以放弃原来C语言版的C++编译器，完全改为C++语言编译C++编译器了。</p>
+<h3 id="一阶逻辑"><a href="#一阶逻辑" class="headerlink" title="一阶逻辑"></a>一阶逻辑</h3><p>命题逻辑中，我们仅用字母表示“原子命题”，并没涉及如何具体描述它们的“内部结构”，下面就来看看一阶逻辑。首先介绍语法方面：<br>一阶逻辑中除了命题这一概念，还引入了“项”与“谓词”的概念：变量与常量符号是“原子项”，n个项被n元函数作用得到项，被n元谓词作用得到“原子命题”。注意一阶逻辑是一类系统，选择不同的常数符号或谓词就得到不同的形式系统，比如下面举两个一阶逻辑形式系统的例子：</p>
+<ul>
+<li>若项代表整数，则“0”、“1”、“-2”这些就是常量符号、“x”就是变量符号；加法是个二元函数，因此“add(1,1)”也是项；“&gt;”、“&lt;”、“&#x3D;”都是二元谓词符号，因此“2&gt;1”、“add(1,1)&#x3D;2”都是原子命题，原子命题可以继续按命题逻辑的构建方法构造更复杂的命题，比如：“¬(add(x,0)&#x3D;0  → x&#x3D;1)”。</li>
+<li>若项代表集合，则空集“$\phi$”就是常量符号、“x”就是变量符号，花括号是给定元素构造新集合的n元函数；交集$\cap$、并集$\cup$则是二元函数，“$\in$”、“&#x3D;”、“$\subset$”则是谓词。比如$\left\{x,y\right\}\cap\phi$是项、$\phi\in\left\{\phi\right\}$是原子命题。</li>
+</ul>
+<p>引入变量的目的是为了表达<strong>任意</strong>（$\forall$）、<strong>存在</strong>（$\exists$）等带有<strong>量词</strong>的命题，这也是一阶逻辑与命题逻辑最大的区别。我们继续加入下面的规则：</p>
+<ul>
+<li>若A是任意命题，x是任意变量，则($\forall$ x : A)也是命题</li>
+</ul>
+<p>添加了新符号$\forall$后，同时需要加入能处理它的公理，设大写字母是任意命题，小写字母是任意变量，希腊字母是任意项：</p>
+<ul>
+<li>(a4) (($\forall$ x : A) → A[x&#x2F;$\alpha$])，其中A[x&#x2F;$\alpha$]表示将A中所有自由出现的x都替换为项$\alpha$，且A必须满足能被替换，后面选读里会详细说这些概念。</li>
+<li>(a5) (($\forall$ x : (A → B)) → (($\forall$ x : A) → ($\forall$ x : B)))</li>
+<li>(a6) (A → ($\forall$ x : A))  若x不在A中自由出现</li>
+<li>(a7) 对于任意的公理K，($\forall$ x : K) 也是公理</li>
+</ul>
+<p>这四条公理分别对应量词的消去(a4)，使用(a5)与介入(a6与a7)。</p>
+<p>我们不再单独引入关于存在符号“$\exists$”的公理，而是把它当成是“¬$\forall$¬”的简写。</p>
+<p>最后再说说谓词。一般我们会默认形式系统都有等词“&#x3D;”，并且加入两条公理模式：</p>
+<ul>
+<li>(eq1) $\alpha$&#x3D;$\alpha$ </li>
+<li>(eq2) ($\alpha$&#x3D;$\beta$ → (A → A’))</li>
+</ul>
+<p> 其中命题 A’是将命题 A中全部或部分的自由的$\alpha$替换成$\beta$的结果。</p>
+<p> 利用(eq1)和(eq2)不难证明等词具有自反性与传递性，即：</p>
+<ul>
+<li>$\alpha$&#x3D;$\beta$ →  $\beta$&#x3D;$\alpha$</li>
+<li>$\alpha$&#x3D;$\beta$ → ($\beta$&#x3D;$\gamma$ → $\alpha$&#x3D;$\gamma$)</li>
+</ul>
+<p>再次强调一下：虽然一阶逻辑中有“任意”、“存在”等词语出现，但形式系统只有这些机械化的公理模式，它无法理解这些量词背后的含义。仅靠机械化就能实现正确的逻辑，虽然这些公理模式略微复杂。<a href="javascript:$('#fst-detail').toggle()">点击这里可以展开&#x2F;收起关于公理中替换&#x2F;自由出现等的具体细节定义</a>。</p>
+<div style="background-color:#EEF;display:none" id="fst-detail">
+
+<h4 id="选读："><a href="#选读：" class="headerlink" title="选读："></a>选读：</h4><h5 id="1-约束变量与自由出现"><a href="#1-约束变量与自由出现" class="headerlink" title="1. 约束变量与自由出现"></a>1. 约束变量与自由出现</h5><p>自由出现与单纯的出现是有区别的。先引入量词的管辖范围概念，它说的就是量词冒号后的那个命题的表达式范围，比如</p>
+<p>$\forall$ x : $\forall$ y : (($\forall$ z : X) → (Y → X))</p>
+<p>中 $\forall$ z 的管辖范围就是X， $\forall$ y 的管辖范围就是 (($\forall$ z : X) → (Y → X))。</p>
+<p>自由出现的意思就是忽略掉约束变量——那些在量词后出现的跟量词变量名相同的变量。比如：x与y均不在下面表达式中自由出现，而z是有自由出现的：</p>
+<ul>
+<li>$\forall$ x : $\forall$ x : z&#x3D;x</li>
+<li>$\forall$ x : (($\forall$ y : y&#x3D;x → z&#x3D;x) → ($\forall$ z : z&#x3D;x))</li>
+</ul>
+<p>注意第二个命题中虽出现了多次z，但只有第一个z是自由的，后面的被$\forall$ z 约束了。</p>
+<h5 id="2-公理模式解释"><a href="#2-公理模式解释" class="headerlink" title="2. 公理模式解释"></a>2. 公理模式解释</h5><p>下面解释一下这些公理模式。我们倒着往前看：</p>
+<ul>
+<li>例如从命题逻辑(a1)公理连续运用(a7)可得下面的都是公理：<ol>
+<li>$\forall$ z : (X → (Y → X))</li>
+<li>$\forall$ y : $\forall$ z : (X → (Y → X))</li>
+<li>$\forall$ x : $\forall$ y : $\forall$ z : (X → (Y → X))</li>
+</ol>
+</li>
+<li>y&#x3D;1显然不能推出任意的数都等于1，因此(y&#x3D;1 → ($\forall$ y : y&#x3D;1))不成立，但(y&#x3D;1 → ($\forall$ x : y&#x3D;1))却是成立的，因为y&#x3D;1根本不关x的事，当然x取什么值都不影响y&#x3D;1的真假。这两个例子解释了(a6)公理中为什么要求不能自由出现。</li>
+<li>(a5)很简单，没什么好说的。</li>
+<li>从任意的集合都不属于空集可知0、2+x等也不属于空集。即公理(a4)：<ol>
+<li>($\forall$ x : ¬(x $\in\phi$)) → ¬(0 $\in\phi$)</li>
+<li>($\forall$ x : ¬(x $\in\phi$)) → ¬(2+x $\in\phi$)</li>
+</ol>
+</li>
+</ul>
+<h5 id="3-可替换性"><a href="#3-可替换性" class="headerlink" title="3.可替换性"></a>3.可替换性</h5><p>然而公理(a4)还有些细节问题。对任意整数x，都能找到跟它不相同的数y，这是显然的，即</p>
+<p>$\forall$ x : $\exists$ y : ¬(x&#x3D;y)</p>
+<p>那么对于整数y而言也应该成立，直接将表达式中的x换成y得到：</p>
+<p>$\exists$ y : ¬(y&#x3D;y)</p>
+<p>存在一个数y，使得y不等于y，这是荒谬的。其原因在于原本应该是自由的y替换后被里面的量词y“抓住了”，使其变成了约束变量。这种情况就叫做“不可替换”。约束变量的名字其实不重要，所以正确的替换则需要先改变里面约束变量的名字：</p>
+<p>$\forall$ x : $\exists$ z : ¬(x&#x3D;z)</p>
+<p>然后再带入y，才表达的是我们想要的意思：</p>
+<p>$\exists$ z : ¬(y&#x3D;z)</p>
+<p>然而并没有公理或推理规则能够让我们直接整体替换约束变量的名称，这其实是一个外定理（元定理）。具体证明过程留给读者思考。</p>
+<h5 id="4-一阶逻辑的其它方案"><a href="#4-一阶逻辑的其它方案" class="headerlink" title="4. 一阶逻辑的其它方案"></a>4. 一阶逻辑的其它方案</h5><p>虽然“自由出现”、“可替换”等概念能够递归地精确定义，但它们确实要比命题逻辑那些简单的匹配替换规则复杂得多。游戏Deductrium专门引入了模糊逻辑与一类特殊的断言函数来处理它们，虽然目前可正常推理，但我确实没法保证没有bug，即无法保证系统不会推出假命题。对于数学家来说，他们需要更方便验证的计算机程序处理一阶逻辑。Metamath是一个为数不多的基于一阶逻辑和ZFC集合论形式系统的数学推理库。它没有自由出现与可替换等概念，只引入了最简单的变量不相同的断言，然而其代价则是公理变多了x个，而且这些公理也不是很直观便于理解。当然，虽然公理数量与内容区别很大，但这两套公理体系是完全等价的。</p>
+</div>
+
+<p>最后说说“一阶逻辑”是什么意思。命题逻辑也叫“零阶逻辑”，它只谈论命题之间的关系，而一阶逻辑深入到命题内部，可以谈论任意的项，高阶逻辑则可以谈论项之间的任意函数、任意谓词、任意命题等等关系。然而一般来说一阶逻辑已经够用了，所以二阶及以上的逻辑很少提及。</p>
+<p>著名的描述关于自然数性质的皮亚诺公理体系就是在一阶逻辑基础上构造的。<a href="javascript:$('#peano').toggle()">点击这里展开&#x2F;收起细节</a>。</p>
+<div style="background-color:#EEF;display:none" id="peano">
+
+<h3 id="选读：皮亚诺公理体系"><a href="#选读：皮亚诺公理体系" class="headerlink" title="选读：皮亚诺公理体系"></a>选读：皮亚诺公理体系</h3><p>我们先来看看建立在一阶逻辑之上的一个简单使用的公理体系——皮亚诺公理。它定义了整数与数学归纳法，能让我们表达关于整数的几乎一切命题。非形式化表述皮亚诺公理为：</p>
+<ol>
+<li>0是自然数；</li>
+<li>每一个确定的自然数a，都有一个确定的后继数Sa，Sa也是自然数；</li>
+<li>对于每个自然数b、c，b&#x3D;c当且仅当b的后继数&#x3D;c的后继数；</li>
+<li>0不是任何自然数的后继数；</li>
+<li>任意关于自然数的命题$\varphi$，如果证明：它对自然数0($\varphi[0]$)是真的，且假定它对自然数a($\varphi[a]$)为真时，可以证明对Sa($\varphi[Sa]$)也真。那么，命题对所有自然数都真。</li>
+</ol>
+<p>想必很多读者应该都听说过这五条自然数的公理。下面我们借助一阶逻辑，用更严谨的形式化语言来描述皮亚诺公理系统:<br>这个系统中所有的项都解释为整数，谓词只有等词，另有0这个常量符号，后继S这个一元函数，该系统除了一阶逻辑的公理外，还有下面几条公理:</p>
+<ol>
+<li>$\forall$ x : ¬(Sx&#x3D;0)</li>
+<li>$\forall$ x : $\forall$ y : (Sx&#x3D;Sy → x&#x3D;y)</li>
+<li>($\varphi$[0] $\land$ ( $\forall$ x : $\varphi$[x] → $\varphi$[Sx])) → ($\forall$ x : $\varphi$[x])</li>
+</ol>
+<p>注意: 由于形式系统内已经引入了常量符号0与后继函数S，因此不需要额外像非形式化公理前两条那样说明它们的存在性。<br>另外，为了让系统能够方便处理一般的算数问题，引入加法与乘法两个二元函数与相应的公理，得到皮亚诺算数系统。</p>
+<p>皮亚诺公理中的最后一条即数学归纳法，是整个体系的核心。它的意思是说，若一个自然数的性质P(n)，已知P(0)成立，且能从P(n)推出P(n+1)，则对所有自然数都成立。</p>
+<div style="background-color:#DDF; margin:0.5em">
+
+<p>选读中的选读：</p>
+<p>由归纳法可得对所有自然数都成立即对序数$\omega$中所有元素成立。如果我们想继续对更大的序数运用数学归纳法，则会遇到极限序数，归纳法要稍微修改一下变成一种叫“<a target="_blank" rel="noopener" href="https://www.bananaspace.org/wiki/%E8%B6%85%E9%99%90%E5%BD%92%E7%BA%B3%E6%B3%95">超限归纳法</a>”的东西。事实上，皮亚诺公理中的超限归纳法只在序数$\varepsilon_0$（即$\omega$指数塔的极限）之前才能被证明，而超过$\varepsilon_0$的序数在皮亚诺公理体系下就无法证明了，我们说这个序数$\varepsilon_0$是皮亚诺公理系统的<strong>证明论序数</strong>，记作PTO(PA)（PA是皮亚诺公理的缩写）。$比如著名的”九头蛇问题“与“古德斯坦序列问题”。详见《大数理论》中证明论序数相关章节。证明过程可以参见知乎上<a target="_blank" rel="noopener" href="https://www.zhihu.com/column/c_1676959615533875200">这个系列文章</a>。</p>
+</div>
+<br> 
+</div>
+
+<!-- 这里需要再次强调一下：形式系统内部并没有命题真假的概念，就像我们外在地给命题逻辑赋予真值那样，我们可以对一阶逻辑语句也赋予真值。由于出现了任意、存在等量词，要讨论它们的正确性必然要指定一个“论域”，比如皮亚诺公理体系的论域是自然数；然后将常数符号、谓词符号、函数符号也分别对应到真正的数学常量、关系、函数上，这样就能判断一阶逻辑公式的真假了。注意形式系统本身只包含符号与生成符号串（即所谓的命题）的规则，不包含模型。选取不同的模型可能导致系统内命题的真值也不同，但也可能对真值没影响。比如下面即将介绍的ZFC集合论中可以由无穷公理与幂集公理推出不可数集合的存在，然而我们甚至可以找到一个可数的ZFC模型。它会“错误地”认为自己有不可数多的对象。 -->
+
+<h3 id="ZFC集合论"><a href="#ZFC集合论" class="headerlink" title="ZFC集合论"></a>ZFC集合论</h3><p>ZFC集合论认为包括集合的元素在内的所有东西都是集合。它在一阶逻辑基础上仅多加入了加入了谓词“属于”符号“$\in$”，以及关于集合的9个公理：</p>
+<ul>
+<li>外延公理（定义了集合相等的条件）</li>
+<li>配对公理（定义了通过元素构造集合的方法）</li>
+<li>并集公理（定义了并集的存在）</li>
+<li>幂集公理（定义了幂集的存在）</li>
+<li>无穷公理（定义了包含自然数的集合的存在）</li>
+<li>分离公理（让我们能按条件从大集合中筛出元素构成子集，相当于数组的filter函数）</li>
+<li>替换公理（提供了从已知的集合和关系构造其它的集合的方式，而不局限于子集，相当于数组的map函数）</li>
+<li>正则公理（剔除了像这样“{ { {…} } } ”无穷嵌套的集合，消除了理发师悖论）</li>
+<li>选择公理（让我们能够从无穷个任意的集合中每个选出一个元素来构成新集合）</li>
+</ul>
+<p>这些公理具体的样子有些复杂不再列出，网上都可以找到(游戏Deductrium里面也有)。</p>
+<p><img src="/img/1stlogic002.png" alt="Deductrium中的ZFC公理，里面的#号函数为公理模式中对变量自由出现、可替换性的断言检验"></p>
+<p>注意上面9条公理完全由一阶逻辑描述，并且不包含除属于符号外（例如空集符号、交并补等）一切其余符号，然而数学家实际上肯定不会只使用寥寥这些符号，<a href="javascript:$('#empty-set').toggle()">点击这里展开&#x2F;收起关于如何定义新符号的规范型问题</a></p>
+<div style="background-color:#EEF;display:none" id="empty-set">
+
+<h3 id="选读：符号定义问题"><a href="#选读：符号定义问题" class="headerlink" title="选读：符号定义问题"></a>选读：符号定义问题</h3><p>这里想分享下我当时学习集合论的困惑：虽然一阶逻辑语言中允许出现常量符号，但ZFC集合论中却至始至终没提到空集符号！其实从分离公理能够推出空集的存在性（只需要设定一个自相矛盾的条件去筛集合就能得到空集），即推出有这么个集合x，任意的y都不是它的元素：$$\exists x:\forall y :\lnot y\in x$$<br>系统内没有空集符号，如果要表达空集属于另一个集合k，就没办法直接写$\phi \in k$，我们只能将空集的定义展开，改说成对任意满足空集定义的集合x，它都属于集合k：$$\forall x:((\forall y :\lnot y\in x) → (x \in k))$$这种说法确实相当啰嗦，就像引入当且仅当符号一样，我们引入关于构造常数的公理：</p>
+<ol>
+<li>首先定义新的量词符号“唯一存在”，写作$\exists!$：设$A(x)$是一个包含自由出现的x的命题，则引入符号定义公理$$(\exists!x:A(x))↔((\exists x:A(x))\land\forall x:\forall y:((A(x)\land A(y))→x&#x3D;y))$$其中y必须是从未出现过的变量以免被“捕获”。</li>
+<li>设c是还没使用过的常数符号，则可引入辛钦公理来定义它：$$(\exists!x:A(x)) → A(c)$$</li>
+</ol>
+<p>比如易证满足空集性质的集合都相等，即$$\exists!x:\forall y: \lnot y\in x$$再使用辛钦公理，结合规则mp最终得到空集符号$\phi$的定义：$$\forall y: \lnot y\in \phi$$<br>辛钦公理要求引入常数符号之前要先确定该常数唯一存在，这个要求并不多余，否则引入前后系统将不再等价，详见<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91#%E5%87%BD%E6%95%B8%E7%AC%A6%E8%99%9F%E8%88%87%E5%94%AF%E4%B8%80%E6%80%A7">维基百科</a>。</p>
+<p>最后想说的是，最“干净”的ZFC集合论的公理系统可以没有任何常量、函数符号，那九条公理（模式）都可仅使用→、¬、&#x3D;、$\forall$、$\in$五个符号搞定，然而这种公理可读性太差，用起来也相当困难（Deductrium里也可以体验），所以我们没必要刻意自讨苦吃地保持系统的“纯洁性”，通常还是会定义各种符号简写、常量、函数符号来等价地表述这些公理。</p>
+</div>
+
+<p>ZFC公理体系不仅可以模拟出皮亚诺公理，证明质数有无穷个这样的较复杂的命题，还可以通过引入更多符号概念定义，证明出关于分析，拓扑几何等几乎一切领域的数学理论。</p>
+<p>关于集合论本身也有些细节须注意，比如所有集合并不构成一个集合、所有序数也不能构成一个集合。按序数的定义，所有序数构成的集合也该是一个更大的序数，那么我们就可以在这基础上继续向上堆叠更大的序数，这就与最大序数自相矛盾了。其实ZFC集合论的正则公理将所有序数构成的东西排除在了集合之外从而避免矛盾。将集合论这个形式系统继续扩展，引入类（Class）的概念才能描述所有序数：它们构成的东西叫做“真类”，真类和集合很像，唯一区别是它不能再作为元素出现在其它集合或类中了。</p>
+<p>集合论跟序数有着非常紧密的联系。<a href="javascript:$('#pto').toggle()">点击这里展开&#x2F;收起如何用序数描述ZFC集合论的强度</a>。</p>
+<div style="background-color:#EEF;display:none" id="pto">
+
+<h3 id="选读：ZFC集合论的强度"><a href="#选读：ZFC集合论的强度" class="headerlink" title="选读：ZFC集合论的强度"></a>选读：ZFC集合论的强度</h3><p>从ZFC中的选择公理可以推出数学归纳法，因此ZFC集合论的强度是大于（实则远大于）皮亚诺公理的。然而ZFC集合论也不是万能的，比如在ZFC中无法证明某些大基数的存在性，我们只能向ZFC中加入更多公理才能得到更强的系统。我们不妨从空集出发，看看形式系统是如何一步步变强大的：</p>
+<ol>
+<li>从空集出发，通过配对公理与并集公理，就能构造出所有有限的自然数，但得到自然数这个无穷集合$\omega$却必须要引入无穷公理来保证它的存在性。</li>
+<li>从自然数集合$\omega$出发，继续使用配对公理与并集公理，就能构造所有形如$\omega+n$的序数（$n$为自然数），然而不用其它公理目前就无法证明$\omega+\omega&#x3D;\omega2$的存在性。</li>
+<li>我们可以将自然数集的每个元素$n$映射到$\omega+n$，替换公理保证了这个映射的像还是集合，同理通过替换公理我们终于能构造出集合$\omega2$、$\omega3$……甚至$\omega^2$、$\omega^\omega$等等。</li>
+<li>现在我们可以构造出上篇文章中提到的绝大多数递归序数；由幂集公理也可以构造出很多基数，然而包括“不可达基数”在内的很多大基数是无法证明其存在性的，因此我们把“存在一个不可达基数”当作公理加入系统。</li>
+</ol>
+<p>加入公理后的新系统比ZFC要强大。比如“ZFC公理系统中推不出矛盾”(ZFC的一致性)是无法在ZFC公理系统中被证明的，但加入某些大基数存在公理后就可证。其实，ZFC系统中的证明论序数仍然是个递归序数，当我们加入了大基数过后，系统的证明论序数也会进一步增大，虽然ZFC系统的证明论序数PTO(ZFC)已经够大了，大得目前差不多没有除证明论序数外的任何其它记号表示的地步。</p>
+<p>下一步我们还可以加入Mahlo基数的存在性公理、可测基数的存在性公理……能不能一劳永逸地加入无数个像这样的大基数存在公理来得到最强的形式系统呢？哥德尔不完备性定理打消了我们的念头：无论我们向ZFC中加入多少公理，只要系统是一致的（没产生矛盾），就永远有不可判定（不可证明其正确亦不可证其错误）的命题存在。哥德尔不完备性定理很精彩，网上的介绍也很多，(比如可参考毕导的这个视频)，这里就不再展开了。</p>
+</div>
+
+
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>由于集合论网上资料众多，我也是最近才学习了解这些内容，集合论精彩的地方也远不止这些，比如本文完全没提到最著名的<strong>哥德尔不完备性定理</strong>。若想深入探索请参考任何数理逻辑教材。虽然ZFC集合论是数学界最广泛承认并使用的形式化公理体系，但在Deductrium中玩到后期你会发现这种希尔伯特式的形式系统的推导真啰嗦，如果要从选择公理证明良序性以及数学归纳法，虽然网上能找到证明思路，但真要形式化地在游戏系统内操作最终推导出来的工作量却太大了。除了Metamath，现在主流的数学家们用的证明辅助工具则完全用的另一套体系——类型论。这便是下一篇文章要填的坑。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wxyhly.github.io/archives/1stlogic/" data-id="cm3lf8epm0000u4wm7ksdama0" class="article-share-link">Share</a>
+      
+        <a href="https://wxyhly.github.io/archives/1stlogic/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/" rel="tag">数理逻辑</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/archives/ggg-ord/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older &gt;&gt;</strong>
+      <div class="article-nav-title">大数数学简介</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Tesserxel%E7%B3%BB%E5%88%97/">Tesserxel系列</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A5%87%E7%89%B9%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">奇特世界系列</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    <div class="widget-wrap">
+   <h3 class="widget-title">链接</h3>
+   <div class="widget">
+      <ul class="entry">
+         <li><a href="https://space.bilibili.com/454422438" title="bilibili" target="_blank">WXYHLY(Hqak)的B站链接</a></li>
+         <li><a href="http://hadroncfy.com" title="hadroncfy" target="_blank">Hadroncfy's Notebook</a></li>
+      </ul>
+   </div>
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2b2t/" style="font-size: 10.91px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 10.91px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 10.91px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 11.82px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15.45px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 13.64px;">tesserxel</a> <a href="/tags/webgpu/" style="font-size: 11.82px;">webgpu</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 11.82px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17.27px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 10.91px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%8F%8C%E6%9B%B2%E7%A9%BA%E9%97%B4/" style="font-size: 11.82px;">双曲空间</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 15.45px;">图形</a> <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 10.91px;">图形学</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">大数数学</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 14.55px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 13.64px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 19.09px;">数学</a> <a href="/tags/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/" style="font-size: 10px;">数理逻辑</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 10.91px;">模拟</a> <a href="/tags/%E6%B8%B2%E6%9F%93/" style="font-size: 10px;">渲染</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 11.82px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 16.36px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 10.91px;">电路</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 18.18px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 12.73px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 10.91px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 10.91px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/archives/1stlogic/">公理化集合论简介</a>
+          </li>
+        
+          <li>
+            <a href="/archives/ggg-ord/">大数数学简介</a>
+          </li>
+        
+          <li>
+            <a href="/archives/rotrigid/">四维世界（十）：旋转动力学</a>
+          </li>
+        
+          <li>
+            <a href="/archives/so4/">四维计算机图形学：旋转篇</a>
+          </li>
+        
+          <li>
+            <a href="/archives/cg4d/">四维计算机图形学：渲染篇</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 wxyhly<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/programs/" class="mobile-nav-link">Programs</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'wxyhly';
+  
+  var disqus_url = 'https://wxyhly.github.io/archives/1stlogic/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<style>
+mjx-container {
+  display: inline-grid;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 102%;
+}
+mjx-container::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 2px;
+}
+mjx-container::-webkit-scrollbar {
+  background-color: lightgray;
+  height: 6px;
+}
+mjx-assistive-mml{
+  width: 0% !important;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    }); 
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script defer>
+const setJax = function(){
+  setTimeout(function(){
+    document.querySelectorAll("mjx-container").forEach(function(e){
+      const overflow = e.scrollWidth > (e.clientWidth ? e.clientWidth + 3 : (document.querySelector(".article-entry").clientWidth - 120));
+      e.style.overflowX = overflow ? "scroll" : "hidden";
+      e.onclick = function(){
+        const overflow = e.scrollWidth > (e.clientWidth ? e.clientWidth + 3 : (document.querySelector(".article-entry").clientWidth - 120));
+        e.style.overflowX = overflow ? "scroll" : "hidden";
+      };
+    })
+  },1000);  
+}
+window.addEventListener("resize", setJax);
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  "HTML-CSS": { linebreaks: { automatic: true } },
+  SVG: { linebreaks: { automatic: true } },
+  startup: {
+    pageReady: function(){
+      return MathJax.startup.defaultPageReady().then(setJax);
+    }
+  }
+};
+</script>
+<script type="text/javascript" defer
+  src="https://cdn.bootcss.com/mathjax/3.0.5/es5/tex-mml-chtml.js">
+</script>
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
