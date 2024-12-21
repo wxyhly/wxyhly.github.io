@@ -5,12 +5,12 @@
   
   <title>类型论与机器证明简介 | Blog de Hqak (WXYHLY)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="引入类型论的动机“类型”这一概念广泛被用于编程语言中，具体来说用于编译前的类型检查，比如下面这段C语言代码 123int i &#x3D; 0;       &#x2F;&#x2F; 定义整数变量i，并将其设为0string j &#x3D;&quot;oma&quot;; &#x2F;&#x2F; 定义字符串变量j，并将其设为&quot;oma&quot;int k &#x3D; i * j;   &#x2F;&#x2F; 定义整数变量k，并将其设为 i * j 编译时会报错，因为">
+  <meta name="description" content="上篇文章介绍了命题逻辑、一阶逻辑再到ZFC集合论，本文来看一种新的宣称想要取代集合论在数学中地位的新东西——类型论。事实上它已经广泛运用在机器证明当中，其中最著名的就是四色定理的证明了，同时它跟程序代码很类似。把类型论稍加改造成同伦类型论，它还能比集合论更加“直接”地处理拓扑学中的许多问题。 类型论的动机“类型”这一概念广泛被用于编程语言中，具体来说用于编译前的类型检查，比如下面这段C语言代码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类型论与机器证明简介">
 <meta property="og:url" content="https://wxyhly.github.io/archives/hottese/index.html">
 <meta property="og:site_name" content="Blog de Hqak (WXYHLY)">
-<meta property="og:description" content="引入类型论的动机“类型”这一概念广泛被用于编程语言中，具体来说用于编译前的类型检查，比如下面这段C语言代码 123int i &#x3D; 0;       &#x2F;&#x2F; 定义整数变量i，并将其设为0string j &#x3D;&quot;oma&quot;; &#x2F;&#x2F; 定义字符串变量j，并将其设为&quot;oma&quot;int k &#x3D; i * j;   &#x2F;&#x2F; 定义整数变量k，并将其设为 i * j 编译时会报错，因为">
+<meta property="og:description" content="上篇文章介绍了命题逻辑、一阶逻辑再到ZFC集合论，本文来看一种新的宣称想要取代集合论在数学中地位的新东西——类型论。事实上它已经广泛运用在机器证明当中，其中最著名的就是四色定理的证明了，同时它跟程序代码很类似。把类型论稍加改造成同伦类型论，它还能比集合论更加“直接”地处理拓扑学中的许多问题。 类型论的动机“类型”这一概念广泛被用于编程语言中，具体来说用于编译前的类型检查，比如下面这段C语言代码">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wxyhly.github.io/img/hott003.png">
 <meta property="og:image" content="https://wxyhly.github.io/img/hott001.png">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/hott002.gif">
 <meta property="og:image" content="https://wxyhly.github.io/img/hott002.webp">
 <meta property="article:published_time" content="2024-12-21T05:59:51.000Z">
-<meta property="article:modified_time" content="2024-12-21T06:05:45.772Z">
+<meta property="article:modified_time" content="2024-12-21T06:57:47.381Z">
 <meta property="article:author" content="wxyhly">
 <meta property="article:tag" content="拓扑学">
 <meta property="article:tag" content="数学">
@@ -103,7 +103,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="/img/hott003.png" alt="《同伦类型论》书的扉页"></p>
-<h3 id="引入类型论的动机"><a href="#引入类型论的动机" class="headerlink" title="引入类型论的动机"></a>引入类型论的动机</h3><p>“类型”这一概念广泛被用于编程语言中，具体来说用于编译前的类型检查，比如下面这段C语言代码</p>
+<p>上篇文章介绍了命题逻辑、一阶逻辑再到ZFC集合论，本文来看一种新的宣称想要取代集合论在数学中地位的新东西——类型论。事实上它已经广泛运用在机器证明当中，其中最著名的就是四色定理的证明了，同时它跟程序代码很类似。把类型论稍加改造成同伦类型论，它还能比集合论更加“直接”地处理拓扑学中的许多问题。</p>
+<h3 id="类型论的动机"><a href="#类型论的动机" class="headerlink" title="类型论的动机"></a>类型论的动机</h3><p>“类型”这一概念广泛被用于编程语言中，具体来说用于编译前的类型检查，比如下面这段C语言代码</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">0</span>;       <span class="comment">// 定义整数变量i，并将其设为0</span></span><br><span class="line"><span class="built_in">string</span> j =<span class="string">&quot;oma&quot;</span>; <span class="comment">// 定义字符串变量j，并将其设为&quot;oma&quot;</span></span><br><span class="line"><span class="type">int</span> k = i * j;   <span class="comment">// 定义整数变量k，并将其设为 i * j</span></span><br></pre></td></tr></table></figure>
 <p>编译时会报错，因为这段程序声明i是整数类型的变量，而j是字符串类型的变量，它们无法相乘，或者说，乘法运算是一个接受两个数作为输入参数，输出返回一个数的函数，这里输入的i、j的类型显然与之不匹配。从上面的例子可以看出，类型检查其实就是编译器帮助我们检查代码有没有明显的低级错误导致执行一些像把数字与字符串相乘的这种无意义的命令。虽然检查一个表达式的类型也是机械化的（可定义成形式系统），但这似乎跟数学逻辑没有一点关系，它居然能用来构建公理化体系？yugu233做过一期视频<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NC411G7oK/">《论码农与数学家的相似性【数学地图】》</a>非常通俗形象地解释了类型跟证明之间的联系。<span id="more"></span></p>
 <div style="background-color:#EEF">
@@ -433,11 +434,17 @@
 <li>对任意的a:A，都有|a| : ||A||；</li>
 <li>对任意的x,y:||A||，都有x eq y。</li>
 </ul>
-<p>这样加上“||”后就能把所有命题变成纯命题，然后才能愉快地使用排中律。<br>使用这些“截断”技巧我们不难定义出拓扑学中的商空间等概念（将空间中的某些点或路径等视为等价来构造新空间），很多拓扑学中的操作都可以翻译为同伦类型论中的语言，比如我们还没提到拓扑学中的纤维丛其实就对应依赖函数类型。最后，选择公理也有类型论的版本，但也需要在单独作为公理来引入……同伦类型论的话题实在太多了，本文实在没有能力完全覆盖，请有兴趣的读者请自行探索：</p>
+<p>这样加上“||”后就能把所有命题变成纯命题，然后才能愉快地使用排中律。<br>使用这些“截断”技巧我们不难定义出拓扑学中的商空间等概念（将空间中的某些点或路径等视为等价来构造新空间），很多拓扑学中的操作都可以翻译为同伦类型论中的语言，比如我们还没提到拓扑学中的纤维丛其实就对应依赖函数类型。最后，选择公理也有类型论的版本，但也需要在单独作为公理来引入……</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>同伦类型论有点像大数理论，都是最近还处在发展中的新理论。更加成熟的则是机器证明领域，相关的话题实在太多了，本文实在没有能力完全覆盖，请有兴趣的读者请自行探索：</p>
 <ul>
+<li><a target="_blank" rel="noopener" href="https://live.lean-lang.org/">在线版的证明器LEAN</a></li>
+<li><a target="_blank" rel="noopener" href="https://subfish-zhou.github.io/theorem_proving_in_lean4_zh_CN/title_page.html">LEAN教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://coq.vercel.app/">在线版的证明器jsCoq</a></li>
+<li><a target="_blank" rel="noopener" href="https://coq-zh.github.io/SF-zh/lf-current/toc.html">Coq教程</a></li>
 <li><a target="_blank" rel="noopener" href="https://thehottgameguide.readthedocs.io/en/latest/index.html">The HoTT Game（同伦类型论游戏）</a></li>
 <li><a target="_blank" rel="noopener" href="https://hott.github.io/book/hott-online.pdf.html">Homotopy Type Theory: Univalent Foundations of Mathematics（《HoTT》电子书）</a></li>
 </ul>
+<p>最后再安利一下我制作的游戏<a href="/deductrium/?creative">Deductrium中的创造模式</a>。</p>
 
       
     </div>
