@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/chemie003.jpg">
 <meta property="og:image" content="https://wxyhly.github.io/img/chemie004.jpg">
 <meta property="article:published_time" content="2025-01-01T04:52:49.000Z">
-<meta property="article:modified_time" content="2025-01-01T04:55:56.960Z">
+<meta property="article:modified_time" content="2025-01-17T14:54:42.998Z">
 <meta property="article:author" content="wxyhly">
 <meta property="article:tag" content="四维">
 <meta property="article:tag" content="代数">
@@ -193,6 +193,13 @@
 <tr><td>Mxyz\Mxy</td><td>0</td></tr>
 <tr><td>0</td><td>1</td></tr>
 </table>
+<style>.scroll-smallTable{
+    overflow-x: scroll;
+    scrollbar-width:none;
+    margin:0px;
+    padding:0px;
+}
+</style>
 
 <h4 id="p轨道（总角量子数为1）："><a href="#p轨道（总角量子数为1）：" class="headerlink" title="p轨道（总角量子数为1）："></a>p轨道（总角量子数为1）：</h4><p>也很简单，四个坐标轴刚好对应四个基，我们把它们按空间上的周期统计量子数，并填入下面这张表里：</p>
 <table class="smallTable">
@@ -202,21 +209,21 @@
 </table>
 
 <h4 id="d轨道（总角量子数为2）："><a href="#d轨道（总角量子数为2）：" class="headerlink" title="d轨道（总角量子数为2）："></a>d轨道（总角量子数为2）：</h4><p>首先我们希望找到一个全在$w$方向上振动的驻波，但单独的$w^2$的拉普拉斯算子值为2，为了抵消它，我们可以配一个在$xyz$胞中各向同性没有起伏的$r^2&#x3D;x^2+y^2+z^2$项，大家可以验证$x^2+y^2+z^2-3w^2$是调和的。然后我们继续去找$w$方向上只有一个波动的项，即$w$项的次数为1的项，很明显能找到三个：$xw$、$yw$、$zw$；最后是$w$方向完全没有振动的，我们直接把不含$w$的球谐函数表达式搬过来，可以填出这张表：</p>
-<table class="smallTable">
+<div class="scroll-smallTable"><table class="smallTable">
 <tr><td>Mxyz\Mxy</td><td>-2</td><td>-1</td><td>0</td><td>1</td><td>2</td></tr>
 <tr><td>0</td><td></td><td></td><td>$x^2+y^2+z^2-3w^2$</td><td></td><td></td></tr>
 <tr><td>1</td><td></td><td>$xw$</td><td>$zw$</td><td>$yw$</td><td></td></tr>
 <tr><td>2</td><td>$xy$</td><td>$xz$</td><td>$x^2+y^2-2z^2$</td><td>$yz$</td><td>$x^2-y^2$</td></tr>
-</table>
+</table></div>
 
 <h4 id="f轨道（总角量子数为3）："><a href="#f轨道（总角量子数为3）：" class="headerlink" title="f轨道（总角量子数为3）："></a>f轨道（总角量子数为3）：</h4><p>跟d轨道思路很接近，首先我们希望找到一个全在$w$方向上振动的驻波，但单独的$w^3$的拉普拉斯算子值为$6w$，为了抵消它，我们可以配一个在$xyz$胞中各向同性没有起伏的$r^2w&#x3D;(x^2+y^2+z^2)w$项，大家可以验证$(x^2+y^2+z^2)w-w^3$是调和的。然后我们继续去找$w$方向上只有两个波动的项，即$w$项的次数为2的项，比如$xw^2$，但它自身不是调和函数，需要项刚才那样配项，得到$x^3-3xw^2$才是调和的。同理我们也能找到$y$轴、$z$轴上的另外两个调和函数；再然后是$w$项的次数为1的项。前面的例子启发我们，或许可以直接把球谐函数d轨道的那些多项式拿来直接乘上$w$即可，演算后发现它们确实还都是调和的。最后是$w$方向完全没有振动的，直接把球谐函数f轨道表达式搬过来即可，得到下面这张表。（友情提示：这张表手机竖屏下显示不完，请横屏观看。）</p>
-<table class="smallTable">
+<div class="scroll-smallTable"><table class="smallTable">
 <tr><td>Mxyz\Mxy</td><td>-3</td><td>-2</td><td>-1</td><td>0</td><td>1</td><td>2</td><td>3</td></tr>
 <tr><td>0</td><td></td><td></td><td></td><td>$(x^2+y^2+z^2)w-w^3$</td><td></td><td></td><td></td></tr>
 <tr><td>1</td><td></td><td></td><td>$x^3-3xw^2$</td><td>$z^3-3zw^2$</td><td>$y^3-3yw^2$</td><td></td><td></td></tr>
 <tr><td>2</td><td></td><td>$xyw$</td><td>$xzw$</td><td>$(x^2+y^2-2z^2)w$</td><td>$yzw$</td><td>$x^2w-y^2w$</td><td></td></tr>
 <tr><td>3</td><td>$x^3-3xy^2$</td><td>$xyz$</td><td>$(x^2+y^2-4z^2)x$</td><td>$(x^2+y^2-\frac{2}{3}z^2)z$</td><td>$(x^2+y^2-4z^2)y$</td><td>$x^2z-y^2z$</td><td>$y^3-3x^2y$</td></tr>
-</table>
+</table></div>
 
 <h2 id="超球谐函数Hopf坐标系版"><a href="#超球谐函数Hopf坐标系版" class="headerlink" title="超球谐函数Hopf坐标系版"></a>超球谐函数Hopf坐标系版</h2><p>由于四维空间的双旋转效应导致$xy$与$zw$平面没有干扰，为什么不选择这两个面上的角动量对应当量子数，即分别数$xy$平面与$zw$平面中一圈的波动次数呢？这种做法相当于我们使用了另一种四维极坐标系统——Hopf坐标系。我们早就分析过它相比于另一种超球坐标的优势，在这个坐标系下的超球谐函数会有什么不同呢？提醒一下，从四维开始我们必须使用角速度二向量的方向，而不是不动的旋转轴方向来描述旋转，比如$J_{xy}&#x3D;1$表示$xy$平面内的波动，对应旋转在$xy$平面中发生，$zw$平面才是不动的旋转“轴”。</p>
 <h4 id="s轨道（角量子数为0）："><a href="#s轨道（角量子数为0）：" class="headerlink" title="s轨道（角量子数为0）："></a>s轨道（角量子数为0）：</h4><p>只有常数项，没有任何空间上的波动起伏。两个量子数都是0，我们把它填入下面这张表里：</p>
@@ -234,17 +241,17 @@
 </table>
 
 <h4 id="d轨道（角量子数为2）："><a href="#d轨道（角量子数为2）：" class="headerlink" title="d轨道（角量子数为2）："></a>d轨道（角量子数为2）：</h4><p>两个坐标的乘积都是调和（满足拉普拉斯方程）的，即有以下候选基：有以下6个候选基：$xy$、$xz$、$xw$、$yz$、$yw$、$zw$；除此之外观察到$(x^2)’’&#x3D;2$，这种平方项必须要成对出现相互抵消，才能满足调和性，即$x^2-y^2$、$x^2-z^2$、$x^2-w^2$、$y^2-z^2$、$y^2-w^2$、$z^2-w^2$6个候选基。跟三维类似，我们发现这六组基之间有三个是线性相关的，该如何取舍呢？由于我们选择的是$xy$平面与$zw$平面上的波动数作为量子数，因此优先保留$x^2-y^2$与$z^2-w^2$。另一个怎么选取呢？我们看到，前面选择的所有基都在xy或zw上有波动，即四维超球Hopf坐标中的东西、阴阳两个经度方向，用那几个基可以叠加出一种只在南北方向振动（夹在$xy$平面与$zw$平面之间振动）的波函数$x^2+y^2-z^2-w^2$，它就是我们要找的最后一个基。按量子数统计后得到下表：</p>
-<table class="smallTable">
+<div class="scroll-smallTable"><table class="smallTable">
 <tr><td>Jxy\Jzw</td><td>-2</td><td>-1</td><td>0</td><td>1</td><td>2</td></tr>
 <tr><td>-2</td><td></td><td></td><td>$x y$</td><td></td><td></td></tr>
 <tr><td>-1</td><td></td><td>$xz$</td><td></td><td>$xw$</td><td></td></tr>
 <tr><td>0</td><td>$zw$</td><td></td><td>$x^2+y^2-$$z^2-w^2$</td><td></td><td>$z^2-$$w^2$</td></tr>
 <tr><td>1</td><td></td><td>$yz$</td><td></td><td>$yw$</td><td></td></tr>
 <tr><td>2</td><td></td><td></td><td>$x^2-y^2$</td><td></td><td></td></tr>
-</table>
+</table></div>
 
 <h4 id="f轨道（角量子数为3）："><a href="#f轨道（角量子数为3）：" class="headerlink" title="f轨道（角量子数为3）："></a>f轨道（角量子数为3）：</h4><p>开始上强度了。通过一系列技巧（通过正交条件用待定系数法求解等等）可以凑出下表的结果。其中$C &#x3D; 3(x^2+y^2-z^2-w^2)$。友情提示：这张表手机竖屏下显示不完，请横屏观看。</p>
-<table class="smallTable">
+<div class="scroll-smallTable"><table class="smallTable">
 <tr><td>Jxy\Jzw</td><td>-3</td><td>-2</td><td>-1</td><td>0</td><td>1</td><td>2</td><td>3</td></tr>
 <tr><td>-3</td> <td></td> <td></td> <td></td> <td>$x^3-$$3xy^2$</td> <td></td> <td></td> <td></td></tr>
 <tr><td>-2</td> <td></td> <td></td> <td>$xyz$</td> <td></td> <td>$xyw$</td> <td></td> <td></td></tr>
@@ -253,7 +260,7 @@
 <tr><td>1</td> <td></td> <td>$yzw$</td> <td></td> <td>$y(C-2y^2)+$$\frac{5}{9}(y^3-3x^2y)$</td> <td></td> <td>$yz^2-$$yw^2$</td> <td></td></tr>
 <tr><td>2</td> <td></td> <td></td> <td>$x^2z-$$y^2z$</td> <td></td> <td>$x^2w-$$y^2w$</td> <td></td> <td></td></tr>
 <tr><td>3</td> <td></td> <td></td> <td></td> <td>$y^3-$$3x^2y$</td> <td></td> <td></td> <td></td></tr>
-</table>
+</table></div>
 
 <p>看着表达式没法直观想象这些函数的形状？我在Tesserxel中准备了<a href="/tesserxel/examples/#hh">相应的场景</a>，场景中把显示轴打开后将用颜色标出<span style="color:green">x</span>、<span style="color:red">y</span>、<span style="color:blue">z</span>、<span style="color:purple">w</span>轴穿过超球面的位置。</p>
 <p><img src="/img/chemie005.jpg" alt="Tesserxel中的超球谐函数场景"><a name="spin"></a></p>
@@ -280,13 +287,13 @@
 </table>
 
 <p>f轨道：</p>
-<table class="smallTable">
+<div class="scroll-smallTable"><table class="smallTable">
 <tr><td>J+\J-</td><td>-3/2</td><td>-1/2</td><td>1/2</td><td>3/2</td></tr>
 <tr><td>-3/2</td><td>$x^3-3xy^2$</td><td>$xyz$</td><td>$xzw$</td><td>$z^3-3zw^2$</td></tr>
 <tr><td>-1/2</td><td>$xyw$</td><td>$x(C-2x^2)+$$\frac{5}{9}(x^3-3xy^2)$</td><td>$\frac{5}{9}(z^3-3zw^2)$$-z(C+2z^2)$</td><td>$yzw$</td></tr>
 <tr><td>1/2</td><td>$xz^2-xw^2$</td><td>$\frac{5}{9}(w^3-3z^2w)$$-w(C+2w^2)$</td><td>$y(C-2y^2)+$$\frac{5}{9}(y^3-3x^2y)$</td><td>$x^2z-y^2z$</td></tr>
 <tr><td>3/2</td><td>$w^3-3z^2w$</td><td>$yz^2-yw^2$</td><td>$x^2w-y^2w$</td><td>$y^3-3x^2y$</td></tr>
-</table>
+</table></div>
 这也不是偶然，四维旋转的群结构其实可以很好解释这个现象：四维旋转可以唯二分解为左、右等角旋转的叠加，即左、右等角旋转群直积是四维旋转群的双覆盖，而其中每种等角旋转构成的群又同构于三维旋转群的双覆盖，即自旋群。
 
 <p>有一点很是奇怪：虽然左、右等角旋转分量$J^+$和$J^-$完全不干扰，可以同时有确定的左旋与右旋量子数，然而，上面的那些表格里的基它们对应的总左、右等角旋转大小$J_L^2$与$J_R^2$却是相同的，合成出来的都是简单旋转。（$J^+$只是$J_L$三个分量之一，类似于三维空间中的$J_z$与$J$的关系，同理$J^-$也是$J_R$的三个分量之一）展开计算可知，反映二向量奇异性的算符化简后是0，即$J\wedge J&#x3D;2(J_{xy}J_{zw}-J_{xz}J_{yw}+J_{xw}J_{yz})&#x3D;0$，进而可以得到$J_L^2&#x3D;J_R^2$恒成立，即不存在任何有关双旋转的波动现象。你可能会问，我分别把xy平面与zw平面上的角动量本征态相叠加不就得到了双旋转态吗？计算可知这个叠加态的$J^+$和$J^-$虽然分别一个大于0，一个等于0，但它们只是左右等角旋转的分量，$J_L^2$与$J_R^2$还是相等的。</p>
@@ -314,6 +321,15 @@
     
 <nav id="article-nav">
   
+    <a href="/archives/elem4d/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;&lt; Newer</strong>
+      <div class="article-nav-title">
+        
+          四维世界（十一）：元素周期表
+        
+      </div>
+    </a>
+  
   
     <a href="/archives/hottese/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older &gt;&gt;</strong>
@@ -339,7 +355,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Tesserxel%E7%B3%BB%E5%88%97/">Tesserxel系列</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">四维计算机图形学</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A5%87%E7%89%B9%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">奇特世界系列</a><span class="category-list-count">4</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Tesserxel%E7%B3%BB%E5%88%97/">Tesserxel系列</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">四维计算机图形学</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A5%87%E7%89%B9%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">奇特世界系列</a><span class="category-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -359,7 +375,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2b2t/" style="font-size: 10.83px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 10.83px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 10.83px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 11.67px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15.83px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 13.33px;">tesserxel</a> <a href="/tags/webgpu/" style="font-size: 11.67px;">webgpu</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12.5px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17.5px;">几何</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 10.83px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10px;">化学</a> <a href="/tags/%E5%8F%8C%E6%9B%B2%E7%A9%BA%E9%97%B4/" style="font-size: 11.67px;">双曲空间</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 15.83px;">图形</a> <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 11.67px;">图形学</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">大数数学</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 15px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 14.17px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 19.17px;">数学</a> <a href="/tags/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/" style="font-size: 10.83px;">数理逻辑</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 10.83px;">模拟</a> <a href="/tags/%E6%B8%B2%E6%9F%93/" style="font-size: 10px;">渲染</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 11.67px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 16.67px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 10.83px;">电路</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10.83px;">算法</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 18.33px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 12.5px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 10.83px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 10.83px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+      <a href="/tags/2b2t/" style="font-size: 10.83px;">2b2t</a> <a href="/tags/4dViewer/" style="font-size: 10.83px;">4dViewer</a> <a href="/tags/B%E7%AB%99%E8%A7%86%E9%A2%91/" style="font-size: 10px;">B站视频</a> <a href="/tags/Hutton32/" style="font-size: 10.83px;">Hutton32</a> <a href="/tags/Minecraft/" style="font-size: 11.67px;">Minecraft</a> <a href="/tags/javascript/" style="font-size: 15.83px;">javascript</a> <a href="/tags/tesserxel/" style="font-size: 13.33px;">tesserxel</a> <a href="/tags/webgpu/" style="font-size: 11.67px;">webgpu</a> <a href="/tags/%E4%BB%A3%E6%95%B0/" style="font-size: 12.5px;">代数</a> <a href="/tags/%E5%87%A0%E4%BD%95/" style="font-size: 17.5px;">几何</a> <a href="/tags/%E5%87%A0%E4%BD%95%E4%BB%A3%E6%95%B0/" style="font-size: 10px;">几何代数</a> <a href="/tags/%E5%88%86%E5%BD%A2/" style="font-size: 10px;">分形</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 10.83px;">动画</a> <a href="/tags/%E5%8C%96%E5%AD%A6/" style="font-size: 10.83px;">化学</a> <a href="/tags/%E5%8F%8C%E6%9B%B2%E7%A9%BA%E9%97%B4/" style="font-size: 11.67px;">双曲空间</a> <a href="/tags/%E5%9B%9B%E7%BB%B4/" style="font-size: 20px;">四维</a> <a href="/tags/%E5%9B%BE%E5%BD%A2/" style="font-size: 15.83px;">图形</a> <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 11.67px;">图形学</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">大数数学</a> <a href="/tags/%E5%A5%87%E7%89%B9%E6%83%B3%E8%B1%A1/" style="font-size: 15px;">奇特想象</a> <a href="/tags/%E6%8B%93%E6%89%91%E5%AD%A6/" style="font-size: 14.17px;">拓扑学</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 19.17px;">数学</a> <a href="/tags/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/" style="font-size: 10.83px;">数理逻辑</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 10px;">杂记</a> <a href="/tags/%E6%A8%A1%E6%8B%9F/" style="font-size: 10.83px;">模拟</a> <a href="/tags/%E6%B8%B2%E6%9F%93/" style="font-size: 10px;">渲染</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 11.67px;">游戏</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 16.67px;">物理</a> <a href="/tags/%E7%94%B5%E8%B7%AF/" style="font-size: 10.83px;">电路</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10.83px;">算法</a> <a href="/tags/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/" style="font-size: 18.33px;">系列文章</a> <a href="/tags/%E7%BE%A4%E8%AE%BA/" style="font-size: 12.5px;">群论</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 10.83px;">自动机</a> <a href="/tags/%E8%87%AA%E6%88%91%E6%8F%8F%E8%BF%B0/" style="font-size: 10.83px;">自我描述</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
     </div>
   </div>
 
@@ -368,7 +384,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
     </div>
   </div>
 
@@ -379,6 +395,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/archives/elem4d/">四维世界（十一）：元素周期表</a>
+          </li>
         
           <li>
             <a href="/archives/hh/">四维空间（十三）：超球谐函数</a>
@@ -394,10 +414,6 @@
         
           <li>
             <a href="/archives/1stlogic/">公理化集合论简介</a>
-          </li>
-        
-          <li>
-            <a href="/archives/ggg-ord/">大数数学简介</a>
           </li>
         
       </ul>
