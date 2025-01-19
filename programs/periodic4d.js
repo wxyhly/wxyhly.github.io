@@ -3,7 +3,7 @@ const data1 = `					@	@																																																					@	@
 %	%	%	%	#	Li锂	Lt铤	Lb钹	Be铍																																					Bc磐	B硼	Qb矻	Q磻	Qc砠	C碳	Tk𥓬	E硝	Tn磴	N氮	Ny氤	O氧	Fn氛	Fd氲	F氟	Ne氖				
 %	%	%	%	#	Na钠	Nt铙	Nm𨰾	Mg镁	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	@	Ml镙	Al铝	Da锾	Dd砃	Du砡	Si硅	Gs磪	G碓	Gp䂾	P磷	Ps硖	S硫	Lp硠	Ld㲶	Cl氯	Ar氩				
 %	%	%	%	#	K钾	Kt鉲	Cj钘	Ca钙	Sa𫔌	Sc钪	Sk镩	Hn铖	Ht镬	Ti钛	Tq镡	Ai铚	Vj𬭫	V钒	Vz𬬬	Az銸	Cz𫓥	Cr铬	Bb镑	Bn鉼	Bm䤮	Mn锰	Fx锴	Fe铁	Fw䥽	Wd釫	Cw鍢	Co钴	Ch鈨	Sp铴	Ns钑	Ni镍	Pi鎃	Pk铇	Cp𨱎	Hj锲	Hc锏	Cu铜	Hz镔	Zn锌	Gz鍜	Ga镓	Bz𫓬	Bj铡	Bg錊	Ge锗	Ih䃎	Ia砧	Iv磌	As砷	Ae䃏	Se硒	Bs𪶭	Bd溴	Br𣱕	Kr氪				
-%	%	%	%	#	Rb铷	Rt𨧨	Rs鐩	Sr锶	Sy𫓹	Y钇	Yz鈏	Z铎	Zt镃	Zr锆	Zb鉡	Zk鐰	Nk錼	Nb铌	Hb锛	Hx鑛	Mj鑂	Mo钼	Mb铫	Bo𫔆	Bt釱	Tc锝	Tr鏶	Ru钌	Rd鏴	Me鋈	Mw铉	Rh铑	Rv銋	Mu𬭁	Mp鉖	Pd钯	Ah锷	Hi铘	Ig镒	Aa鈪	Ak锵	Ag银	Ad鈄	Cd镉	Sj𬬱	In铟	Mi銤	M铓	Mq𨭩	Sn锡	Ze䤠	Ci鈶	Cg𨥜	Sb锑	St碁	Te碲	It碤	Id砥	I碘	Xe氙				
+%	%	%	%	#	Rb铷	Rt𨧨	Rs鐩	Sr锶	Sy𫓹	Y钇	Yz鈏	Z铎	Zt镃	Zr锆	Zb鉡	Zk鐰	Nk錼	Nb铌	Hb锛	Hx鑛	Mj鑂	Mo钼	Mb铫	Bo𫔆	Bt釱	Tc锝	Tr鏶	Ru钌	Rd鏴	Me鋈	Mw铉	Rh铑	Rv銋	Mu𬭁	Mp鉖	Pd钯	Ah锷	Hi铘	Ig镒	Aa鈪	Ak锵	Ag银	Ad钭	Cd镉	Sj𬬱	In铟	Mi銤	M铓	Mq𨭩	Sn锡	Ze䤠	Ci鈶	Cg𨥜	Sb锑	St碁	Te碲	It碤	Id砥	I碘	Xe氙				
 %	%	%	%	#	Cs铯	Ct铩	Cb鎟	Ba钡	Bu鑗	Lu镥	Uv䤸	Hv铔	Vf鍝	Hf铪	Uf鍑	Uk锳	Ut䥙	Ta钽	Tt鎕	Mh釯	Wm釪	W钨	Wo鉥	Ot锬	Or䥃	Re铼	Ro鍒	Os锇	Zo𫟻	Zi鐑	My𬭆	Ir铱	El鏂	Ao䥝	So𫓪	Pt铂	Lh鏸	Fa𫔍	Fu鍸	J𨱓	Aj𫓦	Au金	Jg釶	Hg汞	Tg釭	Tl铊	Ql钶	Qm钤	Pq銙	Pb铅	Pl鐱	Ap镛	By𫔇	Bi铋	Bp鈵	Po钋	Pe碚	Et砈	At砹	Rn氡				
 %	%	%	%	#	Fr钫	Ft鍅	Fc钣	Ra镭	Rr釢	Lr铹	Lc𫓺	Pc鉘	Pf鉜	Rf𬬻	Rk顉	Lk铆	Jd鎌	Db𬭊	Dh鍕	Eh銰	Eg𬬧	Sg𬭳	Pg铸	Pn鍻	Ph𬭖	Bh𬭛	Bw䥤	Hs𬭶	Hm𫟺	Hu锪	Ez鉙	Mt鿏	Ov鉒	Ve䥳	Do鍎	Ds𫟼	Zu𬬺	Zh鉊	Zx鏉	Ck鏪	Gk𬬪	Rg𬬭	Kn銶	Cn鿔	Nc鈤	Nh鿭	Sh鍉	Su鋜	Fs鏠	Fl𫓧	Fb𬬯	Ab鎴	Aq铰	Mc镆	Mv鍡	Lv𫟷	Ls鈻	Td𬭓	Ts钿	Og鿫				
 																																																																
