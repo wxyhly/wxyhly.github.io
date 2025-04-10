@@ -1,0 +1,1439 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="440.70905mm"
+   height="257.92944mm"
+   viewBox="0 0 440.70905 257.92944"
+   version="1.1"
+   id="svg68838"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="chemie417.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview68840"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:snap-global="false"
+     fit-margin-top="1"
+     fit-margin-left="1"
+     fit-margin-right="1"
+     fit-margin-bottom="1"
+     inkscape:zoom="1.4348599"
+     inkscape:cx="661.04014"
+     inkscape:cy="410.14457"
+     inkscape:window-width="1440"
+     inkscape:window-height="838"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs68835">
+    <marker
+       style="overflow:visible"
+       id="TriangleOutM"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path63567" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker69940"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path69938" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker69944"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path69942" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleOutM-3"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path63567-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker95382"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path95380" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker95386"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path95384" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker95390"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path95388" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker95394"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path95392" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker95398"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path95396" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleOutM-7"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path63567-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker97005"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path97003" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker97009"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path97007" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker97013"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path97011" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleOutM-79"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path63567-5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker104592"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path104590" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker104596"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path104594" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker104600"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path104598" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="图层 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(91.378936,-1.617247)">
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-24.215092"
+       y="36.216709"
+       id="text8815"><tspan
+         sodipodi:role="line"
+         id="tspan8813"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="-24.215092"
+         y="36.216709">OD</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-67.867264"
+       y="13.72668"
+       id="text8989"><tspan
+         sodipodi:role="line"
+         id="tspan8987"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="-67.867264"
+         y="13.72668">O</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-50.844433"
+       y="36.480846"
+       id="text8993"><tspan
+         sodipodi:role="line"
+         id="tspan8991"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="-50.844433"
+         y="36.480846">C</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -39.382259,31.307793 h 13.167492"
+       id="path8995" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -56.720697,13.339556 8.470936,10.080974"
+       id="use8997" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -59.151461,15.382101 8.470937,10.080973"
+       id="use8999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -56.72068,48.746459 8.470937,-10.080975"
+       id="use9001" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -59.151443,46.703909 8.470936,-10.08097"
+       id="use9003" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-67.867226"
+       y="57.647556"
+       id="use9005"><tspan
+         sodipodi:role="line"
+         id="tspan68979"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="-67.867226"
+         y="57.647556">O</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-37.812054"
+       y="74.257881"
+       id="text78418"><tspan
+         sodipodi:role="line"
+         style="font-size:10.5833px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="-37.812054"
+         y="74.257881"
+         id="tspan78416">碳酸</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="28.774214"
+       y="100.1807"
+       id="text34445"><tspan
+         sodipodi:role="line"
+         id="tspan34443"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="28.774214"
+         y="100.1807">O</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="28.988546"
+       y="129.5816"
+       id="text34449"><tspan
+         sodipodi:role="line"
+         id="tspan34447"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="28.988546"
+         y="129.5816">N</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="55.890518"
+       y="143.86935"
+       id="text34453"><tspan
+         sodipodi:role="line"
+         id="tspan34451"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="55.890518"
+         y="143.86935">OH</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 32.204659,102.44617 v 13.16749"
+       id="use34455" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.02618;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 35.379699,102.4462 v 13.86587"
+       id="use34457" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-7.4152412"
+       y="144.55511"
+       id="text34461"><tspan
+         sodipodi:role="line"
+         id="tspan34459"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="-7.4152412"
+         y="144.55511">HO</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+       d="m 40.897716,128.81477 11.403374,6.58375"
+       id="use34463" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+       d="m 28.052972,128.81479 -11.403374,6.58374"
+       id="use35529" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-57.15501"
+       y="100.34837"
+       id="text95130"><tspan
+         sodipodi:role="line"
+         id="tspan95128"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="-57.15501"
+         y="100.34837">O</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-56.940685"
+       y="129.74924"
+       id="text95134"><tspan
+         sodipodi:role="line"
+         id="tspan95132"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="-56.940685"
+         y="129.74924">N<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan96936" /></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-27.600218"
+       y="145.01236"
+       id="text95138"><tspan
+         sodipodi:role="line"
+         id="tspan95136"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="-27.600218"
+         y="145.01236">O<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan95766" /></tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -53.724597,102.61385 v 13.16749"
+       id="use95140" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.02618;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -50.549527,102.61398 v 13.86587"
+       id="use95142" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-91.756973"
+       y="144.19357"
+       id="text95146"><tspan
+         sodipodi:role="line"
+         id="tspan95144"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="-91.756973"
+         y="144.19357">DO</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+       d="m -45.031497,128.98257 11.40337,6.58375"
+       id="path95148" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -69.591207,134.89794 11.403379,-6.58374"
+       id="use98180" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-49.614094"
+       y="153.67868"
+       id="text98348"><tspan
+         sodipodi:role="line"
+         style="font-size:10.5833px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="-49.614094"
+         y="153.67868"
+         id="tspan98346">氮酸</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="34.523376"
+       y="153.67868"
+       id="text98870"><tspan
+         sodipodi:role="line"
+         style="font-size:10.5833px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="34.523376"
+         y="153.67868"
+         id="tspan98868">氮洋酸</tspan></text>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path95148"
+       id="use70238"
+       transform="translate(3.7041668,2.1166667)"
+       width="100%"
+       height="100%" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="129.78397"
+       y="100.34837"
+       id="text72752"><tspan
+         sodipodi:role="line"
+         id="tspan72750"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="129.78397"
+         y="100.34837">O</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="129.99829"
+       y="129.74924"
+       id="text72758"><tspan
+         sodipodi:role="line"
+         id="tspan72756"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="129.99829"
+         y="129.74924">N<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan72754" /></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="159.33876"
+       y="145.01236"
+       id="text72764"><tspan
+         sodipodi:role="line"
+         id="tspan72762"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="159.33876"
+         y="145.01236">O<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan72760" /></tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 133.21443,102.61385 v 13.16749"
+       id="path72766" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.02618;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 136.3895,102.61398 v 13.86587"
+       id="path72768" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="89.361237"
+       y="144.19357"
+       id="text72772"><tspan
+         sodipodi:role="line"
+         id="tspan72770"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="89.361237"
+         y="144.19357">H<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan88482">2</tspan>O</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+       d="m 141.90753,128.98257 11.40337,6.58375"
+       id="path72774" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 117.34782,134.89794 128.7512,128.3142"
+       id="path72776" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="137.32487"
+       y="153.67868"
+       id="text72780"><tspan
+         sodipodi:role="line"
+         style="font-size:10.5833px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="137.32487"
+         y="153.67868"
+         id="tspan72778">氮涪酸</tspan></text>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path95148"
+       id="use72782"
+       transform="translate(190.64325,2.1166667)"
+       width="100%"
+       height="100%" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="49.868244"
+       y="36.216709"
+       id="text75158"><tspan
+         sodipodi:role="line"
+         id="tspan75156"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="49.868244"
+         y="36.216709">FnH</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="6.2160687"
+       y="13.72668"
+       id="text75162"><tspan
+         sodipodi:role="line"
+         id="tspan75160"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="6.2160687"
+         y="13.72668">O</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="23.238918"
+       y="36.480846"
+       id="text75166"><tspan
+         sodipodi:role="line"
+         id="tspan75164"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="23.238918"
+         y="36.480846">C</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 34.701079,31.307793 H 47.86857"
+       id="path75168" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 17.362638,13.339556 25.833575,23.42053"
+       id="path75170" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 14.931871,15.382101 8.470944,10.080973"
+       id="path75172" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 17.362658,48.746459 25.833595,38.665484"
+       id="path75174" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 14.931891,46.703909 8.470934,-10.08097"
+       id="path75176" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="6.2160993"
+       y="57.647556"
+       id="text75180"><tspan
+         sodipodi:role="line"
+         id="tspan75178"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="6.2160993"
+         y="57.647556">O</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="36.271271"
+       y="74.257881"
+       id="text75184"><tspan
+         sodipodi:role="line"
+         style="font-size:10.5833px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="36.271271"
+         y="74.257881"
+         id="tspan75182">碳汾酸</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="218.49533"
+       y="100.63129"
+       id="text82628"><tspan
+         sodipodi:role="line"
+         id="tspan82626"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="218.49533"
+         y="100.63129">FdH</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="218.70966"
+       y="130.03215"
+       id="text82634"><tspan
+         sodipodi:role="line"
+         id="tspan82632"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="218.70966"
+         y="130.03215">N<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan82630" /></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="248.05023"
+       y="145.29527"
+       id="text82640"><tspan
+         sodipodi:role="line"
+         id="tspan82638"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="248.05023"
+         y="145.29527">O<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan82636" /></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="177.54326"
+       y="144.47649"
+       id="text82648"><tspan
+         sodipodi:role="line"
+         id="tspan82646"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="177.54326"
+         y="144.47649">HFd</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+       d="m 230.61873,129.26547 11.40337,6.58375"
+       id="path82650" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="226.03629"
+       y="153.96159"
+       id="text82656"><tspan
+         sodipodi:role="line"
+         style="font-size:10.5833px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="226.03629"
+         y="153.96159"
+         id="tspan82654">氮蕰酸</tspan></text>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path95148"
+       id="use82658"
+       transform="translate(279.35445,2.3995721)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use35529"
+       id="use83982"
+       transform="rotate(180,116.72075,133.00767)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use35529"
+       id="use84064"
+       transform="rotate(-60,102.87973,-54.660788)"
+       width="100%"
+       height="100%" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="309.1842"
+       y="99.898613"
+       id="text85118"><tspan
+         sodipodi:role="line"
+         id="tspan85116"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="309.1842"
+         y="99.898613">OH<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan87568">3</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="115.64626"
+       y="74.257881"
+       id="text85144"><tspan
+         sodipodi:role="line"
+         style="font-size:10.5833px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="115.64626"
+         y="74.257881"
+         id="tspan85142">碳洺酸</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="308.66812"
+       y="130.03215"
+       id="text88682"><tspan
+         sodipodi:role="line"
+         id="tspan88680"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="308.66812"
+         y="130.03215">N<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan88678" /></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="338.00861"
+       y="145.29527"
+       id="text88688"><tspan
+         sodipodi:role="line"
+         id="tspan88686"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="338.00861"
+         y="145.29527">O<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan88684" /></tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+       d="m 320.5771,129.26547 11.40337,6.58375"
+       id="path88694" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="315.99469"
+       y="153.96159"
+       id="text88698"><tspan
+         sodipodi:role="line"
+         style="font-size:10.5833px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="315.99469"
+         y="153.96159"
+         id="tspan88696">氮洺酸</tspan></text>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path95148"
+       id="use88700"
+       transform="translate(369.31279,2.3995721)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use35529"
+       id="use88702"
+       transform="rotate(180,161.69989,133.00767)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use35529"
+       id="use88704"
+       transform="rotate(-60,147.85884,-132.56702)"
+       width="100%"
+       height="100%" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="266.75562"
+       y="144.76562"
+       id="text89800"><tspan
+         sodipodi:role="line"
+         id="tspan89798"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="266.75562"
+         y="144.76562">H<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan89796">3</tspan>O</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="113.65221"
+       y="13.090329"
+       id="text85118-9"><tspan
+         sodipodi:role="line"
+         id="tspan85116-6"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="113.65221"
+         y="13.090329">OH<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan87568-9">3</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="113.13609"
+       y="43.223839"
+       id="text88682-9"><tspan
+         sodipodi:role="line"
+         id="tspan88680-9"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="113.13609"
+         y="43.223839">C</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="136.58289"
+       y="57.957798"
+       id="text88688-3"><tspan
+         sodipodi:role="line"
+         id="tspan88686-6"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="136.58289"
+         y="57.957798">O<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan88684-7" /></tspan></text>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use35529"
+       id="use88702-9"
+       transform="rotate(180,63.933948,89.603518)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use35529"
+       id="use88704-2"
+       transform="rotate(-60,-25.085349,-6.6356892)"
+       width="100%"
+       height="100%" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="71.223694"
+       y="57.957317"
+       id="text89800-6"><tspan
+         sodipodi:role="line"
+         id="tspan89798-0"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="71.223694"
+         y="57.957317">H<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan89796-4">3</tspan>O</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 136.05859,47.723366 -11.1991,-6.9255"
+       id="path96991" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 134.38868,50.423752 -11.1991,-6.925507"
+       id="path96993" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="166.7928"
+       y="180.00658"
+       id="text87676"><tspan
+         sodipodi:role="line"
+         id="tspan87674"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="166.7928"
+         y="180.00658">FdH</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="166.10704"
+       y="239.27339"
+       id="text87680"><tspan
+         sodipodi:role="line"
+         id="tspan87678"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="166.10704"
+         y="239.27339">OH<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan97862">3</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="166.47792"
+       y="209.40747"
+       id="text87684"><tspan
+         sodipodi:role="line"
+         id="tspan87682"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="166.47792"
+         y="209.40747">Q</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="196.22023"
+       y="210.09325"
+       id="text87688"><tspan
+         sodipodi:role="line"
+         id="tspan87686"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="196.22023"
+         y="210.09325">FnH<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan112343">2</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="120.54924"
+       y="210.09325"
+       id="text87692"><tspan
+         sodipodi:role="line"
+         id="tspan87690"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="120.54924"
+         y="210.09325">DFn</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM-7)"
+       d="m 148.53362,204.44451 h 13.1675"
+       id="path87694" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM-7)"
+       d="m 194.70451,204.44451 h -13.1675"
+       id="path87696" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM-7)"
+       d="M 171.61906,227.52994 V 214.36245"
+       id="path87698" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM-7)"
+       d="m 171.61906,181.35907 v 13.1675"
+       id="path87700" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="205.60463"
+       y="74.257881"
+       id="text98078"><tspan
+         sodipodi:role="line"
+         style="font-size:10.5833px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="205.60463"
+         y="74.257881"
+         id="tspan98076">碳蕰洺酸</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="203.61058"
+       y="13.090329"
+       id="text98084"><tspan
+         sodipodi:role="line"
+         id="tspan98082"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="203.61058"
+         y="13.090329">OH<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan98080">3</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="203.09448"
+       y="43.223839"
+       id="text98088"><tspan
+         sodipodi:role="line"
+         id="tspan98086"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="203.09448"
+         y="43.223839">C</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="226.54131"
+       y="57.957798"
+       id="text98094"><tspan
+         sodipodi:role="line"
+         id="tspan98092"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="226.54131"
+         y="57.957798">O<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan98090" /></tspan></text>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use35529"
+       id="use98096"
+       transform="rotate(180,108.91309,89.603518)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use35529"
+       id="use98098"
+       transform="rotate(-60,19.893815,-84.541896)"
+       width="100%"
+       height="100%" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="161.18199"
+       y="57.957317"
+       id="text98104"><tspan
+         sodipodi:role="line"
+         id="tspan98102"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="161.18199"
+         y="57.957317">HFd</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 226.01698,47.723366 -11.1991,-6.9255"
+       id="path98106" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 224.34707,50.423752 -11.1991,-6.925507"
+       id="path98108" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="295.56299"
+       y="74.257881"
+       id="text99904"><tspan
+         sodipodi:role="line"
+         style="font-size:10.5833px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="295.56299"
+         y="74.257881"
+         id="tspan99902">碳羒酸</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="293.56897"
+       y="13.090329"
+       id="text99910"><tspan
+         sodipodi:role="line"
+         id="tspan99908"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="293.56897"
+         y="13.090329">FnD</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="293.05286"
+       y="43.223839"
+       id="text99914"><tspan
+         sodipodi:role="line"
+         id="tspan99912"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="293.05286"
+         y="43.223839">C</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="316.4996"
+       y="57.957798"
+       id="text99920"><tspan
+         sodipodi:role="line"
+         id="tspan99918"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="316.4996"
+         y="57.957798">O<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan99916" /></tspan></text>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use35529"
+       id="use99922"
+       transform="rotate(180,153.8922,89.603518)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use35529"
+       id="use99924"
+       transform="rotate(-60,64.872976,-162.44812)"
+       width="100%"
+       height="100%" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="251.14041"
+       y="57.957317"
+       id="text99928"><tspan
+         sodipodi:role="line"
+         id="tspan99926"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="251.14041"
+         y="57.957317">DFn</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 315.97537,47.723366 -11.1991,-6.9255"
+       id="path99930" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 314.30546,50.423752 -11.1991,-6.925507"
+       id="path99932" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="172.60608"
+       y="256.78738"
+       id="text104442"><tspan
+         sodipodi:role="line"
+         style="font-size:10.5833px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="172.60608"
+         y="256.78738"
+         id="tspan104440">磻𣸣蕰洺羒酸</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="291.58725"
+       y="180.96581"
+       id="text28975"><tspan
+         sodipodi:role="line"
+         id="tspan28973"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="291.58725"
+         y="180.96581">OT</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="290.90149"
+       y="240.2326"
+       id="text28983"><tspan
+         sodipodi:role="line"
+         id="tspan28981"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="290.90149"
+         y="240.2326">OT</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="291.27237"
+       y="210.36668"
+       id="text29171"><tspan
+         sodipodi:role="line"
+         id="tspan29169"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="291.27237"
+         y="210.36668">Q</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="321.01456"
+       y="211.05247"
+       id="text31129"><tspan
+         sodipodi:role="line"
+         id="tspan31127"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="321.01456"
+         y="211.05247">OT</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="251.16463"
+       y="211.05247"
+       id="text31465"><tspan
+         sodipodi:role="line"
+         id="tspan31463"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="251.16463"
+         y="211.05247">TO</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM-79)"
+       d="M 273.32811,205.40375 H 286.4956"
+       id="path46169" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM-79)"
+       d="m 319.49899,205.40375 h -13.1675"
+       id="path46171" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM-79)"
+       d="M 296.41355,228.48918 V 215.32169"
+       id="path46173" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM-79)"
+       d="m 296.41355,182.31832 v 13.16749"
+       id="path46175" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="44.026123"
+       y="180.00658"
+       id="text104733"><tspan
+         sodipodi:role="line"
+         id="tspan104731"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="44.026123"
+         y="180.00658">FnD</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="43.340363"
+       y="239.27339"
+       id="text104739"><tspan
+         sodipodi:role="line"
+         id="tspan104737"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="43.340363"
+         y="239.27339">FnD</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="43.711243"
+       y="209.40747"
+       id="text104743"><tspan
+         sodipodi:role="line"
+         id="tspan104741"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="43.711243"
+         y="209.40747">Q</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="73.453514"
+       y="210.09325"
+       id="text104747"><tspan
+         sodipodi:role="line"
+         id="tspan104745"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="73.453514"
+         y="210.09325">FnD</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-2.2174165"
+       y="210.09325"
+       id="text104751"><tspan
+         sodipodi:role="line"
+         id="tspan104749"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="-2.2174165"
+         y="210.09325">DFn</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM-7)"
+       d="m 25.766919,204.44451 h 13.16749"
+       id="path104753" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM-7)"
+       d="M 71.937778,204.44451 H 58.770289"
+       id="path104755" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM-7)"
+       d="M 48.852348,227.52994 V 214.36245"
+       id="path104757" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM-7)"
+       d="m 48.852348,181.35907 v 13.1675"
+       id="path104759" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="49.839382"
+       y="256.78738"
+       id="text104763"><tspan
+         sodipodi:role="line"
+         style="font-size:10.5833px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="49.839382"
+         y="256.78738"
+         id="tspan104761">磻酸</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="296.96564"
+       y="256.78738"
+       id="text113445"><tspan
+         sodipodi:role="line"
+         style="font-size:10.5833px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="296.96564"
+         y="256.78738"
+         id="tspan113443">磻酰汌</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -45.075275,205.82991 11.40338,6.58375"
+       id="use31569" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -67.532335,213.15881 11.40338,-6.58374"
+       id="use31571" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-55.012875"
+       y="178.90627"
+       id="text31575"><tspan
+         sodipodi:role="line"
+         id="tspan31573"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="-55.012875"
+         y="178.90627">O</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-55.327755"
+       y="208.30714"
+       id="text31587"><tspan
+         sodipodi:role="line"
+         id="tspan31585"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="-55.327755"
+         y="208.30714">E</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-32.464626"
+       y="222.22231"
+       id="text31591"><tspan
+         sodipodi:role="line"
+         id="tspan31589"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="-32.464626"
+         y="222.22231">OH<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan140175">2</tspan></tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -51.582415,181.1716 v 13.16749"
+       id="use31593" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.02618;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -48.407335,181.17164 v 13.86587"
+       id="use31595" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-91.202301"
+       y="223.28065"
+       id="text31599"><tspan
+         sodipodi:role="line"
+         id="tspan31597"
+         style="font-size:14.1111px;stroke-width:0.264583"
+         x="-91.202301"
+         y="223.28065">HFn</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="-49.089718"
+       y="257.11526"
+       id="text86512"><tspan
+         sodipodi:role="line"
+         style="font-size:10.5833px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="-49.089718"
+         y="257.11526"
+         id="tspan86510">亚硝汾涪酸</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 73.864736,122.79594 H 100.53564 L 97.222605,119.4829"
+       id="path164961" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path164961"
+       id="use165213"
+       transform="rotate(180,87.35988,123.80462)"
+       width="100%"
+       height="100%" />
+  </g>
+</svg>
