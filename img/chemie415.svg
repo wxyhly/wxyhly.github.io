@@ -11,6 +11,7 @@
    sodipodi:docname="chemie415.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
@@ -27,9 +28,9 @@
      fit-margin-left="1"
      fit-margin-right="1"
      fit-margin-bottom="1"
-     inkscape:zoom="0.7672525"
-     inkscape:cx="322.57959"
-     inkscape:cy="456.82484"
+     inkscape:zoom="0.85047594"
+     inkscape:cx="407.41893"
+     inkscape:cy="368.61713"
      inkscape:window-width="1440"
      inkscape:window-height="838"
      inkscape:window-x="-6"
@@ -38,6 +39,28 @@
      inkscape:current-layer="layer1" />
   <defs
      id="defs22750">
+    <inkscape:path-effect
+       effect="simplify"
+       id="path-effect1656"
+       is_visible="true"
+       lpeversion="1"
+       steps="1"
+       threshold="0.00133333"
+       smooth_angles="360"
+       helper_size="0"
+       simplify_individual_paths="false"
+       simplify_just_coalesce="false" />
+    <inkscape:path-effect
+       effect="simplify"
+       id="path-effect187615"
+       is_visible="true"
+       lpeversion="1"
+       steps="1"
+       threshold="0.00133333"
+       smooth_angles="360"
+       helper_size="0"
+       simplify_individual_paths="false"
+       simplify_just_coalesce="false" />
     <marker
        style="overflow:visible"
        id="TriangleOutM"
@@ -128,6 +151,20 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(15.378772,-75.559659)">
+    <g
+       id="g1820">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:"
+         d="m 139.20165,91.38347 v 12.74718"
+         id="path14028" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 134.94995,104.21566 c 2.86013,0 5.72027,0 8.5804,0"
+         id="path1654"
+         inkscape:path-effect="#path-effect1656"
+         inkscape:original-d="m 134.94995,104.21566 h 8.5804"
+         sodipodi:nodetypes="cc" />
+    </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M -5.066024,111.51733 H 8.1014653"
@@ -259,19 +296,6 @@
          x="135.41811"
          y="147.36819">P</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#StopL)"
-       d="m 139.20165,91.38347 v 12.74718"
-       id="path14028" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#StopL)"
-       d="M 160.48402,112.59193 H 147.20767"
-       id="path14406"
-       sodipodi:nodetypes="cc" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#StopL)"
-       d="M 139.88453,133.57275 V 120.82557"
-       id="path14408" />
-    <path
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 113.95712,211.00072 h 13.16749"
        id="path23099" />
@@ -330,23 +354,6 @@
          style="font-size:14.1111px;stroke-width:0.264583"
          x="129.06812"
          y="247.90996">Dy</tspan></text>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#StopL)"
-       d="m 139.20165,191.92519 v 12.74719"
-       id="path23121" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#StopL)"
-       d="M 163.65901,213.13366 H 150.91183"
-       id="path23123" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#StopL)"
-       d="M 139.88453,234.11448 V 221.3673"
-       id="path23125" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#StopL)"
-       d="M 127.19196,215.25034 H 113.91561"
-       id="path25895"
-       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 1.8131428,211.62723 H 16.568132"
@@ -455,7 +462,12 @@
          style="font-size:10.5833px;text-align:center;text-anchor:middle;stroke-width:0.264583"
          x="21.239515"
          y="160.3777"
-         id="tspan31922">氤氠基</tspan></text>
+         id="tspan31922">氤氠基</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:10.5833px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="21.239515"
+         y="173.87337"
+         id="tspan186843">(氤胂)</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
@@ -472,5 +484,57 @@
          x="141.89372"
          y="170.50322"
          id="tspan38134">（氕胺）</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 84.281487,78.31842 -11.724738,10.690201 16.897416,31.725759 -18.966487,45.51956 12.069583,13.10412 -6.896904,13.79381 14.483498,32.0706 -12.759272,16.20772 13.793808,16.89742 -12.069582,6.55206"
+       id="path187915" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g1820"
+       id="use1822"
+       transform="rotate(90,139.12494,112.50841)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g1820"
+       id="use2041"
+       transform="matrix(1,0,0,-1,0.46083961,225.70808)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g1820"
+       id="use2283"
+       transform="translate(-1.2444013,99.863201)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use1822"
+       id="use2285"
+       transform="translate(3.5151374,100.7965)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use2041"
+       id="use2287"
+       transform="translate(-1.2444013,99.863201)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use2285"
+       id="use2369"
+       transform="translate(-36.975707,1.3416333)"
+       width="100%"
+       height="100%" />
   </g>
 </svg>
