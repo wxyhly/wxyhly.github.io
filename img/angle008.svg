@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="181.91209mm"
+   height="57.99276mm"
+   viewBox="0 0 181.9121 57.992758"
+   version="1.1"
+   id="svg1320"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="angle008.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1322"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     fit-margin-top="1"
+     fit-margin-left="1"
+     fit-margin-right="1"
+     fit-margin-bottom="1"
+     inkscape:zoom="0.82482099"
+     inkscape:cx="308.5518"
+     inkscape:cy="109.72078"
+     inkscape:window-width="1440"
+     inkscape:window-height="838"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1317" />
+  <g
+     inkscape:label="图层 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-15.992784,-10.22379)">
+    <g
+       id="use15989"
+       transform="translate(-27.353652,-64.298847)">
+      <circle
+         style="fill:#ffc9c9;fill-opacity:1;stroke:#ff0000;stroke-width:0.655738;stroke-linecap:round"
+         id="circle20784"
+         cx="64.346436"
+         cy="95.522636"
+         r="19.672131" />
+      <circle
+         style="fill:#c7c7ff;fill-opacity:1;stroke:#0000ff;stroke-width:0.655738;stroke-linecap:round"
+         id="circle20786"
+         cx="107.22231"
+         cy="95.522636"
+         r="19.672131" />
+    </g>
+    <circle
+       style="fill:#44aa00;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round"
+       id="use15991"
+       cx="34.565979"
+       cy="22.941721"
+       r="1.610876" />
+    <circle
+       style="fill:#d400aa;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round"
+       id="use15993"
+       cx="36.222023"
+       cy="23.2176"
+       r="1.610876" />
+    <circle
+       style="fill:#44aa00;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round"
+       id="use16081"
+       cx="90.956131"
+       cy="4.6462526"
+       r="1.610876"
+       transform="rotate(19.144787)" />
+    <circle
+       style="fill:#d400aa;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round"
+       id="use16083"
+       cx="82.367561"
+       cy="11.241604"
+       r="1.610876"
+       transform="rotate(19.144787)" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="59.502827"
+       y="59.222336"
+       id="text18839"><tspan
+         sodipodi:role="line"
+         id="tspan18837"
+         style="font-size:5.64444px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="59.502827"
+         y="59.222336"><tspan
+   style="fill:#d400aa"
+   id="tspan28732">A</tspan>与<tspan
+   style="fill:#44aa00"
+   id="tspan46510">B</tspan>左手等角，<tspan
+   style="fill:#44aa00"
+   id="tspan47680">B</tspan>与<tspan
+   style="fill:#0055d4"
+   id="tspan53784">C</tspan>左手等角，</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="59.502827"
+         y="66.420044"
+         id="tspan21842">则<tspan
+   style="fill:#d400aa"
+   id="tspan32856">A</tspan>与<tspan
+   style="fill:#0055d4"
+   id="tspan53058">C</tspan>左手等角</tspan></text>
+    <g
+       id="use19787"
+       transform="translate(90.849228,-64.298847)">
+      <circle
+         style="fill:#ffc9c9;fill-opacity:1;stroke:#ff0000;stroke-width:0.655738;stroke-linecap:round"
+         id="circle20790"
+         cx="43.179764"
+         cy="95.522636"
+         r="19.672131" />
+      <circle
+         style="fill:#c7c7ff;fill-opacity:1;stroke:#0000ff;stroke-width:0.655738;stroke-linecap:round"
+         id="circle20792"
+         cx="86.055649"
+         cy="95.522636"
+         r="19.672131" />
+    </g>
+    <circle
+       style="fill:#0066ff;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round"
+       id="circle20908"
+       cx="35.096786"
+       cy="24.664335"
+       r="1.610876" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#circle20908"
+       id="use21106"
+       transform="translate(59.168677,-0.05361217)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use16083"
+       id="use21188"
+       transform="translate(53.747206,-9.810444)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use16081"
+       id="use21190"
+       transform="translate(45.163067,-6.4381039)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use21106"
+       id="use21192"
+       transform="translate(43.017033,13.795937)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use16083"
+       id="use21194"
+       transform="translate(97.923563,-7.0512566)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use16081"
+       id="use21196"
+       transform="translate(105.58797,2.7591874)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use21106"
+       id="use21198"
+       transform="translate(97.923563,12.569631)"
+       width="100%"
+       height="100%" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="154.75284"
+       y="59.222336"
+       id="text23350"><tspan
+         sodipodi:role="line"
+         id="tspan23346"
+         style="font-size:5.64444px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="154.75284"
+         y="59.222336"><tspan
+   style="fill:#d400aa"
+   id="tspan30302">A</tspan>与<tspan
+   style="fill:#44aa00"
+   id="tspan50192">B</tspan>左手等角，<tspan
+   style="fill:#44aa00"
+   id="tspan49374">B</tspan>与<tspan
+   style="fill:#0055d4"
+   id="tspan51128">C</tspan>右手等角，</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="154.75284"
+         y="66.420044"
+         id="tspan23348">则<tspan
+   style="fill:#d400aa"
+   id="tspan31894">A</tspan>与<tspan
+   style="fill:#0055d4"
+   id="tspan52026">C</tspan>夹角一般不会等角</tspan></text>
+  </g>
+</svg>

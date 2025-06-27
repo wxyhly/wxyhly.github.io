@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="172.5331mm"
+   height="117.80263mm"
+   viewBox="0 0 172.5331 117.80263"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="angle001.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     lock-margins="true"
+     fit-margin-top="1"
+     fit-margin-left="1"
+     fit-margin-right="1"
+     fit-margin-bottom="1"
+     inkscape:zoom="0.78715009"
+     inkscape:cx="287.7469"
+     inkscape:cy="287.7469"
+     inkscape:window-width="1440"
+     inkscape:window-height="838"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="Arrow1Sstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Sstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2) translate(6,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path909" />
+    </marker>
+    <rect
+       x="395.09619"
+       y="301.08615"
+       width="1.2704057"
+       height="72.413124"
+       id="rect16950" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Send"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.2,0,0,-0.2,-1.2,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path7139" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path7127" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="图层 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-18.631554,-8.2243096)">
+    <g
+       id="g6848"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke:#ff0000">
+      <circle
+         style="fill:none;stroke:#ff0000;stroke-width:0.7;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+         id="path6663"
+         cx="50.949532"
+         cy="50.975002"
+         r="30.967978" />
+      <ellipse
+         style="fill:none;stroke:#ff0000;stroke-width:0.7;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+         id="path6764"
+         cx="51.021252"
+         cy="51.133404"
+         rx="30.466166"
+         ry="5.5872207" />
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Send);marker-start:url(#Arrow1Sstart)"
+       d="m 79.326252,26.217998 c 21.848328,-12.772871 51.427608,1.344513 51.427608,1.344513"
+       id="path6885" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Send)"
+       d="m 43.360535,86.72107 c -19.159306,21.5122 22.520588,39.32699 16.134152,0.672258"
+       id="path6887"
+       sodipodi:nodetypes="cc" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path6887"
+       id="use7400"
+       transform="matrix(-1,0,0,1,209.05908,2.6890255)"
+       width="100%"
+       height="100%" />
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="144.53513"
+       y="122.01453"
+       id="text8020"><tspan
+         sodipodi:role="line"
+         id="tspan8018"
+         style="font-size:7.05556px;stroke-width:0.264583"
+         x="144.53513"
+         y="122.01453">右等角旋转</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="35.629593"
+       y="121.34228"
+       id="text9584"><tspan
+         sodipodi:role="line"
+         id="tspan9582"
+         style="font-size:7.05556px;stroke-width:0.264583"
+         x="35.629593"
+         y="121.34228">左等角旋转</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="84.7043"
+       y="15.125762"
+       id="text10032"><tspan
+         sodipodi:role="line"
+         id="tspan10030"
+         style="font-size:7.05556px;stroke-width:0.264583"
+         x="84.7043"
+         y="15.125762">过原点的直线</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="26.890251"
+       y="41.343761"
+       id="text10606"><tspan
+         sodipodi:role="line"
+         style="font-size:7.05556px;stroke-width:0.264583"
+         x="26.890251"
+         y="41.343761"
+         id="tspan10630">自对偶分量空间</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="130.75386"
+       y="41.67989"
+       id="text10950"><tspan
+         sodipodi:role="line"
+         style="font-size:7.05556px;stroke-width:0.264583"
+         x="130.75386"
+         y="41.67989"
+         id="tspan10948">反自对偶分量空间</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13.5066px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:1.013"
+       x="88.786415"
+       y="74.255943"
+       id="text12562"><tspan
+         sodipodi:role="line"
+         id="tspan12560"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';stroke-width:1.013"
+         x="88.786415"
+         y="74.255943">S<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.7793px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';baseline-shift:super;stroke-width:1.013"
+   id="tspan13782">2</tspan><tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:1.013"
+   id="tspan15460">×</tspan>S<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.7793px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';baseline-shift:super;stroke-width:1.013"
+   id="tspan12886">2</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text16948"
+       style="font-size:13.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect16950)" />
+    <g
+       id="g98549"
+       style="stroke:#0000ff;stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none"
+       transform="translate(107.95002)">
+      <circle
+         style="fill:none;stroke:#0000ff;stroke-width:0.7;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+         id="circle98545"
+         cx="50.949532"
+         cy="50.975002"
+         r="30.967978" />
+      <ellipse
+         style="fill:none;stroke:#0000ff;stroke-width:0.7;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+         id="ellipse98547"
+         cx="51.021252"
+         cy="51.133404"
+         rx="30.466166"
+         ry="5.5872207" />
+    </g>
+  </g>
+</svg>

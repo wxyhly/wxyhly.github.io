@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://wxyhly.github.io/img/gaqr002.svg">
 <meta property="og:image" content="https://wxyhly.github.io/img/gaqr001.svg">
 <meta property="article:published_time" content="2020-04-27T04:39:11.000Z">
-<meta property="article:modified_time" content="2024-10-15T15:09:44.612Z">
+<meta property="article:modified_time" content="2025-06-25T12:17:34.946Z">
 <meta property="article:author" content="wxyhly">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="系列文章">
@@ -167,7 +167,7 @@
 <p>最后，如果i、j、k三个数的平方都是1，我们得到一种同构于克莱因四元群的东西，满足交换律，但没啥几何意义。实际上，我们貌似找不到能够表示闵可夫斯基四维时空的四元数。好了，下节我们将回到对应四维欧几里得几何的标准四元数上。</p></div><a name="quanternion_as_rotor3"></a></p>
 <h3 id="三维计算机图形学中的四元数"><a href="#三维计算机图形学中的四元数" class="headerlink" title="三维计算机图形学中的四元数"></a>三维计算机图形学中的四元数</h3><p>四元数能表示四维旋转，那它当然就能表示三维旋转。我们先从三维空间来窥探一下四元数。实际上它被广泛用于计算机图形学。如果你在网上搜索四元数的话，最常见的内容应该就是怎样用四元数表示绕给定轴$l$旋转给定角度$\theta$的方法了：<br>首先规定三维坐标$(x,y,z)$对应到四元数为$xi+yj+zk$，注意这个四元数没有实部，只有三个虚部。然后将平行轴$l$的单位向量按上述方法对应到四元数$L$，然后计算四元数$Q&#x3D;\cos\theta&#x2F;2 + L \sin\theta&#x2F;2$，这个四元数就表示了绕给定轴$l$旋转给定角度$\theta$。它旋转向量$x$得到的新向量$x’$由下面公式计算，注意其中$X$与$X’$是相应向量对应的四元数：<br>$X’&#x3D;QXQ^*$，其中$Q&#x3D;a+bi+cj+dk$，我们记$Q^*&#x3D;a-bi-cj-dk$，叫做$Q$的共轭。<br>公式给出来了，应对三维旋转计算就没问题了，只是计算过程中要时刻注意四元数没有交换律。但为什么这样做就能得到正确的旋转？基于几何代数的解释最多也最自然，比如参看<a target="_blank" rel="noopener" href="https://www.marctenbosch.com/quaternions/">这篇文章</a>（此文作者就是开发4DToys的那个人！）</p>
 <h3 id="四元数与几何代数"><a href="#四元数与几何代数" class="headerlink" title="四元数与几何代数"></a>四元数与几何代数</h3><p>四元数是复数的推广，它有点像几何代数，不满足交换率，而且$ij&#x3D;-ji$的这种性质也很像。其实我们可以在三维空间中构造一个几何代数的子代数，它与四元数同构：规定$i&#x3D;e_{xy},j&#x3D;e_{yz},k&#x3D;e_{zx}$，可以验证$i,j,k$之间的几何积满足四元数的乘法法则。所以一般的四元数$q&#x3D;a+bi+cj+dk$可以写成$Q&#x3D;a+be_{xy}+ce_{yz}+de_{zx}$，它的共轭正好就是对应几何代数多重向量的转置$q^*\rightarrow Q^\dagger&#x3D;a-be_{xy}-ce_{yz}-de_{zx}$。也就是说单位四元数$qq^*&#x3D;1$恰好对应表示三维旋转的旋量$RR^\dagger&#x3D;1$！于是我们自然得到了三维空间旋转的四元数表示：<br>$$v’&#x3D;qvq^*$$</p>
-<h3 id="四元数与四维空间旋转"><a href="#四元数与四维空间旋转" class="headerlink" title="四元数与四维空间旋转"></a>四元数与四维空间旋转</h3><p>四元数扩展到四维又如何呢？感觉四元数本来就该是四维空间中的产物，但由于$1$的地位与$i,j,k$的地位是不一样的，所以四元数反而在四维空间中还没有一种很自然的解释！但如果把向量$(x,y,z,w)$写成$x+iy+jz+kw$，我们发现用$i,j,k$左乘会将向量右等角旋转90°，右乘$i,j,k$则是左等角旋转90°。可以证明对于任意单位四元数$p,q$，$pvq$代表四维空间中的旋转，且$pv$是右等角旋转部分，$vq$是左等角旋转部分。三维空间中限制$p&#x3D;q^*$是为了将旋转限定在三维空间$yzw$内而已。<br>四元数能不能继续推广到高维呢？很遗憾，虽然还有八元数，但不满足结合律，已经不再适合表示空间旋转了。所以更高维度空间的旋转的旋量表示只有老实用$R$了。</p>
+<h3 id="四元数与四维空间旋转"><a href="#四元数与四维空间旋转" class="headerlink" title="四元数与四维空间旋转"></a>四元数与四维空间旋转</h3><p>四元数扩展到四维又如何呢？感觉四元数本来就该是四维空间中的产物，但由于$1$的地位与$i,j,k$的地位是不一样的，所以四元数反而在四维空间中还没有一种很自然的解释！但如果把向量$(x,y,z,w)$写成$x+iy+jz+kw$，我们发现用$i,j,k$左乘会将向量左等角旋转90°，右乘$i,j,k$则是右等角旋转90°。可以证明对于任意单位四元数$p,q$，$pvq$代表四维空间中的旋转，且$pv$是左等角旋转部分，$vq$是右等角旋转部分。三维空间中限制$p&#x3D;q^*$是为了将旋转限定在三维空间$yzw$内而已。<br>四元数能不能继续推广到高维呢？很遗憾，虽然还有八元数，但不满足结合律，已经不再适合表示空间旋转了。所以更高维度空间的旋转的旋量表示只有老实用$R$了。</p>
 <h2 id="体元、定向与霍奇对偶"><a href="#体元、定向与霍奇对偶" class="headerlink" title="体元、定向与霍奇对偶"></a>体元、定向与霍奇对偶</h2><!--插图哦-->
 <p><img src="/img/gaqr001.gif"><br>设想有一群生活在莫比乌斯带上的二维生物。莫比乌斯带没有内外侧之分，我们称之为<strong>不可定向</strong>曲面。所以如果我们在纸带上某点处选择一个法向量朝向，在纸上绕一圈回来后法向量就反号了。但法向、内外侧的概念都是在三维空间中才有的，这些二维生物在无法离开纸带所在的二维空间的情况下（它们察觉不到第三维）能否知道自己在莫比乌斯带上呢？<br><img src="/img/gaqr002.svg" alt="莫比乌斯带的展开图：注意粘起来时要让两个红色箭头方向要一致就需要将纸带扭转180度"><br>答案是可以的。一个最明显的特点是它们环游一周后会发现自己被镜像了，比如图上的带方向的圆圈。怎么用数学语言来描述呢？我们可以用同样代表圆圈的2-向量来表示。注意二维莫比乌斯带每点处的2-向量只能与那一点处的切空间平行，所以只有一个自由度，感觉上是标量，但与标量不同的是你无法在整个莫比乌斯带上定义一个连续的处处非零的2-向量，但对于圆柱面则可以。我们看到2-向量跟之前用法线反号的描述是一致的，但这种描述方法不需要涉及三维空间，即莫比乌斯带上不存在的方向。同理，所有n维曲面上的n-向量都只有一个自由度，被称为体元。如果n维曲面上能够存在连续的处处非零的体元场，我们说这个曲面是可定向的，否则是不可定向的。不同的定向在于符号不同，我们不用关心体元的相对大小。</p>
 <h3 id="左手坐标系与右手坐标系"><a href="#左手坐标系与右手坐标系" class="headerlink" title="左手坐标系与右手坐标系"></a>左手坐标系与右手坐标系</h3><p>众所周知我们的世界是能定向的（至少在可观测宇宙的局部范围内）。但定向的方向有两种选法。一般我们说右手坐标系就是在人为规定坐标轴规定xyz的顺序。如果新的坐标轴是abc，我们通过计算体元$x\wedge y\wedge z$是否与$a\wedge b\wedge c$方向一致即可知道是否为右手坐标系。这里我们看到三位空间中体元的大小正好是三个坐标轴张成平行八胞体的体积，所以叫体元。</p>
@@ -232,7 +232,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Tesserxel%E7%B3%BB%E5%88%97/">Tesserxel系列</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">四维计算机图形学</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A5%87%E7%89%B9%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">奇特世界系列</a><span class="category-list-count">4</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Tesserxel%E7%B3%BB%E5%88%97/">Tesserxel系列</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">四维世界系列</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E7%A9%BA%E9%97%B4%E7%B3%BB%E5%88%97/">四维空间系列</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%9B%E7%BB%B4%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">四维计算机图形学</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A5%87%E7%89%B9%E4%B8%96%E7%95%8C%E7%B3%BB%E5%88%97/">奇特世界系列</a><span class="category-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -261,7 +261,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">19</span></li></ul>
     </div>
   </div>
 
@@ -272,6 +272,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/archives/subspace-angle/">四维空间（十四）：平面状态空间与夹角问题（上）</a>
+          </li>
         
           <li>
             <a href="/archives/chemie4d/">四维世界（十二）：物质结构</a>
@@ -287,10 +291,6 @@
         
           <li>
             <a href="/archives/hottese/">类型论与机器证明简介</a>
-          </li>
-        
-          <li>
-            <a href="/archives/mesh4d/">四维计算机图形学：建模篇</a>
           </li>
         
       </ul>

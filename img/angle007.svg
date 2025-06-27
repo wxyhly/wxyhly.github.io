@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="175.03278mm"
+   height="116.68411mm"
+   viewBox="0 0 175.03278 116.68411"
+   version="1.1"
+   id="svg1320"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="angle007.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1322"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     fit-margin-top="1"
+     fit-margin-left="1"
+     fit-margin-right="1"
+     fit-margin-bottom="1"
+     inkscape:zoom="0.61914285"
+     inkscape:cx="304.45316"
+     inkscape:cy="209.16013"
+     inkscape:window-width="1440"
+     inkscape:window-height="838"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1317" />
+  <g
+     inkscape:label="图层 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-15.992784,-10.22379)">
+    <g
+       id="g15987"
+       transform="translate(16.589972,0.65765884)">
+      <circle
+         style="fill:#ffc9c9;fill-opacity:1;stroke:#ff0000;stroke-width:0.655738;stroke-linecap:round"
+         id="path1403"
+         cx="64.346436"
+         cy="95.522636"
+         r="19.672131" />
+      <ellipse
+         style="fill:#c7c7ff;fill-opacity:1;stroke:#0000ff;stroke-width:0.655738;stroke-linecap:round"
+         id="circle1551"
+         cx="105.6348"
+         cy="95.522636"
+         rx="19.672001"
+         ry="19.672131" />
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 76.240539,80.556305 c 0,0 4.686183,5.857731 6.443503,21.966495"
+       id="path1862" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 132.98714,87.217126 c 0,0 -3.91072,6.483629 -20.31236,14.098674"
+       id="path1864"
+       sodipodi:nodetypes="cc" />
+    <circle
+       style="fill:#44aa00;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round"
+       id="path1968"
+       cx="75.860718"
+       cy="80.755302"
+       r="1.610876" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path1968"
+       id="use2160"
+       transform="translate(56.961327,6.4475146)"
+       width="100%"
+       height="100%" />
+    <circle
+       style="fill:#d400aa;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round"
+       id="circle2162"
+       cx="82.541458"
+       cy="103.08806"
+       r="1.610876" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#circle2162"
+       id="use2182"
+       transform="translate(29.303317,-1.1888024)"
+       width="100%"
+       height="100%" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.26163px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.469623"
+       x="119.03361"
+       y="94.831787"
+       id="text9772"><tspan
+         sodipodi:role="line"
+         id="tspan9770"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';stroke-width:0.469623"
+         x="119.03361"
+         y="94.831787"><tspan
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman,  Italic';stroke-width:0.469623"
+           id="tspan9762">a</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.07006px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';baseline-shift:sub;stroke-width:0.469623"
+           id="tspan9764" /></tspan></text>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#text9772"
+       id="use14100"
+       transform="translate(-35.670805,-2.8685974)"
+       width="100%"
+       height="100%" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="79.119499"
+       y="125.1114"
+       id="text15045"><tspan
+         sodipodi:role="line"
+         id="tspan15043"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="79.119499"
+         y="125.1114">半平行，二面角为a</tspan></text>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g15987"
+       id="use15989"
+       transform="translate(-43.943624,-64.956506)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path1968"
+       id="use15991"
+       transform="translate(-41.294729,-57.813581)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#circle2162"
+       id="use15993"
+       transform="translate(-46.319425,-79.870458)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path1864"
+       id="use16079"
+       transform="rotate(19.144787,279.82208,-64.031779)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use2160"
+       id="use16081"
+       transform="rotate(19.144787,279.82208,-64.031779)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use2182"
+       id="use16083"
+       transform="rotate(19.144787,279.82208,-64.031779)"
+       width="100%"
+       height="100%" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.26163px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.469623"
+       x="77.322227"
+       y="33.618282"
+       id="text16091"><tspan
+         sodipodi:role="line"
+         id="tspan16089"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';stroke-width:0.469623"
+         x="77.322227"
+         y="33.618282"><tspan
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman,  Italic';stroke-width:0.469623"
+           id="tspan16085"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, '"
+   id="tspan16965">2</tspan>a</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.07006px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';baseline-shift:sub;stroke-width:0.469623"
+           id="tspan16087" /></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="39.259151"
+       y="58.609184"
+       id="text18839"><tspan
+         sodipodi:role="line"
+         id="tspan18837"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="39.259151"
+         y="58.609184">左等角，角度为a</tspan></text>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g15987"
+       id="use19787"
+       transform="translate(47.800921,-64.956506)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path1968"
+       id="use19789"
+       transform="translate(104.65919,-57.813581)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#circle2162"
+       id="use19791"
+       transform="translate(99.634493,-79.870458)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path1864"
+       id="use19793"
+       transform="rotate(-52.491042,65.965067,51.014617)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use2160"
+       id="use19795"
+       transform="rotate(-52.491042,65.965067,51.014617)"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use2182"
+       id="use19797"
+       transform="rotate(-52.491042,65.965067,51.014617)"
+       width="100%"
+       height="100%" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.26163px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.469623"
+       x="126.49847"
+       y="29.122871"
+       id="text19807"><tspan
+         sodipodi:role="line"
+         id="tspan19805"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';stroke-width:0.469623"
+         x="126.49847"
+         y="29.122871"><tspan
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman,  Italic';stroke-width:0.469623"
+           id="tspan19801"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, '"
+   id="tspan19799">2</tspan>a</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.07006px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';baseline-shift:sub;stroke-width:0.469623"
+           id="tspan19803" /></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="131.00368"
+       y="58.609184"
+       id="text19811"><tspan
+         sodipodi:role="line"
+         id="tspan19809"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="131.00368"
+         y="58.609184">右等角，角度为a</tspan></text>
+  </g>
+</svg>
