@@ -1,0 +1,101 @@
+layout: false
+---
+<html>
+	<head>
+		<link rel="stylesheet" href="css/style.css">
+		<script src="THREE.js"></script>
+		<script src="TrackballControls.js"></script>
+		<script src="Cmplx.js"></script>
+		<script src="Four.js"></script>
+		<meta charset="unicode">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<title>wxyhly - Hopf Fibration1</title>
+		<script>
+function $(obj){
+	return document.getElementById(obj);
+}
+Init3d = function (obj){
+	this.scene = new THREE.Scene();
+	this.scene4 = new FOUR.Scene4(this.scene);
+	this.camera4 = new FOUR.PerspectiveCamera(new FOUR.Euler4(0.001,0.001,0.001),1,true);
+	this.camera4.maxVertexRadius = 5;
+	this.camera4.maxEdgeRadius = 0.35;
+	this.renderer4 = new FOUR.Renderer4(this.scene4,this.camera4);
+	this.domElement = obj;
+	this.width = obj.clientWidth;
+	this.height = obj.clientHeight;
+	this.renderer = new THREE.WebGLRenderer({antialias: true});
+	this.renderer.setSize(this.width, this.height);
+	obj.appendChild(this.renderer.domElement);
+	this.renderer.setClearColor(0x00001F, 1.0);
+	this.camera = new THREE.PerspectiveCamera(45,this.width/this.height,0.01,100);
+	this.camera.position.set(5,5,5);
+	this.camera.up.set(0,0,1);
+	this.camera.lookAt(this.scene.position);
+	this.light = new THREE.DirectionalLight(0xffffff, 1.0, 0);
+	this.light.position.copy(this.camera.position);
+	this.scene.add(this.light);
+	this.Control4 = new FOUR.Controls(this.camera,this.renderer.domElement,this.camera4);
+}
+Init3d.prototype.render = function (){
+	this.renderer.clear();
+	this.renderer.render(this.scene, this.camera);
+}
+function addCircle(color,Hopf,re,im){
+	var M = Hopf.GenerateHopfCirles(new Complex(re,im),32);
+	main3d.scene4.add(new FOUR.Mesh(M,new FOUR.FrameMaterial(null,color)));
+}
+function BodyOnLoad(){
+	main3d = new Init3d($('webgl3d'));
+	Hopf1 = new FOUR.Hopf("3412");
+	Hopf2 = new FOUR.Hopf("2314");
+	Hopf3 = new FOUR.Hopf("4213");
+	main3d.renderer4.render();
+	main3d.render();
+	addCircle(0xEF0000,Hopf1,0.001,0.001);
+	addCircle(0xEF0000,Hopf1,10000,10000);
+	addCircle(0x00FF00,Hopf2,0.001,0.001);
+	addCircle(0x00FF00,Hopf2,10000,10000);
+	addCircle(0x0000FF,Hopf3,0.001,0.001);
+	addCircle(0x0000FF,Hopf3,10000,10000);
+	loop();
+}
+Q = 0;count=0;
+function loop(){
+	if(Q <= Math.PI*2+0.1){
+		/*addCircle(0x10FF40,Hopf1, 0.707 * Math.cos(Q),0.707 * Math.sin(Q));
+		addCircle(0xFFFF00,Hopf1, 1 * Math.cos(Q),1 * Math.sin(Q));
+		addCircle(0x0000FF,Hopf1, 1.414 * Math.cos(Q),1.414 * Math.sin(Q));*/
+		
+		addCircle(0xEF0000,Hopf1, 0.707 * Math.cos(Q),0.707 * Math.sin(Q));
+		addCircle(0x00FF00,Hopf2, 0.707 * Math.cos(Q),0.707 * Math.sin(Q));
+		addCircle(0x0000FF,Hopf3, 0.707 * Math.cos(Q),0.707 * Math.sin(Q));
+	}
+	count++;
+	Q+= Math.PI/10;
+	main3d.Control4.update();
+	for (var M in main3d.scene4.children){
+		var G = main3d.scene4.children[M].Geometry;
+		for(var E in G.Edges){
+			if(G.Edges[E].boundTHREEobj){
+				var P = G.Edges[E].boundTHREEobj.position;
+				flag = true;
+				G.Edges[E].boundTHREEobj.visible = flag;
+			}
+		}
+	}
+	if(count%2==0 || Q <= Math.PI*2+0.2 || (Q >= Math.PI*2+0.2 && main3d.Control4.active3)){
+		main3d.renderer4.render();
+		main3d.light.position.copy(main3d.camera.position);
+		main3d.render();
+	}
+	window.requestAnimationFrame(loop);
+}
+		</script>
+	</head>
+	<body onload="BodyOnLoad()">
+	<div class="panel">操作方法与Jenn3d相同！鼠标左键拖动在三维空间中旋转！<br/>鼠标中键、右键在四维空间中旋转！—— by wxyhly</div>
+	<div class="canvas3" id="webgl3d"></div>
+	<a href="\" >返回首页</a>
+	</body>
+</html>
