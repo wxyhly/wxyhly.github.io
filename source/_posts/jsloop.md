@@ -5,10 +5,12 @@ tags:
   - javascript
   - 递归
 date: 2016-05-02 15:06:20
+index_img: /img/jsloop.gif
+excerpt: 自我描述的代码(Quine)就是程序运行时可以打印自己的源代码。网上有很多C语言、C#版的，我准备写一个javascript版本的。题外话：eval函数/无限递归……
 ---
 
 　　自我描述的代码(Quine)就是程序运行时可以打印自己的源代码。网上有很多C语言、C#版的，我准备写一个javascript版本的。
-### 题外话：eval函数/无限递归
+## 题外话：eval函数/无限递归
 　　javascript是解释型语言，它有一个很牛的函数`eval()`：它能把接受到的字符串当成javascript代码执行。我想出了这段代码：
 ```javascript
 s="eval(s)";eval(s);
@@ -17,7 +19,7 @@ s="eval(s)";eval(s);
 <!--more-->
 　　在Chrome控制台运行一会儿后得到这样的报错：<span style="color:#F00">Uncaught RangeError: Maximum call stack size exceeded</span><span style="color:#999">(…)</span>
 　　意思是**递归错误，超出堆栈大小**。
----------
+<hr/>
 　　还有一个很有意思的无限递归实验：在Chrome控制台执行这些语句：
 ```javascript
 A = {};
@@ -26,9 +28,11 @@ A.a = B;
 B.b = A;
 ```
 　　然后输出A，我们得到了一个无限嵌套的东西：
+
 ![](/img/jsloop.gif)
 　　（其实不是真的无限嵌套，而是两个互指的指针）
-### 正题：自我打印的程序
+
+## 正题：自我打印的程序
 　　我们先看网上流行的C语言版本：
 ```c
 char*s="char*s=%c%s%c;main(){printf(s,34,s,34);}";main(){printf(s,34,s,34);}

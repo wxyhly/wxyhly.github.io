@@ -6,23 +6,12 @@ tags:
   - 拓扑学
 categories: 四维空间系列
 date: 2021-06-26 20:43:54
+index_img: /img/unknots209.svg
+excerpt: 上次对二维曲面结的介绍其实也不算太详细，只给出了一些非平凡的管状结作为例子，今天我们将介绍通过旋转三叶结的方式来构造同胚于球面的结（即允许自相交的话能把这个结恢复成球面），并且证明了有些是真正无法解开的结，另一些是能够通过一些步骤解开成球面，下面我们也来试试解一解高维空间当中的结！
 ---
 
 <span class="likecode">\# 本文是[《四维空间（十）：扭结与环扣》](/archives/knot4d/)的续集，本内容对空间想象力要求较高，可能有些地方难以理解，但全文没有任何公式，只涉及几何，不涉及代数，适合挑战空间想象力哦。<br>\# 我发现不仅是我，网上“扭结”与“纽结”全都在混用，那我也懒得改了。</span>
-在本系列的[上上篇文章中](/archives/knot4d/)我们知道了四维空间中的二维曲面打结现象与各式各样的孔、环扣等，上次对二维曲面结的介绍其实也不算太详细，只给出了一些非平凡的管状结作为例子，今天我们要从另一个角度来分析扭结。本文的主要内容来自于[这个Youtube视频](https://www.youtube.com/watch?v=0K4veUgDdCk)与[这篇论文](http://faculty.tcu.edu/gfriedman/papers/spinHKT.pdf)，它介绍了通过旋转三叶结的方式来构造同胚于球面的结（即允许自相交的话能把这个结恢复成球面），并且证明了有些是真正无法解开的结，另一些是能够通过一些步骤解开成球面，下面我们也来试试解一解高维空间当中的结！<a name="c1"></a><div style="float:right; width: min(370px,100%)">![旋转球面结交线展开图](/img/unknots209.svg)</div>
-
-
-### 本文目录：    
-- [纽结旋转体](/archives/unknots2/#c1)
-- [三维扭结投影上的交点](/archives/unknots2/#c2)
-- [新的四维图形可视化方法](/archives/unknots2/#c3)
-- [地图上的交线](/archives/unknots2/#c4)
-- [自转的三叶结](/archives/unknots2/#c5)
-- [七种Roseman合法移动](/archives/unknots2/#c6)
-- 利用Roseman移动解开它！
-  + [热身](/archives/unknots2/#c71)
-  + [解开球面结](/archives/unknots2/#c72)
-  + [另一种解法](/archives/unknots2/#c73)
+在本系列的[上上篇文章中](/archives/knot4d/)我们知道了四维空间中的二维曲面打结现象与各式各样的孔、环扣等，上次对二维曲面结的介绍其实也不算太详细，只给出了一些非平凡的管状结作为例子，今天我们要从另一个角度来分析扭结。本文的主要内容来自于[这个Youtube视频](https://www.youtube.com/watch?v=0K4veUgDdCk)与[这篇论文](http://faculty.tcu.edu/gfriedman/papers/spinHKT.pdf)，它介绍了通过旋转三叶结的方式来构造同胚于球面的结（即允许自相交的话能把这个结恢复成球面），并且证明了有些是真正无法解开的结，另一些是能够通过一些步骤解开成球面，下面我们也来试试解一解高维空间当中的结！<a name="c1"></a>![旋转球面结交线展开图](/img/unknots209.svg?size=370x)
 
 <!--more-->
 ## 纽结旋转体

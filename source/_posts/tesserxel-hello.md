@@ -7,10 +7,12 @@ tags:
   - 四维
 categories: Tesserxel系列
 date: 2022-09-08 10:43:30
+index_img: /img/tsx001.jpg
+excerpt: 之前的四维引擎是基于WebGL的，现在我决定尝试使用新技术WebGPU API重新实现四维渲染引擎，因为WebGPU的计算着色器可以让截面计算也放在GPU中，彻底解决性能问题，于是新项目——Tesserxel诞生了。Tesserxel取的是单词Tesseract（四维立方体的拉丁词根tessera“四”）和Pixel（像素）。
 ---
 
 由于[4DViewer](https://github.com/wxyhly/4dViewer)代码混乱且计算截面在CPU端性能低下，今年7月底我决定尝试使用新技术WebGPU API重新实现四维渲染引擎，因为WebGPU的计算着色器可以让截面计算也放在GPU中，彻底解决性能问题，于是新项目——[Tesserxel](https://github.com/wxyhly/tesserxel)诞生了。Tesserxel取的是单词Tesseract（四维立方体的拉丁词根tessera“四”）和Pixel（像素）。
-<div style="float:right; margin:20px;"><img src="/img/tsx001.jpg" width="300px"/><p style="text-align:center">Tesserxel自带的示例库截图</p></div>
+![Tesserxel自带的示例库截图](/img/tsx001.jpg?size=300x)
 
 目前Tesserxel实现了以下功能： 
 1. 包含四维向量、二向量、四元数表示的旋量与图形学需要的矩阵运算的数学库。
@@ -25,7 +27,7 @@ date: 2022-09-08 10:43:30
 
 **请参考玩[Tesserxel后续系列文章中的教程](/categories/Tesserxel系列/)深入了解Tesserxel的玩法哦~**
 
-## 注意：现在电脑端直接更新至谷歌浏览器最新版（版本号113及以上）即可打开，以下内容已经过时。
+**注意：现在电脑端直接更新至谷歌浏览器最新版（版本号113及以上）即可打开，以下内容已经过时。**
 
 启用WebGPU方法： WebGPU是一个实验性的API，是WebGL的未来“接班人”，它的标准还处于W3C的草稿阶段，未正式发布。目前据说仅Windows下Chrome提供较好支持，而且想开启这项功能还有点麻烦，首先你需要下载Canary版本的Chrome浏览器（[谷歌官网](https://www.google.com/intl/zh-CN/chrome/canary/)，或自行找下载资源），添加--enable-unsafe-webgpu参数启动浏览器，打开chrome://flags/，将WebGPU Developer Features打开（选Enabled）就可以启用WebGPU。
 ![开启WebGPU的操作步骤](/img/tsx001.png)

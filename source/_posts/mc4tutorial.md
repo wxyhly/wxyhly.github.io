@@ -5,6 +5,8 @@ tags:
   - Minecraft
   - 4dViewer
 date: 2020-03-14 11:23:05
+excerpt: Minecraft4D是一个真正的四维空间中的（超立方体）方块沙盒游戏。（如果把时间也算上，就是五维时空！）现在游戏只支持创造模式下的单人游戏。Minecraft4D采用Javascript与Webgl编写，所以只需点开下面的链接就可以玩了。（最好用Google Chrome浏览器，不保证其他浏览器的兼容性，需要使用电脑键盘操作）
+index_img: /img/minecraft02.jpg
 ---
 
 （这篇文章只是一个教程，所以没放进四维世界系列）
@@ -148,7 +150,7 @@ Minecraft4D 默认时间会流动，如果晚上天黑看不清（暂时技术�
 
 宏指令中可以使用几乎所有[命令列表](#sudo)中的命令，但以下涉及到读写文件的几条命令除外： \save \open \load \macro。
 例子：生成一个有26个房子的小村落。
-<iframe src="/4dViewer/minecraft4d/macro.txt"></iframe><a name="touhh"></a>
+<iframe src="https://wxyhly.github.io/4dViewer/minecraft4d/macro.txt" style="background-color: rgb(255,255,255,0.7)"></iframe><a name="touhh"></a>
 
 运行后效果：
 ![](/img/minecraft02.jpg)

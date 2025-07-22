@@ -7,10 +7,9 @@ tags:
   - 数学
 categories: 四维空间系列
 date: 2025-06-28 00:38:14
+excerpt: 本文从一个向量夹角的思考题出发，介绍了通过定义抽象的平面状态空间从几何上更方便地可视化平面间夹角，并将平面间夹角从锐角拓展到实数取值。通过模拟器演示，探究平面间夹角取值范围关系。
+index_img: /img/angle005.svg
 ---
-
-<p></p>
-<div style="float:right"><img src="/img/angle005.svg" style="width:100%;max-width:380px" alt="带定向信息的平面之间的两个夹角与平面位置对应关系"/><p></p></div>
 
 ## 内容概要
 

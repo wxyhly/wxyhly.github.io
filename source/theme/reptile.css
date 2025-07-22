@@ -1,0 +1,221 @@
+/** theme **/
+
+body {
+    background-image: url('/img/theme/reptile.svg');
+}
+
+html[data-user-color-scheme="dark"] body {
+    background-image: url('/img/theme/reptile-dark.svg');
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#banner {
+    background: url('/img/theme/banner.svg') no-repeat !important;
+}
+
+html[data-user-color-scheme="dark"] #banner {
+    background: url('/img/theme/banner-dark.svg') no-repeat !important;
+}
+
+.fancybox-image {
+    background-color: white;
+}
+
+html[data-user-color-scheme="dark"] .fancybox img {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+
+html[data-user-color-scheme="dark"] .index-img img {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.fancybox img {
+    background-color: white !important;
+}
+
+#subtitle {
+    font-size: 1.3em;
+}
+
+.banner-text {
+    color: rgb(255, 254, 238);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+}
+
+#board {
+    background-color: rgb(255, 255, 255, 0.8);
+}
+
+html[data-user-color-scheme="dark"] #board {
+    background-color: rgb(0, 0, 0, 0.8);
+}
+
+table:not(.highlight table) {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content !important;
+}
+
+/** extend excerpt to maximum 9 lines (default is 3 lines in fluid) **/
+
+.index-excerpt {
+    height: max-content !important;
+    max-height: calc(1.4rem * 9) !important;
+}
+
+@media (max-width: 767px) {
+    .index-excerpt {
+        height: max-content !important;
+        max-height: calc(1.4rem * 9) !important;
+    }
+}
+
+.index-excerpt>div {
+    -webkit-line-clamp: 9 !important;
+    line-clamp: 9 !important;
+}
+
+/** extension for toc button **/
+
+main>#toc:not(.toc-mobile) {
+    display: none;
+}
+
+.toc-mobile {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: var(--board-bg-color);
+    z-index: 1000;
+    border-radius: 1em;
+    padding: 1.5em;
+}
+
+a.toc {
+    position: fixed;
+    z-index: 909;
+    background: var(--board-bg-color);
+    transition: background-color 0.2s ease-in-out, bottom 0.3s ease;
+    border-radius: 4px;
+    min-width: 40px;
+    min-height: 40px;
+    bottom: 20px;
+    left: 20px;
+    outline: none;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.toc-mobile .toc-header {
+    cursor: pointer;
+}
+
+a.toc i {
+    font-size: 24px;
+    margin: auto;
+    color: var(--sec-text-color);
+}
+
+/** remove disqus ads **/
+
+#comments #disqus_recommendations{
+    width: 1px !important;
+    min-width: 1px !important;
+    max-width: 1px !important;
+    opacity: 0 !important;
+    height: 1px !important;
+    min-height: 1px !important;
+    max-height: 1px !important;
+    position: absolute !important;
+    left: -1000px !important;
+}
+#comments #disqus_thread iframe:nth-child(1) {
+    width: 1px !important;
+    min-width: 1px !important;
+    max-width: 1px !important;
+    opacity: 0 !important;
+    height: 1px !important;
+    min-height: 1px !important;
+    max-height: 1px !important;
+    position: absolute !important;
+    left: -1000px !important;
+}
+
+/** self defined css **/
+
+:root {
+    --color-DDF: #DDF;
+    --color-EEF: #EEF;
+    --color-EFE: #EFE;
+    --color-FFE: #FFE;
+}
+
+html[data-user-color-scheme="dark"] {
+    --color-DDF: #113;
+    --color-EEF: #223;
+    --color-EFE: #232;
+    --color-FFE: #332;
+}
+
+.likecode {
+    font-family: 'Source Code Pro';
+    color: #696;
+}
+
+/**period table**/
+.smallTable {
+    border: 2px solid black;
+    max-width: 400px;
+}
+
+.smallTable td {
+    border: 1px solid #AAA;
+    width: 50px;
+    text-align: center;
+}
+
+html[data-user-color-scheme="dark"] .periodic td.nonmetal {
+    background-color: #144 !important;
+}
+html[data-user-color-scheme="dark"] .periodic td.Hepleto{
+    background-color: #333 !important;
+}
+html[data-user-color-scheme="dark"] .periodic .en-name{
+    color: lightblue !important;
+}
+html[data-user-color-scheme="dark"] .periodic .id-num{
+    color: red !important;
+}
+
+/** huttonjax **/
+.btn {
+    padding: 5px 6px 6px 6px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #FFEFD0;
+    color: #390
+}
+
+#copydiv {
+    padding: 10px;
+    word-wrap: break-word;
+    width: 50%;
+    background-Color: var(--color-EFE);
+    border: 1px;
+    position: absolute;
+    z-index: 99;
+    display: none
+}
+.rle-wrapper{
+    max-width: 100%;
+    max-height: 90vh;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}

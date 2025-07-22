@@ -7,6 +7,7 @@ tags:
   - 数学
 categories: 四维世界系列
 date: 2020-03-28 16:20:11
+index_img: /img/em4d005.svg
 ---
 
 <p class="likecode">/**

@@ -5,6 +5,8 @@ tags:
   - 自动机
   - Hutton32
 date: 2016-06-10 15:03:55
+index_img: /img/hutton321.png
+excerpt: 上篇文章介绍了怎样在Hutton32中搭建与或非门，下面我们就用它们的组合来做一些有趣的事情吧。（比如一个完全平方数计算器！）
 ---
 
 <script src="/three/Painter.js"></script>

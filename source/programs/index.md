@@ -1,11 +1,14 @@
 ---
-title: Programs - JS小程序
+title: JS小程序
 date: 2019-03-30 20:30:29
 ---
+<div class="markdown-body">
+
 ## [四维化学（Chem4D）](https://wxyhly.github.io/Chem4D/)
-一个假想的四维化学常见物质结构式查看器，并支持与Tesserxel示例库交互生成4D分子模型。四维元素设定详见[《四维世界（十一）：元素周期表》](/archives/elem4d/)。
-- [元素周期表纯享版链接](https://wxyhly.github.io/Chem4D/periodic/)
-<img src="/img/chemie006.jpg" style="max-width:500px;width:100%" alt="Tesserxel示例库中的四维分子">
+
+一个假想的四维化学常见物质结构式查看器，并支持与Tesserxel示例库交互生成4D分子模型。四维元素设定详见[《四维世界（十一）：元素周期表》](/archives/elem4d/)。 [元素周期表纯享版链接](https://wxyhly.github.io/Chem4D/periodic/)
+
+![Tesserxel示例库中的四维分子](/img/chemie006.jpg?size=500x)
 
 ## [Deductrium（推理元素）](https://wxyhly.github.io/deductrium/)
 一个在浏览器中用Typescript实现的数学形式系统与双曲空间结合的游戏。目前包含命题逻辑、一阶逻辑、皮亚诺公理、ZFC集合论与一些序数和类型论的内容。点击这里查看：（非必须，游戏内有引导） 1. [游戏介绍](https://github.com/wxyhly/deductrium/blob/main/readme.md)； 2. [集合论简介](/archives/1stlogic/)； 3. [类型论简介](/archives/hottese/)。
@@ -59,6 +62,7 @@ date: 2019-03-30 20:30:29
 [点这里查看详情](/archives/Eop-Analogue/)
 
 ## 博文中的JS小程序集合
+- [[原文](/archives/subspace-angle/)] [平面-平面夹角范围](/three/angle_range.html)
 - [[原文](/archives/eye2d/)] [体验二维人看三维场景](/three/3dviewer42der.html)
 - [[原文](/archives/orbit4d/)] [计算四维星球上的太阳高度角](/three/4dOrbit.html)
 - [[原文](/archives/projearth/)] 墨卡托投影
@@ -70,9 +74,9 @@ date: 2019-03-30 20:30:29
     + [三个正交的Hopf纤维丛](/three/Hopf%20fibre1.html)
     + [Hopf纤维丛的一部分](/three/Hopf%20fibre2.html)
     + [Hopf纤维丛的正交投影](/three/Hopf%20fibre3.html)
-    + [Hopf纤维丛的正交投影](/three/Hopf%20fibre4.html)
 
 
 ## 其他WebGL小Demo集合
 - [四维星球Hopf坐标地图经纬线](/three/mercator.html)
 
+</div>

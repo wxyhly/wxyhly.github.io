@@ -5,6 +5,8 @@ tags:
   - 音乐
   - B站视频
 date: 2022-07-12 13:05:34
+index_img: /img/eopplt004.png
+excerpt: 怎么用电脑键盘来弹钢琴？其实这种电脑钢琴软件很多，比如我之前接触过EveryOnePiano，比较出名的还有FreePiano。当然我们也可以自己做一个类似的东西，我用我自己做的在线钢琴录制了一个演奏视频。
 ---
 
 　　怎么用电脑键盘来弹钢琴？其实这种电脑钢琴软件很多，比如我之前接触过EveryOnePiano，比较出名的还有FreePiano。当然我们也可以自己做一个类似的东西，我的在线钢琴没有取名字，Github仓库名称我索性用了EveryOnePiano的缩写EOP。

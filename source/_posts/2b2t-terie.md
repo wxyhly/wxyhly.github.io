@@ -4,6 +4,7 @@ tags:
   - Minecraft
   - 2b2t
 date: 2019-11-07 18:03:09
+index_img: /img/2b2t/2019-09-10_13.07.06.jpg
 ---
 
 

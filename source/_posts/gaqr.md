@@ -7,6 +7,8 @@ tags:
   - 代数
 categories: 四维空间系列
 date: 2020-04-27 12:39:11
+index_img: /img/gaqr001.svg
+excerpt: 这篇文章将会介绍一种新的可以“统一天下”高维几何的代数系统：几何代数（Geometric Algebra），因为在这个代数体系下包含了标量、向量、多维向量以及各种内积外积混合积，甚至囊括到了旋量（就是让电子转两圈才一样的罪魁祸首）、空间旋转、复数与四元数，矢量场中的各种导数算子，甚至几何代数还能给行列式一个新的定义……
 ---
 
 <span class="likecode">\#警告：本文内容超级进阶，可以说大概包括四维欧几里得空间的所有基础的代数理论了，本文重代数轻几何，所以可能不太好理解</span>
@@ -21,15 +23,15 @@ date: 2020-04-27 12:39:11
 |外积$\wedge$|0|0|$e\_{ijkl}$|
 
 当时说感觉上是相同字母可以合并相消，不同字母则直接写在一起构成一个多维向量，这样组合下来每一种n-向量刚好对应一种乘法运算。我们不妨规定一种新乘法运算来同时满足上述条件。为了和内积外积区别，新的乘法不用任何符号表示：
-- 对于向量$\boldsymbol v$，我们规定$\boldsymbol v^2=\boldsymbol v \boldsymbol v=||\boldsymbol v||$。这是内积的定义。
-- 然后我们“强行”把外积的定义也搬进来：对于相互垂直的向量$\boldsymbol u$与$\boldsymbol v$，我们规定$\boldsymbol u \boldsymbol v = -\boldsymbol v \boldsymbol u$。
-- 我们再规定这种乘法的结合律、左右分配律对任意k-向量$\boldsymbol A$、$\boldsymbol B$都成立：$(\boldsymbol A \boldsymbol B) \boldsymbol C = \boldsymbol A (\boldsymbol B \boldsymbol C) $，$(\boldsymbol A+ \boldsymbol B) \boldsymbol C = \boldsymbol A \boldsymbol C +\boldsymbol B \boldsymbol C $，$\boldsymbol A( \boldsymbol B+ \boldsymbol C) = \boldsymbol A \boldsymbol B +\boldsymbol A \boldsymbol C $。
+- 对于向量$\mathrm v$，我们规定$\mathrm v^2=\mathrm v \mathrm v=||\mathrm v||$。这是内积的定义。
+- 然后我们“强行”把外积的定义也搬进来：对于相互垂直的向量$\mathrm u$与$\mathrm v$，我们规定$\mathrm u \mathrm v = -\mathrm v \mathrm u$。
+- 我们再规定这种乘法的结合律、左右分配律对任意k-向量$\mathrm A$、$\mathrm B$都成立：$(\mathrm A \mathrm B) \mathrm C = \mathrm A (\mathrm B \mathrm C) $，$(\mathrm A+ \mathrm B) \mathrm C = \mathrm A \mathrm C +\mathrm B \mathrm C $，$\mathrm A( \mathrm B+ \mathrm C) = \mathrm A \mathrm B +\mathrm A \mathrm C $。
 
 这个新的乘法就是**几何积**。为了统一，我们规定标量是0-向量。
 <!--more-->
-下面我们看夹角为$\theta$的任意两个向量$\boldsymbol u$、$\boldsymbol v$做几何积$\boldsymbol u\boldsymbol v$结果会怎么样。定义里只给了平行与垂直方向上的向量的几何积的性质，所以要首先把$\boldsymbol u$在$\boldsymbol v$上正交分解了：
-$$\boldsymbol u = \boldsymbol e\_{\parallel v}||\boldsymbol u||\cos \theta + \boldsymbol e\_{\perp v}||\boldsymbol u||\sin \theta$$
-$$\boldsymbol u \boldsymbol v = \boldsymbol e\_{\parallel v} \boldsymbol v ||\boldsymbol u||\cos \theta + \boldsymbol e\_{\perp v} \boldsymbol v ||\boldsymbol u ||\sin \theta=||\boldsymbol u||||\boldsymbol v||\cos \theta + e\_{\perp v} e\_v ||\boldsymbol u||||\boldsymbol v||\sin \theta = \boldsymbol u \cdot \boldsymbol v + \boldsymbol u \wedge \boldsymbol v$$
+下面我们看夹角为$\theta$的任意两个向量$\mathrm u$、$\mathrm v$做几何积$\mathrm u\mathrm v$结果会怎么样。定义里只给了平行与垂直方向上的向量的几何积的性质，所以要首先把$\mathrm u$在$\mathrm v$上正交分解了：
+$$\mathrm u = \mathrm e\_{\parallel v}||\mathrm u||\cos \theta + \mathrm e\_{\perp v}||\mathrm u||\sin \theta$$
+$$\mathrm u \mathrm v = \mathrm e\_{\parallel v} \mathrm v ||\mathrm u||\cos \theta + \mathrm e\_{\perp v} \mathrm v ||\mathrm u ||\sin \theta=||\mathrm u||||\mathrm v||\cos \theta + e\_{\perp v} e\_v ||\mathrm u||||\mathrm v||\sin \theta = \mathrm u \cdot \mathrm v + \mathrm u \wedge \mathrm v$$
 什么？标量与2-向量加起来了？这有意义吗？我最先在wiki上看到几何代数就是这个反应，然后就点了窗口右上角关闭按钮。后来我才慢慢了解到几何代数的强大。所以先不谈意义，我们接着看两个2-向量做几何积会怎样。
 由于2-向量空间位置复杂，直接坐标运算。设
 $$\begin{align} A&=a\_1e\_{xy}+b\_1e\_{xz}+c\_1e\_{xw}+d\_1e\_{yz}+e\_1e\_{yw}+f\_1e\_{zw}  \\\\ B&=a\_2e\_{xy}+b\_2e\_{xz}+c\_2e\_{xw}+d\_2e\_{yz}+e\_2e\_{yw}+f\_2e\_{zw}\end{align}$$
@@ -39,7 +41,7 @@ $$AB=(a\_1e\_{xy}+b\_1e\_{xz}+c\_1e\_{xw}+d\_1e\_{yz}+e\_1e\_{yw}+f\_1e\_{zw})(a
 - 部分相同，如$e\_{xy}e\_{xz}$：$e\_{xy}e\_{xz}=e\_xe\_ye\_xe\_z=-e\_x(e\_xe\_y)e\_z=-(e\_xe\_x)e\_ye\_z=-e\_{yz}$
 - 完全不同，如$e\_{xy}e\_{zw}$：$e\_{xy}e\_{zw}=e\_xe\_ye\_ze\_w=e_{xyzw}$
 
-观察可知合并同类项后得到三部分相加：标量部分+2-向量部分+4-向量部分。不难看出，除了标量部分差一个符号外每部分的结果刚好是开头表格里给的那种乘法，所以有$\boldsymbol {A B}=-\boldsymbol A\cdot \boldsymbol B + \boldsymbol A\times \boldsymbol B + \boldsymbol A\wedge \boldsymbol B$。
+观察可知合并同类项后得到三部分相加：标量部分+2-向量部分+4-向量部分。不难看出，除了标量部分差一个符号外每部分的结果刚好是开头表格里给的那种乘法，所以有$\mathrm {A B}=-\mathrm A\cdot \mathrm B + \mathrm A\times \mathrm B + \mathrm A\wedge \mathrm B$。
 ## 几何代数是分级代数
 我们把包含不同维度的这种混合向量叫多重向量（Multivector）。对于多重向量$A$定义一种投影算子：$\left\langle A\right\rangle\_k$代表取多重向量$A$的k-向量部分。这样我们就能用几何代数的方式来定义外积了：（这里的$\left\langle A\right\rangle\_m$与 $\left\langle B\right\rangle\_n$表示两个纯的m-向量和n-向量）
 $$\left\langle A\right\rangle\_m\wedge \left\langle B\right\rangle\_n=\left\langle\left\langle A\right\rangle\_m\left\langle B\right\rangle\_n\right\rangle\_{m+n}$$
@@ -88,7 +90,7 @@ $$i^2=-1, j^2=-1, k^2=-1, ij=-ji=k, jk=-kj=i, ki=-ik=j$$
 四元数与旋转一样满足结合律，如$(ij)k=kk=-1=ii=i(jk)$。其实全体四元数构成一个**群**，就像旋转构成旋转群一样（群即满足结合律、可逆性、有单位元等要求的乘法）。
 如果你对为什么要这样规定四元数感兴趣可以展开这一小节：
 ### <a href="javascript:$('#varq').toggle();setJax();void(0)" target="_self">各种四元数</a>
-<div id="varq" style="display:none; background-color:#EDE4FF"><p>
+<div id="varq" style="display:none; background-color:var(--color-EEF)"><p>
 
 在具体说四元数怎样表示旋转之前我们先看看为什么要这样规定四元数$i$、$j$、$k$的乘法表，有没有其他替代方案？比如我就是对不满足交换律这一点不满意，我想构造新的“可交换四元数”，这可能吗？注意，这不代表我可以乱往乘法表里填东西，因为有结合律、可逆等等限制（比如还有交换律，如果你还希望有的话）。首先，1乘以任何数都不会变（单位元的性质），这种规律最好不要打破，不然它看上去就不像是数的推广了。之前提到的四元数乘法表中（为与后面“乱七八糟的四元数”区分，我们叫它标准四元数），对于$i$、$j$、$k$，为什么它们的平方都是-1？按理说-1的平方根只有±i就足够了。事实上，数学家证明了复数域已经是**代数闭域**了，通俗来说就是所有多项式的根都是复数，我们不需要再引入新的复数之外的数来表示了。比如甚至$^{i}\sqrt{i}$都是一个实数（当然也是复数）。所以从这种意义上说，复数的推广完全是多此一举。现在需要明确目的：我们不是想真的表示更多的数，而纯粹只是对它的代数结构感兴趣。既然没有这些限制，不妨想一些疯狂的事情：
 
@@ -134,9 +136,9 @@ $$f(I)=\det(f)I$$
 <!--证明rotrot-->
 ## 除旋转外的一些几何代数的应用
 ### 证明矢量场论中的等式
-我们来通过几何代数证明波动方程遇到的这个式子（$E$是一个向量）：$\nabla \times\nabla \times\boldsymbol{E}=-\boldsymbol{\Delta \boldsymbol{E}}+\text{grad}(\text{div}(\boldsymbol{E}))$
-$$\begin{align}\nabla \times\nabla \times\boldsymbol{E}=&(\boldsymbol{d}\wedge(\boldsymbol{d}\wedge\boldsymbol{E})^\*)^\*\\\\=&-\left\langle\boldsymbol{d}(\boldsymbol{d}\wedge\boldsymbol{E})\right\rangle_1\\\\=&-\left\langle\boldsymbol{d}(\boldsymbol{dE}-\boldsymbol{Ed})/2\right\rangle_1\\\\=&-(\boldsymbol{d}(\boldsymbol{dE}-\boldsymbol{Ed})-(\boldsymbol{dE}-\boldsymbol{Ed})\boldsymbol{d})/4\\\\=&-(\boldsymbol{d}^2\boldsymbol{E}+\boldsymbol{E}\boldsymbol{d}^2)/4+\boldsymbol{dEd}/2\\\\=&-\boldsymbol{d}^2\boldsymbol{E}/2+\boldsymbol{dEd}/2\end{align}$$
-$$\begin{align}-\boldsymbol{\Delta \boldsymbol{E}}+\text{grad}(\text{div}(\boldsymbol{E}))=&-(\boldsymbol{d}\cdot \boldsymbol{d})E+\boldsymbol{d}(\boldsymbol{d}\cdot \boldsymbol{E})\\\\=&-\boldsymbol{d}^2E+\boldsymbol{d}(\boldsymbol{dE}+\boldsymbol{Ed})/2\\\\=&-\boldsymbol{d}^2\boldsymbol{E}/2+\boldsymbol{dEd}/2\end{align}$$
+我们来通过几何代数证明波动方程遇到的这个式子（$E$是一个向量）：$\nabla \times\nabla \times\mathrm{E}=-\mathrm{\Delta \mathrm{E}}+\text{grad}(\text{div}(\mathrm{E}))$
+$$\begin{align}\nabla \times\nabla \times\mathrm{E}=&(\mathrm{d}\wedge(\mathrm{d}\wedge\mathrm{E})^\*)^\*\\\\=&-\left\langle\mathrm{d}(\mathrm{d}\wedge\mathrm{E})\right\rangle_1\\\\=&-\left\langle\mathrm{d}(\mathrm{dE}-\mathrm{Ed})/2\right\rangle_1\\\\=&-(\mathrm{d}(\mathrm{dE}-\mathrm{Ed})-(\mathrm{dE}-\mathrm{Ed})\mathrm{d})/4\\\\=&-(\mathrm{d}^2\mathrm{E}+\mathrm{E}\mathrm{d}^2)/4+\mathrm{dEd}/2\\\\=&-\mathrm{d}^2\mathrm{E}/2+\mathrm{dEd}/2\end{align}$$
+$$\begin{align}-\mathrm{\Delta \mathrm{E}}+\text{grad}(\text{div}(\mathrm{E}))=&-(\mathrm{d}\cdot \mathrm{d})E+\mathrm{d}(\mathrm{d}\cdot \mathrm{E})\\\\=&-\mathrm{d}^2E+\mathrm{d}(\mathrm{dE}+\mathrm{Ed})/2\\\\=&-\mathrm{d}^2\mathrm{E}/2+\mathrm{dEd}/2\end{align}$$
 不用几何代数的话，估计只能老老实实把所有坐标都展开了，几何代数的方法降低了大部分计算量。
 ### 各种乘积的几何意义
 我们现在可以这样定义高维空间中m-向量$A$与n-向量$B$的乘法运算：多重向量$AB$中的每一种k-向量分量都对应一种$A$与$B$的乘法运算。我们通过N维空间中两个n-维子空间的夹角与代表两个子空间的多维向量（注意不是多重）的乘法关系的公式来给出这些乘法的几何意义：一般情况下n-维子空间上的超球投影到另一个子空间变成n轴超椭球。通过超椭球的轴向我们能在子空间上构造一个n维正交基，我们再把正交基投影回另一个子空间上，可以用线性代数证明也是正交的，且两个子空间内通过投影对应的正交基有n对，它们夹角$\theta\_1,\theta\_2,..,\theta\_n,$一共有n个，如果不是互相的投影，则两个基向量垂直。我们用这n个角度来衡量两个n-维子空间的位置关系。
@@ -147,5 +149,3 @@ $$\begin{align}AB=&u\_1 u\_2..u\_nv\_1 v\_2..v\_n\\\\=&(u\_1v\_1) (u\_2v\_2)..(u
 ## 参考
 - [An Introduction to Geometric Algebra and Calculus(PDF)](https://www.researchgate.net/profile/Jafar_Biazar/post/can_anyone_offer_me_a_booklist_about_learning_algebraic_geometry/attachment/5bd89cc9cfe4a76455fe769d/AS%3A687493238231042%401540922569376/download/bookGA.pdf)
 - [Let's remove Quaternions from every 3D Engine(Marc ten Bosch，交互式网页)](https://www.marctenbosch.com/quaternions/)
-
- [上一篇](/archives/knot4d/)　 [查看系列目录](/categories/四维空间系列/)　  [下一篇](/archives/unknots2/)

@@ -3,7 +3,9 @@ title: Ceci n'est pas le premier article !
 date: 2016-04-07 22:23:19
 tags: 
 - 自我描述
-- 杂记
+- 杂记  
+excerpt: 这不是第一篇文章！？但这确实是我的第一篇文章。对标题与自我描述句的解释...
+index_img: https://upload.wikimedia.org/wikipedia/en/b/b9/MagrittePipe.jpg
 ---
 ## 这不是第一篇文章！
 ### 对标题的解释

@@ -6,8 +6,10 @@ tags:
   - 数学
   - 游戏
 date: 2024-08-25 23:49:15
+index_img: /img/ord008.png
+excerpt: 大数数学研究如何描述尽可能大的数字。序数是介于有限的自然数与绝对无穷大之间的东西，是自然数的扩展。很久前我就听说过序数，但我总觉得这些超越无穷的东西很虚，当时也没兴趣深入了解它，去年 CFY 突然对“大数数学”与“序数”产生兴趣，还安利了个“序数增量”游戏 Ordinal Markup 给我，后来我才发现这个东西比想象中更有意思。
 ---
-<img style="max-width:300px" src="/img/ord008.png" alt="快增长层级函数可以通过不断套娃把序数转换为超级大的大数"/>
+![快增长层级函数可以通过不断套娃把序数转换为超级大的大数](/img/ord008.png?size=300x)
 
 去年[CFY](https://hadroncfy.com/)突然对“大数数学”与“序数”产生兴趣，还安利了个“序数增量”游戏[Ordinal Markup](https://patcailmemer.github.io/Ordinal-Markup/)给我，然后我就不幸成功入坑了。![极限序数$\omega^\omega$之前的所有序数](/img/ord001.png)<!--more-->
 
@@ -26,7 +28,7 @@ date: 2024-08-25 23:49:15
 $$0=\left\\{\right\\}=\phi$$$$1=\left\\{0\right\\}$$$$2=\left\\{0,1\right\\}$$$$3=\left\\{0,1,2\right\\}$$$$...$$观察不难发现$x+1=x\cup\left\\{x\right\\}$，比如$5=\left\\{0,1,2,3,4\right\\}$，$6=5\cup\left\\{5\right\\}=\left\\{0,1,2,3,4,5\right\\}$
 全体自然数的集合$\left\\{0,1,2,3,....\right\\}$当然不再是自然数，但如果强行也把它当成一个数处理，我们就能够超越无穷，继续往上数数，这就是“序数”。记$\omega=\left\\{0,1,2,3,....\right\\}$则$$\omega+1=\omega\cup\left\\{\omega\right\\}$$这样下来就有$$\omega+2$$$$\omega+3$$$$...$$而包含上述所有序数的数就叫$\omega+\omega$，也记作$\omega2$。这样不断扩展会到$\omega3$、$\omega4$、直到极限$\omega^2$，然后继续到$\omega^2+1$、$\omega^2+\omega$、$\omega^2 2$、$\omega^3$等等。我们看到一个序数要么是后继序数：由一个序数加一得到，要么是极限序数：由囊括前面无数个序数得到。虽然有极限序数这个东西，但跟自然数一样，永远不存在最大的序数：只需对这个序数加一就是了。
 
-<div style="background-color:#EEF">
+<div style="background-color:var(--color-EEF)">
 
 选读：这样一直罗列下去可以到$\omega^\omega$、$\omega^{\omega^\omega}$或许你会认为再后面就是$\omega\uparrow^4 \omega$、$\omega\uparrow^\omega \omega$、$\omega\uparrow^{\omega\uparrow^\omega \omega} \omega$等等，但由于涉及无穷，序数之间的很多运算法则与自然数不同，比如加法、乘法不再有交换律（$2\omega$表示$\omega$个2相加，极限还是$\omega$；两个$\omega$相加才能得到更大的$\omega 2$）没法推广到乘方之后的第四级运算了，后面只能不断引入指数塔迭代的许多不动点、不动点的不动点的不动点……来继续进行，详情见后面链接序数教程中的veblen $\varphi$ 函数。</div>
 
@@ -55,9 +57,11 @@ $$0=\left\\{\right\\}=\phi$$$$1=\left\\{0\right\\}$$$$2=\left\\{0,1\right\\}$$$$
 ### 工具类
 - [Naruyoko的大数相关计算工具](https://naruyoko.github.io/googology/)：包括BMS与0-Y序列的转换器、各种Y序列的山脉图、基本列在线计算器等等，他还实现了很多我完全没听说的大数记号的在线计算。
 - [序数浏览器](https://rgetar.github.io/)，强烈推荐，可以任意展开极限序数的基本列，还可以选择你喜欢的序数表示方式。
+
 ![序数浏览器展开序数的基本列](/img/ord002.png)
 ![序数浏览器设置将所有东西都用“0”、“[c]”（相当于$\Omega$）、“+”与BOCF$\psi$函数表示](/img/ord003.png)
 - 我自己写的[序数地图](/ordmap/)，类似序数浏览器，但用的是一种更形象的方法来展现序数：直接像在线地图那样缩放就能找到所有序数（目前最大序数可到EBO，支持BOCF/MOCF与Veblen表示，后续可能计划支持递归不可达序数I等），不用去点任何什么展开按钮。
+
 ![起点附近的序数地图](/img/ord006.png)
 操作提示: 
 1.手机端拖拽屏幕空白部分平移地图，点击加减号缩放。按住加减号不放往右边滑动可加速缩放。

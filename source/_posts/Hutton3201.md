@@ -5,6 +5,8 @@ tags:
 - 电路
 - 自动机
 - Hutton32
+excerpt: 最近看到有人用Minecraft里面的红石电路制作出了计算器，还有一篇神文：《基于Minecraft实现的计算机工程》，视频在此，好像还能算浮点数、三角函数。我对红石不是太了解，那能不能用Hutton32做一个呢？经过不断尝试现在我的成果时能做出一个简单的加减法计算器和Ascii码显示阵列。
+index_img: /img/hutton322.png
 ---
 
 <script src="/three/Painter.js"></script>
@@ -80,6 +82,6 @@ tags:
 左下角译码器放大版：
 <canvas onload="showRLE(this,8,'x = 28, y = 25, rule = Hutton32\npA27I$J3.J2.J5.pAL.J2.J2.J2.pAL$J3.J2.J5.JL.J2.J2.J2.JL$pA3IpA2IpA5IpA2IpA2IpA2IpA2IpA2I$J3.J2.J2.J2.J2.J2.J2.J2.J$J3.pAL.J2.J2.J2.pAL.J2.pAL.J$J3.JL.J2.J2.J2.JL.J2.JL.J$pA3IpA2IpA2IpA2IpA2IpA2IpA2IpA2IpA2I$J3.J2.J2.J2.J2.J2.J2.J2.J$J3.pAL.pAL.J2.pAL.pAL.J2.pAL.pAL$J3.JL.JL.J2.JL.JL.J2.JL.JL$pA3IpA2IpA2IpA2IpA2IpA2IpA2IpA2IpA2I$J3.J2.J2.J2.J2.J2.J2.J2.J$J3.J2.pAL.pAL.pAL.pAL.pAL.pAL.pAL$J3.J2.JL.JL.JL.JL.JL.JL.JL$pA3IpA2IpA2IpA2IpA2IpA2IpA2IpA2IpA2I$J.J.J2.J2.J2.J2.J2.J2.J2.J$J.J.J2.pAL.pAL.pAL.pAL.J2.pAL.pAL$J.J.J2.JL.JL.JL.JL.J2.JL.JL$J.J.pA2IpA2IpA2IpA2IpA2IpA2IpA2IpA2I$J.J.J2.J2.J2.J2.J2.J2.J2.J$JLpA.pAL.pAL.pAL.J2.J2.pAL.pAL.pAL$JLJ.JL.JL.JL.J2.J2.JL.JL.JL$pAIpAIpA2IpA2IpA2IpA2IpA2IpA2IpA2IpA2I$J.J.J2.J2.J2.J2.J2.J2.J2.J!')"></canvas>
 输入有10根线，代表0-9，输出7根线，分别点亮对应的灯管。
-## —— 
+
 好了，有了这些部件下一步就是组合它们，实现加法、减法、锁存、译码等各种数字电路中的那些功能！
 (未完待续)

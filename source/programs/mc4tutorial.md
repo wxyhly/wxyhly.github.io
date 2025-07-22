@@ -13,9 +13,9 @@ After entering the game and waiting texture to be loaded, you can see the world 
 
 The picture below shows all the directions in Minecraft4D world. You can press the keys `W` `S` `A` `D` `Q` `E` to move.
 ![](/img/minecraft01.jpg)
-Be careful, front and back can't be marked in th retina, because they are perpendicular to the retina. The move direction of key `Q` `E` (Blue line in the picture above) is a new direction for us: I call it sidefront and sideback, because there are "front side" and "back side" in the retina like left side and right side.
+Be careful, front and back can't be marked in th retina, because they are perpendicular to the retina. The move direction of key `Q` `E` (Blue line in the picture above) is a new direction for us: **Ana** and **Kata**. In Chinese I call it sidefront and sideback, because there are "front side" and "back side" in the retina like left side and right side.
 Because of the messy overlapping colors, it's better to show colors on some cross sections separately.
-（$x$ axis: Left and right; $y$ axis: Up and down; $z$ axis: New side direction; $w$ axis: Front and back）
+（$x$ axis: Left and right; $y$ axis: Up and down; $z$ axis: New Ana and Kata direction; $w$ axis: Front and back）
 ![](/img/eye3d005.jpg)
 Similar to original Minecraft, click the canvas to lock and hide your mouse pointer, and move your mouse to look around. Press `Esc` to unlock. Note that moving mouse vertically does not correspond to look upward or downward, instead you will turn to the new 4th direction. Please scroll mouse wheel (or press key `I` and `K` if you want) to look upward and downward.
 ## World generation
@@ -68,16 +68,16 @@ The 4D space is much wider that 3D one. You need to place many blocks by hand ev
 |`S`   |Move back|
 |`A`   |Move to left|
 |`D`   |Move to right|
-|`Q`   |Move to sideback|
-|`E`   |Move to sidefront|
+|`Q`   |Move to ana|
+|`E`   |Move to kata|
 |`Shift`   |Descend|
 |`Space`   |Jump / Ascend|
 |`I`   |Look upward|
 |`K`   |Look downward|
 |`J`   |Turn left|
 |`L`   |Turn right|
-|`U`   |Turn "side left"|
-|`O`   |Turn "side right"|
+|`U`   |Turn ana|
+|`O`   |Turn kata|
 |`Z`   |Rotate 3D retina|
 |`X`   |Rotate 3D retina (reverse)|
 
