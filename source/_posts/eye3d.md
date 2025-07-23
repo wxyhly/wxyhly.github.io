@@ -2,7 +2,6 @@
 title: 四维世界（五）：体验四维人的视觉与方向感
 tags:
   - 4dViewer
-  - 系列文章
 categories: 四维世界系列
 date: 2020-02-27 11:05:42
 index_img: /img/eye3d017.jpg

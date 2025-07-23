@@ -3,7 +3,6 @@ title: 四维世界（六）：牛顿力学
 tags:
   - 四维
   - 物理
-  - 系列文章
   - javascript
 categories: 四维世界系列
 date: 2020-03-11 16:10:48
