@@ -9,11 +9,11 @@ tags:
 categories: Tesserxel系列
 ---
 
-我们已经介绍了Tesserxel的Four模块可快速构建四维场景，Four模块是建立在底层渲染模块Render之上的。这篇文章我们将来介绍这个偏向底层的模块以完成一些更高级的定制化操作。本文涉及到图形学绘制的一些底层概念及相关操作，读者最好要对现代可编程渲染管线有所了解。
+我们已经介绍了Tesserxel的Four模块可快速构建四维场景，Four模块是建立在底层渲染模块Render之上的。这篇文章我们将来介绍这个偏向底层的模块以完成一些更高级的定制化操作。本文涉及到**WebGPU图形学绘制的一些底层概念及相关操作**，读者最好要对现代可编程渲染管线有所了解。
 
 ## 绘制你的第一个体素四面体
 
-配置好Tesserxel的路径后，首先创建一个GPU对象，并对其初始化。该对象是WebGPU中的原生`gpu`、`device`、`adapter`等对象的封装，将一些繁琐的配置打包了在了单一的`init`函数中。
+配置好Tesserxel的路径后（可以只引入render模块），首先创建一个GPU对象，并对其初始化。该对象是WebGPU中的原生`gpu`、`device`、`adapter`等对象的封装，将一些繁琐的配置打包了在了单一的`init`函数中。
 ```javascript
 const gpu = await new tesserxel.render.GPU().init();
 ```
@@ -180,8 +180,10 @@ struct TetraOutput{
 ```javascript
 const viewMatJsBuffer = new Float32Array(16);
 const viewMatGpuBuffer = gpu.createBuffer(
-    GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST, // 告诉这块缓冲区的用途：1.用于Uniform变量, 2.可写入
-    viewMatJsBuffer // 用viewMatJsBuffer来初始化这块缓冲区
+    // 告诉这块缓冲区的用途：1.用于Uniform变量, 2.可写入
+    GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST, 
+    // 用viewMatJsBuffer的内容来初始化这块缓冲区
+    viewMatJsBuffer 
 );
 ```
 我们还要定义一个对象用来指定把viewMatGpuBuffer对象跟顶点着色器中的@group(1) @binding(0)对应：
