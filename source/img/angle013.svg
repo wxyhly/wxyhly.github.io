@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="157.66376mm"
+   height="101.43348mm"
+   viewBox="0 0 157.66376 101.43348"
+   version="1.1"
+   id="svg839"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="angle013.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview841"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     fit-margin-top="1"
+     fit-margin-left="1"
+     fit-margin-right="1"
+     fit-margin-bottom="1"
+     inkscape:zoom="0.92157682"
+     inkscape:cx="302.19944"
+     inkscape:cy="138.34983"
+     inkscape:window-width="1440"
+     inkscape:window-height="838"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs836" />
+  <g
+     inkscape:label="图层 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-38.857857,-29.231265)">
+    <path
+       style="opacity:0.5;fill:#ffffff;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 68.693519,45.354679 V 100.95073 L 60.999995,85.409195 V 30.291438 Z"
+       id="path1192"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="opacity:0.5;fill:#ffffff;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 68.693519,45.354679 v 55.596051 l 32.745701,10.18449 V 56.017464 Z"
+       id="path1015"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="opacity:0.5;fill:#ffffff;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 136.72507,49.066937 v 39.72106 l 28.70337,-5.988572 V 43.556674 Z"
+       id="path1549"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="opacity:0.5;fill:#ffffff;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 195.14526,60.037488 V 99.758547 L 165.42844,82.799425 V 43.556674 Z"
+       id="path1650"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="opacity:0.5;fill:#ffffff;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 166.44189,105.26881 28.70337,-5.510263 -29.71682,-16.959122 -28.70337,5.988572 z"
+       id="path1751"
+       sodipodi:nodetypes="ccccc" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52777px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="74.829117"
+       y="124.60075"
+       id="text2876"><tspan
+         sodipodi:role="line"
+         id="tspan2874"
+         style="font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="74.829117"
+         y="124.60075">“共线”</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="74.829117"
+         y="129.61134"
+         id="tspan3864">&quot;Colinear&quot;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.52777px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="171.41307"
+       y="124.02656"
+       id="text4176"><tspan
+         sodipodi:role="line"
+         style="font-size:4.93889px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="171.41307"
+         y="124.02656"
+         id="tspan4178">共胞</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="171.41307"
+         y="129.03716"
+         id="tspan4182">Cocellular</tspan></text>
+    <path
+       style="opacity:0.5;fill:#ffffff;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 39.990148,61.448275 v 55.596055 l 28.703371,-16.5719 V 45.354679 Z"
+       id="path933" />
+  </g>
+</svg>
