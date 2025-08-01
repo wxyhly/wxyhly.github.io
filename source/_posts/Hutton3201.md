@@ -11,7 +11,7 @@ index_img: /img/hutton322.png
 
 <script src="/three/Painter.js"></script>
 <script src="/three/huttonjax.js"></script>
-　　最近看到有人用Minecraft里面的红石电路制作出了计算器，还有一篇神文：《[基于Minecraft实现的计算机工程](http://tieba.baidu.com/p/2757006332)》，[视频在此](http://www.acfun.tv/v/ac949079?shareUid=359740)，好像还能算浮点数、三角函数。我对红石不是太了解，那能不能用Hutton32做一个呢？经过不断尝试现在我的成果时能做出一个简单的加减法计算器和Ascii码显示阵列。
+　　最近看到有人用Minecraft里面的红石电路制作出了计算器，还有一篇神文：《[基于Minecraft实现的计算机工程](http://tieba.baidu.com/p/2757006332)》，[视频在此](https://www.bilibili.com/video/BV1zs411o7q5/)，好像还能算浮点数、三角函数。我对红石不是太了解，那能不能用Hutton32做一个呢？经过不断尝试现在我的成果时能做出一个简单的加减法计算器和Ascii码显示阵列。
 ![加减法计算器](/img/hutton321.png) ![Ascii码显示阵](/img/hutton322.png)
 ## 什么是Hutton32？
 <!--more-->

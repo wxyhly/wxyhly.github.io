@@ -14,7 +14,7 @@ excerpt:  四维正多胞体一共有六个。维度数学漫步影片中只展�
 index_img: https://www.software3d.com/Thumb/120CellPt8.jpg
 ---
 
-<span class="likecode">#本文讨论的是纯空间上的几何，而不是物理上的时空！推荐视频《[维度：数学漫步](https://list.youku.com/albumlist/show?id=2376313&ascending=1&page=1)》对四维空间作初步了解</span>
+<span class="likecode">#本文讨论的是纯空间上的几何，而不是物理上的时空！推荐视频《[维度：数学漫步](https://www.dimensions-math.org/Dim_ZH_si.htm)》对四维空间作初步了解</span>
 
 　　研究四维空间中的正多胞体的基本方法还是类比：所以你恐怕得先对我们三维中的正多面体有点了解（可参看[Matrix67对正多面体的介绍](http://www.matrix67.com/blog/archives/6161)）。
 　　正多胞体一共有六个：**单形（正五胞体）、超立方体（正八胞体）、正十六胞体、正二十四胞体、正一百二十胞体、正六百胞体**。影片中只展现了它们的投影图（平行投影和球极投影）和一些基本几何信息，我们今天来看看它们具体是怎样构成的。其中除了正二十四胞体以外其他五种正多胞体我们都能找到三维类比——它们分别是正四面体、正方体、正八面体、正十二面体和正二十面体。<img src="https://www.software3d.com/Thumb/120CellPt8.jpg" alt="网站 www.software3d.com 上的120号模型 by Robert Webb"/><a name="index"></a>
