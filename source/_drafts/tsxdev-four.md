@@ -3,9 +3,9 @@ title: 用Tesserxel（一）：你好，超立方体
 tags:
   - 四维
   - 图形学
-  - javascript
-  - tesserxel
-  - webgpu
+  - Javascript
+  - Tesserxel
+  - Webgpu
 categories: Tesserxel系列
 ---
 <!--

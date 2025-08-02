@@ -2,7 +2,7 @@
 title: 自我描述的代码(in javascript)
 tags:
   - 自我描述
-  - javascript
+  - Javascript
   - 递归
 date: 2016-05-02 15:06:20
 index_img: /img/jsloop.gif

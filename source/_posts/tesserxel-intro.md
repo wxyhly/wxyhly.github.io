@@ -1,8 +1,8 @@
 ---
 title: 玩Tesserxel（一）：视图控制介绍
 tags:
-  - tesserxel
-  - webgpu
+  - Tesserxel
+  - Webgpu
   - 图形
   - 四维
 categories: Tesserxel系列

@@ -32,19 +32,13 @@ index_img: /img/N_vector_positive.png
 　　我们前面想推广外积（叉乘），所以我们又把外积搬过来，使两者结合一下：$\vec a\wedge\vec b$是一个有大小有方向取向的量：取向就是由$\vec a$、$\vec b$张成的平面，且遵循右手螺旋法则（意思是$\vec a\wedge\vec b=-\vec b\wedge\vec a$），大小（范数）为由$\vec a$、$\vec b$张成平行四边形的面积，所以若$\vec a$、$\vec b$共线，则$\vec a\wedge\vec b=0$。这个想法很好，但现在还没用处，因为我们还要来看在坐标下具体怎么表示、计算。
 <a name="bivector"></a>
 ### 楔积与2-向量
-  - 三维情形
-  　　这是我们三维空间都没用过的数学工具。所以我们先在三维空间中讨论、熟悉它，再推广到四维至N维。设$\vec m=(x_1,y_1,z_1)，\vec n=(x_2,y_2,z_2)$ ，则
-  
-  $\vec m\wedge\vec n=(x_1\vec e_x+y_1\vec e_y+z_1\vec e_z)$ $\wedge(x_2\vec e_x+y_2\vec e_y+z_2\vec e_z)$.
-  　　怎么打开括号？如果$\wedge$满足**分配率**括号就能打开了！我们不妨先**假设**它满足吧，展开，并利用$\vec a\wedge\vec b=-\vec a\wedge\vec b$化简合并（我们还得假设它是**线性算子**才能合并）得：$\vec m\wedge\vec n=(x_1y_2-x_2y_1)e_x\wedge e_y + (x_1z_2-x_2z_1)e_x\wedge e_z + (y_1z_2-z_2y_1)e_y\wedge e_z$
+#### 三维情形
+  　　这是我们三维空间都没用过的数学工具。所以我们先在三维空间中讨论、熟悉它，再推广到四维至N维。设$\vec m=(x_1,y_1,z_1)，\vec n=(x_2,y_2,z_2)$ ，则$\vec m\wedge\vec n=(x_1\vec e_x+y_1\vec e_y+z_1\vec e_z)$ $\wedge(x_2\vec e_x+y_2\vec e_y+z_2\vec e_z)$.
+  　　怎么打开括号？如果$\wedge$满足**分配率**括号就能打开了！我们不妨先**假设**它满足吧，展开，并利用$\vec a\wedge\vec b=-\vec a\wedge\vec b$化简合并（我们还得假设它是**线性算子**才能合并）得：$$\vec m\wedge\vec n=(x_1y_2-x_2y_1)e_x\wedge e_y + (x_1z_2-x_2z_1)e_x\wedge e_z + (y_1z_2-z_2y_1)e_y\wedge e_z$$
 
-  　　眼熟吧，这就是我们熟知的叉乘公式。我们把叉乘搬给了“$\wedge$”运算，所以推出叉乘公式很正常。这个2-向量有三个独立分量$e_x\wedge e_y、e_y\wedge e_z、e_x\wedge e_z$，它们表示单位$xy、yz、xz$平面，刚好对应法向量$\vec e_z、\vec e_x、-\vec e_y$（注意这种对应都遵从右手定则，有时会差一个符号），给人感觉它们是同构（相同）的。但$\vec a\wedge\vec b$与$\vec a \times \vec b$有本质区别：前者代表平面，后者代表平面的法线，我们只是找到了一种特殊的对应它们的关系：
-  
-  $a(e_x\wedge e_y)+b(e_y\wedge e_z)+c(e_x\wedge e_z)\to a\vec e_z+b\vec e_x+c\vec e_y$
+  　　眼熟吧，这就是我们熟知的叉乘公式。我们把叉乘搬给了“$\wedge$”运算，所以推出叉乘公式很正常。这个2-向量有三个独立分量$e_x\wedge e_y、e_y\wedge e_z、e_x\wedge e_z$，它们表示单位$xy、yz、xz$平面，刚好对应法向量$\vec e_z、\vec e_x、-\vec e_y$（注意这种对应都遵从右手定则，有时会差一个符号），给人感觉它们是同构（相同）的。但$\vec a\wedge\vec b$与$\vec a \times \vec b$有本质区别：前者代表平面，后者代表平面的法线，我们只是找到了一种特殊的对应它们的关系：$$a(e_x\wedge e_y)+b(e_y\wedge e_z)+c(e_x\wedge e_z)\to a\vec e_z+b\vec e_x+c\vec e_y$$这种对应我们叫**霍奇对偶**，后面会大量用到。
 
-  这种对应我们叫**霍奇对偶**，后面会大量用到。
-
-  - 四维情形
+#### 四维情形
   　　而四维空间直线和平面（2-向量）不再有一一对应的关系了：
 　　设$\vec m=(x_1,y_1,z_1,w_1)，\vec n=(x_2,y_2,z_2,w_2)$ ，则$$\begin{align} \vec m\wedge\vec n&=(x_1\vec e_x+y_1\vec e_y+z_1\vec e_z+w_1\vec e_w)\wedge(x_2\vec e_x+y_2\vec e_y+z_2\vec e_z+w_2\vec e_w) \\\\ &=(x_1y_2-x_2y_1)e_x\wedge e_y+(x_1z_2-x_2z_1)e_x\wedge e_z+(x_1w_2-x_2w_1)e_x\wedge e_w+(y_1z_2-z_1y_2)e_y\wedge e_z+(y_1w_2-w_1y_2)e_y\wedge e_w+(z_1w_2-w_1z_2)e_z\wedge e_w\end{align}$$
 　　我们看到四维空间2-向量有六个独立的分量，是各坐标的两两组合，分量大小是两坐标交叉相乘再相减。好了，总算能表示出平面了。<a name="dot"></a>

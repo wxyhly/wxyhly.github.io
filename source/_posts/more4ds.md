@@ -47,7 +47,7 @@ index_img: /img/morepolys1.jpg
 
 　　看了平行投影我们还能再看直积形的球极投影，16-16边形直积已经很像纤维丛里的那个圆环了。由于直积有交换律，我们终于可以理解圆环经纬线可交换了。(jenn3d上菜单“duoprisms”中有这些模型)<a name="tout"></a>
 ## 圆柱的所有四维类比
-该总结一下“柱体”这个概念了。我们三维的柱体是2维底面$S$与一条线段$h$的直积，四维中传统的柱体是3维底面$V$与一条线段$H$的直积。那么“xx柱柱”就是$V\times H = S\times h \times H=S\times (h \times H)=S\times (长方形)$。所以四维圆柱类似物有四种：
+该总结一下“柱体”这个概念了。我们三维的柱体是2维底面$S$与一条线段$h$的直积，四维中传统的柱体是3维底面$V$与一条线段$H$的直积。那么“xx柱柱”就是$V\times H = S\times h \times H$$=S\times (h \times H)=S\times (长方形)$。所以四维圆柱类似物有四种：
  - 球柱(3-球$\times$1-球)(spherinder);
  - 双圆柱(2-球$\times$2-球)(duocylinder);
  - 圆柱柱(2-球$\times$1-球$\times$1-球)(cubinder);

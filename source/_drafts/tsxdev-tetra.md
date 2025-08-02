@@ -3,9 +3,9 @@ title: 用Tesserxel（三）：你好，四面体
 tags:
   - 四维
   - 图形学
-  - javascript
-  - tesserxel
-  - webgpu
+  - Javascript
+  - Tesserxel
+  - Webgpu
 categories: Tesserxel系列
 ---
 

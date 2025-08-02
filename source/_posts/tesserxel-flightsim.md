@@ -1,8 +1,8 @@
 ---
 title: 玩Tesserxel（三）：火车、飞行模拟器教程
 tags:
-  - tesserxel
-  - webgpu
+  - Tesserxel
+  - Webgpu
   - 模拟
   - 四维
 categories: Tesserxel系列

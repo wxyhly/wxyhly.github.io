@@ -66,12 +66,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // extension: toggle language en/zh-CN between two sites
+    const mappings = [
+        // domain
+        ["//wxyhly.github.io", "//wxyhly-en.github.io"],
+        // categories
+        ["/四维空间系列/", "/4D-Space-Series/"],
+        ["/四维世界系列/", "/4D-World-Series/"],
+        ["/奇特世界系列/", "/Strange-World-Series/"],
+        ["/Tesserxel系列/", "/Tesserxel-Series/"],
+        ["/四维计算机图形学/", "/4D-Computer-Graphics/"],
+        // tags
+        ["/四维/", "/4D/"],
+        ["/数学/", "/Mathematics/"],
+        ["/物理/", "/Physics/"],
+        ["/几何/", "/Geometry/"],
+        ["/奇特想象/", "/Peculiar-Imagination/"],
+        ["/拓扑学/", "/Topology/"],
+    ];
     window.toggleLang = () => {
+        let url = window.location.href;
         const p = window.location.port;
-        if (p === "4000") window.location.port = "8001";
-        else if (p === "8001") window.location.port = "4000";
-        else {
-            window.location.hostname = window.location.hostname === "wxyhly.github.io" ? "wxyhly-en.github.io" : "wxyhly.github.io";
+        if (p === "4000") url = url.replace(":4000", ":8001");
+        else if (p === "8001") url = url.replace(":8001", ":4000");
+        for (let [a, b] of mappings) {
+            a = encodeURI(a);
+            url = url.includes(a) ? url.replace(a, b) : url.includes(b) ? url.replace(b, a) : url;
         }
+        window.location.href = url;
     }
 });

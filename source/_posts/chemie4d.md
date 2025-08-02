@@ -4,7 +4,7 @@ tags:
   - 化学
   - 四维
   - 物理
-  - tesserxel
+  - Tesserxel
 categories: 四维世界系列
 date: 2025-04-20 09:53:39
 index_img: /img/chemie406.png

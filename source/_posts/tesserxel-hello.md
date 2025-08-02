@@ -1,8 +1,8 @@
 ---
 title: 玩Tesserxel（零）：全新四维引擎上线
 tags:
-  - javascript
-  - tesserxel
+  - Javascript
+  - Tesserxel
   - 图形
   - 四维
 categories: Tesserxel系列
@@ -29,7 +29,7 @@ excerpt: 之前的四维引擎是基于WebGL的，现在我决定尝试使用新
 
 **注意：现在电脑端直接更新至谷歌浏览器最新版（版本号113及以上）即可打开，以下内容已经过时。**
 
-启用WebGPU方法： WebGPU是一个实验性的API，是WebGL的未来“接班人”，它的标准还处于W3C的草稿阶段，未正式发布。目前据说仅Windows下Chrome提供较好支持，而且想开启这项功能还有点麻烦，首先你需要下载Canary版本的Chrome浏览器（[谷歌官网](https://www.google.com/intl/zh-CN/chrome/canary/)，或自行找下载资源），添加--enable-unsafe-webgpu参数启动浏览器，打开chrome://flags/，将WebGPU Developer Features打开（选Enabled）就可以启用WebGPU。
+启用WebGPU方法： WebGPU是一个实验性的API，是WebGL的未来“接班人”，它的标准还处于W3C的草稿阶段，未正式发布。目前据说仅Windows下Chrome提供较好支持，而且想开启这项功能还有点麻烦，首先你需要下载Canary版本的Chrome浏览器（[谷歌官网](https://www.google.com/intl/zh-CN/chrome/canary/)，或自行找下载资源），添加--enable-unsafe- Webgpu参数启动浏览器，打开chrome://flags/，将WebGPU Developer Features打开（选Enabled）就可以启用WebGPU。
 ![开启WebGPU的操作步骤](/img/tsx001.png)
 
 目前的Tesserxel只是一个早期版本，后续会补充Tesserxel说明手册，继续开发更多物理解算、高级材质、离线渲染，以及基于Tesserxel引擎的4D游戏等。（但愿不鸽~）

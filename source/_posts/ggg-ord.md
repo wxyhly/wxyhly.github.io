@@ -2,7 +2,7 @@
 title: 大数数学简介
 tags:
   - 大数数学
-  - javascript
+  - Javascript
   - 数学
   - 游戏
 date: 2024-08-25 23:49:15

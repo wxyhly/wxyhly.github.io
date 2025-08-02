@@ -2,7 +2,7 @@
 title: 四维世界（一）：行星的昼夜季节
 tags:
   - 四维
-  - javascript
+  - Javascript
   - 几何
 categories: 四维世界系列
 date: 2018-08-12 17:27:59

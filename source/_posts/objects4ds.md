@@ -4,7 +4,7 @@ date: 2016-04-08 13:10:35
 categories: 四维空间系列
 tags:
 - 四维
-- 图形
+- 几何
 - 数学
 excerpt: 本文讨论的是纯空间四维几何，而不是物理的四维时空！ 本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。特色内容：介绍各种柱体、锥体、超体积、表体积的计算
 index_img: https://upload.wikimedia.org/wikipedia/commons/d/d9/From_Point_to_Tesseract_%28Looped_Version%29.gif

@@ -1,7 +1,7 @@
 ---
 title: 自己打造的一个电脑钢琴
 tags:
-  - javascript
+  - Javascript
   - 音乐
   - B站视频
 date: 2022-07-12 13:05:34
