@@ -62,7 +62,8 @@ date: 2019-03-30 20:30:29
 [点这里查看详情](/archives/Eop-Analogue/)
 
 ## 博文中的JS小程序集合
-- [[原文](/archives/subspace-angle/)] [平面-平面夹角范围](/three/angle_range.html)
+- [[原文](/archives/subspace-angle-2/)] [平面-胞夹角范围1](/three/angle_range.html?type=pc)、[平面-胞夹角范围2](/three/angle_range.html?type=cp)
+- [[原文](/archives/subspace-angle/)] [平面-平面夹角范围](/three/angle_range.html?type=pp)
 - [[原文](/archives/eye2d/)] [体验二维人看三维场景](/three/3dviewer42der.html)
 - [[原文](/archives/orbit4d/)] [计算四维星球上的太阳高度角](/three/4dOrbit.html)
 - [[原文](/archives/projearth/)] 墨卡托投影
