@@ -235,6 +235,7 @@ let mesh = new FOUR.Mesh(cubeGeometry, material);
 Phong材质除了颜色参数，还有个光泽度参数，可以控制高光亮斑的大小和高光颜色，适合表达光滑的材质。
 ```javascript
 // 换成光滑的双圆环几何
+let tigerGeometry = new FOUR.TigerGeometry();
 // Phong材质有颜色、高光度、高光颜色三个参数，后面两个参数都是可选的，默认值分别为20和白色
 const material = new FOUR.PhongMaterial([0.93, 0.87, 0.8],10);
 // 点光源只有光源强度这个参数
@@ -244,7 +245,7 @@ pLight.position.w = 2;
 // 别忘了把灯光加入场景
 app.scene.add(pLight);
 // 然后做同样的事情：指定材质
-let mesh = new FOUR.Mesh(cubeGeometry, material);
+let mesh = new FOUR.Mesh(tigerGeometry, material);
 // ..... 其它代码不变
 ```
 
