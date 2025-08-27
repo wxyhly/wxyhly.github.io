@@ -32,17 +32,17 @@ const renderer = new tesserxel.render.SliceRenderer(gpu);
 const vertexShaderCode = `
 @tetra fn main() -> @builtin(position) mat4x4<f32> {
     return mat4x4<f32> (
-            1.0, 1.0, 1.0, -1.0,
+        1.0, 1.0, 1.0, -1.0,
         -1.0,-1.0, 1.0, -1.0,
-            1.0,-1.0,-1.0, -1.0,
+        1.0,-1.0,-1.0, -1.0,
         -1.0, 1.0,-1.0, -1.0
     );
 }
 `;
 // 片元着色器代码：这段代码指定了四面体的颜色是纯红色。
 const fragmentShaderCode = `
-@fragment fn main() -> @location(0) vec4<f32> {
-    return vec4<f32> (1.0,0.0,0.0,1.0);
+@fragment fn main() -> @location(0) vec4f {
+    return vec4f (1.0,0.0,0.0,1.0);
 }
 `;
 // 有了顶点着色器和片段着色器，我们将它们串起来编译成可执行的渲染管线。注意该编译方法是异步的
@@ -93,9 +93,9 @@ renderer.render(context, (renderState) => {
 @tetra fn main() -> @builtin(position) mat4x4<f32> {
     // 返回一个浮点数矩阵，每行对应一个四面体的顶点
     return mat4x4<f32> (
-            1.0, 1.0, 1.0, -1.0,
+        1.0, 1.0, 1.0, -1.0,
         -1.0,-1.0, 1.0, -1.0,
-            1.0,-1.0,-1.0, -1.0,
+        1.0,-1.0,-1.0, -1.0,
         -1.0, 1.0,-1.0, -1.0
     );
 }
@@ -138,7 +138,7 @@ struct TetraOutput{
 ```
 下面我们修改片元着色器。修改很简单，只需要给函数加入一个参数，并加上相应的修饰符即可：
 ```wgsl
-@fragment fn main(@location(0) color: vec4<f32>) -> @location(0) vec4<f32> {
+@fragment fn main(@location(0) color: vec4f) -> @location(0) vec4f {
     return color;
 }
 ```
