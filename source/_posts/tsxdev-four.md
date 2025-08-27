@@ -15,7 +15,7 @@ date: 2025-08-27 23:48:17
 今天要开一个新的系列介绍如何使用四维图形引擎Tesserxel自己编写四维场景，针对的是有一定代码编写基础，接触过Javascript等语言，并有一定的三维计算机图形学常识的读者。Tesserxel引擎包括四维代数库、渲染引擎、物理引擎、建模处理等好几部分。其中渲染引擎有很底层的模块，也有封装层级较高的模块。我们先了解类似于THREE.js的高级库four模块，使用该模块可以用少量代码就渲染出四维体素场景。（建议读者先试着使用THREE.js接触一下三维图形编程再来挑战四维）如果读者对Tesserxel还很陌生，请移步[《玩Tesserxel》](/archives/tesserxel-hello/)系列再回来。
 ## 开始
 ### 在线网站直接体验
-如果你嫌后面本地安装的方式都麻烦，可以先在[Tesserxel Playground](/tesserxel/playground/)上体验一下，里面可加载本系列所有的示例场景，tesserxel库已经自动引用好了，可以一边编辑一边预览，非常方便，且支持使用浏览器的localstorage缓存保存至本地。此外也可以在[playcode.io这个在线编辑网站](https://playcode.io/2464355)上尝试。（有更强的代码提示功能，免费登录注册后能编辑代码）![Tesserxel Playground在线编辑器截图](/img/tsxdev001.png)
+如果你嫌后面本地安装的方式都麻烦，可以先在[Tesserxel Playground](/tesserxel/playground/)上体验一下，里面可加载本系列所有的示例场景，tesserxel库已经自动引用好了，可以一边编辑一边预览，非常方便，且支持使用浏览器的localstorage缓存保存至本地。此外也可以在[playcode.io这个在线编辑网站](https://playcode.io/1892016)上尝试。（有更强的代码提示功能，免费登录注册后能编辑代码）![Tesserxel Playground在线编辑器截图](/img/tsxdev001.png)
 ### 本地安装
 但如果你真的想创建一个可发布的独立的项目，则每个Tesserxel项目都需要一个包含`<canvas>`画布元素的网页。比如你可以复制下面的HTML代码来创建最简单的网页。
 ```html
@@ -41,7 +41,7 @@ const Vec4 = tesserxel.math.Vec4;
 let v2 = new Vec4(1,2,3,4);
 ```
 #### 通过import方法按需引入相应模块
-还有一种则是使用import语句加载esm格式的tesserxel：首先将`<script>`标签改一下写法，写成`<script src="script.js"></script>`，让浏览器识别import模块，然后编辑`script.js`：
+还有一种则是使用import语句加载esm格式的tesserxel：首先将`<script>`标签改一下写法，写成`<script src="script.js" type="module"></script>`，让浏览器识别import模块，然后编辑`script.js`：
 ```javascript
 // 将整个打包成一个叫tesserxel的全局模块
 import * as tesserxel from "https://wxyhly.github.io/tesserxel/build/esm/tesserxel.js"
@@ -193,7 +193,7 @@ app.camera = new FOUR.OrthographicCamera();
 <!---补三维体素的链接--->
 <!---补三维体素的链接--->
 <!---补三维体素的链接--->
-注意，这些参数针对的是渲染四维场景的相机配置，而不是渲染三维体素的相机配置。Tesserxel默认会加载一个齿轮图标来让用户自己配置体素渲染的参数。如果想在代码中指定体素渲染参数或做一些限制，[这里](#？？？)将会说如何配置它们。
+注意，这些参数针对的是渲染四维场景的相机配置，而不是渲染三维体素的相机配置。Tesserxel默认会加载一个齿轮图标来让用户自己配置体素渲染的参数。如果想在代码中指定体素渲染参数或做一些限制，下篇文章将会说如何配置它们。
 ### Mesh与Geometry
 
 Mesh与Geometry两个东西看起来差不多，但其实有很大区别。Geometry是存放的物体的几何数据，Mesh则是存放该物体在场景中的位置朝向、材质等信息。一个场景中可以有多个Mesh共用同一个Geometry，比如一堆五颜六色的小球的位置材质都不同，但形状都一样。Tesserxel中内置了下面的Geometry几何数据库：
