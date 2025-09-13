@@ -237,7 +237,7 @@ Phong材质除了颜色参数，还有个光泽度参数，可以控制高光亮
 // 换成光滑的双圆环几何
 let tigerGeometry = new FOUR.TigerGeometry();
 // Phong材质有颜色、高光度、高光颜色三个参数，后面两个参数都是可选的，默认值分别为20和白色
-const material = new FOUR.PhongMaterial([0.93, 0.87, 0.8],10);
+const material = new FOUR.PhongMaterial([0.93, 0.87, 0.8], 10);
 // 点光源只有光源强度这个参数
 const pLight = new FOUR.PointLight([0.9, 0.8, 0.8]);
 // 其位置默认位于原点，可通过前述所有修改其位置的方法来改变位置
