@@ -49,7 +49,7 @@ $$0=\left\\{\right\\}=\phi$$$$1=\left\\{0\right\\}$$$$2=\left\\{0,1\right\\}$$$$
 - [b站的从1到无穷大之间的大数列举视频](https://www.bilibili.com/video/BV13G411X7xm/)（全长9小时54分钟）
 - Codeparade（就是游戏4D高尔夫的作者！）的[“找到最大的数字”视频](https://www.youtube.com/watch?v=Mzgw6zMtipQ)
 <!-- - [知乎专栏《大数的世界》](https://www.zhihu.com/column/c_1561069709323083776)通过生动的故事将大数、大序数、大基数等概念形象化。 （算了，该专栏其实没啥特别值得推荐的东西）-->
-- 仿[《GEB》](https://book.douban.com/subject/1291204/)的乌龟与阿基里斯的对话写的关于介绍序数的小故事（可惜我最先看的中文版找不到了，[原文是法语](http://www.madore.org/~david/misc/VIRUS/ordinals/ordinals.html)）（**250811更新：之后有人评论留言告诉了我[中文版连接](http://zhblog.engic.org/20141003-015609/)，可是Disqus自动将其标注成了垃圾信息致使我现在才发现。。。。**）
+- 仿[《GEB》](https://book.douban.com/subject/1291204/)的乌龟与阿基里斯的对话写的关于介绍序数的小故事（可惜我最先看的中文版找不到了，[原文是法语](http://www.madore.org/~david/misc/VIRUS/ordinals/ordinals.html)）（**250811更新：之后有人评论留言告诉了我[中文版链接](http://zhblog.engic.org/20141003-015609/)，可是Disqus自动将其标注成了垃圾信息致使我现在才发现。。。。**）
 ### 教程类
 - [曹知秋的《大数理论》（动态更新中）](https://github.com/ZhiqiuCao/Googology) ：迄今为止关于大数最全面系统的大数数学中文讲义，没有之一。（前面github链接打不开的话这里还有个[网盘链接（240807版）](https://pan.baidu.com/link/zhihu/79h1zTuNhYi0VFh1gDM0l2k2NxUE5WNQUPlE==)）
 - [知乎上core.exe的序数教程](https://www.zhihu.com/people/core-exe/)，很详细，从第n级运算、快速增长层级讲到序数、Veblen函数、OCF、反射等概念。

@@ -12,7 +12,7 @@ excerpt: 本文继续探讨四维世界中的物质结构，并尝试大胆预�
 ---
 
 
-上期我们探讨了四维元素周期律设定，这次来看看物质结构，并毫无根据地大胆预估一下它们的性质（我不是学化学的，欢迎大家对所有内容提出异议）。![四维分子浏览器绘制的虚构的有机物结构式](/img/chemie406.png)当我正在继续写这部分内容时，网友KWOK Chun给我分享了一个叫[《对称4D化学》](https://docs.google.com/spreadsheets/d/1VhEpUJOCKkW8DUIcfSpqkANfr0qUwo6XlpY69v25-FQ/edit?gid=397336730#gid=397336730)的Google在线文档，里面的四维化学设定周期表设定跟我的完全相同的，只是元素命名上不同，本文快写完时我还看到了专门讲四维化学并尝试定量计算分析的[4denthusiast's Blog](blog.4denthusiast.net)，他们试图从基础粒子物理出发建立更严谨的四维基础物理体系，我也将分享一些精彩的内容。
+上期我们探讨了四维元素周期律设定，这次来看看物质结构，并毫无根据地大胆预估一下它们的性质（我不是学化学的，欢迎大家对所有内容提出异议）。![四维分子浏览器绘制的虚构的有机物结构式](/img/chemie406.png)当我正在继续写这部分内容时，网友KWOK Chun给我分享了一个叫[《对称4D化学》](https://docs.google.com/spreadsheets/d/1VhEpUJOCKkW8DUIcfSpqkANfr0qUwo6XlpY69v25-FQ/edit?gid=397336730#gid=397336730)的Google在线文档(该文档任何人可编辑，欢迎大家一起编辑完善)，里面的四维化学设定周期表设定跟我的完全相同的，只是元素命名上不同，本文快写完时我还看到了专门讲四维化学并尝试定量计算分析的[4denthusiast's Blog](blog.4denthusiast.net)，他们试图从基础粒子物理出发建立更严谨的四维基础物理体系，我也将分享一些精彩的内容。
 ## 特色内容
 - [电子式](/archives/chemie4d/#ccij)、[结构式](/archives/chemie4d/#eli)与[键线式](/archives/chemie4d/#bondli)
 - [分子轨道理论](/archives/chemie4d/#orbit)与[价电子互斥模型](/archives/chemie4d/#vsepr)
