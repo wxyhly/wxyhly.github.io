@@ -1,4 +1,4 @@
-import * as tesserxel from "https://wxyhly.github.io/tesserxel/build/tesserxel.js"
+import * as math from "https://wxyhly.github.io/tesserxel/build/esm/math/math.js"
 const canvas = document.querySelector("canvas");
 class Core {
     type;
@@ -187,8 +187,8 @@ class Core {
         a_c *= Math.PI / 180;
         b_c *= Math.PI / 180;
 
-        const vec4 = tesserxel.math.Vec4;
-        const bivec = tesserxel.math.Bivec;
+        const vec4 = math.Vec4;
+        const bivec = math.Bivec;
         const planeCellAngle = (p, c) => {
             return [Math.atan2(p.wedgev(c).norm(), p.dotv(c).norm()), 0];
         }
@@ -198,9 +198,9 @@ class Core {
             const planeC = new vec4(Math.cos(b1), 0, Math.sin(b1)).wedge(new vec4(0, Math.cos(b2), 0, Math.sin(b2))).norms();
             const planeA = new bivec(1);
             for (let i = 0; i < 10000; i++) {
-                let R1 = tesserxel.math.Rotor.rand();
+                let R1 = math.Rotor.rand();
                 const tempPlane = new bivec(1).rotates(R1);
-                let R2 = tesserxel.math.Rotor.lookAtbb(tempPlane, planeB);
+                let R2 = math.Rotor.lookAtbb(tempPlane, planeB);
                 tempPlane.rotates(R2);
                 const planeD = planeC.clone().rotates(R1).rotates(R2);
                 res.push(bivec.angle(planeD, planeA));
@@ -210,9 +210,9 @@ class Core {
             const planeB = new vec4(Math.cos(a1), 0, Math.sin(a1)).wedge(new vec4(0, Math.cos(a2), 0, Math.sin(a2))).norms();
             const cellC = new vec4(Math.cos(a_c), 0, Math.sin(a_c));
             for (let i = 0; i < 5000; i++) {
-                let R1 = tesserxel.math.Rotor.rand();
+                let R1 = math.Rotor.rand();
                 const tempPlane = new bivec(1).rotates(R1);
-                let R2 = tesserxel.math.Rotor.lookAtbb(tempPlane, planeA);
+                let R2 = math.Rotor.lookAtbb(tempPlane, planeA);
                 tempPlane.rotates(R2);
                 const cellD = cellC.clone().rotates(R1).rotates(R2);
                 res.push(planeCellAngle(planeB, cellD));
@@ -223,10 +223,10 @@ class Core {
             const cellC = new vec4(Math.cos(a_c), 0, Math.sin(a_c));
             const cellD = new vec4(Math.cos(b_c), 0, Math.sin(b_c));
             for (let i = 0; i < 100000; i++) {
-                let R1 = tesserxel.math.Rotor.rand();
+                let R1 = math.Rotor.rand();
                 planeB.rotates(R1);
                 cellD.rotates(R1);
-                let R2 = tesserxel.math.Rotor.lookAt(cellD, cellC);
+                let R2 = math.Rotor.lookAt(cellD, cellC);
                 planeB.rotates(R2);
                 cellD.rotates(R2);
                 res.push(bivec.angle(planeA, planeB));
