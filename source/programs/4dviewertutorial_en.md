@@ -137,7 +137,7 @@ You can select scenes from the control panel. Right click to fire a glome(4D sph
 Here are the rolling cases of 8 types of 4D objects and the contacts on the 3D ground are drawn:
 ![rolling cases](/img/newtonf001.svg)
 What are these 4D shapes respectively?
-There are 2 kinds of stable gyroscopes in 4D: dicone and coninder. Others (Like duocone, sphone..) don't have spinning stability.
+There are 2 kinds of stable gyroscopes in 4D: dicone and coninder. Others (Like duospindle, sphone..) don't have spinning stability.
 
 ## Minecraft4D
 With 4D Viewer, we can build a 4D game in minecraft style. See [Minecraft 4D tutorial](/programs/mc4tutorial.html) for detail.
