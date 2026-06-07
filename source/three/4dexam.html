@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes">
+  <title>2026年三维人类进入四维世界统一考试</title>
+  <style>
+    body {
+      margin: 0;
+
+      background: #dcdcdc;
+
+      font-family: "SimSun", "宋体", serif;
+
+      height: 100vh;
+
+      display: flex;
+      flex-direction: column;
+
+      overflow: hidden;
+    }
+
+    div label {
+      display: block;
+    }
+
+    #cardWrapper {
+      overflow: hidden;
+
+      max-height: 500px;
+
+      transition:
+        max-height 0.3s ease;
+    }
+
+    #cardWrapper.collapsed {
+      max-height: 0;
+    }
+
+    .overlay {
+
+      position: fixed;
+
+      left: 0;
+      top: 0;
+
+      width: 100vw;
+      height: 100vh;
+
+      background:
+        rgba(0, 0, 0, .45);
+
+      display: none;
+
+      justify-content: center;
+      align-items: center;
+
+      z-index: 999999;
+    }
+
+    .dialog {
+
+      background: white;
+
+      width: 420px;
+
+      max-width: 90vw;
+
+      border: 2px solid #222;
+
+      padding: 25px;
+
+      box-shadow:
+        0 0 30px rgba(0, 0, 0, .4);
+
+      text-align: center;
+      display: none;
+    }
+
+    .dialog h2 {
+
+      margin-top: 0;
+
+      font-family:
+        "SimSun", "宋体";
+
+      border-bottom:
+        1px solid #ccc;
+
+      padding-bottom: 10px;
+    }
+
+    .dialog-buttons {
+
+      margin-top: 20px;
+
+      display: flex;
+
+      justify-content: center;
+
+      gap: 20px;
+    }
+
+    .dialog button {
+
+      min-width: 100px;
+
+      padding: 8px 20px;
+
+      cursor: pointer;
+    }
+
+    .paper {
+      position: relative;
+
+      width: 420mm;
+      min-height: 297mm;
+
+      background: white;
+
+      margin: 20px;
+
+      box-sizing: border-box;
+
+      padding:
+        15mm 15mm 15mm 25mm;
+
+      box-shadow:
+        0 0 12px rgba(0, 0, 0, .3);
+    }
+
+    .paper::before {
+
+      content:
+        "wxyhly.github.io - Hqak";
+
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      transform:
+        translate(-50%, -50%) rotate(-30deg);
+
+      font-size: 100px;
+
+      font-weight: bold;
+
+      color: rgba(128, 128, 128, 0.1);
+
+      white-space: nowrap;
+
+      pointer-events: none;
+
+      z-index: 0;
+    }
+
+    .seal-line {
+      position: absolute;
+
+      left: 0;
+      top: 0;
+
+      width: 18mm;
+      height: 100%;
+
+      border-right: 2px dotted black;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      /* overflow:hidden; */
+    }
+
+    .subject-header {
+
+      font-size: 22px;
+
+      font-weight: bold;
+
+      margin-top: 12px;
+      margin-bottom: 10px;
+      padding-bottom: 4px;
+    }
+
+    .seal-text {
+      white-space: nowrap;
+
+      transform: rotate(-90deg);
+
+      transform-origin: center center;
+
+      font-size: 18px;
+
+      letter-spacing: 2px;
+    }
+
+    .page-content {
+      height: 100%;
+    }
+
+    .columns {
+      display: flex;
+      gap: 10mm;
+    }
+
+    .column {
+      flex: 1;
+    }
+
+    .page-number {
+      text-align: center;
+
+      margin-top: 10mm;
+      margin-bottom: 5mm;
+      bottom: 20px;
+      position: absolute;
+      width: 92%;
+      font-size: 14px;
+    }
+
+    .topbar {
+      background: #fff;
+      padding: 8px;
+      border-bottom: 1px solid #999;
+      /* z-index: 999; */
+    }
+
+    .questions {
+      flex: 1;
+
+      overflow-y: auto;
+
+      overflow-x: auto;
+    }
+
+    .topbar {
+      flex-shrink: 0;
+    }
+
+    .answer-card {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px
+    }
+
+    .card {
+      width: 34px;
+      height: 28px;
+      border: 1px solid #666;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: #eee
+    }
+
+    .done {
+      background: #9ec5ff
+    }
+
+    .answer-right {
+      background: #b7efb7
+    }
+
+    .answer-wrong {
+      background: #ffb7b7
+    }
+
+    .secret {
+      text-align: left;
+      font-weight: bold
+    }
+
+    .title {
+      text-align: center;
+      font-size: 28px;
+      margin: 20px
+    }
+
+    .info {
+      text-align: center
+    }
+
+    .question {
+      scroll-margin-top: 10vh;
+      scroll-margin-left: 50px;
+      scroll-margin-right: 50px;
+      break-inside: avoid;
+      /* border-bottom: 1px dotted #bbb; */
+      padding: 6px 0;
+      margin-bottom: 6px
+    }
+
+    .meta {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .analysis {
+      display: none;
+      margin-top: 8px;
+      padding: 6px;
+      background: #fafafa
+    }
+
+    .submit-area {
+      text-align: center;
+      margin: 8px
+    }
+
+    button {
+      background-color: white;
+      border-radius: 3px;
+      border: 1px solid black;
+      color: red;
+    }
+
+    .score {
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+      width: 80%;
+      color: #900;
+      position: absolute;
+      z-index: 10;
+    }
+
+    @media print {
+      body {
+        background: #fff
+      }
+
+      .paper {
+        box-shadow: none;
+        margin: 0
+      }
+
+      .topbar,
+      .submit-area {
+        display: none
+      }
+    }
+
+    .underline {
+      border-bottom: black solid 1px;
+      width: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div style="cursor: pointer;text-align: center;"><b
+        onclick="document.getElementById('cardWrapper').classList.toggle('collapsed')"> --- 答题卡 --- </b> 页面缩放:
+      <input type="range" min="0.5" max="1.5" step="0.05" value="1" id="zoom">
+      <button onclick="showShareDialog()">分享试卷</button>
+      <button onclick="showSubmitDialog()">提交试卷</button>
+    </div>
+    <div id="cardWrapper" class="collapsed">
+      <div id="card" class="answer-card"></div>
+    </div>
+  </div>
+
+  <div id="questions" class="questions">
+    <div id="paperContainer"></div>
+  </div>
+
+  <!-- </div> -->
+  <div id="overlay" class="overlay">
+
+    <div id="confirmDialog" class="dialog">
+
+      <h2>确认交卷</h2>
+
+      <div id="confirmText"></div>
+
+      <div class="dialog-buttons">
+
+        <button id="cancelSubmit" onclick="closeOverlay();">
+          继续检查
+        </button>
+
+        <button id="doSubmit" onclick="submitPaper()">
+          交卷
+        </button>
+
+      </div>
+
+    </div>
+
+    <div id="resultDialog" class="dialog">
+
+      <h2 id="res-title">考试结束</h2>
+
+      <div id="resultText"></div>
+
+      <div class="dialog-buttons">
+
+        <button id="closeResult" onclick="closeOverlay()"> 查看解析 </button>
+
+      </div>
+
+    </div>
+
+
+    <div id="shareDialog" class="dialog">
+
+      <h2 id="copy-title"></h2>
+
+      <p style="margin:15px 0;">
+        打开该链接后，将自动加载当前答题状态。
+      </p>
+
+      <textarea id="shareUrl" readonly
+        style="width:100%;height:100px;box-sizing:border-box;resize:none;font-family:monospace;"></textarea>
+
+      <div class="dialog-buttons">
+
+        <button onclick="copyShareURL()">
+          复制链接
+        </button>
+
+        <button onclick="hideShareDialog()">
+          关闭
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script>
+    const paperContainer = document.getElementById("paperContainer");
+    zoom.oninput = () => {
+      paperContainer.style.transform = `scale(${zoom.value})`;
+      paperContainer.style.transformOrigin = "top left";
+      paperContainer.style.width = (100 * zoom.value) + "%";
+    };
+    const QUESTION_BANK = `难度	科目	题目 	选项A	选项B	选项C	选项D	选项E	选项F	答案	解析
+1	基础几何	过平面内的点p可做绝对垂直于该平面的的平面()张。	0	1	2	无数	不确定		B	平面的法平面方向是唯一的，固定定点后可唯一确定
+1	基础几何	过平面外的点p可做绝对垂直于该平面的的平面()张。	0	1	2	无数	不确定		B	平面的法平面方向是唯一的，固定定点后可唯一确定
+2	基础几何	一个匀速旋转的四维球体，其上某点的旋转轨迹不可能为()。	线段	小圆周	三叶结	环面纽结			A	简单旋转非赤道上的点的轨迹为小圆；双旋转超球面上的点的轨迹的球极投影是环面纽结，三叶结也是一种环面扭结，是双旋转速度比为2:3的特殊情况
+2	基础几何	已知所有圆/球/超球的直径均为1，所有柱体锥体的高均为1，则()。	圆锥柱比圆柱锥体积更小	双圆柱的体积比超球的体积更小	双圆锥的体积比圆柱柱的体积更小	圆柱柱与双圆柱的体积相同	圆锥锥的体积是圆柱柱体积的1/9		C	圆锥柱是等底等高的圆柱柱体积的1/3，而圆柱锥则是1/4，A错；相同直径的超球可完全包含于双圆柱内部，B错；双圆锥可完全包含于双圆柱内部，而双圆柱可包含在圆柱柱内部，C对；圆柱柱与双圆柱的体积相差pi/4倍，D错；圆锥锥的体积是圆柱柱体积的1/12，E错。
+2	基础几何	在二维空间的圆周放在三维空间中加一点厚度得到圆环(即甜甜圈形状)，把这个三维空间中的圆环面继续在四维空间中加一个厚度，得到()。	球环	环球	双圆环	圆环环	平圆环		D	球环、环球、圆环环、双圆环分别可以看作圆周、球面、圆环面、两圆周直积（平圆环面）在四维空间中的加厚体。
+2	基础几何	两张平面，若其中一平面内有直线垂直于另一个平面，但没有直接平行于另一个平面，则两平面()	二面角为90°	绝对垂直	半垂直	通过平移能让它们共三维空间	可能交于一点，但可通过平移使得它们不相交		C	参考半垂直的定义；共点的平面无法通过平移不相交。
+2	基础几何	两张平面没有交集，则两平面不可能()	二面角可以不为0°	绝对平行	半平行	通过平移能让它们共三维空间	通过平移能让它们相交于一点		E	两平面可半平行
+1	基础几何	下面对于直线和平面的位置关系描述正确的是()	它们一定共三维空间	过平行于某直线的直线的平面有且仅有一张	过定点垂直于某直线的平面有无数张	它们不平行就一定相交			C	直线和平面存在类似异面直线那种“异胞”的情况，故A、D错，直线的法平面有无数张，它只有固定的三维法空间，故C对。B显然错。
+1	基础几何	关于正120胞体，下面说法正确的是()	它的顶点数为720	它每条棱被3个胞共用	它每个顶点发出5条棱	它的面是三角形	都错误		B	顶点数为600；每个顶点发4条棱；面为正五边形
+1	基础几何	与正24胞体对偶的图形是正()胞体。	5	8	16	24	120	600	D	正24胞体为自对偶
+2	基础几何	下面类比关系错误的是()	线段-三角形-四面体-五胞体	线段-正方形-菱形十二面体-正二十四胞体	线段-正方形-截半立方体-正二十四胞体	线段-正方形-正八面体-正十六胞体	线段-正六边形-正八面体-过截角正五胞体	全对	F	A都是单形；B、C中的菱形十二面体与截半立方体互为对偶，但正二十四胞体自对偶，不矛盾；D都是正轴形；E参见五维超立方体截面文章。
+2	基础几何	正120胞体某种程度上可以看做是离散的Hopf纤维丛。即120个正十二面体胞可以分为()个不相交的环，每个环上有()个正十二面体。	6  20	10  12	12  10	20  6			C	十元环结构决定了正120胞体的二胞角是整数144°。
+2	基础几何	关于四维空间的超球最密堆积问题，下面描述错误的是()	与一个超球相邻的超球个数为24个	在这些超球的排列结构中可以找到正八面体的结构	在这些超球的排列结构中可以找到截半立方体结构	如果分层堆积来构造，则第一层超球的布置最好采用三维空间中的六方最密堆积方式			D	只能采用面心最密堆积，六方最密堆积上下两层没有错开，将使得第四维的另一层中上下两层无法错开，无法有效利用间隙空间，可参考《四维空间（三）：谈正多胞体》中最密堆积问题小节。
+2	基础几何	将正方体交错着删去一半的顶点将得到正四面体，下面说法正确的是()	对超立方体做同样操作，可以得到正五胞体	对五维立方体做同样操作可以得到一种五维正多胞体	对于有着所有顶点都相同对称性的多面(胞)体，若删去的是另一半顶点，可能得到跟前一半顶点不一样的图形。	都错误			C	删去另一半得到的图形跟原来图形可能互为镜像，无法通过旋转重合
+2	基础几何	超立方体中，任选其四个不共面的顶点，其所在的三维空间截超立方体的截面形状不可能为()	正四面体	三棱柱	长方体	正八面体	七面体	都有可能	F	参考《四维空间（二）：超立体几何》超立方体截面小节
+3	基础几何	已知平面A与平面B等角，平面B与平面C等角，则()。	平面A与平面C一定等角	平面A与平面C不可能等角	平面A与平面C可能半平行	若存在平面D与平面A、B和C都等角，则A与C也可能不等角			C	等角分成左右手两种，只有同手性等角才有传递性。若两次等角手性相反，则一个角度增大另一个角度减少，可能出现半平行的情况。
+3	基础几何	已知平面A与平面B等角，则()。	若平面C与平面D也成相同角度的等角，则平面A与B组成的图形不一定能通过旋转与平面C、D重合	平面A的法平面不一定跟平面B等角	平面B中的任意直线与平面A的夹角不一定都相同。	平面A与平面B不一定只相交于一点，还可能有其它情况			A	除非绝对平行或绝对垂直，等角平面是有手性的，因此存在不能通过旋转重合的情况
+2	基础几何	与给定两个平面同时都半平行半垂直的平面的张数，下面说法正确的是()	若两平面等角，则有且仅有一张	若两平面半平行，则有无穷张	若两平面半垂直但不等角，则有且仅有两张	若两平面等角，则有且仅有两张平面	以上全错		C	除了等角为无穷张外，其余情况仅两张。可在平面状态空间中思考。
+2	基础几何	已知平面A与平面B半平行半垂直、平面B与平面C半平行半垂直，则平面A与平面C()。	可能绝对垂直、可能等角，但不可能半平行半垂直	可能半平行半垂直、可能等角，但不可能绝对垂直	可能半平行半垂直、可能绝对垂直，但不可能等角	皆有可能			D	参考平面状态空间的夹角范围模拟程序
+2	拓扑与代数	能穿着一维线工作的针头拓扑同伦等价于	圆周	球面	圆环面	管状的圆柱侧面			B	参见《四维空间（十）：扭结与环扣》孔的维度匹配理论
+1	世界常识	关于四维生物的说法正确的是	四维生物要有能分辨远近的立体视觉，至少要有第三只眼睛	四维生物要有能辨别方向的立体听觉，至少要有第三只耳朵	四维类人生物要能在地面上站稳，至少要有第三只脚	四维类人生物要能使用长的球柱状筷子夹食物，至少三根筷子	都正确	都错误	F	所有这些东西有两个都够了
+1	世界常识	关于四维旋转机械的说法正确的是	四维电风扇做成双旋转的出风最均匀	四维螺钉与螺旋桨的结构与旋转工作方式完全不一样	四维螺杆的形状做成双圆柱时受力最均匀	四维可以拧的瓶盖的形状可以是半封口的球柱			D	双旋转风扇无固定出风方向A错；螺钉与螺旋桨工作方式四类似的，B错；螺杆需要有行进方向，双圆柱不是线性的柱体，无法承受行进，C错、D对
+1	世界常识	关于四维道路规划的说法正确的是	可廉价修类似我们的三维立交桥，缓解交通拥堵	每个国家的所有道路最好统一遵循靠右行车还是靠左行车，以免交通混乱	四维环岛一定是球形的，必须保证车辆在环岛外围的球面上自由行驶				A	我们三维的立交桥在四维完全都能在地面上修匝道，无需架桥，A对；三维地面上不再能根据行进方向辨别左右车道，B错；车流是线性的，没必要在整个球面上自由行驶，C错
+1	世界常识	关于四维工艺品的说法错误的是	四维戒指的形状是环球	四维项链虽然不能再做成圆周，但可以做成网状	一堆两两相扣的Hopf圆环橡皮筋可作为常见的装饰挂在钥匙扣上	超球形状的珠子除了通过一维线串成串，还可以串在二维平面或曲面上			C	Hopf环扣在四维会散开，无法挂钥匙扣上。
+3	拓扑与代数	关于四维空间R4上的向量场积分，下面说法错误的是	向量场在闭曲线上的环流量等于该场的旋量在任意以该曲线为边界的曲面上的积分	2-向量场在闭曲面上的环流量等于该场的旋量在任意以该曲面为边界的曲胞上的积分	2-向量场穿过闭曲线上的通量等于该场的散度在任意以该曲线为边界的曲面上的积分	向量场穿过闭曲胞的通量等于该场的散度在曲胞内的超体积区域上的积分	都正确	都错误	C	C错误，2-向量计算其通量应该穿过闭曲面，而不是闭曲线
+2	世界常识	关于四维纺织品的说法正确的是	通常三维的纺织线无法纺织出四维衣物，但可以组合用针线来像我们三维空间那样不断交替扎穿两块二维布，将它们缝合在一起	可以只用像管子一样的管线纺织衣物	三维布之间不能用一维线缝合	四维的一维线与二维线不能混纺			B	一维线连接二维布在三维可行，四维多余的维度可滑出，A错；有一大类四维曲面结叫管状结，B对；根据维度匹配，三维布料可以用一维线缝合，C错。一维线与二维线维度匹配，适合混纺，D错
+1	世界常识	关于四维书籍与书法正确的是	书轴必须是一维的线状	虽然平时书写不方便，但书籍中的艺术字可以加入很多二维元素，比如使用绝对垂直的两方向的平面线条来书写不同笔划	段落无需提行缩进，可直接在同一张纸上换到下一层书写分段	书页三维纸张的形状可以做成球体	因为seifert纤维化的存在，可设计出以三叶结为书轴的书		C	旋转轴是二维的，故A\D\E错，书页是三维的，无法容纳四维才有的绝对垂直的平面笔划
+3	综合题	下面对polytwister的描述错误的是()。	其展开图由一些扭曲了的棒状物组成	将其扔在地面上滚动，会发生双旋转	从曲率等局部上看，其各曲胞与圆柱柱侧胞没有区别	从曲率等局部上看，其各曲胞与双圆柱柱侧胞没有区别	以上全对	以上全错	B	polytwister局部看更夫圆柱柱、双圆柱的曲率一样，因此滚动不能发生双旋转。
+2	基础几何	关于二维面的说法正确的是()。	排除莫比乌斯带等特殊情况，通常情况下二维面仍然有正反面两侧之分	二维面仍然有两种定向，可以用标记漩涡方向来表示	任何有限的凸的四维几何体都能计算二维面的总表面积	除了某些特殊情况，一般来说二维面的法向量可以唯一确定	都正确		B	类似一维线在三维空间中，虽然不再能区分线的两侧，但仍可以指定线的两个方向（比如指定哪一头为起点），这与所处外空间的维数无关，二维面上的漩涡同理也是指定平面内部的方向。
+2	基础几何	将圆环面绕某平面旋转不可能得到()。	圆环环	球环	环球	双圆环	都可以		E	参考《四维空间（九）：弯曲图形》常见旋转体列表图片最后一行
+2	基础几何	将正方体绕平行于其某侧面与之相离的平面旋转，得到的旋转体描述错误的是()。	它是一种直积图形	它可用大小两个圆柱柱的的差集布尔运算得到	它的所有三维表面都是曲胞	它的曲胞可以展平为长方体	都正确		C	垂直于旋转平面的面旋转后得到的是圆筒形状的二维圆环柱体，是纯三维平胞图形，非曲胞。
+1	基础几何	对于双旋转的描述正确的是()。	任意做两次简单旋转即可合成一个双旋转	双旋转的两个旋转平面一定绝对垂直	等角双旋转没有手性，但非等角双旋转有	圆柱柱具有等角双旋转对称性	都正确		B	两次简单旋转要合成双旋转，其旋转平面必须只在一点相交；所有双旋转都有手性；圆柱柱无双旋转对称性，但双圆柱有。
+1	基础几何	对于下列几何体的四视图正投影，下列说法正确的是()。	圆柱柱的四视图都是圆柱体	双圆柱的四视图中只有两个是圆柱体	双圆锥的四视图中会出现单个圆锥的形状	圆环环的某个投影是一个中空的但有一定厚度的圆环面	都正确		D	圆柱柱只有垂直于圆周的两个投影方向才是圆柱；双圆柱投影参见《四维空间（五）：更多几何体[上]》末尾插图；双圆锥的正投影均为两个圆锥倒扣，不会出现单个圆锥。
+3	拓扑与代数	已知平面A与平面B夹角为20°与30°，平面B与平面C夹角为等角5°，且平面A,B的手性与平面B,C手性相同，则平面A与平面C的夹角不可能为	30,30	20,30	25,35	15,25	都可能		A	参考《四维空间（十四）：平面状态空间与夹角问题（上）》
+3	拓扑与代数	已知平面A与胞B面胞角夹角为50度，则与胞B平行的平面C与平面A之间的夹角可能为()	90,90	5,45	55,55	15,75	都可能		D	参考《四维空间（十四）：平面状态空间与夹角问题（下）》
+2	拓扑与代数	以下实心四维图形的三维边界不同胚的一组是()。	圆柱柱与双圆柱	圆环环与双圆环	球环与环球	超球壳与球壳柱	都同胚		D	超球可的内外部不连通，但球壳柱内外侧通过底面连通
+2	世界常识	以下哪两种图形组合可以构成刚性的不脱落环扣	环球-环球	双圆环-双圆环	双圆柱-双圆柱				B	
+2	拓扑与代数	将最简单的死结两端固定在一个平面上，绕平面旋转得到的图形描述错误的是()。	该图形能在四维空间中轻易解开	该图形同胚于二维球面	该图形没有在四维空间中自相交，但其三维投影一定有自相交	都正确			A	参考《四维空间（十二）：解开球面结》
+2	拓扑与代数	将最简单的死结两端固定在一个平面上，绕平面旋转一周的同时死结自转了一圈，得到的图形描述错误的是()。	该图形能在四维空间中轻易解开	该图形同胚于二维球面	该图形没有在四维空间中自相交，但其三维投影一定有自相交	都正确			D	参考《四维空间（十二）：解开球面结》
+2	拓扑与代数	关于2-向量的几何意义，下面说法正确的是	每个非零2-向量都可与平面对应	每个复合2-向量都可对应双旋转	2-向量的正交分解一定都是唯一的	2-向量之间的乘法运算只有内积与外积两种			B	参考《四维空间（七）：N维的向量》
+2	拓扑与代数	若两平面半垂直，则对应的2-向量	内积为0	外积为0	内外积均为0	内外积可都不为0			A	参考《四维空间（七）：N维的向量》
+2	拓扑与代数	自对偶与反自对偶2-向量之间	内积为0	外积为0	内外积均为0	内外积可都不为0			C	参考《四维空间（七）：N维的向量》
+2	拓扑与代数	对旋转描述正确的是()。	四维旋转的自由度为4	四维旋转可分为等角旋转和双旋转	四维旋转没有唯一的旋转轴，但一定有唯一的旋转平面	四维旋转的旋转平面可以有无数个			D	四维旋转自由度为6，可分为简单旋转和双旋转，等角双旋转高度对称，有无数个旋转平面。
+1	世界常识	四维人看到自己的双手，会发现()。	能够清晰看到皮肤、所有血管和里面的骨头	能够看到三维的体积，里面都是皮肤表面的颜色	左手和右手不再可能有任何区别	都正确	都错误		B	四维物体拥有三维表面，且只能看到三维物体的内部，无法看到四维物体的内部。
+1	世界常识	二维轨道列车的驾驶员()	必须打方向盘才能让列车转向	无需打方向盘，列车全程自动转向	方向盘有时候会失去作用	都错误			D	参考《四维空间（十二）：解开球面结》
+2	世界常识	下面哪个形状的轮子在正常站立滚动状态倒下后仍然可沿直线滚动	圆锥锥	圆柱柱	双圆柱	双圆锥			C	圆锥锥、双圆锥倒下后会滚动，但不是平动，圆柱柱倒下后不再能滚动。
+1	世界常识	四维人的吸管形状最接近()。	空心的球柱	空心的双圆柱	圆环环	圆环柱	环球	圆柱面在四维加上厚度	A	三维人的习惯是空心的圆柱，故类比到四维是空心的球柱
+1	世界常识	车辆的侧视镜至少需要()个。	2	3	4	5			B	至少3个点位才能监视侧面360°一周
+2	世界常识	将双圆锥放倒在三维桌面上，它跟桌面接触于	一点	一条线	三角形	圆			B	双圆锥是两个绝对垂直的共圆心的圆周的凸包。它跟桌面接触的图形正是连接两个圆周的线段。
+1	世界常识	关于四维世界中的三轮车，下面说法正确的是	类似于三维世界的三轮车，是种静止时也稳定不会倒的交通工具	该车辆的方向盘是个圆盘，跟三维世界汽车方向盘的操作方式类似	该车辆的方向盘与三维世界自行车的龙头把手操作方式类似	该车辆的方向盘几乎都是球形的			C	由于多了一个方向，四维世界中要四轮车才不会倒，故A错；四维三轮车是圆盘形的把手，跟自行车的龙头把手操作方式类似。
+2	世界常识	一维铁路轨道的设计正确的是()。	不考虑节约钢材，轨道的横截面可以是简单的棱角稍光滑的长方体或圆柱体，但轮缘必须有能包住轨道的结构来抑制自转	轨道数目虽然也可以只保留两根，但建议采用3根或四根增强稳定性	正方形顶点排列的4轨轨道的道岔，支线最好向沿正方形对角线方向与主线分离	都正确			D	参考《四维世界（三）：道路轨道设计》
+1	世界常识	下列哪些情况四维人必须修建桥梁	需要跨过一条大河的公路	需要跨过断裂带形成的峡谷的公路	需要缓解堵车问题的繁忙的交通枢纽	连接火车站各个月台的安全人行通道(不考虑建下穿隧道)			B	河流是一维的，可绕行；断裂带是二维的，无法绕行，必须架桥；交通枢纽可以在立体的地面上直接修立体的匝道，不用在高度方向上架桥，月台人行道与铁道同理
+3	世界物理	一个四个方向棱长尺寸均不相同的超长方体漂浮在太空中，在不受任何外力作用下自由旋转，下面说法正确的是	根据角动量守恒，该超长方体的旋转速度与方向将一直保持不变	若该超长方体内部中空且盛装液体，根据能量均分原则，一般来说无论该物体的初始角速度如何，一段时间后物体通过内部能量耗散与重分配，最终均会稳定在等角双旋转的状态	对于超长方体任意一条棱的方向，均能找到包含该方向的旋转平面，使得物体在该旋转方向下产生周期性反转旋转方向(超长方体参考系)的效应	若超长方体做双旋转，无论初始旋转方向如何，则一定不会出现周期性反转旋转方向(超长方体参考系)的效应			D	参考《四维世界（十）：旋转动力学》
+2	世界物理	下面哪个形状的陀螺放在地面上旋转可以保持稳定站立？	球锥	圆锥锥	圆柱锥	双圆锥			B	球锥放在地面上只有锥点与地面接触，虽然由于角动量守恒，球的旋转方向不会轻易改变，但与其绝对垂直的旋转轴方向和竖直方向上的角动量为0，可以轻易倾倒；圆锥锥放在地面上，以两个锥点为端点的线段与地面接触，这条线段垂直与旋转平面，可以阻碍倾倒；双圆锥与地面接触为一个点，因此会像球锥那样倾倒。
+3	世界物理	一个探险家带着在简单磁场星球上能正常工作的同时有两种磁化方向叠加的指南针来到了一个未知的星球上，下列叙述正确的是	已知他不在星球的极地附近，则他不可能看到太阳全天在地平线附近徘徊	存在某些区域使得他的指南针完全失灵，即没有任何方向指示作用	现在他通过其它手段对指南针进行校准，则无论走到哪都可以不用再次校准				B	A错，中纬度地区也可能因为拍频现象产生太阳一段时间都在地平线附近徘徊的情况；B对如果该星球某区域的复合磁场比例与该指南针的相同；C错，对于复合地磁场，纬度变化后指南针需要重新校准。
+3	世界物理	已知ABCD是一些不同类型的偶极子，在无相对运动情况下，D不与ABC相互作用。除D外，ABC之间均相互吸引，但AB同种偶极子自身之间无相互作用。则下面说法正确的是	将许多C放在一起，它们倾向于排列成线状。	A虽然没有点状的南北极或正负极，但有明确的两个绝对垂直的圆周极。	将许多D放一起它们会抱团成三维“片”状结构。	B与C处于某些位置朝向可能会互相排斥。	全对	全错	D	ABC之间均相互吸引可判断出它们要么都是磁偶极子要么都是电偶极子，AB同种偶极子自身之间无相互作用可得出它们都是磁偶极子。磁偶极子喜欢排列成团状而不是线状，故A错。D不与磁偶极子ABC作用，说明D为电偶极子，电偶极子倾向于排列成线状，故C错。AB同种偶极子自身之间无相互作用说明它们是高度对称的自对偶或反自对偶磁偶极子，Hopf纤维中的任意一个圆都可以充当“赤道”，不存在明确的两个绝对垂直的圆周极，故B错。
+3	综合题	一个非等角双旋转的星球，它其中一个赤道与星球绕恒星(将其称为太阳)的公转平面(黄道面)的两个黄赤交角分别为20°与30°。设该赤道纬度为0°，则下面说法错误的是	另一个赤道的纬度为90°	全年太阳直射点的纬度将在20°与30°范围内波动	太阳直射点的纬度变化周期为一年	该星球上有一座城市，已知该城市的纬度为20°，则该城市全年都不一定经历一次太阳垂直直射。			C	太阳直射点纬度为半年。这里跟地球的差异在于，四维星球上不再区分南纬与北纬，且双旋转会将类似地球的南北半球位置差异抹匀，因此周期减半。
+3	世界物理	四维世界中的磁场是()	它是赝矢量场	它是2-向量场	它是对称张量场	它是标量场	它是复旋量场		B	参考《四维世界（七）：电磁学》
+3	世界物理	磁场B中磁矩为m的粒子受到的磁力矩如何计算？	B与m的内积	B与m的外积	B与m的叉积	B与m先外积后再与B内积	B与m先叉积后再与B叉积	B与m的张量积	C	参考《四维世界（七）：电磁学》
+3	世界物理	对于麦克斯韦方程的描述错误的是()。	由于磁场与电场性质还是完全对偶，磁单极子问题在四维同样存在	它在五维时空中有简洁形式，有相对论协变性	电磁波仍然是横波	四维电磁波仍然最多只有圆偏振，没有球偏振的说法	全对	全错	A	参考《四维世界（七）：电磁学》
+3	世界物理	半自旋的粒子，其自旋量子态	无论正反粒子，任何情况都只有两种状态	在给定一种手性情况下只有两种状态	在给定一种手性情况下有三种状态	在给定一种手性情况下有四种状态			B	参考《四维世界（十一）：元素周期表》
+3	世界物理	根据价电子互斥模型，一个原子周围有6组成键电子再加一组孤电子，则分子形状为	三棱柱锥形	正八面体锥形	3,4-双锥形缺一个三角形顶点	3,4-双锥形缺一个正方形顶点			C	参考《四维世界（十二）：物质结构》
+3	世界物理	根据价电子互斥模型，一个原子周围有8组成键电子，则分子形状为	正八面体形	正方体形	正16胞体形	超立方体形	三棱柱双锥形		C	参考《四维世界（十二）：物质结构》
+3	世界物理	3d轨道最多能填()个电子。	10	18	20	36	60	100	D	参考《四维世界（十一）：元素周期表》
+4	世界物理	在不违反泡利不相容原理的情况下，电子填入能量相同的轨道优先	一定以相同朝向填入	所有电子填入都无所谓朝向	同手性电子填入无所谓朝向	不同手性电子填入无所谓朝向			B	同手性电子的磁矩无相互作用，异手性电子的磁矩虽可有相互作用，但两种量子态对于不同手性来说完全对称，没有偏好
+3	世界物理	在一个超球金属壳上施加Hopf纤维丛方向分布的涡流，对其产生磁场的描述正确的是()。	超球内部的磁感应强度为0	超球内部的磁感应强度为均匀的简单磁场	超球外部的磁场强度在某些方向上为0	超球外部的磁场强度按四次方反比衰减	由于Hopf纤维丛十分对称，超球面外部的磁场都是严格有超球所有对称性的	超球外部的磁场分布只有距离远大于超球半径时才能等效为某偶极子磁场分布，近场区域与偶极子磁场差异很大	D	超球内部为均匀自对偶或反自对偶磁场，四维世界中荷产生场强中距离三次方反比衰减，偶极子。超球外部磁场等价于理想磁偶极子的磁场，虽然对称形高，但Hopf纤维是有方向的，不是严格的球对称
+3	世界物理	对于氢原子中单个电子的角动量	轨道与自旋角动量必为简单2-向量	轨道与自旋角动量必为自对偶或反自对偶2-向量	轨道角动量必为自对偶或反自对偶2-向量，自旋角动量必为简单2-向量	轨道角动量必为简单2-向量，自旋角动量必为自对偶或反自对偶2-向量	轨道角动量可以为简单或复合2-向量	自旋角动量可以为简单或复合2-向量	D	参考《四维世界（十一）：元素周期表》
+3	世界物理	关于五维（4+1）黑洞的描述不正确的是	黑洞无毛定理在此失效，即相同参数下的黑洞解不再唯一	提取黑洞旋转动能的彭罗斯过程对于简单旋转和双旋转黑洞都适用	黑洞的旋转速度不存在上限，即可以任意快也不会让奇点裸露出来	除了视界为超球形的传统黑洞，视界还可以是球环形状的，即“黑环”	双旋转的黑洞接近等角时，其视界/奇性形状的对称性将接近超球的对称性	只能通过双旋转黑洞内部撑开虫洞，单旋转黑洞不再能撑开虫洞结构	F	五维黑洞单旋转是奇环，从单旋转到等角双旋转，奇环半径缩小至一个奇点，整个过程都没有任何虫洞结构。
+1	世界常识	关于四维人使用的电脑，下列说法正确的是	四维人一般从桌子上把鼠标拿起来到空中来控制多出来的鼠标移动自由度	为了好散热，四维人的电子芯片一般都还是二维的块状	四维人平时最多使用的3D打印机跟我们的2D打印机原理类似				C	四维人桌面就是三维的，不需要将鼠标拿到空中，故A错；三维的芯片内部也可以从第四维接触空气或散热介质，故B错
+1	世界常识	关于四维三阶魔方的说法错误的是	该魔方有8个胞块，24个面块，32个棱块，16个角块	该魔方存在一种旋转120度的合法操作(合法操作指旋转后所有方块均能对齐且不会阻碍所有接下来的合法操作)	该魔方的单次旋转操作影响的方块数不能再是9块	虽然四维有双旋转，但只能让魔方整体转动，无法实际用双旋转的某种机制一步改变方块间的相对位置			C	四维魔方的旋转机构没有能够限制转动一层3x3x1的二维棱的机制。
+1	世界常识	关于四维五魔方的说法正确的是	它有120个角块	它是个正六百胞体	它在数学中存在，但由于机械几何位置限制，无法实际在四维世界中制造	它的每个方块都不是正十二面体	全对	全错	F	它是正120胞体，有120个正十二面体形状的中心胞块，600个角块。在四维世界中没有几何限制使得无法制造。
+2	世界常识	关于两个刚性的球环，下面说法错误的是	将两个球环平躺放在桌上，在不允许离开桌面的情况下，可以让它们相扣且无法分离	将两个球环以某种角度安放，可能让它们相扣且无法分离	四维空间中，球环与球环之间是否能够相扣是由圆周在四维空间中的拓扑性质决定的				C	只要球环够粗，它们绝对垂直安放后可以互相卡住，这种互锁不是拓扑性质，环变细了就卡不住
+2	综合题	对于生物是否能进化出与身体直接相连非分立的轮子，下面说法正确的是	三维生物其实可以进化出连体的轮子，只是自然选择的原因没出现	不考虑其它自然选择生存压力的情况下，四维生物其实可以进化出连体的轮子	这样的连体轮子一直旋转，最终会将连接部分绞断，只有在五维或更高维度利用双旋转的固定轴机制才能构造				B	构造Dirac带子把戏可以制造出能一直旋转但不发生缠绕的结构，该结构跟旋量有关，会在每旋转两圈后自动将扭转复原。
+2	世界常识	关于四维的传动机构说法错误的是	若一截传送带的形状是圆柱，则传送带两头的轴的形状最好是双圆柱	齿轮传动机构使用三维的圆形齿轮的加厚体，再适当组合一般都能胜任单旋转与双旋转的传动	由于双旋转仅原点保持不动，故无法设计基于Hopf纤维丛的双旋转传动机构	全对	全错		C	C选项错误，因为可以在超球上设置hopf纤维的卡槽，将其固定住以实现传动。
+2	世界常识	一个四维人正在给房子做装修，下面说法正确的是	他的窗户做成了有艺术感的圆柱形(其高为重力方向)，他想装上百叶窗，则每片百叶窗的形状大概是圆柱柱，负责开合的轴的形状大概是双圆柱	他在客厅安装了一盏极简风的超球形吊灯，用手旋转它即可让它双旋转	四维窗帘的导轨是二维的，但几何理论上不支持随意在导轨上做平面曲线运动的拉动	全对	全错		A	吊灯连接处限制了双旋转，故B错；理论上四维窗帘可以随意在二维导轨上拉动，没有限制。
+1	世界常识	关于四维的线卷、面卷、胞卷，下面说法正确的是	对于很长的柱状三维薄胞，可以把它卷在一维的轴上，并将两头固定	对于很长的长方形二维薄片，可以把它卷在二维的轴上，并将二维轴的边界固定	对于很长的一维细线，可以把它卷在三维的轴上，并将三维轴的边界固定	全对	全错		B	所有的带状物的缠绕都相当于圆周套在二维面轴上。可以类比三维的二维纸卷跟一维线卷都是套在一维轴上的
+1	世界常识	关于四维食材加工的说法，错误的是	削类似土豆皮的刀具的刀刃一般为二维面	将一块豆腐切4刀，最多可分成16块	切一片很薄的西瓜片，可以是个半球片	全对	全错		D	四维土豆有三维表面，削皮的接触位置是平面；四刀相互垂直，正好相当于四维空间的四个坐标胞，将空间分成16个象限；四维西瓜类似超球，切两刀在超球表面得到两个球面，它们相交于一个圆周。如果刀工切得薄，则两个球面很接近，圆周在球面一半的大圆位置，得到半球，类比三维的半圆形西瓜片。
+2	世界常识	四维游泳圈最好做成()	球环	环球	双圆环	圆环柱			B	圆环柱跟球环类似，与环球比较只有环球能够最大限度套住四维生物。而双圆环作为游泳圈无法很好贴合水面实用性没环球大
+2	世界物理	关于四维世界天体物理的说法正确的是	若中心天体是个球环，则周围不存在稳定的行星轨道	根据热力学平衡原理，所有星球都会演化至等角双旋转	只要行星的初速度的方向与大小满足一定条件，它绕中心可视为质点的天体的运动轨道就有抗干扰性	全对	全错		E	球环周围存在稳定轨道，详见《》；角动量守恒会限制星球向等角双旋转演化；四维中心力场不存在任何稳定轨道。
+3	世界物理	关于四维世界微观理论的说法正确的是	四维薛定谔方程不再成立	量纲分析可推出四维场论不可重整化	四维世界中带质量的玻色子传递的力的势能跟距离的关系是指数衰减乘上平方反比的函数形式	全对	全错		B	四维薛定谔方程 还是成立，只是氢原子波函数无定态解导致原子无法稳定存在，故A错；四维空间中的带质量的玻色子传递的力的势能跟距离的关系是第二类修正贝塞尔函数乘上反比函数的形式，故C错
+2	基础几何	关于星形多胞体，下面说法正确的是	三维的星形多面体不能对应四维的星形polytwister	由于三维的星形正多面体只有正12面体和正20面体对应4个，所以四维星形正多胞体也是正120、正600胞体对应的四个	四维星形正多胞体没以正24胞体为对称性的	五维空间也可以存在星形正多胞体			C	polytwisters.com上有很多星形图形，A错；四维星形正多胞体一共有10个，B错；五维空间没有120/600胞体类比，也无法支持星形正多胞体的存在，D错。
+2	基础几何	关于四维晶体结构，下面说法正确的是	体心超立方堆积是最密堆积	胞心超立方堆积是最密堆积	十方堆积是最密堆积	二十方堆积是最密堆积	全错		A	正24胞体的最密堆积跟体心长立方体堆积等价，参考《四维空间（三）：谈正多胞体》中的最密堆积问题
+2	综合题	关于四维超金刚石的结构，下面说法错误的是	每个碳原子跟五个碳原子相连	四维超金刚石属于十方晶系	碳原子采用sp4杂化方式成键，且正好为理想键角，无张力	四维超金刚石跟三维的金刚石不一样，不能放进超立方体的基本单元中			B	四维超金刚石属于比十方晶系对称性更强的二十方晶系
+1	世界物理	若四维碳采用sp³杂化，则每个碳原子形成()个π键	0	1	2	3	4		B	参考《四维世界（十二）：物质结构》
+2	世界物理	对于类似于苯的四维分子，下面说法正确的是	四维的苯分子只有一种类比	四维的苯分子可以有非平面分子的类比	四维的苯分子如果有非平面分子的类比，则它一定是平胞分子，即所有原子强制共胞	离域共轭大π键可以有绝对垂直的两组			B	参考《四维世界（十二）：物质结构》
+2	基础几何	在正24胞体顶点之间任选两点，其距离可能取值有()种	2	3	4	5	6		C	第一圈8个顶点，第二圈赤道6个顶点，第三圈8个顶点，最远一个顶点
+1	世界常识	关于四维世界地图，下列说法正确的是	世界地图可绘制成两个互相扣住的实心圆环	最常见的世界地图采用超球极投影来绘制除极点外的所有区域	一般世界地图都绘制成一个实心长方体	一般世界地图都绘制成一个实心圆柱			A	在Hopf坐标中选择45度的中纬面，可将超球面分成两个实心圆环，故A对，一般只有极点附近才使用球极投影，况且四维星球没有自然的极点，故B错；C、D选项可以绘制，但扭曲太大
+2	综合题	关于四维肥皂膜与极小曲胞的叙述正确的是	三个泡泡一般会相交于一条线，夹角120°	非泡状的肥皂膜都是极小曲胞，其高斯曲率为0	单叶双曲胞不是极小曲胞	双叶双曲胞不是极小曲胞			D	四维的三个泡泡相交于平面，A错；极小曲胞的平均曲率为0，不是高斯曲率，B错；C、D与三维情况相同
+3	拓扑与代数	关于超球面的拓扑性质错误的是	任意闭合曲线都能缩成一点。	任意闭合曲线都能作为某个曲面的边界。	存在不是超球但满足性质B的三维流形。	若一个三维流形满足性质A，则它一定是超球。	全对	全错	E	A、B选项显然成立；C选项的例外是庞加莱同调球；D选项为已证明的庞加莱猜想
+2	世界常识	关于四维民航飞机的说法，正确的是	飞机的跑道截面必须修成正方形或三角形	飞机的起落架一般为3组，一组在机头，另外两组在后面	理论上只需要三组120°对称机翼上的副翼就能控制飞机的横滚姿态	控制飞机转向的方向舵安装在飞机尾端的一张垂直安定面上，这个舵有着球形铰链的自由度			C	飞机跑道形状没有刚性限制，A错；飞机起落架后面只有两组没有稳定性，B错；方向舵分别安装在三个垂直安定面上，每个舵只有一个自由度，三个舵合成转向，D错。参考《四维世界（九）：飞行器设计》
+1	世界常识	下面关于四维生物的毛发叙述正确的是	全长着一维线状的毛发最容易打结	全长着二维片状的毛发最容易打结	长着混合着一维线状与二维片状的毛发最容易打结				C	参见《四维空间（十）：扭结与环扣》孔的维度匹配理论
+1	基础几何	关于四维几何图形手性的叙述错误的是：	四维空间中两张无限大胞（三维面，下同）组成的图形一定没有手性	四维空间中两张无限大平面组成的图形一定没有手性	四维空间中两条无限长直线组成的图形一定没有手性	四维空间中一条无限长直线与一张无限大胞组成的图形一定没有手性	四维空间中一张无限大平面与一张无限大胞组成的图形一定没有手性		B	只有非平行且非垂直的平面与平面组成的图形才有手性
+1	世界常识	关于四维固定翼飞机叙述正确的是	飞机的垂直的尾翼是近似二维的薄片	飞机的机翼是近似三维的薄片	飞机的发动机涡轮一般做成轴对称的形状	由于四维比三维多一个方向，飞机的机翼数需从1对增加至2对			B	飞机的垂直的尾翼必须是三维薄片，否则没有有效受力三维表面积，A错；涡轮转动只能在平面上进行，没有轴对称性，C错；四维飞机可以只有三个机翼，不需要成对
+2	拓扑与代数	已知R是一个由自对偶的生成元生成的四维旋转，则	若将四维坐标用四元数表示，则该旋转变换对应左乘一个四元数	若将四维坐标用四元数表示，则该旋转变换对应右乘一个四元数	若将四维坐标用四元数表示，则该旋转变换对应左乘一个四元数再右乘那个四元数的逆	若旋转P与旋转R可以交换顺序保持结果不变，则旋转P只能由自对偶的生成元生成	若旋转P与旋转R可以交换顺序保持结果不变，则旋转P只能由反自对偶的生成元生成		A	A、B、C选项参考《四维空间（十五）：平面状态空间与夹角问题（下）》，D、E错误是因为与R能交换的旋转可以是跟R方向相同的自对偶2-向量生成的旋转，也可以是任意的反对偶2-向量生成的旋转
+1	拓扑与代数	关于简单2-向量的叙述错误的是	任意非0简单2-向量都与过原点的平面一一对应	简单2-向量可唯一分解为自对偶与反自对偶2-向量的和	简单2-向量的自对偶与反自对偶分量大小相等	两个简单2-向量的和不一定是简单2-向量			A	任意非0简单单位2-向量都与过原点的带定向的平面一一对应
+2	基础几何	关于四维物体对称性与手性关系叙述正确的是	将四维空间中不对称的物体做中心反演变换后将无法通过旋转与原物体重合	四维空间中物体的手性可能不只左右手两种	将四维空间右手坐标系中的坐标轴随意进行三次对换，都能得到左手坐标系				C	四维的中心反演变换就是在两个绝对垂直的平面中旋转180°，不是镜像，A错；任意维度的手性都只有左右两种，故B错
+2	世界物理	关于四维星球导航的说法正确的是	存在某种依赖地磁场的导航方式能够完全在等角对称性的地磁场星球上工作，指明所有三个方向	存在某种依赖地转偏向力的导航方式能够完全在等角双旋转星球上工作，指明所有三个方向	某些指南针可能在某些星球上的所有位置完全失灵	全对	全错		C	A、B都有Hopf纤维丛对称性，无法指明所有三个方向；自对偶磁矩的磁性材料做的指南针在反自对偶的磁场中可完全不受力，C对
+3	拓扑与代数	在平面的状态空间的左右两个球面上选取穿过坐标轴的6个点，两边两两组合对应的所有平面截超球会得到一簇圆周，关于这些圆周组成的图形的说法错误的是	它可以看作是一种多胞体膨胀投影到超球面上的图形，但不是正多胞体	它有48个不同的交点	交点将这些圆分成144条不同的边	它有18个不同的圆周	每个圆周上的交点数量都一样	这个图形中找得到多个正16胞体的结构	A	这个图形不是多胞体，因为有空间多边形的存在导致无法定义出胞，详见《四维空间（十五）：平面状态空间与夹角问题（下）》中的上期思考题详解小节
+3	基础几何	在不引入新顶点的情况下，超立方体最少可以分成()个五胞体	14	16	18	20	22	24	B	先像立方体那样交错切角，切下8个五胞体后，每个立方体胞变成正四面体，8个切角的切面也是正四面体，共16个，可以看出剩下的部分是个正16胞体。把正16胞体看作正八面体双锥，将正八面体切成八份，每份跟双锥的两个锥点都构成五胞体，这样就把正16胞体切成了8个五胞体，加上之前的8个切角得到的，一共16个。证明它是最少的方案见论文Minimal triangulation of the 4-cube
+2	世界常识	关于四维的类似无人机的飞行器，说法正确的是	该飞行器的螺旋桨可以按正16胞体顶点来分布	该飞行器的螺旋桨可以按超立方体体顶点来分布	该飞行器的螺旋桨可以按正八面体的顶点分布	该飞行器的螺旋桨可以按截半立方体的顶点分布	全对	全错	D	无人机的螺旋桨都在一个高度上，故A、B错，正八面体设计无法抵消力矩，故C错，详见《四维世界（九）：飞行器设计》
+`;
+    let submitted = false;
+    function parseTSV(text) {
+      let rows = text.trim().split(/\r?\n/).map(x => x.split("\t"));
+      let h = rows[0];
+      return rows.slice(1).map(r => {
+        let o = {};
+        h.forEach((k, i) => o[k.trim()] = (r[i] || "").trim());
+        return o;
+      });
+    }
+    function closeOverlay() {
+      document.getElementById('overlay').style.display = 'none';
+    }
+    const qs = parseTSV(QUESTION_BANK);
+    const subjectOrder = [
+      "基础几何",
+      "世界常识",
+      "拓扑与代数",
+      "世界物理",
+      "综合题"
+    ];
+
+    qs.sort((a, b) => {
+
+      const sa =
+        subjectOrder.indexOf(a["科目"]);
+
+      const sb =
+        subjectOrder.indexOf(b["科目"]);
+
+      if (sa !== sb) {
+        return sa - sb;
+      }
+
+      return Number(a["难度"])
+        - Number(b["难度"]);
+    });
+    const qDiv = document.getElementById("paperContainer");
+    const card = document.getElementById("card");
+
+    const measure = document.createElement("div");
+    measure.className = "measure-column";
+    document.body.appendChild(measure);
+
+    function buildQuestion(q, i) {
+
+      const d = document.createElement("div");
+
+      d.className = "question";
+      d.id = "q" + i;
+      let html = `<div><b>${i + 1}. ${q["题目"]}</b></div>`;
+
+      ["A", "B", "C", "D", "E", "F"].forEach(L => {
+        const v = q["选项" + L];
+        if (v) {
+          html += `<div> <label onclick="updateURL();"> <input type="radio" name="q${i}" value="${L}">
+                      ${L}. ${v}
+                  </label> </div>`;
+        }
+      });
+
+      html += `<div class="analysis" id="a${i}"> </div>`;
+
+      d.innerHTML = html;
+
+      return d;
+    }
+
+    const COLUMN_HEIGHT = 1000;
+
+    let pageCount = 0;
+
+    let currentPaper;
+    let currentColumn;
+    let currentHeight;
+
+    function createPaper() {
+
+      pageCount++;
+
+      const paper =
+        document.createElement("div");
+
+      paper.className = "paper";
+
+      paper.innerHTML = `
+        <div class="seal-line">
+    <div class="seal-text">
+      <br> 
+      姓名<span class="underline"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span> &nbsp;
+      准考证号<span class="underline"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span> &nbsp;
+      所属维度<span class="underline"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span> 
+      考场编号<span class="underline"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span> 
+      <br><br>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+        <span style="background-color:white">装</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+        <span style="background-color:white">订</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="background-color:white">线</span>
+    </div>
+</div>
+
+        <div class="page-content">
+
+            <div class="columns">
+
+                <div class="column left"></div>
+
+                <div class="column right"></div>
+
+            </div>
+
+            <div class="page-number">
+                第${pageCount}页
+            </div>
+
+        </div>
+    `;
+
+      qDiv.appendChild(paper);
+
+      return {
+        paper,
+        left:
+          paper.querySelector(".left"),
+        right:
+          paper.querySelector(".right")
+      };
+    }
+
+    const first = createPaper();
+
+    currentPaper = first;
+    currentColumn = first.left;
+
+    const header =
+      document.createElement("div");
+
+    header.innerHTML = `
+<div style="float:right;font-size:1.3em">
+  试卷类型：A
+  </div>
+  <div class="secret">
+      绝密★启用前
+  </div>
+    <div class="title">
+        2026年三维人类进入四维世界统一考试
+        </div><div id="score" class="score"></div>
+        <div style="font-size:2.3em;text-align:center"><b>四 维 综 合</b></div><br>
+
+    <div class="info">
+        共100题　满分100分　考试时间120分钟
+    </div>
+
+    <div class="notice">
+        <b>注意事项：</b>
+        <ol>
+            <li>答卷前，考生务必将姓名、准考证号、所属维度及考场编号填写在指定位置。</li><li>
+本试卷共100题，每题1分，满分100分，考试时间120分钟。考试结束后，系统将自动评分并生成成绩单。</li><li>
+本试卷所有试题均为单项选择题，每题只有一个正确答案。</li><li>
+本试卷题目中未特别说明时，题目背景均默认为在四维空间加一维时间的假想世界中。</li><li>
+试题中的专业术语的定义与物理世界设定以<a target="_blank" href="https://wxyhly.github.io/">https://wxyhly.github.io/</a> 网站中的为准，考试期间可以参考包括该网站内容在内的的所有互联网公开资料。</li><li>
+如在考试过程中发生维度坍缩、空间反演、时间反演或伪转动(Boost)等参考系异常导致空间维度不兼容，请保持冷静并听从监考员指挥。</li><li>
+考试结束信号发出后，应立即停止作答；继续作答或修改答案均视为违规行为。</li><li>
+祝各位考生取得理想成绩，顺利获得《四维世界临时居留资格证》。</li>
+        </ol>
+    </div>
+`;
+
+    currentColumn.appendChild(header);
+    currentHeight = header.offsetHeight;
+    const subjectStats = new Map();
+    const subjectNameToIndex = new Map();
+    let currentSubject = null;
+    let subjectNumber = 0;
+    let subjectOrdinal = "一二三四五六七八";
+    qs.forEach((q, i) => {
+
+      const node = buildQuestion(q, i);
+      const test = node.cloneNode(true);
+      measure.appendChild(test);
+      const h = test.offsetHeight;
+      measure.innerHTML = "";
+      if (currentHeight + h > COLUMN_HEIGHT) {
+        if (currentColumn === currentPaper.left) {
+          currentColumn = currentPaper.right;
+          currentHeight = 0;
+        }
+        else {
+          currentPaper = createPaper();
+          currentColumn = currentPaper.left;
+          currentHeight = 0;
+        }
+      }
+      const subject = q["科目"];
+
+      if (!subjectStats.has(subject)) {
+
+        subjectStats.set(subject, {
+          count: 0
+        });
+      }
+
+      subjectStats.get(subject).count++;
+      if (subject !== currentSubject) {
+
+        currentSubject = subject;
+
+        const section =
+          document.createElement("div");
+
+        section.className =
+          "subject-header";
+
+        section.innerHTML =
+          `${subjectOrdinal[subjectNumber++]}、${currentSubject}<span
+        class="subject-stat"
+        id="subject-stat-${subjectNumber}"></span>`;
+        currentColumn.appendChild(section);
+        subjectNameToIndex.set(
+          currentSubject,
+          subjectNumber
+        );
+      }
+      currentColumn.appendChild(node);
+      currentHeight += h;
+      const c = document.createElement("div");
+      c.className = "card";
+      c.textContent = i + 1;
+
+      c.onclick = () => {
+        document.getElementById("q" + i).scrollIntoView({
+          block: "start", inline: "nearest", behavior: "smooth"
+        });
+      };
+
+      card.appendChild(c);
+
+      node.querySelectorAll("input").forEach(inp => {
+        inp.onchange = () => {
+          c.classList.add("done");
+        };
+      });
+    });
+
+    for (const [subject, index] of subjectNameToIndex) {
+      const count = subjectStats.get(subject).count;
+      const score = count;
+
+      document.getElementById(`subject-stat-${index}`).innerText = `（共${count}题，每题计1分，总计${score}分）`;
+    }
+
+    document.querySelectorAll(".page-number").forEach((e, i) => {
+      e.innerHTML = `第 ${i + 1} 页 / 共 ${pageCount} 页`;
+    });
+
+    function submitPaper() {
+      let got = 0, total = 0;
+      submitted = true;
+
+      qs.forEach((q, i) => {
+        let w = Number(q["难度"]) || 1;
+        total += w;
+
+        let ans = q["答案"].trim();
+        let sel = document.querySelector(`input[name=q${i}]:checked`);
+        let box = document.getElementById("a" + i);
+        let cardEl = card.children[i];
+
+        box.style.display = "block";
+
+        if (sel && sel.value === ans) {
+          got += w;
+          cardEl.classList.add("answer-right");
+          box.innerHTML = `✓ 正确<br>答案：${ans}<br>解析：${q["解析"]}`;
+          document.getElementById("q" + i).style.background = "#eefcee";
+        } else {
+          cardEl.classList.add("answer-wrong");
+          box.innerHTML = `✗ 错误<br>你的答案：${sel ? sel.value : "未作答"}<br>正确答案：${ans}<br>解析：${q["解析"]}`;
+          document.getElementById("q" + i).style.background = "#fff1f1";
+        }
+      });
+
+      let score = Math.round(got / total * 100);
+      document.getElementById("score").textContent = `成绩：${score} 分`;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      let desc = null;
+      if (score < 1) {
+        desc = "其实是个零维生物";
+      } else if (score < 5) {
+        desc = "其实是个一维生物";
+      } else if (score < 10) {
+        desc = "其实是个二维生物";
+      } else if (score < 20) {
+        desc = "是个完全没进入考试状态的三维人类";
+      } else if (score < 30) {
+        desc = "需要进行空间想象训练";
+      } else if (score < 40) {
+        desc = "是个正常三维人，但前往四维还需要努力";
+      } else if (score < 50) {
+        desc = "具有四维小学生水平";
+      } else if (score < 55) {
+        desc = "具有四维初中生水平";
+      } else if (score < 60) {
+        desc = "具有四维高中生水平";
+      } else if (score < 65) {
+        desc = "刚好迈入前往四维世界的资格门槛";
+      } else if (score < 70) {
+        desc = "已获得四维世界临时居留许可";
+      } else if (score < 75) {
+        desc = "具有普通四维公民水平";
+      } else if (score < 80) {
+        desc = "具有四维本科毕业生水平";
+      } else if (score < 85) {
+        desc = "具有四维研究生水平";
+      } else if (score < 90) {
+        desc = "已达到四维几何学家水平";
+      } else if (score < 95) {
+        desc = "已被正二十四胞体科学院列为重点培养对象";
+      } else if (score < 100) {
+        desc = "已达到传说中的五维观察者水平";
+      } else {
+        desc = "疑似作为五维生物违规参与三维人类的考试，请配合进行维度身份核验。";
+      }
+      document.getElementById("confirmDialog").style.display = "none";
+
+      document.getElementById("resultDialog").style.display = "block";
+
+      document.getElementById("resultText").innerHTML = `成绩：${score}分<br><br>系统判定你` + desc;
+      document.querySelector(".questions").scrollTo({ top: 0, behavior: "smooth" });
+      updateURL(true);
+    }
+    function updateTopbarSpace() {
+      const topbar = document.querySelector(".topbar");
+      // document.body.style.paddingTop = topbar.offsetHeight + "px";
+    }
+
+    document.body.onload = () => {
+      updateTopbarSpace();
+      loadShareURL();
+    }
+    function showSubmitDialog() {
+      if (submitted) {
+        document.getElementById("overlay").style.display = "flex";
+        document.querySelectorAll(".dialog").forEach(x => x.style.display = "none");
+
+        document.getElementById("resultDialog").style.display = "block";
+        document.getElementById("res-title").innerText = "考试早已结束，无法重复交卷";
+        return;
+      }
+
+      let unanswered = 0;
+
+      qs.forEach((q, i) => {
+
+        const sel =
+          document.querySelector(
+            `input[name=q${i}]:checked`
+          );
+
+        if (!sel) {
+          unanswered++;
+        }
+      });
+
+      document.getElementById("confirmText").innerHTML = (unanswered ? `还有 <b>${unanswered}</b> 题未作答，确定交卷吗？`
+        : `所有题目均已作答，确定交卷吗？`);
+
+      document.getElementById("overlay").style.display = "flex";
+      document.getElementById("confirmDialog").style.display = "block";
+      document.getElementById("resultDialog").style.display = "none";
+    }
+    window.addEventListener("resize", updateTopbarSpace);
+
+    const SHARE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+
+    function parity(str) {
+      let p = 0;
+      for (const c of str) p ^= SHARE_CHARS.indexOf(c);
+      return p & 63;
+    }
+
+    function buildShareURL(onlyData) {
+      let bits = "";
+
+      for (let i = 0; i < 100; i++) {
+        const checked = document.querySelector(`input[name=q${i}]:checked`);
+
+        let v = 0;
+        if (checked) v = "ABCDEF".indexOf(checked.value) + 1;
+
+        bits += v.toString(2).padStart(3, "0");
+      }
+
+      let data = "";
+
+      for (let i = 0; i < 300; i += 6) {
+        const v = parseInt(bits.slice(i, i + 6), 2);
+        data += SHARE_CHARS[v];
+      }
+
+      data += SHARE_CHARS[submitted ? 1 : 0];
+      data += SHARE_CHARS[parity(data)];
+      data = rleEncode(data);
+
+      return (!onlyData ? location.origin + location.pathname + "?a=" : "") + data;
+    }
+
+    function showShareDialog() {
+      document.getElementById("shareUrl").value = window.location.href;
+      document.querySelectorAll(".dialog").forEach(x => x.style.display = "none");
+      document.getElementById("overlay").style.display = "flex";
+      document.getElementById("shareDialog").style.display = "block";
+      document.getElementById("copy-title").innerText = "请复制试卷链接";
+    }
+
+    function hideShareDialog() {
+      document.getElementById("overlay").style.display = "none";
+      document.getElementById("shareDialog").style.display = "none";
+    }
+
+    async function copyShareURL() {
+      const text = document.getElementById("shareUrl").value;
+
+      try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById("copy-title").innerText = "链接已复制";
+      } catch {
+        const ta = document.getElementById("shareUrl");
+        ta.select();
+        document.execCommand("copy");
+        document.getElementById("copy-title").innerText = "链接已复制";
+      }
+    }
+
+    function updateURL(submit) {
+      if (submitted && !submit) return;
+      const url = new URL(location.href);
+      url.searchParams.set("a", buildShareURL(true));
+      history.replaceState({}, "", url);
+    }
+    function loadShareURL() {
+      const data = rleDecode(new URLSearchParams(location.search).get("a"));
+      if (!data || data.length !== 52) return;
+
+      const body = data.slice(0, 51);
+      const check = SHARE_CHARS.indexOf(data[51]);
+
+      if (parity(body) !== check) {
+        console.error("分享链接校验失败");
+        return;
+      }
+
+      let bits = "";
+
+      for (let i = 0; i < 50; i++) {
+        const v = SHARE_CHARS.indexOf(data[i]);
+        bits += v.toString(2).padStart(6, "0");
+      }
+
+      for (let i = 0; i < 100; i++) {
+        const v = parseInt(bits.slice(i * 3, i * 3 + 3), 2);
+
+        if (v === 0) continue;
+
+        const option = "ABCDEF"[v - 1];
+
+        const radio = document.querySelector(
+          `input[name=q${i}][value="${option}"]`
+        );
+
+        if (radio) {
+          radio.checked = true;
+          radio.dispatchEvent(new Event("change"));
+        }
+      }
+
+      submitted = !!SHARE_CHARS.indexOf(data[50]);
+      if (submitted) submitPaper();
+    }
+    function rleEncode(str) {
+      let out = "";
+      let i = 0;
+
+      while (i < str.length) {
+        let j = i + 1;
+
+        while (j < str.length && str[j] === str[i]) {
+          j++;
+        }
+
+        const cnt = j - i;
+
+        if (cnt >= 4) {
+          out += "~" + cnt + "~" + str[i];
+        } else {
+          out += str.slice(i, j);
+        }
+
+        i = j;
+      }
+
+      return shiftEncode(out);
+    }
+    function rleDecode(str) {
+      if (!str) return;
+      str = shiftDecode(str);
+      return str.replace(
+        /~(\d+)~(.)/g,
+        (_, count, ch) => ch.repeat(+count)
+      );
+    }
+    function shiftEncode(str) {
+      let out = "";
+
+      for (let i = 0; i < str.length; i++) {
+        const idx = SHARE_CHARS.indexOf(str[i]);
+
+        if (idx === -1) {
+          out += str[i];
+          continue;
+        }
+
+        out += SHARE_CHARS[(idx + i) & 63];
+      }
+
+      return out;
+    }
+    function shiftDecode(str) {
+      let out = "";
+
+      for (let i = 0; i < str.length; i++) {
+        const idx = SHARE_CHARS.indexOf(str[i]);
+
+        if (idx === -1) {
+          out += str[i];
+          continue;
+        }
+
+        out += SHARE_CHARS[(idx - i + 64 * 10) & 63];
+      }
+
+      return out;
+    }
+  </script>
+</body>
+
+</html>

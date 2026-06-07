@@ -4,6 +4,9 @@ date: 2019-03-30 20:30:29
 ---
 <div class="markdown-body">
 
+## [《四维综合》考试](/three/4dexam.html)
+一份线上的《四维综合》考试试卷，采用了接近高考试卷的排版风格，提交试卷后可以看到答案解析。考试内容覆盖四维几何、拓扑学与关于四维的代数系统、本网站中介绍过的一些四维世界常识、物理学等内容。
+
 ## [四维化学（Chem4D）](https://wxyhly.github.io/Chem4D/)
 
 一个假想的四维化学常见物质结构式查看器，并支持与Tesserxel示例库交互生成4D分子模型。四维元素设定详见[《四维世界（十一）：元素周期表》](/archives/elem4d/)。 [元素周期表纯享版链接](https://wxyhly.github.io/Chem4D/periodic/)
