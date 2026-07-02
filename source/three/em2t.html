@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>二维时间电磁波</title>
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            color: #eee;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .main {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        canvas {
+            border: 1px solid #555;
+            background: #000;
+            touch-action: none;
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 8px;
+            align-items: center;
+        }
+
+        button,
+        select,
+        input {
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button {
+            background: #e94560;
+            color: white;
+        }
+
+        button:active {
+            background: #c23152;
+        }
+
+        select,
+        input {
+            background: #333;
+            color: white;
+        }
+
+        .info-text {
+            font-size: 13px;
+            color: #aaa;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        #status {
+            font-weight: bold;
+            color: #ffaa00;
+        }
+
+        .wave-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin: 4px 0;
+            flex-wrap: wrap;
+            background: #222;
+            padding: 6px;
+            border-radius: 4px;
+        }
+
+        .wave-row select,
+        .wave-row input {
+            padding: 4px 6px;
+            font-size: 12px;
+        }
+
+        #sliderX,
+        #sliderY,
+        #sliderZ {
+            width: 66px;
+        }
+
+        #chR,
+        #chG,
+        #chB {
+            width: 80px;
+            padding-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>二维时间电磁波 · EM2T by Hqak</h3>
+    <div class="info-text">
+        三维空间：(x,y,z) 处的电场 <b>E</b> (红)、磁场分量 <b>Bu</b> (绿)、<b>Bv</b> (蓝) 及标量 <b>S</b>（圆盘，红正蓝负）。<br>
+        时间平面：(u,v) 按场量大小对RGB着色，显示磁场分量<b>Bx</b> (红)、<b>By</b> (绿)、<b>Bz</b> (蓝)及标量S圆盘。
+    </div>
+    <span id="status">悬停时间图更新左侧空间中的电磁场量。拖拽左侧旋转视角。</span>
+    <label>场量缩放 <input type="range" id="zoomSlider" min="0.5" max="3.0" step="0.1" value="1.0"><span
+            id="zoomVal">1.0x</span></label>
+
+    <div class="main">
+        <div class="panel">
+            <span>三维空间(x,y,z) <label><input type="checkbox" id="shakeCheck"> 自动摇晃</label></span>
+            <canvas id="fieldCanvas" width="320" height="320"></canvas>
+            <div>
+                <label>x:<input type="range" id="sliderX" min="-3.14" max="3.14" step="0.01" value="0"></label>
+                <label>y:<input type="range" id="sliderY" min="-3.14" max="3.14" step="0.01" value="0"></label>
+                <label>z:<input type="range" id="sliderZ" min="-3.14" max="3.14" step="0.01" value="0"></label>
+            </div>
+        </div>
+        <div class="panel">
+            <span>时间平面 (u,v)</span>
+            <canvas id="timeCanvas" width="320" height="320"></canvas>
+            <div>
+                <label>R <select id="chR"></select></label>
+                <label>G <select id="chG"></select></label>
+                <label>B <select id="chB"></select></label>
+            </div>
+        </div>
+    </div>
+    <div class="controls">
+        <label>预设 <select id="presetSelect">
+                <option value="singleTrans">单色横波 (x,u)</option>
+                <option value="standingTrans">横波驻波 (x,±u)</option>
+                <option value="singleLong">单色纵波 (x,u)</option>
+                <option value="standingLong">纵波驻波 (x,±u)</option>
+                <option value="standingLT">纵横驻波 (x,±u)</option>
+                <option value="circular">圆偏振横波 (x,u)</option>
+                <option value="twoDimTrans">二维横波 (x,u)+(x,v)</option>
+                <option value="twoDimTransStanding">二维横波驻波</option>
+                <option value="twoDimLong">二维纵波 (x,u)+(x,v)</option>
+                <option value="twoDimLongStanding">二维纵波驻波</option>
+                <option value="twoDimCircular">二维圆偏振横波 (x,u)+(x,v)</option>
+                <option value="mixedTwoDimTrans">混合二维横波</option>
+                <option value="mixedTwoDimTransStanding">混合二维横波驻波</option>
+                <option value="mixedTwoDimLong">混合二维纵波</option>
+                <option value="mixedTwoDimLongStanding">混合二维纵波驻波</option>
+            </select></label>
+        <button id="applyPresetBtn">应用预设</button>
+        <button id="addWaveBtn">➕ 添加波</button>
+
+    </div>
+    <div id="waveList" style="max-height:300px; overflow-y:auto; width:95%; margin-bottom:20px;"></div>
+
+    <script>
+        (() => {
+            let updateTime = true;
+            let updateTimeField = true;
+            // DOM
+            const fieldCanvas = document.getElementById('fieldCanvas');
+            const fieldCtx = fieldCanvas.getContext('2d');
+            const timeCanvas = document.getElementById('timeCanvas');
+            const timeCtx = timeCanvas.getContext('2d');
+            const sliderX = document.getElementById('sliderX');
+            const sliderY = document.getElementById('sliderY');
+            const sliderZ = document.getElementById('sliderZ');
+            const chRSel = document.getElementById('chR');
+            const chGSel = document.getElementById('chG');
+            const chBSel = document.getElementById('chB');
+            const presetSelect = document.getElementById('presetSelect');
+            const applyPresetBtn = document.getElementById('applyPresetBtn');
+            const addWaveBtn = document.getElementById('addWaveBtn');
+            const zoomSlider = document.getElementById('zoomSlider');
+            const zoomValSpan = document.getElementById('zoomVal');
+            const shakeCheck = document.getElementById('shakeCheck');
+            const waveListDiv = document.getElementById('waveList');
+            const statusDiv = document.getElementById('status');
+
+            const timeRange = 10;
+            let point = { x: 0, y: 0, z: 0 };
+            let timeUV = { u: 5, v: 5 };
+            let probeUV = { u: 5, v: 5 };
+
+            // 初始旋转角：z轴朝左上，y轴在屏幕内
+            let baseRotZ = 0.2, baseRotX = -0.8;
+            let rotZ = baseRotZ, rotX = baseRotX;
+            let isDragging = false;
+            let lastMouse = { x: 0, y: 0 };
+            let zoom = 1.0;
+            let shakeAngle = 0;
+            let animationId = null;
+            const shakeAmplitude = 0.2;
+            const shakeSpeed = 0.005;
+
+            const spaceDirs = [
+                { label: '+x', vec: [1, 0, 0] }, { label: '-x', vec: [-1, 0, 0] },
+                { label: '+y', vec: [0, 1, 0] }, { label: '-y', vec: [0, -1, 0] },
+                { label: '+z', vec: [0, 0, 1] }, { label: '-z', vec: [0, 0, -1] }
+            ];
+
+            const timeDirsRaw = [
+                { label: '+u', vec: [1, 0] }, { label: '-u', vec: [-1, 0] },
+                { label: '+v', vec: [0, 1] }, { label: '-v', vec: [0, -1] },
+                { label: 'u+v', vec: [1, 1] }, { label: '-(u+v)', vec: [-1, -1] },
+                { label: 'u-v', vec: [1, -1] }, { label: '-(u-v)', vec: [-1, 1] }
+            ];
+            const timeDirs = timeDirsRaw.map(d => {
+                const n = Math.sqrt(d.vec[0] * d.vec[0] + d.vec[1] * d.vec[1]);
+                return { label: d.label, vec: [d.vec[0] / n, d.vec[1] / n] };
+            });
+
+            const polDirsForSpace = (sdir) => spaceDirs.filter(d => {
+                const dot = d.vec[0] * sdir[0] + d.vec[1] * sdir[1] + d.vec[2] * sdir[2];
+                return Math.abs(dot) < 0.001;
+            });
+
+            let waves = [];
+
+            const channelOptions = [
+                { name: '|E|', id: 'E' },
+                { name: '|B|', id: 'B' },
+                { name: '|S|', id: 'S' },
+                { name: '能量密度ε', id: 'energy' }
+            ];
+            function populateSelect(sel, defaultId) {
+                sel.innerHTML = '';
+                channelOptions.forEach(opt => {
+                    const o = document.createElement('option');
+                    o.value = opt.id; o.textContent = opt.name;
+                    if (opt.id === defaultId) o.selected = true;
+                    sel.appendChild(o);
+                });
+            }
+
+            function waveField(w, x, y, z, u, v) {
+                const { spaceVec, timeVec, freq, pol, polVec, amp, phase } = w;
+                const ks = spaceVec.map(c => c * freq);
+                const ω = timeVec.map(c => c * freq);
+                const theta = ks[0] * x + ks[1] * y + ks[2] * z - ω[0] * u - ω[1] * v + phase;
+                const sinθ = Math.sin(theta);
+                const C = -amp * sinθ;
+                let Ex = 0, Ey = 0, Ez = 0, Bux = 0, Buy = 0, Buz = 0, Bvx = 0, Bvy = 0, Bvz = 0, S = 0;
+                const s = spaceVec;
+                const t = timeVec;
+
+                if (pol === 'long') {
+                    Bux = C * t[0] * s[0]; Buy = C * t[0] * s[1]; Buz = C * t[0] * s[2];
+                    Bvx = C * t[1] * s[0]; Bvy = C * t[1] * s[1]; Bvz = C * t[1] * s[2];
+                    if (Math.abs(s[0]) > 0.9) S = C * s[0];
+                    else if (Math.abs(s[1]) > 0.9) S = C * s[1];
+                    else S = C * s[2];
+                } else {
+                    const p = polVec;
+                    Ex = C * p[0]; Ey = C * p[1]; Ez = C * p[2];
+                    const cross = [
+                        s[1] * p[2] - s[2] * p[1],
+                        s[2] * p[0] - s[0] * p[2],
+                        s[0] * p[1] - s[1] * p[0]
+                    ];
+                    Bvx = C * t[0] * cross[0]; Bvy = C * t[0] * cross[1]; Bvz = C * t[0] * cross[2];
+                    Bux = -C * t[1] * cross[0]; Buy = -C * t[1] * cross[1]; Buz = -C * t[1] * cross[2];
+                }
+                return { Ex, Ey, Ez, Bux, Buy, Buz, Bvx, Bvy, Bvz, S };
+            }
+
+            function totalField(x, y, z, u, v) {
+                let Ex = 0, Ey = 0, Ez = 0, Bux = 0, Buy = 0, Buz = 0, Bvx = 0, Bvy = 0, Bvz = 0, S = 0;
+                for (const w of waves) {
+                    const f = waveField(w, x, y, z, u, v);
+                    Ex += f.Ex; Ey += f.Ey; Ez += f.Ez;
+                    Bux += f.Bux; Buy += f.Buy; Buz += f.Buz;
+                    Bvx += f.Bvx; Bvy += f.Bvy; Bvz += f.Bvz;
+                    S += f.S;
+                }
+                const Emag = Math.sqrt(Ex * Ex + Ey * Ey + Ez * Ez);
+                const Bumag = Math.sqrt(Bux * Bux + Buy * Buy + Buz * Buz);
+                const Bvmag = Math.sqrt(Bvx * Bvx + Bvy * Bvy + Bvz * Bvz);
+                const Bmag = Math.hypot(Bumag, Bvmag);
+                return { Ex, Ey, Ez, Bux, Buy, Buz, Bvx, Bvy, Bvz, S, Emag, Bmag };
+            }
+
+            function scalarField(u, v, ch) {
+                const f = totalField(point.x, point.y, point.z, u, v);
+                switch (ch) {
+                    case 'E': return f.Emag;
+                    case 'B': return f.Bmag;
+                    case 'S': return Math.abs(f.S);
+                    case 'energy': {
+                        const Bumag = Math.sqrt(f.Bux * f.Bux + f.Buy * f.Buy + f.Buz * f.Buz);
+                        const Bvmag = Math.sqrt(f.Bvx * f.Bvx + f.Bvy * f.Bvy + f.Bvz * f.Bvz);
+                        return 0.5 * (f.Emag * f.Emag + Bumag * Bumag + Bvmag * Bvmag + f.S * f.S);
+                    }
+                    default: return 0;
+                }
+            }
+
+            function rotate(vx, vy, vz) {
+                let x1 = vx * Math.cos(rotZ) - vy * Math.sin(rotZ);
+                let y1 = vx * Math.sin(rotZ) + vy * Math.cos(rotZ);
+                let z1 = vz;
+                let y2 = y1 * Math.cos(rotX) - z1 * Math.sin(rotX);
+                let z2 = y1 * Math.sin(rotX) + z1 * Math.cos(rotX);
+                return { x: x1, y: y2, z: z2 };
+            }
+            function project(vx, vy, vz, scaleFactor) {
+                const r = rotate(vx, vy, vz);
+                const ox = fieldCanvas.width / 2, oy = fieldCanvas.height * 0.6;
+                return { x: ox + r.x * scaleFactor, y: oy - r.y * scaleFactor };
+            }
+
+            function drawArrow(ctx, fromX, fromY, toX, toY, color, label) {
+                const dx = toX - fromX, dy = toY - fromY;
+                const len = Math.sqrt(dx * dx + dy * dy);
+                if (len < 3) return;
+                ctx.beginPath();
+                ctx.moveTo(fromX, fromY);
+                ctx.lineTo(toX, toY);
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                const angle = Math.atan2(dy, dx);
+                const arrowLen = 8;
+                ctx.beginPath();
+                ctx.moveTo(toX, toY);
+                ctx.lineTo(toX - arrowLen * Math.cos(angle - 0.5), toY - arrowLen * Math.sin(angle - 0.5));
+                ctx.lineTo(toX - arrowLen * Math.cos(angle + 0.5), toY - arrowLen * Math.sin(angle + 0.5));
+                ctx.closePath();
+                ctx.fillStyle = color;
+                ctx.fill();
+                if (label) {
+                    ctx.fillStyle = color;
+                    ctx.font = 'bold 11px sans-serif';
+                    ctx.fillText(label, toX + 6, toY - 4);
+                }
+            }
+
+            function drawField() {
+                const w = fieldCanvas.width, h = fieldCanvas.height;
+                fieldCtx.clearRect(0, 0, w, h);
+                fieldCtx.fillStyle = '#111'; fieldCtx.fillRect(0, 0, w, h);
+                const axisScale = 45;
+                const axisLen = 1.8;
+                const axes = [
+                    { v: [axisLen, 0, 0], col: '#ff4444', lab: 'x' },
+                    { v: [0, axisLen, 0], col: '#44ff44', lab: 'y' },
+                    { v: [0, 0, axisLen], col: '#4488ff', lab: 'z' }
+                ];
+                for (const a of axes) {
+                    const end = project(...a.v, axisScale), start = project(0, 0, 0, axisScale);
+                    fieldCtx.beginPath(); fieldCtx.moveTo(start.x, start.y); fieldCtx.lineTo(end.x, end.y);
+                    fieldCtx.strokeStyle = a.col; fieldCtx.lineWidth = 1.5; fieldCtx.stroke();
+                    const ang = Math.atan2(end.y - start.y, end.x - start.x);
+                    const len = 8;
+                    fieldCtx.beginPath(); fieldCtx.moveTo(end.x, end.y);
+                    fieldCtx.lineTo(end.x - len * Math.cos(ang - 0.6), end.y - len * Math.sin(ang - 0.6));
+                    fieldCtx.lineTo(end.x - len * Math.cos(ang + 0.6), end.y - len * Math.sin(ang + 0.6));
+                    fieldCtx.closePath(); fieldCtx.fillStyle = a.col; fieldCtx.fill();
+                    fieldCtx.fillStyle = a.col; fieldCtx.font = 'bold 13px sans-serif'; fieldCtx.textAlign = 'center';
+                    fieldCtx.fillText(a.lab, end.x + 10, end.y - 5);
+                }
+                const orig = project(0, 0, 0, axisScale);
+                fieldCtx.fillStyle = 'white'; fieldCtx.beginPath(); fieldCtx.arc(orig.x, orig.y, 3, 0, 2 * Math.PI); fieldCtx.fill();
+
+                const f = totalField(point.x, point.y, point.z, timeUV.u, timeUV.v);
+                const vecScale = 45 * zoom;
+                const vecs = [
+                    { v: [f.Ex, f.Ey, f.Ez], col: '#ff4444', lab: 'E' },
+                    { v: [f.Bux, f.Buy, f.Buz], col: '#44ff44', lab: 'Bu' },
+                    { v: [f.Bvx, f.Bvy, f.Bvz], col: '#4488ff', lab: 'Bv' }
+                ];
+                for (const vc of vecs) {
+                    if (vc.v.every(c => Math.abs(c) < 0.001)) continue;
+                    const end = project(...vc.v, vecScale), start = orig;
+                    const dx = end.x - start.x, dy = end.y - start.y;
+                    if (Math.sqrt(dx * dx + dy * dy) < 3) continue;
+                    fieldCtx.beginPath(); fieldCtx.moveTo(start.x, start.y); fieldCtx.lineTo(end.x, end.y);
+                    fieldCtx.strokeStyle = vc.col; fieldCtx.lineWidth = 2.5; fieldCtx.stroke();
+                    const ang = Math.atan2(dy, dx);
+                    const alen = 9;
+                    fieldCtx.beginPath(); fieldCtx.moveTo(end.x, end.y);
+                    fieldCtx.lineTo(end.x - alen * Math.cos(ang - 0.5), end.y - alen * Math.sin(ang - 0.5));
+                    fieldCtx.lineTo(end.x - alen * Math.cos(ang + 0.5), end.y - alen * Math.sin(ang + 0.5));
+                    fieldCtx.closePath(); fieldCtx.fillStyle = vc.col; fieldCtx.fill();
+                    fieldCtx.fillStyle = vc.col; fieldCtx.font = 'bold 12px sans-serif';
+                    fieldCtx.fillText(vc.lab, end.x + 8, end.y - 4);
+                }
+
+                const absS = Math.abs(f.S);
+                const maxRadius = 30 * zoom;
+                const r = Math.min(absS, 2.0) / 2.0 * maxRadius;
+                fieldCtx.beginPath();
+                fieldCtx.arc(orig.x, orig.y, r, 0, 2 * Math.PI);
+                fieldCtx.fillStyle = f.S >= 0 ? 'rgba(255,100,100,0.7)' : 'rgba(100,100,255,0.7)';
+                fieldCtx.fill();
+                fieldCtx.strokeStyle = 'white';
+                fieldCtx.lineWidth = 1.5;
+                fieldCtx.stroke();
+            }
+            let imgData = null;
+            function drawTime() {
+                if (!updateTime) return;
+                updateTime = false;
+                const w = timeCanvas.width, h = timeCanvas.height;
+                timeCtx.clearRect(0, 0, w, h);
+                if (updateTimeField) {
+                    updateTimeField = false;
+                    imgData = timeCtx.createImageData(w, h);
+                    const data = imgData.data;
+                    const chR = chRSel.value, chG = chGSel.value, chB = chBSel.value;
+                    const FIXED_MAX = 2.0;
+                    for (let py = 0; py < h; py++) {
+                        for (let px = 0; px < w; px++) {
+                            const u = (px / (w - 1)) * timeRange, v = (py / (h - 1)) * timeRange;
+                            const r = scalarField(u, v, chR), g = scalarField(u, v, chG), b = scalarField(u, v, chB);
+                            const clamp = v => Math.min(255, Math.max(0, Math.floor(v / FIXED_MAX * 255)));
+                            const rVal = clamp(r), gVal = clamp(g), bVal = clamp(b);
+                            const di = (py * w + px) * 4;
+                            data[di] = rVal; data[di + 1] = gVal; data[di + 2] = bVal; data[di + 3] = 255;
+                        }
+                    }
+                }
+                timeCtx.putImageData(imgData, 0, 0);
+
+                const sx = (probeUV.u / timeRange) * w, sy = (probeUV.v / timeRange) * h;
+                const f = totalField(point.x, point.y, point.z, probeUV.u, probeUV.v);
+                const vecs = [
+                    { du: f.Bux, dv: f.Bvx, color: '#ff4444', label: 'Bx' },
+                    { du: f.Buy, dv: f.Bvy, color: '#44ff44', label: 'By' },
+                    { du: f.Buz, dv: f.Bvz, color: '#4488ff', label: 'Bz' }
+                ];
+                const timeScale = 25 * zoom;
+                for (const vc of vecs) {
+                    const ex = sx + vc.du * timeScale;
+                    const ey = sy + vc.dv * timeScale;
+                    drawArrow(timeCtx, sx, sy, ex, ey, vc.color, vc.label);
+                }
+
+                const absS = Math.abs(f.S);
+                const maxRadius = 30 * zoom;
+                const r = Math.min(absS, 2.0) / 2.0 * maxRadius;
+                timeCtx.beginPath();
+                timeCtx.arc(sx, sy, r, 0, 2 * Math.PI);
+                timeCtx.fillStyle = f.S >= 0 ? 'rgba(255,100,100,0.7)' : 'rgba(100,100,255,0.7)';
+                timeCtx.fill();
+                timeCtx.strokeStyle = 'white';
+                timeCtx.lineWidth = 1.5;
+                timeCtx.stroke();
+
+                timeCtx.beginPath();
+                timeCtx.arc(sx, sy, 4, 0, 2 * Math.PI);
+                timeCtx.fillStyle = 'rgba(0,255,255,0.9)';
+                timeCtx.fill();
+                timeCtx.strokeStyle = 'white';
+                timeCtx.lineWidth = 1;
+                timeCtx.stroke();
+            }
+            const startTime = new Date().getTime();
+            function animationLoop() {
+                if (shakeCheck.checked && !isDragging) {
+                    shakeAngle = shakeSpeed * (new Date().getTime() - startTime);
+                    rotZ = baseRotZ + shakeAmplitude * Math.sin(shakeAngle);
+                    rotX = baseRotX; // 不再摇晃X轴
+                } else if (!isDragging) {
+                    rotZ = baseRotZ;
+                    rotX = baseRotX;
+                }
+                drawField();
+                drawTime();
+                animationId = requestAnimationFrame(animationLoop);
+            }
+
+            function startAnimation() {
+                if (animationId) return;
+                animationId = requestAnimationFrame(animationLoop);
+            }
+            startAnimation();
+
+            function renderWaves() {
+                updateTime = true;
+                updateTimeField = true;
+                waveListDiv.innerHTML = '';
+                waves.forEach((w, idx) => {
+                    const row = document.createElement('div'); row.className = 'wave-row';
+                    let spaceSel = '<select data-idx="' + idx + '" data-field="space">';
+                    spaceDirs.forEach((d, i) => {
+                        const sel = (d.vec[0] === w.spaceVec[0] && d.vec[1] === w.spaceVec[1] && d.vec[2] === w.spaceVec[2]) ? 'selected' : '';
+                        spaceSel += `<option value="${i}" ${sel}>${d.label}</option>`;
+                    });
+                    spaceSel += '</select>';
+                    let timeSel = '<select data-idx="' + idx + '" data-field="time">';
+                    timeDirs.forEach((d, i) => {
+                        const sel = (Math.abs(d.vec[0] - w.timeVec[0]) < 0.001 && Math.abs(d.vec[1] - w.timeVec[1]) < 0.001) ? 'selected' : '';
+                        timeSel += `<option value="${i}" ${sel}>${d.label}</option>`;
+                    });
+                    timeSel += '</select>';
+                    const freqInp = `<input type="number" value="${w.freq}" step="0.1" data-idx="${idx}" data-field="freq">`;
+                    const polSel = `<select data-idx="${idx}" data-field="polType">
+                        <option value="trans" ${w.pol === 'trans' ? 'selected' : ''}>横波</option>
+                        <option value="long" ${w.pol === 'long' ? 'selected' : ''}>纵波</option>
+                    </select>`;
+                    let polDirHtml = '';
+                    if (w.pol === 'trans') {
+                        const dirs = polDirsForSpace(w.spaceVec);
+                        polDirHtml = '<select data-idx="' + idx + '" data-field="polDir">';
+                        dirs.forEach((d, i) => {
+                            const sel = (d.vec[0] === w.polVec[0] && d.vec[1] === w.polVec[1] && d.vec[2] === w.polVec[2]) ? 'selected' : '';
+                            polDirHtml += `<option value="${spaceDirs.indexOf(d)}" ${sel}>${d.label}</option>`;
+                        });
+                        polDirHtml += '</select>';
+                    }
+                    const ampInp = `<input type="number" value="${w.amp}" step="0.1" data-idx="${idx}" data-field="amp">`;
+                    const phaseDeg = (w.phase * 180 / Math.PI).toFixed(1);
+                    const phaseInp = `<input type="number" value="${phaseDeg}" step="5" data-idx="${idx}" data-field="phaseDeg">`;
+                    const delBtn = `<button data-idx="${idx}" class="delWave">✕</button>`;
+                    row.innerHTML = `<span>波${idx + 1}</span> ${spaceSel} ${timeSel} 频率:${freqInp} ${polSel} ${polDirHtml} 振幅:${ampInp} 相位(°):${phaseInp} ${delBtn}`;
+                    waveListDiv.appendChild(row);
+                });
+
+                waveListDiv.querySelectorAll('select').forEach(sel => {
+                    sel.addEventListener('change', (e) => {
+                        const idx = parseInt(e.target.dataset.idx);
+                        const field = e.target.dataset.field;
+                        if (field === 'space') {
+                            const val = parseInt(e.target.value);
+                            waves[idx].spaceVec = spaceDirs[val].vec.slice();
+                            if (waves[idx].pol === 'trans') {
+                                const dirs = polDirsForSpace(waves[idx].spaceVec);
+                                waves[idx].polVec = dirs[0].vec.slice();
+                            }
+                        } else if (field === 'time') {
+                            const val = parseInt(e.target.value);
+                            waves[idx].timeVec = timeDirs[val].vec.slice();
+                        } else if (field === 'polType') {
+                            waves[idx].pol = e.target.value;
+                            if (waves[idx].pol === 'trans') {
+                                const dirs = polDirsForSpace(waves[idx].spaceVec);
+                                waves[idx].polVec = dirs[0].vec.slice();
+                            }
+                        } else if (field === 'polDir') {
+                            const val = parseInt(e.target.value);
+                            waves[idx].polVec = spaceDirs[val].vec.slice();
+                        }
+                        renderWaves();
+                    });
+                });
+
+                waveListDiv.querySelectorAll('input').forEach(inp => {
+                    inp.addEventListener('input', (e) => {
+                        const idx = parseInt(e.target.dataset.idx);
+                        const field = e.target.dataset.field;
+                        let val = parseFloat(e.target.value);
+                        if (isNaN(val)) return;
+                        if (field === 'phaseDeg') {
+                            waves[idx].phase = val * Math.PI / 180;
+                        } else {
+                            waves[idx][field] = val;
+                        }
+                        updateTime = true; updateTimeField = true;
+                    });
+                });
+
+                waveListDiv.querySelectorAll('.delWave').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const idx = parseInt(e.target.dataset.idx);
+                        waves.splice(idx, 1);
+                        renderWaves();
+                    });
+                });
+            }
+
+            function addWave(space = '+x', time = '+u', freq = 1, pol = 'trans', polLabel = '+y', amp = 1, phase = 0) {
+                const sDir = spaceDirs.find(d => d.label === space).vec;
+                const tDir = timeDirs.find(d => d.label === time).vec;
+                let pVec;
+                if (pol === 'long') {
+                    pVec = [0, 0, 0];
+                } else {
+                    const dirs = polDirsForSpace(sDir);
+                    pVec = dirs.find(d => d.label === polLabel).vec.slice();
+                }
+                waves.push({ spaceVec: sDir.slice(), timeVec: tDir.slice(), freq, pol, polVec: pVec.slice(), amp, phase });
+                renderWaves();
+            }
+
+            const presets = {
+                singleTrans: () => { waves = []; addWave('+x', '+u', 1, 'trans', '+y', 1, 0); },
+                singleLong: () => { waves = []; addWave('+x', '+u', 1, 'long', '+y', 1, 0); },
+                standingTrans: () => { waves = []; addWave('+x', '+u', 1, 'trans', '+y', 1, 0); addWave('+x', '-u', 1, 'trans', '+y', 1, 0); },
+                standingLong: () => { waves = []; addWave('+x', '+u', 1, 'long', '+y', 1, 0); addWave('+x', '-u', 1, 'long', '+y', 1, 0); },
+                standingLT: () => { waves = []; addWave('+x', '+u', 1, 'long', '+y', 1, 0); addWave('+x', '-u', 1, 'trans', '+y', 1, 0); },
+                twoDimTrans: () => {
+                    waves = [];
+                    addWave('+x', '+u', 1, 'trans', '+y', 1, 0);
+                    addWave('+x', '+v', 1, 'trans', '+y', 1, 0);
+                },
+                twoDimTransStanding: () => {
+                    waves = [];
+                    addWave('+x', '+u', 1, 'trans', '+y', 0.5, 0); addWave('+x', '-u', 1, 'trans', '+y', 0.5, 0);
+                    addWave('+x', '+v', 1, 'trans', '+y', 0.5, 0); addWave('+x', '-v', 1, 'trans', '+y', 0.5, 0);
+                },
+                twoDimLong: () => {
+                    waves = [];
+                    addWave('+x', '+u', 1, 'long', '+y', 1, 0);
+                    addWave('+x', '+v', 1, 'long', '+z', 1, 0);
+                },
+                twoDimLongStanding: () => {
+                    waves = [];
+                    addWave('+x', '+u', 1, 'long', '+y', 0.5, 0); addWave('+x', '-u', 1, 'long', '+y', 0.5, 0);
+                    addWave('+x', '+v', 1, 'long', '+z', 0.5, 0); addWave('+x', '-v', 1, 'long', '+z', 0.5, 0);
+                },
+                circular: () => {
+                    waves = [];
+                    addWave('+x', '+u', 1, 'trans', '+y', 0.7, 0);
+                    addWave('+x', '+u', 1, 'trans', '+z', 0.7, Math.PI / 2);
+                },
+                twoDimCircular: () => {
+                    waves = [];
+                    addWave('+x', '+u', 1, 'trans', '+y', 0.7, 0);
+                    addWave('+x', '+u', 1, 'trans', '+z', 0.7, Math.PI / 2);
+                    addWave('+x', '+v', 1, 'trans', '+y', 0.7, 0);
+                    addWave('+x', '+v', 1, 'trans', '+z', 0.7, Math.PI / 2);
+                },
+                mixedTwoDimTrans: () => {
+                    waves = [];
+                    addWave('+x', '+u', 1, 'trans', '+z', 1, 0);
+                    addWave('+y', '+v', 1, 'trans', '+z', 1, 0);
+                },
+                mixedTwoDimLong: () => {
+                    waves = [];
+                    addWave('+x', '+u', 1, 'long', '+y', 1, 0);
+                    addWave('+y', '+v', 1, 'long', '+z', 1, 0);
+                },
+                mixedTwoDimTransStanding: () => {
+                    waves = [];
+                    addWave('+x', '+u', 1, 'trans', '+z', 0.5, 0); addWave('+x','-u', 1, 'trans', '+z', 0.5, 0);
+                    addWave('+y', '+v', 1, 'trans', '+z', 0.5, 0); addWave('+y','-v', 1, 'trans', '+z', 0.5, 0);
+                },
+                mixedTwoDimLongStanding: () => {
+                    waves = [];
+                    addWave('+x', '+u', 1, 'long', '+y', 0.5, 0); addWave('+x','-u', 1, 'long', '+y', 0.5, 0);
+                    addWave('+y', '+v', 1, 'long', '+z', 0.5, 0); addWave('+y','-v', 1, 'long', '+z', 0.5, 0);
+                },
+                mixed: () => {
+                    waves = [];
+                    addWave('+x', '+u', 1, 'trans', '+y', 0.5, 0);
+                    addWave('+y', '+v', 1.21, 'trans', '+z', 0.4, 1.5);
+                    addWave('+z', 'u-v', 0.78, 'long', '+x', 0.6, 2.0);
+                }
+            };
+
+            sliderX.addEventListener('input', () => { point.x = parseFloat(sliderX.value); updateTime = true; updateTimeField = true; });
+            sliderY.addEventListener('input', () => { point.y = parseFloat(sliderY.value); updateTime = true; updateTimeField = true; });
+            sliderZ.addEventListener('input', () => { point.z = parseFloat(sliderZ.value); updateTime = true; updateTimeField = true; });
+
+            fieldCanvas.addEventListener('pointerdown', (e) => {
+                isDragging = true;
+                lastMouse.x = e.clientX; lastMouse.y = e.clientY;
+                baseRotZ = rotZ;
+                baseRotX = rotX;
+                fieldCanvas.setPointerCapture(e.pointerId);
+            });
+            window.addEventListener('pointermove', (e) => {
+                if (!isDragging) return;
+                const dx = e.clientX - lastMouse.x, dy = e.clientY - lastMouse.y;
+                baseRotZ += dx * 0.01;
+                baseRotX -= dy * 0.01;
+                lastMouse.x = e.clientX; lastMouse.y = e.clientY;
+                rotZ = baseRotZ;
+                rotX = baseRotX;
+            });
+            window.addEventListener('pointerup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    baseRotZ = rotZ;
+                    baseRotX = rotX;
+                }
+            });
+
+            timeCanvas.addEventListener('pointermove', (e) => {
+                const rect = timeCanvas.getBoundingClientRect();
+                const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+                const u = (mx / timeCanvas.width) * timeRange, v = (my / timeCanvas.height) * timeRange;
+                probeUV = { u, v }; timeUV = { u, v };
+                updateTime = true;
+            });
+            timeCanvas.addEventListener('pointerdown', (e) => {
+                const rect = timeCanvas.getBoundingClientRect();
+                const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+                const u = (mx / timeCanvas.width) * timeRange, v = (my / timeCanvas.height) * timeRange;
+                probeUV = { u, v }; timeUV = { u, v };
+                updateTime = true;
+            });
+
+            zoomSlider.addEventListener('input', () => {
+                zoom = parseFloat(zoomSlider.value);
+                zoomValSpan.textContent = zoom.toFixed(1) + 'x';
+                updateTime = true;
+            });
+            addWaveBtn.addEventListener('click', () => addWave());
+            applyPresetBtn.addEventListener('click', () => {
+                const preset = presetSelect.value;
+                if (presets[preset]) { presets[preset](); renderWaves(); }
+            });
+            chRSel.addEventListener('change', () => { updateTime = true; updateTimeField = true; });
+            chGSel.addEventListener('change', () => { updateTime = true; updateTimeField = true; });
+            chBSel.addEventListener('change', () => { updateTime = true; updateTimeField = true; });
+
+            populateSelect(chRSel, 'E'); populateSelect(chGSel, 'B'); populateSelect(chBSel, 'S');
+            presets.singleTrans(); renderWaves();
+            timeUV = { u: 5, v: 5 }; probeUV = { u: 5, v: 5 };
+            zoomValSpan.textContent = '1.0x';
+        })();
+    </script>
+</body>
+
+</html>

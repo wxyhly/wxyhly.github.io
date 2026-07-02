@@ -19,7 +19,7 @@ date: 2019-03-30 20:30:29
 如果觉得游戏太难，我还提供了一个Deductrium创造模式，链接请在博文中自行寻找。创造模式中，可直接解锁所有的公理系统，并提供了很多现成的定理，然而该模式下无法体验双曲空间以及序数系统等游戏内容。
 这里再给一个生存模式游戏进度存档：可直接跳到开启类型论的地方：复制下面的进度码。
 
-<textarea id="progress-hott" style="width:100%" disabled>.203U,6m1U,`]"2`,U:tl,2=,rt(.a]r"g],0",{)[32e`2{3}af,8,,1`]0.`U161.7["`1L5,`l0U-[m-7,)0[,,U-[2c8ljm-b"5`]4=,a[9,.`2..4"e`#j],0(,,,:`i`i9a,1"09.yo0,3(`p,rU[d73]}l.g`.-"j198]e.]c",)""p"-0fo[[U.o1ph=2#,</textarea>
+<textarea id="progress-hott" style="width:100%" disabled>00Uhl1"..2e.,)`o.1,o7U,aa[.i{([9`][eU80"`]",{`f2e5"UU3U(dU`Ur0j,gra`U.`tp2[g#9,1t6=p`.U,.1p0)i0`:r=Udg,`:`0`8]c"-,.cU]`1`fljyll,"`,0.zm="]4-9,imlt4oj-5"[]5[`1"`ma},tb,e.".o[3,7,}89`p,130]6ee.`"-(-w.j[[7`-lr]2"99.L,`,U2]jg,..#3)3a`q</textarea>
 <script>
     const textarea = document.getElementById("progress-hott");
     textarea.onclick = window.onload = function() {

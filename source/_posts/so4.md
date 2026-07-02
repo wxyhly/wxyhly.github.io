@@ -200,7 +200,7 @@ class Bivec{
 
 ### <a href="javascript:void(0);" onclick="$('#ga').toggle();$('#ga_').text($('#ga_').text()==='+'?'-':'+')"><span id="ga_">+</span>旋量类（几何代数版）</a>
 
-<div style="background-color:var(--color-FFE); display:none" id="ga">
+<div style="overflow:hidden;background-color:var(--color-FFE); display:none" id="ga">
 
 由[这里的介绍](/archives/gaqr/#def_spinor)可知，旋量是几何代数中偶数阶向量组成的子代数，因此对于四维空间，它由标量```r```(0-向量)、2-向量```b```与伪标量```i```(4-向量)三部分组成，于是可以这样定义旋量类：
 ```
@@ -275,7 +275,7 @@ $$B=\log(R)=(R-I)-(R-I)^2/2+(R-I)^3/3-..$$
 
 ### <a href="javascript:void(0);" onclick="$('#qt').toggle();$('#qt_').text($('#qt_').text()==='+'?'-':'+')"><span id="qt_">+</span>旋量类（四元数版）</a>
 
-<div style="background-color:var(--color-FFE); display:none" id="qt">
+<div style="overflow:hidden;background-color:var(--color-FFE); display:none" id="qt">
 
 首先明确一下什么是四元数版的旋量。旋量的定义其实只有几何代数那一种，之所以有所谓“几何代数版”、“四元数版”可以理解为选择的表示方法不一样，就像不同的坐标系那样。几何代数版旋量直接在直角坐标系中展开所有分量，而四元数版的旋量则是将旋量因式分解为左、右等角旋转两部分，其中每个部分都类似于一个三维空间中的旋转，所以用两个四元数表示。但注意不管是哪种表示法，旋量的特殊“二对一”的性质始终是不变的，举个例子：$xy$平面旋转90度，有以下两种拆分方式：
 1. “$xy$旋转45度与$zw$旋转45度右等角双旋转”复合“$xy$旋转45度与$zw$旋转-45度左等角双旋转”
