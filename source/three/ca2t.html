@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>二维时间元胞自动机 · 增量回溯求解（完全验证）</title>
+    <title>二维时间元胞自动机</title>
     <style>
         body { margin:0; background:#111; color:#eee; font-family:sans-serif; display:flex; flex-direction:column; align-items:center; touch-action:pan-y; }
         .main { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; padding:15px; }
@@ -24,19 +24,19 @@
     </style>
 </head>
 <body>
-    <h3>二维时间元胞自动机 · 增量回溯求解（完全验证）</h3>
+    <h3>二维时间元胞自动机 · CA2T by Hqak</h3>
     <div class="info-text">
-        规则表：行=空间邻居数 n<sub>s</sub>，列=时间邻居数 n<sub>t</sub>。点击切换：<span style="background:#000;color:#fff;padding:2px 6px;">必死</span> / <span style="background:#fff;color:#000;padding:2px 6px;">必生</span> / <span style="background:#888;padding:2px 6px;">不限</span>
+        规则表：行=空间邻居数 n<sub>s</sub>，列=时间邻居数 n<sub>t</sub>。点击切换：<span style="background:#000;color:#fff;padding:2px 6px;">必死</span> / <span style="background:#fff;color:#000;padding:2px 6px;">必生</span> / <span style="background:#888;padding:2px 6px;">不限</span><br>
+        
     </div>
     <div class="controls">
         <label>预设规则 <select id="presetSelect">
-            <option value="custom">自定义</option>
-            <option value="sparse">稀疏生长 (≤2 生, ≥5 死)</option>
-            <option value="dense">密集维持 (≥4 生, ≤1 死)</option>
-            <option value="lifeSpace">空间生命 (2-3 生, 0/≥4 死)</option>
-            <option value="lifeTime">时间生命 (2-3 生, 0/≥4 死)</option>
-            <option value="life2D">二维生命 (2-3 且 2-3 生, 其余死)</option>
-            <option value="lifeSym">对称生命 (任2-3 生, 边缘死)</option>
+            <option value="life2D">二维生命</option>
+            <option value="lifeSpace">空间生命</option>
+            <option value="lifeTime">时间生命</option>
+            <option value="sparse">稀疏生长</option>
+            <option value="dense">密集维持</option>
+            <option value="d33">点三三</option>
             <option value="empty">全部不限</option>
             <option value="allBorn">全部必生</option>
             <option value="allDead">全部必死</option>
@@ -47,18 +47,18 @@
     <div class="controls">
         <label>空间大小 <input type="number" id="sizeSpace" min="4" max="32" value="5"></label>
         <label>时间大小 <input type="number" id="sizeTime" min="4" max="32" value="5"></label>
-        <button id="applySizeBtn">应用尺寸</button>
+        <button id="applySizeBtn">重置画布</button>
     </div>
     <div class="main">
         <div class="panel">
-            <span>空间画面 (x,y) · 当前时间切片 (u,v)</span>
+            <span>空间画面 (x,y) · 当前时间切片<span id="spaceCoord">(u=2, v=2)</span></span>
             <canvas id="spaceCanvas" width="300" height="300"></canvas>
-            <span id="spaceCoord">(u=2, v=2)</span>
+            
         </div>
         <div class="panel">
-            <span>时间画面 (u,v) · 当前空间点 (x,y)</span>
+            <span>时间画面 (u,v) · 当前空间点<span id="timeCoord">(x=2, y=2)</span></span>
             <canvas id="timeCanvas" width="300" height="300"></canvas>
-            <span id="timeCoord">(x=2, y=2)</span>
+            
         </div>
     </div>
     <div class="controls">
@@ -71,7 +71,7 @@
 
     <script>
         (() => {
-            // DOM elements
+            // DOM
             const spaceCanvas = document.getElementById('spaceCanvas');
             const spaceCtx = spaceCanvas.getContext('2d');
             const timeCanvas = document.getElementById('timeCanvas');
@@ -90,28 +90,22 @@
             const presetSelect = document.getElementById('presetSelect');
             const applyPresetBtn = document.getElementById('applyPresetBtn');
 
-            let spaceSize, timeSize;
-            let states = null;          // 0死 1生 2未知
-            let rule = null;            // [ns][nt] 0必死 1必生 2不限
+            let spaceSize = parseInt(sizeSpaceInput.value);
+            let timeSize = parseInt(sizeTimeInput.value);
+            let states = null;
+            let rule = null;          // [ns][nt] 0必死 1必生 2不限
+            let domains = null;
             let solving = false;
             let solveStepId = null;
-            let backtrackStack = [];     // {flat, variable: {x,y,u,v}, triedValue}
+            let backtrackStack = [];
             let iterationCount = 0;
 
             let currentMode = 'draw';
-            let currentTimeUV, currentSpaceXY;
+            let currentTimeUV = { u: Math.floor(timeSize/2), v: Math.floor(timeSize/2) };
+            let currentSpaceXY = { x: Math.floor(spaceSize/2), y: Math.floor(spaceSize/2) };
             let probeLock = false;
 
-            function applySize() {
-                spaceSize = parseInt(sizeSpaceInput.value);
-                timeSize = parseInt(sizeTimeInput.value);
-                initStates();
-                currentTimeUV = { u: Math.floor(timeSize/2), v: Math.floor(timeSize/2) };
-                currentSpaceXY = { x: Math.floor(spaceSize/2), y: Math.floor(spaceSize/2) };
-                iterationCount = 0;
-                updateDisplays();
-            }
-
+            // 初始化状态
             function initStates() {
                 states = new Array(spaceSize);
                 for (let x=0; x<spaceSize; x++) {
@@ -128,339 +122,140 @@
                 rule = new Array(9);
                 for (let ns=0; ns<9; ns++) rule[ns] = new Array(9).fill(2);
             }
-
-            function flatten() {
-                const size = spaceSize * spaceSize * timeSize * timeSize;
-                const arr = new Int8Array(size);
-                let idx = 0;
-                for (let x=0; x<spaceSize; x++) for (let y=0; y<spaceSize; y++)
-                    for (let u=0; u<timeSize; u++) for (let v=0; v<timeSize; v++)
-                        arr[idx++] = states[x][y][u][v];
-                return arr;
-            }
-            function restore(flat) {
-                let idx = 0;
-                for (let x=0; x<spaceSize; x++) for (let y=0; y<spaceSize; y++)
-                    for (let u=0; u<timeSize; u++) for (let v=0; v<timeSize; v++)
-                        states[x][y][u][v] = flat[idx++];
-            }
-
-            function getNeighbors(x,y,u,v) {
-                const space = [], time = [];
-                for (let dx=-1; dx<=1; dx++) for (let dy=-1; dy<=1; dy++) {
-                    if (dx===0 && dy===0) continue;
-                    const nx=x+dx, ny=y+dy;
-                    if (nx>=0 && nx<spaceSize && ny>=0 && ny<spaceSize) space.push([nx,ny,u,v]);
-                }
-                for (let du=-1; du<=1; du++) for (let dv=-1; dv<=1; dv++) {
-                    if (du===0 && dv===0) continue;
-                    const nu=u+du, nv=v+dv;
-                    if (nu>=0 && nu<timeSize && nv>=0 && nv<timeSize) time.push([x,y,nu,nv]);
-                }
-                return { space, time };
-            }
-
-            function neighborRange(neighbors) {
-                let min=0, max=0;
-                for (const [nx,ny,nu,nv] of neighbors) {
-                    const val = states[nx][ny][nu][nv];
-                    if (val === 1) { min++; max++; }
-                    else if (val === 2) { max++; }
-                }
-                return { min, max };
-            }
-
-            function isStatePossible(x,y,u,v, state) {
-                const { space, time } = getNeighbors(x,y,u,v);
-                const nsRange = neighborRange(space);
-                const ntRange = neighborRange(time);
-                for (let ns=nsRange.min; ns<=nsRange.max; ns++) {
-                    for (let nt=ntRange.min; nt<=ntRange.max; nt++) {
-                        const r = rule[ns][nt];
-                        if (r === 2 || r === state) return true;
-                    }
-                }
-                return false;
-            }
-
-            function propagateIncremental(startX, startY, startU, startV) {
-                const queue = [[startX, startY, startU, startV]];
-                const totalCells = spaceSize * spaceSize * timeSize * timeSize;
-                let maxIter = totalCells * 10;
-                while (queue.length && maxIter-- > 0) {
-                    const [x,y,u,v] = queue.shift();
-                    const cur = states[x][y][u][v];
-                    if (cur === 2) {
-                        const p0 = isStatePossible(x,y,u,v,0);
-                        const p1 = isStatePossible(x,y,u,v,1);
-                        if (!p0 && !p1) return true;
-                        if (!p0) {
-                            states[x][y][u][v] = 1;
-                            const { space, time } = getNeighbors(x,y,u,v);
-                            for (const nb of space.concat(time)) queue.push(nb);
-                        } else if (!p1) {
-                            states[x][y][u][v] = 0;
-                            const { space, time } = getNeighbors(x,y,u,v);
-                            for (const nb of space.concat(time)) queue.push(nb);
+            function initDomains() {
+                domains = new Array(spaceSize);
+                for (let x=0; x<spaceSize; x++) {
+                    domains[x] = new Array(spaceSize);
+                    for (let y=0; y<spaceSize; y++) {
+                        domains[x][y] = new Array(timeSize);
+                        for (let u=0; u<timeSize; u++) {
+                            domains[x][y][u] = new Array(timeSize);
+                            for (let v=0; v<timeSize; v++) {
+                                const val = states[x][y][u][v];
+                                domains[x][y][u][v] = (val === 2) ? new Set([0,1]) : new Set([val]);
+                            }
                         }
-                    } else {
-                        if (!isStatePossible(x,y,u,v,cur)) return true;
                     }
                 }
-                return maxIter <= 0;
             }
 
-            function initialPropagation() {
-                const queue = [];
-                for (let x=0; x<spaceSize; x++) for (let y=0; y<spaceSize; y++)
-                    for (let u=0; u<timeSize; u++) for (let v=0; v<timeSize; v++)
-                        if (states[x][y][u][v] !== 2) queue.push([x,y,u,v]);
-                const totalCells = spaceSize * spaceSize * timeSize * timeSize;
-                let maxIter = totalCells * 10;
-                while (queue.length && maxIter-- > 0) {
-                    const [x,y,u,v] = queue.shift();
-                    const val = states[x][y][u][v];
-                    if (val === 2) continue;
-                    if (!isStatePossible(x,y,u,v,val)) return true;
-                    const { space, time } = getNeighbors(x,y,u,v);
-                    for (const nb of space.concat(time)) queue.push(nb);
-                }
-                return maxIter <= 0;
-            }
-
-            function validateAll() {
-                for (let x=0; x<spaceSize; x++) for (let y=0; y<spaceSize; y++)
-                    for (let u=0; u<timeSize; u++) for (let v=0; v<timeSize; v++) {
-                        if (states[x][y][u][v] === 2) return false; // 未完成
-                        if (!isStatePossible(x,y,u,v,states[x][y][u][v])) return false;
-                    }
-                return true;
-            }
-
-            function selectVariable() {
-                const candidates = [];
-                for (let x=0; x<spaceSize; x++) for (let y=0; y<spaceSize; y++)
-                    for (let u=0; u<timeSize; u++) for (let v=0; v<timeSize; v++)
-                        if (states[x][y][u][v] === 2) candidates.push({x,y,u,v});
-                return candidates.length ? candidates[Math.floor(Math.random() * candidates.length)] : null;
-            }
-
-            function heuristicOrder(x,y,u,v) {
-                const { space, time } = getNeighbors(x,y,u,v);
-                const nsRange = neighborRange(space);
-                const ntRange = neighborRange(time);
-                let count0=0, count1=0;
-                for (let ns=nsRange.min; ns<=nsRange.max; ns++)
-                    for (let nt=ntRange.min; nt<=ntRange.max; nt++) {
-                        const r = rule[ns][nt];
-                        if (r === 0) count0++;
-                        else if (r === 1) count1++;
-                    }
-                if (count0 === count1) return 0;
-                return count0 > count1 ? -1 : 1;
-            }
-
-            async function solveStep() {
-                if (!solving) return;
-                iterationCount++;
-                statusDiv.textContent = `求解中 · 迭代: ${iterationCount}`;
-
-                const variable = selectVariable();
-                if (!variable) {
-                    // 所有格子已确定，进行全局验证
-                    if (validateAll()) {
-                        solving = false;
-                        stopBtn.disabled = true;
-                        statusDiv.textContent = `求解成功！ · 迭代: ${iterationCount}`;
-                        updateDisplays();
-                    } else {
-                        // 验证失败，回溯
-                        backtrack();
-                        if (solving) solveStepId = setTimeout(solveStep, 0);
-                    }
-                    return;
-                }
-                const {x,y,u,v} = variable;
-                const order = heuristicOrder(x,y,u,v);
-                let tryValues;
-                if (order === 0) tryValues = Math.random() < 0.5 ? [0,1] : [1,0];
-                else if (order === -1) tryValues = [0,1];
-                else tryValues = [1,0];
-
-                const savedFlat = flatten();
-                let success = false;
-                let triedValue = -1;
-                let triedBoth = false;
-
-                for (let val of tryValues) {
-                    triedValue = val;
-                    states[x][y][u][v] = val;
-                    const contradiction = propagateIncremental(x,y,u,v);
-                    if (!contradiction) { success = true; break; }
-                    restore(savedFlat);
-                    triedBoth = true;
-                }
-
-                if (success) {
-                    backtrackStack.push({
-                        flat: savedFlat,
-                        variable: {x,y,u,v},
-                        triedValue: triedBoth ? 2 : triedValue
-                    });
-                } else {
-                    restore(savedFlat);
-                    backtrack();
-                }
-
-                updateDisplays();
-                if (solving) solveStepId = setTimeout(solveStep, 0);
-            }
-
-            function backtrack() {
-                while (backtrackStack.length > 0) {
-                    const top = backtrackStack.pop();
-                    if (top.triedValue === 2) {
-                        restore(top.flat);
-                        continue;
-                    }
-                    restore(top.flat);
-                    const {x,y,u,v} = top.variable;
-                    const otherValue = top.triedValue === 0 ? 1 : 0;
-                    states[x][y][u][v] = otherValue;
-                    const contradiction = propagateIncremental(x,y,u,v);
-                    if (!contradiction) {
-                        backtrackStack.push({
-                            flat: top.flat,
-                            variable: top.variable,
-                            triedValue: 2
-                        });
-                        return;
-                    }
-                }
-                solving = false;
-                stopBtn.disabled = true;
-                statusDiv.textContent = `求解失败，无解 · 迭代: ${iterationCount}`;
-                updateDisplays();
-            }
-
-            function startSolving() {
-                if (solving) return;
-                backtrackStack = [];
-                iterationCount = 0;
-                if (initialPropagation()) {
-                    statusDiv.textContent = '初始状态矛盾，无法求解。';
-                    updateDisplays();
-                    return;
-                }
-                currentMode = 'probe';
-                modeProbeBtn.classList.add('selected');
-                modeDrawBtn.classList.remove('selected');
-                solving = true;
-                stopBtn.disabled = false;
-                statusDiv.textContent = `求解中 · 迭代: 0`;
-                updateDisplays();
-                solveStepId = setTimeout(solveStep, 0);
-            }
-
-            function stopSolving() {
-                solving = false;
-                if (solveStepId) clearTimeout(solveStepId);
-                stopBtn.disabled = true;
-                statusDiv.textContent = `求解已停止 · 迭代: ${iterationCount}`;
-                updateDisplays();
-            }
-
-            // 绘图及交互（与前版相同，省略部分注释）
+            // 邻居函数
             function areTimeNeighborsKnown(x,y,u,v) {
                 for (let du=-1; du<=1; du++) for (let dv=-1; dv<=1; dv++) {
                     if (du===0 && dv===0) continue;
-                    const nu=u+du, nv=v+dv;
-                    if (nu>=0 && nu<timeSize && nv>=0 && nv<timeSize && states[x][y][nu][nv]===2) return false;
+                    const nu = u+du, nv = v+dv;
+                    if (nu>=0 && nu<timeSize && nv>=0 && nv<timeSize) {
+                        if (states[x][y][nu][nv] === 2) return false;
+                    }
                 }
                 return true;
             }
             function areSpaceNeighborsKnown(x,y,u,v) {
                 for (let dx=-1; dx<=1; dx++) for (let dy=-1; dy<=1; dy++) {
                     if (dx===0 && dy===0) continue;
-                    const nx=x+dx, ny=y+dy;
-                    if (nx>=0 && nx<spaceSize && ny>=0 && ny<spaceSize && states[nx][ny][u][v]===2) return false;
+                    const nx = x+dx, ny = y+dy;
+                    if (nx>=0 && nx<spaceSize && ny>=0 && ny<spaceSize) {
+                        if (states[nx][ny][u][v] === 2) return false;
+                    }
                 }
                 return true;
             }
             function countTimeLiving(x,y,u,v) {
-                let c=0;
+                let count = 0;
                 for (let du=-1; du<=1; du++) for (let dv=-1; dv<=1; dv++) {
                     if (du===0 && dv===0) continue;
-                    const nu=u+du, nv=v+dv;
-                    if (nu>=0 && nu<timeSize && nv>=0 && nv<timeSize && states[x][y][nu][nv]===1) c++;
+                    const nu = u+du, nv = v+dv;
+                    if (nu>=0 && nu<timeSize && nv>=0 && nv<timeSize) {
+                        if (states[x][y][nu][nv] === 1) count++;
+                    }
                 }
-                return c;
+                return count;
             }
             function countSpaceLiving(x,y,u,v) {
-                let c=0;
+                let count = 0;
                 for (let dx=-1; dx<=1; dx++) for (let dy=-1; dy<=1; dy++) {
                     if (dx===0 && dy===0) continue;
-                    const nx=x+dx, ny=y+dy;
-                    if (nx>=0 && nx<spaceSize && ny>=0 && ny<spaceSize && states[nx][ny][u][v]===1) c++;
+                    const nx = x+dx, ny = y+dy;
+                    if (nx>=0 && nx<spaceSize && ny>=0 && ny<spaceSize) {
+                        if (states[nx][ny][u][v] === 1) count++;
+                    }
                 }
-                return c;
+                return count;
             }
 
             function drawSpaceCanvas() {
-                const w=spaceCanvas.width, h=spaceCanvas.height;
-                const cw=w/spaceSize, ch=h/spaceSize;
+                const w = spaceCanvas.width, h = spaceCanvas.height;
+                const cw = w/spaceSize, ch = h/spaceSize;
                 spaceCtx.clearRect(0,0,w,h);
-                const {u,v}=currentTimeUV;
-                for (let x=0; x<spaceSize; x++) for (let y=0; y<spaceSize; y++) {
-                    const val=states[x][y][u][v];
-                    spaceCtx.fillStyle = val===0?'#000':val===1?'#fff':'#888';
-                    spaceCtx.fillRect(x*cw, y*ch, cw, ch);
-                    if (areTimeNeighborsKnown(x,y,u,v)) {
-                        const nt=countTimeLiving(x,y,u,v);
-                        spaceCtx.fillStyle='#0ff';
-                        const fs=Math.max(8,Math.floor(cw*0.7));
-                        spaceCtx.font=`${fs}px sans-serif`;
-                        spaceCtx.textAlign='center'; spaceCtx.textBaseline='middle';
-                        spaceCtx.fillText(nt, x*cw+cw/2, y*ch+ch/2);
+                const {u, v} = currentTimeUV;
+                for (let x=0; x<spaceSize; x++) {
+                    for (let y=0; y<spaceSize; y++) {
+                        const val = states[x][y][u][v];
+                        spaceCtx.fillStyle = val===0 ? '#000' : val===1 ? '#fff' : '#888';
+                        spaceCtx.fillRect(x*cw, y*ch, cw, ch);
+                        if (areTimeNeighborsKnown(x,y,u,v)) {
+                            const nt = countTimeLiving(x,y,u,v);
+                            spaceCtx.fillStyle = '#0ff';
+                            const fontSize = Math.max(8, Math.floor(cw*0.7));
+                            spaceCtx.font = `${fontSize}px sans-serif`;
+                            spaceCtx.textAlign = 'center';
+                            spaceCtx.textBaseline = 'middle';
+                            spaceCtx.fillText(nt, x*cw + cw/2, y*ch + ch/2);
+                        }
                     }
                 }
-                spaceCtx.strokeStyle='#333'; spaceCtx.lineWidth=0.5;
+                spaceCtx.strokeStyle = '#333';
+                spaceCtx.lineWidth = 0.5;
                 for (let x=1; x<spaceSize; x++) { spaceCtx.beginPath(); spaceCtx.moveTo(x*cw,0); spaceCtx.lineTo(x*cw,h); spaceCtx.stroke(); }
                 for (let y=1; y<spaceSize; y++) { spaceCtx.beginPath(); spaceCtx.moveTo(0,y*ch); spaceCtx.lineTo(w,y*ch); spaceCtx.stroke(); }
-                const {x:px,y:py}=currentSpaceXY;
-                spaceCtx.strokeStyle='#0f0'; spaceCtx.lineWidth=2;
+                const {x:px, y:py} = currentSpaceXY;
+                spaceCtx.strokeStyle = '#0f0';
+                spaceCtx.lineWidth = 2;
                 spaceCtx.strokeRect(px*cw, py*ch, cw, ch);
-                spaceCoordSpan.textContent=`(u=${u}, v=${v})`;
+                spaceCoordSpan.textContent = `(u=${u}, v=${v})`;
             }
 
             function drawTimeCanvas() {
-                const w=timeCanvas.width, h=timeCanvas.height;
-                const cw=w/timeSize, ch=h/timeSize;
+                const w = timeCanvas.width, h = timeCanvas.height;
+                const cw = w/timeSize, ch = h/timeSize;
                 timeCtx.clearRect(0,0,w,h);
-                const {x,y}=currentSpaceXY;
-                for (let u=0; u<timeSize; u++) for (let v=0; v<timeSize; v++) {
-                    const val=states[x][y][u][v];
-                    timeCtx.fillStyle = val===0?'#000':val===1?'#fff':'#888';
-                    timeCtx.fillRect(u*cw, v*ch, cw, ch);
-                    if (areSpaceNeighborsKnown(x,y,u,v)) {
-                        const ns=countSpaceLiving(x,y,u,v);
-                        timeCtx.fillStyle='#0ff';
-                        const fs=Math.max(8,Math.floor(cw*0.7));
-                        timeCtx.font=`${fs}px sans-serif`;
-                        timeCtx.textAlign='center'; timeCtx.textBaseline='middle';
-                        timeCtx.fillText(ns, u*cw+cw/2, v*ch+ch/2);
+                const {x, y} = currentSpaceXY;
+                for (let u=0; u<timeSize; u++) {
+                    for (let v=0; v<timeSize; v++) {
+                        const val = states[x][y][u][v];
+                        timeCtx.fillStyle = val===0 ? '#000' : val===1 ? '#fff' : '#888';
+                        timeCtx.fillRect(u*cw, v*ch, cw, ch);
+                        if (areSpaceNeighborsKnown(x,y,u,v)) {
+                            const ns = countSpaceLiving(x,y,u,v);
+                            timeCtx.fillStyle = '#0ff';
+                            const fontSize = Math.max(8, Math.floor(cw*0.7));
+                            timeCtx.font = `${fontSize}px sans-serif`;
+                            timeCtx.textAlign = 'center';
+                            timeCtx.textBaseline = 'middle';
+                            timeCtx.fillText(ns, u*cw + cw/2, v*ch + ch/2);
+                        }
                     }
                 }
-                timeCtx.strokeStyle='#333'; timeCtx.lineWidth=0.5;
+                timeCtx.strokeStyle = '#333';
+                timeCtx.lineWidth = 0.5;
                 for (let u=1; u<timeSize; u++) { timeCtx.beginPath(); timeCtx.moveTo(u*cw,0); timeCtx.lineTo(u*cw,h); timeCtx.stroke(); }
                 for (let v=1; v<timeSize; v++) { timeCtx.beginPath(); timeCtx.moveTo(0,v*ch); timeCtx.lineTo(w,v*ch); timeCtx.stroke(); }
-                const {u:cu,v:cv}=currentTimeUV;
-                timeCtx.strokeStyle='#0f0'; timeCtx.lineWidth=2;
+                const {u:cu, v:cv} = currentTimeUV;
+                timeCtx.strokeStyle = '#0f0';
+                timeCtx.lineWidth = 2;
                 timeCtx.strokeRect(cu*cw, cv*ch, cw, ch);
-                timeCoordSpan.textContent=`(x=${x}, y=${y})`;
+                timeCoordSpan.textContent = `(x=${x}, y=${y})`;
             }
 
             function updateDisplays() { drawSpaceCanvas(); drawTimeCanvas(); }
+
+            function syncStatesFromDomains() {
+                for (let x=0; x<spaceSize; x++) for (let y=0; y<spaceSize; y++) 
+                    for (let u=0; u<timeSize; u++) for (let v=0; v<timeSize; v++) {
+                        const dom = domains[x][y][u][v];
+                        states[x][y][u][v] = (dom.size===1) ? (dom.has(0)?0:1) : 2;
+                    }
+            }
 
             function getSpaceCell(e) {
                 const r = spaceCanvas.getBoundingClientRect();
@@ -474,11 +269,14 @@
                 const v = Math.floor((e.clientY-r.top)/(timeCanvas.height/timeSize));
                 return {u:Math.min(timeSize-1,Math.max(0,u)), v:Math.min(timeSize-1,Math.max(0,v))};
             }
+
             function toggleState(x,y,u,v) {
                 if (solving) return;
                 const cur = states[x][y][u][v];
                 states[x][y][u][v] = (cur+1)%3;
+                if (domains) domains[x][y][u][v] = states[x][y][u][v]===2 ? new Set([0,1]) : new Set([states[x][y][u][v]]);
             }
+
             function handleSpaceDraw(e) { const {x,y}=getSpaceCell(e); const {u,v}=currentTimeUV; toggleState(x,y,u,v); drawSpaceCanvas(); drawTimeCanvas(); }
             function handleTimeDraw(e) { const {u,v}=getTimeCell(e); const {x,y}=currentSpaceXY; toggleState(x,y,u,v); drawTimeCanvas(); drawSpaceCanvas(); }
             function handleSpaceProbe(e) { const {x,y}=getSpaceCell(e); if(x!==currentSpaceXY.x||y!==currentSpaceXY.y){currentSpaceXY={x,y}; drawTimeCanvas(); drawSpaceCanvas();} }
@@ -489,7 +287,7 @@
                 else if (currentMode==='probe') { handleSpaceProbe(e); probeLock=true; }
             });
             spaceCanvas.addEventListener('pointermove', e => {
-                if (currentMode==='probe' && !probeLock) handleSpaceProbe(e);
+                if (currentMode==='probe' && probeLock) handleSpaceProbe(e);
                 else if (currentMode==='draw' && !solving && e.buttons>0) handleSpaceDraw(e);
             });
             spaceCanvas.addEventListener('pointerup', ()=> { probeLock=false; });
@@ -498,7 +296,7 @@
                 else if (currentMode==='probe') { handleTimeProbe(e); probeLock=true; }
             });
             timeCanvas.addEventListener('pointermove', e => {
-                if (currentMode==='probe' && !probeLock) handleTimeProbe(e);
+                if (currentMode==='probe' && probeLock) handleTimeProbe(e);
                 else if (currentMode==='draw' && !solving && e.buttons>0) handleTimeDraw(e);
             });
             timeCanvas.addEventListener('pointerup', ()=> { probeLock=false; });
@@ -509,13 +307,18 @@
             modeProbeBtn.addEventListener('click', ()=>{
                 currentMode='probe'; modeProbeBtn.classList.add('selected'); modeDrawBtn.classList.remove('selected');
             });
+
             applySizeBtn.addEventListener('click', ()=>{
-                if (solving) return;
+                if (solving) {
+                    stopSolving();
+                }
                 spaceSize = parseInt(sizeSpaceInput.value); timeSize = parseInt(sizeTimeInput.value);
                 if (spaceSize<4||spaceSize>32||timeSize<4||timeSize>32) { alert('大小必须在4到32之间'); return; }
-                initStates();
+                initStates(); initDomains();
                 currentTimeUV = { u: Math.floor(timeSize/2), v: Math.floor(timeSize/2) };
                 currentSpaceXY = { x: Math.floor(spaceSize/2), y: Math.floor(spaceSize/2) };
+                toggleState(currentSpaceXY.x,currentSpaceXY.y,currentTimeUV.u,currentTimeUV.v);
+                toggleState(currentSpaceXY.x,currentSpaceXY.y,currentTimeUV.u,currentTimeUV.v);
                 iterationCount = 0;
                 updateDisplays();
             });
@@ -548,35 +351,214 @@
                 ruleGridContainer.appendChild(corner());
             }
 
+            // ---------- 优化后的预设规则（确保有生有死） ----------
             const presets = {
                 custom: () => {},
                 sparse: () => { for (let ns=0; ns<9; ns++) for (let nt=0; nt<9; nt++) { const s=ns+nt; if(s<=2) rule[ns][nt]=1; else if(s>=5) rule[ns][nt]=0; else rule[ns][nt]=2; } },
-                dense: () => { for (let ns=0; ns<9; ns++) for (let nt=0; nt<9; nt++) { const s=ns+nt; if(s>=4) rule[ns][nt]=1; else if(s<=1) rule[ns][nt]=0; else rule[ns][nt]=2; } },
-                lifeSpace: () => { for (let ns=0; ns<9; ns++) for (let nt=0; nt<9; nt++) { if(ns===2||ns===3) rule[ns][nt]=1; else if(ns===0||ns>=4) rule[ns][nt]=0; else rule[ns][nt]=2; } },
-                lifeTime: () => { for (let ns=0; ns<9; ns++) for (let nt=0; nt<9; nt++) { if(nt===2||nt===3) rule[ns][nt]=1; else if(nt===0||nt>=4) rule[ns][nt]=0; else rule[ns][nt]=2; } },
-                life2D: () => { for (let ns=0; ns<9; ns++) for (let nt=0; nt<9; nt++) { if((ns===2||ns===3)&&(nt===2||nt===3)) rule[ns][nt]=1; else rule[ns][nt]=0; } },
-                lifeSym: () => { for (let ns=0; ns<9; ns++) for (let nt=0; nt<9; nt++) { if((ns===2||ns===3)||(nt===2||nt===3)) { if(ns>=4||nt>=4) rule[ns][nt]=0; else rule[ns][nt]=1; } else rule[ns][nt]=2; } },
+                dense: () => { for (let ns=0; ns<9; ns++) for (let nt=0; nt<9; nt++) { const s=ns+nt; if(s>=4) rule[ns][nt]=1; else if(s<=1) rule[ns][nt]=0; else rule[ns][nt]=2; } rule[8][8]=0; },
+                lifeSpace: () => { for (let ns=0; ns<9; ns++) for (let nt=0; nt<9; nt++) { rule[ns][nt] = ns===3?1:ns>=1&&ns<=5?2:0; } },
+                lifeTime: () => { for (let ns=0; ns<9; ns++) for (let nt=0; nt<9; nt++) { rule[ns][nt] = nt===3?1:nt>=1&&nt<=5?2:0; } },
+                life2D: () => { for (let ns=0; ns<9; ns++) for (let nt=0; nt<9; nt++) { rule[ns][nt] = ns===3&&nt===3?1:(ns===2||ns===3||ns===4) && (nt===2||nt===3||nt===4)?2:0; } },
+                d33: () => {for (let ns=0; ns<9; ns++) for (let nt=0; nt<9; nt++) { rule[ns][nt] =2;}rule[6][2]=1;rule[2][6]=0; },
                 empty: () => { for (let ns=0; ns<9; ns++) for (let nt=0; nt<9; nt++) rule[ns][nt]=2; },
                 allBorn: () => { for (let ns=0; ns<9; ns++) for (let nt=0; nt<9; nt++) rule[ns][nt]=1; },
                 allDead: () => { for (let ns=0; ns<9; ns++) for (let nt=0; nt<9; nt++) rule[ns][nt]=0; }
             };
-
             applyPresetBtn.addEventListener('click', () => {
                 const key = presetSelect.value;
-                if (presets[key]) { presets[key](); renderRuleGrid(); }
+                if (presets[key]) {
+                    presets[key]();
+                    renderRuleGrid();
+                }
             });
+
+            // ---------- WFC ----------
+            function getNeighbors(x,y,u,v) {
+                const spaceNeigh = [], timeNeigh = [];
+                for (let dx=-1; dx<=1; dx++) for (let dy=-1; dy<=1; dy++) {
+                    if (dx===0 && dy===0) continue;
+                    const nx=x+dx, ny=y+dy;
+                    if (nx>=0 && nx<spaceSize && ny>=0 && ny<spaceSize) spaceNeigh.push([nx,ny,u,v]);
+                }
+                for (let du=-1; du<=1; du++) for (let dv=-1; dv<=1; dv++) {
+                    if (du===0 && dv===0) continue;
+                    const nu=u+du, nv=v+dv;
+                    if (nu>=0 && nu<timeSize && nv>=0 && nv<timeSize) timeNeigh.push([x,y,nu,nv]);
+                }
+                return { spaceNeigh, timeNeigh };
+            }
+
+            function isStatePossible(x,y,u,v, state) {
+                const { spaceNeigh, timeNeigh } = getNeighbors(x,y,u,v);
+                let minNs=0, maxNs=0, minNt=0, maxNt=0;
+                for (const [nx,ny,nu,nv] of spaceNeigh) {
+                    const d = domains[nx][ny][nu][nv];
+                    if (d.has(1)) maxNs++;
+                    if (!d.has(0)) minNs++;
+                }
+                for (const [nx,ny,nu,nv] of timeNeigh) {
+                    const d = domains[nx][ny][nu][nv];
+                    if (d.has(1)) maxNt++;
+                    if (!d.has(0)) minNt++;
+                }
+                for (let ns=minNs; ns<=maxNs; ns++) {
+                    for (let nt=minNt; nt<=maxNt; nt++) {
+                        const r = rule[ns][nt];
+                        if (r === 2 || r === state) return true;
+                    }
+                }
+                return false;
+            }
+
+            function propagate() {
+                let changed = true;
+                while (changed) {
+                    changed = false;
+                    for (let x=0; x<spaceSize; x++) for (let y=0; y<spaceSize; y++) 
+                        for (let u=0; u<timeSize; u++) for (let v=0; v<timeSize; v++) {
+                            const dom = domains[x][y][u][v];
+                            if (dom.size === 1) {
+                                const val = dom.has(0) ? 0 : 1;
+                                if (!isStatePossible(x,y,u,v,val)) return true;
+                            } else {
+                                const possible0 = isStatePossible(x,y,u,v,0);
+                                const possible1 = isStatePossible(x,y,u,v,1);
+                                if (!possible0 && !possible1) return true;
+                                if (!possible0 && dom.has(0)) { dom.delete(0); changed=true; }
+                                if (!possible1 && dom.has(1)) { dom.delete(1); changed=true; }
+                            }
+                        }
+                }
+                return false;
+            }
+
+            function selectVariable() {
+                const candidates = [];
+                let minEntropy = Infinity;
+                for (let x=0; x<spaceSize; x++) for (let y=0; y<spaceSize; y++) 
+                    for (let u=0; u<timeSize; u++) for (let v=0; v<timeSize; v++) {
+                        const d = domains[x][y][u][v];
+                        if (d.size > 1 && d.size < minEntropy) {
+                            minEntropy = d.size;
+                            candidates.length = 0;
+                            candidates.push({x,y,u,v});
+                        } else if (d.size === minEntropy) {
+                            candidates.push({x,y,u,v});
+                        }
+                    }
+                return candidates.length ? candidates[Math.floor(Math.random() * candidates.length)] : null;
+            }
+
+            function heuristicOrder(x,y,u,v, values) {
+                const { spaceNeigh, timeNeigh } = getNeighbors(x,y,u,v);
+                let minNs=0, maxNs=0, minNt=0, maxNt=0;
+                for (const [nx,ny,nu,nv] of spaceNeigh) {
+                    const d = domains[nx][ny][nu][nv];
+                    if (d.has(1)) maxNs++;
+                    if (!d.has(0)) minNs++;
+                }
+                for (const [nx,ny,nu,nv] of timeNeigh) {
+                    const d = domains[nx][ny][nu][nv];
+                    if (d.has(1)) maxNt++;
+                    if (!d.has(0)) minNt++;
+                }
+                let count0 = 0, count1 = 0;
+                for (let ns=minNs; ns<=maxNs; ns++) {
+                    for (let nt=minNt; nt<=maxNt; nt++) {
+                        const r = rule[ns][nt];
+                        if (r === 0) count0++;
+                        else if (r === 1) count1++;
+                    }
+                }
+                const prefer0 = count0 > count1;
+                return values.slice().sort((a,b) => prefer0 ? a-b : b-a);
+            }
+
+            function cloneDomains() {
+                const nd = new Array(spaceSize);
+                for (let x=0; x<spaceSize; x++) { nd[x]=new Array(spaceSize);
+                    for (let y=0; y<spaceSize; y++) { nd[x][y]=new Array(timeSize);
+                        for (let u=0; u<timeSize; u++) { nd[x][y][u]=new Array(timeSize);
+                            for (let v=0; v<timeSize; v++) nd[x][y][u][v]=new Set(domains[x][y][u][v]);
+                        }
+                    }
+                }
+                return nd;
+            }
+            function restoreDomains(saved) {
+                for (let x=0; x<spaceSize; x++) for (let y=0; y<spaceSize; y++) 
+                    for (let u=0; u<timeSize; u++) for (let v=0; v<timeSize; v++) 
+                        domains[x][y][u][v] = new Set(saved[x][y][u][v]);
+            }
+
+            async function solveStep() {
+                if (!solving) return;
+                iterationCount++;
+                statusDiv.textContent = `求解中 · 迭代: ${iterationCount}`;
+                let allDetermined = true;
+                outer: for (let x=0; x<spaceSize; x++) for (let y=0; y<spaceSize; y++) 
+                    for (let u=0; u<timeSize; u++) for (let v=0; v<timeSize; v++) 
+                        if (domains[x][y][u][v].size>1) { allDetermined=false; break outer; }
+                if (allDetermined) {
+                    solving=false; stopBtn.disabled=true; statusDiv.textContent=`求解成功！ · 迭代: ${iterationCount}`;
+                    syncStatesFromDomains(); updateDisplays(); return;
+                }
+                const variable = selectVariable();
+                if (!variable) { solving=false; stopBtn.disabled=true; statusDiv.textContent=`求解结束 · 迭代: ${iterationCount}`; syncStatesFromDomains(); updateDisplays(); return; }
+                const {x,y,u,v}=variable;
+                const dom = domains[x][y][u][v];
+                const values = heuristicOrder(x,y,u,v, Array.from(dom));
+                const saved = cloneDomains();
+                backtrackStack.push({x,y,u,v, values: values.slice(1), saved});
+                domains[x][y][u][v] = new Set([values[0]]);
+                const contradiction = propagate();
+                if (contradiction) backtrack();
+                syncStatesFromDomains(); updateDisplays();
+                if (solving) solveStepId = setTimeout(solveStep, 0);
+            }
+
+            function backtrack() {
+                while (backtrackStack.length>0) {
+                    const last = backtrackStack.pop();
+                    if (last.values.length>0) {
+                        const val = last.values.shift();
+                        restoreDomains(last.saved);
+                        const {x,y,u,v}=last;
+                        domains[x][y][u][v] = new Set([val]);
+                        backtrackStack.push(last);
+                        if (!propagate()) return;
+                    } else {
+                        restoreDomains(last.saved);
+                    }
+                }
+                solving=false; stopBtn.disabled=true; statusDiv.textContent=`求解失败，无解 · 迭代: ${iterationCount}`;
+                syncStatesFromDomains(); updateDisplays();
+            }
+
+            function startSolving() {
+                if (solving) return;
+                initDomains(); backtrackStack=[]; iterationCount=0;
+                if (propagate()) { statusDiv.textContent='初始状态矛盾，无法求解。'; syncStatesFromDomains(); updateDisplays(); return; }
+                currentMode = 'probe';
+                modeProbeBtn.classList.add('selected');
+                modeDrawBtn.classList.remove('selected');
+                solving=true; stopBtn.disabled=false; statusDiv.textContent=`求解中 · 迭代: 0`;
+                syncStatesFromDomains(); updateDisplays();
+                solveStepId = setTimeout(solveStep, 0);
+            }
+            function stopSolving() {
+                solving=false; if (solveStepId) clearTimeout(solveStepId);
+                stopBtn.disabled=true; statusDiv.textContent=`求解已停止 · 迭代: ${iterationCount}`;
+                syncStatesFromDomains(); updateDisplays();
+            }
 
             solveBtn.addEventListener('click', startSolving);
             stopBtn.addEventListener('click', stopSolving);
 
-            spaceSize = parseInt(sizeSpaceInput.value);
-            timeSize = parseInt(sizeTimeInput.value);
-            initStates();
-            initRule();
-            currentTimeUV = { u: Math.floor(timeSize/2), v: Math.floor(timeSize/2) };
-            currentSpaceXY = { x: Math.floor(spaceSize/2), y: Math.floor(spaceSize/2) };
-            updateDisplays();
-            renderRuleGrid();
+            initStates(); initRule(); initDomains();
+            applyPresetBtn.click();
+            applySizeBtn.click();
+            updateDisplays(); renderRuleGrid();
             statusDiv.textContent = '绘制模式已激活 · 迭代: 0';
         })();
     </script>

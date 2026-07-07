@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>二维时间熵 · 约束硬币模型</title>
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            color: #eee;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            touch-action: manipulation;
+        }
+
+        .main {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        canvas {
+            border: 1px solid #555;
+            background: #000;
+            image-rendering: pixelated;
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin: 10px;
+            align-items: center;
+        }
+
+        button,
+        input {
+            padding: 8px 14px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button {
+            background: #e94560;
+            color: white;
+        }
+
+        button:active {
+            background: #c23152;
+        }
+
+        button.selected {
+            background: #f7a440;
+        }
+
+        input[type=number] {
+            width: 80px;
+            background: #333;
+            color: white;
+            text-align: center;
+        }
+
+        .info-text {
+            font-size: 13px;
+            color: #aaa;
+            max-width: 700px;
+            text-align: center;
+        }
+
+        #status {
+            font-weight: bold;
+            color: #ffaa00;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>二维时间熵 · 约束硬币模型 EN2T by Hqak</h3>
+    <div class="info-text">
+        相邻的时间格点的硬币状态最多只有一颗有区别。<br>
+        热力色：纯蓝对应硬币全正面，纯红对应硬币全反面。
+    </div>
+    <div class="controls">
+        <label>硬币个数 N <input type="number" id="numBits" min="1" max="256" value="32"></label>
+        <label>时间尺度 L <input type="number" id="gridSize" min="5" max="65535" value="31"></label>
+        <button id="generateBtn">🔄 重新模拟</button>
+    </div>
+    <div class="controls">
+        <button id="mode2D" class="selected">🌐 二维时间</button>
+        <button id="mode1D">📏 一维时间对比</button>
+        <button id="orderSpiral">🌀 螺旋顺序</button>
+        <button id="orderFrontier" class="selected">🧩 随机顺序</button>
+        <span id="status">二维模式 · 前端队列 · 点击生成</span>
+    </div>
+    <div class="main">
+        <div class="panel" id="panel2D">
+            <span>二维时间场 (中心=(0,0))</span>
+            <canvas id="canvas2D" width="500" height="500"></canvas>
+        </div>
+        <div class="panel" id="panel1D" style="display:none;">
+            <span>一维时间序列 (向下增长)</span>
+            <canvas id="canvas1D" width="600" height="400"></canvas>
+        </div>
+    </div>
+
+    <script>
+        (() => {
+            const canvas2D = document.getElementById('canvas2D');
+            const ctx2D = canvas2D.getContext('2d');
+            const canvas1D = document.getElementById('canvas1D');
+            const ctx1D = canvas1D.getContext('2d');
+            const panel2D = document.getElementById('panel2D');
+            const panel1D = document.getElementById('panel1D');
+            const mode2DBtn = document.getElementById('mode2D');
+            const mode1DBtn = document.getElementById('mode1D');
+            const orderSpiralBtn = document.getElementById('orderSpiral');
+            const orderFrontierBtn = document.getElementById('orderFrontier');
+            const generateBtn = document.getElementById('generateBtn');
+            const numBitsInput = document.getElementById('numBits');
+            const gridSizeInput = document.getElementById('gridSize');
+            const statusDiv = document.getElementById('status');
+
+            let mode = '2D';
+            let traversal = 'frontier';
+            let N = parseInt(numBitsInput.value);
+            let L = parseInt(gridSizeInput.value);
+            let grid = null;
+            let centerX, centerY;
+            let history1D = [];
+
+            function clampGridSize(val) {
+                let v = parseInt(val);
+                if (isNaN(v) || v < 5) v = 5;
+                if (v > 65535) v = 65535;
+                if (!(v % 2)) v++;
+                return v;
+            }
+
+            // ---------- 经典螺旋遍历 ----------
+            function trueSpiralOrder(size) {
+                const visited = new Uint8Array(size * size);
+                const key = (x, y) => y * size + x;
+                const cx = (size - 1) / 2;
+                const cy = (size - 1) / 2;
+                const coords = [{ x: cx, y: cy }];
+                visited[key(cx, cy)] = 1;
+                const dirs = [[0, -1], [1, 0], [0, 1], [-1, 0]];
+                let curDir = 0;
+                let x = cx, y = cy;
+                while (coords.length < size * size) {
+                    const [dx, dy] = dirs[curDir];
+                    const nx = x + dx;
+                    const ny = y + dy;
+                    if (nx < 0 || nx >= size || ny < 0 || ny >= size) {
+                        curDir = (curDir + 1) % 4;
+                        continue;
+                    }
+                    x = nx; y = ny;
+                    if (!visited[key(x, y)]) {
+                        visited[key(x, y)] = 1;
+                        coords.push({ x, y });
+                    } else {
+                        x -= dx; y -= dy;
+                        curDir = (curDir + 1) % 4;
+                        continue;
+                    }
+                    const rightDir = (curDir + 1) % 4;
+                    const [rx, ry] = dirs[rightDir];
+                    const rnx = x + rx, rny = y + ry;
+                    if (rnx >= 0 && rnx < size && rny >= 0 && rny < size && !visited[key(rnx, rny)]) {
+                        curDir = rightDir;
+                    }
+                }
+                return coords;
+            }
+
+            // ---------- 前端队列遍历 ----------
+            function frontierOrder(size, rng = Math.random) {
+                const inGrid = (x, y) => x >= 0 && x < size && y >= 0 && y < size;
+                const visited = new Uint8Array(size * size);
+                const key = (x, y) => y * size + x;
+                const unkey = (k) => {
+                    const y = Math.floor(k / size);
+                    const x = k % size;
+                    return { x, y };
+                };
+
+                const cx = (size - 1) / 2, cy = (size - 1) / 2;
+                const coords = [{ x: cx, y: cy }];
+                visited[key(cx, cy)] = 1;
+
+                const set1 = new Set();
+                const set2 = new Set();
+                const dirs4 = [[0, -1], [0, 1], [-1, 0], [1, 0]];
+
+                const countVisitedNeighbors = (x, y) => {
+                    let cnt = 0;
+                    for (const [dx, dy] of dirs4) {
+                        const nx = x + dx, ny = y + dy;
+                        if (inGrid(nx, ny) && visited[key(nx, ny)]) cnt++;
+                    }
+                    return cnt;
+                };
+
+                for (const [dx, dy] of dirs4) {
+                    const nx = cx + dx, ny = cy + dy;
+                    if (inGrid(nx, ny)) {
+                        const cnt = countVisitedNeighbors(nx, ny);
+                        const k = key(nx, ny);
+                        if (cnt === 1) set1.add(k);
+                        else if (cnt === 2) set2.add(k);
+                    }
+                }
+
+                while (set1.size > 0 || set2.size > 0) {
+                    const pickSet = set2.size > 0 ? set2 : set1;
+                    const arr = Array.from(pickSet);
+                    const chosenKey = arr[Math.floor(rng() * arr.length)];
+                    set1.delete(chosenKey);
+                    set2.delete(chosenKey);
+
+                    const { x: sx, y: sy } = unkey(chosenKey);
+                    coords.push({ x: sx, y: sy });
+                    visited[key(sx, sy)] = 1;
+
+                    for (const [dx, dy] of dirs4) {
+                        const nx = sx + dx, ny = sy + dy;
+                        if (!inGrid(nx, ny) || visited[key(nx, ny)]) continue;
+                        const k = key(nx, ny);
+                        const newCnt = countVisitedNeighbors(nx, ny);
+                        set1.delete(k);
+                        set2.delete(k);
+                        if (newCnt === 1) set1.add(k);
+                        else if (newCnt === 2) set2.add(k);
+                    }
+                }
+                return coords;
+            }
+
+            // ---------- 邻居与规则 ----------
+            function getKnownNeighbors(x, y, size, grid) {
+                const dirs = [[0, -1], [0, 1], [-1, 0], [1, 0]];
+                const neighbors = [];
+                for (const [dx, dy] of dirs) {
+                    const nx = x + dx, ny = y + dy;
+                    if (nx >= 0 && nx < size && ny >= 0 && ny < size && grid[ny][nx]) {
+                        neighbors.push({ x: nx, y: ny, state: grid[ny][nx] });
+                    }
+                }
+                return neighbors;
+            }
+
+            function diffIndices(a, b) {
+                const diffs = [];
+                for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) diffs.push(i);
+                return diffs;
+            }
+
+            function flipRandomBit(state) {
+                const s = new Uint8Array(state);
+                const idx = Math.floor(Math.random() * s.length);
+                s[idx] = 1 - s[idx];
+                return s;
+            }
+
+            function generate2D() {
+                const size = L;
+                grid = new Array(size);
+                for (let y = 0; y < size; y++) {
+                    grid[y] = new Array(size);
+                    for (let x = 0; x < size; x++) grid[y][x] = null;
+                }
+                centerX = (size - 1) / 2;
+                centerY = (size - 1) / 2;
+                grid[centerY][centerX] = new Uint8Array(N);
+
+                let order;
+                if (traversal === 'spiral') {
+                    order = trueSpiralOrder(size);
+                } else {
+                    order = frontierOrder(size);
+                }
+
+                for (const { x, y } of order) {
+                    if (x === centerX && y === centerY) continue;
+                    const neighbors = getKnownNeighbors(x, y, size, grid);
+                    let newState;
+                    if (neighbors.length === 0) {
+                        newState = new Uint8Array(N);
+                    } else if (neighbors.length === 1) {
+                        newState = flipRandomBit(neighbors[0].state);
+                    } else {
+                        const A = neighbors[0].state, B = neighbors[1].state;
+                        const diffs = diffIndices(A, B);
+                        if (diffs.length === 0) {
+                            newState = flipRandomBit(A);
+                        } else if (diffs.length === 1) {
+                            newState = new Uint8Array(Math.random() < 0.5 ? A : B);
+                        } else if (diffs.length === 2) {
+                            newState = new Uint8Array(A);
+                            const flipIdx = diffs[Math.floor(Math.random() * diffs.length)];
+                            newState[flipIdx] = 1 - newState[flipIdx];
+                        } else {
+                            newState = flipRandomBit(A);
+                        }
+                    }
+                    grid[y][x] = newState;
+                }
+            }
+
+            function generate1D() {
+                history1D = [];
+                const state = new Uint8Array(N);
+                history1D.push(new Uint8Array(state));
+                for (let t = 1; t < L; t++) {
+                    const idx = Math.floor(Math.random() * N);
+                    state[idx] = 1 - state[idx];
+                    history1D.push(new Uint8Array(state));
+                }
+            }
+
+            function calcEntropy(state) {
+                let ones = 0;
+                for (let i = 0; i < state.length; i++) if (state[i] === 1) ones++;
+                const p1 = ones / state.length;
+                const p0 = 1 - p1;
+                let h = 0;
+                if (p0 > 0) h -= p0 * Math.log2(p0);
+                if (p1 > 0) h -= p1 * Math.log2(p1);
+                return { ones, entropy: h, density: p1 };
+            }
+
+            // 增强对比度的颜色映射
+            function enhancedColor(density, entropy) {
+                // 用幂函数增强低密度/高密度的对比度
+                const gamma = 0.35;
+                const r = Math.floor(Math.pow(density, gamma) * 255);
+                const b = Math.floor(Math.pow(1 - density, gamma) * 255);
+                const g = Math.floor(entropy * 255);
+                return { r, g, b };
+            }
+
+            function draw2D() {
+                if (!grid) return;
+                const size = L;
+                const cellSize = Math.max(1, Math.floor(Math.min(canvas2D.width, canvas2D.height) / size));
+                const totalSize = cellSize * size;
+                const offsetX = (canvas2D.width - totalSize) / 2;
+                const offsetY = (canvas2D.height - totalSize) / 2;
+                ctx2D.clearRect(0, 0, canvas2D.width, canvas2D.height);
+                ctx2D.fillStyle = '#000';
+                ctx2D.fillRect(0, 0, canvas2D.width, canvas2D.height);
+
+                const bitsPerRow = Math.ceil(Math.sqrt(N));
+                const bitCell = Math.max(1, Math.floor(cellSize / bitsPerRow));
+                const bitsAreaSize = bitsPerRow * bitCell;
+                const bitsOffsetX = (cellSize - bitsAreaSize) / 2;
+                const bitsOffsetY = (cellSize - bitsAreaSize) / 2;
+
+                for (let y = 0; y < size; y++) {
+                    for (let x = 0; x < size; x++) {
+                        const state = grid[y][x];
+                        if (!state) continue;
+                        const { entropy, density } = calcEntropy(state);
+                        const { r, g, b } = enhancedColor(density, entropy);
+                        const px = offsetX + x * cellSize;
+                        const py = offsetY + y * cellSize;
+                        ctx2D.fillStyle = `rgb(${r},${g},${b})`;
+                        ctx2D.fillRect(px, py, cellSize, cellSize);
+
+                        if (bitCell >= 2) {
+                            for (let i = 0; i < N; i++) {
+                                const bx = i % bitsPerRow;
+                                const by = Math.floor(i / bitsPerRow);
+                                ctx2D.fillStyle = state[i] === 1 ? '#fff' : '#000';
+                                ctx2D.fillRect(
+                                    px + bitsOffsetX + bx * bitCell,
+                                    py + bitsOffsetY + by * bitCell,
+                                    bitCell, bitCell
+                                );
+                            }
+                        }
+                    }
+                }
+                ctx2D.strokeStyle = '#0f0';
+                ctx2D.lineWidth = 2;
+                ctx2D.strokeRect(offsetX + centerX * cellSize, offsetY + centerY * cellSize, cellSize, cellSize);
+            }
+
+            function draw1D() {
+                if (!history1D.length) return;
+                const steps = history1D.length;
+                const cellH = Math.max(1, Math.floor(canvas1D.height / steps));
+                const halfWidth = Math.floor(canvas1D.width / 2);
+                const bitsWidth = halfWidth;
+                const cellW = Math.max(1, Math.floor(bitsWidth / N));
+                ctx1D.clearRect(0, 0, canvas1D.width, canvas1D.height);
+
+                for (let t = 0; t < steps; t++) {
+                    const state = history1D[t];
+                    const { entropy, density } = calcEntropy(state);
+                    const { r, g, b } = enhancedColor(density, entropy);
+                    const yPos = t * cellH;
+
+                    // 热力图（左半部分）
+                    ctx1D.fillStyle = `rgb(${r},${g},${b})`;
+                    ctx1D.fillRect(0, yPos, halfWidth, cellH);
+
+                    // 比特图（右半部分）
+                    for (let i = 0; i < N; i++) {
+                        ctx1D.fillStyle = state[i] === 1 ? '#fff' : '#000';
+                        ctx1D.fillRect(halfWidth + i * cellW, yPos, cellW, cellH);
+                    }
+                }
+            }
+
+            function updateUI() {
+                if (mode === '2D') {
+                    panel2D.style.display = 'flex';
+                    panel1D.style.display = 'none';
+                    mode2DBtn.classList.add('selected');
+                    mode1DBtn.classList.remove('selected');
+                    if (!grid) generate2D();
+                    draw2D();
+                    statusDiv.textContent = `二维模式 · ${traversal === 'spiral' ? '螺旋顺序' : '随机顺序'} · 边长 ${L}`;
+                } else {
+                    panel2D.style.display = 'none';
+                    panel1D.style.display = 'flex';
+                    mode1DBtn.classList.add('selected');
+                    mode2DBtn.classList.remove('selected');
+                    if (!history1D.length) generate1D();
+                    draw1D();
+                    statusDiv.textContent = '一维模式 · 随机翻转序列';
+                }
+            }
+
+            mode2DBtn.addEventListener('click', () => { mode = '2D'; updateUI(); });
+            mode1DBtn.addEventListener('click', () => { mode = '1D'; updateUI(); });
+
+            orderSpiralBtn.addEventListener('click', () => {
+                traversal = 'spiral';
+                orderSpiralBtn.classList.add('selected');
+                orderFrontierBtn.classList.remove('selected');
+                grid = null;
+                history1D = [];
+                if (mode === '2D') { generate2D(); draw2D(); }
+                updateUI();
+            });
+            orderFrontierBtn.addEventListener('click', () => {
+                traversal = 'frontier';
+                orderFrontierBtn.classList.add('selected');
+                orderSpiralBtn.classList.remove('selected');
+                grid = null;
+                history1D = [];
+                if (mode === '2D') { generate2D(); draw2D(); }
+                updateUI();
+            });
+
+            generateBtn.addEventListener('click', () => {
+                N = parseInt(numBitsInput.value);
+                if (isNaN(N) || N < 1) N = 1;
+                if (N > 256) N = 256;
+                L = clampGridSize(gridSizeInput.value);
+                numBitsInput.value = N;
+                gridSizeInput.value = L;
+                grid = null;
+                history1D = [];
+                statusDiv.textContent = '正在生成...';
+                setTimeout(() => {
+                    if (mode === '2D') generate2D();
+                    else generate1D();
+                    updateUI();
+                }, 10);
+            });
+
+            generate2D();
+            updateUI();
+        })();
+    </script>
+</body>
+
+</html>

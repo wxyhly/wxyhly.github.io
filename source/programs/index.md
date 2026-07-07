@@ -65,6 +65,11 @@ date: 2019-03-30 20:30:29
 [点这里查看详情](/archives/Eop-Analogue/)
 
 ## 博文中的JS小程序集合
+- [[原文](/archives/2dtime/)] 二维时间世界
+    + [小球碰撞模拟器](/three/2d2t.html)
+    + [二维熵增模拟器](/three/en2t.html)
+    + [电磁波模拟器](/three/em2t.html)
+    + [生命游戏模拟器](/three/ca2t.html)
 - [[原文](/archives/subspace-angle-2/)] [平面-胞夹角范围1](/three/angle_range.html?type=pc)、[平面-胞夹角范围2](/three/angle_range.html?type=cp)
 - [[原文](/archives/subspace-angle/)] [平面-平面夹角范围](/three/angle_range.html?type=pp)
 - [[原文](/archives/eye2d/)] [体验二维人看三维场景](/three/3dviewer42der.html)
