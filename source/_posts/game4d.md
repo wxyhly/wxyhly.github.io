@@ -10,6 +10,7 @@ index_img: /img/game2.jpg
 <span class="likecode">（** 23年9月更新：添加了[4DGolf](/archives/game4d/#4dgolf)与[4DMiner](/archives/game4d/#4dminer) **）</span>
 
 <span class="likecode">（** 25年1-6月更新：添加了[4D Games](/archives/game4d/#4dgames)、[Moena](/archives/game4d/#moena) 与[HoxelDraw](/archives/game4d/#hoxel)**）</span>
+<span class="likecode">（** 26年7月更新：添加了[四维直觉](/archives/game4d/#4dgolf) **）</span>
 
 要想进一步体验四维空间的“感觉”，在电脑上做一个交互程序是再好不过的了。我曾经梦到玩像3dMax那样的4D复杂建模软件（可惜不存在）。这里我将整理我玩过的四维程序（不一定算游戏），并给一些主观评价。
 ## Miegakure与4D Toys
@@ -112,6 +113,12 @@ Youtuber [CodeParade](https://www.youtube.com/@CodeParade) 制作了一款[4D高
 ![往上转角](/img/game21.gif)
 
 </td></tr></table>
+
+## 四维直觉
+
+如果说4D Block是一个早期的简单丑陋的可视化四维探索的Demo级别的游戏，那么[yugu233](https://space.bilibili.com/613069855)开发的[四维直觉](https://store.steampowered.com/app/3635130/_/)就是这种可视化方式下打磨出来的注重用户体验的现代游戏。四维直觉分了很多关卡，从教学开始一步一步教你如何理解四维，还有三维和四维场景的对比，到后面的关卡越来越难，能体会到在真正的四维世界中做解迷的感觉，用作者的话来说就是“连四维人来了都要想一想”。游戏中有很多好玩的机制，如骰子等推向子机制以及各种圆柱柱、球柱、双圆柱的滚动机制等等……本人也有幸参加了游戏所有关卡的前期评测，强烈推荐。![玩家正在推动球柱](/img/4dintuition1.jpg)
+
+这个游戏中也遇到了如何给新的四维方向中文命名的问题，游戏采用的是用“金木水火”四个五行元素对四个方向进行了标注，这也体现了四个方向的无差异性。
 
 ## 其它游戏
 

@@ -13,7 +13,7 @@ index_img: /img/josleys1.jpg
 
 <!-- <div style="float:right"> -->
 
-![来自英文维基百科](https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Hyperbolic_tiling_omnitruncated_3-7.png/220px-Hyperbolic_tiling_omnitruncated_3-7.png)
+![来自英文维基百科](/img/wikimedia/Hyperbolic_tiling_omnitruncated_3-7.png)
 
 <!-- </div>
 <div style="width:300px"> -->
@@ -27,7 +27,7 @@ index_img: /img/josleys1.jpg
 ### 双曲几何、欧氏几何与球面几何
 这三个概念应该是最普及，网上介绍得最多的了。它们来源于欧几里得的《几何原本》提出的第五条公设，即**过直线外一点有且只有一条直线与已知直线平行**。第五条公设如果成立就是经典的欧氏几何（比如初高中的平面几何、立体几何），第五条公设不成立的最好理解的例子就是**球面几何**。球面上的直线就是过球心的大圆（因为球面上连接两点的最短线路是大圆的一段劣弧），任意两个不重合的大圆都会至少交于两点，即不存在两条直线平行。双曲空间相反，说的是**过直线外一点有无数条直线与已知直线平行**，这里平行即指不相交。为什么要叫“双曲”空间呢？因为它是双曲面上的几何。但这个双曲面上度量长度的方式是很怪的，是**闵可夫斯基空间**的度量（对！就是四维时空的度量方式！）。这种度量下的双曲面就是到顶点距离为定长的点的集合！闵可夫斯基空间中的生物（如果有的话）会认为双曲面是最完美的几何体！所以我们不会太习惯这个模型。
 ### 庞加莱共形圆盘模型
-![来源：英文维基百科](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/HyperboloidProjection.png/220px-HyperboloidProjection.png)
+![来源：英文维基百科](/img/wikimedia/HyperboloidProjection.png)
 就像球面几何一样我们可以用**球极投影**（还记得球极投影吗？《维度》第一集就讲的它）来展示这个球面，双曲几何也能把双曲面投影到平面上来展示，但与球极投影不同的是双曲几何平面上的投影只在一个圆中。埃舍尔的那个圆盘正是庞加莱共形圆盘模型。
 ![josleys网站上的讲座视频截图](/img/josleys2.jpg)
 你可呢会说这个模型这么丑，居然周围的图案都拉长了，没有保角性。但其实它是有保角性的！只不过这里的角是闵可夫斯基空间中的**双曲角**！双曲角你可能不知道是啥，但双曲函数我想应该不陌生吧。

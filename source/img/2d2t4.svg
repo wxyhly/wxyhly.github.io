@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="156.95081mm"
-   height="106.10441mm"
-   viewBox="0 0 156.95081 106.10441"
+   width="207.53413mm"
+   height="109.23841mm"
+   viewBox="0 0 207.53414 109.23841"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
@@ -25,12 +25,12 @@
      showgrid="false"
      fit-margin-top="10"
      lock-margins="true"
-     fit-margin-left="10"
-     fit-margin-right="10"
+     fit-margin-left="30"
+     fit-margin-right="30"
      fit-margin-bottom="10"
      inkscape:zoom="0.79807385"
-     inkscape:cx="181.06094"
-     inkscape:cy="118.41009"
+     inkscape:cx="296.33849"
+     inkscape:cy="129.68725"
      inkscape:window-width="1440"
      inkscape:window-height="838"
      inkscape:window-x="-6"
@@ -55,7 +55,7 @@
      inkscape:label="图层 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-21.774487,-3.6926191)">
+     transform="translate(8.8088455,-0.73844784)">
     <g
        id="g13130"
        transform="translate(52.404193,-2.1166667)">
@@ -133,96 +133,96 @@
        id="rect13267"
        width="2.8454764"
        height="33.197227"
-       x="31.774487"
+       x="21.191154"
        y="31.063122" />
     <rect
        style="fill:#ff0707;fill-opacity:0.403382;stroke:none;stroke-width:0.564999;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect13269"
        width="2.8454764"
        height="16.835739"
-       x="31.774487"
+       x="21.191154"
        y="14.227383" />
     <rect
        style="fill:#ff0707;fill-opacity:0.403382;stroke:none;stroke-width:0.564999;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect13439"
        width="2.8454781"
        height="25.831566"
-       x="31.774487"
+       x="21.191154"
        y="64.260345" />
     <text
        xml:space="preserve"
-       style="font-size:7.76111111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
-       x="35.678299"
+       style="font-size:7.76111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="25.094967"
        y="65.847839"
        id="text14337"><tspan
          sodipodi:role="line"
          id="tspan14335"
-         style="stroke-width:0.264583;font-size:7.76111111px"
-         x="35.678299"
+         style="font-size:7.76111px;stroke-width:0.264583"
+         x="25.094967"
          y="65.847839">出生</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:7.76111111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
-       x="35.678299"
+       style="font-size:7.76111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="25.094967"
        y="32.65062"
        id="text15147"><tspan
          sodipodi:role="line"
          id="tspan15145"
-         style="stroke-width:0.264583;font-size:7.76111111px"
-         x="35.678299"
+         style="font-size:7.76111px;stroke-width:0.264583"
+         x="25.094967"
          y="32.65062">死亡</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:7.76111111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
-       x="36.626793"
+       style="font-size:7.76111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="26.043461"
        y="47.589371"
        id="text16455"><tspan
          sodipodi:role="line"
          id="tspan16453"
-         style="stroke-width:0.264583;font-size:7.76111111px"
-         x="36.626793"
+         style="font-size:7.76111px;stroke-width:0.264583"
+         x="26.043461"
          y="47.589371">存活</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:7.76111111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
-       x="35.915424"
+       style="font-size:7.76111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="25.332092"
        y="80.075226"
        id="text16561"><tspan
          sodipodi:role="line"
-         style="stroke-width:0.264583;font-size:7.76111111px"
-         x="35.915424"
+         style="font-size:7.76111px;stroke-width:0.264583"
+         x="25.332092"
          y="80.075226"
          id="tspan17251">不存在</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:7.76111111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
-       x="36.626793"
+       style="font-size:7.76111px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="26.043461"
        y="17.237619"
        id="text17337"><tspan
          sodipodi:role="line"
-         style="stroke-width:0.264583;font-size:7.76111111px"
-         x="36.626793"
+         style="font-size:7.76111px;stroke-width:0.264583"
+         x="26.043461"
          y="17.237619"
          id="tspan17335">不存在</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:9.17222222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
-       x="31.884333"
+       style="font-size:9.17222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="21.301001"
        y="98.570816"
        id="text17343"><tspan
          sodipodi:role="line"
-         style="stroke-width:0.264583;font-size:9.17222222px"
-         x="31.884333"
+         style="font-size:9.17222px;stroke-width:0.264583"
+         x="21.301001"
          y="98.570816"
          id="tspan17341">一维时间</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:9.17222222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       style="font-size:9.17222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
        x="110.84631"
        y="98.807938"
        id="text19101"><tspan
          sodipodi:role="line"
-         style="stroke-width:0.264583;font-size:9.17222222px"
+         style="font-size:9.17222px;stroke-width:0.264583"
          x="110.84631"
          y="98.807938"
          id="tspan19099">二维时间</tspan></text>
