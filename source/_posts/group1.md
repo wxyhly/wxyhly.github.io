@@ -75,7 +75,7 @@ n阶循环群的严格定义是群$G$里存在一个元素$g$，$G$中每个元�
 ### 更复杂的对称群
 
 我们看到了$S_3$的凯莱图是个三棱柱，下面$S_4$的凯莱图居然是个半正多面体的球极投影！这个半正多面体叫小斜方截半立方体，由正方体切棱切顶点后得到，八个蓝色三角形对应正方体被切掉的8个顶点，6个红色的正方形对应原来正方体6个面被切后剩下的部分……（喜欢正多胞形的我忍不住多说几句）
-![来自维基百科](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Symmetric_group_4%3B_Cayley_graph_4%2C9.svg/300px-Symmetric_group_4%3B_Cayley_graph_4%2C9.svg.png)
+![来自维基百科](/img/wikimedia/Symmetric_group_4_Cayley_graph_4_9.png)
 当然生成元的选择不是唯一的，所以我们能得到不同样子的凯莱图，它们都表示同一个群，难以想象吧。
 ![](/img/group1img5.gif)
 这是一个？截角八面体。

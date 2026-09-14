@@ -29,7 +29,7 @@ index_img: /img/rail401.png
 ##### 2023年12月更新
 Tesserxel引擎制作了铁路火车场景，[链接点这里](/tesserxel/examples/#rails::rail1d)，[教程点这里](/archives/tesserxel-flightsim/)。
 ### 道岔
-下面说说道岔吧。可能很多人连三维世界中铁路的道岔系统都搞不太明白，它的原理很简单，正因为简单，我们才有能力把它推到四维。这是维基百科给的一个动画演示：![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Funzionamento_Deviatoio.gif/675px-Funzionamento_Deviatoio.gif)
+下面说说道岔吧。可能很多人连三维世界中铁路的道岔系统都搞不太明白，它的原理很简单，正因为简单，我们才有能力把它推到四维。这是维基百科给的一个动画演示：![](/img/wikimedia/Funzionamento_Deviatoio.gif)
 道岔的核心是引导突出来的轮缘。下图我把轮缘经过的地方涂成了粉红色：
 ![](/img/rail405.png)
 轮到我们构想四维道岔了：下面给出了铁路往轨道三、四的方向上分叉的道岔俯视图：由于轨道防自转的部分是凸出来的，做道岔时这两部分开做，因为轨道一、二只需要扳动防自转的部分，轨道三、四只需要扳动轨道主体部分。

@@ -63,7 +63,7 @@ $$f(\theta) = \omega\theta, \; f(\omega) = \omega, \quad g(\theta) = \theta, \; 
 ![](/img/group2img3.gif)
 眼熟吗？它同构于我们之前研究过的对称群$S_3$：![](/img/group1img3.gif)
 群$S_3$的**非平凡子群**和陪集我们也在上一篇文章中讨论过了，这里再放一下结果：![黑色表示子群，灰色为对应的陪集，只有第一个非平凡子群是正规子群](/img/group1img4.gif)
-这些非平凡子群与中间域的对应关系为：![图片来自维基百科词条“伽罗瓦理论基本定理”](https://upload.wikimedia.org/wikipedia/commons/6/68/Lattice_diagram_of_Q_adjoin_a_cube_root_of_2_and_a_primitive_cube_root_of_1%2C_its_subfields%2C_and_Galois_groups_variant.png)
+这些非平凡子群与中间域的对应关系为：![图片来自维基百科词条“伽罗瓦理论基本定理”](/img/wikimedia/Lattice_diagram_of_Q_adjoin_a_cube_root_of_2_and_a_primitive_cube_root_of_1_its_subfields_and_Galois_groups_variant.png)
 注意平凡子群{e}对应平凡扩张，平凡子群{e, f, f<sup>2</sup>, g, gf, gf<sup>2</sup>}对应整个扩张，也不是中间扩张（我们也认为是平凡的中间扩张）。看来平凡子群刚好对应平凡扩张。
 前面我们把恰好包含一个多项式所有根的扩张叫做**正规扩张**，它之所以叫“正规”难道是因为它跟**正规子群**对应？答案是肯定的！比如{e, f, f<sup>2</sup>}对应正规扩张$Q(\omega)/Q$，有定理：
 

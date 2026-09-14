@@ -29,7 +29,7 @@ excerpt: 《维度》系列的最后一集是一个预告片：Dimensions II —
 ## 洛伦兹吸引子
 　　若无法理解或想了解关于洛伦兹吸引子更多的信息，请看《维度》制作者的另一系列视频：《[混沌](https://www.chaos-math.org/zh-hans.html)》。真的要定量分析的话肯定涉及到大片大片公式推导，我们这里就不讨论它了。
 ## Seifert曲面
-　　Seifert曲面非常有意思：它指的是以扭结或链环为边界的曲面。比如Hopf链环上的Seifert曲面(Hopf link)：![](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Hopf_band_wikipedia.png/150px-Hopf_band_wikipedia.png)
+　　Seifert曲面非常有意思：它指的是以扭结或链环为边界的曲面。比如Hopf链环上的Seifert曲面(Hopf link)：![](/img/wikimedia/Hopf_band_wikipedia.png)
 　　曲面分单侧曲面（不定向）和双侧曲面（定向）。单侧曲面最著名的例子就是莫比乌斯带。莫比乌斯带的边界是一个圆，当然，圆可以看成平凡的扭结。所以，以圆为边界的Seifert至少有两种：![莫比乌斯带](/img/josleys2.gif)![普通圆片](/img/josleys1.gif)
 其中我在扭结外面涂上颜色是指这个曲面像一个从内部看一个有孔的气球一样，把它翻下再扭半圈去就得到了普通圆片。
 我们再来看三叶结：我们有这几种Seifert曲面：注意右边两个也是三叶结，只是投影方式不同，后来构造“模板”时$\Delta =0$曲线的样子就是这样的。![](/img/josleys3.gif)

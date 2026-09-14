@@ -39,21 +39,21 @@ index_img: /img/puzzle5d1.gif
 注意为什么我能肯定的给出北半球、南半球是4，因为X的胞的形状只能是四面体或截角四面体，所以与北极相邻的胞必为4，截角四面体有4个胞与北极共六边形，另四个与之共三角形，显然距离不一样，所以北极点外“第一圈”的胞数还是4。
 其实X的胞不可能是四面体。如果是四面体，北极点外“第一圈”四面体朝外的四个顶点两两间会有沟壑，填充这些沟壑至少得用6个四面体，与上面的分层描述不符，当然还有种情况是“第一圈”四面体朝外的四个顶点是共用的，这就是正五胞体，当然对称性不允许其他情况，比如只共用2个或三个顶点，所以我们排除了X的胞是四面体的所有可能。
 所以最后一种就是答案了：截角四面体。北极点外“第一圈”截角四面体与极点共六边形，与南极共三角形；南极点外“第一圈”截角四面体与南极点共六边形，与北极共三角形。几何体X就是**过截角五胞体（bitruncated 5-cell）**，具体可参见[英文维基对应条目](https://en.wikipedia.org/wiki/Truncated_5-cell#Bitruncated_5-cell)，这个多胞体在jenn3d软件上也找得到。
-![来自维基百科](https://upload.wikimedia.org/wikipedia/commons/e/e3/Decachoron_stereographic_%28hexagon%29.png)
+![来自维基百科](/img/wikimedia/Decachoron_stereographic_hexagon.png)
 
 ## part 2
 jenn3d软件上给出了过截角多胞体家族，那到底什么是过截角呢？过截角就是截角时截过头了，但三维空间中过截角多面体正好就是原多面体对偶多面体的截角多面体。
-![来自维基百科](https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Birectified_cube_sequence.png/823px-Birectified_cube_sequence.png)
+![来自维基百科](/img/wikimedia/Birectified_cube_sequence.png)
 比如截正方体，首先得到图中第三个（均匀）截角正方体，再得到第五个截半正方体，这是能截得的最大临界状态，超过后就是过截角了（第七个），但从八面体出发，首先得到图中第七个（均匀）截角正方体，再得到第五个截半正方体（也可以叫截半八面体，它的英语名称叫Cuboctahedron，直译“立方八面体”），然后就是过截角八面体（第三个）。
 我们看到三维空间没必要用过截角，但四维空间中就不一样了。我们不妨看一看正五胞体截角的全过程。
 首先我们得到截角正五胞体，截到中点时得到截半正五胞体。超过中点后会得到什么图形？
 （以下图片均来自英文维基百科）
-![正五胞体](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Schlegel_wireframe_5-cell.png/800px-Schlegel_wireframe_5-cell.png)
-![截角正五胞体](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Schlegel_half-solid_truncated_pentachoron.png/800px-Schlegel_half-solid_truncated_pentachoron.png)
-![截半正五胞体](https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Schlegel_half-solid_rectified_5-cell.png/800px-Schlegel_half-solid_rectified_5-cell.png)
+![正五胞体](/img/wikimedia/Schlegel_wireframe_5-cell.png)
+![截角正五胞体](/img/wikimedia/Schlegel_half-solid_truncated_pentachoron.png)
+![截半正五胞体](/img/wikimedia/Schlegel_half-solid_rectified_5-cell.png)
 截半正五胞体有正八面体胞核正四面体胞，正八面体是“截半正四面体”，继续截会让正八面体变回截角正四面体，正四面体也会变成截角正四面体，所以所有胞都变成了截角正四面体，这就是过截角正五胞体。
 
-![过截角正五胞体](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Schlegel_half-solid_bitruncated_5-cell.png/800px-Schlegel_half-solid_bitruncated_5-cell.png)
+![过截角正五胞体](/img/wikimedia/Schlegel_half-solid_bitruncated_5-cell.png)
 不是所有过截角正多胞体都只有一种胞围成，只有正多胞体是自对偶时才有这种情况，还有一种很漂亮的过截角正多胞体是过截角正二十四胞体。（正二十四胞体自对偶）
 
 现在我们能讨论垂直于五维立方体的体对角线的面（四维面）在任意位置的截面的图形了。我们可以想象截面移动形成截面动画：先看到正五胞体从一个点开始变大，然后被截角，即截角正五胞体，继续截角得到截半正五胞体、过截角正五胞体，然后又变成截半正五胞体、截角正五胞体、最后恢复为正五胞体，变小消失。

@@ -35,7 +35,7 @@ index_img: /img/josleys1.jpg
 ![josleys网站上的讲座视频截图](/img/josleys3.jpg)
 ![共形圆盘模型](http://www.josleys.com/htmlgalleries/Escher_hyp/Escher_circle_limit_4.jpg)
 注意与球极投影一样，投影是**保角（共形）**的，但这个投影“吞并”了反映闵可夫斯基空间的特殊方向，所以得到的圆盘中的角不再是双曲角，所以我们才能能明显看到角度相等。但投影会改变图形的大小，也就是说其实这些图形的大小都是一样的，只不过投影让我们看到越接近圆盘的边缘物体看起来的大小越小。（想想生活中的透视投影：近大远小）所以这个单位圆盘其实是一个无限大的世界！这不难理解，因为它是双曲面的投影，而后者就是无限大的；而球面几何则是一个有限的封闭空间上的几何。它们的本质都是一种弯曲的空间。
-以后我们就研究这个圆盘中的几何学。这个空间中的直线是与圆盘正交的圆弧，可以看出过一点能作无穷条直线与之平行。![来源：英文维基百科](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Poincare_disc_hyperbolic_parallel_lines.svg/300px-Poincare_disc_hyperbolic_parallel_lines.svg.png)
+以后我们就研究这个圆盘中的几何学。这个空间中的直线是与圆盘正交的圆弧，可以看出过一点能作无穷条直线与之平行。![来源：英文维基百科](/img/wikimedia/Poincare_disc_hyperbolic_parallel_lines.png)
 ### 双曲房间
 一个单独的一无所有的空间是没意思的，不能可视化这个空间。所以我们可以用镶嵌（密铺）的方法，用多边形密铺整个双曲空间。**平铺的结果**就是你看到的埃舍尔的画。当然这个世界的多边形的边都是双曲空间中的直线段，即圆弧。
 《维度》制作人之一josleys网站上的一篇文章《[Hyperbolic Chamber](http://www.josleys.com/article_show.php?id=83)》给了一种可视化双曲空间的生物在他们的世界里看到的情景：把多边形的边换成镜子（镜子当然是圆弧的），然后人站在里面就可以近似地体验弯曲的双曲空间了。![图片来自www.josleys.com](http://www.josleys.com/articles/hyperbolic/Hyperbolic04C.png)
@@ -46,7 +46,7 @@ index_img: /img/josleys1.jpg
 $$\frac{1}{n}+\frac{1}{p}<\frac{1}{2}$$
 如果等于1/2就是传统平面上的欧几里得镶嵌了，如果大于1/2则是球面镶嵌。球面镶嵌又是啥？球面正多边形镶嵌只有五种，对应五个正多面体！正多面体的本质就是**正多边形球面镶嵌**！所以正多胞体的本质是超球表面的正多面体镶嵌！有正多面体就有半正多面体（多种正多边形为面的凸多面体），所以双曲空间还有多种正多边形的复合镶嵌……
 根据前面的式子可得出答案正多边形双曲镶嵌有无穷多种，最牛的是双曲空间中允许正无穷边形的存在！（注意这里的正无穷边形不是圆）如果你愿意你还能让每个顶点发出无穷条棱！
-![h{∞,∞} - 来自维基百科](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/H2_tiling_iii-1.png/600px-H2_tiling_iii-1.png)
+![h{∞,∞} - 来自维基百科](/img/wikimedia/H2_tiling_iii-1.png)
 这里我们可以看到球面几何空间是一个有限封闭的空间，而欧几里得平面几何和双曲几何空间都是无限大的空间，而且在某种意义上双曲几何空间比平面几何空间更大。
 
 ### 莫比乌斯变换

@@ -11,13 +11,13 @@ excerpt:  四维正多胞体一共有六个。维度数学漫步影片中只展�
  2. 超球最密堆积问题
  3. 正120胞体的分层结构
  4. 镶嵌
-index_img: https://www.software3d.com/Thumb/120CellPt8.jpg
+index_img: /img/120CellPt8.jpg
 ---
 
 <span class="likecode">#本文讨论的是纯空间上的几何，而不是物理上的时空！推荐视频《[维度：数学漫步](https://www.dimensions-math.org/Dim_ZH_si.htm)》对四维空间作初步了解</span>
 
 　　研究四维空间中的正多胞体的基本方法还是类比：所以你恐怕得先对我们三维中的正多面体有点了解（可参看[Matrix67对正多面体的介绍](http://www.matrix67.com/blog/archives/6161)）。
-　　正多胞体一共有六个：**单形（正五胞体）、超立方体（正八胞体）、正十六胞体、正二十四胞体、正一百二十胞体、正六百胞体**。影片中只展现了它们的投影图（平行投影和球极投影）和一些基本几何信息，我们今天来看看它们具体是怎样构成的。其中除了正二十四胞体以外其他五种正多胞体我们都能找到三维类比——它们分别是正四面体、正方体、正八面体、正十二面体和正二十面体。<img src="https://www.software3d.com/Thumb/120CellPt8.jpg" alt="网站 www.software3d.com 上的120号模型 by Robert Webb"/><a name="index"></a>
+　　正多胞体一共有六个：**单形（正五胞体）、超立方体（正八胞体）、正十六胞体、正二十四胞体、正一百二十胞体、正六百胞体**。影片中只展现了它们的投影图（平行投影和球极投影）和一些基本几何信息，我们今天来看看它们具体是怎样构成的。其中除了正二十四胞体以外其他五种正多胞体我们都能找到三维类比——它们分别是正四面体、正方体、正八面体、正十二面体和正二十面体。<img src="/img/120CellPt8.jpg" alt="网站 www.software3d.com 上的120号模型 by Robert Webb"/><a name="index"></a>
 
 <!--more--><a name="simplex"></a>
 
@@ -62,8 +62,8 @@ index_img: https://www.software3d.com/Thumb/120CellPt8.jpg
 ### 最密堆积问题
 　　有类很著名的几何问题就是同样大小的圆或球的最密堆积问题，二维情形是这样的：![](/img/polyhedral2.gif)
 　　三维一般有两种最密堆积：面心堆积和六方堆积，它们区别是上下两层一个是一样的，一个转了180°。
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Cuboctahedron_3_planes.png/120px-Cuboctahedron_3_planes.png)
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Triangular_orthobicupola_wireframe.png/120px-Triangular_orthobicupola_wireframe.png)<center>（中间的球没画，这里画出了与之紧挨着的球的位置）</center>
+![](/img/wikimedia/Cuboctahedron_3_planes.png)
+![](/img/wikimedia/Triangular_orthobicupola_wireframe.png)<center>（中间的球没画，这里画出了与之紧挨着的球的位置）</center>
 　　其中第一幅图面心堆积的外框是一个**截半立方体**——立方体截去两角，直到相邻顶点截出的三角面刚好交于一点。它是菱形十二面体的对偶多面体，其中截出的三角面对应菱形十二面体的8个正方形顶点，剩下被截成45°正方形的面对应菱形十二面体面心拉出的6个顶点。我们来看三维最密堆积的结构：我们把它解析为三层的叠加：其中中间（白色）那层球就是平面中的球最密堆积方法，上、下面三个球刚好隔一个放进中间球堆积形成的六个凹陷里面。
 
 ![](/img/polyhedral1.gif)
@@ -102,8 +102,8 @@ index_img: https://www.software3d.com/Thumb/120CellPt8.jpg
 | 南极　 | 1	| 最里面的12面体|
 
 ![](/img/polyhedral5.gif) ![](/img/polyhedral6.gif)
-　　可能还有疑惑的就是中间那圈30个12面体了，它们分布在12面体棱上的30个位置。我们把正十二面体所有棱的中点连起来得到了一个“截半二十面体”，画出来长这样：（以下图片均出自en.wikipedia Icosidodecahedron页面）![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Icosidodecahedron.jpg/320px-Icosidodecahedron.jpg)
-　　其中你能发现很多正十边形的中空结构。它的球极投影能更好反映这些正十边形：![](https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Icosidodecahedron_stereographic_projection_pentagon.png/160px-Icosidodecahedron_stereographic_projection_pentagon.png)
+　　可能还有疑惑的就是中间那圈30个12面体了，它们分布在12面体棱上的30个位置。我们把正十二面体所有棱的中点连起来得到了一个“截半二十面体”，画出来长这样：（以下图片均出自en.wikipedia Icosidodecahedron页面）![](/img/wikimedia/Icosidodecahedron.jpg)
+　　其中你能发现很多正十边形的中空结构。它的球极投影能更好反映这些正十边形：![](/img/wikimedia/Icosidodecahedron_stereographic_projection_pentagon.png)
 　　好神奇！球极投影图就是六个圆周。我很喜欢徒手画一些多面体的球极投影图，我遇到其他投影图是圆周的还有正八面体：3个圆、截半立方体：4个圆（好熟悉，对，它就是讲最密堆积是出现的图形）。其实只要一个顶点发出4条棱的（半）正多面体都能投出圆形。说明我们在30个正十二面体中能发现六个首尾相接的环形结构，其中每个环上都有10个正十二面体，因此**每两个正十二面体形成的二胞角等于$180°-360°/10=144°$**。其实整个正一百二十胞体能分成12个大环，每个环上10个正十二面体都是首尾相接的。我们将在下一节[纤维丛](/archives/fibration4ds/#grandering)中具体描述这些环形结构。<a name="c600"></a>
 
 
@@ -116,7 +116,7 @@ index_img: https://www.software3d.com/Thumb/120CellPt8.jpg
  - 二维只有三角形、正方形、正六边形镶嵌。
  - 三维空间只有正方体镶嵌。但放宽点不限于正多面体镶嵌，比如我们发现菱形十二面体能够密铺三维空间！
  
- ![图片出自en.wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Rhombic_dodecahedra.png/300px-Rhombic_dodecahedra.png)
+ ![图片出自en.wikipedia](/img/wikimedia/Rhombic_dodecahedra.png)
  - 四维空间有三种正多胞体镶嵌：超立方体、正十六胞体、正二十四胞体。但除了超立方体其他两个我还没去想象它们怎么堆叠的……大家有兴趣可以思考一下。
 　　为什么要叫“欧几里得镶嵌”？难到还有“非欧几里得镶嵌”吗？“欧几里得”指平直空间，它的曲率为0。前面我们说我们把正一百二十胞体看成超球表面上的“图案”，这就是球面镶嵌，球面具有大于0的曲率。正多面体也可以看做二维的球面镶嵌，这才是正多面体、正多胞体的本质。还有一种“双曲镶嵌”，它的曲率小于0。双曲镶嵌也是相当震撼的，是埃舍尔很多代表画作的题材。
 

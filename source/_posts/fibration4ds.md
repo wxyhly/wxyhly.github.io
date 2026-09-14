@@ -11,12 +11,12 @@ excerpt: 我们先从一个很熟悉的例子开始今天的话题：坐标面xy
  2. 等角平面
  3. 120号的大环结构
  4. 什么是纤维丛
-index_img: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Hopf_Fibration.png/250px-Hopf_Fibration.png
+index_img: /img/wikimedia/Hopf_Fibration.png
 ---
 <a name="index"></a>
 <span class="likecode"># 本文内容为对影片《[维度：数学漫步](https://www.dimensions-math.org/Dim_ZH_si.htm)》第7、8集:纤维丛的解释，并着重讨论Hopf纤维的几何性质</span>
 
-![图片来自en.wikipedia by Niles Johnson](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Hopf_Fibration.png/250px-Hopf_Fibration.png)
+![图片来自en.wikipedia by Niles Johnson](/img/wikimedia/Hopf_Fibration.png)
 
 <!--more-->
 
@@ -60,7 +60,7 @@ $k$可以在扩充复平面上任取（扩充指$k$可以等于$\infty$，代表
 |胞数| 2     | 24  | 40  | 24    | 30|
 |代号| $1$ | $12^1$ | 20 | $12^2$ | 30|
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/120-cell_two_orthogonal_rings.png/300px-120-cell_two_orthogonal_rings.png)
+![](/img/wikimedia/120-cell_two_orthogonal_rings.png)
 
 <center>正120胞体中的两个正交的环（纤维丛南北极，来自en.wikipedia）</center>
 
@@ -71,7 +71,7 @@ $k$可以在扩充复平面上任取（扩充指$k$可以等于$\infty$，代表
 4. $-30-30-30-30-30-30-30-30-30-30-　(1\times 10)$
 
 　　第一组那个环对应上图红色的十个十二面体，第四组那个环对应中间平躺的橙色十二面体环。第二组5个环与第一个环（红色）交链紧挨缠绕，第三组5个环与第四组的环（橙色）交链紧挨缠绕。
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/120-cell_rings.jpg/300px-120-cell_rings.jpg)
+![](/img/wikimedia/120-cell_rings.jpg)
 <center>正120胞体中的两个交链紧挨缠绕的圆环（来自en.wikipedia）</center>
 
 　　如果在Hopf纤维丛里画出这12个大圆，大圆所在平面对应的12个复数$k$的取值在球面$\mathbf S^2$上的分布恰为**正二十面体12个顶点位置**的分布！由此可见这12个环的地位其实是一样的。正120胞体的这些优美的性质正是我喜欢它的原因。
@@ -96,7 +96,7 @@ $$ z_1=x+iy; z_2=w+iz $$$$ z_1=x+iz; z_2=w+iy $$$$ z_1=x+iw; z_2=z+iy $$
 
 ### 环面外翻
 　　我们研究四维空间却意外遇到了像锁链一样的两个圆、圆环的截面截出两个相交圆等三维空间中的几何知识。其实球极投影还展示了圆环面的另一个拓补性质:有孔的圆环是能够从里到外翻过来的。
-![](https://upload.wikimedia.org/wikipedia/commons/b/ba/Inside-out_torus_%28animated%2C_small%29.gif)
+![](/img/wikimedia/Inside-out_torus_animated_small.gif)
 <center>图片来自en.wikipedia</center>
 　　是不是觉得这个外翻过程和球极投影很相似？那个孔就是用来过投影极点的。
 <a name="quecequecest"></a>

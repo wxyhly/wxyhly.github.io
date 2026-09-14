@@ -7,10 +7,10 @@ tags:
 - 几何
 - 数学
 excerpt: 本文讨论的是纯空间四维几何，而不是物理的四维时空！ 本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。特色内容：介绍各种柱体、锥体、超体积、表体积的计算
-index_img: https://upload.wikimedia.org/wikipedia/commons/d/d9/From_Point_to_Tesseract_%28Looped_Version%29.gif
+index_img: /img/wikimedia/From_Point_to_Tesseract_Looped_Version.gif
 ---
  <span class="likecode"># 本文讨论的是纯空间上的欧氏四维几何，而不是物理上的闵氏四维时空！（试想如果有二维生物，他们可能会认为三维是2维空间+时间，这就是三维时空，而不是我们的三维欧氏几何空间）本文不讨论把第4个方向当时间的情况！所以本文不会涉及物理相对论等内容。</span>
- <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/From_Point_to_Tesseract_%28Looped_Version%29.gif" alt="图片来自en.wikipedia：By Vitaly Ostrosablin"/>
+ <img src="/img/wikimedia/From_Point_to_Tesseract_Looped_Version.gif" alt="图片来自en.wikipedia：By Vitaly Ostrosablin"/>
 <span class="likecode"># 本文针对于对四维空间有初步了解（比如知道超立方体等）的读者写的。如还没了解，推荐视频《[维度：数学漫步](https://www.dimensions-math.org/Dim_ZH_si.htm)》（它对我数学影响深远），<span style="color:#F00">**[CFY的这篇文章](http://hadroncfy.com/articles/2016/04/09/la-dimension-quatre-premier/)对四维空间有更基础的介绍。**（CFY和我一起研究的四维空间，可能有些介绍有重复）</span>
 </span></span>
 　　四维空间太抽象，所以我们不能直接感性地接触它（直接看到或摸到），但我们可以用类比法或解析法像“盲人摸象”那样建立起对它的认识。类比法较直观，但对想象力要求高，且不严谨；解析法（计算法）严谨，但缺乏直观几何意义，滥用会把几何沦为代数，只有两者结合起来才能更好地认识四维空间。<a name="index"></a>

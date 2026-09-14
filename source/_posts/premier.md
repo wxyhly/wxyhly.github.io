@@ -5,11 +5,11 @@ tags:
 - 自我描述
 - 杂记  
 excerpt: 这不是第一篇文章！？但这确实是我的第一篇文章。对标题与自我描述句的解释...
-index_img: https://upload.wikimedia.org/wikipedia/en/b/b9/MagrittePipe.jpg
+index_img: /img/wikimedia/MagrittePipe.jpg
 ---
 ## 这不是第一篇文章！
 ### 对标题的解释
-这是一个**自我描述**句，是我看了《哥德尔艾舍尔巴赫：集异璧之大成》（GEB）里面一张图模仿的。"Ceci n'est pas"是法语，意即“这不是……”；这张图出自比利时艺术家勒内·马格里特的画作《形象的叛逆》 (《La trahison des images》)，画中描绘了一只烟斗，但其下写着"Ceci n'est pas une pipe."（这不是烟斗。）：![图片来自en.wikipedia](https://upload.wikimedia.org/wikipedia/en/b/b9/MagrittePipe.jpg)
+这是一个**自我描述**句，是我看了《哥德尔艾舍尔巴赫：集异璧之大成》（GEB）里面一张图模仿的。"Ceci n'est pas"是法语，意即“这不是……”；这张图出自比利时艺术家勒内·马格里特的画作《形象的叛逆》 (《La trahison des images》)，画中描绘了一只烟斗，但其下写着"Ceci n'est pas une pipe."（这不是烟斗。）：![图片来自en.wikipedia](/img/wikimedia/MagrittePipe.jpg)
 自我描述是一个很神奇的东西，他能引起悖论、甚至能解释著名的哥德尔定理……
 后来我发现在Minecraft标题画面闪烁标语中也有类似这句话： *Ceci n'est pas une title screen！(这不是标题画面)* 。看来这个作品在外国知名度挺高的。
 

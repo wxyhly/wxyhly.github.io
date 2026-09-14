@@ -78,11 +78,9 @@ Julia集的定义就是在复平面上给一个数$z$，然后你不断做运算
 ![](/img/plus5.gif) <a name="autre"></a>
 
 ### 其它
-　　四维分形直接可视化本来就几乎不可能，但我们还是能猜想一些四维生物会喜欢的分形。![Cantor三分点集（此图片及以下图片均来自维基）](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Cantor_set_binary_tree.svg/400px-Cantor_set_binary_tree.svg.png)比如著名的Cantor三分点集的二维推广在平面生物看来没什么意思：它们看不到那些在内部的空心正方形，它们可能喜欢类比成右边这样：<table><tr border="0"><td>![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Menger_4.PNG/122px-Menger_4.PNG)</td><td>![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Cantor_dust.png/220px-Cantor_dust.png)</td></tr></table>
+　　四维分形直接可视化本来就几乎不可能，但我们还是能猜想一些四维生物会喜欢的分形。![Cantor三分点集（此图片及以下图片均来自维基）](/img/wikimedia/Cantor_set_binary_tree.png)比如著名的Cantor三分点集的二维推广在平面生物看来没什么意思：它们看不到那些在内部的空心正方形，它们可能喜欢类比成右边这样：<table><tr border="0"><td>![](/img/wikimedia/Menger_4.png)</td><td>![](/img/wikimedia/Cantor_dust.png)</td></tr></table>
 但对我们三维生物来说，右边那种分形几乎快“碎成渣”了，还是中间的谢尔宾斯基地毯看起来顺眼。
-三维空间就对应三种类比了：一种也是我们看起来几乎快“碎成渣”的“门格-谢尔宾斯基雪花”、还有一种是经典的门格海绵，另一种则是四维空间生物喜欢的：将正方体掏空、掏空再掏空。但我们看不到正方体内部，就像二维生物一样无法欣赏谢尔宾斯基地毯一样。
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Cantors_cube.jpg/220px-Cantors_cube.jpg)
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Menger-Schwamm-farbig.png/310px-Menger-Schwamm-farbig.png)
+三维空间就对应三种类比了：一种也是我们看起来几乎快“碎成渣”的“门格-谢尔宾斯基雪花”、还有一种是经典的门格海绵，另一种则是四维空间生物喜欢的：将正方体掏空、掏空再掏空。但我们看不到正方体内部，就像二维生物一样无法欣赏谢尔宾斯基地毯一样。<table><tr border="0"><td>![](/img/wikimedia/Cantors_cube.jpg)</td><td>![](/img/wikimedia/Menger-Schwamm-farbig.png)</td></tr></table>
 　　四维这种分形类比应该能分成4种：碎成渣的、门格海绵这种千疮百孔的、挖很多三维孔的（这些孔在四维空间中是连起来的）和四维生物都无法欣赏到的中空超立方体洞。
 　　Mandelbrot集的三维比较好看的类比是Mandelbulb，四维中我们可以用四元数（复数的4维类比）来造分形但共形性很可能保持不了可能只能用四维极坐标（算法：强行平方距离坐标，翻倍角度坐标）而放弃四元数了，但不管怎样，我相信Mandelbulb4D应该会更加好看，~可惜我没4d的眼睛。~(2022年9月更新：现在在[Tesserxel引擎](/archives/tesserxel-hello/)驱动下有了！示例库中有两种四维门格海绵与极坐标Mandelbulb分形！) <a name="quadric"></a>
 
