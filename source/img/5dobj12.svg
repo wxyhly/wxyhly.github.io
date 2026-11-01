@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 711 541"
+   version="1.1"
+   id="svg1356"
+   sodipodi:docname="5dobj12.svg"
+   width="711"
+   height="541"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1360">
+    <inkscape:path-effect
+       effect="simplify"
+       id="path-effect18028"
+       is_visible="true"
+       lpeversion="1"
+       steps="1"
+       threshold="0.00133333"
+       smooth_angles="360"
+       helper_size="0"
+       simplify_individual_paths="false"
+       simplify_just_coalesce="false" />
+    <inkscape:path-effect
+       effect="simplify"
+       id="path-effect18024"
+       is_visible="true"
+       lpeversion="1"
+       steps="1"
+       threshold="0.00133333"
+       smooth_angles="360"
+       helper_size="0"
+       simplify_individual_paths="false"
+       simplify_just_coalesce="false" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview1358"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:snap-global="false"
+     fit-margin-top="10"
+     fit-margin-left="10"
+     fit-margin-right="10"
+     fit-margin-bottom="10"
+     lock-margins="true"
+     inkscape:zoom="0.8318956"
+     inkscape:cx="370.8398"
+     inkscape:cy="273.47182"
+     inkscape:window-width="1440"
+     inkscape:window-height="838"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1342" />
+  <!-- 立方体框架连线 -->
+  <g
+     stroke="#999999"
+     stroke-width="1.5"
+     fill="none"
+     id="g1306"
+     transform="matrix(0.95822355,0,0,1.000062,-121.16507,-9.517369)"
+     style="stroke-width:1.5323;stroke-miterlimit:4;stroke-dasharray:none">
+    <!-- 前面 -->
+    <line
+       x1="200"
+       y1="460"
+       x2="650"
+       y2="460"
+       id="line1282"
+       style="stroke-width:1.5323;stroke-miterlimit:4;stroke-dasharray:none" />
+    <line
+       x1="570"
+       y1="458.19614"
+       x2="570"
+       y2="220"
+       id="line1284"
+       style="stroke-width:1.5323;stroke-miterlimit:4;stroke-dasharray:none" />
+    <line
+       x1="650"
+       y1="220"
+       x2="200"
+       y2="220"
+       id="line1286"
+       style="stroke-width:1.5323;stroke-miterlimit:4;stroke-dasharray:none" />
+    <line
+       x1="200"
+       y1="220"
+       x2="200"
+       y2="458.19614"
+       id="line1288"
+       style="stroke-width:1.5323;stroke-miterlimit:4;stroke-dasharray:none" />
+    <!-- 后面 -->
+    <line
+       x1="400"
+       y1="330"
+       x2="850"
+       y2="330"
+       id="line1290"
+       style="stroke-width:1.5323;stroke-miterlimit:4;stroke-dasharray:none" />
+    <line
+       x1="770"
+       y1="332.3714"
+       x2="770"
+       y2="100"
+       id="line1292"
+       style="stroke-width:1.5323;stroke-miterlimit:4;stroke-dasharray:none" />
+    <line
+       x1="850"
+       y1="100"
+       x2="400"
+       y2="100"
+       id="line1294"
+       style="stroke-width:1.5323;stroke-miterlimit:4;stroke-dasharray:none" />
+    <line
+       x1="400"
+       y1="100"
+       x2="400"
+       y2="332.3714"
+       id="line1296"
+       style="stroke-width:1.5323;stroke-miterlimit:4;stroke-dasharray:none" />
+    <!-- 连接 -->
+    <line
+       x1="200"
+       y1="460"
+       x2="400"
+       y2="330"
+       id="line1298"
+       style="stroke-width:1.5323;stroke-miterlimit:4;stroke-dasharray:none" />
+    <line
+       x1="570"
+       y1="460"
+       x2="770"
+       y2="330"
+       id="line1300"
+       style="stroke-width:1.5323;stroke-miterlimit:4;stroke-dasharray:none" />
+    <line
+       x1="570"
+       y1="220"
+       x2="770"
+       y2="100"
+       id="line1302"
+       style="stroke-width:1.5323;stroke-miterlimit:4;stroke-dasharray:none" />
+    <line
+       x1="200"
+       y1="220"
+       x2="400"
+       y2="100"
+       id="line1304"
+       style="stroke-width:1.5323;stroke-miterlimit:4;stroke-dasharray:none" />
+  </g>
+  <!-- 8 个顶点的小画布和文字 -->
+  <!-- 1. 圆柱柱柱 -->
+  <g
+     transform="translate(90.5,450.5)"
+     id="g1312">
+    <rect
+       x="-80"
+       y="-80"
+       width="160"
+       height="160"
+       fill="#ffffff"
+       stroke="#dddddd"
+       stroke-width="1"
+       id="rect1308" />
+    <text
+       x="0"
+       y="60"
+       text-anchor="middle"
+       font-family="sans-serif"
+       font-size="14px"
+       fill="#333333"
+       id="text1310"
+       style="font-size:20px">圆柱柱柱</text>
+  </g>
+  <!-- 2. 圆柱柱锥 -->
+  <g
+     transform="translate(440.5,450.5)"
+     id="g1318">
+    <rect
+       x="-80"
+       y="-80"
+       width="160"
+       height="160"
+       fill="#ffffff"
+       stroke="#dddddd"
+       stroke-width="1"
+       id="rect1314" />
+    <text
+       x="0"
+       y="60"
+       text-anchor="middle"
+       font-family="sans-serif"
+       font-size="14px"
+       fill="#333333"
+       id="text1316"
+       style="font-size:20px">圆柱柱锥</text>
+  </g>
+  <!-- 3. 圆柱锥柱 -->
+  <g
+     transform="translate(440.5,210.5)"
+     id="g1324">
+    <rect
+       x="-80"
+       y="-80"
+       width="160"
+       height="160"
+       fill="#ffffff"
+       stroke="#dddddd"
+       stroke-width="1"
+       id="rect1320" />
+    <text
+       x="0"
+       y="60"
+       text-anchor="middle"
+       font-family="sans-serif"
+       font-size="14px"
+       fill="#333333"
+       id="text1322"
+       style="font-size:20px">圆柱锥锥</text>
+  </g>
+  <!-- 4. 圆柱锥锥 -->
+  <g
+     transform="translate(90.5,210.5)"
+     id="g1330">
+    <rect
+       x="-80"
+       y="-80"
+       width="160"
+       height="160"
+       fill="#ffffff"
+       stroke="#dddddd"
+       stroke-width="1"
+       id="rect1326" />
+    <text
+       x="0"
+       y="60"
+       text-anchor="middle"
+       font-family="sans-serif"
+       font-size="14px"
+       fill="#333333"
+       id="text1328"
+       style="font-size:20px">圆柱锥柱</text>
+  </g>
+  <!-- 5. 圆锥柱柱 -->
+  <g
+     transform="translate(270.5,320.5)"
+     id="g1336">
+    <rect
+       x="-80"
+       y="-80"
+       width="160"
+       height="160"
+       fill="#ffffff"
+       stroke="#dddddd"
+       stroke-width="1"
+       id="rect1332" />
+    <text
+       x="0"
+       y="60"
+       text-anchor="middle"
+       font-family="sans-serif"
+       font-size="14px"
+       fill="#333333"
+       id="text1334"
+       style="font-size:20px">圆锥柱柱</text>
+  </g>
+  <!-- 6. 圆锥柱锥 -->
+  <g
+     transform="translate(620.5,320.5)"
+     id="g1342">
+    <rect
+       x="-80"
+       y="-80"
+       width="160"
+       height="160"
+       fill="#ffffff"
+       stroke="#dddddd"
+       stroke-width="1"
+       id="rect1338" />
+    <text
+       x="0"
+       y="60"
+       text-anchor="middle"
+       font-family="sans-serif"
+       font-size="14px"
+       fill="#333333"
+       id="text1340"
+       style="font-size:20px">圆锥柱锥</text>
+  </g>
+  <!-- 7. 圆锥锥柱 -->
+  <g
+     transform="translate(620.5,90.5)"
+     id="g1348">
+    <rect
+       x="-80"
+       y="-80"
+       width="160"
+       height="160"
+       fill="#ffffff"
+       stroke="#dddddd"
+       stroke-width="1"
+       id="rect1344" />
+    <text
+       x="0"
+       y="60"
+       text-anchor="middle"
+       font-family="sans-serif"
+       font-size="14px"
+       fill="#333333"
+       id="text1346"
+       style="font-size:20px">圆锥锥锥</text>
+  </g>
+  <!-- 8. 圆锥锥锥 -->
+  <g
+     transform="translate(270.5,90.5)"
+     id="g1354">
+    <rect
+       x="-80"
+       y="-80"
+       width="160"
+       height="160"
+       fill="#ffffff"
+       stroke="#dddddd"
+       stroke-width="1"
+       id="rect1350" />
+    <text
+       x="0"
+       y="60"
+       text-anchor="middle"
+       font-family="sans-serif"
+       font-size="14px"
+       fill="#333333"
+       id="text1352"
+       style="font-size:20px">圆锥锥柱</text>
+  </g>
+  <g
+     id="g46291">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect44710"
+       width="62.285152"
+       height="56.738651"
+       x="-127.59842"
+       y="420.21344"
+       transform="scale(-1,1)" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#rect44710"
+       id="use44976"
+       transform="translate(-24.385838,-20.590741)"
+       width="100%"
+       height="100%"
+       style="stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 127.59842,420.21344 103.21258,399.6227 M 65.313263,420.21344 40.927421,399.6227 m 24.385842,77.32939 -24.385842,-20.59074 m 86.670999,20.59074 -24.38584,-20.59074"
+       id="path45011"
+       sodipodi:nodetypes="cccccccc" />
+  </g>
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 373.82627,402.16345 h 90.64253 l 30.7424,30.7424 h -92.86106 z"
+     id="path45242" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 495.2112,432.90585 -57.99855,26.01013 27.25615,-56.75253 m -90.64253,0 62.75252,56.75253 -34.22865,-26.01013"
+     id="path45244"
+     sodipodi:nodetypes="cccccc" />
+  <path
+     style="fill:none;stroke:#0000ff;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 365.82627,444.16345 H 480.4688 l 36.7424,36.7424 H 400.35014 Z"
+     id="path45345"
+     sodipodi:nodetypes="ccccc" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 568.84893,93.590895 66.28634,18.096935 21.91726,-30.324597 z"
+     id="path45460" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 568.84893,93.590895 44.90365,-55.26903 21.38269,73.365965 M 657.05253,81.363233 613.75258,36.854545"
+     id="path45462" />
+  <use
+     x="0"
+     y="0"
+     xlink:href="#path45345"
+     id="use45544"
+     transform="translate(180.55932,-365.62587)"
+     width="100%"
+     height="100%" />
+  <use
+     x="0"
+     y="0"
+     xlink:href="#use45544"
+     id="use45920"
+     transform="translate(-352)"
+     width="100%"
+     height="100%" />
+  <g
+     id="g46517"
+     style="stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 214.60988,85.747063 16.95563,19.377867 -5.81336,-53.773582 z"
+       id="path45955" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path45955"
+       id="use46037"
+       transform="translate(86)"
+       width="100%"
+       height="100%"
+       style="stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 225.75215,51.835795 h 85.74707"
+       id="path46072" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 214.60988,85.747063 h 86"
+       id="path46074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 231.56551,105.12493 h 86"
+       id="path46076" />
+  </g>
+  <use
+     x="0"
+     y="0"
+     xlink:href="#g46291"
+     id="use46293"
+     transform="translate(186.90158,-135.71344)"
+     width="100%"
+     height="100%" />
+  <use
+     x="0"
+     y="0"
+     xlink:href="#path45345"
+     id="use46295"
+     transform="translate(-169.65537,-130.877)"
+     width="100%"
+     height="100%" />
+  <use
+     x="0"
+     y="0"
+     xlink:href="#use46295"
+     id="use46510"
+     transform="translate(-181.75602,-107.91764)"
+     width="100%"
+     height="100%" />
+  <use
+     x="0"
+     y="0"
+     xlink:href="#g46517"
+     id="use46519"
+     transform="rotate(180,180.23177,138.20585)"
+     width="100%"
+     height="100%"
+     style="stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none" />
+  <use
+     x="0"
+     y="0"
+     xlink:href="#path45345"
+     id="use46601"
+     transform="translate(0,-240.18417)"
+     width="100%"
+     height="100%" />
+  <path
+     id="path46638"
+     style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 403.3289,221.34982 54.34359,-41.69503 m -27.87206,-32.47153 49.99477,74.16656 m -76.4663,0 h 76.4663 l -22.12271,-41.69503 -27.87206,-32.47153 z"
+     sodipodi:nodetypes="ccccccccc" />
+  <use
+     x="0"
+     y="0"
+     xlink:href="#path45345"
+     id="use47793"
+     transform="translate(179.3265,-130.8484)"
+     width="100%"
+     height="100%" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 569.03558,315.40375 71.23576,-51.37086 30.17161,31.31318 -69.45878,50.80008 z"
+     id="path47795"
+     sodipodi:nodetypes="ccccc" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 670.44295,295.34607 -24.89288,35.71352 -5.27873,-67.0267 m -71.23576,51.37086 75.88063,15.65584 -43.93204,15.08656"
+     id="path47797"
+     sodipodi:nodetypes="cccccc" />
+</svg>

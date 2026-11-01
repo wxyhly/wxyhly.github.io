@@ -1,0 +1,87 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "mirror wikimedia images",
+			"type": "shell",
+			"command": "node tools/mirror-wikimedia.mjs",
+			"problemMatcher": [],
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			},
+			"detail": "扫描 source/ 下的 md/html，把 upload.wikimedia.org 图片下载到 source/img/wikimedia/ 并改写 URL 为 /img/wikimedia/。幂等，可重复运行以补齐网络失败项。"
+		},
+		{
+			"label": "verify image links",
+			"type": "shell",
+			"command": "node tools/verify-images.mjs",
+			"problemMatcher": [],
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			},
+			"detail": "校验 source/ 下所有 /img/... 引用是否都能对应到真实文件。"
+		},
+		{
+			"label": "hexo generate",
+			"type": "shell",
+			"command": "node_modules/.bin/hexo.cmd generate",
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			},
+			"detail": "生成静态站点到 public/。"
+		},
+		{
+			"label": "final-verify-120cell",
+			"type": "shell",
+			"command": "echo --- final verify --- & node tools\\verify-images.mjs & echo --- diff of polyhedral4ds --- & git --no-pager diff -- source/_posts/polyhedral4ds.md & echo --- new file --- & dir source\\img\\120CellPt8.jpg"
+		},
+		{
+			"label": "sync-en-dryrun",
+			"type": "shell",
+			"command": "node tools\\sync-to-en.mjs --dry-run --en=d:\\Toccbai\\html5mijr\\wxyhly-en.github.io"
+		},
+		{
+			"label": "sync-en-real",
+			"type": "shell",
+			"command": "node tools\\sync-to-en.mjs --en=d:\\Toccbai\\html5mijr\\wxyhly-en.github.io"
+		},
+		{
+			"label": "verify-en",
+			"type": "shell",
+			"command": "cd /d d:\\Toccbai\\html5mijr\\wxyhly-en.github.io & echo --- remaining external refs --- & findstr /s /m /c:\"upload.wikimedia.org\" source\\*.md source\\*.html & findstr /s /m /c:\"software3d.com\" source\\*.md source\\*.html & echo (above should only be alt/title text) & echo --- copied images --- & dir /b source\\img\\wikimedia | find /c /v \"\" & echo --- git status --- & git status --short"
+		},
+		{
+			"label": "verify-en-refs",
+			"type": "shell",
+			"command": "cd /d d:\\Toccbai\\html5mijr\\wxyhly-en.github.io & echo --- polyhedral4ds remaining matches --- & findstr /n /c:\"software3d.com\" source\\_posts\\polyhedral4ds.md & echo --- full verify on EN --- & node ..\\wxyhly.github.io\\tools\\verify-images.mjs d:\\Toccbai\\html5mijr\\wxyhly-en.github.io"
+		},
+		{
+			"label": "investigate-4dcity",
+			"type": "shell",
+			"command": "echo --- EN ref --- & findstr /n /c:\"4dcity001\" d:\\Toccbai\\html5mijr\\wxyhly-en.github.io\\source\\_posts\\lavie4ds.md & echo --- CN ref --- & findstr /n /c:\"4dcity001\" d:\\Toccbai\\html5mijr\\wxyhly.github.io\\source\\_posts\\lavie4ds.md & echo --- EN file exists? --- & dir d:\\Toccbai\\html5mijr\\wxyhly-en.github.io\\source\\img\\4dcity001.jpg & echo --- CN file --- & dir d:\\Toccbai\\html5mijr\\wxyhly.github.io\\source\\img\\4dcity001.jpg"
+		},
+		{
+			"label": "fix-4dcity",
+			"type": "shell",
+			"command": "copy /Y d:\\Toccbai\\html5mijr\\wxyhly.github.io\\source\\img\\4dcity001.jpg d:\\Toccbai\\html5mijr\\wxyhly-en.github.io\\source\\img\\4dcity001.jpg & echo --- re-verify EN --- & node tools\\verify-images.mjs d:\\Toccbai\\html5mijr\\wxyhly-en.github.io"
+		},
+		{
+			"label": "en-diff",
+			"type": "shell",
+			"command": "echo --- sample diff (EN knot4d) --- & cd /d d:\\Toccbai\\html5mijr\\wxyhly-en.github.io & git --no-pager diff --numstat -- source/ & echo --- EN polyhedral4ds head --- & git --no-pager diff -- source/_posts/polyhedral4ds.md | findstr /c:\"index_img\" /c:\"120CellPt8\""
+		},
+		{
+			"label": "en-hexo-build",
+			"type": "shell",
+			"command": "cd /d d:\\Toccbai\\html5mijr\\wxyhly-en.github.io & node_modules\\.bin\\hexo.cmd generate 2>&1 | findstr /i \"ERROR FATAL\" & echo EXITCODE=%ERRORLEVEL% & if exist public\\img\\wikimedia (echo WM_PUBLISHED=yes) else (echo WM_PUBLISHED=no) & if exist public\\img\\120CellPt8.jpg (echo 120CELL_PUBLISHED=yes) else (echo 120CELL_PUBLISHED=no) & if exist public\\img\\4dcity001.jpg (echo 4DCITY_PUBLISHED=yes) else (echo 4DCITY_PUBLISHED=no)"
+		}
+	]
+}

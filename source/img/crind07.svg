@@ -1,0 +1,48 @@
+<svg viewBox="50 0 340 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 滚动方向箭头标记（红色） -->
+    <marker id="arrowRoll" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="red" />
+    </marker>
+  </defs>
+  
+  <!-- 纯白背景 -->
+  <rect width="500" height="400" fill="#ffffff" />
+  
+  <!-- Z轴垂直虚线参考线（仅保留轴向虚线） -->
+  <line x1="250" y1="40" x2="250" y2="360" stroke="#000000" stroke-width="1" stroke-dasharray="6,6" opacity="0.3" />
+  
+  <!-- 滚动方向指示箭头（单向向下） -->
+  <line x1="140" y1="80" x2="140" y2="320" stroke="red" stroke-width="3" marker-end="url(#arrowRoll)" />
+  <!-- 滚动方向文字 -->
+  <text x="0" y="0" transform="translate(110, 200) rotate(-90)" fill="red" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle" dominant-baseline="middle">滚动方向</text>
+  
+  <!-- 主场景组（居中于画布） -->
+  <g transform="translate(250, 200)">
+    
+    <!-- 动画层1：沿Z轴匀速滚动（锯齿波：匀速移动后瞬间复位循环） -->
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0,-140; 0,140" dur="4s" repeatCount="indefinite" calcMode="linear" />
+      
+      <!-- 动画层2：相机倾斜透视（压缩Y轴，形成非正三角形效果） -->
+      <g transform="scale(1, 0.5)">
+        
+        <!-- 动画层3：绕Z轴匀速自转（与滚动同步，循环时恰好完成整圈） -->
+        <g>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="4s" repeatCount="indefinite" />
+          
+          <!-- 正三角形本体（白底黑线线框） -->
+          <polygon points="100,0 -50,86.6 -50,-86.6" fill="none" stroke="#000000" stroke-width="3" />
+          
+          <!-- 三角形中心点 -->
+          <circle cx="0" cy="0" r="4" fill="#000000" />
+          
+          <!-- 三个顶点的小圆点 -->
+          <circle cx="100" cy="0" r="4" fill="#000000" />
+          <circle cx="-50" cy="86.6" r="4" fill="#000000" />
+          <circle cx="-50" cy="-86.6" r="4" fill="#000000" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

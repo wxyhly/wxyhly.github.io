@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="108.681mm"
+   height="37.530998mm"
+   viewBox="0 0 108.681 37.530997"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   sodipodi:docname="crind17.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.4833964"
+     inkscape:cx="254.48356"
+     inkscape:cy="68.761122"
+     inkscape:window-width="1280"
+     inkscape:window-height="730"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="图层 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-16.648173,-16.324632)">
+    <path
+       sodipodi:type="star"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none"
+       id="path1"
+       inkscape:flatsided="false"
+       sodipodi:sides="4"
+       sodipodi:cx="20.383221"
+       sodipodi:cy="21.030308"
+       sodipodi:r1="52.848579"
+       sodipodi:r2="52.848579"
+       sodipodi:arg1="0.78106919"
+       sodipodi:arg2="1.5664674"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 57.914231,58.237775 20.611998,73.878392 -16.824247,58.561318 -32.464864,21.259085 -17.14779,-16.17716 20.154444,-31.817776 57.590688,-16.500702 73.231305,20.801531 Z"
+       transform="matrix(0.33580941,-0.13795284,0.13795284,0.33580941,26.24678,31.062328)" />
+    <path
+       style="fill:none;stroke:#ffa2a2;stroke-width:0.363041;stroke-dasharray:none;stroke-opacity:1"
+       d="m 18.256706,27.995472 35.451465,-0.05026"
+       id="path2" />
+    <path
+       style="fill:none;stroke:#ffa2a2;stroke-width:0.363041;stroke-dasharray:none;stroke-opacity:1"
+       d="m 18.277525,42.679948 35.451467,-0.05026"
+       id="path3" />
+    <path
+       style="fill:none;stroke:#b1b1ff;stroke-width:0.363041;stroke-dasharray:none;stroke-opacity:1"
+       d="m 28.625479,17.597256 0.05026,35.451464"
+       id="path4" />
+    <path
+       style="fill:none;stroke:#b1b1ff;stroke-width:0.363041;stroke-dasharray:none;stroke-opacity:1"
+       d="m 43.309955,17.576438 0.05026,35.451465"
+       id="path5" />
+    <rect
+       style="fill:none;stroke:#ff0000;stroke-width:0.363041;stroke-dasharray:none;stroke-opacity:1"
+       id="rect5"
+       width="35.472286"
+       height="14.634215"
+       x="63.891327"
+       y="27.99547" />
+    <rect
+       style="fill:none;stroke:#0000ff;stroke-width:0.363041;stroke-dasharray:none;stroke-opacity:1"
+       id="rect6"
+       width="14.734737"
+       height="35.430649"
+       x="108.83981"
+       y="17.597256" />
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;font-family:'New Dichuu';-inkscape-font-specification:'New Dichuu';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+       x="56.550636"
+       y="37.350891"
+       id="text6"><tspan
+         sodipodi:role="line"
+         id="tspan6"
+         style="font-size:7.05556px;fill:#000000;stroke:none;stroke-width:1"
+         x="56.550636"
+         y="37.350891">=</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;font-family:'New Dichuu';-inkscape-font-specification:'New Dichuu';writing-mode:lr-tb;direction:ltr;fill:#000000;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+       x="102.14288"
+       y="37.813"
+       id="text7"><tspan
+         sodipodi:role="line"
+         id="tspan7"
+         style="stroke-width:1"
+         x="102.14288"
+         y="37.813">+</tspan></text>
+  </g>
+</svg>
