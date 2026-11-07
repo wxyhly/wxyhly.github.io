@@ -139,6 +139,8 @@ Julia集的定义就是在复平面上给一个数$z$，然后你不断做运算
 - 旋转抛物胞：也是**轴对称**（球对称）图形，可看成抛物面绕它的对称面得到的旋转体。
 
 - 马鞍胞：方程：$x^2+y^2-z^2=w$ 它是一个函数：一个三维坐标$(x,y,z)$对应一个数$w$。马鞍面是一个方向凹(凸)另一个方向凸(凹)的，但四维空间反而没这么好的对称性：是一个方向凹(凸)另两个方向凸(凹)（一个平面上）的。但这样描述还是很抽象，欢迎大家提出更好的可视化方法。 [这里CFY](https://hadroncfy.com/articles/2016/04/24/la-dimension-quatre-quatreieme/index.html)使用截面法展示了几种二次曲胞。
+### 2026.11更新
+我做了个四维参数方程图形绘制器，里面的预设就包含了部分二次曲胞图形：![https://wxyhly.github.io/tesserxel/examples/#mathfn](https://wxyhly.github.io/tesserxel/examples/#mathfn)
 <a name="answer"></a>
 
 
