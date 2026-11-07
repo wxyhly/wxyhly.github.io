@@ -110,10 +110,10 @@ const app = await tesserxel.four.App.create({ canvas, controllerConfig: {
 | keyConfig.turnDown| 向下转向                                      | "KeyK"         |
 | keyConfig.spinCW  | 自转（从相机上方看顺时针）                                | "KeyZ"         |
 | keyConfig.spinCCW | 自转（从相机上方看逆时针）                                | "KeyX"         |
-| keyConfig.disable | 设置后按住此键会禁用所有相机控制                                  | "AltLeft"      |
+| keyConfig.disable | 设置后按住此键会禁用所有相机控制                                  | "BackquoteLeft"      |
 | keyConfig.enable  | 设置后按住此键才启用相机控制（默认未设置）                    | ""      |
 
-**这里需要注意**：`keyConfig.disable`默认设置为`"AltLeft"`，是因为按住Alt键时是操作3D体素渲染的视角，于是需要在此禁用操作4D场景的相机以免冲突。
+**这里需要注意**：`keyConfig.disable`默认设置为`"BackquoteLeft"`，是因为按住Alt键时是操作3D体素渲染的视角，于是需要在此禁用操作4D场景的相机以免冲突。
 **其次还需注意**：`KeepUpController` 为了保持相机竖直，会将相机的水平和竖直旋转分开保存。一旦它接管相机，相机的朝向与位置都会由其内部管理。除了初始化时设置有效，在之后（如帧循环中）直接修改相机朝向是无效的，因为每次循环都会被 `KeepUpController` 的更新逻辑覆盖。如果确实需要在外部修改相机朝向，**必须在设置之后调用一次 `updateObj` 来强制同步到控制器内部**。Tesserxel 没有设计成自动持续同步，原因有二：一是性能考虑，避免每帧重复转换数据；二是数值稳定性，常规的旋转表示与控制器内部的分离表示在频繁转换时，容易积累一些奇怪的误差。
 
 另外一种常见的控制器是类似Jenn3D软件的`TrackBallController`。虽然这个场景中它会把地面旋转到任意斜着的位置，不适用，我们在第二个场景中才使用它，这里还是先讲一下用法：它有控制物体和控制相机两种模式，由其构造函数第二个参数控制。控制物体时，单纯就是对物体进行各种旋转；控制相机时除了旋转相机，还能推拉摄像机，并设置相机的旋转中心点。需要注意的是**相机的初始位置不要跟旋转中心点重合**，这会带来单位化零向量的错误，把相机的位置锁死。

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>4D正八边形次幂形球极投影</title>
+<style>
+    body { margin: 0; overflow: hidden; background-color: #0a0a12; color: #eee; font-family: monospace; }
+    #info {
+        position: absolute; top: 10px; left: 10px;
+        background: rgba(0,0,0,0.78); padding: 10px 14px; border-radius: 8px;
+        pointer-events: none; font-size: 13px; line-height: 1.7;
+    }
+    .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+    .d1 { background: #4fc3f7; }
+    .d2 { background: #ff3b30; }
+    .br { background: #8899aa; }
+    .hl { background: #ffaa00; }
+
+    #panel {
+        position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+        background: rgba(0,0,0,0.8); padding: 12px 20px; border-radius: 10px;
+        display: flex; align-items: center; gap: 14px;
+        font-size: 14px; user-select: none;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    #panel input[type=range] { width: 220px; accent-color: #4fc3f7; cursor: pointer; }
+    #n-label { font-size: 16px; font-weight: bold; color: #ffaa00; min-width: 28px; display: inline-block; text-align: center; }
+    #meta { font-size: 12px; color: #888; }
+    #panel span{ min-width: max-content;}
+</style>
+</head>
+<body>
+<div id="info">
+    <b>正n边形的正八边形次幂形（两个n,n-直积形的凸包）</b><br>
+    <b>左键拖动</b>3D 旋转，<b>右键拖动</b> 4D 旋转<br>
+    <span class="swatch d1"></span>n,n-直积形A的顶点与棱<br>
+    <span class="swatch d2"></span>n,n-直积形B的顶点与棱<br>
+    <span class="swatch br"></span>取凸包后形成的桥接棱<br>
+    <span class="swatch hl"></span>取凸包后形成的一个反棱台胞
+</div>
+
+<div id="panel">
+    <span>n = <span id="n-label">3</span></span>
+    <input type="range" id="n-slider" min="3" max="12" value="3" step="1">
+    <span id="meta"></span>
+</div>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+    }
+}
+</script>
+<script type="module">
+import * as THREE from 'three';
+
+// ================== 场景 ==================
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0a0a12);
+
+const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.001, 1e9);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+document.body.appendChild(renderer.domElement);
+
+scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+const l1 = new THREE.DirectionalLight(0xffffff, 0.9); l1.position.set(3, 4, 5); scene.add(l1);
+const l2 = new THREE.DirectionalLight(0xffffff, 0.4); l2.position.set(-3, -2, -4); scene.add(l2);
+
+const modelGroup = new THREE.Group();
+scene.add(modelGroup);
+
+// ================== 相机轨道状态（四元数，无万向锁） ==================
+const camTarget = new THREE.Vector3(0, 0, 0);   // 看向的点
+let camDistance = 10;                            // 到 target 的距离
+const camQuat = new THREE.Quaternion();          // 相机的世界朝向
+
+// 初始化：让相机从 (6,4.5,6) 看向原点，记录四元数与距离
+camera.position.set(6, 4.5, 6);
+camera.up.set(0, 1, 0);
+camera.lookAt(camTarget);
+camera.updateMatrixWorld();
+camQuat.setFromRotationMatrix(camera.matrixWorld);
+camDistance = camera.position.distanceTo(camTarget);
+
+// 根据四元数把相机放到正确位置
+function applyCameraQuat() {
+    // 相机局部 +Z 方向（远离 target 的方向）旋转到世界
+    const offset = new THREE.Vector3(0, 0, camDistance).applyQuaternion(camQuat);
+    camera.position.copy(camTarget).add(offset);
+    // up 也一起旋转，保证 lookAt 不会退化
+    const up = new THREE.Vector3(0, 1, 0).applyQuaternion(camQuat);
+    camera.up.copy(up);
+    camera.lookAt(camTarget);
+    camera.updateMatrixWorld();
+}
+
+// ================== 颜色与材质 ==================
+const COLOR_D1 = 0x4fc3f7;
+const COLOR_D2 = 0xff3b30;
+const COLOR_BR = 0x8899aa;
+const COLOR_HL = 0xffaa00;
+
+const matVertD1 = new THREE.MeshStandardMaterial({ color: COLOR_D1, emissive: 0x113355, roughness: 0.35 });
+const matVertD2 = new THREE.MeshStandardMaterial({ color: COLOR_D2, emissive: 0x551111, roughness: 0.35 });
+
+const matEdgeD1 = new THREE.MeshStandardMaterial({ color: COLOR_D1, roughness: 0.55 });
+const matEdgeD2 = new THREE.MeshStandardMaterial({ color: COLOR_D2, roughness: 0.55 });
+const matEdgeBridge = new THREE.MeshStandardMaterial({ color: COLOR_BR, roughness: 0.65 });
+const matEdgeHL = new THREE.MeshStandardMaterial({ color: COLOR_HL, emissive: 0x552200, roughness: 0.35 });
+
+const edgeMaterialByType = {
+    d1: matEdgeD1,
+    d2: matEdgeD2,
+    bridge: matEdgeBridge,
+    hl: matEdgeHL
+};
+
+// ================== 全局状态 ==================
+let n = 3;
+let normalized4D = null;
+let edgeData = null;
+let vertexMeshes = null;
+let tubeMeshes = null;
+let sphereGeomCurrent = null;
+let R_NORMAL = 0.028;
+let R_HL = 0.055;
+
+let R4 = identity4();
+let dirty = true;
+let pendingN = null;
+
+// ================== 4×4 矩阵工具 ==================
+function identity4() { return [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1]; }
+
+// 绕「任意 3D 单位向量 u 与 w 平面」旋转 theta
+function rotation4Around3DAxis(u, theta) {
+    const c = Math.cos(theta);
+    const s = Math.sin(theta);
+    const ux = u.x, uy = u.y, uz = u.z;
+    const k = c - 1;
+    const m = new Array(16);
+    m[0]  = 1 + k * ux * ux;  m[1]  =     k * ux * uy;  m[2]  =     k * ux * uz;  m[3]  = -s * ux;
+    m[4]  =     k * uy * ux;  m[5]  = 1 + k * uy * uy;  m[6]  =     k * uy * uz;  m[7]  = -s * uy;
+    m[8]  =     k * uz * ux;  m[9]  =     k * uz * uy;  m[10] = 1 + k * uz * uz;  m[11] = -s * uz;
+    m[12] =     s * ux;       m[13] =     s * uy;       m[14] =     s * uz;       m[15] =  c;
+    return m;
+}
+
+function matMul4(A, B) {
+    const C = new Array(16);
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+            let s = 0;
+            for (let k = 0; k < 4; k++) s += A[i*4+k] * B[k*4+j];
+            C[i*4+j] = s;
+        }
+    }
+    return C;
+}
+
+function apply4(M, v) {
+    return [
+        M[0]*v[0] + M[1]*v[1] + M[2]*v[2] + M[3]*v[3],
+        M[4]*v[0] + M[5]*v[1] + M[6]*v[2] + M[7]*v[3],
+        M[8]*v[0] + M[9]*v[1] + M[10]*v[2] + M[11]*v[3],
+        M[12]*v[0] + M[13]*v[1] + M[14]*v[2] + M[15]*v[3]
+    ];
+}
+
+// ================== 球极投影（无极点保护） ==================
+function project4D(u) {
+    const denom = 1 - u[3] + 1e-6;
+    return new THREE.Vector3(u[0] / denom, u[1] / denom, u[2] / denom);
+}
+
+// ================== S³ slerp ==================
+function slerp4D(u, v, t) {
+    let dot = u[0]*v[0] + u[1]*v[1] + u[2]*v[2] + u[3]*v[3];
+    dot = Math.max(-1, Math.min(1, dot));
+    const theta = Math.acos(dot);
+    if (theta < 1e-8) return u.slice();
+    const s = Math.sin(theta);
+    const a = Math.sin((1 - t) * theta) / s;
+    const b = Math.sin(t * theta) / s;
+    const r = [a*u[0] + b*v[0], a*u[1] + b*v[1], a*u[2] + b*v[2], a*u[3] + b*v[3]];
+    const L = Math.hypot(r[0], r[1], r[2], r[3]);
+    return [r[0]/L, r[1]/L, r[2]/L, r[3]/L];
+}
+
+const keyOf = (a, b) => a < b ? `${a}-${b}` : `${b}-${a}`;
+
+// ================== 构建模型 ==================
+function buildModel(nn) {
+    n = nn;
+    const N2 = n * n;
+
+    if (tubeMeshes) {
+        for (const m of tubeMeshes) if (m.geometry) m.geometry.dispose();
+        tubeMeshes = null;
+    }
+    if (sphereGeomCurrent) {
+        sphereGeomCurrent.dispose();
+        sphereGeomCurrent = null;
+    }
+    while (modelGroup.children.length) {
+        modelGroup.remove(modelGroup.children[0]);
+    }
+
+    const R1 = 1;
+    const R2 = 1 + Math.SQRT2;
+    const vertices4D = [];
+
+    for (let i = 0; i < n; i++) {
+        const theta = Math.PI / 2 - 2 * Math.PI * i / n;
+        for (let j = 0; j < n; j++) {
+            const phi = Math.PI / 2 - 2 * Math.PI * j / n;
+            vertices4D.push([
+                R1 * Math.cos(theta), R1 * Math.sin(theta),
+                R2 * Math.cos(phi),   R2 * Math.sin(phi)
+            ]);
+        }
+    }
+    for (let i = 0; i < n; i++) {
+        const theta = Math.PI / 2 - 2 * Math.PI * i / n;
+        for (let j = 0; j < n; j++) {
+            const phi = Math.PI / 2 - 2 * Math.PI * j / n;
+            vertices4D.push([
+                R2 * Math.cos(theta), R2 * Math.sin(theta),
+                R1 * Math.cos(phi),   R1 * Math.sin(phi)
+            ]);
+        }
+    }
+
+    const idxD1 = (i, j) => i * n + j;
+    const idxD2 = (i, j) => N2 + i * n + j;
+
+    const rawEdges = [];
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            rawEdges.push({ a: idxD1(i, j), b: idxD1((i + 1) % n, j), type: 'd1' });
+            rawEdges.push({ a: idxD1(i, j), b: idxD1(i, (j + 1) % n), type: 'd1' });
+            rawEdges.push({ a: idxD2(i, j), b: idxD2((i + 1) % n, j), type: 'd2' });
+            rawEdges.push({ a: idxD2(i, j), b: idxD2(i, (j + 1) % n), type: 'd2' });
+            rawEdges.push({ a: idxD1(i, j), b: idxD2(i, j), type: 'bridge' });
+        }
+    }
+
+    const quadD1 = [idxD1(0, 0), idxD1(0, 1), idxD1(1, 1), idxD1(1, 0)];
+    const quadD2 = [idxD2(0, 0), idxD2(0, 1), idxD2(1, 1), idxD2(1, 0)];
+    const hlSet = new Set();
+    for (let i = 0; i < 4; i++) {
+        hlSet.add(keyOf(quadD1[i], quadD1[(i + 1) % 4]));
+        hlSet.add(keyOf(quadD2[i], quadD2[(i + 1) % 4]));
+        hlSet.add(keyOf(quadD1[i], quadD2[i]));
+    }
+
+    normalized4D = vertices4D.map(v => {
+        const L = Math.hypot(v[0], v[1], v[2], v[3]);
+        return [v[0] / L, v[1] / L, v[2] / L, v[3] / L];
+    });
+
+    const scale = Math.sqrt(9 / N2);
+    sphereGeomCurrent = new THREE.SphereGeometry(0.17 * scale, 12, 12);
+    R_NORMAL = 0.028 * scale;
+    R_HL = 0.055 * scale;
+
+    vertexMeshes = normalized4D.map((u, i) => {
+        const m = new THREE.Mesh(sphereGeomCurrent, i < N2 ? matVertD1 : matVertD2);
+        m.position.copy(project4D(u));
+        modelGroup.add(m);
+        return m;
+    });
+
+    const subdiv = n <= 4 ? 24 : (n <= 6 ? 16 : (n <= 8 ? 12 : 8));
+    edgeData = rawEdges.map(e => {
+        const isHL = hlSet.has(keyOf(e.a, e.b));
+        const type = isHL ? 'hl' : e.type;
+        const samples = [];
+        for (let i = 0; i <= subdiv; i++) {
+            samples.push(slerp4D(normalized4D[e.a], normalized4D[e.b], i / subdiv));
+        }
+        return { a: e.a, b: e.b, type, isHL, samples, subdiv };
+    });
+
+    tubeMeshes = edgeData.map(ed => {
+        const mesh = new THREE.Mesh(
+            new THREE.BufferGeometry(),
+            edgeMaterialByType[ed.type]
+        );
+        mesh.renderOrder = ed.isHL ? 2 : 1;
+        modelGroup.add(mesh);
+        return mesh;
+    });
+
+    document.getElementById('meta').textContent =
+        `V=${2 * N2}  E=${5 * N2}  C=${2 * N2}`;
+
+    dirty = true;
+}
+
+// ================== 重建几何体 ==================
+function rebuild() {
+    for (let i = 0; i < normalized4D.length; i++) {
+        const ur = apply4(R4, normalized4D[i]);
+        vertexMeshes[i].position.copy(project4D(ur));
+    }
+    for (let ei = 0; ei < edgeData.length; ei++) {
+        const ed = edgeData[ei];
+        const pts = ed.samples.map(u => project4D(apply4(R4, u)));
+        const curve = new THREE.CatmullRomCurve3(pts, false, 'catmullrom', 0.5);
+        const radius = ed.isHL ? R_HL : R_NORMAL;
+        const geom = new THREE.TubeGeometry(curve, ed.subdiv, radius, 6, false);
+        tubeMeshes[ei].geometry.dispose();
+        tubeMeshes[ei].geometry = geom;
+    }
+}
+
+// ================== 手动构图 ==================
+function fitCamera() {
+    const box = new THREE.Box3();
+    for (let i = 0; i < normalized4D.length; i++) {
+        box.expandByPoint(project4D(apply4(R4, normalized4D[i])));
+    }
+    const center = box.getCenter(new THREE.Vector3());
+    const size = box.getSize(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z);
+    if (!isFinite(maxDim) || maxDim < 1e-9) return;
+
+    camTarget.copy(center);
+    camDistance = maxDim * 1.7 * Math.sqrt(3);
+
+    camera.near = Math.max(0.001, maxDim * 0.001);
+    camera.far = Math.max(camera.near * 100, maxDim * 200);
+    camera.updateProjectionMatrix();
+
+    applyCameraQuat();
+}
+
+// ================== 鼠标交互 ==================
+let isOrbiting = false;
+let isRotating4D = false;
+let lastX = 0, lastY = 0;
+
+const _right = new THREE.Vector3();
+const _up = new THREE.Vector3();
+const _q1 = new THREE.Quaternion();
+const _q2 = new THREE.Quaternion();
+
+const dom = renderer.domElement;
+dom.addEventListener('contextmenu', e => e.preventDefault());
+
+dom.addEventListener('pointerdown', e => {
+    if (e.button === 0) {
+        isOrbiting = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        try { dom.setPointerCapture(e.pointerId); } catch (_) {}
+    } else if (e.button === 2) {
+        isRotating4D = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        try { dom.setPointerCapture(e.pointerId); } catch (_) {}
+    }
+});
+
+dom.addEventListener('pointermove', e => {
+    if (!isOrbiting && !isRotating4D) return;
+    const dx = e.clientX - lastX;
+    const dy = e.clientY - lastY;
+    lastX = e.clientX;
+    lastY = e.clientY;
+
+    // 取当前屏幕方向（世界坐标），左键和右键都用它
+    _right.setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+    _up.setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+
+    if (isOrbiting) {
+        // 四元数累积：绕屏幕 up 转 dx，绕屏幕 right 转 dy
+        const ORBIT_SPEED = 0.005;
+        _q1.setFromAxisAngle(_up, -dx * ORBIT_SPEED);
+        _q2.setFromAxisAngle(_right, -dy * ORBIT_SPEED);
+        camQuat.premultiply(_q1).premultiply(_q2).normalize();
+        applyCameraQuat();
+    }
+
+    if (isRotating4D) {
+        // 4D 旋转：绕屏幕方向与 w 平面
+        const ROT4_SPEED = 0.008;
+        if (dx !== 0) {
+            R4 = matMul4(rotation4Around3DAxis(_right, dx * ROT4_SPEED), R4);
+        }
+        if (dy !== 0) {
+            R4 = matMul4(rotation4Around3DAxis(_up, dy * ROT4_SPEED), R4);
+        }
+        dirty = true;
+    }
+});
+
+dom.addEventListener('pointerup', e => {
+    if (e.button === 0) isOrbiting = false;
+    if (e.button === 2) isRotating4D = false;
+    try { dom.releasePointerCapture(e.pointerId); } catch (_) {}
+});
+dom.addEventListener('pointercancel', () => {
+    isOrbiting = false;
+    isRotating4D = false;
+});
+
+dom.addEventListener('wheel', e => {
+    e.preventDefault();
+    camDistance *= Math.exp(e.deltaY * 0.001);
+    camDistance = Math.max(1e-3, Math.min(1e6, camDistance));
+    applyCameraQuat();
+}, { passive: false });
+
+window.addEventListener('keydown', e => {
+    if (e.key === 'r' || e.key === 'R') {
+        R4 = identity4();
+        dirty = true;
+    } else if (e.key === 'f' || e.key === 'F') {
+        rebuild();
+        fitCamera();
+    }
+});
+
+// ================== 滑块 ==================
+const slider = document.getElementById('n-slider');
+const nLabel = document.getElementById('n-label');
+
+slider.addEventListener('input', () => {
+    pendingN = parseInt(slider.value, 10);
+    nLabel.textContent = pendingN;
+});
+
+// ================== 初始化 ==================
+buildModel(parseInt(slider.value, 10));
+rebuild();
+fitCamera();
+
+// ================== 渲染循环 ==================
+function animate() {
+    requestAnimationFrame(animate);
+
+    if (pendingN !== null) {
+        buildModel(pendingN);
+        pendingN = null;
+        rebuild();
+        fitCamera();
+    }
+
+    if (dirty) {
+        rebuild();
+        dirty = false;
+    }
+
+    renderer.render(scene, camera);
+}
+animate();
+
+addEventListener('resize', () => {
+    camera.aspect = innerWidth / innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth, innerHeight);
+});
+</script>
+</body>
+</html>
